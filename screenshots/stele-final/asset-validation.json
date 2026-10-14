@@ -1,0 +1,54 @@
+{
+  "pass": true,
+  "model": "apps/web/public/assets/stele/model3d/final/stele-final.glb",
+  "bytes": 25601688,
+  "sha256": "c39a5f7dac50b9e6a04bf607f1a8ce40b1be9dc4d76d49662bdd84fca4a78772",
+  "triangles": 319024,
+  "primitives": [
+    {
+      "vertices": 171606,
+      "triangles": 319024,
+      "index_max": 171605,
+      "UV0": true,
+      "UV1": true,
+      "normal_unit": true,
+      "zero_area_faces": 0,
+      "PBR_complete": true
+    }
+  ],
+  "embedded_images": [
+    {
+      "mime": "image/png",
+      "pixels": [
+        1536,
+        2048
+      ],
+      "bytes": 5921832
+    },
+    {
+      "mime": "image/png",
+      "pixels": [
+        2048,
+        2048
+      ],
+      "bytes": 2141884
+    },
+    {
+      "mime": "image/jpeg",
+      "pixels": [
+        3072,
+        4096
+      ],
+      "bytes": 5003171
+    },
+    {
+      "mime": "image/png",
+      "pixels": [
+        1536,
+        2048
+      ],
+      "bytes": 1840030
+    }
+  ],
+  "external_image_uris": 0
+}

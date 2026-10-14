@@ -1,0 +1,14 @@
+{
+  "/health": {
+    "status": 404
+  },
+  "/api/health": {
+    "status": 200
+  },
+  "/generate": {
+    "status": 404
+  },
+  "/api/process": {
+    "status": 200
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "blender": "5.1.2",
+  "components": [
+    {
+      "name": "SteleBody_ClosedRecess",
+      "vertices": 35210,
+      "triangles": 70416,
+      "non_manifold_edges": 0,
+      "uv": true,
+      "materials": 1
+    },
+    {
+      "name": "TwinDragonCrown_ClosedSculpt",
+      "vertices": 65794,
+      "triangles": 131584,
+      "non_manifold_edges": 0,
+      "uv": true,
+      "materials": 1
+    },
+    {
+      "name": "BearingPlinth",
+      "vertices": 3330,
+      "triangles": 6656,
+      "non_manifold_edges": 0,
+      "uv": true,
+      "materials": 1
+    },
+    {
+      "name": "ScrollWaist",
+      "vertices": 23522,
+      "triangles": 47040,
+      "non_manifold_edges": 0,
+      "uv": true,
+      "materials": 1
+    },
+    {
+      "name": "WaistCornice",
+      "vertices": 1794,
+      "triangles": 3584,
+      "non_manifold_edges": 0,
+      "uv": true,
+      "materials": 1
+    },
+    {
+      "name": "LotusSupport",
+      "vertices": 28082,
+      "triangles": 56160,
+      "non_manifold_edges": 0,
+      "uv": true,
+      "materials": 1
+    },
+    {
+      "name": "SocketCoping",
+      "vertices": 1794,
+      "triangles": 3584,
+      "non_manifold_edges": 0,
+      "uv": true,
+      "materials": 1
+    }
+  ],
+  "triangles": 319024,
+  "atlas": [
+    3072,
+    4096
+  ],
+  "height": 3.3,
+  "width": 1.85,
+  "depth": 0.72,
+  "coordinate_system": "glTF Y-up +Z front",
+  "ao": "Cycles 12-sample geometric AO, 2048x2048, unique AmbientOcclusion UV; glTF TEXCOORD_1",
+  "textures": {
+    "basecolor": [
+      3072,
+      4096
+    ],
+    "normal": [
+      1536,
+      2048
+    ],
+    "roughness_metallic": [
+      1536,
+      2048
+    ],
+    "ao": [
+      2048,
+      2048
+    ]
+  }
+}

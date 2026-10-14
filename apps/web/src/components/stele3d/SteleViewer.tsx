@@ -3,20 +3,14 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { STELE_DIMENSIONS } from '../../config/steleDimensions';
 import { buildSteleModel, SteleModelInstance, HotspotData } from './SteleModelBuilder';
-import { 
-  Rotate3d, 
-  Eye, 
-  Maximize2, 
-  Minimize2, 
-  Scan, 
-  Sparkles, 
-  RotateCcw, 
-  Layers, 
-  SlidersHorizontal,
-  Info,
-  CheckCircle2,
-  Compass
-} from 'lucide-react';
+import { Rotate3d, Maximize2, Minimize2, Scan } from 'lucide-react';
+
+// Opt-in inspection bridge for the dedicated browser acceptance script.
+// It is absent in normal use and never changes non-stele application state.
+type SteleQAWindow = Window & {
+  __steleQA?: Map<HTMLCanvasElement, {inspect: () => unknown; renderMode: (mode: string) => void; preset: (key: keyof typeof STELE_DIMENSIONS.cameraPresets) => void}>;
+  __steleDisposed?: {geometries: number; textures: number; disconnected: boolean}[];
+};
 
 interface SteleViewerProps {
   customRubbingUrl?: string;
@@ -26,6 +20,7 @@ interface SteleViewerProps {
   isFullscreen?: boolean;
   className?: string;
   showControls?: boolean;
+  onHotspotClick?: (point: { title: string; desc: string }) => void;
 }
 
 export const SteleViewer: React.FC<SteleViewerProps> = ({
@@ -36,12 +31,17 @@ export const SteleViewer: React.FC<SteleViewerProps> = ({
   isFullscreen = false,
   className = '',
   showControls = true,
+  onHotspotClick,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const controlsRef = useRef<OrbitControls | null>(null);
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
   const modelInstanceRef = useRef<SteleModelInstance | null>(null);
+  const fitCameraRef = useRef<((key: keyof typeof STELE_DIMENSIONS.cameraPresets, instant?: boolean) => void) | null>(null);
+  const presetRef = useRef<keyof typeof STELE_DIMENSIONS.cameraPresets>('perspective');
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   // States
   const [isAutoRotate, setIsAutoRotate] = useState<boolean>(true);
@@ -50,6 +50,8 @@ export const SteleViewer: React.FC<SteleViewerProps> = ({
   const [activePreset, setActivePreset] = useState<string>('perspective');
   const [selectedHotspot, setSelectedHotspot] = useState<HotspotData | null>(null);
   const [popupPos, setPopupPos] = useState<{ x: number; y: number } | null>(null);
+  const selectedHotspotRef = useRef<HotspotData | null>(null);
+  selectedHotspotRef.current = selectedHotspot;
 
   // Synced refs for animation loop to avoid stale closure
   const isLaserScanningRef = useRef(isLaserScanning);
@@ -65,6 +67,13 @@ export const SteleViewer: React.FC<SteleViewerProps> = ({
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
+    let cancelled = false;
+    let suspended = false;
+    const handleFullscreen = (event: Event) => { suspended = !isFullscreen && Boolean((event as CustomEvent<boolean>).detail); };
+    window.addEventListener('stele-fullscreen', handleFullscreen);
+    setIsLoaded(false);
+    setLoadError(null);
+    targetCamPos.current = targetLookAt.current = null;
 
     let animFrameId: number;
     const width = container.clientWidth || 800;
@@ -73,7 +82,6 @@ export const SteleViewer: React.FC<SteleViewerProps> = ({
     // 1. Scene & Fog (深墨色与暖灰渐变空间)
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x0c1015);
-    scene.fog = new THREE.FogExp2(0x0c1015, 0.035);
 
     // 2. Camera
     const camera = new THREE.PerspectiveCamera(44, width / height, 0.1, 100);
@@ -88,12 +96,12 @@ export const SteleViewer: React.FC<SteleViewerProps> = ({
       powerPreference: 'high-performance',
     });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.32; // 充足曝光，告别死黑！
+    renderer.toneMappingExposure = 1.08;
     rendererRef.current = renderer;
 
     container.innerHTML = '';
@@ -103,8 +111,8 @@ export const SteleViewer: React.FC<SteleViewerProps> = ({
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
-    controls.minDistance = 1.6;
-    controls.maxDistance = 8.5;
+    controls.minDistance = 2.0;
+    controls.maxDistance = 18;
     controls.target.set(initCam.target[0], initCam.target[1], initCam.target[2]);
     controls.autoRotate = isAutoRotate;
     controls.autoRotateSpeed = 0.8;
@@ -113,67 +121,95 @@ export const SteleViewer: React.FC<SteleViewerProps> = ({
     // 用户交互时自动暂停旋转
     controls.addEventListener('start', () => {
       setIsAutoRotate(false);
+      targetCamPos.current = targetLookAt.current = null;
     });
 
     // 5. 博物馆级专业展览布光体系 (彻底照亮石雕细节)
     // 5.1 环境全局光 (充足底光)
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.75);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.32);
     scene.add(ambientLight);
 
-    const hemiLight = new THREE.HemisphereLight(0xedf2f7, 0x1a222a, 0.65);
+    const hemiLight = new THREE.HemisphereLight(0xedf2f7, 0x98918a, 0.72);
     hemiLight.position.set(0, 10, 0);
     scene.add(hemiLight);
 
     // 5.2 主方向光 (Key Light - 暖白偏右上方)
-    const keyLight = new THREE.DirectionalLight(0xffeedd, 2.0);
+    const keyLight = new THREE.DirectionalLight(0xfff3e8, 2.4);
     keyLight.position.set(4.5, 6.0, 5.0);
     keyLight.castShadow = true;
     keyLight.shadow.mapSize.width = 1024;
     keyLight.shadow.mapSize.height = 1024;
     keyLight.shadow.bias = -0.0005;
+    keyLight.shadow.normalBias = 0.008;
+    keyLight.target.position.set(0, 1.65, 0);
+    scene.add(keyLight.target);
+    Object.assign(keyLight.shadow.camera, { left: -2.2, right: 2.2, top: 2.2, bottom: -2.2 });
     scene.add(keyLight);
 
     // 5.3 辅助填充光 (Fill Light - 柔和偏左前方，消除深部死阴影)
-    const fillLight = new THREE.DirectionalLight(0x99ccdd, 1.1);
+    const fillLight = new THREE.DirectionalLight(0xe2ebf3, 1.4);
     fillLight.position.set(-4.5, 3.5, 4.0);
     scene.add(fillLight);
 
     // 5.4 背部金色轮廓光 (Rim Light - 勾勒碑首双龙飞扬剪影)
-    const rimLight = new THREE.DirectionalLight(0xf5d46e, 1.8);
+    const rimLight = new THREE.DirectionalLight(0xfff3e8, 2.2);
     rimLight.position.set(0, 5.5, -4.5);
     scene.add(rimLight);
 
-    // 5.5 地面接触阴影与光环微光 (Ground Contact Shadow & Pedestal Glow)
-    const groundGeo = new THREE.PlaneGeometry(12, 12);
-    const groundMat = new THREE.MeshStandardMaterial({
-      color: 0x090c0f,
-      roughness: 0.88,
-      metalness: 0.1,
-    });
-    const groundMesh = new THREE.Mesh(groundGeo, groundMat);
-    groundMesh.rotation.x = -Math.PI / 2;
-    groundMesh.position.y = -0.005;
-    groundMesh.receiveShadow = true;
-    scene.add(groundMesh);
+    const undersideLight = new THREE.DirectionalLight(0xe8edf2, 0.75);
+    undersideLight.position.set(-2, -4, 3);
+    scene.add(undersideLight);
 
-    // 地面泥金微光光圈
-    const haloGeo = new THREE.RingGeometry(1.2, 2.6, 64);
-    const haloMat = new THREE.MeshBasicMaterial({
-      color: 0xd4af37,
-      transparent: true,
-      opacity: 0.08,
-      side: THREE.DoubleSide,
-    });
-    const haloMesh = new THREE.Mesh(haloGeo, haloMat);
-    haloMesh.rotation.x = -Math.PI / 2;
-    haloMesh.position.y = 0.001;
-    scene.add(haloMesh);
+    // Empty exhibition space: no floor or halo can occlude the underside.
 
     // 6. 构建高精度三维碑刻模型实例
     const textureLoader = new THREE.TextureLoader();
     const steleInstance = buildSteleModel(textureLoader, customRubbingUrl);
     modelInstanceRef.current = steleInstance;
     scene.add(steleInstance.group);
+
+    const fitCamera = (key: keyof typeof STELE_DIMENSIONS.cameraPresets, instant = false) => {
+      if (steleInstance.bounds.isEmpty()) return;
+      const preset = STELE_DIMENSIONS.cameraPresets[key];
+      const center = steleInstance.bounds.getCenter(new THREE.Vector3());
+      const direction = new THREE.Vector3(...preset.position as [number, number, number])
+        .sub(new THREE.Vector3(...preset.target as [number, number, number])).normalize();
+      const right = new THREE.Vector3().crossVectors(camera.up, direction).normalize();
+      const up = new THREE.Vector3().crossVectors(direction, right).normalize();
+      const w = container.clientWidth, h = container.clientHeight;
+      // Reserve real overlay area. Narrow exhibition window wraps its controls.
+      const topMargin = isFullscreen ? 105 : 65;
+      const bottomMargin = showControls ? (w < 700 ? 132 : 65) : 24;
+      const safeHeight = Math.max(120, h - topMargin - bottomMargin);
+      camera.fov = preset.fov;
+      camera.aspect = w / h;
+      camera.setViewOffset(w, h, 0, (bottomMargin - topMargin) / 2, w, h);
+      camera.updateProjectionMatrix();
+      const tan = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+      let distance = 2;
+      const { min, max } = steleInstance.bounds;
+      for (const x of [min.x,max.x]) for (const y of [min.y,max.y]) for (const z of [min.z,max.z]) {
+        const delta = new THREE.Vector3(x,y,z).sub(center);
+        const depth = delta.dot(direction);
+        distance = Math.max(distance, depth + Math.abs(delta.dot(up)) / (tan * safeHeight / h * .94),
+          depth + Math.abs(delta.dot(right)) / (tan * camera.aspect * .88));
+      }
+      const position = center.clone().addScaledVector(direction, distance);
+      if (instant) {
+        targetCamPos.current = targetLookAt.current = null;
+        camera.position.copy(position); controls.target.copy(center); controls.update();
+      } else { targetCamPos.current = position; targetLookAt.current = center; }
+    };
+    fitCameraRef.current = fitCamera;
+    steleInstance.ready.then(() => {
+      if (cancelled) return;
+      steleInstance.setMixRatio(restorationRatio);
+      fitCamera(presetRef.current, true);
+      renderer.domElement.dataset.steleReady = 'true';
+      setIsLoaded(true);
+    }).catch(error => {
+      if (!cancelled) setLoadError(error instanceof Error ? error.message : '石碑模型加载失败');
+    });
 
     // 7. Raycaster 拾取 3D 局部残字热点
     const raycaster = new THREE.Raycaster();
@@ -185,13 +221,15 @@ export const SteleViewer: React.FC<SteleViewerProps> = ({
       mouse.y = -(((event.clientY - rect.top) / rect.height) * 2 - 1);
 
       raycaster.setFromCamera(mouse, camera);
-      const targetCores = steleInstance.hotspotMeshes.map((h) => h.core);
-      const intersects = raycaster.intersectObjects(targetCores);
+      // Test the actual stone too; back-facing/occluded hotspots cannot be picked.
+      const intersects = raycaster.intersectObject(steleInstance.group, true)
+        .filter(hit => !hit.object.name.endsWith('-ring'));
 
       if (intersects.length > 0) {
         const found = steleInstance.hotspotMeshes.find((h) => h.core === intersects[0].object);
         if (found) {
           setSelectedHotspot(found.data);
+          onHotspotClick?.({title: found.data.title, desc: found.data.desc});
           setPopupPos({ x: event.clientX - rect.left, y: event.clientY - rect.top });
           return;
         }
@@ -209,21 +247,83 @@ export const SteleViewer: React.FC<SteleViewerProps> = ({
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
+      if (renderer.domElement.dataset.steleReady === 'true') fitCamera(presetRef.current, true);
     };
-    window.addEventListener('resize', handleResize);
+    const resizeObserver = new ResizeObserver(handleResize);
+    resizeObserver.observe(container);
 
     // 9. 渲染与动画循环 (60 FPS)
     const clock = new THREE.Clock();
+    let frames = 0, fps = 0, fpsStart = performance.now();
+    const qaWindow = window as SteleQAWindow;
+    const qaEnabled = new URLSearchParams(window.location.search).get('steleQA') === '1';
+    const clay = new THREE.MeshStandardMaterial({color:0x909090, roughness:.95, metalness:0});
+    let qaMode = 'web';
+    if (qaEnabled) {
+      qaWindow.__steleQA ??= new Map();
+      qaWindow.__steleQA.set(renderer.domElement, {
+        preset: key => { setIsAutoRotate(false); controls.autoRotate=false; presetRef.current=key; fitCamera(key,true); },
+        renderMode: mode => {
+          qaMode=mode;
+          scene.background=new THREE.Color(mode==='web' ? 0x0c1015 : 0xffffff);
+          scene.overrideMaterial=mode==='clay' ? clay : null;
+          steleInstance.hotspotMeshes.forEach(h => {h.core.visible=h.ring.visible=mode==='web';});
+        },
+        inspect: () => {
+          const gl=renderer.getContext();
+          const debug=gl.getExtension('WEBGL_debug_renderer_info');
+          const points: number[][]=[];
+          if (!steleInstance.bounds.isEmpty()) {
+            const {min,max}=steleInstance.bounds;
+            for (const x of [min.x,max.x]) for (const y of [min.y,max.y]) for (const z of [min.z,max.z]) {
+              const p=new THREE.Vector3(x,y,z).project(camera); points.push([p.x,p.y,p.z]);
+            }
+          }
+          return {ready:renderer.domElement.dataset.steleReady==='true',fps,transitioning:!!targetCamPos.current,interaction:steleInstance.interactionState(),
+            position:camera.position.toArray(),target:controls.target.toArray(),bounds:points,
+            triangles:renderer.info.render.triangles,calls:renderer.info.render.calls,
+            gpu:debug ? gl.getParameter(debug.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER),
+            drawingBuffer:[renderer.domElement.width,renderer.domElement.height],pixelRatio:renderer.getPixelRatio(),
+            memory:{...renderer.info.memory},modelBounds:{min:steleInstance.bounds.min.toArray(),max:steleInstance.bounds.max.toArray()},
+            meshes:steleInstance.group.children.filter(o=>o.name!=='SteleFinal').length,
+            hotspots:steleInstance.hotspotMeshes.map(h=> {
+              const p=h.core.position.clone().project(camera);
+              return {id:h.data.id,x:(p.x+1)*container.clientWidth/2,y:(1-p.y)*container.clientHeight/2};
+            }),
+            materials:steleInstance.materials.filter(m=>m instanceof THREE.MeshStandardMaterial).map(m=> {
+              const s=m as THREE.MeshStandardMaterial;
+              return {map:!!s.map,normal:!!s.normalMap,roughness:!!s.roughnessMap,ao:!!s.aoMap,metalness:s.metalness,transparent:s.transparent,colorSpace:s.map?.colorSpace};
+            }),
+          };
+        },
+      });
+    }
 
     const animate = () => {
       animFrameId = requestAnimationFrame(animate);
-      const elapsed = clock.getElapsedTime();
+      if (suspended || document.hidden) return;
+      const delta = clock.getDelta();
+      const elapsed = clock.elapsedTime;
+      frames++;
+      const now=performance.now();
+      if (now-fpsStart>=1000) {fps=frames*1000/(now-fpsStart);frames=0;fpsStart=now;}
 
       // 相机平滑插值到预设目标 (Tween Lerp)
       if (targetCamPos.current && targetLookAt.current) {
-        camera.position.lerp(targetCamPos.current, 0.06);
-        controls.target.lerp(targetLookAt.current, 0.06);
-        if (camera.position.distanceTo(targetCamPos.current) < 0.02) {
+        // Rotate around the stone at a safe radius instead of interpolating
+        // through it when switching from front to back or top to underside.
+        const alpha=1-Math.exp(-Math.min(delta,.2)*9);
+        const offset=camera.position.clone().sub(controls.target);
+        const desired=targetCamPos.current.clone().sub(targetLookAt.current);
+        const radius=THREE.MathUtils.lerp(offset.length(),desired.length(),alpha);
+        const direction=offset.normalize();
+        const rotation=new THREE.Quaternion().setFromUnitVectors(direction,desired.normalize());
+        direction.applyQuaternion(new THREE.Quaternion().slerp(rotation,alpha));
+        controls.target.lerp(targetLookAt.current,alpha);
+        camera.position.copy(controls.target).addScaledVector(direction,radius);
+        if (camera.position.distanceTo(targetCamPos.current) < 0.002) {
+          camera.position.copy(targetCamPos.current);
+          controls.target.copy(targetLookAt.current);
           targetCamPos.current = null;
           targetLookAt.current = null;
         }
@@ -234,7 +334,9 @@ export const SteleViewer: React.FC<SteleViewerProps> = ({
       controls.update();
 
       // 激光扫描上下循环 (0.05 ~ 0.95 归一化 UV)
-      if (isLaserScanningRef.current) {
+      if (qaMode !== 'web') {
+        steleInstance.updateScan(0.5, 0);
+      } else if (isLaserScanningRef.current) {
         const scanNormY = Math.sin(elapsed * 1.8) * 0.45 + 0.5;
         steleInstance.updateScan(scanNormY, 1.2);
       } else {
@@ -249,6 +351,12 @@ export const SteleViewer: React.FC<SteleViewerProps> = ({
           0.5 + Math.cos(elapsed * 3.5 + idx * 1.5) * 0.35;
       });
 
+      if (selectedHotspotRef.current) {
+        const p = selectedHotspotRef.current.localPos.clone().project(camera);
+        const next = {x:(p.x+1)*container.clientWidth/2, y:(1-p.y)*container.clientHeight/2};
+        setPopupPos(prev => prev && Math.abs(prev.x-next.x)<1 && Math.abs(prev.y-next.y)<1 ? prev : next);
+      }
+
       renderer.render(scene, camera);
     };
 
@@ -256,17 +364,28 @@ export const SteleViewer: React.FC<SteleViewerProps> = ({
 
     // 10. 资源安全清理
     return () => {
+      cancelled = true;
+      window.removeEventListener('stele-fullscreen', handleFullscreen);
       cancelAnimationFrame(animFrameId);
-      window.removeEventListener('resize', handleResize);
+      resizeObserver.disconnect();
       renderer.domElement.removeEventListener('pointerdown', handlePointerDown);
       controls.dispose();
       steleInstance.dispose();
+      keyLight.shadow.map?.dispose();
+      clay.dispose();
       renderer.dispose();
+      renderer.forceContextLoss();
+      fitCameraRef.current = null;
+      modelInstanceRef.current = null;
       if (container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
       }
+      if (qaEnabled) {
+        qaWindow.__steleQA?.delete(renderer.domElement);
+        (qaWindow.__steleDisposed ??= []).push({geometries:renderer.info.memory.geometries,textures:renderer.info.memory.textures,disconnected:!renderer.domElement.isConnected});
+      }
     };
-  }, [customRubbingUrl]);
+  }, [customRubbingUrl, isFullscreen, showControls]);
 
   // 控制自动旋转开关
   const toggleAutoRotate = useCallback(() => {
@@ -283,11 +402,9 @@ export const SteleViewer: React.FC<SteleViewerProps> = ({
     setIsAutoRotate(false);
     if (controlsRef.current) controlsRef.current.autoRotate = false;
 
-    const preset = STELE_DIMENSIONS.cameraPresets[presetKey];
-    if (preset) {
-      targetCamPos.current = new THREE.Vector3(preset.position[0], preset.position[1], preset.position[2]);
-      targetLookAt.current = new THREE.Vector3(preset.target[0], preset.target[1], preset.target[2]);
-    }
+    presetRef.current = presetKey;
+    setSelectedHotspot(null);
+    fitCameraRef.current?.(presetKey);
   }, []);
 
   // 修复混合度滑块更新
@@ -299,23 +416,28 @@ export const SteleViewer: React.FC<SteleViewerProps> = ({
   };
 
   return (
-    <div className={`relative w-full h-full select-none overflow-hidden bg-[#0C1015] ${className}`}>
+    <div data-stele-viewer className={`relative w-full h-full select-none overflow-hidden bg-[#0C1015] ${className}`}>
       {/* 3D WebGL Canvas Container */}
       <div ref={containerRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
+      {!isLoaded && (
+        <div role="status" className="absolute inset-0 flex items-center justify-center text-xs text-slate-300 pointer-events-none">
+          {loadError || '正在加载石碑三维模型…'}
+        </div>
+      )}
 
       {/* Top Banner Tag */}
-      <div className="absolute top-3.5 left-4 z-20 pointer-events-none flex items-center space-x-2.5">
+      {!isFullscreen && <div className="absolute top-3.5 left-4 z-20 pointer-events-none flex items-center space-x-2.5">
         <div className="px-3 py-1.5 rounded-full bg-slate-900/85 border border-gold/40 text-xs font-serif text-gold-light backdrop-blur-md shadow-card flex items-center space-x-2">
           <span className="w-2 h-2 rounded-full bg-cinnabar animate-pulse" />
           <span className="font-semibold">{steleTitle}</span>
           <span className="text-[10px] text-slate-400 font-sans border-l border-slate-700 pl-2">
-            PBR 仿古青石 · 双龙浮雕 · 仰莲须弥座
+            PBR 仿古青石 · 双龙浮雕 · 概念铭文
           </span>
         </div>
-      </div>
+      </div>}
 
       {/* Top Right Tool Action: Fullscreen */}
-      {onToggleFullscreen && (
+      {onToggleFullscreen && !isFullscreen && (
         <div className="absolute top-3.5 right-4 z-20">
           <button
             onClick={onToggleFullscreen}
@@ -377,6 +499,7 @@ export const SteleViewer: React.FC<SteleViewerProps> = ({
                 { key: 'left', label: '左侧' },
                 { key: 'right', label: '右侧' },
                 { key: 'top', label: '俯视' },
+                { key: 'bottom', label: '仰视' },
                 { key: 'back', label: '背面' },
                 { key: 'perspective', label: '透视' },
               ] as const

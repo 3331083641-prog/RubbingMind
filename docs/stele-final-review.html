@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>墨韵智考 · 石碑六面参考与网页渲染对照</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f4f3ef;color:#272622;font:15px/1.7 system-ui,"Microsoft YaHei",sans-serif}main{max-width:1500px;margin:auto;padding:32px}h1{font-size:26px;margin:0 0 8px}p{margin:8px 0;color:#5e5b54}nav{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0}button,a{color:inherit}button{border:1px solid #c7c2b7;background:white;border-radius:7px;padding:8px 16px;cursor:pointer}button[aria-pressed=true]{background:#35332f;color:white}section{display:grid;grid-template-columns:1fr 1fr;gap:20px}figure{margin:0;background:white;border:1px solid #dedbd3;border-radius:10px;overflow:hidden}figcaption{padding:12px 20px;border-bottom:1px solid #eee}img{display:block;width:100%;height:640px;object-fit:contain;background:white}footer{padding:24px 0}#note{padding:16px;background:#ebe8df;border-radius:7px}@media(max-width:800px){main{padding:18px}section{grid-template-columns:1fr}img{height:480px}}
+</style>
+<main>
+<h1>墨韵智考 · 六面参考与真实网页渲染对照</h1>
+<p>左侧为用户原始概念参考，右侧为同一最终 GLB 在现有网页 Three.js 画布中的实际截图。切换灰模可检查真实雕刻体量。</p>
+<nav id="views"></nav>
+<nav><button id="pbr" aria-pressed="true">PBR 石材</button><button id="clay" aria-pressed="false">Clay 几何</button><a href="stele-final-report.md">完整验收报告</a></nav>
+<section>
+<figure><figcaption id="refcaption">原始参考 · 正面</figcaption><a id="ref-link"><img id="ref" alt="原始石碑概念参考"></a></figure>
+<figure><figcaption id="rendercaption">网页 PBR · 正面</figcaption><a id="render-link"><img id="render" alt="最终 GLB 的真实网页渲染"></a></figure>
+</section>
+<p id="note"></p>
+<footer>Blender 5.1.2 · 319,024 三角面 · 主石材 1 Draw Call · 4 张嵌入 PBR 图 · UV1 几何 AO 烘焙<br>参考文字属于概念铭文，不作为真实历史碑文。俯视原图为斜俯视；底座统一 1.85×0.72m，避免为各图制作相互矛盾的实体。</footer>
+</main>
+<script>
+const views={front:'正面',back:'背面',left:'左侧',right:'右侧',top:'俯视',bottom:'仰视',perspective:'45°透视'};
+const notes={front:'双龙、宝珠和卷草为真实网格雕刻。字面在闭合碑身上，概念字迹细部由凹刻法线补充。',back:'无字背面、内凹框、裂纹和背面拱首均保留。',left:'左侧材质独立登记，六瓣侧承托与卷草完整。统一厚度 0.24m，台座纵深按工程参数处理。',right:'右侧使用另一张侧图登记，不重复左侧纹理。圆拱和台座均为闭合石体。',top:'采用约 72° 斜俯视，与参考图的观察方向一致；顶部弧壁使用弧长映射，消除条带拉伸。',bottom:'近垂直仰视，底面是真实闭合且浅凹的石框。参考图片比例和工程纵深不一致，采用统一几何尺寸，并裁取相应比例的石材图。',perspective:'45°水平方位角用于检查前侧连接、浮雕厚度和台座层次。左侧提供正面参考作为造型对照，没有独立生成第七套模型。'};
+let view='front',mode='pbr';
+function update(){
+const reference=view==='perspective'?'front':view;
+const ref='../design/references/stele-final/stele_'+reference+'.png';
+const render='../screenshots/stele-final/'+mode+'/stele_'+view+'.png';
+document.getElementById('ref').src=ref;document.getElementById('ref-link').href=ref;
+document.getElementById('render').src=render;document.getElementById('render-link').href=render;
+document.getElementById('refcaption').textContent='原始参考 · '+views[reference];
+document.getElementById('rendercaption').textContent='网页 '+mode.toUpperCase()+' · '+views[view];
+document.getElementById('note').textContent=notes[view];
+for(const button of document.querySelectorAll('[data-view]'))button.setAttribute('aria-pressed',button.dataset.view===view);
+for(const key of ['clay','pbr'])document.getElementById(key).setAttribute('aria-pressed',key===mode);
+}
+for(const [key,label] of Object.entries(views)){const b=document.createElement('button');b.textContent=label;b.dataset.view=key;b.onclick=()=>{view=key;update()};document.getElementById('views').append(b);}
+for(const key of ['clay','pbr'])document.getElementById(key).onclick=()=>{mode=key;update()};
+update();
+</script>
+</html>

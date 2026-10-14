@@ -38,9 +38,9 @@ export const STELE_DIMENSIONS = {
   // 碑身主体 (Stele Body)
   body: {
     width: 1.28,          // 碑身外宽
-    height: 2.00,         // 碑身直立段高度 (不含碑首)
+    height: 2.15,         // 碑身直立段高度 (不含碑首)
     depth: 0.24,          // 碑身物理厚度 (避免纸片感)
-    yPos: 1.55,           // 中心 Y = 0.55 + 2.00/2 = 1.55 (0.55 ~ 2.55)
+    yPos: 1.585,          // 中心 Y，含 0.04m 插入段 (0.51 ~ 2.66)
     borderWidth: 0.08,    // 边缘回字雷纹边框宽度
     borderThickness: 0.015,// 边缘边框相对内凹字面的凸出高度
   },
@@ -48,29 +48,30 @@ export const STELE_DIMENSIONS = {
   // 碑首 (Stele Crown)
   crown: {
     archRadius: 0.64,     // 圆拱半径 (外宽 1.28m 的一半)
-    height: 0.75,         // 碑首总高 (拱顶最高点达 Y = 0.55 + 2.00 + 0.75 = 3.30m)
+    height: 0.64,         // 碑首总高 (拱顶最高点达 Y = 2.66 + 0.64 = 3.30m)
     depth: 0.24,          // 碑首物理厚度 (与碑身一致并稍带弧形收敛)
-    yPos: 2.55,           // 拱底起始高度 Y = 2.55
+    yPos: 2.66,           // 拱底起始高度 Y = 2.66
     centerOrbRadius: 0.10,// 宝珠半径
-    orbPosition: { x: 0, y: 2.95, z: 0.125 }, // 宝珠三维位置
+    orbPosition: { x: 0, y: 3.06, z: 0.125 }, // 宝珠三维位置
   },
 
   // 碑文刻字凹槽面板 (Inscription Panel)
   panel: {
     width: 1.08,          // 碑文可视宽度 (1.28 - 2 * 0.10)
-    height: 1.65,         // 碑文可视高度
-    yPos: 1.55,           // 中心 Y
-    zOffset: 0.121,       // 位于碑身表面 (+0.120 + 0.001 避免 Z-fighting)
-    recessDepth: 0.012,   // 内凹深度
+    height: 1.98,         // 碑文可视高度
+    yPos: 1.60,           // 中心 Y
+    zOffset: 0.114,       // 位于碑身表面 (闭合碑体的内凹字面，Z = 0.114)
+    recessDepth: 0.006,   // 内凹深度，与闭合碑身雕刻面保持一致
   },
 
   // 摄像机预设位点
   cameraPresets: {
-    front: { position: [0, 1.60, 4.8], target: [0, 1.45, 0], fov: 42 },
-    left: { position: [-4.5, 1.60, 0.2], target: [0, 1.45, 0], fov: 42 },
-    right: { position: [4.5, 1.60, 0.2], target: [0, 1.45, 0], fov: 42 },
-    top: { position: [0, 5.2, 1.4], target: [0, 1.6, 0], fov: 45 },
-    back: { position: [0, 1.60, -4.8], target: [0, 1.45, 0], fov: 42 },
-    perspective: { position: [2.8, 2.2, 3.6], target: [0, 1.40, 0], fov: 44 },
+    front: { position: [0, 1.65, 4.8], target: [0, 1.65, 0], fov: 42 },
+    left: { position: [-4.5, 1.65, 0], target: [0, 1.65, 0], fov: 42 },
+    right: { position: [4.5, 1.65, 0], target: [0, 1.65, 0], fov: 42 },
+    top: { position: [0, 6.0, 1.4], target: [0, 1.65, 0], fov: 42 },
+    bottom: { position: [0, -4.0, 0.001], target: [0, 1.65, 0], fov: 42 },
+    back: { position: [0, 1.65, -4.8], target: [0, 1.65, 0], fov: 42 },
+    perspective: { position: [3.6, 2.6, 3.6], target: [0, 1.40, 0], fov: 44 },
   }
 };

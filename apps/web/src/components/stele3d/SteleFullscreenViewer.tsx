@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SteleViewer } from './SteleViewer';
 import { X, Layers, Sparkles } from 'lucide-react';
 
@@ -17,10 +17,14 @@ export const SteleFullscreenViewer: React.FC<SteleFullscreenViewerProps> = ({
   steleTitle = '金石碑刻 · 三维数字孪生大屏',
   onOpenWorkbench,
 }) => {
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent('stele-fullscreen', {detail:isOpen}));
+    return () => { if (isOpen) window.dispatchEvent(new CustomEvent('stele-fullscreen', {detail:false})); };
+  }, [isOpen]);
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md animate-fadeIn">
+    <div data-stele-fullscreen className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md animate-fadeIn">
       {/* Top Floating Controls */}
       <div className="absolute top-4 left-6 right-6 z-40 flex items-center justify-between pointer-events-none">
         <div className="flex items-center space-x-3 pointer-events-auto bg-slate-900/90 border border-gold/40 px-4 py-2 rounded-2xl shadow-2xl backdrop-blur-md">
