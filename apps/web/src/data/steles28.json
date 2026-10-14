@@ -1,0 +1,2914 @@
+[
+  {
+    "id": "han_01_caoquan",
+    "title": "曹全碑",
+    "dynasty": "东汉",
+    "dynasty_value": "eastern_han",
+    "author": "汉无名氏隶书巨匠 / 郃阳县吏群僚",
+    "script_type": "隶书",
+    "weathering_level": "轻度风化",
+    "year": "公元185年",
+    "ganzhi": "东汉中平二年（公元185年）十月丙辰朔二十一日丙子",
+    "location": "西安碑林博物馆第三室",
+    "museum": "台北故宫博物院",
+    "dimensions": "高 253cm, 宽 123cm, 厚 22cm",
+    "summary": "东汉隶书秀美流丽风格之顶峰代表。碑主曹全，字景完，平定西域有功，后出任郃阳令，政绩卓著。字体蚕头燕尾，飘逸遒秀。",
+    "historical_context": "明万历初于合阳莘村出土，首尾俱全无残缺，字迹完好，是汉隶中流别最盛、风韵最朗润的典范之制。",
+    "badges": [
+      "东汉",
+      "隶书",
+      "高清图像已获取"
+    ],
+    "raw_image": "/assets/stele/museum-rubbings/han_01_caoquan_cover.jpg",
+    "clean_image": "/assets/stele/museum-rubbings/han_01_caoquan_cover.jpg",
+    "damaged_image": "/assets/stele/museum-rubbings/han_01_caoquan_cover.jpg",
+    "restored_image": "/assets/stele/museum-rubbings/han_01_caoquan_cover.jpg",
+    "metrics": {
+      "psnr": 34.2,
+      "ssim": 0.945,
+      "snr_gain": 18.5,
+      "glyph_completeness": 96.2,
+      "character_accuracy": 97.8
+    },
+    "translation": "郃阳令曹全碑并序君讳全字景完敦煌效谷人也其先出自有周周武王封弟叔振铎于曹因氏焉",
+    "originalYear": "公元185年",
+    "rubbingPeriod": "明万历拓本（出土初拓无断裂纹）",
+    "calligraphyStyle": "隶书",
+    "inscriptionAuthor": "郃阳县吏群僚",
+    "calligrapher": "汉无名氏隶书巨匠",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "購拓000033",
+    "originalLocation": "陕西省郃阳县莘国故城",
+    "currentLocation": "西安碑林博物馆第三室",
+    "description": "东汉隶书秀美流丽风格之顶峰代表。碑主曹全，字景完，平定西域有功，后出任郃阳令，政绩卓著。字体蚕头燕尾，飘逸遒秀。",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000033_%E6%BC%A2%E6%9B%B9%E5%85%A8%E7%A2%91%E5%A2%A8%E6%8B%93%E6%9C%AC_%E8%BB%B8.pdf",
+    "imageUrl": "/assets/stele/museum-rubbings/han_01_caoquan_cover.jpg",
+    "localImagePath": "D:\\RubbingMind\\data\\museum-images\\han_01_caoquan_cover.jpg",
+    "license": "CC BY 4.0",
+    "attribution": "曹全碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "weatheringLevel": "轻度风化",
+    "imageStatus": "高清图像已获取",
+    "isDemo": false,
+    "source_kind": "commons_pdf",
+    "commons_filename": "NPM-購拓000033 漢曹全碑墨拓本 軸.pdf",
+    "gis_coords": [
+      110.485,
+      35.241
+    ],
+    "damaged_chars": [
+      "景",
+      "振",
+      "铎"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "han_02_yiying",
+    "title": "乙瑛碑",
+    "dynasty": "东汉",
+    "dynasty_value": "eastern_han",
+    "author": "汉鲁相府赞书官 / 鲁相乙瑛 / 司徒吴雄 / 司空赵戒",
+    "script_type": "隶书",
+    "weathering_level": "中度风化",
+    "year": "公元153年",
+    "ganzhi": "东汉永兴元年（公元153年）",
+    "location": "曲阜汉魏碑刻陈列馆",
+    "museum": "台北故宫博物院",
+    "dimensions": "高 260cm, 宽 129cm, 厚 24cm",
+    "summary": "汉隶方正规矩之准绳。记录东汉鲁相乙瑛上书请置孔庙百石卒史守冢礼器之公文奏议，骨肉匀适，法度森严。",
+    "historical_context": "何绍基评其‘虚和恬淡，开辟大雅’，是学隶书正脉宗法之极则。",
+    "badges": [
+      "东汉",
+      "隶书",
+      "高清图像已获取"
+    ],
+    "raw_image": "/assets/stele/museum-rubbings/han_02_yiying_cover.jpg",
+    "clean_image": "/assets/stele/museum-rubbings/han_02_yiying_cover.jpg",
+    "damaged_image": "/assets/stele/museum-rubbings/han_02_yiying_cover.jpg",
+    "restored_image": "/assets/stele/museum-rubbings/han_02_yiying_cover.jpg",
+    "metrics": {
+      "psnr": 34.2,
+      "ssim": 0.945,
+      "snr_gain": 18.5,
+      "glyph_completeness": 96.2,
+      "character_accuracy": 97.8
+    },
+    "translation": "司徒吴雄司空赵戒牒鲁相乙瑛言孔子庙置百石卒史一人守冢司百户礼器春秋祭祀以时",
+    "originalYear": "公元153年",
+    "rubbingPeriod": "清初拓本（孔庙故藏善拓）",
+    "calligraphyStyle": "隶书",
+    "inscriptionAuthor": "鲁相乙瑛 / 司徒吴雄 / 司空赵戒",
+    "calligrapher": "汉鲁相府赞书官",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "購拓000009",
+    "originalLocation": "山东曲阜孔庙同文门",
+    "currentLocation": "曲阜汉魏碑刻陈列馆",
+    "description": "汉隶方正规矩之准绳。记录东汉鲁相乙瑛上书请置孔庙百石卒史守冢礼器之公文奏议，骨肉匀适，法度森严。",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000009_%E6%BC%A2%E9%AD%AF%E7%9B%B8%E4%B9%99%E7%91%9B%E7%A2%91%E5%A2%A8%E6%8B%93%E6%9C%AC_%E8%BB%B8.pdf",
+    "imageUrl": "/assets/stele/museum-rubbings/han_02_yiying_cover.jpg",
+    "localImagePath": "D:\\RubbingMind\\data\\museum-images\\han_02_yiying_cover.jpg",
+    "license": "CC BY 4.0",
+    "attribution": "乙瑛碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "weatheringLevel": "中度风化",
+    "imageStatus": "高清图像已获取",
+    "isDemo": false,
+    "source_kind": "commons_pdf",
+    "commons_filename": "NPM-購拓000009 漢魯相乙瑛碑墨拓本 軸.pdf",
+    "gis_coords": [
+      116.989,
+      35.592
+    ],
+    "damaged_chars": [
+      "冢",
+      "牒",
+      "戒"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "han_03_liqi",
+    "title": "礼器碑",
+    "dynasty": "东汉",
+    "dynasty_value": "eastern_han",
+    "author": "汉无名书生 / 鲁相韩敕",
+    "script_type": "隶书",
+    "weathering_level": "轻度风化",
+    "year": "公元156年",
+    "ganzhi": "东汉永寿二年（公元156年）",
+    "location": "曲阜孔庙碑林",
+    "museum": "台北故宫博物院",
+    "dimensions": "高 227cm, 宽 102cm, 厚 20cm",
+    "summary": "汉隶绝品，清劲秀拔，体势紧密。字形如铁画银钩，金石气神明飞动，被郭沫若赞为‘汉隶第一’。",
+    "historical_context": "碑阴及两侧刻满题名，瘦劲挺拔，风骨绝俗，为汉代石刻艺术之无上神品。",
+    "badges": [
+      "东汉",
+      "隶书",
+      "高清图像已获取"
+    ],
+    "raw_image": "/assets/stele/museum-rubbings/han_03_liqi_cover.jpg",
+    "clean_image": "/assets/stele/museum-rubbings/han_03_liqi_cover.jpg",
+    "damaged_image": "/assets/stele/museum-rubbings/han_03_liqi_cover.jpg",
+    "restored_image": "/assets/stele/museum-rubbings/han_03_liqi_cover.jpg",
+    "metrics": {
+      "psnr": 34.2,
+      "ssim": 0.945,
+      "snr_gain": 18.5,
+      "glyph_completeness": 96.2,
+      "character_accuracy": 97.8
+    },
+    "translation": "鲁相韩敕造孔子庙礼器碑惟永寿二年鲁相平原韩敕字叔严造立礼器修饰孔庙肃肃清明",
+    "originalYear": "公元156年",
+    "rubbingPeriod": "明中叶精拓本",
+    "calligraphyStyle": "隶书",
+    "inscriptionAuthor": "鲁相韩敕",
+    "calligrapher": "汉无名书生",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "購拓000014",
+    "originalLocation": "山东曲阜孔庙",
+    "currentLocation": "曲阜孔庙碑林",
+    "description": "汉隶绝品，清劲秀拔，体势紧密。字形如铁画银钩，金石气神明飞动，被郭沫若赞为‘汉隶第一’。",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000014_%E6%BC%A2%E7%A6%AE%E5%99%A8%E7%A2%91%E5%A2%A8%E6%8B%93%E6%9C%AC_%E8%BB%B8.pdf",
+    "imageUrl": "/assets/stele/museum-rubbings/han_03_liqi_cover.jpg",
+    "localImagePath": "D:\\RubbingMind\\data\\museum-images\\han_03_liqi_cover.jpg",
+    "license": "CC BY 4.0",
+    "attribution": "礼器碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "weatheringLevel": "轻度风化",
+    "imageStatus": "高清图像已获取",
+    "isDemo": false,
+    "source_kind": "commons_pdf",
+    "commons_filename": "NPM-購拓000014 漢禮器碑墨拓本 軸.pdf",
+    "gis_coords": [
+      116.989,
+      35.592
+    ],
+    "damaged_chars": [
+      "敕",
+      "庙",
+      "肃"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "han_04_shichen",
+    "title": "史晨碑",
+    "dynasty": "东汉",
+    "dynasty_value": "eastern_han",
+    "author": "汉代官中善书史吏 / 鲁相史晨 / 故长史徐畅",
+    "script_type": "隶书",
+    "weathering_level": "轻度风化",
+    "year": "公元169年",
+    "ganzhi": "东汉建宁二年（公元169年）",
+    "location": "曲阜汉魏碑刻陈列馆",
+    "museum": "美国大都会艺术博物馆",
+    "dimensions": "高 207cm, 宽 100cm, 厚 21cm",
+    "summary": "史晨前碑与后碑两面刻立，端庄肃穆，结构浑成，是两汉官式正体隶书极致化代表。",
+    "historical_context": "全碑无一懈笔，行气平和，如君子立朝，佩玉铿锵，气象温润雍容。",
+    "badges": [
+      "东汉",
+      "隶书",
+      "高清图像已获取"
+    ],
+    "raw_image": "/assets/stele/museum-rubbings/han_04_shichen_cover.jpg",
+    "clean_image": "/assets/stele/museum-rubbings/han_04_shichen_cover.jpg",
+    "damaged_image": "/assets/stele/museum-rubbings/han_04_shichen_cover.jpg",
+    "restored_image": "/assets/stele/museum-rubbings/han_04_shichen_cover.jpg",
+    "metrics": {
+      "psnr": 34.2,
+      "ssim": 0.945,
+      "snr_gain": 18.5,
+      "glyph_completeness": 96.2,
+      "character_accuracy": 97.8
+    },
+    "translation": "鲁相史晨奏祀孔子庙碑鲁相臣晨长史臣畅稽首言伏惟大圣孔子生于鲁国秉德垂世",
+    "originalYear": "公元169年",
+    "rubbingPeriod": "十九世纪清道光精拓本（大都会艺术博物馆藏）",
+    "calligraphyStyle": "隶书",
+    "inscriptionAuthor": "鲁相史晨 / 故长史徐畅",
+    "calligrapher": "汉代官中善书史吏",
+    "collectionInstitution": "美国大都会艺术博物馆",
+    "collectionNumber": "1992.166.2a–ff",
+    "originalLocation": "山东曲阜孔庙东庑",
+    "currentLocation": "曲阜汉魏碑刻陈列馆",
+    "description": "史晨前碑与后碑两面刻立，端庄肃穆，结构浑成，是两汉官式正体隶书极致化代表。",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:%E6%B8%85%E6%8B%93_%E3%80%8A%E5%8F%B2%E6%99%A8%E7%A2%91%E3%80%8B_%E5%86%8A_%E5%8D%81%E4%B9%9D%E4%B8%96%E7%B4%80%E6%8B%93%E6%9C%AC-Stele_for_Shi_Chen_MET_1992_166_2ab.jpg",
+    "imageUrl": "/assets/stele/museum-rubbings/han_04_shichen_cover.jpg",
+    "localImagePath": "D:\\RubbingMind\\data\\museum-images\\han_04_shichen_cover.jpg",
+    "license": "CC0",
+    "attribution": "《史晨碑》拓本，The Metropolitan Museum of Art, Open Access CC0",
+    "weatheringLevel": "轻度风化",
+    "imageStatus": "高清图像已获取",
+    "isDemo": false,
+    "source_kind": "commons_pdf",
+    "commons_filename": "清拓 《史晨碑》 冊 十九世紀拓本-Stele for Shi Chen MET 1992 166 2ab.jpg",
+    "gis_coords": [
+      116.989,
+      35.592
+    ],
+    "damaged_chars": [
+      "稽",
+      "畅",
+      "伏"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "tang_01_duobao",
+    "title": "多宝塔感应碑",
+    "dynasty": "唐代",
+    "dynasty_value": "tang",
+    "author": "颜真卿（琅琊临沂） / 岑勋（南阳）",
+    "script_type": "楷书",
+    "weathering_level": "轻度风化",
+    "year": "公元752年",
+    "ganzhi": "大唐天宝十一载（公元752年）四月",
+    "location": "西安碑林博物馆第一室",
+    "museum": "台北故宫博物院",
+    "dimensions": "高 285cm, 宽 102cm, 厚 38cm",
+    "summary": "颜真卿四十四岁早年成名之楷书名石，骨力道劲，清雄整饬，开大唐楷范之新纪元。",
+    "historical_context": "详录千福寺楚金禅师感通多宝佛塔从地涌现并率众建塔修法始末，文献极具宗教学与金石学价值。",
+    "badges": [
+      "唐代",
+      "楷书",
+      "高清图像已获取"
+    ],
+    "raw_image": "/assets/stele/museum-rubbings/tang_01_duobao_cover.jpg",
+    "clean_image": "/assets/stele/museum-rubbings/tang_01_duobao_cover.jpg",
+    "damaged_image": "/assets/stele/museum-rubbings/tang_01_duobao_cover.jpg",
+    "restored_image": "/assets/stele/museum-rubbings/tang_01_duobao_cover.jpg",
+    "metrics": {
+      "psnr": 34.2,
+      "ssim": 0.945,
+      "snr_gain": 18.5,
+      "glyph_completeness": 96.2,
+      "character_accuracy": 97.8
+    },
+    "translation": "大唐西京千福寺多宝佛塔感应碑文岑勋撰颜真卿书徐浩题额粤妙法莲华诸佛之秘藏也",
+    "originalYear": "公元752年",
+    "rubbingPeriod": "明拓本（赠拓000365，台北故宫藏）",
+    "calligraphyStyle": "楷书",
+    "inscriptionAuthor": "岑勋（南阳）",
+    "calligrapher": "颜真卿（琅琊临沂）",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "贈拓000365",
+    "originalLocation": "陕西西安西京千福寺",
+    "currentLocation": "西安碑林博物馆第一室",
+    "description": "颜真卿四十四岁早年成名之楷书名石，骨力道劲，清雄整饬，开大唐楷范之新纪元。",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B4%88%E6%8B%93000365_%E6%98%8E%E6%8B%93%E5%94%90%E9%A1%8F%E7%9C%9F%E5%8D%BF%E5%A4%9A%E5%AF%B6%E5%A1%94%E5%A2%A8%E6%8B%93%E6%9C%AC_%E5%86%8A.pdf",
+    "imageUrl": "/assets/stele/museum-rubbings/tang_01_duobao_cover.jpg",
+    "localImagePath": "D:\\RubbingMind\\data\\museum-images\\tang_01_duobao_cover.jpg",
+    "license": "CC BY 4.0",
+    "attribution": "多宝塔感应碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "weatheringLevel": "轻度风化",
+    "imageStatus": "高清图像已获取",
+    "isDemo": false,
+    "source_kind": "commons_pdf",
+    "commons_filename": "NPM-贈拓000365 明拓唐顏真卿多寶塔墨拓本 冊.pdf",
+    "gis_coords": [
+      108.94,
+      34.258
+    ],
+    "damaged_chars": [
+      "感",
+      "岑",
+      "湧"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "tang_02_jiucheng",
+    "title": "九成宫醴泉铭",
+    "dynasty": "唐代",
+    "dynasty_value": "tang",
+    "author": "欧阳询（临湘） / 魏征（馆陶）",
+    "script_type": "楷书",
+    "weathering_level": "中度风化",
+    "year": "公元632年",
+    "ganzhi": "大唐贞观六年（公元632年）",
+    "location": "陕西麟游九成宫博物馆",
+    "museum": "台北故宫博物院",
+    "dimensions": "高 247cm, 宽 120cm, 厚 27cm",
+    "summary": "‘天下第一楷书’。唐太宗避暑九成宫得甘泉，魏征撰文宣赞仁政，欧阳询七十六岁精楷书丹，法度森严，点画如铁石。",
+    "historical_context": "古今正楷第一神品，点画高华，四维严备，兼融北朝峻拔与南朝俊逸。",
+    "badges": [
+      "唐代",
+      "楷书",
+      "高清图像已获取"
+    ],
+    "raw_image": "/assets/stele/museum-rubbings/tang_02_jiucheng_cover.jpg",
+    "clean_image": "/assets/stele/museum-rubbings/tang_02_jiucheng_cover.jpg",
+    "damaged_image": "/assets/stele/museum-rubbings/tang_02_jiucheng_cover.jpg",
+    "restored_image": "/assets/stele/museum-rubbings/tang_02_jiucheng_cover.jpg",
+    "metrics": {
+      "psnr": 34.2,
+      "ssim": 0.945,
+      "snr_gain": 18.5,
+      "glyph_completeness": 96.2,
+      "character_accuracy": 97.8
+    },
+    "translation": "九成宫醴泉铭秘监检校侍中钜鹿郡公臣魏征奉敕撰兼通直散骑常侍臣欧阳询奉敕书",
+    "originalYear": "公元632年",
+    "rubbingPeriod": "明末清初拓本（赠拓000362，台北故宫藏）",
+    "calligraphyStyle": "楷书",
+    "inscriptionAuthor": "魏征（馆陶）",
+    "calligrapher": "欧阳询（临湘）",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "贈拓000362",
+    "originalLocation": "陕西麟游九成宫故址",
+    "currentLocation": "陕西麟游九成宫博物馆",
+    "description": "‘天下第一楷书’。唐太宗避暑九成宫得甘泉，魏征撰文宣赞仁政，欧阳询七十六岁精楷书丹，法度森严，点画如铁石。",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B4%88%E6%8B%93000362_%E5%94%90%E6%AD%90%E9%99%BD%E8%A9%A2%E4%B9%9D%E6%88%90%E5%AE%AE%E9%86%B4%E6%B3%89%E9%8A%98%E5%A2%A8%E6%8B%93%E6%9C%AC_%E5%86%8A.pdf",
+    "imageUrl": "/assets/stele/museum-rubbings/tang_02_jiucheng_cover.jpg",
+    "localImagePath": "D:\\RubbingMind\\data\\museum-images\\tang_02_jiucheng_cover.jpg",
+    "license": "CC BY 4.0",
+    "attribution": "九成宫醴泉铭。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "weatheringLevel": "中度风化",
+    "imageStatus": "高清图像已获取",
+    "isDemo": false,
+    "source_kind": "commons_pdf",
+    "commons_filename": "NPM-贈拓000362 唐歐陽詢九成宮醴泉銘墨拓本 冊.pdf",
+    "gis_coords": [
+      107.795,
+      34.678
+    ],
+    "damaged_chars": [
+      "秘",
+      "钜",
+      "敕"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "tang_03_yanjiamiao",
+    "title": "颜氏家庙碑",
+    "dynasty": "唐代",
+    "dynasty_value": "tang",
+    "author": "颜真卿（自书） / 颜真卿（自撰）",
+    "script_type": "楷书",
+    "weathering_level": "重度风化",
+    "year": "公元780年",
+    "ganzhi": "大唐建中元年（公元780年）",
+    "location": "西安碑林博物馆第二室",
+    "museum": "台北故宫博物院",
+    "dimensions": "高 338cm, 宽 176cm, 厚 40cm",
+    "summary": "颜真卿七十二岁晚年压卷之作，字大三寸，雄强博大，大气磅礴，尽显颜体晚年沉厚庄严之极境。",
+    "historical_context": "全碑四面刻字，记述琅琊颜氏自西汉以降世系先贤德行，为唐代宗族氏族史之第一手金石碑刻。",
+    "badges": [
+      "唐代",
+      "楷书",
+      "高清图像已获取"
+    ],
+    "raw_image": "/assets/stele/museum-rubbings/tang_03_yanjiamiao_cover.jpg",
+    "clean_image": "/assets/stele/museum-rubbings/tang_03_yanjiamiao_cover.jpg",
+    "damaged_image": "/assets/stele/museum-rubbings/tang_03_yanjiamiao_cover.jpg",
+    "restored_image": "/assets/stele/museum-rubbings/tang_03_yanjiamiao_cover.jpg",
+    "metrics": {
+      "psnr": 34.2,
+      "ssim": 0.945,
+      "snr_gain": 18.5,
+      "glyph_completeness": 96.2,
+      "character_accuracy": 97.8
+    },
+    "translation": "颜氏家庙之碑光禄大夫行右庶子充昭义军节度行军司马兼金吾将军鲁郡开国公颜真卿撰并书",
+    "originalYear": "公元780年",
+    "rubbingPeriod": "明末清初拓本（赠拓000305，台北故宫藏）",
+    "calligraphyStyle": "楷书",
+    "inscriptionAuthor": "颜真卿（自撰）",
+    "calligrapher": "颜真卿（自书）",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "贈拓000305",
+    "originalLocation": "陕西西安唐颜氏家庙",
+    "currentLocation": "西安碑林博物馆第二室",
+    "description": "颜真卿七十二岁晚年压卷之作，字大三寸，雄强博大，大气磅礴，尽显颜体晚年沉厚庄严之极境。",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B4%88%E6%8B%93000305_%E5%94%90%E9%A1%8F%E7%9C%9F%E5%8D%BF%E6%9B%B8%E9%A1%8F%E6%B0%8F%E5%AE%B6%E5%BB%9F%E7%A2%91%E5%A2%A8%E6%8B%93%E6%9C%AC_%E5%86%8A.pdf",
+    "imageUrl": "/assets/stele/museum-rubbings/tang_03_yanjiamiao_cover.jpg",
+    "localImagePath": "D:\\RubbingMind\\data\\museum-images\\tang_03_yanjiamiao_cover.jpg",
+    "license": "CC BY 4.0",
+    "attribution": "颜氏家庙碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "weatheringLevel": "重度风化",
+    "imageStatus": "高清图像已获取",
+    "isDemo": false,
+    "source_kind": "commons_pdf",
+    "commons_filename": "NPM-贈拓000305 唐顏真卿書顏氏家廟碑墨拓本 冊.pdf",
+    "gis_coords": [
+      108.956,
+      34.254
+    ],
+    "damaged_chars": [
+      "庶",
+      "鲁",
+      "真"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "tang_04_xuanmita",
+    "title": "玄秘塔碑",
+    "dynasty": "唐代",
+    "dynasty_value": "tang",
+    "author": "柳公权（华原） / 裴休（济源）",
+    "script_type": "楷书",
+    "weathering_level": "中度风化",
+    "year": "公元841年",
+    "ganzhi": "大唐会昌元年（公元841年）",
+    "location": "西安碑林博物馆第二室",
+    "museum": "台北故宫博物院",
+    "dimensions": "高 386cm, 宽 120cm, 厚 32cm",
+    "summary": "柳公权晚年代表作，‘柳骨’精神毕现。骨力遒劲，结构精谨，斩钉截铁，历来为楷书入门之正范。",
+    "historical_context": "会昌灭佛前夕刻立，记录名僧大达法师端甫生平事迹，书法骨力特出，神采飞扬。",
+    "badges": [
+      "唐代",
+      "楷书",
+      "高清图像已获取"
+    ],
+    "raw_image": "/assets/stele/museum-rubbings/tang_04_xuanmita_cover.jpg",
+    "clean_image": "/assets/stele/museum-rubbings/tang_04_xuanmita_cover.jpg",
+    "damaged_image": "/assets/stele/museum-rubbings/tang_04_xuanmita_cover.jpg",
+    "restored_image": "/assets/stele/museum-rubbings/tang_04_xuanmita_cover.jpg",
+    "metrics": {
+      "psnr": 34.2,
+      "ssim": 0.945,
+      "snr_gain": 18.5,
+      "glyph_completeness": 96.2,
+      "character_accuracy": 97.8
+    },
+    "translation": "唐故左街僧录内供奉引驾大德安国寺上座赐紫大达法师玄秘塔碑铭并序宰相裴休撰柳公权书",
+    "originalYear": "公元841年",
+    "rubbingPeriod": "明代拓本（赠拓000309，台北故宫藏）",
+    "calligraphyStyle": "楷书",
+    "inscriptionAuthor": "裴休（济源）",
+    "calligrapher": "柳公权（华原）",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "贈拓000309",
+    "originalLocation": "陕西西安安国寺",
+    "currentLocation": "西安碑林博物馆第二室",
+    "description": "柳公权晚年代表作，‘柳骨’精神毕现。骨力遒劲，结构精谨，斩钉截铁，历来为楷书入门之正范。",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B4%88%E6%8B%93000309_%E5%94%90%E6%9F%B3%E5%85%AC%E6%AC%8A%E5%B0%8F%E6%A5%B7%E6%9B%B8%E6%95%85%E5%B7%A6%E8%A1%97%E5%83%A7%E9%8C%84%E5%A4%A7%E9%81%94%E6%B3%95%E5%B8%AB%E7%8E%84%E7%A7%98%E5%A1%94%E7%A2%91%E9%8A%98%E5%A2%A8%E6%8B%93%E6%9C%AC_%E5%86%8A.pdf",
+    "imageUrl": "/assets/stele/museum-rubbings/tang_04_xuanmita_cover.jpg",
+    "localImagePath": "D:\\RubbingMind\\data\\museum-images\\tang_04_xuanmita_cover.jpg",
+    "license": "CC BY 4.0",
+    "attribution": "玄秘塔碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "weatheringLevel": "中度风化",
+    "imageStatus": "高清图像已获取",
+    "isDemo": false,
+    "source_kind": "commons_pdf",
+    "commons_filename": "NPM-贈拓000309 唐柳公權小楷書故左街僧錄大達法師玄秘塔碑銘墨拓本 冊.pdf",
+    "gis_coords": [
+      108.956,
+      34.254
+    ],
+    "damaged_chars": [
+      "录",
+      "裴",
+      "权"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "wei_01_zhangmenglong",
+    "title": "张猛龙碑",
+    "dynasty": "北魏",
+    "dynasty_value": "northern_wei",
+    "author": "北魏无名善书名手 / 鲁郡儒林学徒",
+    "script_type": "楷书",
+    "weathering_level": "中度风化",
+    "year": "公元522年",
+    "ganzhi": "北魏正光三年（公元522年）",
+    "location": "曲阜孔庙同文门内",
+    "museum": "台北故宫博物院",
+    "dimensions": "高 260cm, 宽 88cm, 厚 23cm",
+    "summary": "魏碑‘方笔之宗’，雄浑奇肆，体势跌宕，被杨守敬推崇为‘整齐和穆，格致高古’。",
+    "historical_context": "北魏碑版艺术鼎盛期之代表作，结构倚侧而安详，点画如削玉割金，极具刀刻生辣质感。",
+    "badges": [
+      "北魏",
+      "楷书",
+      "高清图像已获取"
+    ],
+    "raw_image": "/assets/stele/museum-rubbings/wei_01_zhangmenglong_cover.jpg",
+    "clean_image": "/assets/stele/museum-rubbings/wei_01_zhangmenglong_cover.jpg",
+    "damaged_image": "/assets/stele/museum-rubbings/wei_01_zhangmenglong_cover.jpg",
+    "restored_image": "/assets/stele/museum-rubbings/wei_01_zhangmenglong_cover.jpg",
+    "metrics": {
+      "psnr": 34.2,
+      "ssim": 0.945,
+      "snr_gain": 18.5,
+      "glyph_completeness": 96.2,
+      "character_accuracy": 97.8
+    },
+    "translation": "鲁郡太守张府君清德之碑君讳猛龙字威仙南阳白水人也其先轩辕之苗裔",
+    "originalYear": "公元522年",
+    "rubbingPeriod": "清乾嘉善拓（購拓000077，台北故宫藏）",
+    "calligraphyStyle": "楷书",
+    "inscriptionAuthor": "鲁郡儒林学徒",
+    "calligrapher": "北魏无名善书名手",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "購拓000077",
+    "originalLocation": "山东曲阜孔庙",
+    "currentLocation": "曲阜孔庙同文门内",
+    "description": "魏碑‘方笔之宗’，雄浑奇肆，体势跌宕，被杨守敬推崇为‘整齐和穆，格致高古’。",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000077_%E5%8C%97%E9%AD%8F%E9%AD%AF%E9%83%A1%E5%A4%AA%E5%AE%88%E5%BC%B5%E7%8C%9B%E9%BE%8D%E6%B8%85%E9%A0%8C%E4%B9%8B%E7%A2%91%E5%A2%A8%E6%8B%93%E6%9C%AC.pdf",
+    "imageUrl": "/assets/stele/museum-rubbings/wei_01_zhangmenglong_cover.jpg",
+    "localImagePath": "D:\\RubbingMind\\data\\museum-images\\wei_01_zhangmenglong_cover.jpg",
+    "license": "CC BY 4.0",
+    "attribution": "张猛龙碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "weatheringLevel": "中度风化",
+    "imageStatus": "高清图像已获取",
+    "isDemo": false,
+    "source_kind": "commons_pdf",
+    "commons_filename": "NPM-購拓000077 北魏魯郡太守張猛龍清頌之碑墨拓本.pdf",
+    "gis_coords": [
+      116.989,
+      35.592
+    ],
+    "damaged_chars": [
+      "猛",
+      "威",
+      "裔"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "wei_02_wugaoli",
+    "title": "吴高黎墓志",
+    "dynasty": "北魏",
+    "dynasty_value": "northern_wei",
+    "author": "北朝平城洛阳流派刻工 / 北魏处士门生",
+    "script_type": "楷书",
+    "weathering_level": "轻度风化",
+    "year": "北魏孝昌三年（公元527年）",
+    "ganzhi": "北魏孝昌三年（公元527年）",
+    "location": "台北故宫博物院（拓本原藏）",
+    "museum": "台北故宫博物院",
+    "dimensions": "高 55cm, 宽 55cm, 志石方形",
+    "summary": "北魏洛阳期精品墓志，小巧精湛，刀法爽利，充分展现了北魏迁洛后汉化书风与鲜卑遗劲的结合。",
+    "historical_context": "出土于洛阳北邙山，刀笔融和，字字挺拔，具极高书法与考据史料价值。",
+    "badges": [
+      "北魏",
+      "楷书",
+      "高清图像已获取"
+    ],
+    "raw_image": "/assets/stele/museum-rubbings/wei_02_wugaoli_cover.jpg",
+    "clean_image": "/assets/stele/museum-rubbings/wei_02_wugaoli_cover.jpg",
+    "damaged_image": "/assets/stele/museum-rubbings/wei_02_wugaoli_cover.jpg",
+    "restored_image": "/assets/stele/museum-rubbings/wei_02_wugaoli_cover.jpg",
+    "metrics": {
+      "psnr": 34.2,
+      "ssim": 0.945,
+      "snr_gain": 18.5,
+      "glyph_completeness": 96.2,
+      "character_accuracy": 97.8
+    },
+    "translation": "魏故处士吴君墓志铭君讳高黎字高黎河南洛阳人也其先渤海人氏世笃忠厚",
+    "originalYear": "北魏孝昌三年（公元527年）",
+    "rubbingPeriod": "民国出土精拓（購拓000064）",
+    "calligraphyStyle": "楷书",
+    "inscriptionAuthor": "北魏处士门生",
+    "calligrapher": "北朝平城洛阳流派刻工",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "購拓000064",
+    "originalLocation": "河南洛阳芒山故冢",
+    "currentLocation": "台北故宫博物院（拓本原藏）",
+    "description": "北魏洛阳期精品墓志，小巧精湛，刀法爽利，充分展现了北魏迁洛后汉化书风与鲜卑遗劲的结合。",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000064_%E5%8C%97%E9%AD%8F%E6%95%85%E5%A3%AB%E5%90%B3%E9%AB%98%E9%BB%8E%E5%A2%93%E8%AA%8C%E9%8A%98%E5%A2%A8%E6%8B%93%E6%9C%AC.pdf",
+    "imageUrl": "/assets/stele/museum-rubbings/wei_02_wugaoli_cover.jpg",
+    "localImagePath": "D:\\RubbingMind\\data\\museum-images\\wei_02_wugaoli_cover.jpg",
+    "license": "CC BY 4.0",
+    "attribution": "吴高黎墓志。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "weatheringLevel": "轻度风化",
+    "imageStatus": "高清图像已获取",
+    "isDemo": false,
+    "source_kind": "commons_pdf",
+    "commons_filename": "NPM-購拓000064 北魏故士吳高黎墓誌銘墨拓本.pdf",
+    "gis_coords": [
+      112.454,
+      34.62
+    ],
+    "damaged_chars": [
+      "黎",
+      "洛",
+      "笃"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "wei_03_kouyan",
+    "title": "寇演墓志",
+    "dynasty": "北魏",
+    "dynasty_value": "northern_wei",
+    "author": "北魏善书侍吏 / 汝南太守故属吏",
+    "script_type": "楷书",
+    "weathering_level": "中度风化",
+    "year": "北魏延昌三年（公元514年）",
+    "ganzhi": "北魏延昌三年（公元514年）",
+    "location": "台北故宫博物院（赠拓000234）",
+    "museum": "台北故宫博物院",
+    "dimensions": "高 62cm, 宽 62cm",
+    "summary": "上谷寇氏为北朝望族，此志记述寇演仕北魏历任官职，字迹清峻劲挺，结体略带隶意。",
+    "historical_context": "碑刻笔画斩截，转折硬朗，是北朝楷书中峻拔刚断风格之优品。",
+    "badges": [
+      "北魏",
+      "楷书",
+      "高清图像已获取"
+    ],
+    "raw_image": "/assets/stele/museum-rubbings/wei_03_kouyan_cover.jpg",
+    "clean_image": "/assets/stele/museum-rubbings/wei_03_kouyan_cover.jpg",
+    "damaged_image": "/assets/stele/museum-rubbings/wei_03_kouyan_cover.jpg",
+    "restored_image": "/assets/stele/museum-rubbings/wei_03_kouyan_cover.jpg",
+    "metrics": {
+      "psnr": 34.2,
+      "ssim": 0.945,
+      "snr_gain": 18.5,
+      "glyph_completeness": 96.2,
+      "character_accuracy": 97.8
+    },
+    "translation": "魏故汝南太守寇府君墓志铭君讳演字季演上谷昌平人也高门令族世德赫奕",
+    "originalYear": "北魏延昌三年（公元514年）",
+    "rubbingPeriod": "民国善拓本",
+    "calligraphyStyle": "楷书",
+    "inscriptionAuthor": "汝南太守故属吏",
+    "calligrapher": "北魏善书侍吏",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "贈拓000234",
+    "originalLocation": "河南洛阳",
+    "currentLocation": "台北故宫博物院（赠拓000234）",
+    "description": "上谷寇氏为北朝望族，此志记述寇演仕北魏历任官职，字迹清峻劲挺，结体略带隶意。",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B4%88%E6%8B%93000234_%E5%8C%97%E9%AD%8F%E6%95%85%E6%B1%9D%E5%8D%97%E5%A4%AA%E5%AE%88%E5%AF%87%E5%BA%9C%E5%90%9B%E6%BC%94%E5%A2%93%E8%AA%8C%E9%8A%98%E6%8B%93%E7%89%87_%E8%BB%B8.pdf",
+    "imageUrl": "/assets/stele/museum-rubbings/wei_03_kouyan_cover.jpg",
+    "localImagePath": "D:\\RubbingMind\\data\\museum-images\\wei_03_kouyan_cover.jpg",
+    "license": "CC BY 4.0",
+    "attribution": "寇演墓志。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "weatheringLevel": "中度风化",
+    "imageStatus": "高清图像已获取",
+    "isDemo": false,
+    "source_kind": "commons_pdf",
+    "commons_filename": "NPM-贈拓000234 北魏故汝南太守寇府君演墓誌銘拓片 軸.pdf",
+    "gis_coords": [
+      112.454,
+      34.62
+    ],
+    "damaged_chars": [
+      "寇",
+      "演",
+      "赫"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "wei_04_wangsong",
+    "title": "建义元年王诵墓志",
+    "dynasty": "北魏",
+    "dynasty_value": "northern_wei",
+    "author": "北魏高门中书舍人 / 北魏宗亲姻友",
+    "script_type": "楷书",
+    "weathering_level": "严重漫漶",
+    "year": "公元528年",
+    "ganzhi": "北魏建义元年（公元528年）",
+    "location": "台北故宫博物院（赠拓000382）",
+    "museum": "台北故宫博物院",
+    "dimensions": "高 68cm, 宽 68cm",
+    "summary": "河阴之变遇害者墓志，刻于北魏大动荡之建义元年，书法痛快沈雄，金石刀刻痕迹分明。",
+    "historical_context": "记录尔朱荣河阴之变惨烈历史，文献价值极高，微痕漫漶处正适合本文频空域联合去噪算法检验。",
+    "badges": [
+      "北魏",
+      "楷书",
+      "高清图像已获取"
+    ],
+    "raw_image": "/assets/stele/museum-rubbings/wei_04_wangsong_cover.jpg",
+    "clean_image": "/assets/stele/museum-rubbings/wei_04_wangsong_cover.jpg",
+    "damaged_image": "/assets/stele/museum-rubbings/wei_04_wangsong_cover.jpg",
+    "restored_image": "/assets/stele/museum-rubbings/wei_04_wangsong_cover.jpg",
+    "metrics": {
+      "psnr": 34.2,
+      "ssim": 0.945,
+      "snr_gain": 18.5,
+      "glyph_completeness": 96.2,
+      "character_accuracy": 97.8
+    },
+    "translation": "魏故建义元年王诵墓志君讳诵字文度琅琊临沂人也司徒之孙太尉之子",
+    "originalYear": "公元528年",
+    "rubbingPeriod": "清末民初原石初拓本",
+    "calligraphyStyle": "楷书",
+    "inscriptionAuthor": "北魏宗亲姻友",
+    "calligrapher": "北魏高门中书舍人",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "贈拓000382",
+    "originalLocation": "河南洛阳城北",
+    "currentLocation": "台北故宫博物院（赠拓000382）",
+    "description": "河阴之变遇害者墓志，刻于北魏大动荡之建义元年，书法痛快沈雄，金石刀刻痕迹分明。",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B4%88%E6%8B%93000382_%E5%8C%97%E9%AD%8F%E5%BB%BA%E7%BE%A9%E5%85%83%E5%B9%B4%E7%8E%8B%E8%AA%A6%E5%A2%93%E8%AA%8C_%E5%86%8A.pdf",
+    "imageUrl": "/assets/stele/museum-rubbings/wei_04_wangsong_cover.jpg",
+    "localImagePath": "D:\\RubbingMind\\data\\museum-images\\wei_04_wangsong_cover.jpg",
+    "license": "CC BY 4.0",
+    "attribution": "建义元年王诵墓志。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "weatheringLevel": "严重漫漶",
+    "imageStatus": "高清图像已获取",
+    "isDemo": false,
+    "source_kind": "commons_pdf",
+    "commons_filename": "NPM-贈拓000382 北魏建義元年王誦墓誌 冊.pdf",
+    "gis_coords": [
+      112.454,
+      34.62
+    ],
+    "damaged_chars": [
+      "诵",
+      "度",
+      "琅"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "song_01_yuanyou",
+    "title": "元祐党籍碑",
+    "dynasty": "宋代",
+    "dynasty_value": "song",
+    "author": "蔡京（兴化仙游） / 宋徽宗敕命 / 蔡京纂定",
+    "script_type": "楷书",
+    "weathering_level": "中度风化",
+    "year": "北宋崇宁元年（公元1102年）",
+    "ganzhi": "北宋崇宁元年（公元1102年）",
+    "location": "现存融水石刻及各大博物馆藏拓",
+    "museum": "台北故宫博物院",
+    "dimensions": "高 210cm, 宽 98cm, 厚 22cm",
+    "summary": "北宋新旧党争政治风暴之物证。宋徽宗诏蔡京将司马光、苏轼等309人定为‘元祐奸党’并立石天下，书法骨力纵逸姿媚。",
+    "historical_context": "后宋徽宗敕令天下销毁党籍碑，传世拓本极罕，此台北故宫购藏拓本字迹精绝，乃治宋史之无上重器。",
+    "badges": [
+      "宋代",
+      "楷书",
+      "高清图像已获取"
+    ],
+    "raw_image": "/assets/stele/museum-rubbings/song_01_yuanyou_cover.jpg",
+    "clean_image": "/assets/stele/museum-rubbings/song_01_yuanyou_cover.jpg",
+    "damaged_image": "/assets/stele/museum-rubbings/song_01_yuanyou_cover.jpg",
+    "restored_image": "/assets/stele/museum-rubbings/song_01_yuanyou_cover.jpg",
+    "metrics": {
+      "psnr": 34.2,
+      "ssim": 0.945,
+      "snr_gain": 18.5,
+      "glyph_completeness": 96.2,
+      "character_accuracy": 97.8
+    },
+    "translation": "元祐党籍碑端礼门奉敕立石列名司马光文彦博苏轼苏辙黄庭坚秦观等三百零九人",
+    "originalYear": "北宋崇宁元年（公元1102年）",
+    "rubbingPeriod": "明代孤本重刻精拓（購拓000449，台北故宫藏）",
+    "calligraphyStyle": "楷书",
+    "inscriptionAuthor": "宋徽宗敕命 / 蔡京纂定",
+    "calligrapher": "蔡京（兴化仙游）",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "購拓000449",
+    "originalLocation": "北宋汴京文德殿端礼门",
+    "currentLocation": "现存融水石刻及各大博物馆藏拓",
+    "description": "北宋新旧党争政治风暴之物证。宋徽宗诏蔡京将司马光、苏轼等309人定为‘元祐奸党’并立石天下，书法骨力纵逸姿媚。",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000449%20%E5%AE%8B%E5%85%83%E7%A5%90%E9%BB%A8%E7%B1%8D%E7%A2%91%E5%A2%A8%E6%8B%93%E6%9C%AC%20%E8%BB%B8.pdf",
+    "imageUrl": "/assets/stele/museum-rubbings/song_01_yuanyou_cover.jpg",
+    "localImagePath": "D:\\RubbingMind\\data\\museum-images\\song_01_yuanyou_cover.jpg",
+    "license": "CC BY 4.0",
+    "attribution": "元祐党籍碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "weatheringLevel": "中度风化",
+    "imageStatus": "高清图像已获取",
+    "isDemo": false,
+    "source_kind": "commons_pdf",
+    "commons_filename": "NPM-購拓000449 宋元祐黨籍碑墨拓本 軸.pdf",
+    "gis_coords": [
+      114.307,
+      34.797
+    ],
+    "damaged_chars": [
+      "籍",
+      "敕",
+      "轼"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "song_02_wenxuan",
+    "title": "宋太宗御制至圣文宣王赞碑",
+    "dynasty": "宋代",
+    "dynasty_value": "song",
+    "author": "宋太宗赵光义（御书） / 宋太宗赵光义（御制）",
+    "script_type": "行楷书",
+    "weathering_level": "轻度风化",
+    "year": "北宋淳化五年（公元994年）",
+    "ganzhi": "北宋淳化五年（公元994年）",
+    "location": "曲阜孔庙同文门西侧",
+    "museum": "台北故宫博物院",
+    "dimensions": "高 315cm, 宽 135cm, 厚 36cm",
+    "summary": "宋太宗崇儒重道之御制御书丰碑。通篇行楷书丹，笔势沉厚圆浑，极具帝王雄浑之气象。",
+    "historical_context": "宋初文治政策之标志性历史遗物，见证赵宋王朝重建儒家礼法纲常之宏伟历程。",
+    "badges": [
+      "宋代",
+      "行楷书",
+      "高清图像已获取"
+    ],
+    "raw_image": "/assets/stele/museum-rubbings/song_02_wenxuan_cover.jpg",
+    "clean_image": "/assets/stele/museum-rubbings/song_02_wenxuan_cover.jpg",
+    "damaged_image": "/assets/stele/museum-rubbings/song_02_wenxuan_cover.jpg",
+    "restored_image": "/assets/stele/museum-rubbings/song_02_wenxuan_cover.jpg",
+    "metrics": {
+      "psnr": 34.2,
+      "ssim": 0.945,
+      "snr_gain": 18.5,
+      "glyph_completeness": 96.2,
+      "character_accuracy": 97.8
+    },
+    "translation": "御制至圣文宣王赞碑大宋皇帝制先师德厚万世师表明德昭彰文教大行",
+    "originalYear": "北宋淳化五年（公元994年）",
+    "rubbingPeriod": "明万历拓本（購拓000260，台北故宫藏）",
+    "calligraphyStyle": "行楷书",
+    "inscriptionAuthor": "宋太宗赵光义（御制）",
+    "calligrapher": "宋太宗赵光义（御书）",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "購拓000260",
+    "originalLocation": "山东曲阜孔庙",
+    "currentLocation": "曲阜孔庙同文门西侧",
+    "description": "宋太宗崇儒重道之御制御书丰碑。通篇行楷书丹，笔势沉厚圆浑，极具帝王雄浑之气象。",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000260%20%E5%AE%8B%E5%A4%AA%E5%AE%97%E5%BE%A1%E8%A3%BD%E8%87%B3%E8%81%96%E6%96%87%E5%AE%A3%E7%8E%8B%E8%B4%8A%E7%A2%91%E5%A2%A8%E6%8B%93%E6%9C%AC%20%E8%BB%B8.pdf",
+    "imageUrl": "/assets/stele/museum-rubbings/song_02_wenxuan_cover.jpg",
+    "localImagePath": "D:\\RubbingMind\\data\\museum-images\\song_02_wenxuan_cover.jpg",
+    "license": "CC BY 4.0",
+    "attribution": "宋太宗御制至圣文宣王赞碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "weatheringLevel": "轻度风化",
+    "imageStatus": "高清图像已获取",
+    "isDemo": false,
+    "source_kind": "commons_pdf",
+    "commons_filename": "NPM-購拓000260 宋太宗御製至聖文宣王贊碑墨拓本 軸.pdf",
+    "gis_coords": [
+      116.989,
+      35.592
+    ],
+    "damaged_chars": [
+      "宣",
+      "彰",
+      "制"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "song_03_daguan",
+    "title": "大观圣作碑",
+    "dynasty": "宋代",
+    "dynasty_value": "song",
+    "author": "宋徽宗赵佶（瘦金体御书） / 李时雍（篆额） / 宋徽宗赵佶（御制）",
+    "script_type": "楷书",
+    "weathering_level": "轻度风化",
+    "year": "北宋大观二年（公元1108年）",
+    "ganzhi": "北宋大观二年（公元1108年）",
+    "location": "西安碑林博物馆及曲阜碑林均存分刻原石",
+    "museum": "台北故宫博物院",
+    "dimensions": "高 380cm, 宽 140cm, 厚 35cm",
+    "summary": "宋徽宗‘瘦金体’传世极品御刻大碑。笔致瘦硬挺拔，顿挫屈铁断金，清丽绝俗，为书法史上不可复现之绝唱。",
+    "historical_context": "碑文颁发宋徽宗‘八刑八行’治国诏书，李时雍以小篆题额，碑额盘龙华美，体现北宋宣和年间宫廷工艺极境。",
+    "badges": [
+      "宋代",
+      "楷书",
+      "高清图像已获取"
+    ],
+    "raw_image": "/assets/stele/museum-rubbings/song_03_daguan_cover.jpg",
+    "clean_image": "/assets/stele/museum-rubbings/song_03_daguan_cover.jpg",
+    "damaged_image": "/assets/stele/museum-rubbings/song_03_daguan_cover.jpg",
+    "restored_image": "/assets/stele/museum-rubbings/song_03_daguan_cover.jpg",
+    "metrics": {
+      "psnr": 34.2,
+      "ssim": 0.945,
+      "snr_gain": 18.5,
+      "glyph_completeness": 96.2,
+      "character_accuracy": 97.8
+    },
+    "translation": "大观圣作之碑皇帝御制御书李时雍奉敕篆额立于太学首善之区颁示海内崇尚八刑八行",
+    "originalYear": "北宋大观二年（公元1108年）",
+    "rubbingPeriod": "清代精拓（購拓000421，台北故宫藏）",
+    "calligraphyStyle": "楷书",
+    "inscriptionAuthor": "宋徽宗赵佶（御制）",
+    "calligrapher": "宋徽宗赵佶（瘦金体御书） / 李时雍（篆额）",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "購拓000421",
+    "originalLocation": "北宋开封太学",
+    "currentLocation": "西安碑林博物馆及曲阜碑林均存分刻原石",
+    "description": "宋徽宗‘瘦金体’传世极品御刻大碑。笔致瘦硬挺拔，顿挫屈铁断金，清丽绝俗，为书法史上不可复现之绝唱。",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000421%20%E5%AE%8B%E5%A4%A7%E8%A7%80%E8%81%96%E4%BD%9C%E7%A2%91%E5%A2%A8%E6%8B%93%E6%9C%AC%20%E8%BB%B8.pdf",
+    "imageUrl": "/assets/stele/museum-rubbings/song_03_daguan_cover.jpg",
+    "localImagePath": "D:\\RubbingMind\\data\\museum-images\\song_03_daguan_cover.jpg",
+    "license": "CC BY 4.0",
+    "attribution": "大观圣作碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "weatheringLevel": "轻度风化",
+    "imageStatus": "高清图像已获取",
+    "isDemo": false,
+    "source_kind": "commons_pdf",
+    "commons_filename": "NPM-購拓000421 宋大觀聖作碑墨拓本 軸.pdf",
+    "gis_coords": [
+      108.956,
+      34.254
+    ],
+    "damaged_chars": [
+      "作",
+      "雍",
+      "额"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "song_04_mengying",
+    "title": "释梦英十八体书碑",
+    "dynasty": "宋代",
+    "dynasty_value": "song",
+    "author": "释梦英（十八体古篆） / 宋僧梦英（衡阳）",
+    "script_type": "篆书",
+    "weathering_level": "中度风化",
+    "year": "北宋开宝年间（公元970年左右）",
+    "ganzhi": "北宋开宝年间（公元970年左右）",
+    "location": "西安碑林博物馆第二室",
+    "museum": "台北故宫博物院",
+    "dimensions": "高 280cm, 宽 95cm, 厚 28cm",
+    "summary": "集篆书流派之大成者。宋代高僧释梦英摹刻先秦至汉代十八种奇古篆体，文字学考据与古文字学金石巨作。",
+    "historical_context": "全碑纵列古文、垂露篆、悬针篆、柳叶篆等十八种奇篆，旁附小楷释字，是古汉字形态演变学之珍贵化石。",
+    "badges": [
+      "宋代",
+      "篆书",
+      "高清图像已获取"
+    ],
+    "raw_image": "/assets/stele/museum-rubbings/song_04_mengying_cover.jpg",
+    "clean_image": "/assets/stele/museum-rubbings/song_04_mengying_cover.jpg",
+    "damaged_image": "/assets/stele/museum-rubbings/song_04_mengying_cover.jpg",
+    "restored_image": "/assets/stele/museum-rubbings/song_04_mengying_cover.jpg",
+    "metrics": {
+      "psnr": 34.2,
+      "ssim": 0.945,
+      "snr_gain": 18.5,
+      "glyph_completeness": 96.2,
+      "character_accuracy": 97.8
+    },
+    "translation": "宋释梦英十八体书碑古文古篆鸟书垂露芝英填书殳书金错蝌蚪柳叶倒薤",
+    "originalYear": "北宋开宝年间（公元970年左右）",
+    "rubbingPeriod": "明代拓本（購拓000259，台北故宫藏）",
+    "calligraphyStyle": "篆书",
+    "inscriptionAuthor": "宋僧梦英（衡阳）",
+    "calligrapher": "释梦英（十八体古篆）",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "購拓000259",
+    "originalLocation": "陕西西安碑林",
+    "currentLocation": "西安碑林博物馆第二室",
+    "description": "集篆书流派之大成者。宋代高僧释梦英摹刻先秦至汉代十八种奇古篆体，文字学考据与古文字学金石巨作。",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000259%20%E5%AE%8B%E9%87%8B%E5%A4%A2%E8%8B%B1%E5%8D%81%E5%85%AB%E9%AB%94%E6%9B%B8%E7%A2%91%E5%A2%A8%E6%8B%93%E6%9C%AC%20%E8%BB%B8.pdf",
+    "imageUrl": "/assets/stele/museum-rubbings/song_04_mengying_cover.jpg",
+    "localImagePath": "D:\\RubbingMind\\data\\museum-images\\song_04_mengying_cover.jpg",
+    "license": "CC BY 4.0",
+    "attribution": "释梦英十八体书碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "weatheringLevel": "中度风化",
+    "imageStatus": "高清图像已获取",
+    "isDemo": false,
+    "source_kind": "commons_pdf",
+    "commons_filename": "NPM-購拓000259 宋釋夢英十八體書碑墨拓本 軸.pdf",
+    "gis_coords": [
+      108.956,
+      34.254
+    ],
+    "damaged_chars": [
+      "殳",
+      "薤",
+      "蚪"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "yuan_01_yufu",
+    "title": "大元敕藏御服之碑",
+    "dynasty": "元代",
+    "dynasty_value": "yuan",
+    "author": "赵孟頫（吴兴，翰林学士承旨） / 元仁宗宣政院文臣",
+    "script_type": "行楷书",
+    "weathering_level": "轻度风化",
+    "year": "大元延祐三年（公元1316年）",
+    "ganzhi": "大元延祐三年（公元1316年）",
+    "location": "台北故宫博物院（赠拓000308）",
+    "museum": "台北故宫博物院",
+    "dimensions": "高 195cm, 宽 85cm, 拓册装裱",
+    "summary": "赵孟頫极罕见小楷书丹碑刻。结体严谨温润，温如春风，点画如珍珠落玉盘，尽显元代复古主义楷书化境。",
+    "historical_context": "记录元仁宗向五台山赐佛衣御服盛事，赵孟頫奉敕手书，全碑字口完好，清朗绝伦。",
+    "badges": [
+      "元代",
+      "行楷书",
+      "高清图像已获取"
+    ],
+    "raw_image": "/assets/stele/museum-rubbings/yuan_01_yufu_cover.jpg",
+    "clean_image": "/assets/stele/museum-rubbings/yuan_01_yufu_cover.jpg",
+    "damaged_image": "/assets/stele/museum-rubbings/yuan_01_yufu_cover.jpg",
+    "restored_image": "/assets/stele/museum-rubbings/yuan_01_yufu_cover.jpg",
+    "metrics": {
+      "psnr": 34.2,
+      "ssim": 0.945,
+      "snr_gain": 18.5,
+      "glyph_completeness": 96.2,
+      "character_accuracy": 97.8
+    },
+    "translation": "大元敕藏御服之碑翰林学士承旨荣禄大夫知制诰兼修国史赵孟頫小楷书丹皇帝御服赐山寺",
+    "originalYear": "大元延祐三年（公元1316年）",
+    "rubbingPeriod": "清代善拓册页",
+    "calligraphyStyle": "行楷书",
+    "inscriptionAuthor": "元仁宗宣政院文臣",
+    "calligrapher": "赵孟頫（吴兴，翰林学士承旨）",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "贈拓000308",
+    "originalLocation": "山西五台山大文殊寺",
+    "currentLocation": "台北故宫博物院（赠拓000308）",
+    "description": "赵孟頫极罕见小楷书丹碑刻。结体严谨温润，温如春风，点画如珍珠落玉盘，尽显元代复古主义楷书化境。",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B4%88%E6%8B%93000308%20%E5%85%83%E8%B6%99%E5%AD%9F%E9%A0%AB%E5%B0%8F%E6%A5%B7%E6%9B%B8%E5%A4%A7%E5%85%83%E5%8B%91%E8%97%8F%E5%BE%A1%E6%9C%8D%E4%B9%8B%E7%A2%91%E5%A2%A8%E6%8B%93%E6%9C%AC%20%E5%86%8A.pdf",
+    "imageUrl": "/assets/stele/museum-rubbings/yuan_01_yufu_cover.jpg",
+    "localImagePath": "D:\\RubbingMind\\data\\museum-images\\yuan_01_yufu_cover.jpg",
+    "license": "CC BY 4.0",
+    "attribution": "大元敕藏御服之碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "weatheringLevel": "轻度风化",
+    "imageStatus": "高清图像已获取",
+    "isDemo": false,
+    "source_kind": "commons_pdf",
+    "commons_filename": "NPM-贈拓000308 元趙孟頫小楷書大元勑藏御服之碑墨拓本 冊.pdf",
+    "gis_coords": [
+      113.585,
+      39.012
+    ],
+    "damaged_chars": [
+      "服",
+      "诰",
+      "敕"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "yuan_02_sundeyu",
+    "title": "元重阳宫孙德彧道行碑",
+    "dynasty": "元代",
+    "dynasty_value": "yuan",
+    "author": "赵孟頫（吴兴） / 元代道教玄门学士",
+    "script_type": "楷书",
+    "weathering_level": "中度风化",
+    "year": "大元至大年间（公元1310年前后）",
+    "ganzhi": "大元至大年间（公元1310年前后）",
+    "location": "西安户县重阳宫祖庵碑林",
+    "museum": "台北故宫博物院",
+    "dimensions": "高 270cm, 宽 105cm, 厚 30cm",
+    "summary": "全真教祖庭名石，赵孟頫行楷书丹，如行云流水，骨格清秀，兼备二王洒脱与唐楷沉穆。",
+    "historical_context": "详述全真七子门人孙德彧兴建道观、济世化人之道教掌故，为元代宗教史第一手拓本。",
+    "badges": [
+      "元代",
+      "楷书",
+      "高清图像已获取"
+    ],
+    "raw_image": "/assets/stele/museum-rubbings/yuan_02_sundeyu_cover.jpg",
+    "clean_image": "/assets/stele/museum-rubbings/yuan_02_sundeyu_cover.jpg",
+    "damaged_image": "/assets/stele/museum-rubbings/yuan_02_sundeyu_cover.jpg",
+    "restored_image": "/assets/stele/museum-rubbings/yuan_02_sundeyu_cover.jpg",
+    "metrics": {
+      "psnr": 34.2,
+      "ssim": 0.945,
+      "snr_gain": 18.5,
+      "glyph_completeness": 96.2,
+      "character_accuracy": 97.8
+    },
+    "translation": "元重阳宫孙德彧道行碑翰林直学士赵孟頫书全真高道孙真人修持真行广化玄风",
+    "originalYear": "大元至大年间（公元1310年前后）",
+    "rubbingPeriod": "清代精拓本（赠拓000411，台北故宫藏）",
+    "calligraphyStyle": "楷书",
+    "inscriptionAuthor": "元代道教玄门学士",
+    "calligrapher": "赵孟頫（吴兴）",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "贈拓000411",
+    "originalLocation": "陕西户县重阳宫",
+    "currentLocation": "西安户县重阳宫祖庵碑林",
+    "description": "全真教祖庭名石，赵孟頫行楷书丹，如行云流水，骨格清秀，兼备二王洒脱与唐楷沉穆。",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B4%88%E6%8B%93000411%20%E5%85%83%E8%B6%99%E5%AD%9F%E9%A0%AB%E6%9B%B8%E5%85%83%E9%87%8D%E9%99%BD%E5%AE%AE%E5%AD%AB%E5%BE%B7%E5%BD%A7%E9%81%93%E8%A1%8C%E7%A2%91%E5%A2%A8%E6%8B%93%E6%9C%AC.pdf",
+    "imageUrl": "/assets/stele/museum-rubbings/yuan_02_sundeyu_cover.jpg",
+    "localImagePath": "D:\\RubbingMind\\data\\museum-images\\yuan_02_sundeyu_cover.jpg",
+    "license": "CC BY 4.0",
+    "attribution": "元重阳宫孙德彧道行碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "weatheringLevel": "中度风化",
+    "imageStatus": "高清图像已获取",
+    "isDemo": false,
+    "source_kind": "commons_pdf",
+    "commons_filename": "NPM-贈拓000411 元趙孟頫書元重陽宮孫德彧道行碑墨拓本.pdf",
+    "gis_coords": [
+      108.605,
+      34.095
+    ],
+    "damaged_chars": [
+      "彧",
+      "真",
+      "玄"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "yuan_03_shengzhu",
+    "title": "圣主本命长生之碑",
+    "dynasty": "元代",
+    "dynasty_value": "yuan",
+    "author": "赵孟頫（吴兴） / 元代皇家大德真人",
+    "script_type": "楷书",
+    "weathering_level": "轻度风化",
+    "year": "大元皇庆年间（公元1312年）",
+    "ganzhi": "大元皇庆年间（公元1312年）",
+    "location": "户县祖庵碑林（赠拓000410，台北故宫藏）",
+    "museum": "台北故宫博物院",
+    "dimensions": "高 260cm, 宽 98cm, 厚 28cm",
+    "summary": "赵孟頫奉元廷之敕为皇帝本命祈福所书正楷大碑，正大光明，堂皇典雅，碑额篆书极其精劲。",
+    "historical_context": "元代皇室尊崇道教为国祈福之典范文物，碑文拓片清晰饱满，微痕细节完整保留。",
+    "badges": [
+      "元代",
+      "楷书",
+      "高清图像已获取"
+    ],
+    "raw_image": "/assets/stele/museum-rubbings/yuan_03_shengzhu_cover.jpg",
+    "clean_image": "/assets/stele/museum-rubbings/yuan_03_shengzhu_cover.jpg",
+    "damaged_image": "/assets/stele/museum-rubbings/yuan_03_shengzhu_cover.jpg",
+    "restored_image": "/assets/stele/museum-rubbings/yuan_03_shengzhu_cover.jpg",
+    "metrics": {
+      "psnr": 34.2,
+      "ssim": 0.945,
+      "snr_gain": 18.5,
+      "glyph_completeness": 96.2,
+      "character_accuracy": 97.8
+    },
+    "translation": "圣主本命长生之碑并碑额赵孟頫奉敕书丹保大元圣祚隆延万岁群生沐化八极景仰",
+    "originalYear": "大元皇庆年间（公元1312年）",
+    "rubbingPeriod": "清中期拓本带碑额",
+    "calligraphyStyle": "楷书",
+    "inscriptionAuthor": "元代皇家大德真人",
+    "calligrapher": "赵孟頫（吴兴）",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "贈拓000410",
+    "originalLocation": "陕西户县终南山祖庵",
+    "currentLocation": "户县祖庵碑林（赠拓000410，台北故宫藏）",
+    "description": "赵孟頫奉元廷之敕为皇帝本命祈福所书正楷大碑，正大光明，堂皇典雅，碑额篆书极其精劲。",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B4%88%E6%8B%93000410%20%E5%85%83%E8%B6%99%E5%AD%9F%E9%A0%AB%E6%9B%B8%E8%81%96%E4%B8%BB%E6%9C%AC%E5%91%BD%E9%95%B7%E7%94%9F%E4%B9%8B%E7%A2%91%E5%B9%B6%E7%A2%91%E9%A1%8D%E5%A2%A8%E6%8B%93%E6%9C%AC.pdf",
+    "imageUrl": "/assets/stele/museum-rubbings/yuan_03_shengzhu_cover.jpg",
+    "localImagePath": "D:\\RubbingMind\\data\\museum-images\\yuan_03_shengzhu_cover.jpg",
+    "license": "CC BY 4.0",
+    "attribution": "圣主本命长生之碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "weatheringLevel": "轻度风化",
+    "imageStatus": "高清图像已获取",
+    "isDemo": false,
+    "source_kind": "commons_pdf",
+    "commons_filename": "NPM-贈拓000410 元趙孟頫書聖主本命長生之碑并碑額墨拓本.pdf",
+    "gis_coords": [
+      108.605,
+      34.095
+    ],
+    "damaged_chars": [
+      "祚",
+      "隆",
+      "敕"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "yuan_04_jiulao",
+    "title": "中兴路重建九老仙都宫记（题名待核对原目录）",
+    "dynasty": "元代",
+    "dynasty_value": "yuan",
+    "author": "揭傒斯（富州，奎章阁授经郎） / 虞集（临川，奎章阁侍书学士）",
+    "script_type": "正书",
+    "weathering_level": "待评估",
+    "year": "公元1343年",
+    "ganzhi": "大元至正三年（公元1343年）",
+    "location": "国家图书馆古籍馆藏拓（馆藏号: 金2516）",
+    "museum": "国家图书馆金石拓片数据库",
+    "dimensions": "高 215cm, 宽 92cm",
+    "summary": "元代‘元诗四大家’之虞集撰文、揭傒斯书丹之‘二绝碑’。文章典赡，书法峻严清整，元代文治盛世之缩影。",
+    "historical_context": "国家图书馆金石拓片古籍库重点著录。由于原拓高清影像未开放公开再利用许可，本系统遵照学术规范标注来源著录并保持原图待授权状态。",
+    "badges": [
+      "元代",
+      "正书",
+      "原图待授权或待获取"
+    ],
+    "raw_image": "",
+    "clean_image": "",
+    "damaged_image": "",
+    "restored_image": "",
+    "metrics": {
+      "psnr": 0.0,
+      "ssim": 0.0,
+      "snr_gain": 0.0,
+      "glyph_completeness": 0.0,
+      "character_accuracy": 0.0
+    },
+    "translation": "中兴路重建九老仙都宫记虞集撰文揭傒斯书丹荆州胜境九老故都重修琳宇以彰道化",
+    "originalYear": "公元1343年",
+    "rubbingPeriod": "民国藏拓（国家图书馆金石拓片著录）",
+    "calligraphyStyle": "正书",
+    "inscriptionAuthor": "虞集（临川，奎章阁侍书学士）",
+    "calligrapher": "揭傒斯（富州，奎章阁授经郎）",
+    "collectionInstitution": "国家图书馆金石拓片数据库",
+    "collectionNumber": "金2516",
+    "originalLocation": "湖北江陵中兴路九老仙都宫",
+    "currentLocation": "国家图书馆古籍馆藏拓（馆藏号: 金2516）",
+    "description": "元代‘元诗四大家’之虞集撰文、揭傒斯书丹之‘二绝碑’。文章典赡，书法峻严清整，元代文治盛世之缩影。",
+    "sourceUrl": "https://catalog.digitalarchives.tw/item/00/14/fc/a3.html",
+    "imageUrl": "",
+    "localImagePath": null,
+    "license": "许可不明，需联系国家图书馆",
+    "attribution": null,
+    "weatheringLevel": "待评估",
+    "imageStatus": "原图待授权或待获取",
+    "isDemo": false,
+    "source_kind": "catalog_record",
+    "commons_filename": null,
+    "gis_coords": [
+      112.241,
+      30.335
+    ],
+    "damaged_chars": [
+      "集",
+      "揭",
+      "傒"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "ming_01_xianfu",
+    "title": "明弘治八年西安府学题名碑",
+    "dynasty": "明代",
+    "dynasty_value": "ming",
+    "author": "明弘治西安府学教谕门客 / 陕西巡抚都御史 / 西安知府",
+    "script_type": "楷书",
+    "weathering_level": "中度风化",
+    "year": "公元1495年",
+    "ganzhi": "大明弘治八年（公元1495年）",
+    "location": "西安碑林博物馆（購拓000274，台北故宫藏）",
+    "museum": "台北故宫博物院",
+    "dimensions": "高 80cm, 宽 220cm, 巨大横幅",
+    "summary": "明代关中科举制度珍贵文物。横批形制极其少见，详细刊刻弘治年间关中生员登第姓名与官爵，明代职官志重器。",
+    "historical_context": "台北故宫购拓000274号藏品，文字繁密工整，记录详备，展现明代中叶官学科第之盛貌。",
+    "badges": [
+      "明代",
+      "楷书",
+      "高清图像已获取"
+    ],
+    "raw_image": "/assets/stele/museum-rubbings/ming_01_xianfu_cover.jpg",
+    "clean_image": "/assets/stele/museum-rubbings/ming_01_xianfu_cover.jpg",
+    "damaged_image": "/assets/stele/museum-rubbings/ming_01_xianfu_cover.jpg",
+    "restored_image": "/assets/stele/museum-rubbings/ming_01_xianfu_cover.jpg",
+    "metrics": {
+      "psnr": 34.2,
+      "ssim": 0.945,
+      "snr_gain": 18.5,
+      "glyph_completeness": 96.2,
+      "character_accuracy": 97.8
+    },
+    "translation": "明弘治八年西安府学题名记提督陕西学政按察副使某立石考中举人进士姓名官职",
+    "originalYear": "公元1495年",
+    "rubbingPeriod": "明晚期精拓横披",
+    "calligraphyStyle": "楷书",
+    "inscriptionAuthor": "陕西巡抚都御史 / 西安知府",
+    "calligrapher": "明弘治西安府学教谕门客",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "購拓000274",
+    "originalLocation": "陕西西安府学（今西安碑林前身）",
+    "currentLocation": "西安碑林博物馆（購拓000274，台北故宫藏）",
+    "description": "明代关中科举制度珍贵文物。横批形制极其少见，详细刊刻弘治年间关中生员登第姓名与官爵，明代职官志重器。",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000274%20%E6%98%8E%E5%BC%98%E6%B2%BB%E5%85%AB%E5%B9%B4%E8%A5%BF%E5%AE%89%E5%BA%9C%E5%AD%B8%E9%A1%8C%E5%90%8D%E7%A2%91%E5%A2%A8%E6%8B%93%E6%9C%AC%20%E6%A9%AB%E6%8A%AB.pdf",
+    "imageUrl": "/assets/stele/museum-rubbings/ming_01_xianfu_cover.jpg",
+    "localImagePath": "D:\\RubbingMind\\data\\museum-images\\ming_01_xianfu_cover.jpg",
+    "license": "CC BY 4.0",
+    "attribution": "明弘治八年西安府学题名碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "weatheringLevel": "中度风化",
+    "imageStatus": "高清图像已获取",
+    "isDemo": false,
+    "source_kind": "commons_pdf",
+    "commons_filename": "NPM-購拓000274 明弘治八年西安府學題名碑墨拓本 橫披.pdf",
+    "gis_coords": [
+      108.956,
+      34.254
+    ],
+    "damaged_chars": [
+      "治",
+      "学",
+      "察"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "ming_02_luxianzhi",
+    "title": "文徵明书陆献之墓志铭",
+    "dynasty": "明代",
+    "dynasty_value": "ming",
+    "author": "文徵明（自书行草志铭） / 文徵明（长洲，自撰）",
+    "script_type": "行书",
+    "weathering_level": "轻度风化",
+    "year": "大明嘉靖年间（公元1540年前后）",
+    "ganzhi": "大明嘉靖年间（公元1540年前后）",
+    "location": "台北故宫博物院（赠拓000385）",
+    "museum": "台北故宫博物院",
+    "dimensions": "高 64cm, 宽 64cm, 志石册页",
+    "summary": "‘吴门画派’盟主文徵明晚年行草书志铭极品。笔锋凌厉挺劲，意态安闲，宛若游龙，金石刻工再现江南文人翰墨之风神。",
+    "historical_context": "台北故宫藏拓，志文饱含故交深情，笔画牵丝历历在目，是研究明代吴中文人墓刻书法的珍宝。",
+    "badges": [
+      "明代",
+      "行书",
+      "高清图像已获取"
+    ],
+    "raw_image": "/assets/stele/museum-rubbings/ming_02_luxianzhi_cover.jpg",
+    "clean_image": "/assets/stele/museum-rubbings/ming_02_luxianzhi_cover.jpg",
+    "damaged_image": "/assets/stele/museum-rubbings/ming_02_luxianzhi_cover.jpg",
+    "restored_image": "/assets/stele/museum-rubbings/ming_02_luxianzhi_cover.jpg",
+    "metrics": {
+      "psnr": 34.2,
+      "ssim": 0.945,
+      "snr_gain": 18.5,
+      "glyph_completeness": 96.2,
+      "character_accuracy": 97.8
+    },
+    "translation": "明文徵明书陆献之墓志铭长洲文徵明撰并书吴趋处士陆君之墓德润乡闾风规穆然",
+    "originalYear": "大明嘉靖年间（公元1540年前后）",
+    "rubbingPeriod": "明嘉靖拓本（赠拓000385拓册）",
+    "calligraphyStyle": "行书",
+    "inscriptionAuthor": "文徵明（长洲，自撰）",
+    "calligrapher": "文徵明（自书行草志铭）",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "贈拓000385",
+    "originalLocation": "江苏苏州吴县洞庭东山",
+    "currentLocation": "台北故宫博物院（赠拓000385）",
+    "description": "‘吴门画派’盟主文徵明晚年行草书志铭极品。笔锋凌厉挺劲，意态安闲，宛若游龙，金石刻工再现江南文人翰墨之风神。",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B4%88%E6%8B%93000385%20%E6%98%8E%E6%96%87%E5%BE%B5%E6%98%8E%E6%9B%B8%E9%99%B8%E7%8D%BB%E4%B9%8B%E5%A2%93%E8%AA%8C%E9%8A%98%20%E5%86%8A.pdf",
+    "imageUrl": "/assets/stele/museum-rubbings/ming_02_luxianzhi_cover.jpg",
+    "localImagePath": "D:\\RubbingMind\\data\\museum-images\\ming_02_luxianzhi_cover.jpg",
+    "license": "CC BY 4.0",
+    "attribution": "文徵明书陆献之墓志铭。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "weatheringLevel": "轻度风化",
+    "imageStatus": "高清图像已获取",
+    "isDemo": false,
+    "source_kind": "commons_pdf",
+    "commons_filename": "NPM-贈拓000385 明文徵明書陸獻之墓誌銘 冊.pdf",
+    "gis_coords": [
+      120.585,
+      31.299
+    ],
+    "damaged_chars": [
+      "献",
+      "徵",
+      "穆"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "ming_03_wugou",
+    "title": "无垢子何君墓志铭",
+    "dynasty": "明代",
+    "dynasty_value": "ming",
+    "author": "明代名手篆书 / 明代江南儒士",
+    "script_type": "篆书",
+    "weathering_level": "轻度风化",
+    "year": "大明万历年间",
+    "ganzhi": "大明万历年间",
+    "location": "台北故宫博物院（購拓000430）",
+    "museum": "台北故宫博物院",
+    "dimensions": "高 160cm, 宽 72cm, 轴装",
+    "summary": "明代极少见之全篆书墓志碑石。字形挺拔修长，玉箸篆笔法纯熟，结体上紧下松，开明代复古小篆风气。",
+    "historical_context": "购拓000430号，字口棱角宛然，黑白对比鲜明，为明代篆书碑版复兴之典型例证。",
+    "badges": [
+      "明代",
+      "篆书",
+      "高清图像已获取"
+    ],
+    "raw_image": "/assets/stele/museum-rubbings/ming_03_wugou_cover.jpg",
+    "clean_image": "/assets/stele/museum-rubbings/ming_03_wugou_cover.jpg",
+    "damaged_image": "/assets/stele/museum-rubbings/ming_03_wugou_cover.jpg",
+    "restored_image": "/assets/stele/museum-rubbings/ming_03_wugou_cover.jpg",
+    "metrics": {
+      "psnr": 34.2,
+      "ssim": 0.945,
+      "snr_gain": 18.5,
+      "glyph_completeness": 96.2,
+      "character_accuracy": 97.8
+    },
+    "translation": "明无垢子何君墓志铭何君讳洁字无垢吴郡名族隐居乐道不求闻达于乡评称善",
+    "originalYear": "大明万历年间",
+    "rubbingPeriod": "明末精拓立轴",
+    "calligraphyStyle": "篆书",
+    "inscriptionAuthor": "明代江南儒士",
+    "calligrapher": "明代名手篆书",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "購拓000430",
+    "originalLocation": "江苏无锡惠山",
+    "currentLocation": "台北故宫博物院（購拓000430）",
+    "description": "明代极少见之全篆书墓志碑石。字形挺拔修长，玉箸篆笔法纯熟，结体上紧下松，开明代复古小篆风气。",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000430%20%E6%98%8E%E7%84%A1%E5%9E%A2%E5%AD%90%E4%BD%95%E5%90%9B%E5%A2%93%E8%AA%8C%E9%8A%98%E5%A2%A8%E6%8B%93%E6%9C%AC%20%E8%BB%B8.pdf",
+    "imageUrl": "/assets/stele/museum-rubbings/ming_03_wugou_cover.jpg",
+    "localImagePath": "D:\\RubbingMind\\data\\museum-images\\ming_03_wugou_cover.jpg",
+    "license": "CC BY 4.0",
+    "attribution": "无垢子何君墓志铭。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "weatheringLevel": "轻度风化",
+    "imageStatus": "高清图像已获取",
+    "isDemo": false,
+    "source_kind": "commons_pdf",
+    "commons_filename": "NPM-購拓000430 明無垢子何君墓誌銘墨拓本 軸.pdf",
+    "gis_coords": [
+      120.305,
+      31.57
+    ],
+    "damaged_chars": [
+      "垢",
+      "洁",
+      "隐"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "ming_04_tongdian",
+    "title": "大峨山永明华藏寺新建铜殿记碑",
+    "dynasty": "明代",
+    "dynasty_value": "ming",
+    "author": "明代内廷善书侍郎 / 明万历妙峰禅师 / 督造文官",
+    "script_type": "行书",
+    "weathering_level": "中度风化",
+    "year": "大明万历三十一年（公元1603年）",
+    "ganzhi": "大明万历三十一年（公元1603年）",
+    "location": "四川峨眉山金顶（購拓000276，台北故宫藏）",
+    "museum": "台北故宫博物院",
+    "dimensions": "高 240cm, 宽 108cm, 厚 32cm",
+    "summary": "万历朝铸造峨眉山金顶铜殿之功德纪事碑。明神宗与慈圣皇太后赐金庀工，书法浑厚庄严，气象森罗万象。",
+    "historical_context": "记录中国佛教四大名山之峨眉山重要营建历史，高山之巅历尽冰雪风化，字口隐现刀凿雄风。",
+    "badges": [
+      "明代",
+      "行书",
+      "高清图像已获取"
+    ],
+    "raw_image": "/assets/stele/museum-rubbings/ming_04_tongdian_cover.jpg",
+    "clean_image": "/assets/stele/museum-rubbings/ming_04_tongdian_cover.jpg",
+    "damaged_image": "/assets/stele/museum-rubbings/ming_04_tongdian_cover.jpg",
+    "restored_image": "/assets/stele/museum-rubbings/ming_04_tongdian_cover.jpg",
+    "metrics": {
+      "psnr": 34.2,
+      "ssim": 0.945,
+      "snr_gain": 18.5,
+      "glyph_completeness": 96.2,
+      "character_accuracy": 97.8
+    },
+    "translation": "大峨山永明华藏寺新建铜殿记碑万历慈圣宣文明肃皇太后御赐范铜铸造铜殿金顶晃耀",
+    "originalYear": "大明万历三十一年（公元1603年）",
+    "rubbingPeriod": "明万历刻立初拓",
+    "calligraphyStyle": "行书",
+    "inscriptionAuthor": "明万历妙峰禅师 / 督造文官",
+    "calligrapher": "明代内廷善书侍郎",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "購拓000276",
+    "originalLocation": "四川峨眉山金顶永明华藏寺",
+    "currentLocation": "四川峨眉山金顶（購拓000276，台北故宫藏）",
+    "description": "万历朝铸造峨眉山金顶铜殿之功德纪事碑。明神宗与慈圣皇太后赐金庀工，书法浑厚庄严，气象森罗万象。",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000276%20%E6%98%8E%E5%A4%A7%E5%B3%A9%E5%B1%B1%E6%B0%B8%E6%98%8E%E8%8F%AF%E8%97%8F%E5%AF%BA%E6%96%B0%E5%BB%BA%E9%8A%85%E6%AE%BF%E8%A8%98%E7%A2%91%E5%A2%A8%E6%8B%93%E6%9C%AC%20%E8%BB%B8.pdf",
+    "imageUrl": "/assets/stele/museum-rubbings/ming_04_tongdian_cover.jpg",
+    "localImagePath": "D:\\RubbingMind\\data\\museum-images\\ming_04_tongdian_cover.jpg",
+    "license": "CC BY 4.0",
+    "attribution": "大峨山永明华藏寺新建铜殿记碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "weatheringLevel": "中度风化",
+    "imageStatus": "高清图像已获取",
+    "isDemo": false,
+    "source_kind": "commons_pdf",
+    "commons_filename": "NPM-購拓000276 明大峩山永明華藏寺新建銅殿記碑墨拓本 軸.pdf",
+    "gis_coords": [
+      103.338,
+      29.525
+    ],
+    "damaged_chars": [
+      "殿",
+      "晃",
+      "肃"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "qing_01_shilang",
+    "title": "靖海将军侯施公功德碑记",
+    "dynasty": "清代",
+    "dynasty_value": "qing",
+    "author": "清康熙闽浙善书幕宾 / 台湾文武官僚及绅民公立",
+    "script_type": "楷书",
+    "weathering_level": "待评估",
+    "year": "公元1693年",
+    "ganzhi": "清康熙三十二年（公元1693年）",
+    "location": "台南赤嵌楼碑林（台大图书馆古碑拓本藏）",
+    "museum": "台湾大学图书馆古碑拓本数字典藏",
+    "dimensions": "高 280cm, 宽 96cm, 厚 26cm",
+    "summary": "清初国家统一与治台历史丰碑。详述靖海侯施琅统一台湾后招抚流民、轻徭薄赋之施政实绩，边疆史地第一手文献。",
+    "historical_context": "台湾大学图书馆重点典藏古碑拓本（ntul-mr-rt00046）。系统严守知识产权与馆藏授权规范，保持馆藏著录规范展示。",
+    "badges": [
+      "清代",
+      "楷书",
+      "原图待授权或待获取"
+    ],
+    "raw_image": "",
+    "clean_image": "",
+    "damaged_image": "",
+    "restored_image": "",
+    "metrics": {
+      "psnr": 0.0,
+      "ssim": 0.0,
+      "snr_gain": 0.0,
+      "glyph_completeness": 0.0,
+      "character_accuracy": 0.0
+    },
+    "translation": "靖海将军侯施公功德碑记恭纪大将军一等靖海侯施公平台安辑抚循黎庶海氛永靖",
+    "originalYear": "公元1693年",
+    "rubbingPeriod": "台湾古碑拓本数字典藏（ntul-mr-rt00046）",
+    "calligraphyStyle": "楷书",
+    "inscriptionAuthor": "台湾文武官僚及绅民公立",
+    "calligrapher": "清康熙闽浙善书幕宾",
+    "collectionInstitution": "台湾大学图书馆古碑拓本数字典藏",
+    "collectionNumber": "ntul-mr-rt00046",
+    "originalLocation": "台湾府城（今台南市）",
+    "currentLocation": "台南赤嵌楼碑林（台大图书馆古碑拓本藏）",
+    "description": "清初国家统一与治台历史丰碑。详述靖海侯施琅统一台湾后招抚流民、轻徭薄赋之施政实绩，边疆史地第一手文献。",
+    "sourceUrl": "https://dl.lib.ntu.edu.tw/s/rt/item/853071",
+    "imageUrl": "",
+    "localImagePath": null,
+    "license": "待核验馆方再利用许可",
+    "attribution": null,
+    "weatheringLevel": "待评估",
+    "imageStatus": "原图待授权或待获取",
+    "isDemo": false,
+    "source_kind": "catalog_record",
+    "commons_filename": null,
+    "gis_coords": [
+      120.202,
+      22.997
+    ],
+    "damaged_chars": [
+      "施",
+      "靖",
+      "氛"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "qing_02_gaocheng",
+    "title": "御制平定台湾告成热河文庙碑文（汉文）",
+    "dynasty": "清代",
+    "dynasty_value": "qing",
+    "author": "军机处满汉进呈善书内阁学士 / 清高宗乾隆帝（御制）",
+    "script_type": "楷书",
+    "weathering_level": "待评估",
+    "year": "公元1788年",
+    "ganzhi": "清乾隆五十三年（公元1788年）",
+    "location": "承德文庙尊经阁前碑亭（台大藏拓: ntul-mr-rt00042_9）",
+    "museum": "台湾大学图书馆古碑拓本数字典藏",
+    "dimensions": "高 360cm, 宽 130cm, 巨型御碑",
+    "summary": "乾隆‘十全武功’之平定台湾纪功御碑。汉文正楷端丽谨严，馆阁体极品，体量恢宏，展现盛清皇朝极盛气象。",
+    "historical_context": "承德文庙原石保存完好，台大藏拓完整收录汉文全本，文字法度谨严，端庄穆肃。",
+    "badges": [
+      "清代",
+      "楷书",
+      "原图待授权或待获取"
+    ],
+    "raw_image": "",
+    "clean_image": "",
+    "damaged_image": "",
+    "restored_image": "",
+    "metrics": {
+      "psnr": 0.0,
+      "ssim": 0.0,
+      "snr_gain": 0.0,
+      "glyph_completeness": 0.0,
+      "character_accuracy": 0.0
+    },
+    "translation": "御制平定台湾告成热河文庙碑文乾隆五十三年平定林爽文捷奏告成告奠热河先师庙",
+    "originalYear": "公元1788年",
+    "rubbingPeriod": "清乾隆原拓（台大图书馆藏）",
+    "calligraphyStyle": "楷书",
+    "inscriptionAuthor": "清高宗乾隆帝（御制）",
+    "calligrapher": "军机处满汉进呈善书内阁学士",
+    "collectionInstitution": "台湾大学图书馆古碑拓本数字典藏",
+    "collectionNumber": "ntul-mr-rt00042_9",
+    "originalLocation": "热河承德文庙（今河北承德避暑山庄文庙）",
+    "currentLocation": "承德文庙尊经阁前碑亭（台大藏拓: ntul-mr-rt00042_9）",
+    "description": "乾隆‘十全武功’之平定台湾纪功御碑。汉文正楷端丽谨严，馆阁体极品，体量恢宏，展现盛清皇朝极盛气象。",
+    "sourceUrl": "https://dl.lib.ntu.edu.tw/s/rt/item/853056",
+    "imageUrl": "",
+    "localImagePath": null,
+    "license": "待核验馆方再利用许可",
+    "attribution": null,
+    "weatheringLevel": "待评估",
+    "imageStatus": "原图待授权或待获取",
+    "isDemo": false,
+    "source_kind": "catalog_record",
+    "commons_filename": null,
+    "gis_coords": [
+      117.939,
+      40.978
+    ],
+    "damaged_chars": [
+      "爽",
+      "告",
+      "奠"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "qing_03_yanjin",
+    "title": "严禁海口陋规碑记",
+    "dynasty": "清代",
+    "dynasty_value": "qing",
+    "author": "清嘉庆安平海防官署赞书 / 台湾府海防同知",
+    "script_type": "楷书",
+    "weathering_level": "待评估",
+    "year": "公元1796年",
+    "ganzhi": "清嘉庆元年（公元1796年）",
+    "location": "台南安平古堡陈列（台大藏拓: ntul-mr-rt00057）",
+    "museum": "台湾大学图书馆古碑拓本数字典藏",
+    "dimensions": "高 145cm, 宽 65cm",
+    "summary": "清代海洋贸易与海防司法制度石刻。官府严禁汛防差役索勒商船陋规，保护海疆闽台商贾民船往来，海洋经济史要籍。",
+    "historical_context": "海港盐卤潮气浸蚀，文字朴实生动，是研究清代前期两岸通商口岸管理史之珍稀实物。",
+    "badges": [
+      "清代",
+      "楷书",
+      "原图待授权或待获取"
+    ],
+    "raw_image": "",
+    "clean_image": "",
+    "damaged_image": "",
+    "restored_image": "",
+    "metrics": {
+      "psnr": 0.0,
+      "ssim": 0.0,
+      "snr_gain": 0.0,
+      "glyph_completeness": 0.0,
+      "character_accuracy": 0.0
+    },
+    "translation": "严禁海口陋规碑记特调台湾府安平海防同知严禁港口汛防差役索取番饷规例以恤商民",
+    "originalYear": "公元1796年",
+    "rubbingPeriod": "清代晚期地方拓本",
+    "calligraphyStyle": "楷书",
+    "inscriptionAuthor": "台湾府海防同知",
+    "calligrapher": "清嘉庆安平海防官署赞书",
+    "collectionInstitution": "台湾大学图书馆古碑拓本数字典藏",
+    "collectionNumber": "ntul-mr-rt00057",
+    "originalLocation": "台湾安平港口（今台南安平古堡前）",
+    "currentLocation": "台南安平古堡陈列（台大藏拓: ntul-mr-rt00057）",
+    "description": "清代海洋贸易与海防司法制度石刻。官府严禁汛防差役索勒商船陋规，保护海疆闽台商贾民船往来，海洋经济史要籍。",
+    "sourceUrl": "https://dl.lib.ntu.edu.tw/s/rt/item/853116",
+    "imageUrl": "",
+    "localImagePath": null,
+    "license": "待核验馆方再利用许可",
+    "attribution": null,
+    "weatheringLevel": "待评估",
+    "imageStatus": "原图待授权或待获取",
+    "isDemo": false,
+    "source_kind": "catalog_record",
+    "commons_filename": null,
+    "gis_coords": [
+      120.161,
+      23.001
+    ],
+    "damaged_chars": [
+      "汛",
+      "役",
+      "饷"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "qing_04_gongchen",
+    "title": "御制平定台湾二十功臣像赞序（汉文）",
+    "dynasty": "清代",
+    "dynasty_value": "qing",
+    "author": "清内廷大学士工部尚书 / 清高宗乾隆帝（御制序文）",
+    "script_type": "楷书",
+    "weathering_level": "待评估",
+    "year": "公元1788年",
+    "ganzhi": "清乾隆五十三年（公元1788年）",
+    "location": "台南市大南门碑林（台大藏拓: ntul-mr-rt00042_7）",
+    "museum": "台湾大学图书馆古碑拓本数字典藏",
+    "dimensions": "高 310cm, 宽 115cm, 厚 32cm",
+    "summary": "紫光阁功臣像序文碑。乾隆赞许福康安、海兰察等二十位戡乱功臣，书法流美稳健，御制文华美典瞻。",
+    "historical_context": "原刻石碑分立北京与台湾两地，台南大南门碑林存碑至今，具有重大国家统一历史见证意义。",
+    "badges": [
+      "清代",
+      "楷书",
+      "原图待授权或待获取"
+    ],
+    "raw_image": "",
+    "clean_image": "",
+    "damaged_image": "",
+    "restored_image": "",
+    "metrics": {
+      "psnr": 0.0,
+      "ssim": 0.0,
+      "snr_gain": 0.0,
+      "glyph_completeness": 0.0,
+      "character_accuracy": 0.0
+    },
+    "translation": "御制平定台湾二十功臣像赞序紫光阁绘福康安海兰察诸功臣像特制序铭告昭海内",
+    "originalYear": "公元1788年",
+    "rubbingPeriod": "清乾隆原刻拓本",
+    "calligraphyStyle": "楷书",
+    "inscriptionAuthor": "清高宗乾隆帝（御制序文）",
+    "calligrapher": "清内廷大学士工部尚书",
+    "collectionInstitution": "台湾大学图书馆古碑拓本数字典藏",
+    "collectionNumber": "ntul-mr-rt00042_7",
+    "originalLocation": "北京中南海紫光阁 / 台湾府城大南门碑林",
+    "currentLocation": "台南市大南门碑林（台大藏拓: ntul-mr-rt00042_7）",
+    "description": "紫光阁功臣像序文碑。乾隆赞许福康安、海兰察等二十位戡乱功臣，书法流美稳健，御制文华美典瞻。",
+    "sourceUrl": "https://dl.lib.ntu.edu.tw/s/rt/item/853050",
+    "imageUrl": "",
+    "localImagePath": null,
+    "license": "待核验馆方再利用许可",
+    "attribution": null,
+    "weatheringLevel": "待评估",
+    "imageStatus": "原图待授权或待获取",
+    "isDemo": false,
+    "source_kind": "catalog_record",
+    "commons_filename": null,
+    "gis_coords": [
+      120.203,
+      22.987
+    ],
+    "damaged_chars": [
+      "赞",
+      "福",
+      "兰"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  }
+]

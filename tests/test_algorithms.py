@@ -1,0 +1,82 @@
+# -*- coding: utf-8 -*-
+"""
+墨韵智考 - 核心频空域联合去噪算法单元测试
+"""
+import os
+import sys
+import numpy as np
+import pytest
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
+
+from algorithm_engine import (
+    algorithm_engine,
+    compute_metrics,
+    calculate_tenengrad,
+    safe_read_image,
+    mat_to_base64
+)
+
+
+def test_frequency_domain_filter():
+    """测试 2D-FFT 频域滤波矩阵计算与能量谱生成"""
+    test_gray = np.full((128, 128), 50, dtype=np.uint8)
+    # 添加高频网格底噪
+    test_gray[::4, ::4] = 200
+    
+    filtered, spectrum = algorithm_engine.apply_frequency_domain_filter(test_gray, d0=40, filter_type="gaussian")
+    assert filtered.shape == (128, 128)
+    assert spectrum.shape == (128, 128, 3)
+    assert filtered.dtype == np.uint8
+
+
+def test_spatial_domain_enhancement():
+    """测试空域形态学顶帽、NLM 非局部均值与 CLAHE 自适应增强"""
+    test_gray = np.full((100, 100), 40, dtype=np.uint8)
+    test_gray[40:60, 40:60] = 220
+    
+    enhanced = algorithm_engine.apply_spatial_domain_enhancement(
+        test_gray, nlm_h=10.0, clahe_clip=2.5, morph_kernel=3
+    )
+    assert enhanced.shape == (100, 100)
+    assert enhanced.dtype == np.uint8
+
+
+def test_compute_metrics():
+    """测试 PSNR、SSIM 与边缘清晰度量化指标"""
+    ref = np.full((100, 100), 100, dtype=np.uint8)
+    ref[30:70, 30:70] = 220
+    
+    noisy = ref.copy()
+    noisy[::5, ::5] = 0
+    
+    metrics = compute_metrics(ref, noisy)
+    assert "psnr" in metrics
+    assert "ssim" in metrics
+    assert "noise_suppression" in metrics
+    assert "edge_gain" in metrics
+    assert metrics["psnr"] > 10.0
+    assert 0.0 < metrics["ssim"] <= 1.0
+
+
+def test_full_pipeline_synthetic():
+    """测试完整去噪修复流水线在合成拓片上的端到端执行"""
+    test_img = np.zeros((120, 120), dtype=np.uint8)
+    test_img[30:90, 50:70] = 220
+    test_img += np.random.randint(0, 30, (120, 120), dtype=np.uint8)
+
+    res = algorithm_engine.process_rubbing(
+        image_input=test_img,
+        d0=40.0,
+        nlm_h=10.0,
+        clahe_clip=2.0,
+        morph_kernel=3
+    )
+    
+    assert "metrics" in res
+    assert "restored_b64" in res
+    assert "fft_spectrum_b64" in res
+    assert res["metrics"]["psnr"] > 0
+    assert res["metrics"]["ssim"] > 0

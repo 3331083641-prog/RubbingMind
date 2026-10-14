@@ -1,0 +1,76 @@
+# ==============================================================================
+# 墨韵智考 (RubbingMind) - Git 忽略规则
+# ==============================================================================
+
+# 1. 环境变量与安全凭证 (严禁提交真实密钥)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+secrets.json
+token.json
+
+# 2. Python 运行环境与编译缓存
+.venv/
+venv/
+env/
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# 3. 前端 Node.js 与构建输出
+node_modules/
+apps/web/node_modules/
+dist/
+apps/web/dist/
+.vite/
+.cache/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 4. 运行时日志与临时文件
+*.log
+logs/
+*.tmp
+*.part
+*.swp
+*~
+
+# 5. 操作系统与 IDE 配置
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# 6. 本地运行时数据与私有数据库 (通过 scripts/init_db.py 自动生成)
+data/uploads/
+data/processed/
+data/runtime/
+*.db
+*.sqlite
+*.sqlite3
+
+# 7. 深度学习大型模型权重 (通过下载说明或脚本独立获取)
+*.safetensors
+*.gguf
+*.ckpt
+*.pt
+*.pth
+*.onnx
+
+# 8. 原始归档大压缩包与测试下载的原始 PDF
+*.zip
+data/museum-images/*.pdf

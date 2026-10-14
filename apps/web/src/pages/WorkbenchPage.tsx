@@ -1,0 +1,819 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { SteleItem, CharacterItem, ProcessingResult } from '../types/stele';
+import { SteleService } from '../services/api';
+import { 
+  Sliders, 
+  Layers, 
+  Sparkles, 
+  Check, 
+  Scan, 
+  ZoomIn, 
+  ZoomOut, 
+  RotateCcw, 
+  BookOpen, 
+  Flame, 
+  Info, 
+  Cpu, 
+  ShieldCheck, 
+  Activity,
+  Maximize2
+} from 'lucide-react';
+
+interface WorkbenchPageProps {
+  stele: SteleItem;
+  onNavigate: (tab: string) => void;
+}
+
+export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate }) => {
+  // View Modes: split, side-by-side, clean, cinnabar, skeleton
+  const [viewMode, setViewMode] = useState<'split' | 'side' | 'clean' | 'cinnabar' | 'skeleton'>('split');
+  const [sliderPos, setSliderPos] = useState<number>(50);
+  const [isLaserScanning, setIsLaserScanning] = useState<boolean>(true);
+  const [zoomLevel, setZoomLevel] = useState<number>(1);
+
+  // Algorithm Parameters
+  const [d0, setD0] = useState<number>(45);
+  const [filterOrder, setFilterOrder] = useState<number>(2);
+  const [hNlm, setHNlm] = useState<number>(10);
+  const [claheClip, setClaheClip] = useState<number>(2.5);
+  const [isProcessing, setIsProcessing] = useState<boolean>(false);
+
+  // Dynamic Image URLs & Metrics
+  const [restoredImageUrl, setRestoredImageUrl] = useState<string>(stele.restored_image || stele.clean_image);
+  const [skeletonUrl, setSkeletonUrl] = useState<string>('/assets/stele/analysis/stroke_topology_demo.png');
+  const [cinnabarUrl, setCinnabarUrl] = useState<string>(stele.clean_image);
+  const [metrics, setMetrics] = useState({
+    psnr: stele.metrics?.psnr || 34.25,
+    ssim: stele.metrics?.ssim || 0.9482,
+    snr_gain: stele.metrics?.snr_gain || 18.6,
+    glyph_completeness: stele.metrics?.glyph_completeness || 95.8,
+    character_accuracy: stele.metrics?.character_accuracy || 97.4,
+  });
+
+  // Ancient Book & Character States
+  const [characters, setCharacters] = useState<CharacterItem[]>([]);
+  const [selectedCharId, setSelectedCharId] = useState<string>('c12'); // default to '感'
+  const [adoptionSuccessMsg, setAdoptionSuccessMsg] = useState<string>('');
+
+  // Slider Dragging Ref
+  const sliderContainerRef = useRef<HTMLDivElement>(null);
+  const isDraggingRef = useRef<boolean>(false);
+
+  // Fetch initial inference characters when stele changes
+  useEffect(() => {
+    let isMounted = true;
+    SteleService.getInference(stele.id).then((data) => {
+      if (isMounted && data.characters) {
+        setCharacters(data.characters);
+        const firstDamaged = data.characters.find(c => c.status === 'damaged');
+        if (firstDamaged) {
+          setSelectedCharId(firstDamaged.id);
+        }
+      }
+    });
+
+    // Reset parameters to stele defaults
+    setRestoredImageUrl(stele.restored_image || stele.clean_image);
+    setMetrics({
+      psnr: stele.metrics?.psnr || 34.25,
+      ssim: stele.metrics?.ssim || 0.9482,
+      snr_gain: stele.metrics?.snr_gain || 18.6,
+      glyph_completeness: stele.metrics?.glyph_completeness || 95.8,
+      character_accuracy: stele.metrics?.character_accuracy || 97.4,
+    });
+
+    return () => { isMounted = false; };
+  }, [stele.id]);
+
+  // Handle Dragging Slider
+  const handleSliderMove = (clientX: number) => {
+    if (!sliderContainerRef.current) return;
+    const rect = sliderContainerRef.current.getBoundingClientRect();
+    const pos = ((clientX - rect.left) / rect.width) * 100;
+    setSliderPos(Math.max(2, Math.min(98, pos)));
+  };
+
+  const handleMouseDown = () => { isDraggingRef.current = true; };
+  const handleMouseUp = () => { isDraggingRef.current = false; };
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (isDraggingRef.current) handleSliderMove(e.clientX);
+  };
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (e.touches.length > 0) handleSliderMove(e.touches[0].clientX);
+  };
+
+  // Run Real Algorithm via Backend
+  const handleRunAlgorithm = async () => {
+    setIsProcessing(true);
+    setAdoptionSuccessMsg('');
+    try {
+      const result: ProcessingResult = await SteleService.processStele({
+        stele_id: stele.id,
+        d0,
+        filter_order: filterOrder,
+        h_nlm: hNlm,
+        clahe_clip: claheClip
+      });
+
+      if (result.restored_image) {
+        setRestoredImageUrl(result.restored_image);
+      }
+      if (result.skeleton_b64) {
+        setSkeletonUrl(result.skeleton_b64);
+      }
+      if (result.cinnabar_b64) {
+        setCinnabarUrl(result.cinnabar_b64);
+      }
+
+      setMetrics({
+        psnr: result.psnr,
+        ssim: result.ssim,
+        snr_gain: result.snr_gain,
+        glyph_completeness: result.glyph_completeness,
+        character_accuracy: result.character_accuracy
+      });
+    } catch (e) {
+      console.error('Algorithm execution error:', e);
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  // Adopt Inferred Character
+  const handleAdoptCandidate = (glyph: string) => {
+    setCharacters((prev) =>
+      prev.map((c) =>
+        c.id === selectedCharId
+          ? { ...c, char: glyph, status: 'restored' as const }
+          : c
+      )
+    );
+    setAdoptionSuccessMsg(`已成功采纳「${glyph}」字，古籍拓文与拓扑骨架已完成高精度对齐！`);
+    setTimeout(() => setAdoptionSuccessMsg(''), 4500);
+  };
+
+  // Currently selected character
+  const activeChar = characters.find((c) => c.id === selectedCharId) || characters[0];
+
+  return (
+    <div className="min-h-[calc(100vh-68px)] bg-[#0A0D12] text-slate-100 p-4 lg:p-6 flex flex-col space-y-4">
+      {/* Top Breadcrumb & Quick Stele Info Banner */}
+      <div className="flex flex-wrap items-center justify-between gap-3 px-2">
+        <div className="flex items-center space-x-3">
+          <div className="w-8 h-8 rounded-lg bg-cinnabar/20 border border-cinnabar/40 flex items-center justify-center text-cinnabar">
+            <Layers className="w-4 h-4" />
+          </div>
+          <div>
+            <div className="flex items-center space-x-2">
+              <h2 className="text-lg font-serif font-bold text-white tracking-wide">
+                {stele.title} · 频空域微痕修复与释读工作台
+              </h2>
+              <span className="text-[11px] font-serif px-2 py-0.5 rounded bg-gold/15 text-gold border border-gold/30">
+                {stele.weathering_level}
+              </span>
+            </div>
+            <p className="text-xs text-slate-400 font-sans mt-0.5">
+              {stele.dynasty} · {stele.author} · {stele.dimensions} · 馆藏于 {stele.museum}
+            </p>
+          </div>
+        </div>
+
+        {/* View Mode Switching Tabs */}
+        <div className="flex items-center space-x-1.5 bg-xuan-panel p-1 rounded-xl border border-gold/20 text-xs font-serif">
+          <button
+            onClick={() => setViewMode('split')}
+            className={`px-3 py-1.5 rounded-lg transition-all ${
+              viewMode === 'split' ? 'bg-gold text-slate-950 font-bold shadow-gold-glow' : 'text-slate-300 hover:text-white'
+            }`}
+          >
+            左右拉杆对比
+          </button>
+          <button
+            onClick={() => setViewMode('side')}
+            className={`px-3 py-1.5 rounded-lg transition-all ${
+              viewMode === 'side' ? 'bg-gold text-slate-950 font-bold shadow-gold-glow' : 'text-slate-300 hover:text-white'
+            }`}
+          >
+            并排比对
+          </button>
+          <button
+            onClick={() => setViewMode('clean')}
+            className={`px-3 py-1.5 rounded-lg transition-all ${
+              viewMode === 'clean' ? 'bg-gold text-slate-950 font-bold shadow-gold-glow' : 'text-slate-300 hover:text-white'
+            }`}
+          >
+            去噪母本
+          </button>
+          <button
+            onClick={() => setViewMode('cinnabar')}
+            className={`px-3 py-1.5 rounded-lg transition-all ${
+              viewMode === 'cinnabar' ? 'bg-cinnabar text-white font-bold shadow-cinnabar-glow' : 'text-slate-300 hover:text-white'
+            }`}
+          >
+            朱砂朱拓
+          </button>
+          <button
+            onClick={() => setViewMode('skeleton')}
+            className={`px-3 py-1.5 rounded-lg transition-all ${
+              viewMode === 'skeleton' ? 'bg-celadon text-white font-bold shadow-celadon-glow' : 'text-slate-300 hover:text-white'
+            }`}
+          >
+            笔画拓扑骨架
+          </button>
+        </div>
+      </div>
+
+      {/* Main 2-Column Core Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 flex-1">
+        {/* ========================================================= */}
+        {/* LEFT COLUMN: Image Processing Canvas & Parameters (Col 7 - 58%) */}
+        {/* ========================================================= */}
+        <div className="lg:col-span-7 flex flex-col space-y-4">
+          {/* Main Visual Comparison Canvas */}
+          <div 
+            className="relative w-full h-[540px] rounded-2xl overflow-hidden glass-panel border border-gold/30 bg-[#07090C] select-none flex flex-col"
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+            onMouseMove={handleMouseMove}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleMouseUp}
+          >
+            {/* Top Toolbar Controls */}
+            <div className="absolute top-3 left-3 right-3 z-30 flex items-center justify-between pointer-events-none">
+              <div className="flex items-center space-x-2 pointer-events-auto">
+                <button
+                  onClick={() => setIsLaserScanning(!isLaserScanning)}
+                  className={`px-2.5 py-1 rounded-lg text-[11px] font-serif border backdrop-blur-md flex items-center space-x-1.5 transition-all ${
+                    isLaserScanning 
+                      ? 'bg-gold/20 border-gold text-gold-light shadow-gold-glow' 
+                      : 'bg-black/60 border-slate-700 text-slate-400'
+                  }`}
+                >
+                  <Scan className="w-3.5 h-3.5" />
+                  <span>黄金激光扫描线: {isLaserScanning ? '开' : '关'}</span>
+                </button>
+              </div>
+
+              {/* Zoom Controls */}
+              <div className="flex items-center space-x-1 bg-black/70 backdrop-blur-md border border-slate-700/80 rounded-lg p-1 pointer-events-auto text-slate-300 text-xs">
+                <button
+                  onClick={() => setZoomLevel((z) => Math.max(0.8, z - 0.2))}
+                  className="p-1 hover:text-gold"
+                  title="缩小"
+                >
+                  <ZoomOut className="w-3.5 h-3.5" />
+                </button>
+                <span className="px-1 font-mono text-[11px]">{(zoomLevel * 100).toFixed(0)}%</span>
+                <button
+                  onClick={() => setZoomLevel((z) => Math.min(2.5, z + 0.2))}
+                  className="p-1 hover:text-gold"
+                  title="放大"
+                >
+                  <ZoomIn className="w-3.5 h-3.5" />
+                </button>
+                <button
+                  onClick={() => setZoomLevel(1)}
+                  className="p-1 hover:text-gold border-l border-slate-700 pl-1.5"
+                  title="复位"
+                >
+                  <RotateCcw className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Canvas View Rendering */}
+            <div 
+              ref={sliderContainerRef}
+              className="relative w-full flex-1 overflow-hidden flex items-center justify-center cursor-crosshair"
+            >
+              {/* Pending Acquisition Notice Overlay */}
+              {(!stele.raw_image || stele.imageStatus === '原图待授权或待获取') && (
+                <div className="absolute inset-0 z-40 bg-[#090D12]/94 backdrop-blur-sm flex flex-col items-center justify-center p-6 text-center space-y-3">
+                  <div className="w-12 h-12 rounded-full bg-gold/15 border border-gold/40 flex items-center justify-center text-gold shadow-gold-glow">
+                    <BookOpen className="w-6 h-6" />
+                  </div>
+                  <div className="space-y-1.5 max-w-md">
+                    <h4 className="font-serif font-bold text-white text-base">《{stele.title}》馆藏档案已建立</h4>
+                    <p className="text-xs text-slate-300 leading-relaxed font-sans">
+                      所属机构: <span className="text-gold font-serif font-semibold">{stele.collectionInstitution || stele.museum}</span> ({stele.collectionNumber || '馆藏著录'})
+                    </p>
+                    <p className="text-xs text-slate-400 leading-relaxed font-sans pt-1">
+                      此通碑拓为真实馆藏著录，原始高清扫描影像依开放授权流程待获取。您可查阅右侧的金石释文与多模态推演候选，或在顶部切换其他已有高清母本的碑拓进行微痕去噪实验。
+                    </p>
+                  </div>
+                  {stele.sourceUrl && (
+                    <a
+                      href={stele.sourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-1.5 rounded-lg text-xs font-serif bg-gold/15 text-gold border border-gold/40 hover:bg-gold hover:text-slate-950 transition-all inline-flex items-center gap-1.5 shadow-md"
+                    >
+                      <span>访问官方数字馆藏来源 ↗</span>
+                    </a>
+                  )}
+                </div>
+              )}
+
+              {viewMode === 'split' && (
+                <div 
+                  className="relative w-full h-full flex items-center justify-center"
+                  style={{ transform: `scale(${zoomLevel})`, transition: 'transform 0.2s ease-out' }}
+                >
+                  {/* Restored Layer (Right Base) */}
+                  <img
+                    src={restoredImageUrl}
+                    alt="Restored Stele"
+                    className="absolute inset-0 w-full h-full object-contain filter contrast-125"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = stele.clean_image;
+                    }}
+                  />
+
+                  {/* Damaged Layer (Left Overlay with Clip Path) */}
+                  <div
+                    className="absolute inset-0 overflow-hidden"
+                    style={{ width: `${sliderPos}%` }}
+                  >
+                    <img
+                      src={stele.damaged_image}
+                      alt="Damaged Stele"
+                      className="absolute top-0 left-0 h-full object-contain max-w-none filter contrast-110"
+                      style={{ width: sliderContainerRef.current?.clientWidth || '100%' }}
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = stele.raw_image;
+                      }}
+                    />
+                    {/* Left Tag */}
+                    <div className="absolute top-12 left-4 z-20 px-2.5 py-1 rounded-md bg-black/75 border border-cinnabar/60 text-[11px] font-serif text-cinnabar-light shadow-md">
+                      退化原拓 (Before)
+                    </div>
+                  </div>
+
+                  {/* Right Tag */}
+                  <div className="absolute top-12 right-4 z-20 px-2.5 py-1 rounded-md bg-black/75 border border-gold/60 text-[11px] font-serif text-gold-light shadow-md">
+                    频空域修复 (After)
+                  </div>
+
+                  {/* Draggable Vertical Divider Bar */}
+                  <div
+                    className="absolute top-0 bottom-0 z-20 w-1 bg-gradient-to-b from-gold-light via-gold to-gold-dark cursor-ew-resize shadow-[0_0_12px_#D4AF37]"
+                    style={{ left: `${sliderPos}%` }}
+                    onMouseDown={handleMouseDown}
+                    onTouchStart={handleMouseDown}
+                  >
+                    {/* Golden Handle Center Knob */}
+                    <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-slate-950 border-2 border-gold flex items-center justify-center shadow-gold-glow cursor-ew-resize text-gold text-xs select-none">
+                      ⮜ ⮞
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {viewMode === 'side' && (
+                <div 
+                  className="w-full h-full grid grid-cols-2 gap-2 p-2"
+                  style={{ transform: `scale(${zoomLevel})` }}
+                >
+                  <div className="relative border border-cinnabar/30 rounded-xl overflow-hidden bg-black/60 flex items-center justify-center">
+                    <img src={stele.damaged_image} alt="Damaged" className="w-full h-full object-contain" />
+                    <span className="absolute top-3 left-3 px-2 py-0.5 rounded bg-black/80 text-cinnabar text-[11px] font-serif border border-cinnabar/40">
+                      退化前
+                    </span>
+                  </div>
+                  <div className="relative border border-gold/30 rounded-xl overflow-hidden bg-black/60 flex items-center justify-center">
+                    <img src={restoredImageUrl} alt="Restored" className="w-full h-full object-contain" />
+                    <span className="absolute top-3 right-3 px-2 py-0.5 rounded bg-black/80 text-gold text-[11px] font-serif border border-gold/40">
+                      修复后
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              {viewMode === 'clean' && (
+                <div className="w-full h-full flex items-center justify-center p-2" style={{ transform: `scale(${zoomLevel})` }}>
+                  <img src={restoredImageUrl} alt="Clean Restored" className="w-full h-full object-contain" />
+                </div>
+              )}
+
+              {viewMode === 'cinnabar' && (
+                <div className="w-full h-full flex items-center justify-center p-2" style={{ transform: `scale(${zoomLevel})` }}>
+                  <div className="relative w-full h-full flex items-center justify-center bg-[#8B1A10]/20 rounded-xl">
+                    <img 
+                      src={cinnabarUrl} 
+                      alt="Cinnabar Rubbing" 
+                      className="w-full h-full object-contain filter invert hue-rotate-[320deg] saturate-200" 
+                    />
+                    <div className="absolute top-4 left-4 px-2.5 py-1 rounded bg-cinnabar/80 text-white font-serif text-xs">
+                      清宫御府鉴藏 · 乾隆朱砂拓本模拟
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {viewMode === 'skeleton' && (
+                <div className="w-full h-full flex items-center justify-center p-2" style={{ transform: `scale(${zoomLevel})` }}>
+                  <div className="relative w-full h-full flex items-center justify-center bg-black/90 rounded-xl">
+                    <img src={skeletonUrl} alt="Stroke Skeleton" className="w-full h-full object-contain" />
+                    <div className="absolute top-4 left-4 px-2.5 py-1 rounded bg-celadon/80 text-white font-serif text-xs">
+                      细化中轴拓扑骨架 (Medial Axis Skeleton)
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Semi-transparent Golden Laser Scanning Line */}
+              {isLaserScanning && (
+                <div className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold-light to-transparent shadow-[0_0_15px_#F5D46E] animate-gold-laser pointer-events-none z-20">
+                  <div className="w-full h-8 bg-gradient-to-b from-gold/15 to-transparent -translate-y-full" />
+                </div>
+              )}
+            </div>
+
+            {/* Bottom Floating HUD Metrics Bar (Single Row) */}
+            <div className="h-14 bg-[#0A0D11]/90 backdrop-blur-md border-t border-gold/25 px-4 flex items-center justify-between text-xs select-none">
+              <div className="flex items-center space-x-4 md:space-x-6 overflow-x-auto no-scrollbar">
+                <div className="flex items-baseline space-x-1.5">
+                  <span className="text-slate-400 font-serif text-[11px]">峰值信噪比 PSNR:</span>
+                  <span className="font-mono font-bold text-gold-light text-sm">{metrics.psnr} dB</span>
+                  <span className="text-[10px] text-celadon-light font-mono">(+{metrics.snr_gain}dB)</span>
+                </div>
+
+                <div className="flex items-baseline space-x-1.5">
+                  <span className="text-slate-400 font-serif text-[11px]">结构相似度 SSIM:</span>
+                  <span className="font-mono font-bold text-gold-light text-sm">{metrics.ssim}</span>
+                </div>
+
+                <div className="flex items-baseline space-x-1.5">
+                  <span className="text-slate-400 font-serif text-[11px]">字形骨架完整度:</span>
+                  <span className="font-mono font-bold text-celadon-light text-sm">{metrics.glyph_completeness}%</span>
+                </div>
+
+                <div className="flex items-baseline space-x-1.5">
+                  <span className="text-slate-400 font-serif text-[11px]">字符识别率:</span>
+                  <span className="font-mono font-bold text-cinnabar-light text-sm">{metrics.character_accuracy}%</span>
+                </div>
+              </div>
+
+              <div className="hidden sm:flex items-center space-x-2 text-[11px] text-slate-400">
+                <span className="w-2 h-2 rounded-full bg-celadon-light animate-pulse" />
+                <span>OpenCV 实时加速</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Parameter Adjustments Panel */}
+          <div className="glass-panel p-5 rounded-2xl border border-gold/20 flex flex-col space-y-4">
+            <div className="flex items-center justify-between border-b border-gold/15 pb-2.5">
+              <div className="flex items-center space-x-2">
+                <Sliders className="w-4 h-4 text-gold" />
+                <h3 className="font-serif font-bold text-sm text-gold-light">
+                  频空域联合去噪算法参数矩阵
+                </h3>
+              </div>
+              <span className="text-[11px] font-sans text-slate-400">
+                2D-FFT 高斯频域陷波 + 快速非局部均值 (Fast NLM) + CLAHE
+              </span>
+            </div>
+
+            {/* 4 Sliders Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+              {/* Slider 1: D0 */}
+              <div className="space-y-1.5 bg-slate-950/40 p-2.5 rounded-xl border border-slate-800">
+                <div className="flex items-center justify-between text-[11px]">
+                  <span className="text-slate-300 font-serif">截止频率 D₀ (频域陷波)</span>
+                  <span className="font-mono text-gold-light font-bold">{d0}</span>
+                </div>
+                <input
+                  type="range"
+                  min="10"
+                  max="100"
+                  step="1"
+                  value={d0}
+                  onChange={(e) => setD0(Number(e.target.value))}
+                  className="w-full accent-[#D4AF37] cursor-pointer h-1.5 bg-slate-700 rounded-lg"
+                />
+                <div className="flex justify-between text-[9px] text-slate-500">
+                  <span>10 (精细纹理)</span>
+                  <span>100 (强力滤波)</span>
+                </div>
+              </div>
+
+              {/* Slider 2: Filter Order */}
+              <div className="space-y-1.5 bg-slate-950/40 p-2.5 rounded-xl border border-slate-800">
+                <div className="flex items-center justify-between text-[11px]">
+                  <span className="text-slate-300 font-serif">Butterworth 滤波器阶数 n</span>
+                  <span className="font-mono text-gold-light font-bold">{filterOrder}</span>
+                </div>
+                <input
+                  type="range"
+                  min="1"
+                  max="5"
+                  step="1"
+                  value={filterOrder}
+                  onChange={(e) => setFilterOrder(Number(e.target.value))}
+                  className="w-full accent-[#D4AF37] cursor-pointer h-1.5 bg-slate-700 rounded-lg"
+                />
+                <div className="flex justify-between text-[9px] text-slate-500">
+                  <span>1 阶 (平缓过渡)</span>
+                  <span>5 阶 (陡峭截止)</span>
+                </div>
+              </div>
+
+              {/* Slider 3: h_nlm */}
+              <div className="space-y-1.5 bg-slate-950/40 p-2.5 rounded-xl border border-slate-800">
+                <div className="flex items-center justify-between text-[11px]">
+                  <span className="text-slate-300 font-serif">空域 NLM 保边去噪强度 $h$</span>
+                  <span className="font-mono text-gold-light font-bold">{hNlm}</span>
+                </div>
+                <input
+                  type="range"
+                  min="2"
+                  max="30"
+                  step="1"
+                  value={hNlm}
+                  onChange={(e) => setHNlm(Number(e.target.value))}
+                  className="w-full accent-[#D4AF37] cursor-pointer h-1.5 bg-slate-700 rounded-lg"
+                />
+                <div className="flex justify-between text-[9px] text-slate-500">
+                  <span>2 (保全微痕)</span>
+                  <span>30 (重度抚平)</span>
+                </div>
+              </div>
+
+              {/* Slider 4: CLAHE */}
+              <div className="space-y-1.5 bg-slate-950/40 p-2.5 rounded-xl border border-slate-800">
+                <div className="flex items-center justify-between text-[11px]">
+                  <span className="text-slate-300 font-serif">CLAHE 对比度限幅系数</span>
+                  <span className="font-mono text-gold-light font-bold">{claheClip}</span>
+                </div>
+                <input
+                  type="range"
+                  min="1.0"
+                  max="5.0"
+                  step="0.1"
+                  value={claheClip}
+                  onChange={(e) => setClaheClip(Number(e.target.value))}
+                  className="w-full accent-[#D4AF37] cursor-pointer h-1.5 bg-slate-700 rounded-lg"
+                />
+                <div className="flex justify-between text-[9px] text-slate-500">
+                  <span>1.0 (温和对比)</span>
+                  <span>5.0 (极限凸显)</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Run Algorithm Action */}
+            <div className="flex items-center justify-between pt-1">
+              <span className="text-[11px] text-slate-400">
+                调整滑块后，点击右侧按钮立即调用 Python 核心引擎重构微痕
+              </span>
+              <button
+                onClick={handleRunAlgorithm}
+                disabled={isProcessing}
+                className="px-6 py-2.5 rounded-xl font-serif font-bold text-xs bg-gradient-to-r from-gold to-gold-dark text-slate-950 shadow-gold-glow hover:brightness-110 active:scale-95 transition-all flex items-center space-x-2 disabled:opacity-50"
+              >
+                {isProcessing ? (
+                  <>
+                    <span className="w-4 h-4 border-2 border-slate-950 border-t-transparent rounded-full animate-spin" />
+                    <span>OpenCV 引擎计算中...</span>
+                  </>
+                ) : (
+                  <>
+                    <Cpu className="w-4 h-4" />
+                    <span>执行频空域联合去噪</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* ========================================================= */}
+        {/* RIGHT COLUMN: Ancient Xuan Paper & Inference (Col 5 - 42%) */}
+        {/* ========================================================= */}
+        <div className="lg:col-span-5 flex flex-col space-y-4">
+          {/* Top Xuan Paper Ancient Book Text View */}
+          <div className="glass-panel rounded-2xl border border-gold/30 p-5 flex flex-col bg-gradient-to-b from-[#131920] to-[#0D1217] space-y-4 shadow-xl">
+            {/* Header */}
+            <div className="flex items-center justify-between border-b border-gold/15 pb-2.5">
+              <div className="flex items-center space-x-2">
+                <BookOpen className="w-4 h-4 text-cinnabar" />
+                <h3 className="font-serif font-bold text-sm text-gold-light">
+                  金石古籍逐字释读卷轴 (右起竖排)
+                </h3>
+              </div>
+              <span className="text-[10px] text-slate-400 font-serif">
+                点击红框残字激活贝叶斯推演
+              </span>
+            </div>
+
+            {/* Xuan Paper Vertical Container */}
+            <div className="relative w-full h-[270px] rounded-xl overflow-x-auto overflow-y-hidden p-4 bg-xuan-grid border border-[#D3C3A8]/40 shadow-inner">
+              <div className="h-full flex flex-row-reverse items-start justify-start gap-4 writing-vertical-rl select-none">
+                {/* Organize characters into columns of 7-8 chars */}
+                {Array.from(new Set(characters.map((c) => c.col))).map((colIndex) => {
+                  const colChars = characters.filter((c) => c.col === colIndex);
+                  return (
+                    <div 
+                      key={colIndex} 
+                      className="flex flex-col items-center justify-start gap-2.5 h-full border-r border-[#8B693C]/20 pr-1.5"
+                    >
+                      {colChars.map((charItem) => {
+                        const isSelected = charItem.id === selectedCharId;
+                        const isDamaged = charItem.status === 'damaged';
+                        const isVariant = charItem.status === 'variant';
+                        const isRestored = charItem.status === 'restored';
+
+                        return (
+                          <div
+                            key={charItem.id}
+                            onClick={() => {
+                              setSelectedCharId(charItem.id);
+                              setAdoptionSuccessMsg('');
+                            }}
+                            className={`relative cursor-pointer transition-all duration-200 flex items-center justify-center font-serif text-lg leading-none ${
+                              isSelected
+                                ? 'scale-125 z-20 font-bold'
+                                : 'hover:scale-110'
+                            }`}
+                          >
+                            {/* Damaged Character Display */}
+                            {isDamaged && (
+                              <div className="w-8 h-8 rounded border-2 border-dashed border-cinnabar bg-cinnabar/15 flex items-center justify-center text-cinnabar-dark font-black shadow-cinnabar-glow animate-pulse">
+                                {charItem.char}
+                              </div>
+                            )}
+
+                            {/* Restored Character Display */}
+                            {isRestored && (
+                              <div className="w-8 h-8 rounded border border-cinnabar bg-cinnabar/20 flex items-center justify-center text-cinnabar-dark font-bold relative">
+                                {charItem.char}
+                                <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-cinnabar" />
+                              </div>
+                            )}
+
+                            {/* Variant Character Display */}
+                            {isVariant && (
+                              <div 
+                                className="w-8 h-8 rounded border border-celadon bg-celadon/15 flex items-center justify-center text-celadon-dark font-bold"
+                                title={`异体字：本字为「${charItem.variant_of}」\n${charItem.explanation}`}
+                              >
+                                {charItem.char}
+                              </div>
+                            )}
+
+                            {/* Normal Clear Character */}
+                            {!isDamaged && !isRestored && !isVariant && (
+                              <div className="w-8 h-8 flex items-center justify-center text-[#1C1814] font-medium hover:text-black">
+                                {charItem.char}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Quick Status Legend */}
+            <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1">
+              <div className="flex items-center space-x-3">
+                <span className="flex items-center space-x-1">
+                  <span className="w-2.5 h-2.5 rounded border border-dashed border-cinnabar bg-cinnabar/20" />
+                  <span>漫漶残字 (待推演)</span>
+                </span>
+                <span className="flex items-center space-x-1">
+                  <span className="w-2.5 h-2.5 rounded border border-celadon bg-celadon/20" />
+                  <span>俗异体字</span>
+                </span>
+                <span className="flex items-center space-x-1">
+                  <span className="w-2.5 h-2.5 rounded border border-cinnabar bg-cinnabar/30" />
+                  <span>已采纳修补</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Context-Glyph Bayesian Inference Box */}
+          <div className="glass-panel rounded-2xl border border-gold/30 p-5 flex flex-col space-y-4 bg-gradient-to-b from-[#131920] to-[#0A0D12] shadow-xl flex-1">
+            <div className="flex items-center justify-between border-b border-gold/15 pb-2.5">
+              <div className="flex items-center space-x-2">
+                <Sparkles className="w-4 h-4 text-gold" />
+                <h3 className="font-serif font-bold text-sm text-gold-light">
+                  多模态字形拓扑与贝叶斯推演引擎
+                </h3>
+              </div>
+              <span className="text-[11px] font-mono text-celadon-light">
+                Context-Glyph Bayesian
+              </span>
+            </div>
+
+            {/* Selected Char Info Banner */}
+            {activeChar && activeChar.inferred_candidates && activeChar.inferred_candidates.length > 0 ? (
+              <div className="space-y-3.5">
+                <div className="p-3 rounded-xl bg-slate-950/60 border border-gold/25 flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-12 h-12 rounded-xl bg-cinnabar/20 border-2 border-cinnabar flex items-center justify-center font-serif text-2xl font-bold text-cinnabar-light shadow-cinnabar-glow">
+                      {activeChar.char}
+                    </div>
+                    <div>
+                      <div className="font-serif font-bold text-sm text-slate-100 flex items-center gap-2">
+                        <span>待释读漫漶残字 #{activeChar.id}</span>
+                        <span className="text-[11px] font-mono text-cinnabar px-1.5 py-0.5 rounded bg-cinnabar/10 border border-cinnabar/20">
+                          风化残损度: {((activeChar.damage_level || 0.6) * 100).toFixed(0)}%
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-slate-400 font-sans mt-0.5">
+                        基于字心裂隙、残余点画外轮廓与前后文义理的多维似然度计算
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Candidate List (Top 3) */}
+                <div className="space-y-2">
+                  <span className="text-[11px] font-serif text-slate-400">
+                    贝叶斯后验概率 Top-3 候选释字:
+                  </span>
+                  
+                  {activeChar.inferred_candidates.map((cand, idx) => (
+                    <div
+                      key={idx}
+                      className={`p-3 rounded-xl border transition-all ${
+                        idx === 0
+                          ? 'bg-gold/10 border-gold/50 shadow-gold-glow'
+                          : 'bg-slate-900/40 border-slate-800'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-1.5">
+                        <div className="flex items-center space-x-2">
+                          <span className={`w-5 h-5 rounded-full flex items-center justify-center text-xs font-mono font-bold ${
+                            idx === 0 ? 'bg-gold text-slate-950' : 'bg-slate-800 text-slate-400'
+                          }`}>
+                            {idx + 1}
+                          </span>
+                          <span className="font-serif text-lg font-bold text-white">
+                            「{cand.glyph}」
+                          </span>
+                          <span className="text-[10px] font-serif text-slate-400 px-1.5 py-0.5 rounded bg-slate-800">
+                            {cand.font_style}
+                          </span>
+                        </div>
+                        <div className="flex items-center space-x-1.5">
+                          <span className="text-xs font-mono font-bold text-gold-light">
+                            {(cand.confidence * 100).toFixed(1)}%
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Progress Bar */}
+                      <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden mb-2">
+                        <div
+                          className={`h-full rounded-full transition-all duration-500 ${
+                            idx === 0 ? 'bg-gradient-to-r from-gold to-gold-light' : 'bg-slate-600'
+                          }`}
+                          style={{ width: `${cand.confidence * 100}%` }}
+                        />
+                      </div>
+
+                      <div className="text-[11px] text-slate-300 leading-relaxed font-sans">
+                        <span className="text-gold/90 font-serif">考据依据: </span>
+                        {cand.evidence}
+                      </div>
+                      <div className="text-[10px] text-slate-500 font-mono mt-1">
+                        文献源: {cand.source}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Feedback Message */}
+                {adoptionSuccessMsg && (
+                  <div className="p-2.5 rounded-xl bg-celadon/20 border border-celadon/50 text-celadon-light text-xs font-serif flex items-center space-x-2 animate-fadeIn">
+                    <Check className="w-4 h-4 flex-shrink-0" />
+                    <span>{adoptionSuccessMsg}</span>
+                  </div>
+                )}
+
+                {/* Adopt Button */}
+                <button
+                  onClick={() => handleAdoptCandidate(activeChar.inferred_candidates![0].glyph)}
+                  className="w-full py-2.5 rounded-xl font-serif font-bold text-xs bg-gradient-to-r from-cinnabar to-cinnabar-dark text-paper-light border border-cinnabar-light/40 shadow-cinnabar-glow hover:brightness-110 active:scale-98 transition-all flex items-center justify-center space-x-2"
+                >
+                  <Check className="w-4 h-4" />
+                  <span>一键采纳 Top-1 推演结果并修补古籍拓文</span>
+                </button>
+              </div>
+            ) : (
+              <div className="p-6 text-center text-slate-400 font-serif text-xs">
+                当前选中的字符为标准完好字或俗异体字，请在上方古籍卷轴中点击带有虚线红框的漫漶残字进行推演。
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};

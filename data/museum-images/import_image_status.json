@@ -1,0 +1,147 @@
+{
+  "han_01_caoquan": {
+    "status": "downloaded",
+    "image_status": "高清图像已获取",
+    "cover_url": "/assets/stele/museum-rubbings/han_01_caoquan_cover.jpg"
+  },
+  "han_02_yiying": {
+    "status": "downloaded",
+    "image_status": "高清图像已获取",
+    "cover_url": "/assets/stele/museum-rubbings/han_02_yiying_cover.jpg"
+  },
+  "han_03_liqi": {
+    "status": "downloaded",
+    "image_status": "高清图像已获取",
+    "cover_url": "/assets/stele/museum-rubbings/han_03_liqi_cover.jpg"
+  },
+  "han_04_shichen": {
+    "status": "downloaded",
+    "image_status": "高清图像已获取",
+    "cover_url": "/assets/stele/museum-rubbings/han_04_shichen_cover.jpg"
+  },
+  "tang_01_duobao": {
+    "status": "downloaded",
+    "image_status": "高清图像已获取",
+    "cover_url": "/assets/stele/museum-rubbings/tang_01_duobao_cover.jpg"
+  },
+  "tang_02_jiucheng": {
+    "status": "downloaded",
+    "image_status": "高清图像已获取",
+    "cover_url": "/assets/stele/museum-rubbings/tang_02_jiucheng_cover.jpg"
+  },
+  "tang_03_yanjiamiao": {
+    "status": "downloaded",
+    "image_status": "高清图像已获取",
+    "cover_url": "/assets/stele/museum-rubbings/tang_03_yanjiamiao_cover.jpg"
+  },
+  "tang_04_xuanmita": {
+    "status": "downloaded",
+    "image_status": "高清图像已获取",
+    "cover_url": "/assets/stele/museum-rubbings/tang_04_xuanmita_cover.jpg"
+  },
+  "wei_01_zhangmenglong": {
+    "status": "downloaded",
+    "image_status": "高清图像已获取",
+    "cover_url": "/assets/stele/museum-rubbings/wei_01_zhangmenglong_cover.jpg"
+  },
+  "wei_02_wugaoli": {
+    "status": "downloaded",
+    "image_status": "高清图像已获取",
+    "cover_url": "/assets/stele/museum-rubbings/wei_02_wugaoli_cover.jpg"
+  },
+  "wei_03_kouyan": {
+    "status": "downloaded",
+    "image_status": "高清图像已获取",
+    "cover_url": "/assets/stele/museum-rubbings/wei_03_kouyan_cover.jpg"
+  },
+  "wei_04_wangsong": {
+    "status": "downloaded",
+    "image_status": "高清图像已获取",
+    "cover_url": "/assets/stele/museum-rubbings/wei_04_wangsong_cover.jpg"
+  },
+  "song_01_yuanyou": {
+    "status": "downloaded",
+    "image_status": "高清图像已获取",
+    "cover_url": "/assets/stele/museum-rubbings/song_01_yuanyou_cover.jpg"
+  },
+  "song_02_wenxuan": {
+    "status": "downloaded",
+    "image_status": "高清图像已获取",
+    "cover_url": "/assets/stele/museum-rubbings/song_02_wenxuan_cover.jpg"
+  },
+  "song_03_daguan": {
+    "status": "downloaded",
+    "image_status": "高清图像已获取",
+    "cover_url": "/assets/stele/museum-rubbings/song_03_daguan_cover.jpg"
+  },
+  "song_04_mengying": {
+    "status": "downloaded",
+    "image_status": "高清图像已获取",
+    "cover_url": "/assets/stele/museum-rubbings/song_04_mengying_cover.jpg"
+  },
+  "yuan_01_yufu": {
+    "status": "downloaded",
+    "image_status": "高清图像已获取",
+    "cover_url": "/assets/stele/museum-rubbings/yuan_01_yufu_cover.jpg"
+  },
+  "yuan_02_sundeyu": {
+    "status": "downloaded",
+    "image_status": "高清图像已获取",
+    "cover_url": "/assets/stele/museum-rubbings/yuan_02_sundeyu_cover.jpg"
+  },
+  "yuan_03_shengzhu": {
+    "status": "downloaded",
+    "image_status": "高清图像已获取",
+    "cover_url": "/assets/stele/museum-rubbings/yuan_03_shengzhu_cover.jpg"
+  },
+  "yuan_04_jiulao": {
+    "status": "catalog_record",
+    "image_status": "原图待授权或待获取",
+    "cover_url": null,
+    "notes": "符合馆藏著录规范，未私自捏造图像"
+  },
+  "ming_01_xianfu": {
+    "status": "downloaded",
+    "image_status": "高清图像已获取",
+    "cover_url": "/assets/stele/museum-rubbings/ming_01_xianfu_cover.jpg"
+  },
+  "ming_02_luxianzhi": {
+    "status": "downloaded",
+    "image_status": "高清图像已获取",
+    "cover_url": "/assets/stele/museum-rubbings/ming_02_luxianzhi_cover.jpg"
+  },
+  "ming_03_wugou": {
+    "status": "error",
+    "image_status": "原图待授权或待获取",
+    "error": "429 Client Error: Too Many Requests for url: https://commons.wikimedia.org/w/api.php?action=query&prop=imageinfo&iiprop=url%7Csize%7Cmime&iiurlwidth=1200&titles=File%3ANPM-%E8%B3%BC%E6%8B%93000430+%E6%98%8E%E7%84%A1%E5%9E%A2%E5%AD%90%E4%BD%95%E5%90%9B%E5%A2%93%E8%AA%8C%E9%8A%98%E5%A2%A8%E6%8B%93%E6%9C%AC+%E8%BB%B8.pdf&format=json&formatversion=2"
+  },
+  "ming_04_tongdian": {
+    "status": "error",
+    "image_status": "原图待授权或待获取",
+    "error": "429 Client Error: Too Many Requests for url: https://commons.wikimedia.org/w/api.php?action=query&prop=imageinfo&iiprop=url%7Csize%7Cmime&iiurlwidth=1200&titles=File%3ANPM-%E8%B3%BC%E6%8B%93000276+%E6%98%8E%E5%A4%A7%E5%B3%A9%E5%B1%B1%E6%B0%B8%E6%98%8E%E8%8F%AF%E8%97%8F%E5%AF%BA%E6%96%B0%E5%BB%BA%E9%8A%85%E6%AE%BF%E8%A8%98%E7%A2%91%E5%A2%A8%E6%8B%93%E6%9C%AC+%E8%BB%B8.pdf&format=json&formatversion=2"
+  },
+  "qing_01_shilang": {
+    "status": "catalog_record",
+    "image_status": "原图待授权或待获取",
+    "cover_url": null,
+    "notes": "符合馆藏著录规范，未私自捏造图像"
+  },
+  "qing_02_gaocheng": {
+    "status": "catalog_record",
+    "image_status": "原图待授权或待获取",
+    "cover_url": null,
+    "notes": "符合馆藏著录规范，未私自捏造图像"
+  },
+  "qing_03_yanjin": {
+    "status": "catalog_record",
+    "image_status": "原图待授权或待获取",
+    "cover_url": null,
+    "notes": "符合馆藏著录规范，未私自捏造图像"
+  },
+  "qing_04_gongchen": {
+    "status": "catalog_record",
+    "image_status": "原图待授权或待获取",
+    "cover_url": null,
+    "notes": "符合馆藏著录规范，未私自捏造图像"
+  }
+}

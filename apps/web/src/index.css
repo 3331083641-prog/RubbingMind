@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-dark: #0A0D12;
+    --gold: #D4AF37;
+    --cinnabar: #C83C23;
+    --celadon: #3E8E7E;
+    --paper: #F3EBDC;
+  }
+
+  body {
+    background-color: #0A0D12;
+    color: #E2E8F0;
+    font-family: 'Noto Serif SC', 'Source Han Serif SC', serif;
+    overflow-x: hidden;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0A0D12;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2A323D;
+    border-radius: 3px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #D4AF37;
+  }
+}
+
+/* Vertical Text Writing Mode for Ancient Text Transcripts */
+.writing-vertical-rl {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  letter-spacing: 0.35em;
+}
+
+/* Ancient Xuan Paper Grid Pattern */
+.bg-xuan-grid {
+  background-color: #F3EBDC;
+  background-image: 
+    linear-gradient(rgba(139, 105, 60, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 105, 60, 0.12) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Subtle Dark Grid */
+.bg-dark-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(212, 175, 55, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(212, 175, 55, 0.04) 1px, transparent 1px);
+}
+
+/* Golden Laser Scan Line */
+@keyframes goldLaser {
+  0% {
+    top: 2%;
+    opacity: 0.9;
+  }
+  50% {
+    top: 96%;
+    opacity: 0.8;
+  }
+  100% {
+    top: 2%;
+    opacity: 0.9;
+  }
+}
+
+.animate-gold-laser {
+  animation: goldLaser 4s ease-in-out infinite;
+}
+
+/* Dual-ring breathing hotspot */
+@keyframes ringPing {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.6);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+}
+
+.animate-ring-ping {
+  animation: ringPing 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Glassmorphism Card Utilities */
+.glass-panel {
+  background: rgba(21, 28, 32, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-panel:hover {
+  border-color: rgba(212, 175, 55, 0.35);
+}
+
+.glass-panel-active {
+  background: rgba(25, 33, 40, 0.92);
+  border-color: #D4AF37;
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.22);
+}

@@ -1,0 +1,153 @@
+{
+  "project": "中华贞石数字典藏馆",
+  "notice": "素材仅用于可视化演示，不是馆藏数字真迹、真实人物肖像或算法实证。",
+  "images": [
+    {
+      "category": "backgrounds",
+      "path": "backgrounds/bg_graph_antique_map.png",
+      "width": 1600,
+      "height": 950,
+      "data_status": "concept_demo"
+    },
+    {
+      "category": "backgrounds",
+      "path": "backgrounds/bg_home_ink_landscape.png",
+      "width": 1600,
+      "height": 900,
+      "data_status": "concept_demo"
+    },
+    {
+      "category": "backgrounds",
+      "path": "backgrounds/bg_museum_hall.png",
+      "width": 1600,
+      "height": 900,
+      "data_status": "concept_demo"
+    },
+    {
+      "category": "backgrounds",
+      "path": "backgrounds/texture_xuan_paper.png",
+      "width": 1300,
+      "height": 1700,
+      "data_status": "concept_demo"
+    },
+    {
+      "category": "rubbings",
+      "path": "rubbings/stele_han_caoquan.png",
+      "width": 1024,
+      "height": 1472,
+      "data_status": "concept_demo"
+    },
+    {
+      "category": "rubbings",
+      "path": "rubbings/stele_tang_duobao_clean.png",
+      "width": 1024,
+      "height": 1472,
+      "data_status": "concept_demo"
+    },
+    {
+      "category": "rubbings",
+      "path": "rubbings/stele_tang_duobao_damaged.png",
+      "width": 1024,
+      "height": 1472,
+      "data_status": "concept_demo"
+    },
+    {
+      "category": "rubbings",
+      "path": "rubbings/stele_tang_duobao_restored_demo.png",
+      "width": 1024,
+      "height": 1472,
+      "data_status": "concept_demo"
+    },
+    {
+      "category": "rubbings",
+      "path": "rubbings/stele_wei_jianyi_fragment.png",
+      "width": 1024,
+      "height": 1472,
+      "data_status": "concept_demo"
+    },
+    {
+      "category": "rubbings",
+      "path": "rubbings/stele_wei_yuanhuai.png",
+      "width": 1024,
+      "height": 1472,
+      "data_status": "concept_demo"
+    },
+    {
+      "category": "scenes",
+      "path": "scenes/scene_changan_qianfu_pagoda.png",
+      "width": 1200,
+      "height": 800,
+      "data_status": "concept_demo"
+    },
+    {
+      "category": "scenes",
+      "path": "scenes/scene_historical_pagoda.png",
+      "width": 1200,
+      "height": 800,
+      "data_status": "concept_demo"
+    },
+    {
+      "category": "scenes",
+      "path": "scenes/scene_luoyang_palace.png",
+      "width": 1200,
+      "height": 800,
+      "data_status": "concept_demo"
+    },
+    {
+      "category": "portraits",
+      "path": "portraits/portrait_cen_xun.png",
+      "width": 420,
+      "height": 420,
+      "data_status": "concept_demo"
+    },
+    {
+      "category": "portraits",
+      "path": "portraits/portrait_chujin.png",
+      "width": 420,
+      "height": 420,
+      "data_status": "concept_demo"
+    },
+    {
+      "category": "portraits",
+      "path": "portraits/portrait_xu_hao.png",
+      "width": 420,
+      "height": 420,
+      "data_status": "concept_demo"
+    },
+    {
+      "category": "portraits",
+      "path": "portraits/portrait_yan_zhenqing.png",
+      "width": 420,
+      "height": 420,
+      "data_status": "concept_demo"
+    },
+    {
+      "category": "analysis",
+      "path": "analysis/fft_duobao_spectrum.png",
+      "width": 800,
+      "height": 800,
+      "data_status": "concept_demo"
+    },
+    {
+      "category": "analysis",
+      "path": "analysis/glyph_jian.png",
+      "width": 640,
+      "height": 640,
+      "data_status": "concept_demo"
+    },
+    {
+      "category": "analysis",
+      "path": "analysis/glyph_yin.png",
+      "width": 640,
+      "height": 640,
+      "data_status": "concept_demo"
+    },
+    {
+      "category": "analysis",
+      "path": "analysis/stroke_topology_demo.png",
+      "width": 800,
+      "height": 800,
+      "data_status": "concept_demo"
+    }
+  ]
+}

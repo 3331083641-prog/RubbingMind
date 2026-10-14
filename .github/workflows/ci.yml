@@ -1,0 +1,82 @@
+name: RubbingMind CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  backend-test:
+    name: Backend CI (Python & Algorithms)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Security & Secret scan
+        run: |
+          python scripts/security_scan.py
+
+      - name: Initialize SQLite Database
+        run: |
+          python scripts/init_db.py
+
+      - name: Run Backend Unit & Integration Tests
+        run: |
+          pytest tests/ -v
+
+  frontend-build:
+    name: Frontend CI (React & TypeScript)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+          cache-dependency-path: apps/web/package.json
+
+      - name: Install Frontend Dependencies
+        working-directory: apps/web
+        run: |
+          npm install
+
+      - name: TypeScript Check & Vite Build
+        working-directory: apps/web
+        run: |
+          npm run build
+
+  repository-validation:
+    name: Repository & Assets Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Verify Key Artifacts & Manifest Integrity
+        run: |
+          test -f data/museum_database.json
+          test -f .env.example
+          test -f .gitignore
+          test -f screenshots/01_home_portal_3d.png
+          test -f screenshots/02_digital_museum.png
+          test -f screenshots/03_restoration_workbench.png
+          test -f screenshots/04_graphrag_gis.png
+          test -f screenshots/05_ablation_reports.png
+          echo "All critical repository files and screenshots verified successfully."

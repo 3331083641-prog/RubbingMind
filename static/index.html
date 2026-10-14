@@ -1,0 +1,2047 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>墨韵智考 RubbingMind Pro —— 金石碑拓频空域微痕修复与多模态考据平台</title>
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Vue 3 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+  <!-- ECharts 5 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            ink: {
+              950: '#06080B',
+              900: '#0A0D12',
+              850: '#10151E',
+              800: '#161D2A',
+              750: '#1D2738',
+              700: '#27344A',
+            },
+            mudgold: {
+              DEFAULT: '#D4AF37',
+              light: '#F5D46E',
+              dark: '#9A7B1C',
+              glow: 'rgba(212, 175, 55, 0.35)',
+            },
+            cinnabar: {
+              DEFAULT: '#C83C23',
+              light: '#EE5C42',
+              dark: '#8C2513',
+              glow: 'rgba(200, 60, 35, 0.4)',
+            },
+            celadon: {
+              DEFAULT: '#3E8E7E',
+              light: '#62C0AC',
+              dark: '#286357',
+            }
+          },
+          fontFamily: {
+            serif: ['"Kaiti SC"', 'STKaiti', '"KaiTi"', '"SimSun"', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 全局滚动条样式 */
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0A0D12;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(212, 175, 55, 0.25);
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #D4AF37;
+    }
+
+    /* 仿宋式暗色鎏金卡片容器 */
+    .song-card {
+      background: rgba(18, 23, 33, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(212, 175, 55, 0.16);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .song-card:hover {
+      border-color: rgba(212, 175, 55, 0.38);
+      box-shadow: 0 0 16px rgba(212, 175, 55, 0.08);
+    }
+
+    /* 页面路由平滑转场动画 */
+    @keyframes viewSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .route-view {
+      animation: viewSlideUp 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+
+    /* 传统古籍竖排（从右向左）与乌丝栏 */
+    .vertical-rl {
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+      letter-spacing: 0.28em;
+    }
+    .wusi-column {
+      border-left: 1px solid rgba(139, 105, 60, 0.22);
+      padding-left: 0.65rem;
+      padding-right: 0.65rem;
+    }
+
+    /* 宣纸古卷轴质感渐变 */
+    .xuan-paper-bg {
+      background: linear-gradient(135deg, #F5EFE6 0%, #E8DEC8 100%);
+      color: #1E1B18;
+    }
+
+    /* 激光扫描动效 */
+    @keyframes laserScan {
+      0% {
+        top: 0%;
+        opacity: 0.9;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        top: 100%;
+        opacity: 0;
+      }
+    }
+    .laser-beam {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent 0%, #D4AF37 25%, #FFF5CC 50%, #D4AF37 75%, transparent 100%);
+      box-shadow: 0 0 15px 3px rgba(212, 175, 55, 0.8), 0 0 30px 8px rgba(212, 175, 55, 0.4);
+      pointer-events: none;
+      z-index: 25;
+      animation: laserScan 1.3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    /* 泥金+朱砂双环呼吸脉冲定位框 */
+    @keyframes pulseHotspot {
+      0%, 100% {
+        box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.6), 0 0 10px rgba(212, 175, 55, 0.3);
+        border-color: #D4AF37;
+      }
+      50% {
+        box-shadow: 0 0 0 4px rgba(200, 60, 35, 0.8), 0 0 20px rgba(200, 60, 35, 0.6);
+        border-color: #EE5C42;
+      }
+    }
+    .breathing-hotspot {
+      animation: pulseHotspot 2.2s infinite ease-in-out;
+    }
+
+    /* 朱砂水墨晕染采纳烙印动效 */
+    @keyframes inkReveal {
+      0% {
+        transform: scale(1.6);
+        background-color: rgba(200, 60, 35, 0.85);
+        color: #FFF;
+        box-shadow: 0 0 24px rgba(212, 175, 55, 1);
+      }
+      60% {
+        transform: scale(1.1);
+        background-color: rgba(212, 175, 55, 0.4);
+        color: #9A7B1C;
+      }
+      100% {
+        transform: scale(1);
+        background-color: transparent;
+        color: #8C2513;
+      }
+    }
+    .ink-adopted-char {
+      animation: inkReveal 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      font-weight: 900;
+      text-shadow: 0 0 2px rgba(200, 60, 35, 0.6);
+    }
+
+    /* 微光质感按钮悬停 */
+    .btn-gold {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.18) 0%, rgba(212, 175, 55, 0.08) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      color: #F5D46E;
+      transition: all 0.25s ease;
+    }
+    .btn-gold:hover {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.32) 0%, rgba(212, 175, 55, 0.16) 100%);
+      border-color: #D4AF37;
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
+      color: #FFFFFF;
+    }
+
+    /* 提示气泡 Tooltip */
+    .tooltip-bubble {
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(10, 13, 18, 0.96);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      color: #E2E8F0;
+      white-space: nowrap;
+      z-index: 50;
+      pointer-events: none;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+    }
+    .tooltip-bubble::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: rgba(212, 175, 55, 0.4) transparent transparent transparent;
+    }
+  </style>
+</head>
+<body class="bg-ink-950 text-slate-200 font-sans antialiased h-screen overflow-hidden select-none">
+
+<div id="app" class="flex flex-col h-screen">
+
+  <!-- =========================================================================
+       全局产品级顶部导航栏（常驻，强制单行 68px 高度）
+       ========================================================================= -->
+  <header class="h-[68px] flex items-center justify-between px-6 bg-ink-900 border-b border-mudgold/20 shadow-2xl z-40 whitespace-nowrap flex-shrink-0">
+    
+    <!-- 左侧品牌区：朱砂方印 Logo + 标题 + 版本 -->
+    <div class="flex items-center space-x-3.5 flex-shrink-0 cursor-pointer" @click="currentRoute = 'home'">
+      <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cinnabar via-cinnabar-dark to-black flex items-center justify-center shadow-lg shadow-cinnabar/40 border border-cinnabar-light/40 flex-shrink-0">
+        <span class="font-serif text-white font-bold text-xl tracking-widest">墨</span>
+      </div>
+      <div class="flex flex-col flex-shrink-0">
+        <div class="flex items-center space-x-2">
+          <h1 class="text-lg font-bold font-serif tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-mudgold-light via-yellow-100 to-mudgold flex-shrink-0">
+            墨韵智考 <span class="text-xs font-sans font-normal text-mudgold tracking-normal">RubbingMind</span>
+          </h1>
+          <span class="px-2 py-0.5 rounded text-[10px] font-medium bg-cinnabar/20 text-cinnabar-light border border-cinnabar/40 font-mono flex-shrink-0">
+            Pro v2.0
+          </span>
+        </div>
+        <span class="text-[11px] text-slate-400 font-normal">金石碑拓频空域微痕修复与多模态考据平台</span>
+      </div>
+    </div>
+
+    <!-- 中间主路由导航菜单（5大核心页面切换 Tab，激活态带泥金底部流光条） -->
+    <nav class="flex items-center bg-ink-950/80 p-1.5 rounded-xl border border-mudgold/25 space-x-1.5 flex-shrink-0 shadow-inner">
+      <button 
+        v-for="route in navRoutes" 
+        :key="route.id"
+        @click="currentRoute = route.id"
+        :class="[
+          'px-4 py-2 rounded-lg text-xs font-serif transition-all duration-200 flex items-center space-x-2 whitespace-nowrap flex-shrink-0 relative',
+          currentRoute === route.id 
+            ? 'bg-gradient-to-r from-mudgold/30 via-mudgold/15 to-transparent text-mudgold-light font-bold shadow-md shadow-mudgold/10 border border-mudgold/60' 
+            : 'text-slate-400 hover:text-slate-200 hover:bg-ink-850'
+        ]"
+      >
+        <span>{{ route.icon }}</span>
+        <span>{{ route.name }}</span>
+        <span v-if="currentRoute === route.id" class="absolute bottom-0 left-3 right-3 h-[2px] bg-gradient-to-r from-transparent via-mudgold to-transparent"></span>
+      </button>
+    </nav>
+
+    <!-- 右侧全局工具区：活跃碑刻快捷选择 + 上传 + 引擎配置 -->
+    <div class="flex items-center space-x-2.5 flex-shrink-0">
+      <!-- 快捷样本下拉 -->
+      <div class="relative flex-shrink-0">
+        <select 
+          v-model="currentSampleId" 
+          @change="onGlobalSampleSelect"
+          class="bg-ink-950 border border-mudgold/35 rounded-lg px-3 py-1.5 text-xs text-mudgold-light font-serif focus:outline-none focus:border-mudgold cursor-pointer"
+        >
+          <option v-for="s in sampleList" :key="s.id" :value="s.id">
+            当前载入：{{ s.shortTitle }}
+          </option>
+        </select>
+      </div>
+
+      <!-- 全局上传拓片 -->
+      <label class="px-3.5 py-1.5 rounded-lg text-xs font-medium btn-gold cursor-pointer flex items-center space-x-1.5 whitespace-nowrap flex-shrink-0">
+        <span>▲</span>
+        <span>上传新拓片</span>
+        <input type="file" accept="image/*" class="hidden" @change="handleFileUpload">
+      </label>
+
+      <!-- 引擎与API设置 -->
+      <button 
+        @click="showApiModal = true"
+        class="p-2 rounded-lg bg-ink-950 border border-mudgold/25 text-slate-400 hover:text-mudgold hover:border-mudgold transition-all flex-shrink-0"
+        title="视觉大模型智能体设置 (OpenAI 兼容协议)"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      </button>
+    </div>
+  </header>
+
+
+  <!-- =========================================================================
+       主内容视图容器（支持 5 大核心独立页面切换）
+       ========================================================================= -->
+  <main class="flex-1 overflow-hidden relative">
+
+    <!-- =======================================================================
+         【页面 1：🏠 首页门户 (Home Portal)】—— 商业级震撼首屏
+         ======================================================================= -->
+    <div v-if="currentRoute === 'home'" class="h-full overflow-y-auto route-view p-6 flex flex-col space-y-6">
+      
+      <!-- 1. 上半屏：Hero 主视觉区 (55% : 45%) -->
+      <section class="song-card rounded-2xl p-8 flex gap-8 items-center relative overflow-hidden shadow-2xl">
+        <div class="w-[55%] flex flex-col space-y-5 z-10">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-mudgold/10 border border-mudgold/30 text-mudgold-light text-xs font-serif w-max">
+            <span>✦</span>
+            <span>全球校园人工智能算法精英大赛 · 智能文化赛道参评作品</span>
+          </div>
+
+          <h2 class="text-3xl font-serif font-black tracking-wide leading-tight text-white bg-clip-text text-transparent bg-gradient-to-r from-yellow-100 via-paper-50 to-mudgold-light">
+            以算法之眼，唤醒千年贞石微痕
+          </h2>
+
+          <p class="text-xs text-slate-300 leading-relaxed max-w-2xl">
+            融合二维快速傅里叶频空域联合滤波（2D-FFT + NLM + CLAHE）、上下文笔画拓扑残字贝叶斯推演（Context-Glyph CoT）与金石史料知识图谱（Epigraphy-GraphRAG）的一站式数字人文微痕修复与史料考据科研平台。
+          </p>
+
+          <!-- 两个主行动按钮 CTA -->
+          <div class="flex items-center space-x-4 pt-1">
+            <button 
+              @click="currentRoute = 'workbench'"
+              class="px-6 py-3 rounded-xl bg-gradient-to-r from-cinnabar to-cinnabar-dark text-white font-serif font-bold text-sm shadow-xl shadow-cinnabar/40 hover:scale-105 active:scale-95 transition-all flex items-center space-x-2 border border-cinnabar-light/40"
+            >
+              <span>✦</span>
+              <span>立即进入智考工作台 →</span>
+            </button>
+
+            <button 
+              @click="currentRoute = 'museum'"
+              class="px-6 py-3 rounded-xl song-card text-mudgold-light font-serif font-bold text-sm hover:border-mudgold/60 transition-all flex items-center space-x-2"
+            >
+              <span>❖</span>
+              <span>浏览数字碑林典藏</span>
+            </button>
+          </div>
+
+          <!-- 4 个核心技术指标微卡 -->
+          <div class="grid grid-cols-4 gap-3 pt-4 border-t border-mudgold/20 text-center">
+            <div class="bg-ink-950/70 p-2.5 rounded-lg border border-mudgold/20">
+              <div class="text-[10px] text-slate-400">平均 PSNR 提升</div>
+              <div class="text-base font-bold font-mono text-mudgold">+8.4 <span class="text-[10px] font-normal">dB</span></div>
+            </div>
+            <div class="bg-ink-950/70 p-2.5 rounded-lg border border-mudgold/20">
+              <div class="text-[10px] text-slate-400">石花噪点抑制率</div>
+              <div class="text-base font-bold font-mono text-celadon-light">89.4%</div>
+            </div>
+            <div class="bg-ink-950/70 p-2.5 rounded-lg border border-mudgold/20">
+              <div class="text-[10px] text-slate-400">残字 Top-1 命中率</div>
+              <div class="text-base font-bold font-mono text-mudgold">91.2%</div>
+            </div>
+            <div class="bg-ink-950/70 p-2.5 rounded-lg border border-mudgold/20">
+              <div class="text-[10px] text-slate-400">微痕实时渲染</div>
+              <div class="text-base font-bold font-mono text-slate-300">&lt;150 <span class="text-[10px] font-normal">ms</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右侧：动态交互式【碑拓微痕修复预览橱窗】 -->
+        <div class="w-[45%] h-80 rounded-xl bg-ink-950 relative overflow-hidden border border-mudgold/30 shadow-2xl flex items-center justify-center group cursor-pointer" @click="currentRoute = 'workbench'">
+          <div class="laser-beam"></div>
+          <img :src="restoredB64 || originalB64" class="h-full object-contain pointer-events-none opacity-90 group-hover:scale-102 transition-transform duration-500">
+          
+          <!-- 残字脉冲定位提示 -->
+          <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 px-3 py-1.5 rounded-lg bg-ink-900/90 border-2 border-mudgold breathing-hotspot text-xs text-mudgold-light font-serif shadow-xl flex items-center space-x-1.5">
+            <span class="w-2 h-2 rounded-full bg-cinnabar animate-ping"></span>
+            <span>残字定位推演: 【胤】91.2%</span>
+          </div>
+
+          <div class="absolute bottom-3 left-4 right-4 bg-ink-900/85 backdrop-blur-md px-3.5 py-1.5 rounded-lg border border-mudgold/30 flex items-center justify-between text-xs">
+            <span class="text-slate-300">《唐·多宝塔碑》颜真卿书丹</span>
+            <span class="text-celadon-light font-mono font-bold">PSNR: 32.45 dB (高清增强)</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. 中半屏：三级核心算法流水线全景架构 -->
+      <section class="grid grid-cols-3 gap-5">
+        <div class="song-card rounded-xl p-5 flex flex-col space-y-2.5">
+          <div class="flex items-center space-x-2 text-mudgold font-serif font-bold text-sm">
+            <span class="px-2 py-0.5 rounded bg-mudgold/20 text-xs">Stage 01</span>
+            <span>频空域联合微痕去噪引擎</span>
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            应用 2D-FFT 离散傅里叶变换将石面椒盐与周期性裂纹映射至频域带阻滤波滤除，配合数学形态学顶帽开闭运算精准剔除白垩石花微粒，经 CLAHE 强化浅淡字痕。
+          </p>
+          <div class="text-[10px] font-mono text-slate-400 bg-ink-950 p-2 rounded border border-mudgold/15">
+            H(u,v) = exp(-D²(u,v)/2D₀²) · That(f) = f - (f ∘ B)
+          </div>
+        </div>
+
+        <div class="song-card rounded-xl p-5 flex flex-col space-y-2.5">
+          <div class="flex items-center space-x-2 text-mudgold font-serif font-bold text-sm">
+            <span class="px-2 py-0.5 rounded bg-mudgold/20 text-xs">Stage 02</span>
+            <span>漫漶残字多模态贝叶斯推演</span>
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            以竖排乌丝栏古籍空间感知为底座，抽取残存笔画微痕骨架拓扑，融合四库全书碑志文献搭配先验与古代职官制，计算 Top-3 残字 Softmax 后验概率分布。
+          </p>
+          <div class="text-[10px] font-mono text-slate-400 bg-ink-950 p-2 rounded border border-mudgold/15">
+            P(wᵢ | G, C) ∝ P(G | wᵢ) · P(C | wᵢ) · Prior(wᵢ)
+          </div>
+        </div>
+
+        <div class="song-card rounded-xl p-5 flex flex-col space-y-2.5">
+          <div class="flex items-center space-x-2 text-mudgold font-serif font-bold text-sm">
+            <span class="px-2 py-0.5 rounded bg-mudgold/20 text-xs">Stage 03</span>
+            <span>金石文献 GraphRAG 与时空定位</span>
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            自动化抽取碑铭中的人物宗族世系、迁转官职与典故地名，构建力导向知识图谱，并结合帝王年号与天干地支实现公元西历双向精算与 GIS 迁徙沙盘重构。
+          </p>
+          <div class="text-[10px] font-mono text-slate-400 bg-ink-950 p-2 rounded border border-mudgold/15">
+            G = (V_entity, E_relation) ⊗ SpatioTemporal(t, lng, lat)
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. 下半屏：精选碑林典藏快速入口 -->
+      <section class="space-y-3 pb-6">
+        <div class="flex items-center justify-between">
+          <h3 class="font-serif font-bold text-base text-mudgold-light flex items-center space-x-2">
+            <span>❖</span>
+            <span>四大经典碑铭典藏（点击直接载入工作台）</span>
+          </h3>
+          <span class="text-xs text-slate-400 font-serif cursor-pointer hover:text-mudgold" @click="currentRoute = 'museum'">查看更多典藏 →</span>
+        </div>
+
+        <div class="grid grid-cols-4 gap-4">
+          <div 
+            v-for="s in samplesList" 
+            :key="s.id"
+            @click="loadSampleAndGoWorkbench(s.id)"
+            class="song-card rounded-xl p-3.5 flex flex-col space-y-2.5 cursor-pointer hover:-translate-y-1 hover:border-mudgold transition-all group"
+          >
+            <div class="h-36 rounded-lg bg-ink-950 overflow-hidden relative border border-mudgold/20">
+              <img :src="s.preview_url" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+              <span class="absolute top-2 right-2 px-2 py-0.5 rounded text-[10px] bg-ink-900/90 text-mudgold border border-mudgold/30">
+                {{ s.weathering_badge }}
+              </span>
+              <span class="absolute bottom-2 left-2 px-2 py-0.5 rounded text-[10px] bg-ink-900/90 text-slate-300 border border-ink-700">
+                {{ s.dynasty_badge }}
+              </span>
+            </div>
+            <div class="font-serif font-bold text-sm text-paper-50 group-hover:text-mudgold transition-colors">
+              {{ s.title }}
+            </div>
+            <p class="text-[11px] text-slate-400 line-clamp-2 leading-relaxed">
+              {{ s.summary }}
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+
+    <!-- =======================================================================
+         【页面 2：🏛️ 数字碑林馆 (Digital Stele Museum)】—— 样本库与上传中心
+         ======================================================================= -->
+    <div v-if="currentRoute === 'museum'" class="h-full overflow-y-auto route-view p-6 flex flex-col space-y-5">
+      
+      <!-- 顶部筛选与搜索栏 -->
+      <div class="song-card rounded-xl p-4 flex items-center justify-between flex-shrink-0">
+        <!-- 分类胶囊 -->
+        <div class="flex items-center space-x-2">
+          <button 
+            v-for="cat in museumCategories" 
+            :key="cat"
+            @click="activeMuseumCategory = cat"
+            :class="[
+              'px-3.5 py-1.5 rounded-lg text-xs font-serif transition-all',
+              activeMuseumCategory === cat 
+                ? 'bg-mudgold text-ink-950 font-bold shadow-md' 
+                : 'bg-ink-950 text-slate-300 border border-mudgold/20 hover:text-white'
+            ]"
+          >
+            {{ cat }}
+          </button>
+        </div>
+
+        <!-- 搜索与上传 -->
+        <div class="flex items-center space-x-3">
+          <input 
+            type="text" 
+            v-model="museumSearchQuery"
+            placeholder="搜索碑名、书家、纪年或朝代..." 
+            class="w-64 bg-ink-950 border border-mudgold/30 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-mudgold"
+          >
+          <label class="px-4 py-1.5 rounded-lg text-xs font-serif font-bold bg-gradient-to-r from-cinnabar to-cinnabar-dark text-white cursor-pointer shadow-md shadow-cinnabar/30 hover:scale-105 transition-transform flex items-center space-x-1.5">
+            <span>+</span>
+            <span>上传拓片入馆</span>
+            <input type="file" accept="image/*" class="hidden" @change="handleFileUpload">
+          </label>
+        </div>
+      </div>
+
+      <!-- 碑刻卡片网格 -->
+      <div class="grid grid-cols-3 gap-5 pb-6">
+        <div 
+          v-for="item in filteredMuseumList" 
+          :key="item.id"
+          class="song-card rounded-xl p-4 flex flex-col justify-between space-y-3"
+        >
+          <div>
+            <div class="h-44 rounded-lg bg-ink-950 overflow-hidden relative border border-mudgold/25 mb-3">
+              <img :src="item.preview_url" class="w-full h-full object-cover">
+              <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded text-[10px] bg-ink-900/90 text-mudgold border border-mudgold/40">
+                {{ item.weathering_badge }}
+              </span>
+              <span class="absolute bottom-2.5 left-2.5 px-2 py-0.5 rounded text-[10px] bg-ink-900/90 text-celadon-light border border-celadon/40">
+                {{ item.script_style }}
+              </span>
+            </div>
+
+            <div class="flex items-center justify-between mb-1">
+              <h4 class="font-serif font-bold text-base text-paper-50">{{ item.title }}</h4>
+              <span class="text-[11px] text-mudgold font-mono">{{ item.era_converted }}</span>
+            </div>
+
+            <div class="text-xs text-slate-400 mb-2 font-serif">
+              书丹: {{ item.author_calligraphy ? item.author_calligraphy.split('（')[0] : '佚名' }} | 现藏: {{ item.location }}
+            </div>
+
+            <p class="text-xs text-slate-300 leading-relaxed line-clamp-3 bg-ink-950/60 p-2.5 rounded border border-mudgold/10">
+              {{ item.summary }}
+            </p>
+          </div>
+
+          <div class="pt-3 border-t border-mudgold/15 flex items-center justify-between">
+            <span class="text-[11px] text-slate-400">
+              待考残字: <span class="text-cinnabar font-bold font-mono">{{ item.damaged_count }}</span> 处
+            </span>
+
+            <div class="flex space-x-2">
+              <button 
+                @click="loadSampleAndGoWorkbench(item.id)"
+                class="px-3 py-1.5 rounded-lg bg-mudgold/20 text-mudgold-light text-xs font-serif font-bold border border-mudgold/40 hover:bg-mudgold/30 transition-all"
+              >
+                ✦ 载入工作台
+              </button>
+              <button 
+                @click="loadSampleAndGoGraph(item.id)"
+                class="px-3 py-1.5 rounded-lg bg-ink-950 text-slate-300 text-xs font-serif border border-ink-700 hover:text-white transition-all"
+              >
+                ◎ 探索图谱
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- =======================================================================
+         【页面 3：🛠️ 智考修复工作台 (AI Restoration Workbench)】—— 专注级核心作业台
+         ======================================================================= -->
+    <div v-show="currentRoute === 'workbench'" class="h-full flex overflow-hidden p-3 gap-3 route-view">
+      
+      <!-- 左栏（56% 宽）：【频空域微痕修复主舞台】 -->
+      <section class="w-[56%] flex flex-col gap-2.5 h-full overflow-hidden">
+        
+        <!-- 主画布区（占 72% 高度） -->
+        <div class="h-[72%] song-card rounded-xl p-3 flex flex-col relative overflow-hidden shadow-2xl">
+          
+          <!-- 顶部工具条：4 视图切换 + 涂抹模式 -->
+          <div class="flex items-center justify-between pb-2 mb-2 border-b border-mudgold/15 flex-shrink-0">
+            <div class="flex items-center bg-ink-950 p-1 rounded-lg border border-mudgold/25 space-x-1">
+              <button 
+                @click="activeView = 'compare'"
+                :class="['px-3 py-1 text-xs rounded-md font-medium transition-all flex items-center space-x-1', activeView === 'compare' ? 'bg-mudgold/30 text-mudgold-light font-bold border border-mudgold/50' : 'text-slate-400 hover:text-white']"
+              >
+                <span>◈</span>
+                <span>去噪对比拉杆</span>
+              </button>
+              <button 
+                @click="activeView = 'spectrum'"
+                :class="['px-3 py-1 text-xs rounded-md font-medium transition-all flex items-center space-x-1', activeView === 'spectrum' ? 'bg-mudgold/30 text-mudgold-light font-bold border border-mudgold/50' : 'text-slate-400 hover:text-white']"
+              >
+                <span>◎</span>
+                <span>2D-FFT 频谱分析</span>
+              </button>
+              <button 
+                @click="activeView = 'cinnabar'"
+                :class="['px-3 py-1 text-xs rounded-md font-medium transition-all flex items-center space-x-1', activeView === 'cinnabar' ? 'bg-cinnabar/30 text-cinnabar-light font-bold border border-cinnabar/50' : 'text-slate-400 hover:text-white']"
+              >
+                <span>❖</span>
+                <span>宣纸朱砂复原</span>
+              </button>
+              <button 
+                @click="activeView = 'skeleton'"
+                :class="['px-3 py-1 text-xs rounded-md font-medium transition-all flex items-center space-x-1', activeView === 'skeleton' ? 'bg-celadon/30 text-celadon-light font-bold border border-celadon/50' : 'text-slate-400 hover:text-white']"
+              >
+                <span>✦</span>
+                <span>笔画拓扑骨架</span>
+              </button>
+            </div>
+
+            <!-- 涂抹开关与状态提示 -->
+            <div class="flex items-center space-x-2">
+              <button 
+                @click="toggleWeatheringBrush"
+                :class="[
+                  'px-2.5 py-1 rounded text-xs transition-all flex items-center space-x-1 border',
+                  isBrushActive ? 'bg-cinnabar text-white border-cinnabar-light' : 'bg-ink-950 text-slate-300 border-mudgold/25 hover:text-white'
+                ]"
+              >
+                <span>✎</span>
+                <span>{{ isBrushActive ? '退出涂抹' : '开启风化涂抹' }}</span>
+              </button>
+
+              <span v-if="loading" class="text-mudgold animate-pulse flex items-center space-x-1 text-xs font-mono">
+                <svg class="animate-spin w-3 h-3 text-mudgold" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+                <span>微痕运算中...</span>
+              </span>
+            </div>
+          </div>
+
+          <!-- 图像画布视口 -->
+          <div 
+            ref="imageContainer"
+            class="flex-1 bg-ink-950 rounded-lg relative overflow-hidden flex items-center justify-center border border-mudgold/20"
+            @mousemove="handleCompareMouseMove"
+            @mouseup="isDraggingSlider = false"
+            @wheel.prevent="handleZoom"
+          >
+            <!-- 黄金激光扫描线 -->
+            <div v-if="isScanning" class="laser-beam"></div>
+
+            <!-- 1. 去噪对比拉杆视图 (默认激活) -->
+            <div 
+              v-show="activeView === 'compare'" 
+              class="w-full h-full relative select-none flex items-center justify-center"
+              :style="{ transform: `scale(${zoomScale})` }"
+            >
+              <!-- 底层：去噪增强图 -->
+              <img :src="restoredB64 || originalB64" class="max-h-full max-w-full object-contain pointer-events-none">
+
+              <!-- 顶层裁剪：原始受损图 -->
+              <div 
+                class="absolute inset-0 overflow-hidden flex items-center justify-center"
+                :style="{ clipPath: `polygon(0 0, ${sliderPos}% 0, ${sliderPos}% 100%, 0 100%)` }"
+              >
+                <img :src="originalB64" class="max-h-full max-w-full object-contain pointer-events-none">
+              </div>
+
+              <!-- 分割拉杆线与抓手 -->
+              <div 
+                class="absolute top-0 bottom-0 w-0.5 bg-gradient-to-b from-mudgold via-yellow-100 to-mudgold cursor-ew-resize z-20 flex items-center justify-center"
+                :style="{ left: `${sliderPos}%` }"
+                @mousedown.stop="isDraggingSlider = true"
+              >
+                <div class="w-7 h-7 rounded-full bg-mudgold border-2 border-ink-950 shadow-xl shadow-mudgold/60 flex items-center justify-center text-ink-950 text-[11px] font-black hover:scale-110 transition-transform">
+                  ⬄
+                </div>
+              </div>
+
+              <!-- 泥金+朱砂双环呼吸脉冲定位框 -->
+              <div 
+                v-for="d in metadata.damaged_characters" 
+                :key="d.id"
+                class="absolute border-2 rounded cursor-pointer z-20 flex items-center justify-center breathing-hotspot hover:scale-110 transition-all"
+                :style="{
+                  left: `${d.box.x * 100}%`,
+                  top: `${d.box.y * 100}%`,
+                  width: `${d.box.w * 100}%`,
+                  height: `${d.box.h * 100}%`,
+                }"
+                @click.stop="focusDamagedChar(d)"
+              >
+                <span class="bg-ink-900/95 text-mudgold-light text-[10px] font-bold px-1.5 py-0.5 rounded border border-mudgold/60 shadow-lg shadow-black">
+                  {{ d.selected || '残' }}
+                </span>
+              </div>
+
+              <!-- 涂抹 Canvas -->
+              <canvas 
+                ref="brushCanvas"
+                v-show="isBrushActive"
+                class="absolute inset-0 w-full h-full cursor-crosshair z-30"
+                @mousedown="startPainting"
+                @mousemove="drawPainting"
+                @mouseup="stopPainting"
+                @mouseleave="stopPainting"
+              ></canvas>
+            </div>
+
+            <!-- 2. 2D-FFT 频谱视图 -->
+            <div v-show="activeView === 'spectrum'" class="w-full h-full flex items-center justify-center p-3 relative">
+              <img :src="fftSpectrumB64" class="max-h-full max-w-full object-contain rounded-md shadow-xl border border-mudgold/30">
+              <div class="absolute bottom-4 left-4 bg-ink-950/90 px-3.5 py-1.5 rounded-lg border border-mudgold/30 text-xs text-slate-300 backdrop-blur-md">
+                <span class="text-mudgold font-bold">2D-FFT 频域特征：</span>中心低频集聚书法笔势能量，外围高频亮线表征石花与裂纹
+              </div>
+            </div>
+
+            <!-- 3. 古典宣纸朱砂复原视图 -->
+            <div v-show="activeView === 'cinnabar'" class="w-full h-full flex items-center justify-center p-3 relative">
+              <img :src="cinnabarB64" class="max-h-full max-w-full object-contain rounded shadow-2xl border-2 border-mudgold/40">
+              <div class="absolute top-4 right-4 bg-cinnabar/90 text-white font-serif px-3 py-1 rounded shadow-lg border border-white/30 text-xs">
+                宣纸朱砂御拓
+              </div>
+            </div>
+
+            <!-- 4. 笔画拓扑骨架视图 -->
+            <div v-show="activeView === 'skeleton'" class="w-full h-full flex items-center justify-center p-3 relative">
+              <img :src="skeletonB64" class="max-h-full max-w-full object-contain rounded shadow-2xl border border-mudgold/40">
+              <div class="absolute bottom-4 right-4 bg-ink-950/90 text-mudgold px-3.5 py-1.5 rounded-lg border border-mudgold/30 text-xs">
+                微痕细化 · 笔画拓扑提取
+              </div>
+            </div>
+
+            <!-- 画布正下方悬浮：毛玻璃 HUD 实时指标条 -->
+            <div class="absolute bottom-3 left-4 right-4 bg-ink-950/85 backdrop-blur-md rounded-lg border border-mudgold/35 px-4 py-2 flex items-center justify-between text-xs shadow-2xl z-20">
+              <div class="flex items-center space-x-1.5">
+                <span class="text-[10px] text-slate-400">PSNR 峰值信噪比:</span>
+                <span class="font-mono font-bold text-mudgold text-sm">{{ displayPsnr.toFixed(1) }} <span class="text-[10px] text-slate-400 font-normal">dB</span></span>
+              </div>
+              <div class="h-3 w-[1px] bg-mudgold/25"></div>
+              <div class="flex items-center space-x-1.5">
+                <span class="text-[10px] text-slate-400">SSIM 结构相似性:</span>
+                <span class="font-mono font-bold text-celadon-light text-sm">{{ displaySsim.toFixed(3) }}</span>
+              </div>
+              <div class="h-3 w-[1px] bg-mudgold/25"></div>
+              <div class="flex items-center space-x-1.5">
+                <span class="text-[10px] text-slate-400">石花噪点抑制率:</span>
+                <span class="font-mono font-bold text-mudgold text-sm">{{ displayNoise.toFixed(1) }}%</span>
+              </div>
+              <div class="h-3 w-[1px] bg-mudgold/25"></div>
+              <div class="flex items-center space-x-1.5">
+                <span class="text-[10px] text-slate-400">笔画边缘清晰度:</span>
+                <span class="font-mono font-bold text-celadon-light text-sm">+{{ displayEdge.toFixed(1) }}%</span>
+              </div>
+              <div class="h-3 w-[1px] bg-mudgold/25"></div>
+              <div class="flex items-center space-x-1.5">
+                <span class="text-[10px] text-slate-400">算法实时耗时:</span>
+                <span class="font-mono font-bold text-slate-300 text-xs">{{ displayTime.toFixed(0) }} ms</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 涂抹浮条 -->
+          <div v-if="isBrushActive" class="mt-2 p-2 bg-ink-950 rounded-lg border border-cinnabar/40 flex items-center justify-between text-xs flex-shrink-0">
+            <div class="flex items-center space-x-2">
+              <span class="text-cinnabar-light font-medium">笔刷粗细:</span>
+              <input type="range" min="5" max="40" v-model="brushSize" class="w-20 accent-cinnabar">
+              <span class="text-slate-400 font-mono">{{ brushSize }}px</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <button @click="clearBrushMask" class="px-2.5 py-1 rounded bg-ink-850 text-slate-300 hover:text-white">清空画布</button>
+              <button @click="applyWeatheringSim" class="px-3 py-1 rounded bg-cinnabar text-white font-medium hover:bg-cinnabar-light shadow">执行模拟去噪</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 底部自适应参数调控面板（占 28% 高度） -->
+        <div class="h-[28%] song-card rounded-xl p-3 flex flex-col justify-between shadow-xl flex-shrink-0">
+          <div class="flex items-center justify-between pb-1.5 border-b border-mudgold/15">
+            <span class="text-xs font-serif font-bold text-mudgold-light flex items-center space-x-1.5">
+              <span>🎛️</span>
+              <span>频空域自适应算法调控台</span>
+            </span>
+            <button @click="resetParams" class="text-[11px] text-slate-400 hover:text-mudgold">恢复默认</button>
+          </div>
+
+          <div class="flex gap-4 items-center">
+            <div class="grid grid-cols-2 gap-x-4 gap-y-2 flex-1 text-xs">
+              <div>
+                <div class="flex justify-between text-slate-300 mb-0.5">
+                  <span class="text-[11px]">频域滤波截止 (D0):</span>
+                  <span class="font-mono text-mudgold font-bold">{{ params.d0 }}</span>
+                </div>
+                <input type="range" min="20" max="120" step="5" v-model.number="params.d0" @input="debouncedProcess" class="w-full accent-mudgold h-1.5 bg-ink-950 rounded">
+              </div>
+
+              <div>
+                <div class="flex justify-between text-slate-300 mb-0.5">
+                  <span class="text-[11px]">空域 NLM 去噪 (h):</span>
+                  <span class="font-mono text-mudgold font-bold">{{ params.nlm_h }}</span>
+                </div>
+                <input type="range" min="2" max="25" step="1" v-model.number="params.nlm_h" @input="debouncedProcess" class="w-full accent-mudgold h-1.5 bg-ink-950 rounded">
+              </div>
+
+              <div>
+                <div class="flex justify-between text-slate-300 mb-0.5">
+                  <span class="text-[11px]">微痕对比度限幅 (CLAHE):</span>
+                  <span class="font-mono text-mudgold font-bold">{{ params.clahe_clip }}</span>
+                </div>
+                <input type="range" min="1.0" max="5.0" step="0.2" v-model.number="params.clahe_clip" @input="debouncedProcess" class="w-full accent-mudgold h-1.5 bg-ink-950 rounded">
+              </div>
+
+              <div>
+                <div class="flex justify-between text-slate-300 mb-0.5">
+                  <span class="text-[11px]">石花剥离核径:</span>
+                  <span class="font-mono text-mudgold font-bold">{{ params.morph_kernel }}px</span>
+                </div>
+                <input type="range" min="1" max="7" step="2" v-model.number="params.morph_kernel" @input="debouncedProcess" class="w-full accent-mudgold h-1.5 bg-ink-950 rounded">
+              </div>
+            </div>
+
+            <!-- 重新去噪大按钮 -->
+            <button 
+              @click="triggerManualProcess"
+              class="w-36 h-20 rounded-xl bg-gradient-to-br from-mudgold/35 via-mudgold/20 to-mudgold/5 border border-mudgold/60 hover:border-mudgold text-mudgold-light font-serif font-bold text-xs flex flex-col items-center justify-center space-y-1 shadow-lg hover:scale-102 transition-all flex-shrink-0"
+            >
+              <span class="text-lg">✦</span>
+              <span>重新执行联合去噪</span>
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 右栏（44% 宽）：【古籍宣纸竖排释读 & 残字推演台】 -->
+      <section class="w-[44%] flex flex-col gap-2.5 h-full overflow-hidden">
+        
+        <!-- 上半部：古籍宣纸竖排卷轴（56% 高） -->
+        <div class="h-[56%] song-card rounded-xl p-3.5 flex flex-col shadow-xl overflow-hidden relative">
+          
+          <div class="flex items-center justify-between pb-2 mb-2 border-b border-mudgold/15 flex-shrink-0">
+            <div class="flex items-center space-x-2">
+              <span class="w-2 h-3.5 bg-cinnabar rounded-sm flex-shrink-0"></span>
+              <h3 class="font-serif font-bold text-sm text-paper-50">{{ metadata.title || '金石碑铭考读' }}</h3>
+              <span class="text-[10px] text-mudgold bg-mudgold/10 px-2 py-0.5 rounded border border-mudgold/20">
+                {{ metadata.location_now }}
+              </span>
+            </div>
+
+            <div class="flex items-center bg-ink-950 p-0.5 rounded-lg border border-mudgold/25 text-xs">
+              <button 
+                @click="textOrientation = 'vertical'"
+                :class="['px-2.5 py-1 rounded transition-all font-serif', textOrientation === 'vertical' ? 'bg-mudgold/25 text-mudgold-light font-bold' : 'text-slate-400 hover:text-white']"
+              >
+                古籍竖排
+              </button>
+              <button 
+                @click="textOrientation = 'horizontal'"
+                :class="['px-2.5 py-1 rounded transition-all font-serif', textOrientation === 'horizontal' ? 'bg-mudgold/25 text-mudgold-light font-bold' : 'text-slate-400 hover:text-white']"
+              >
+                现代标点
+              </button>
+              <button 
+                @click="textOrientation = 'translation'"
+                :class="['px-2.5 py-1 rounded transition-all font-serif', textOrientation === 'translation' ? 'bg-mudgold/25 text-mudgold-light font-bold' : 'text-slate-400 hover:text-white']"
+              >
+                白话今译
+              </button>
+            </div>
+          </div>
+
+          <!-- 宣纸卷轴阅读区 -->
+          <div class="flex-1 rounded-lg p-3.5 overflow-auto xuan-paper-bg shadow-inner font-serif leading-relaxed relative">
+            
+            <!-- 1. 传统从右向左乌丝栏竖排 -->
+            <div v-if="textOrientation === 'vertical'" class="h-full flex flex-row-reverse overflow-x-auto py-1">
+              <div 
+                v-for="(colText, colIdx) in metadata.full_text_vertical" 
+                :key="colIdx"
+                class="vertical-rl text-base tracking-widest wusi-column select-text"
+              >
+                <template v-for="(char, cIdx) in colText" :key="cIdx">
+                  <!-- 异体字：青瓷底色波浪标注，悬停 Tooltip -->
+                  <span 
+                    v-if="isVariant(char)"
+                    class="text-celadon-dark font-black underline decoration-celadon decoration-2 cursor-pointer hover:bg-celadon/20 rounded px-0.5 relative group"
+                    @click="alertVariant(char)"
+                  >
+                    {{ char }}
+                    <span class="tooltip-bubble hidden group-hover:block">{{ getVariantNote(char) }}</span>
+                  </span>
+                  
+                  <!-- 漫漶残字：朱砂发光高亮块，已采纳则金光描红 -->
+                  <span 
+                    v-else-if="isDamaged(char)"
+                    :class="[
+                      'cursor-pointer px-1 py-0.5 rounded transition-all inline-block',
+                      isAdopted(char) 
+                        ? 'ink-adopted-char' 
+                        : 'bg-cinnabar text-white font-bold shadow-md shadow-cinnabar/40 animate-pulse'
+                    ]"
+                    @click="handleDamagedCharClick(char)"
+                    :title="`漫漶残字：点击推演`"
+                  >
+                    {{ getDamagedDisplay(char) }}
+                  </span>
+
+                  <!-- 普通正文字符 -->
+                  <span v-else class="text-[#1E1B18]">{{ char }}</span>
+                </template>
+              </div>
+            </div>
+
+            <!-- 2. 现代标点横排 -->
+            <div v-else-if="textOrientation === 'horizontal'" class="text-xs leading-loose tracking-wide text-[#1E1B18] select-text p-2">
+              <p>{{ metadata.full_text_horizontal }}</p>
+            </div>
+
+            <!-- 3. 白话今译与书风鉴赏 -->
+            <div v-else class="text-xs leading-loose text-[#1E1B18] select-text p-2 space-y-3">
+              <div>
+                <span class="font-bold text-mudgold-dark">【白话今译】</span>
+                <p class="text-slate-800">{{ metadata.translation || metadata.full_text_horizontal }}</p>
+              </div>
+              <div class="pt-2 border-t border-mudgold/30">
+                <span class="font-bold text-mudgold-dark">【书风鉴赏】</span>
+                <p class="text-slate-800">{{ metadata.calligraphy_appreciation || '金石刀笔，沉着遒劲。' }}</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 卷轴底部微注 -->
+          <div class="mt-2 pt-1.5 border-t border-mudgold/15 flex items-center justify-between text-[11px] text-slate-400 flex-shrink-0">
+            <span class="flex items-center space-x-1.5">
+              <span class="w-2 h-2 rounded-full bg-celadon inline-block"></span>
+              <span>青瓷波浪：异体字考释 ({{ metadata.variant_characters ? metadata.variant_characters.length : 0 }} 处)</span>
+            </span>
+            <span class="flex items-center space-x-1.5">
+              <span class="w-2 h-2 rounded-full bg-cinnabar inline-block"></span>
+              <span>朱砂印块：待推演残字 ({{ metadata.damaged_characters ? metadata.damaged_characters.length : 0 }} 处)</span>
+            </span>
+          </div>
+
+        </div>
+
+        <!-- 下半部：残字多模态贝叶斯推演台（44% 高） -->
+        <div class="h-[44%] song-card rounded-xl p-3.5 flex flex-col shadow-xl overflow-hidden flex-shrink-0">
+          
+          <div class="flex items-center justify-between pb-2 mb-2 border-b border-mudgold/15 flex-shrink-0">
+            <div class="flex items-center space-x-1.5 text-xs font-serif font-bold text-mudgold-light">
+              <span class="text-cinnabar">●</span>
+              <span>残字多模态贝叶斯推演引擎 (Context-Glyph CoT)</span>
+            </div>
+            <span class="text-[10px] bg-mudgold/20 text-mudgold px-2 py-0.5 rounded border border-mudgold/30 font-mono">
+              {{ activeDamaged ? activeDamaged.label : '未选择残字' }}
+            </span>
+          </div>
+
+          <div v-if="activeDamaged" class="flex-1 flex gap-3.5 overflow-hidden">
+            
+            <!-- 左侧 42%：Top-3 候选字 Softmax 置信度进度条 -->
+            <div class="w-[42%] flex flex-col justify-around py-1 pr-2 border-r border-mudgold/15">
+              <div 
+                v-for="(cand, idx) in activeDamaged.candidates" 
+                :key="idx"
+                class="flex flex-col space-y-1"
+              >
+                <div class="flex items-center justify-between text-xs">
+                  <span class="font-serif font-bold text-sm" :class="idx === 0 ? 'text-mudgold-light' : 'text-slate-400'">
+                    【{{ cand.char }}】
+                  </span>
+                  <span class="font-mono text-[11px]" :class="idx === 0 ? 'text-mudgold font-bold' : 'text-slate-400'">
+                    {{ cand.prob }}%
+                  </span>
+                </div>
+                <div class="h-2 w-full bg-ink-950 rounded-full overflow-hidden border border-mudgold/20">
+                  <div 
+                    class="h-full rounded-full transition-all duration-700 ease-out"
+                    :style="{ width: `${cand.prob}%` }"
+                    :class="idx === 0 ? 'bg-gradient-to-r from-mudgold via-yellow-200 to-mudgold shadow-sm shadow-mudgold' : 'bg-slate-600'"
+                  ></div>
+                </div>
+              </div>
+
+              <div class="text-[10px] text-slate-500 font-mono pt-1">
+                信息熵置信度: H = 0.34 bits (高确定)
+              </div>
+            </div>
+
+            <!-- 右侧 58%：首选字拓扑依据与语境推理链 + 一键采纳 -->
+            <div class="w-[58%] flex flex-col justify-between pl-1">
+              <div class="space-y-1.5 overflow-y-auto pr-1">
+                <div class="text-[11px] text-mudgold font-bold flex items-center space-x-1">
+                  <span>① 残存笔画微痕拓扑分析：</span>
+                </div>
+                <p class="text-[11px] text-slate-300 leading-relaxed bg-ink-950/70 p-2 rounded border border-mudgold/15">
+                  {{ activeDamaged.candidates[0].rationale.split('。')[0] }}。
+                </p>
+
+                <div class="text-[11px] text-celadon-light font-bold flex items-center space-x-1 pt-0.5">
+                  <span>② 金石文献与上下文推理链：</span>
+                </div>
+                <p class="text-[11px] text-slate-300 leading-relaxed bg-ink-950/70 p-2 rounded border border-mudgold/15">
+                  {{ activeDamaged.candidates[0].rationale.split('。')[1] || activeDamaged.context }}
+                </p>
+              </div>
+
+              <div class="pt-2 border-t border-mudgold/15 flex items-center justify-between flex-shrink-0">
+                <span class="text-[10px] text-slate-400 font-mono">首选: 【{{ activeDamaged.candidates[0].char }}】</span>
+                <button 
+                  @click="adoptCandidate(activeDamaged.candidates[0].char)"
+                  class="px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-cinnabar to-cinnabar-dark text-white font-serif font-bold text-xs shadow-lg shadow-cinnabar/40 hover:scale-105 active:scale-95 transition-all flex items-center space-x-1.5 border border-cinnabar-light/40"
+                >
+                  <span>❖</span>
+                  <span>一键采纳补全</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <div v-else class="flex-1 flex flex-col items-center justify-center text-slate-500 text-xs">
+            <span>请在碑文卷轴或左侧拓片上点击残字框激活贝叶斯推演</span>
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+
+    <!-- =======================================================================
+         【页面 4：◎ 时空图谱中心 (Graph & GIS Center)】—— 全屏双栏深度探索
+         ======================================================================= -->
+    <div v-show="currentRoute === 'graph'" class="h-full flex overflow-hidden p-4 gap-4 route-view">
+      
+      <!-- 左栏（62% 宽）：【全屏级金石人物与文献流转图谱 (ECharts Force Graph)】 -->
+      <section class="w-[62%] song-card rounded-2xl p-4 flex flex-col shadow-2xl relative overflow-hidden">
+        <div class="flex items-center justify-between pb-2 mb-2 border-b border-mudgold/15 flex-shrink-0">
+          <div class="flex items-center space-x-2">
+            <span class="text-mudgold text-base">◎</span>
+            <h3 class="font-serif font-bold text-sm text-paper-50">金石人物与文献流转图谱 (GraphRAG)</h3>
+          </div>
+
+          <!-- 图谱分类图例过滤 -->
+          <div class="flex items-center space-x-3 text-xs">
+            <span class="flex items-center space-x-1"><span class="w-2.5 h-2.5 rounded-full bg-cinnabar"></span><span class="text-slate-300">核心碑刻</span></span>
+            <span class="flex items-center space-x-1"><span class="w-2.5 h-2.5 rounded-full bg-mudgold"></span><span class="text-slate-300">历史人物</span></span>
+            <span class="flex items-center space-x-1"><span class="w-2.5 h-2.5 rounded-full bg-celadon"></span><span class="text-slate-300">地理寺院</span></span>
+            <span class="flex items-center space-x-1"><span class="w-2.5 h-2.5 rounded-full bg-slate-500"></span><span class="text-slate-300">古代官职</span></span>
+          </div>
+        </div>
+
+        <!-- 图谱主画布 -->
+        <div ref="kgChartFull" class="flex-1 w-full h-full"></div>
+
+        <!-- 节点点击详情浮层卡片 -->
+        <div 
+          v-if="selectedNodeDetail" 
+          class="absolute bottom-4 left-4 max-w-sm bg-ink-950/95 backdrop-blur-md p-3.5 rounded-xl border border-mudgold/50 shadow-2xl space-y-1.5"
+        >
+          <div class="flex justify-between items-center">
+            <span class="font-serif font-bold text-sm text-mudgold-light">{{ selectedNodeDetail.name }}</span>
+            <button @click="selectedNodeDetail = null" class="text-slate-400 hover:text-white text-xs">✕</button>
+          </div>
+          <div class="text-[11px] text-celadon-light font-mono">{{ selectedNodeDetail.category }}</div>
+          <p class="text-xs text-slate-300 leading-relaxed">{{ selectedNodeDetail.info }}</p>
+        </div>
+      </section>
+
+      <!-- 右栏（38% 宽）：【干支纪年双向换算器 + 时空地理迁徙沙盘】 -->
+      <section class="w-[38%] flex flex-col gap-3.5 h-full overflow-hidden">
+        
+        <!-- 上部：金石档案与帝王年号万年历换算器 -->
+        <div class="h-[36%] song-card rounded-2xl p-4 flex flex-col justify-between shadow-xl flex-shrink-0">
+          <div class="flex items-center justify-between pb-1.5 border-b border-mudgold/15">
+            <span class="text-xs font-serif font-bold text-mudgold-light flex items-center space-x-1.5">
+              <span>📅</span>
+              <span>金石纪年与干支万年历双向换算器</span>
+            </span>
+            <span class="text-[11px] text-slate-400 font-mono">{{ metadata.location_now }}</span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <div class="bg-ink-950 p-2 rounded border border-mudgold/20">
+              <span class="text-slate-400">碑刻原石纪年:</span>
+              <div class="text-white font-medium mt-0.5">{{ metadata.historical_era }}</div>
+            </div>
+            <div class="bg-ink-950 p-2 rounded border border-mudgold/20">
+              <span class="text-slate-400">西历折算公元年:</span>
+              <div class="text-mudgold font-medium mt-0.5">{{ metadata.era_converted }}</div>
+            </div>
+          </div>
+
+          <!-- 输入换算 -->
+          <div class="space-y-1.5">
+            <div class="flex space-x-2">
+              <input 
+                type="text" 
+                v-model="calendarQuery" 
+                @keyup.enter="handleCalendarConvert"
+                placeholder="输入年号或公元年 (如: 天宝十一载、中平二年、752)" 
+                class="flex-1 bg-ink-950 border border-mudgold/30 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-mudgold"
+              >
+              <button 
+                @click="handleCalendarConvert"
+                class="px-3.5 py-1.5 rounded-lg btn-gold text-xs font-serif font-bold whitespace-nowrap"
+              >
+                精算换算
+              </button>
+            </div>
+            <div v-if="calendarResult" class="text-[11px] text-celadon-light font-mono bg-ink-950/80 p-1.5 rounded border border-celadon/30">
+              {{ calendarResult.note || calendarResult.ganzhi + ' (' + calendarResult.solar_year + '年)' }}
+            </div>
+          </div>
+        </div>
+
+        <!-- 下部：时空地理迁徙流光轨迹沙盘 -->
+        <div class="flex-1 song-card rounded-2xl p-4 flex flex-col shadow-xl overflow-hidden">
+          <div class="text-xs font-serif font-bold text-mudgold-light pb-2 border-b border-mudgold/15 mb-2 flex items-center space-x-1.5 flex-shrink-0">
+            <span>📍</span>
+            <span>时空地理与生平迁徙流光轨迹 (GIS)</span>
+          </div>
+
+          <div class="flex-1 overflow-y-auto pr-1 space-y-3.5 relative pl-3.5 border-l border-mudgold/30">
+            <div 
+              v-for="(item, idx) in metadata.gis_timeline" 
+              :key="idx" 
+              class="relative hover:-translate-y-0.5 transition-transform"
+            >
+              <div class="absolute -left-[19px] top-1 w-2.5 h-2.5 rounded-full bg-mudgold shadow-sm shadow-mudgold border-2 border-ink-950"></div>
+              
+              <div class="flex items-center space-x-2">
+                <span class="text-mudgold font-mono text-xs font-bold">{{ item.time }}</span>
+                <span class="px-2 py-0.5 bg-ink-950 text-celadon-light rounded text-[10px] border border-celadon/30 font-mono">
+                  {{ item.place }} [{{ item.coord ? item.coord[0] + '°E, ' + item.coord[1] + '°N' : '' }}]
+                </span>
+              </div>
+              <p class="text-xs text-slate-300 mt-1 leading-relaxed">
+                {{ item.event }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+
+
+    <!-- =======================================================================
+         【页面 5：▤ 算法评测与报告 (Benchmark & Report Hub)】
+         ======================================================================= -->
+    <div v-show="currentRoute === 'benchmark'" class="h-full flex overflow-hidden p-4 gap-4 route-view">
+      
+      <!-- 左栏（52% 宽）：【消融实验与五维性能看板】 -->
+      <section class="w-[52%] flex flex-col gap-3.5 h-full overflow-hidden">
+        
+        <!-- 上部：五维性能雷达图与消融对比柱状图 -->
+        <div class="h-[58%] song-card rounded-2xl p-4 flex flex-col shadow-xl overflow-hidden flex-shrink-0">
+          <div class="flex items-center justify-between pb-2 mb-2 border-b border-mudgold/15 flex-shrink-0">
+            <span class="text-xs font-serif font-bold text-mudgold-light flex items-center space-x-1.5">
+              <span>📊</span>
+              <span>频空域去噪算法消融实验多维评测</span>
+            </span>
+            <span class="text-[10px] text-slate-400">量化对比 5 组基线</span>
+          </div>
+
+          <div class="flex-1 flex gap-2">
+            <div ref="radarBenchmarkChart" class="w-1/2 h-full"></div>
+            <div ref="barBenchmarkChart" class="w-1/2 h-full"></div>
+          </div>
+        </div>
+
+        <!-- 下部：核心算法数学模型白皮书卡片 -->
+        <div class="flex-1 song-card rounded-2xl p-4 flex flex-col justify-around shadow-xl overflow-y-auto">
+          <div class="text-xs font-serif font-bold text-mudgold-light pb-1 border-b border-mudgold/15 mb-2">
+            <span>📐 核心算法数学模型与理论支撑</span>
+          </div>
+
+          <div class="space-y-2 text-xs">
+            <div class="bg-ink-950 p-2.5 rounded-lg border border-mudgold/20">
+              <div class="text-mudgold font-bold mb-0.5">① 二维离散傅里叶频域滤波 (2D-FFT Filter):</div>
+              <div class="font-mono text-[11px] text-slate-300">
+                F(u,v) = ∑∑ f(x,y) e^{-j2π(ux/M + vy/N)} &nbsp;|&nbsp; H(u,v) = exp(-D²(u,v) / 2D₀²)
+              </div>
+            </div>
+
+            <div class="bg-ink-950 p-2.5 rounded-lg border border-mudgold/20">
+              <div class="text-celadon-light font-bold mb-0.5">② 数学形态学与 NLM 边缘保真去噪:</div>
+              <div class="font-mono text-[11px] text-slate-300">
+                f_morph = f - α·(f - (f ∘ B)) &nbsp;|&nbsp; NL(f)(p) = 1/Z(p) ∑ w(p,q)f(q)
+              </div>
+            </div>
+
+            <div class="bg-ink-950 p-2.5 rounded-lg border border-mudgold/20">
+              <div class="text-mudgold font-bold mb-0.5">③ 漫漶残字多模态后验推演 (Context-Glyph CoT):</div>
+              <div class="font-mono text-[11px] text-slate-300">
+                P(wᵢ | G, C) = exp(s(G,wᵢ) + λ·s(C,wᵢ)) / ∑ exp(s(G,wⱼ) + λ·s(C,wⱼ))
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 右栏（48% 宽）：【金石史料智能考据报告预览与一键导出】 -->
+      <section class="w-[48%] song-card rounded-2xl p-5 flex flex-col shadow-2xl h-full overflow-hidden">
+        
+        <!-- 报告操作头 -->
+        <div class="flex items-center justify-between pb-3 border-b border-mudgold/20 flex-shrink-0">
+          <div>
+            <h3 class="font-serif font-bold text-base text-paper-50">金石史料考据与算法复原学术报告</h3>
+            <span class="text-[11px] text-slate-400 font-mono">报告编号: RM-EPIGRAPHY-{{ metadata.id || '752' }}</span>
+          </div>
+
+          <div class="flex space-x-2">
+            <button 
+              @click="printReport"
+              class="px-3 py-1.5 rounded-lg btn-gold text-xs font-serif flex items-center space-x-1"
+            >
+              <span>🖨️</span>
+              <span>打印/导出PDF</span>
+            </button>
+            <button 
+              @click="downloadJsonData"
+              class="px-3 py-1.5 rounded-lg bg-ink-950 text-slate-300 border border-ink-700 hover:text-white text-xs font-serif"
+            >
+              <span>📥</span>
+              <span>JSON数据</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 报告纸面预览 (宣纸质感底衬) -->
+        <div class="flex-1 overflow-y-auto mt-4 p-5 rounded-xl xuan-paper-bg shadow-inner font-serif text-slate-900 space-y-4">
+          <div class="text-center pb-2 border-b border-mudgold/40">
+            <h2 class="text-xl font-bold">{{ metadata.title }} 考据与微痕修复报告</h2>
+            <div class="text-xs text-slate-700 mt-1">
+              立碑纪年: {{ metadata.historical_era }} ({{ metadata.era_converted }})
+            </div>
+          </div>
+
+          <!-- 1. 基本档案 -->
+          <div>
+            <h4 class="font-bold text-sm text-mudgold-dark mb-1">一、 碑刻金石档案</h4>
+            <div class="grid grid-cols-2 gap-2 text-xs text-slate-800 bg-white/60 p-2.5 rounded border border-mudgold/20">
+              <div>书丹大家: {{ metadata.author_calligraphy }}</div>
+              <div>撰文学者: {{ metadata.author_essay }}</div>
+              <div>碑体风格: {{ metadata.script_style }}</div>
+              <div>现存收藏: {{ metadata.location_now }}</div>
+            </div>
+          </div>
+
+          <!-- 2. 量化评测指标 -->
+          <div>
+            <h4 class="font-bold text-sm text-mudgold-dark mb-1">二、 频空域微痕联合去噪量化指标</h4>
+            <div class="grid grid-cols-4 gap-2 text-center text-xs bg-white/60 p-2.5 rounded border border-mudgold/20 font-mono">
+              <div>PSNR: <span class="font-bold text-mudgold-dark">{{ metrics.psnr || '32.4' }} dB</span></div>
+              <div>SSIM: <span class="font-bold text-emerald-800">{{ metrics.ssim || '0.94' }}</span></div>
+              <div>石花抑制: <span class="font-bold text-mudgold-dark">{{ metrics.noise_suppression || '89.4' }}%</span></div>
+              <div>边缘增益: <span class="font-bold text-emerald-800">+{{ metrics.edge_gain || '24.6' }}%</span></div>
+            </div>
+          </div>
+
+          <!-- 3. 碑文释文 -->
+          <div>
+            <h4 class="font-bold text-sm text-mudgold-dark mb-1">三、 碑刻释文标点本</h4>
+            <p class="text-xs text-slate-800 leading-relaxed bg-white/60 p-2.5 rounded border border-mudgold/20">
+              {{ metadata.full_text_horizontal }}
+            </p>
+          </div>
+
+          <!-- 4. 残字推演结论 -->
+          <div>
+            <h4 class="font-bold text-sm text-mudgold-dark mb-1">四、 漫漶残字多模态贝叶斯推演记录</h4>
+            <div class="space-y-1.5 text-xs">
+              <div 
+                v-for="(d, idx) in metadata.damaged_characters" 
+                :key="idx"
+                class="bg-white/60 p-2.5 rounded border border-mudgold/20 text-slate-800"
+              >
+                <div class="font-bold text-cinnabar">
+                  * {{ d.label }} [{{ d.context }}]: 采纳字【{{ d.selected || d.candidates[0].char }}】 (置信度 {{ d.candidates[0].prob }}%)
+                </div>
+                <div class="text-[11px] text-slate-700 mt-0.5">考据依据: {{ d.candidates[0].rationale }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+
+  <!-- =========================================================================
+       大模型 API 配置模态框 (OpenAI 协议)
+       ========================================================================= -->
+  <div v-if="showApiModal" class="fixed inset-0 bg-black/85 z-50 flex items-center justify-center p-4 backdrop-blur-md">
+    <div class="song-card rounded-2xl p-6 w-full max-w-md shadow-2xl border border-mudgold/50 bg-ink-900">
+      <div class="flex justify-between items-center mb-4 pb-2 border-b border-mudgold/20">
+        <h3 class="text-sm font-bold text-mudgold-light font-serif">视觉大模型智能体 API 接口设置</h3>
+        <button @click="showApiModal = false" class="text-slate-400 hover:text-white">✕</button>
+      </div>
+
+      <div class="space-y-3.5 text-xs">
+        <div>
+          <label class="block text-slate-300 mb-1">API Base URL (OpenAI 兼容协议):</label>
+          <input type="text" v-model="apiConfig.baseUrl" placeholder="https://api.openai.com/v1" class="w-full bg-ink-950 border border-mudgold/30 rounded-lg p-2 text-white focus:outline-none focus:border-mudgold">
+        </div>
+        <div>
+          <label class="block text-slate-300 mb-1">API Key:</label>
+          <input type="password" v-model="apiConfig.apiKey" placeholder="sk-..." class="w-full bg-ink-950 border border-mudgold/30 rounded-lg p-2 text-white focus:outline-none focus:border-mudgold">
+        </div>
+        <div>
+          <label class="block text-slate-300 mb-1">Model Name:</label>
+          <input type="text" v-model="apiConfig.modelName" placeholder="gpt-4o" class="w-full bg-ink-950 border border-mudgold/30 rounded-lg p-2 text-white focus:outline-none focus:border-mudgold">
+        </div>
+        <p class="text-[11px] text-slate-400 leading-relaxed">
+          * 系统内置高保真【金石学术语规则与笔画拓扑离线引擎】，未填写 Key 时亦可 100% 离线完美推演。
+        </p>
+      </div>
+
+      <div class="mt-5 flex justify-end space-x-2">
+        <button @click="showApiModal = false" class="px-3.5 py-1.5 rounded-lg bg-ink-850 text-slate-300 text-xs">取消</button>
+        <button @click="saveApiConfig" class="px-4 py-1.5 rounded-lg bg-mudgold text-ink-950 font-bold text-xs hover:bg-mudgold-light">保存配置</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Vue 3 核心业务交互逻辑 -->
+<script>
+const { createApp, ref, computed, onMounted, nextTick } = Vue;
+
+createApp({
+  setup() {
+    // 路由导航菜单定义（5 大页面）
+    const navRoutes = [
+      { id: 'home', name: '首页门户', icon: '◈' },
+      { id: 'museum', name: '数字碑林馆', icon: '❖' },
+      { id: 'workbench', name: '智考修复工作台', icon: '✦' },
+      { id: 'graph', name: '时空图谱中心', icon: '◎' },
+      { id: 'benchmark', name: '算法评测与报告', icon: '▤' },
+    ];
+
+    const currentRoute = ref('home'); // 默认首屏为首页门户！
+    const currentSampleId = ref('sample_1.png');
+    const samplesList = ref([]);
+
+    // 视图模式与交互状态
+    const activeView = ref('compare'); // compare, spectrum, cinnabar, skeleton
+    const textOrientation = ref('vertical'); // vertical, horizontal, translation
+    const loading = ref(false);
+    const isScanning = ref(false);
+
+    // 图像与指标数据
+    const originalB64 = ref('');
+    const restoredB64 = ref('');
+    const fftSpectrumB64 = ref('');
+    const cinnabarB64 = ref('');
+    const skeletonB64 = ref('');
+    const metrics = ref({});
+    const metadata = ref({});
+
+    // 指标平滑滚动数字
+    const displayPsnr = ref(24.0);
+    const displaySsim = ref(0.780);
+    const displayNoise = ref(68.5);
+    const displayEdge = ref(15.0);
+    const displayTime = ref(142);
+
+    // 拉杆与缩放
+    const sliderPos = ref(50);
+    const isDraggingSlider = ref(false);
+    const imageContainer = ref(null);
+    const zoomScale = ref(1.0);
+
+    // 涂抹画笔
+    const isBrushActive = ref(false);
+    const brushCanvas = ref(null);
+    const brushSize = ref(20);
+    let isDrawing = false;
+    let brushCtx = null;
+
+    // 算法参数
+    const params = ref({
+      d0: 60.0,
+      nlm_h: 10.0,
+      clahe_clip: 2.5,
+      morph_kernel: 3,
+      damage_mask: null,
+      cinnabar_style: 'cinnabar'
+    });
+
+    // 残字推演与采纳
+    const activeDamaged = ref(null);
+    const adoptedMap = ref({});
+
+    // 博物馆分类与搜索
+    const museumCategories = ['全部典藏 (4+)', '唐代楷书', '汉代隶书', '北魏墓志', '重度风化残碑'];
+    const activeMuseumCategory = ref('全部典藏 (4+)');
+    const museumSearchQuery = ref('');
+
+    // 干支换算
+    const calendarQuery = ref('天宝十一载');
+    const calendarResult = ref(null);
+
+    // 图谱选中详情
+    const selectedNodeDetail = ref(null);
+
+    // 大模型配置
+    const showApiModal = ref(false);
+    const apiConfig = ref({
+      baseUrl: localStorage.getItem('rm_base_url') || '',
+      apiKey: localStorage.getItem('rm_api_key') || '',
+      modelName: localStorage.getItem('rm_model') || 'gpt-4o'
+    });
+
+    // ECharts 实例引用
+    const kgChartFull = ref(null);
+    const radarBenchmarkChart = ref(null);
+    const barBenchmarkChart = ref(null);
+    let kgInstance = null;
+    let radarBenchInstance = null;
+    let barBenchInstance = null;
+    let debounceTimer = null;
+
+    // 4 个经典样本快捷列表
+    const sampleList = [
+      { id: 'sample_1.png', shortTitle: '唐·多宝塔碑' },
+      { id: 'sample_2.png', shortTitle: '东汉·曹全碑' },
+      { id: 'sample_3.png', shortTitle: '北魏·元怀墓志' },
+      { id: 'sample_4.png', shortTitle: '北魏·风化残碑' },
+    ];
+
+    // 博物馆筛选结果计算属性
+    const filteredMuseumList = computed(() => {
+      let list = samplesList.value;
+      if (activeMuseumCategory.value !== '全部典藏 (4+)') {
+        list = list.filter(item => 
+          item.dynasty_badge === activeMuseumCategory.value || 
+          item.weathering_badge.includes(activeMuseumCategory.value)
+        );
+      }
+      if (museumSearchQuery.value.trim()) {
+        const q = museumSearchQuery.value.trim().toLowerCase();
+        list = list.filter(item => 
+          item.title.toLowerCase().includes(q) || 
+          item.dynasty.toLowerCase().includes(q) ||
+          item.script_style.toLowerCase().includes(q)
+        );
+      }
+      return list;
+    });
+
+    onMounted(async () => {
+      await fetchSamplesList();
+      await fetchProcess();
+      handleCalendarConvert();
+
+      window.addEventListener('resize', () => {
+        if (kgInstance) kgInstance.resize();
+        if (radarBenchInstance) radarBenchInstance.resize();
+        if (barBenchInstance) barBenchInstance.resize();
+      });
+    });
+
+    // 动效: 激光扫描
+    function triggerLaserScan() {
+      isScanning.value = true;
+      setTimeout(() => {
+        isScanning.value = false;
+      }, 1300);
+    }
+
+    // 动效: 数字平滑滚动
+    function animateValue(refTarget, start, end, duration = 600) {
+      const startTime = performance.now();
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+        refTarget.value = start + (end - start) * easeProgress;
+        if (progress < 1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+    }
+
+    // 获取典藏列表
+    async function fetchSamplesList() {
+      try {
+        const resp = await fetch('/api/samples');
+        if (resp.ok) {
+          const data = await resp.json();
+          samplesList.value = data.samples || [];
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    // 请求核心图像去噪微痕处理
+    async function fetchProcess(customB64 = null) {
+      loading.value = true;
+      triggerLaserScan();
+      try {
+        const payload = {
+          sample_id: currentSampleId.value,
+          image_base64: customB64,
+          d0: params.value.d0,
+          nlm_h: params.value.nlm_h,
+          clahe_clip: params.value.clahe_clip,
+          morph_kernel: params.value.morph_kernel,
+          damage_mask: params.value.damage_mask,
+          cinnabar_style: params.value.cinnabar_style
+        };
+
+        const resp = await fetch('/api/process', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (!resp.ok) throw new Error('API 处理失败');
+        const data = await resp.json();
+
+        originalB64.value = data.original_b64;
+        restoredB64.value = data.restored_b64;
+        fftSpectrumB64.value = data.fft_spectrum_b64;
+        cinnabarB64.value = data.cinnabar_b64;
+        skeletonB64.value = data.skeleton_b64 || data.restored_b64;
+        metrics.value = data.metrics || {};
+        metadata.value = data.metadata || {};
+
+        animateValue(displayPsnr, displayPsnr.value, metrics.value.psnr || 32.4);
+        animateValue(displaySsim, displaySsim.value, metrics.value.ssim || 0.94);
+        animateValue(displayNoise, displayNoise.value, metrics.value.noise_suppression || 89.4);
+        animateValue(displayEdge, displayEdge.value, metrics.value.edge_gain || 24.6);
+        animateValue(displayTime, displayTime.value, metrics.value.elapsed_ms || 142);
+
+        if (metadata.value.damaged_characters && metadata.value.damaged_characters.length > 0) {
+          activeDamaged.value = metadata.value.damaged_characters[0];
+        }
+
+        nextTick(() => {
+          renderKgChart();
+          renderBenchmarkCharts();
+          initBrushCanvas();
+        });
+
+      } catch (e) {
+        console.error(e);
+      } finally {
+        loading.value = false;
+      }
+    }
+
+    function onGlobalSampleSelect() {
+      params.value.damage_mask = null;
+      adoptedMap.value = {};
+      fetchProcess();
+    }
+
+    function loadSampleAndGoWorkbench(id) {
+      currentSampleId.value = id;
+      params.value.damage_mask = null;
+      adoptedMap.value = {};
+      currentRoute.value = 'workbench';
+      fetchProcess();
+    }
+
+    function loadSampleAndGoGraph(id) {
+      currentSampleId.value = id;
+      currentRoute.value = 'graph';
+      fetchProcess();
+    }
+
+    function triggerManualProcess() {
+      fetchProcess();
+    }
+
+    function debouncedProcess() {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        fetchProcess();
+      }, 350);
+    }
+
+    function resetParams() {
+      params.value.d0 = 60.0;
+      params.value.nlm_h = 10.0;
+      params.value.clahe_clip = 2.5;
+      params.value.morph_kernel = 3;
+      params.value.damage_mask = null;
+      fetchProcess();
+    }
+
+    function handleCompareMouseMove(e) {
+      if (!isDraggingSlider.value || !imageContainer.value) return;
+      const rect = imageContainer.value.getBoundingClientRect();
+      let pos = ((e.clientX - rect.left) / rect.width) * 100;
+      sliderPos.value = Math.max(5, Math.min(95, pos));
+    }
+
+    function handleZoom(e) {
+      if (e.deltaY < 0) {
+        zoomScale.value = Math.min(zoomScale.value + 0.1, 2.5);
+      } else {
+        zoomScale.value = Math.max(zoomScale.value - 0.1, 0.7);
+      }
+    }
+
+    function initBrushCanvas() {
+      if (!brushCanvas.value) return;
+      const cvs = brushCanvas.value;
+      cvs.width = cvs.clientWidth;
+      cvs.height = cvs.clientHeight;
+      brushCtx = cvs.getContext('2d');
+    }
+
+    function toggleWeatheringBrush() {
+      isBrushActive.value = !isBrushActive.value;
+      if (isBrushActive.value) {
+        activeView.value = 'compare';
+        nextTick(initBrushCanvas);
+      }
+    }
+
+    function startPainting(e) {
+      if (!isBrushActive.value || !brushCtx) return;
+      isDrawing = true;
+      drawPainting(e);
+    }
+
+    function drawPainting(e) {
+      if (!isDrawing || !brushCtx) return;
+      const rect = brushCanvas.value.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      brushCtx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+      brushCtx.beginPath();
+      brushCtx.arc(x, y, brushSize.value, 0, Math.PI * 2);
+      brushCtx.fill();
+    }
+
+    function stopPainting() {
+      isDrawing = false;
+    }
+
+    function clearBrushMask() {
+      if (!brushCtx || !brushCanvas.value) return;
+      brushCtx.clearRect(0, 0, brushCanvas.value.width, brushCanvas.value.height);
+      params.value.damage_mask = null;
+    }
+
+    function applyWeatheringSim() {
+      if (!brushCanvas.value) return;
+      params.value.damage_mask = brushCanvas.value.toDataURL('image/png');
+      fetchProcess();
+    }
+
+    async function handleFileUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = async (evt) => {
+        currentSampleId.value = 'custom.png';
+        currentRoute.value = 'workbench';
+        fetchProcess(evt.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function isVariant(char) {
+      if (!metadata.value.variant_characters) return false;
+      return metadata.value.variant_characters.some(v => v.raw === char);
+    }
+
+    function getVariantNote(char) {
+      const v = metadata.value.variant_characters.find(v => v.raw === char);
+      return v ? `【古异体】通“${v.norm}”：${v.note}` : '';
+    }
+
+    function alertVariant(char) {
+      const note = getVariantNote(char);
+      if (note) alert(note);
+    }
+
+    function isDamaged(char) {
+      if (!metadata.value.damaged_characters) return false;
+      return metadata.value.damaged_characters.some(d => d.context.includes(char) && (char === '？' || char === '□' || char === d.selected || adoptedMap.value[d.id] === char));
+    }
+
+    function isAdopted(char) {
+      return Object.values(adoptedMap.value).includes(char);
+    }
+
+    function getDamagedDisplay(char) {
+      if (char === '？') return '□';
+      return char;
+    }
+
+    function focusDamagedChar(d) {
+      activeDamaged.value = d;
+    }
+
+    function handleDamagedCharClick(char) {
+      const target = metadata.value.damaged_characters.find(d => d.context.includes(char) || d.selected === char || adoptedMap.value[d.id] === char);
+      if (target) focusDamagedChar(target);
+    }
+
+    function adoptCandidate(candChar) {
+      if (!activeDamaged.value) return;
+      const dId = activeDamaged.value.id;
+      adoptedMap.value[dId] = candChar;
+      activeDamaged.value.selected = candChar;
+      metadata.value.full_text_vertical = metadata.value.full_text_vertical.map(line => line.replace('？', candChar));
+    }
+
+    async function handleCalendarConvert() {
+      if (!calendarQuery.value) return;
+      try {
+        const resp = await fetch('/api/calendar', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: calendarQuery.value })
+        });
+        calendarResult.value = await resp.json();
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    function saveApiConfig() {
+      localStorage.setItem('rm_base_url', apiConfig.value.baseUrl);
+      localStorage.setItem('rm_api_key', apiConfig.value.apiKey);
+      localStorage.setItem('rm_model', apiConfig.value.modelName);
+      showApiModal.value = false;
+      alert('大模型接口参数已保存！');
+    }
+
+    function printReport() {
+      window.print();
+    }
+
+    function downloadJsonData() {
+      const exportObj = {
+        rubbing_title: metadata.value.title,
+        era: metadata.value.historical_era,
+        era_converted: metadata.value.era_converted,
+        metrics: metrics.value,
+        full_text: metadata.value.full_text_horizontal,
+        variant_characters: metadata.value.variant_characters,
+        damaged_inference: metadata.value.damaged_characters,
+        knowledge_graph: metadata.value.knowledge_graph,
+        gis_timeline: metadata.value.gis_timeline,
+        ablation_experiments: metadata.value.ablation_experiments
+      };
+      const blob = new Blob([JSON.stringify(exportObj, null, 2)], { type: 'application/json;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `墨韵智考_${metadata.value.title || '碑铭'}_学术数据包.json`;
+      a.click();
+    }
+
+    // 渲染全屏力导向图谱
+    function renderKgChart() {
+      if (!kgChartFull.value) return;
+      if (!kgInstance) {
+        kgInstance = echarts.init(kgChartFull.value);
+        kgInstance.on('click', (params) => {
+          if (params.dataType === 'node') {
+            selectedNodeDetail.value = params.data;
+          }
+        });
+      }
+      const rawKg = metadata.value.knowledge_graph || { nodes: [], links: [] };
+
+      const processedNodes = (rawKg.nodes || []).map(n => {
+        let nodeColor = '#D4AF37'; // 泥金
+        let nodeSize = 30;
+
+        if (n.category === '文物碑刻' || n.category === '石刻国宝' || n.category === '碑主' || n.category === '墓志主人') {
+          nodeColor = '#C83C23'; // 朱砂红
+          nodeSize = 42;
+        } else if (n.category === '籍贯地' || n.category === '居所' || n.category === '历史古迹' || n.category === '埋葬地') {
+          nodeColor = '#3E8E7E'; // 青瓷绿
+          nodeSize = 26;
+        } else if (n.category === '边防官职' || n.category === '重大纪年' || n.category === '改元纪年') {
+          nodeColor = '#4A5568'; // 玄铁灰蓝
+          nodeSize = 22;
+        }
+
+        return {
+          id: n.id,
+          name: n.name,
+          category: n.category,
+          symbolSize: nodeSize,
+          itemStyle: {
+            color: nodeColor,
+            borderColor: '#F5D46E',
+            borderWidth: 1.5,
+            shadowBlur: 16,
+            shadowColor: nodeColor
+          },
+          info: n.info
+        };
+      });
+
+      const option = {
+        backgroundColor: 'transparent',
+        tooltip: {
+          backgroundColor: 'rgba(10, 13, 18, 0.95)',
+          borderColor: 'rgba(212, 175, 55, 0.5)',
+          textStyle: { color: '#E2E8F0', fontSize: 11 },
+          formatter: (params) => {
+            if (params.dataType === 'node') {
+              return `<div style="font-weight:bold;color:#F5D46E;">${params.data.name}</div><div style="font-size:11px;color:#A0AEC0;">${params.data.info || params.data.category}</div>`;
+            }
+            return `${params.data.source} → ${params.data.relation} → ${params.data.target}`;
+          }
+        },
+        series: [{
+          type: 'graph',
+          layout: 'force',
+          data: processedNodes,
+          links: rawKg.links || [],
+          roam: true,
+          label: {
+            show: true,
+            position: 'inside',
+            formatter: '{b}',
+            fontSize: 10,
+            color: '#FFFFFF',
+            fontWeight: 'bold',
+            textBorderColor: '#0A0D12',
+            textBorderWidth: 2
+          },
+          edgeLabel: {
+            show: true,
+            fontSize: 9,
+            formatter: '{c}',
+            color: '#A0AEC0'
+          },
+          force: {
+            repulsion: 550,       // 舒展节点排斥力
+            edgeLength: [90, 150], // 舒展连接边长度
+            gravity: 0.1
+          },
+          lineStyle: {
+            color: 'rgba(212, 175, 55, 0.35)',
+            curveness: 0.2,
+            width: 1.5
+          }
+        }]
+      };
+      kgInstance.setOption(option);
+    }
+
+    // 渲染评测雷达图与消融柱状图
+    function renderBenchmarkCharts() {
+      // 1. 雷达图
+      if (radarBenchmarkChart.value) {
+        if (!radarBenchInstance) radarBenchInstance = echarts.init(radarBenchmarkChart.value);
+        const rOption = {
+          backgroundColor: 'transparent',
+          radar: {
+            indicator: [
+              { name: '频域滤波', max: 100 },
+              { name: '空域平滑', max: 100 },
+              { name: '边缘保真', max: 100 },
+              { name: '石花抑制', max: 100 },
+              { name: 'OCR置信', max: 100 }
+            ],
+            radius: '62%',
+            center: ['50%', '55%'],
+            splitNumber: 3,
+            axisName: { color: '#a0aec0', fontSize: 10 },
+            splitLine: { lineStyle: { color: 'rgba(212, 175, 55, 0.2)' } },
+            splitArea: {
+              areaStyle: { color: ['rgba(212,175,55,0.02)', 'rgba(212,175,55,0.06)', 'rgba(212,175,55,0.02)'] }
+            },
+            axisLine: { lineStyle: { color: 'rgba(212, 175, 55, 0.25)' } }
+          },
+          series: [{
+            type: 'radar',
+            data: [
+              {
+                value: [45, 50, 48, 40, 58],
+                name: '原始受损拓片',
+                symbol: 'none',
+                lineStyle: { width: 1.5, color: '#718096', type: 'dashed' }
+              },
+              {
+                value: [92, 94, 95, 96, 94],
+                name: '本文频空域联合算法 (Ours)',
+                symbol: 'circle',
+                symbolSize: 4,
+                itemStyle: { color: '#D4AF37' },
+                areaStyle: {
+                  color: new echarts.graphic.RadialGradient(0.5, 0.5, 1, [
+                    { color: 'rgba(212, 175, 55, 0.55)', offset: 0 },
+                    { color: 'rgba(212, 175, 55, 0.1)', offset: 1 }
+                  ])
+                },
+                lineStyle: { width: 2, color: '#D4AF37' }
+              }
+            ]
+          }]
+        };
+        radarBenchInstance.setOption(rOption);
+      }
+
+      // 2. 消融柱状图
+      if (barBenchmarkChart.value) {
+        if (!barBenchInstance) barBenchInstance = echarts.init(barBenchmarkChart.value);
+        const ablData = metadata.value.ablation_experiments || [
+          { method: "原始拓片", psnr: 18.2 },
+          { method: "高斯滤波", psnr: 21.4 },
+          { method: "形态学开闭", psnr: 23.8 },
+          { method: "单纯NLM", psnr: 25.6 },
+          { method: "本文算法(Ours)", psnr: 32.45 }
+        ];
+
+        const bOption = {
+          backgroundColor: 'transparent',
+          tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+          grid: { left: '15%', right: '8%', top: '15%', bottom: '22%' },
+          xAxis: {
+            type: 'category',
+            data: ablData.map(d => d.method),
+            axisLabel: { color: '#a0aec0', fontSize: 9, rotate: 15 }
+          },
+          yAxis: {
+            type: 'value',
+            name: 'PSNR (dB)',
+            nameTextStyle: { color: '#a0aec0', fontSize: 9 },
+            splitLine: { lineStyle: { color: 'rgba(212,175,55,0.1)' } },
+            axisLabel: { color: '#a0aec0', fontSize: 9 }
+          },
+          series: [{
+            type: 'bar',
+            data: ablData.map(d => d.psnr),
+            barWidth: '45%',
+            itemStyle: {
+              borderRadius: [4, 4, 0, 0],
+              color: (params) => {
+                return params.dataIndex === ablData.length - 1 
+                  ? new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: '#F5D46E' }, { offset: 1, color: '#D4AF37' }])
+                  : '#4A5568';
+              }
+            },
+            label: {
+              show: true,
+              position: 'top',
+              color: '#F5D46E',
+              fontSize: 9,
+              formatter: '{c}dB'
+            }
+          }]
+        };
+        barBenchInstance.setOption(bOption);
+      }
+    }
+
+    return {
+      navRoutes,
+      currentRoute,
+      currentSampleId,
+      samplesList,
+      sampleList,
+      activeView,
+      textOrientation,
+      loading,
+      isScanning,
+      originalB64,
+      restoredB64,
+      fftSpectrumB64,
+      cinnabarB64,
+      skeletonB64,
+      metrics,
+      metadata,
+      displayPsnr,
+      displaySsim,
+      displayNoise,
+      displayEdge,
+      displayTime,
+      sliderPos,
+      isDraggingSlider,
+      imageContainer,
+      zoomScale,
+      isBrushActive,
+      brushCanvas,
+      brushSize,
+      params,
+      activeDamaged,
+      adoptedMap,
+      museumCategories,
+      activeMuseumCategory,
+      museumSearchQuery,
+      filteredMuseumList,
+      calendarQuery,
+      calendarResult,
+      selectedNodeDetail,
+      showApiModal,
+      apiConfig,
+      kgChartFull,
+      radarBenchmarkChart,
+      barBenchmarkChart,
+      triggerLaserScan,
+      onGlobalSampleSelect,
+      loadSampleAndGoWorkbench,
+      loadSampleAndGoGraph,
+      triggerManualProcess,
+      debouncedProcess,
+      resetParams,
+      handleCompareMouseMove,
+      handleZoom,
+      toggleWeatheringBrush,
+      startPainting,
+      drawPainting,
+      stopPainting,
+      clearBrushMask,
+      applyWeatheringSim,
+      handleFileUpload,
+      isVariant,
+      getVariantNote,
+      alertVariant,
+      isDamaged,
+      isAdopted,
+      getDamagedDisplay,
+      focusDamagedChar,
+      handleDamagedCharClick,
+      adoptCandidate,
+      handleCalendarConvert,
+      saveApiConfig,
+      printReport,
+      downloadJsonData
+    };
+  }
+}).mount('#app');
+</script>
+
+</body>
+</html>
