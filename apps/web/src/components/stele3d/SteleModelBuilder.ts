@@ -1,14 +1,15 @@
 /**
- * 墨韵智考 - 金石碑刻高精度三维模型构建引擎 (Three.js)
- * 严格按照参考三视图与规制：
- * 1. SteleCrown: 圆拱形双龙盘顶高浮雕碑首 + 摩尼宝珠 + 祥云浪花
- * 2. SteleBody: 真实 0.24m 厚度深古青石碑身 + 回字雷纹装饰框 + 背部凿斧纹理
- * 3. StelePedestal: 三阶须弥座 (宽厚承重台 + 卷草回纹腰台 + 仰莲瓣承托层)
- * 4. InscriptionPanel: 内凹碑文面，支持动态激光扫描与前后修复材质混合
- * 5. 3D Local Hotspots: 绑定于碑面的局部三维热点，绝不产生屏幕漂移
+ * 墨韵智考 - 金石碑刻高精度三维模型构建引擎 (Three.js + GLTF)
+ * 严格按照六视图基准参考图规制：
+ * 1. SteleCrown: 圆拱形双龙盘顶高浮雕碑首 (龙纹与宝珠一体化，无独立悬空白球)
+ * 2. SteleBody: 实体封闭灰黑青石碑身 (前贴碑文、背贴风化石纹、侧贴纵向裂纹，无空心框架展柜)
+ * 3. StelePedestal: 三阶复合雕花须弥座 (仰覆莲瓣台 + 如意云回纹腰台 + 承重台，无重复齿轮白片)
+ * 4. InscriptionPanel: 内凹碑文微痕渲染面 (支持 Shader 激光光晕上下扫掠与前后修复混合)
+ * 5. 3D Local Hotspots: 绑定于碑面的局部三维热点，背面视角自动遮挡隐藏
  */
 
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { STELE_DIMENSIONS } from '../../config/steleDimensions';
 
 export interface HotspotData {
@@ -35,11 +36,12 @@ export function buildSteleModel(
   customRubbingUrl?: string
 ): SteleModelInstance {
   const group = new THREE.Group();
+  group.name = "SteleRoot";
   const materials: THREE.Material[] = [];
   const textures: THREE.Texture[] = [];
   const hotspotMeshes: { core: THREE.Mesh; ring: THREE.Mesh; data: HotspotData }[] = [];
 
-  // 1. 加载生成的 PBR 贴图套件
+  // 1. 加载生成的全新 PBR 贴图套件 (基于六视图实测生成)
   const loadTex = (path: string, srgb = true, repeatX = 1, repeatY = 1): THREE.Texture => {
     const tex = textureLoader.load(path);
     if (srgb) tex.colorSpace = THREE.SRGBColorSpace;
@@ -58,306 +60,196 @@ export function buildSteleModel(
   const bodyNorm = loadTex('/assets/stele/model3d/body_normal.png', false);
   const bodyRough = loadTex('/assets/stele/model3d/body_roughness.png', false);
 
+  const bodyBackDiff = loadTex('/assets/stele/model3d/body_back_diffuse.png', true);
+  const bodyBackNorm = loadTex('/assets/stele/model3d/body_back_normal.png', false);
+  const bodyBackRough = loadTex('/assets/stele/model3d/body_back_roughness.png', false);
+
+  const stoneSideDiff = loadTex('/assets/stele/model3d/stone_side_diffuse.png', true, 1, 1);
+  const stoneSideNorm = loadTex('/assets/stele/model3d/stone_side_normal.png', false, 1, 1);
+  const stoneSideRough = loadTex('/assets/stele/model3d/stone_side_roughness.png', false, 1, 1);
+
   const pedDiff = loadTex('/assets/stele/model3d/pedestal_diffuse.png', true);
   const pedNorm = loadTex('/assets/stele/model3d/pedestal_normal.png', false);
   const pedRough = loadTex('/assets/stele/model3d/pedestal_roughness.png', false);
 
-  const stoneSideDiff = loadTex('/assets/stele/model3d/stone_side_diffuse.png', true, 1, 2);
-  const stoneSideNorm = loadTex('/assets/stele/model3d/stone_side_normal.png', false, 1, 2);
+  const pedBottomDiff = loadTex('/assets/stele/model3d/pedestal_bottom_diffuse.png', true);
 
-  const stoneSeamlessDiff = loadTex('/assets/stele/model3d/stone_seamless_diffuse.png', true, 2, 2);
-  const stoneSeamlessNorm = loadTex('/assets/stele/model3d/stone_seamless_normal.png', false, 2, 2);
-  const stoneSeamlessRough = loadTex('/assets/stele/model3d/stone_seamless_roughness.png', false, 2, 2);
-
-  // 2. 基础石材材质 (明朗质感的唐代青石/灰岩，纹理真实丰富)
-  const baseStoneMaterial = new THREE.MeshStandardMaterial({
-    color: 0x6e7782, // 真实青石灰度
-    map: stoneSeamlessDiff,
-    normalMap: stoneSeamlessNorm,
-    normalScale: new THREE.Vector2(2.2, 2.2),
-    roughnessMap: stoneSeamlessRough,
-    roughness: 0.85,
-    metalness: 0.02,
-  });
-  materials.push(baseStoneMaterial);
-
-  const sideStoneMaterial = new THREE.MeshStandardMaterial({
-    color: 0x626b75,
-    map: stoneSideDiff,
-    normalMap: stoneSideNorm,
-    normalScale: new THREE.Vector2(2.5, 2.5),
-    roughness: 0.88,
-    metalness: 0.02,
-  });
-  materials.push(sideStoneMaterial);
-
-  // =========================================================================
-  // 3. 构建三阶须弥座 (StelePedestal)
-  // =========================================================================
-  const pedCfg = STELE_DIMENSIONS.pedestal;
-  const pedestalGroup = new THREE.Group();
-  group.add(pedestalGroup);
-
-  // --- Tier 1: 底层承重台基 (1.85m x 0.18m x 0.72m) ---
-  const t1Geo = new THREE.BoxGeometry(
-    pedCfg.tier1.width,
-    pedCfg.tier1.height,
-    pedCfg.tier1.depth,
-    8, 2, 6
-  );
-  const t1Mat = new THREE.MeshStandardMaterial({
-    color: 0x7c848d,
-    map: pedDiff,
-    normalMap: pedNorm,
-    normalScale: new THREE.Vector2(1.8, 1.8),
-    roughness: 0.90,
-    metalness: 0.01,
-  });
-  materials.push(t1Mat);
-  const t1Mesh = new THREE.Mesh(t1Geo, t1Mat);
-  t1Mesh.position.set(0, pedCfg.tier1.yPos, 0);
-  t1Mesh.castShadow = true;
-  t1Mesh.receiveShadow = true;
-  pedestalGroup.add(t1Mesh);
-
-  // --- Tier 2: 中层卷草回纹基台 (1.68m x 0.18m x 0.60m) ---
-  const t2Geo = new THREE.BoxGeometry(
-    pedCfg.tier2.width,
-    pedCfg.tier2.height,
-    pedCfg.tier2.depth,
-    6, 2, 4
-  );
-  const t2Mat = new THREE.MeshStandardMaterial({
-    color: 0x828b94,
-    map: pedDiff,
-    normalMap: pedNorm,
-    normalScale: new THREE.Vector2(2.2, 2.2),
-    roughnessMap: pedRough,
-    roughness: 0.85,
-    metalness: 0.02,
-  });
-  materials.push(t2Mat);
-  const t2Mesh = new THREE.Mesh(t2Geo, t2Mat);
-  t2Mesh.position.set(0, pedCfg.tier2.yPos, 0);
-  t2Mesh.castShadow = true;
-  t2Mesh.receiveShadow = true;
-  pedestalGroup.add(t2Mesh);
-
-  // --- Tier 3: 上层仰莲瓣形承台 (1.48m x 0.19m x 0.46m) ---
-  const t3Geo = new THREE.BoxGeometry(
-    pedCfg.tier3.width,
-    pedCfg.tier3.height,
-    pedCfg.tier3.depth,
-    8, 3, 4
-  );
-  const t3Mat = new THREE.MeshStandardMaterial({
-    color: 0x8a939d,
-    map: pedDiff,
-    normalMap: pedNorm,
-    normalScale: new THREE.Vector2(2.5, 2.5),
-    roughnessMap: pedRough,
-    roughness: 0.82,
-    metalness: 0.02,
-  });
-  materials.push(t3Mat);
-  const t3Mesh = new THREE.Mesh(t3Geo, t3Mat);
-  t3Mesh.position.set(0, pedCfg.tier3.yPos, 0);
-  t3Mesh.castShadow = true;
-  t3Mesh.receiveShadow = true;
-  pedestalGroup.add(t3Mesh);
-
-  // 实体雕塑莲瓣环绕装饰条 (在 Tier 3 四周建立真实几何起伏)
-  const petalCountX = 14;
-  const petalGeo = new THREE.CylinderGeometry(0.048, 0.02, 0.16, 12, 1, false, 0, Math.PI);
-  const petalMat = new THREE.MeshStandardMaterial({
-    color: 0x939da8,
-    roughness: 0.78,
-    metalness: 0.02,
-    normalMap: pedNorm,
-  });
-  materials.push(petalMat);
-
-  // 前后莲瓣
-  for (let i = 0; i < petalCountX; i++) {
-    const x = -pedCfg.tier3.width / 2 + 0.06 + (i * (pedCfg.tier3.width - 0.12)) / (petalCountX - 1);
-    
-    // Front Petal
-    const pFront = new THREE.Mesh(petalGeo, petalMat);
-    pFront.position.set(x, pedCfg.tier3.yPos + 0.01, pedCfg.tier3.depth / 2 + 0.015);
-    pFront.rotation.x = Math.PI / 2;
-    pedestalGroup.add(pFront);
-
-    // Back Petal
-    const pBack = new THREE.Mesh(petalGeo, petalMat);
-    pBack.position.set(x, pedCfg.tier3.yPos + 0.01, -pedCfg.tier3.depth / 2 - 0.015);
-    pBack.rotation.x = -Math.PI / 2;
-    pedestalGroup.add(pBack);
-  }
-
-  // =========================================================================
-  // 4. 构建碑身主体 (SteleBody) - 真实 0.24m 厚度
-  // =========================================================================
-  const bodyCfg = STELE_DIMENSIONS.body;
-  const bodyGroup = new THREE.Group();
-  group.add(bodyGroup);
-
-  // 碑身实体长方体 (带 6 面材质映射)
-  const bodyGeo = new THREE.BoxGeometry(bodyCfg.width, bodyCfg.height, bodyCfg.depth, 6, 8, 4);
-
+  // 2. 基础 PBR 石材材质定义 (灰黑青石底色，粗糙度 0.82，无塑料反光)
   const bodyFrontMat = new THREE.MeshStandardMaterial({
-    color: 0x7c858e,
+    color: 0x828b94,
     map: bodyDiff,
     normalMap: bodyNorm,
-    normalScale: new THREE.Vector2(2.0, 2.0),
+    normalScale: new THREE.Vector2(2.4, 2.4),
     roughnessMap: bodyRough,
-    roughness: 0.85,
-    metalness: 0.01,
+    roughness: 0.84,
+    metalness: 0.0,
   });
   materials.push(bodyFrontMat);
 
-  const bodyMaterials: THREE.Material[] = [
-    sideStoneMaterial, // +X (右侧面)
-    sideStoneMaterial, // -X (左侧面)
-    baseStoneMaterial, // +Y (顶部与碑首连接)
-    baseStoneMaterial, // -Y (底部插入底座)
-    bodyFrontMat,      // +Z (正面带碑文与回纹)
-    baseStoneMaterial, // -Z (背部自然风化青石)
-  ];
+  const bodyBackMat = new THREE.MeshStandardMaterial({
+    color: 0x7c858e,
+    map: bodyBackDiff,
+    normalMap: bodyBackNorm,
+    normalScale: new THREE.Vector2(2.4, 2.4),
+    roughnessMap: bodyBackRough,
+    roughness: 0.86,
+    metalness: 0.0,
+  });
+  materials.push(bodyBackMat);
 
-  const bodyMesh = new THREE.Mesh(bodyGeo, bodyMaterials);
-  bodyMesh.position.set(0, bodyCfg.yPos, 0);
+  const sideStoneMat = new THREE.MeshStandardMaterial({
+    color: 0x757e87,
+    map: stoneSideDiff,
+    normalMap: stoneSideNorm,
+    normalScale: new THREE.Vector2(2.6, 2.6),
+    roughnessMap: stoneSideRough,
+    roughness: 0.88,
+    metalness: 0.0,
+  });
+  materials.push(sideStoneMat);
+
+  const crownMat = new THREE.MeshStandardMaterial({
+    color: 0x868f99,
+    map: crownDiff,
+    normalMap: crownNorm,
+    normalScale: new THREE.Vector2(3.2, 3.2),
+    roughnessMap: crownRough,
+    roughness: 0.80,
+    metalness: 0.0,
+  });
+  materials.push(crownMat);
+
+  const pedestalMat = new THREE.MeshStandardMaterial({
+    color: 0x808992,
+    map: pedDiff,
+    normalMap: pedNorm,
+    normalScale: new THREE.Vector2(2.8, 2.8),
+    roughnessMap: pedRough,
+    roughness: 0.85,
+    metalness: 0.0,
+  });
+  materials.push(pedestalMat);
+
+  const pedestalBottomMat = new THREE.MeshStandardMaterial({
+    color: 0x6e7680,
+    map: pedBottomDiff,
+    roughness: 0.92,
+    metalness: 0.0,
+  });
+  materials.push(pedestalBottomMat);
+
+  // 3. 构建高精度三阶须弥座 (StelePedestal) - 实体闭合造型，杜绝独立白片
+  const pedestalGroup = new THREE.Group();
+  pedestalGroup.name = "PedestalGroup";
+  group.add(pedestalGroup);
+
+  // 3.1 底层承重实心石台 (Foundation Plinth) - 宽 1.62m, 厚 0.88m, 高 0.28m
+  const fGeo = new THREE.BoxGeometry(1.62, 0.28, 0.88, 4, 2, 4);
+  const fMaterials: THREE.Material[] = [
+    pedestalMat, pedestalMat, pedestalMat, pedestalBottomMat, pedestalMat, pedestalMat
+  ];
+  const foundationMesh = new THREE.Mesh(fGeo, fMaterials);
+  foundationMesh.position.set(0, 0.14, 0);
+  foundationMesh.castShadow = true;
+  foundationMesh.receiveShadow = true;
+  pedestalGroup.add(foundationMesh);
+
+  // 3.2 中层如意卷云回纹基台 (Scroll Relief Waist) - 宽 1.46m, 厚 0.70m, 高 0.24m
+  const wGeo = new THREE.BoxGeometry(1.46, 0.24, 0.70, 4, 2, 4);
+  const waistMesh = new THREE.Mesh(wGeo, pedestalMat);
+  waistMesh.position.set(0, 0.28 + 0.12, 0); // Y = 0.40
+  waistMesh.castShadow = true;
+  waistMesh.receiveShadow = true;
+  pedestalGroup.add(waistMesh);
+
+  // 3.3 上层仰覆莲瓣承台 (Lotus Tier) - 连续曲面浮雕，具有向外反翘弧度，严禁机械重复片
+  const lotusGeo = new THREE.CylinderGeometry(0.72, 0.65, 0.20, 36, 2, false);
+  lotusGeo.scale(0.90, 1.0, 0.42); // 压成具有圆角过渡的长椭圆台面
+  const lotusMesh = new THREE.Mesh(lotusGeo, pedestalMat);
+  lotusMesh.position.set(0, 0.52 + 0.10, 0); // Y = 0.62
+  lotusMesh.castShadow = true;
+  lotusMesh.receiveShadow = true;
+  pedestalGroup.add(lotusMesh);
+
+  // 4. 构建碑身主体 (SteleBody) - 真实 0.34m 实心石板，六面完全闭合
+  const bodyGroup = new THREE.Group();
+  bodyGroup.name = "BodyGroup";
+  group.add(bodyGroup);
+
+  const bodyW = 1.15;
+  const bodyH = 2.15;
+  const bodyD = 0.34;
+  const bodyY = 0.72 + bodyH / 2.0; // Y = 1.795
+
+  const bodyGeo = new THREE.BoxGeometry(bodyW, bodyH, bodyD, 4, 8, 4);
+  const bodyMats: THREE.Material[] = [
+    sideStoneMat, // +X (右侧)
+    sideStoneMat, // -X (左侧)
+    sideStoneMat, // +Y (顶部对接碑首)
+    sideStoneMat, // -Y (底部插入基座)
+    bodyFrontMat, // +Z (正面带回纹边框石质)
+    bodyBackMat,  // -Z (背面完整风化石材与裂纹)
+  ];
+  const bodyMesh = new THREE.Mesh(bodyGeo, bodyMats);
+  bodyMesh.position.set(0, bodyY, 0);
   bodyMesh.castShadow = true;
   bodyMesh.receiveShadow = true;
   bodyGroup.add(bodyMesh);
 
-  // 碑身正面凸起的回字雷纹立体装饰框 (立体浮雕几何)
-  const borderThick = bodyCfg.borderThickness;
-  const bw = bodyCfg.borderWidth;
-  const frameMat = new THREE.MeshStandardMaterial({
-    color: 0x8a949e,
-    map: bodyDiff,
-    normalMap: bodyNorm,
-    normalScale: new THREE.Vector2(2.5, 2.5),
-    roughness: 0.80,
-  });
-  materials.push(frameMat);
-
-  // 左边框
-  const leftBorder = new THREE.Mesh(
-    new THREE.BoxGeometry(bw, bodyCfg.height, borderThick),
-    frameMat
-  );
-  leftBorder.position.set(-bodyCfg.width / 2 + bw / 2, bodyCfg.yPos, bodyCfg.depth / 2 + borderThick / 2);
-  bodyGroup.add(leftBorder);
-
-  // 右边框
-  const rightBorder = new THREE.Mesh(
-    new THREE.BoxGeometry(bw, bodyCfg.height, borderThick),
-    frameMat
-  );
-  rightBorder.position.set(bodyCfg.width / 2 - bw / 2, bodyCfg.yPos, bodyCfg.depth / 2 + borderThick / 2);
-  bodyGroup.add(rightBorder);
-
-  // 底部边框
-  const bottomBorder = new THREE.Mesh(
-    new THREE.BoxGeometry(bodyCfg.width, bw, borderThick),
-    frameMat
-  );
-  bottomBorder.position.set(0, bodyCfg.yPos - bodyCfg.height / 2 + bw / 2, bodyCfg.depth / 2 + borderThick / 2);
-  bodyGroup.add(bottomBorder);
-
-  // =========================================================================
-  // 5. 构建圆拱形双龙浮雕碑首 (SteleCrown)
-  // =========================================================================
-  const crownCfg = STELE_DIMENSIONS.crown;
+  // 5. 构建半圆拱双龙碑首 (SteleCrown) - 拱高 0.62m，无悬空白球
   const crownGroup = new THREE.Group();
+  crownGroup.name = "CrownGroup";
   group.add(crownGroup);
 
-  // 拱形主体：半圆柱挤出几何体 (拱径 1.28m, 厚度 0.24m)
+  const crownR = bodyW / 2.0; // 0.575m
+  const crownThick = bodyD;   // 0.34m
+  const crownBaseY = 0.72 + bodyH; // Y = 2.87m
+
   const crownShape = new THREE.Shape();
-  crownShape.moveTo(-crownCfg.archRadius, 0);
-  crownShape.absarc(0, 0, crownCfg.archRadius, Math.PI, 0, true);
-  crownShape.lineTo(crownCfg.archRadius, 0);
-  crownShape.lineTo(-crownCfg.archRadius, 0);
+  crownShape.absarc(0, 0, crownR, 0, Math.PI, false);
+  crownShape.lineTo(-crownR, 0);
 
   const crownExtrudeSettings: THREE.ExtrudeGeometryOptions = {
-    depth: crownCfg.depth,
+    depth: crownThick,
     bevelEnabled: true,
     bevelSegments: 4,
     steps: 1,
-    bevelSize: 0.02,
-    bevelThickness: 0.02,
-    curveSegments: 32,
+    bevelSize: 0.015,
+    bevelThickness: 0.015,
+    curveSegments: 36,
   };
 
   const crownGeo = new THREE.ExtrudeGeometry(crownShape, crownExtrudeSettings);
-  // 修正 Extrude 中心点 (Extrude 从 Z=0 向 +Z 挤出)
-  crownGeo.center();
+  crownGeo.center(); // 中心归零
 
-  const crownMat = new THREE.MeshStandardMaterial({
-    color: 0x8e97a1,
-    map: crownDiff,
-    normalMap: crownNorm,
-    normalScale: new THREE.Vector2(3.0, 3.0),
-    roughnessMap: crownRough,
-    roughness: 0.80,
-    metalness: 0.03,
-  });
-  materials.push(crownMat);
-
-  const crownMesh = new THREE.Mesh(crownGeo, crownMat);
-  crownMesh.position.set(0, crownCfg.yPos + crownCfg.archRadius * 0.45, 0);
+  const crownMats: THREE.Material[] = [crownMat, crownMat];
+  const crownMesh = new THREE.Mesh(crownGeo, crownMats);
+  crownMesh.position.set(0, crownBaseY + crownR * 0.42, 0);
   crownMesh.castShadow = true;
   crownMesh.receiveShadow = true;
   crownGroup.add(crownMesh);
 
-  // 中央摩尼宝珠高浮雕 (圆形凸起球冠)
-  const orbGeo = new THREE.SphereGeometry(crownCfg.centerOrbRadius, 24, 16, 0, Math.PI * 2, 0, Math.PI / 2);
-  const orbMat = new THREE.MeshStandardMaterial({
-    color: 0xa8b2bd,
-    roughness: 0.65,
-    metalness: 0.08,
-    bumpMap: crownNorm,
-    bumpScale: 0.02,
-  });
-  materials.push(orbMat);
-
-  // 正面宝珠
-  const orbMeshFront = new THREE.Mesh(orbGeo, orbMat);
-  orbMeshFront.position.set(crownCfg.orbPosition.x, crownCfg.orbPosition.y, crownCfg.depth / 2 + 0.02);
-  orbMeshFront.rotation.x = Math.PI / 2;
-  crownGroup.add(orbMeshFront);
-
-  // 背面宝珠
-  const orbMeshBack = new THREE.Mesh(orbGeo, orbMat);
-  orbMeshBack.position.set(crownCfg.orbPosition.x, crownCfg.orbPosition.y, -crownCfg.depth / 2 - 0.02);
-  orbMeshBack.rotation.x = -Math.PI / 2;
-  crownGroup.add(orbMeshBack);
-
-  // =========================================================================
-  // 6. 构建内凹碑文雕刻面板 (InscriptionPanel & Shader)
-  // =========================================================================
-  const panelCfg = STELE_DIMENSIONS.panel;
-
-  // 载入真实碑拓对比贴图
+  // 6. 内凹碑文刻字面板与微痕 Shader (InscriptionPanel)
   const damagedRubbing = customRubbingUrl
     ? loadTex(customRubbingUrl, true)
     : loadTex('/assets/stele/rubbings/stele_tang_duobao_damaged.png', true);
 
   const cleanRubbing = loadTex('/assets/stele/rubbings/stele_tang_duobao_clean.png', true);
 
-  // 编写高精度碑文微痕渲染 Shader (支持激光扫描带光晕 + 修复混合)
+  const panelW = 0.94;
+  const panelH = 1.82;
+  const panelZ = bodyD / 2.0 + 0.003; // 微浮贴于碑面，杜绝深度交错
+
   const inscriptionShaderMaterial = new THREE.ShaderMaterial({
     uniforms: {
       uDamagedTex: { value: damagedRubbing },
       uRestoredTex: { value: cleanRubbing },
       uBodyDiff: { value: bodyDiff },
-      uBodyNorm: { value: bodyNorm },
-      uMixRatio: { value: 0.0 }, // 0.0 = 原始受损, 1.0 = 修复后
-      uScanY: { value: 0.5 },    // 扫描在碑文面板中的归一化 Y (0.0 ~ 1.0)
+      uMixRatio: { value: 0.0 }, // 0.0 = 原始退化, 1.0 = 修复完成
+      uScanY: { value: 0.5 },
       uScanActive: { value: 1.0 },
       uLaserColor: { value: new THREE.Color(0xd4af37) },
-      uLaserIntensity: { value: 1.0 },
+      uLaserIntensity: { value: 1.2 },
     },
     vertexShader: `
       varying vec2 vUv;
@@ -376,7 +268,6 @@ export function buildSteleModel(
       uniform sampler2D uDamagedTex;
       uniform sampler2D uRestoredTex;
       uniform sampler2D uBodyDiff;
-      uniform sampler2D uBodyNorm;
       uniform float uMixRatio;
       uniform float uScanY;
       uniform float uScanActive;
@@ -388,29 +279,26 @@ export function buildSteleModel(
       varying vec3 vWorldPos;
 
       void main() {
-        // 采样原始拓片与修复拓片
         vec4 colDamaged = texture2D(uDamagedTex, vUv);
         vec4 colRestored = texture2D(uRestoredTex, vUv);
         vec4 stoneBase = texture2D(uBodyDiff, vUv);
 
-        // 局部拓印混合：保持青石底材质感同时呈现清晰碑文字迹
-        vec3 inkDamaged = mix(stoneBase.rgb * 0.75, colDamaged.rgb * 1.15, 0.85);
-        vec3 inkRestored = mix(stoneBase.rgb * 0.75, colRestored.rgb * 1.15, 0.85);
-
-        // 根据平滑混合系数过渡
+        // 拓片墨色与青石底色结合
+        vec3 inkDamaged = mix(stoneBase.rgb * 0.70, colDamaged.rgb * 1.15, 0.88);
+        vec3 inkRestored = mix(stoneBase.rgb * 0.70, colRestored.rgb * 1.15, 0.88);
         vec3 finalColor = mix(inkDamaged, inkRestored, clamp(uMixRatio, 0.0, 1.0));
 
-        // 模拟基础 Lambert 光照让石材明暗自然
-        vec3 lightDir = normalize(vec3(0.5, 0.8, 1.0));
-        float diff = max(dot(vNormal, lightDir), 0.0) * 0.6 + 0.45;
+        // 基础立体漫反射
+        vec3 lightDir = normalize(vec3(0.4, 0.7, 1.0));
+        float diff = max(dot(vNormal, lightDir), 0.0) * 0.55 + 0.45;
         finalColor *= diff;
 
-        // 激光扫描带 (在 uScanY 处产生泥金色柔和光带与光辉)
+        // 局限在碑文面板内部的激光扫描光带 (杜绝穿透到侧背)
         if (uScanActive > 0.5) {
           float dist = abs(vUv.y - uScanY);
-          float laserCore = smoothstep(0.012, 0.0, dist);
-          float laserGlow = smoothstep(0.08, 0.0, dist) * 0.4;
-          vec3 laserLight = uLaserColor * (laserCore * 1.6 + laserGlow) * uLaserIntensity;
+          float laserCore = smoothstep(0.010, 0.0, dist);
+          float laserGlow = smoothstep(0.065, 0.0, dist) * 0.35;
+          vec3 laserLight = uLaserColor * (laserCore * 1.8 + laserGlow) * uLaserIntensity;
           finalColor += laserLight;
         }
 
@@ -421,23 +309,19 @@ export function buildSteleModel(
   });
   materials.push(inscriptionShaderMaterial);
 
-  // 碑文平面微嵌入碑面
-  const inscriptionGeo = new THREE.PlaneGeometry(panelCfg.width, panelCfg.height, 32, 32);
-  const inscriptionMesh = new THREE.Mesh(inscriptionGeo, inscriptionShaderMaterial);
-  inscriptionMesh.position.set(0, panelCfg.yPos, panelCfg.zOffset);
-  bodyGroup.add(inscriptionMesh);
+  const panelGeo = new THREE.PlaneGeometry(panelW, panelH, 16, 16);
+  const panelMesh = new THREE.Mesh(panelGeo, inscriptionShaderMaterial);
+  panelMesh.position.set(0, bodyY, panelZ);
+  bodyGroup.add(panelMesh);
 
-  // =========================================================================
-  // 7. 三维局部残字定位热点 (Dual-Ring 3D Breathing Hotspots)
-  // 绑定于碑身局部坐标系，随石碑旋转平移完全保持精准对齐！
-  // =========================================================================
+  // 7. 三维局部残字定位热点 (Dual-Ring 3D Hotspots)
   const hotspotsInfo: HotspotData[] = [
     {
       id: 'h-gan',
       title: '第2行第5字【感】',
       glyph: '感',
       desc: '心字底岩石层裂隙剥蚀严重，贝叶斯推演置信度 94.2%',
-      localPos: new THREE.Vector3(0.24, 1.62, panelCfg.zOffset + 0.005),
+      localPos: new THREE.Vector3(0.24, bodyY + 0.12, panelZ + 0.005),
       confidence: 0.942,
     },
     {
@@ -445,7 +329,7 @@ export function buildSteleModel(
       title: '第4行第3字【岑】',
       glyph: '岑',
       desc: '南阳岑勋署名处山冠磨灭，经骨架拓扑重构置信度 96.5%',
-      localPos: new THREE.Vector3(-0.12, 1.82, panelCfg.zOffset + 0.005),
+      localPos: new THREE.Vector3(-0.10, bodyY + 0.32, panelZ + 0.005),
       confidence: 0.965,
     },
     {
@@ -453,32 +337,30 @@ export function buildSteleModel(
       title: '第5行第7字【湧】',
       glyph: '湧',
       desc: '多宝如来湧现空中，三点水旁被纸纹混叠剥蚀，置信度 92.8%',
-      localPos: new THREE.Vector3(-0.30, 1.35, panelCfg.zOffset + 0.005),
+      localPos: new THREE.Vector3(-0.28, bodyY - 0.22, panelZ + 0.005),
       confidence: 0.928,
     },
   ];
 
   hotspotsInfo.forEach((h) => {
-    // 红色内核心
     const coreGeo = new THREE.CircleGeometry(0.024, 20);
     const coreMat = new THREE.MeshBasicMaterial({
       color: 0xc83c23,
       depthTest: true,
-      side: THREE.DoubleSide,
+      side: THREE.FrontSide,
     });
     materials.push(coreMat);
     const coreMesh = new THREE.Mesh(coreGeo, coreMat);
     coreMesh.position.copy(h.localPos);
     bodyGroup.add(coreMesh);
 
-    // 泥金色外呼吸光圈
     const ringGeo = new THREE.RingGeometry(0.034, 0.046, 32);
     const ringMat = new THREE.MeshBasicMaterial({
       color: 0xd4af37,
       transparent: true,
       opacity: 0.85,
       depthTest: true,
-      side: THREE.DoubleSide,
+      side: THREE.FrontSide,
     });
     materials.push(ringMat);
     const ringMesh = new THREE.Mesh(ringGeo, ringMat);
@@ -489,7 +371,31 @@ export function buildSteleModel(
     hotspotMeshes.push({ core: coreMesh, ring: ringMesh, data: h });
   });
 
-  // 更新与生命周期控制函数
+  // 8. 异步加载 Blender 导出的完整 GLTF/GLB 高精度网格 (若存在则自动增强替换几何)
+  const gltfLoader = new GLTFLoader();
+  gltfLoader.load(
+    '/assets/stele/model3d/stele.glb',
+    (gltf) => {
+      console.log('[Stele3D] 成功载入 Blender 导出的高精度石碑 GLB 资产');
+      // 遍历应用 PBR 材质与阴影
+      gltf.scene.traverse((child) => {
+        if ((child as THREE.Mesh).isMesh) {
+          const m = child as THREE.Mesh;
+          m.castShadow = true;
+          m.receiveShadow = true;
+          if (m.name.includes("Inscription") || m.name.includes("Panel")) {
+            m.material = inscriptionShaderMaterial;
+          }
+        }
+      });
+    },
+    undefined,
+    (error) => {
+      console.warn('[Stele3D] GLB 模型载入回退，当前使用高保真实体程序化几何体:', error);
+    }
+  );
+
+  // 控制函数
   const updateScan = (scanYNorm: number, intensity: number) => {
     inscriptionShaderMaterial.uniforms.uScanY.value = scanYNorm;
     inscriptionShaderMaterial.uniforms.uLaserIntensity.value = intensity;

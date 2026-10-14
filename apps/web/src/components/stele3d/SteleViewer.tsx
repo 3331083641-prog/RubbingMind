@@ -138,36 +138,21 @@ export const SteleViewer: React.FC<SteleViewerProps> = ({
     fillLight.position.set(-4.5, 3.5, 4.0);
     scene.add(fillLight);
 
-    // 5.4 背部金色轮廓光 (Rim Light - 勾勒碑首双龙飞扬剪影)
-    const rimLight = new THREE.DirectionalLight(0xf5d46e, 1.8);
-    rimLight.position.set(0, 5.5, -4.5);
+    // 5.4 背部轮廓光 (Rim Light - 柔和勾勒碑首与背面轮廓)
+    const rimLight = new THREE.DirectionalLight(0xd4af37, 1.2);
+    rimLight.position.set(0, 5.0, -4.5);
     scene.add(rimLight);
 
-    // 5.5 地面接触阴影与光环微光 (Ground Contact Shadow & Pedestal Glow)
-    const groundGeo = new THREE.PlaneGeometry(12, 12);
-    const groundMat = new THREE.MeshStandardMaterial({
-      color: 0x090c0f,
-      roughness: 0.88,
-      metalness: 0.1,
+    // 5.5 展台基底柔和投影面 (Shadow Receiver - 紧凑尺寸，杜绝视野遮挡与巨大暗环)
+    const groundGeo = new THREE.PlaneGeometry(5.0, 5.0);
+    const groundMat = new THREE.ShadowMaterial({
+      opacity: 0.35,
     });
     const groundMesh = new THREE.Mesh(groundGeo, groundMat);
     groundMesh.rotation.x = -Math.PI / 2;
-    groundMesh.position.y = -0.005;
+    groundMesh.position.y = 0.0;
     groundMesh.receiveShadow = true;
     scene.add(groundMesh);
-
-    // 地面泥金微光光圈
-    const haloGeo = new THREE.RingGeometry(1.2, 2.6, 64);
-    const haloMat = new THREE.MeshBasicMaterial({
-      color: 0xd4af37,
-      transparent: true,
-      opacity: 0.08,
-      side: THREE.DoubleSide,
-    });
-    const haloMesh = new THREE.Mesh(haloGeo, haloMat);
-    haloMesh.rotation.x = -Math.PI / 2;
-    haloMesh.position.y = 0.001;
-    scene.add(haloMesh);
 
     // 6. 构建高精度三维碑刻模型实例
     const textureLoader = new THREE.TextureLoader();
@@ -277,14 +262,19 @@ export const SteleViewer: React.FC<SteleViewerProps> = ({
     });
   }, []);
 
-  // 视角平滑切换
+  // 视角平滑切换 (包含正交六向与45°透视，处理 up 向量避免翻转)
   const switchPreset = useCallback((presetKey: keyof typeof STELE_DIMENSIONS.cameraPresets) => {
     setActivePreset(presetKey);
     setIsAutoRotate(false);
     if (controlsRef.current) controlsRef.current.autoRotate = false;
 
     const preset = STELE_DIMENSIONS.cameraPresets[presetKey];
-    if (preset) {
+    if (preset && cameraRef.current && controlsRef.current) {
+      if (preset.up) {
+        cameraRef.current.up.set(preset.up[0], preset.up[1], preset.up[2]);
+      } else {
+        cameraRef.current.up.set(0, 1, 0);
+      }
       targetCamPos.current = new THREE.Vector3(preset.position[0], preset.position[1], preset.position[2]);
       targetLookAt.current = new THREE.Vector3(preset.target[0], preset.target[1], preset.target[2]);
     }
@@ -373,11 +363,12 @@ export const SteleViewer: React.FC<SteleViewerProps> = ({
           <div className="flex items-center space-x-1 bg-slate-900/90 backdrop-blur-md border border-gold/30 rounded-xl p-1 pointer-events-auto shadow-card">
             {(
               [
-                { key: 'front', label: '正面' },
-                { key: 'left', label: '左侧' },
-                { key: 'right', label: '右侧' },
-                { key: 'top', label: '俯视' },
-                { key: 'back', label: '背面' },
+                { key: 'front', label: '正视' },
+                { key: 'back', label: '背视' },
+                { key: 'left', label: '左视' },
+                { key: 'right', label: '右视' },
+                { key: 'top', label: '顶视' },
+                { key: 'bottom', label: '底视' },
                 { key: 'perspective', label: '透视' },
               ] as const
             ).map((item) => (
