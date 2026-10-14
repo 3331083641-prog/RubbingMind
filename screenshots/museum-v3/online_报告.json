@@ -1,0 +1,20 @@
+{
+  "stele_id": "qing_02_wushi_reerection",
+  "title": "重立武氏祠石记",
+  "date": "2026-10-14T16:53:25.116Z",
+  "metrics": {
+    "psnr": null,
+    "ssim": null,
+    "snr_gain": null,
+    "glyph_completeness": null,
+    "character_accuracy": null
+  },
+  "ablation": [],
+  "reportText": {
+    "evaluation_summary": "未评测：未建立配对真值或消融实验记录。实际处理输出与评测结论分别保存。",
+    "scholarly_analysis": "翁方纲撰书，郑之宗刻，1787年重建武氏祠的新刻记文；不是东汉画像石。馆方时代标签沿用东汉，本文依明确石刻纪年、作者生卒及影像文字将本件归清代。  馆方显示1787年新刻、翁方纲撰书；Eastern Han类目指相关武氏祠遗迹，不改变本件清代新刻身份。",
+    "rubbing_dimensions": "31.5 x 85 cm. (12 3/8 x 33 7/16 in.)",
+    "epigraphic_conclusion": "《重立武氏祠石记》以所列馆藏记录为依据；未形成新增残字定论。"
+  },
+  "evaluation_system": "墨韵智考 (RubbingMind Pro 2.0)"
+}

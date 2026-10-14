@@ -189,8 +189,12 @@ screenshots/museum-v3/10_完整馆藏档案.png
 screenshots/museum-v3/11_元代新替换馆藏.png
 screenshots/museum-v3/12_清代四件新馆藏.png
 screenshots/museum-v3/13_核心工作台兼容验证.png
+screenshots/museum-v3/14_实际网页报告.pdf
+screenshots/museum-v3/15_1440x900典藏馆.png
 screenshots/museum-v3/actual_processing_acceptance.json
 screenshots/museum-v3/browser_acceptance.json
+screenshots/museum-v3/fallback_报告.json
+screenshots/museum-v3/online_报告.json
 scripts/init_db.py
 scripts/migrate_museum_v3.py
 scripts/security_scan.py
