@@ -64,14 +64,13 @@ export const STELE_DIMENSIONS = {
     recessDepth: 0.012,   // 内凹深度
   },
 
-  // 六方向正交与45度透视摄像机预设标定
+  // 摄像机预设位点
   cameraPresets: {
-    front: { position: [0, 1.85, 4.6], target: [0, 1.85, 0], fov: 42, up: [0, 1, 0] },
-    back: { position: [0, 1.85, -4.6], target: [0, 1.85, 0], fov: 42, up: [0, 1, 0] },
-    left: { position: [-4.6, 1.85, 0], target: [0, 1.85, 0], fov: 42, up: [0, 1, 0] },
-    right: { position: [4.6, 1.85, 0], target: [0, 1.85, 0], fov: 42, up: [0, 1, 0] },
-    top: { position: [0, 6.2, 0.001], target: [0, 1.85, 0], fov: 44, up: [0, 0, -1] },
-    bottom: { position: [0, -2.6, 0.001], target: [0, 0.6, 0], fov: 44, up: [0, 0, 1] },
-    perspective: { position: [3.0, 2.8, 3.8], target: [0, 1.80, 0], fov: 44, up: [0, 1, 0] },
+    front: { position: [0, 1.60, 4.8], target: [0, 1.45, 0], fov: 42 },
+    left: { position: [-4.5, 1.60, 0.2], target: [0, 1.45, 0], fov: 42 },
+    right: { position: [4.5, 1.60, 0.2], target: [0, 1.45, 0], fov: 42 },
+    top: { position: [0, 5.2, 1.4], target: [0, 1.6, 0], fov: 45 },
+    back: { position: [0, 1.60, -4.8], target: [0, 1.45, 0], fov: 42 },
+    perspective: { position: [2.8, 2.2, 3.6], target: [0, 1.40, 0], fov: 44 },
   }
 };
