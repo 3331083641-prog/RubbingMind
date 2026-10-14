@@ -1,0 +1,543 @@
+{
+  "steleId": "han-caoquan",
+  "formalName": "东汉·郃阳令曹全碑",
+  "eraName": "东汉中平二年",
+  "yearCE": 185,
+  "script": "隶书",
+  "image": "/assets/gis/rubbings/caoquan-rubbing.jpg",
+  "imageStatus": "真实馆藏拓本·轴",
+  "identity": "原石与购拓000033分别建档",
+  "rubbingPeriod": "年代待考",
+  "collectionNumber": "购拓000033（拓本）",
+  "originalStoneCollection": "西安碑林博物馆",
+  "digitalRubbingCollection": "台北故宫博物院（拓本）",
+  "authors": [
+    "曹全 · 碑主，字景完",
+    "王敞等 · 门生故吏刊石纪功"
+  ],
+  "sourceIds": [
+    "beilin-cao",
+    "npm-cao"
+  ],
+  "locations": [
+    {
+      "id": "heyang",
+      "name": "郃阳县地望",
+      "modernName": "陕西渭南市合阳县",
+      "longitude": 110.2,
+      "latitude": 35.2,
+      "coordinateSystem": "WGS84",
+      "precision": "regional",
+      "type": "original_site",
+      "sourceId": "beilin-cao",
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+      "sourceTitle": "西安碑林博物馆：曹全碑",
+      "verified": true,
+      "coordinateSourceUrl": "https://github.com/MisterChangRay/geodeparse/tree/dfb4ce2c1f7f48a5da5ad7842cbfbe1b2cd29757/geo",
+      "coordinateMethod": "CGCS2000行政面内部代表点，取两位小数，仅示地理范围",
+      "accuracyKm": null,
+      "province": "陕西省",
+      "note": "县域代表点，非原立石位置。",
+      "regionLocationId": null
+    },
+    {
+      "id": "xinli",
+      "name": "合阳莘里村出土地",
+      "modernName": "陕西合阳·旧莘里村",
+      "longitude": null,
+      "latitude": null,
+      "coordinateSystem": "WGS84",
+      "precision": "unknown",
+      "type": "excavation_site",
+      "sourceId": "beilin-cao",
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+      "sourceTitle": "西安碑林博物馆：曹全碑",
+      "verified": true,
+      "coordinateSourceUrl": null,
+      "coordinateMethod": "无已核实坐标，不上图",
+      "accuracyKm": null,
+      "province": "陕西省",
+      "note": "村级坐标未核实，依合阳县域索引，地图不另放伪精确点。",
+      "regionLocationId": "heyang"
+    },
+    {
+      "id": "beilin",
+      "name": "西安碑林博物馆",
+      "modernName": "陕西西安·三学街15号",
+      "longitude": 108.948132,
+      "latitude": 34.254721,
+      "coordinateSystem": "WGS84",
+      "precision": "approximate",
+      "type": "current_collection",
+      "sourceId": "beilin-duobao",
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+      "sourceTitle": "西安碑林博物馆：多宝塔感应碑",
+      "verified": true,
+      "coordinateSourceUrl": "https://commons.wikimedia.org/wiki/File:Beilin_Museum_Map_(14185587169).jpg",
+      "coordinateMethod": "实地摄影地理标记；馆区近似",
+      "accuracyKm": null,
+      "province": "陕西省",
+      "note": "原石保存馆区，非拓本馆藏；摄影点并非展位。",
+      "regionLocationId": null
+    },
+    {
+      "id": "dunhuang",
+      "name": "敦煌效谷地望",
+      "modernName": "甘肃敦煌市区域",
+      "longitude": 94.05,
+      "latitude": 40.61,
+      "coordinateSystem": "WGS84",
+      "precision": "regional",
+      "type": "ancestral_origin",
+      "sourceId": "npm-cao",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+      "sourceTitle": "汉曹全碑墨拓本（购拓000033）",
+      "verified": true,
+      "coordinateSourceUrl": "https://github.com/MisterChangRay/geodeparse/tree/dfb4ce2c1f7f48a5da5ad7842cbfbe1b2cd29757/geo",
+      "coordinateMethod": "CGCS2000行政面内部代表点，取两位小数，仅示地理范围",
+      "accuracyKm": null,
+      "province": "甘肃省",
+      "note": "曹全籍贯；敦煌市代表点不等于古效谷县治。",
+      "regionLocationId": null
+    },
+    {
+      "id": "jiuquan",
+      "name": "酒泉禄福地望",
+      "modernName": "甘肃酒泉市肃州区",
+      "longitude": 98.75,
+      "latitude": 39.57,
+      "coordinateSystem": "WGS84",
+      "precision": "regional",
+      "type": "historical_activity",
+      "sourceId": "npm-cao",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+      "sourceTitle": "汉曹全碑墨拓本（购拓000033）",
+      "verified": true,
+      "coordinateSourceUrl": "https://github.com/MisterChangRay/geodeparse/tree/dfb4ce2c1f7f48a5da5ad7842cbfbe1b2cd29757/geo",
+      "coordinateMethod": "CGCS2000行政面内部代表点，取两位小数，仅示地理范围",
+      "accuracyKm": null,
+      "province": "甘肃省",
+      "note": "曹全任职地区；现代县域代表点，不是古县治GPS。",
+      "regionLocationId": null
+    },
+    {
+      "id": "shule",
+      "name": "西域疏勒国地望",
+      "modernName": "新疆喀什地区",
+      "longitude": 76.21,
+      "latitude": 39.52,
+      "coordinateSystem": "WGS84",
+      "precision": "regional",
+      "type": "historical_activity",
+      "sourceId": "npm-cao",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+      "sourceTitle": "汉曹全碑墨拓本（购拓000033）",
+      "verified": true,
+      "coordinateSourceUrl": "https://github.com/MisterChangRay/geodeparse/tree/dfb4ce2c1f7f48a5da5ad7842cbfbe1b2cd29757/geo",
+      "coordinateMethod": "CGCS2000行政面内部代表点，取两位小数，仅示地理范围",
+      "accuracyKm": null,
+      "province": "新疆维吾尔自治区",
+      "note": "仅表示疏勒国喀什区域；不等于现代疏勒县，不绘征讨线路。",
+      "regionLocationId": null
+    },
+    {
+      "id": "npm-taipei",
+      "name": "台北故宫博物院",
+      "modernName": "台北市士林区",
+      "longitude": null,
+      "latitude": null,
+      "coordinateSystem": "WGS84",
+      "precision": "unknown",
+      "type": "rubbing_collection",
+      "sourceId": "npm-cao",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+      "sourceTitle": "汉曹全碑墨拓本（购拓000033）",
+      "verified": true,
+      "coordinateSourceUrl": null,
+      "coordinateMethod": "无已核实坐标，不上图",
+      "accuracyKm": null,
+      "province": null,
+      "note": "仅登记已核实数字拓本馆藏，不据此推断原石迁台。",
+      "regionLocationId": null
+    }
+  ],
+  "nodes": [
+    {
+      "id": "han-caoquan",
+      "name": "曹全碑",
+      "category": "stele",
+      "desc": "中平二年立；1956年移碑林。",
+      "sourceIds": [
+        "beilin-cao"
+      ],
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+      "locationIds": [
+        "heyang",
+        "beilin"
+      ],
+      "value": 100,
+      "symbolSize": 72,
+      "verification": "confirmed"
+    },
+    {
+      "id": "cao",
+      "name": "曹全 · 景完",
+      "category": "person",
+      "desc": "敦煌效谷人，任郃阳令；生平地点不等于石碑流转。",
+      "sourceIds": [
+        "npm-cao"
+      ],
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+      "locationIds": [
+        "dunhuang",
+        "jiuquan",
+        "shule",
+        "heyang"
+      ],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "confirmed"
+    },
+    {
+      "id": "wangchang",
+      "name": "王敞",
+      "category": "person",
+      "desc": "门下掾，与故吏共同刊石纪功。",
+      "sourceIds": [
+        "npm-cao"
+      ],
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+      "locationIds": [
+        "heyang"
+      ],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "confirmed"
+    },
+    {
+      "id": "heyang",
+      "name": "郃阳县地望",
+      "category": "place",
+      "desc": "县域代表点，非原立石位置。",
+      "sourceIds": [
+        "beilin-cao"
+      ],
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+      "locationIds": [
+        "heyang"
+      ],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "confirmed"
+    },
+    {
+      "id": "xinli",
+      "name": "合阳莘里村出土地",
+      "category": "place",
+      "desc": "村级坐标未核实，依合阳县域索引，地图不另放伪精确点。",
+      "sourceIds": [
+        "beilin-cao"
+      ],
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+      "locationIds": [
+        "xinli"
+      ],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "confirmed"
+    },
+    {
+      "id": "beilin",
+      "name": "西安碑林博物馆",
+      "category": "place",
+      "desc": "原石保存馆区，非拓本馆藏；摄影点并非展位。",
+      "sourceIds": [
+        "beilin-cao"
+      ],
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+      "locationIds": [
+        "beilin"
+      ],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "confirmed"
+    },
+    {
+      "id": "dunhuang",
+      "name": "敦煌效谷地望",
+      "category": "place",
+      "desc": "曹全籍贯；敦煌市代表点不等于古效谷县治。",
+      "sourceIds": [
+        "npm-cao"
+      ],
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+      "locationIds": [
+        "dunhuang"
+      ],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "confirmed"
+    },
+    {
+      "id": "jiuquan",
+      "name": "酒泉禄福地望",
+      "category": "place",
+      "desc": "曹全任职地区；现代县域代表点，不是古县治GPS。",
+      "sourceIds": [
+        "npm-cao"
+      ],
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+      "locationIds": [
+        "jiuquan"
+      ],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "confirmed"
+    },
+    {
+      "id": "shule",
+      "name": "西域疏勒国地望",
+      "category": "place",
+      "desc": "仅表示疏勒国喀什区域；不等于现代疏勒县，不绘征讨线路。",
+      "sourceIds": [
+        "npm-cao"
+      ],
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+      "locationIds": [
+        "shule"
+      ],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "confirmed"
+    },
+    {
+      "id": "npm-taipei",
+      "name": "台北故宫博物院",
+      "category": "place",
+      "desc": "仅登记已核实数字拓本馆藏，不据此推断原石迁台。",
+      "sourceIds": [
+        "npm-cao"
+      ],
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+      "locationIds": [
+        "npm-taipei"
+      ],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "confirmed"
+    },
+    {
+      "id": "era-185",
+      "name": "中平二年",
+      "category": "era",
+      "desc": "对应公元185年。",
+      "sourceIds": [
+        "beilin-cao"
+      ],
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+      "locationIds": [],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "confirmed"
+    },
+    {
+      "id": "rubbing-cao",
+      "name": "购拓000033",
+      "category": "document",
+      "desc": "纸本墨拓轴；原石现藏碑林，拓本现藏台北故宫。",
+      "sourceIds": [
+        "npm-cao"
+      ],
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+      "locationIds": [
+        "npm-taipei"
+      ],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "confirmed"
+    }
+  ],
+  "links": [
+    {
+      "source": "han-caoquan",
+      "target": "cao",
+      "relation": "碑主",
+      "sourceIds": [
+        "npm-cao"
+      ],
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+      "verification": "confirmed"
+    },
+    {
+      "source": "han-caoquan",
+      "target": "wangchang",
+      "relation": "刊石纪功",
+      "sourceIds": [
+        "npm-cao"
+      ],
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+      "verification": "confirmed"
+    },
+    {
+      "source": "han-caoquan",
+      "target": "heyang",
+      "relation": "立碑地望",
+      "sourceIds": [
+        "beilin-cao"
+      ],
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+      "verification": "confirmed"
+    },
+    {
+      "source": "han-caoquan",
+      "target": "xinli",
+      "relation": "出土",
+      "sourceIds": [
+        "beilin-cao"
+      ],
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+      "verification": "confirmed"
+    },
+    {
+      "source": "han-caoquan",
+      "target": "beilin",
+      "relation": "原石现存",
+      "sourceIds": [
+        "beilin-cao"
+      ],
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+      "verification": "confirmed"
+    },
+    {
+      "source": "cao",
+      "target": "dunhuang",
+      "relation": "籍贯区域",
+      "sourceIds": [
+        "npm-cao"
+      ],
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+      "verification": "confirmed"
+    },
+    {
+      "source": "cao",
+      "target": "jiuquan",
+      "relation": "任禄福长",
+      "sourceIds": [
+        "npm-cao"
+      ],
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+      "verification": "confirmed"
+    },
+    {
+      "source": "cao",
+      "target": "shule",
+      "relation": "碑文记征讨（非路线）",
+      "sourceIds": [
+        "npm-cao"
+      ],
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+      "verification": "confirmed"
+    },
+    {
+      "source": "han-caoquan",
+      "target": "era-185",
+      "relation": "刊刻纪年",
+      "sourceIds": [
+        "beilin-cao"
+      ],
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+      "verification": "confirmed"
+    },
+    {
+      "source": "han-caoquan",
+      "target": "rubbing-cao",
+      "relation": "传拓载体",
+      "sourceIds": [
+        "npm-cao"
+      ],
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+      "verification": "confirmed"
+    },
+    {
+      "source": "rubbing-cao",
+      "target": "npm-taipei",
+      "relation": "拓本典藏",
+      "sourceIds": [
+        "npm-cao"
+      ],
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+      "verification": "confirmed"
+    }
+  ],
+  "events": [
+    {
+      "id": "cao-169",
+      "steleId": "han-caoquan",
+      "yearCE": 169,
+      "eraName": "东汉建宁二年",
+      "title": "举孝廉 · 拜西域戊部司马",
+      "description": "169年记任职；征疏勒具体年份未定，不绘行进路径。",
+      "locationId": null,
+      "eventType": "person_activity",
+      "sourceId": "beilin-cao",
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+      "verification": "confirmed"
+    },
+    {
+      "id": "cao-184",
+      "steleId": "han-caoquan",
+      "yearCE": 184,
+      "eraName": "东汉光和七年",
+      "title": "出任酒泉禄福长",
+      "description": "依碑文纪年换算；酒泉代表点仅为区域索引。",
+      "locationId": "jiuquan",
+      "eventType": "person_activity",
+      "sourceId": "npm-cao",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+      "verification": "confirmed"
+    },
+    {
+      "id": "cao-185",
+      "steleId": "han-caoquan",
+      "yearCE": 185,
+      "eraName": "东汉中平二年",
+      "title": "郃阳刊石纪功",
+      "description": "原石立碑，不涉及敦煌或疏勒流转。",
+      "locationId": "heyang",
+      "eventType": "stele_creation",
+      "sourceId": "beilin-cao",
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+      "verification": "confirmed"
+    },
+    {
+      "id": "cao-excavation",
+      "steleId": "han-caoquan",
+      "yearCE": 1573,
+      "eraName": "明万历年间（1573–1620）",
+      "title": "莘里村出土",
+      "description": "1573为年号区间起点，不是已证实出土年份。",
+      "locationId": "xinli",
+      "eventType": "excavation",
+      "sourceId": "beilin-cao",
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+      "verification": "approximate"
+    },
+    {
+      "id": "cao-1956",
+      "steleId": "han-caoquan",
+      "yearCE": 1956,
+      "eraName": "公元1956年",
+      "title": "移藏西安碑林",
+      "description": "已确认起讫馆藏，未确认具体运输道路。",
+      "locationId": "beilin",
+      "eventType": "transfer",
+      "sourceId": "beilin-cao",
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+      "verification": "confirmed"
+    }
+  ],
+  "routes": [],
+  "aliases": [
+    "han_01_caoquan"
+  ]
+}

@@ -1,467 +1,132 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { SteleItem, GraphNode, GraphLink, GISWaypoint } from '../types/stele';
-import { SteleService } from '../services/api';
-import * as echarts from 'echarts';
-import { Network, MapPin, Compass, Calendar, ArrowRight, User, BookOpen, Layers, Info } from 'lucide-react';
+import React, { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
+import { Network, MapPin, CalendarDays, BookOpen, ExternalLink, Search, LocateFixed, RotateCcw, Play, Pause, SkipBack, Layers, UserRound } from 'lucide-react';
+import type { SteleItem } from '../types/stele';
+import type { HistoryDataset, Selection, HistoricalEvent } from '../types/history';
+import { CORE_STELES, resolveCoreId } from '../data/graphSelection';
+import { loadHistory, convertYear } from '../services/history';
+import type { MapCommand } from '../components/graph/HistoricalMap';
+import './GraphPage.css';
+const HistoricalMap = lazy(() => import('../components/graph/HistoricalMap'));
+const KnowledgeNetwork = lazy(() => import('../components/graph/KnowledgeNetwork'));
+const TABS = ['文物影像','基础信息','人物关系','地理关联','史料来源'];
+const PRECISION = { exact:'精确定位', approximate:'馆区近似', regional:'位置约略 · 区域索引', unknown:'坐标待考' };
+const EVENT_TYPES:Record<string,string> = {stele_creation:'立碑',excavation:'出土',transfer:'原石移藏',collection:'典藏',person_activity:'人物活动',historical_context:'史事 / 标签'};
+const sceneFor = (_e:HistoricalEvent) => '/assets/gis/timeline-shanshui-concept.png';
+const SourceLink = ({url,children}:{url?:string;children:React.ReactNode}) => url ? <a href={url} target="_blank" rel="noopener noreferrer">{children}<ExternalLink size={12}/></a> : <span>{children}</span>;
 
-interface GraphPageProps {
-  stele: SteleItem;
-  onNavigate: (tab: string) => void;
-}
+interface Props {stele:SteleItem;onNavigate:(tab:string)=>void;onSelectStele:(id:string)=>void}
+export const GraphPage:React.FC<Props> = ({stele,onSelectStele}) => {
+  const [data,setData]=useState<HistoryDataset|null>(null);
+  const [error,setError]=useState('');
+  const [selection,setSelection]=useState<Selection>({kind:'node',id:resolveCoreId(stele.id)||stele.id});
+  const [tab,setTab]=useState('文物影像');
+  const [mode,setMode]=useState('全国视图');
+  const [command,setCommand]=useState<MapCommand>({kind:'national',serial:0});
+  const [category,setCategory]=useState('all');
+  const [query,setQuery]=useState('');
+  const [labels,setLabels]=useState(true);
+  const [boundaries,setBoundaries]=useState(true);
+  const [rivers,setRivers]=useState(true);
+  const [lines,setLines]=useState(false);
+  const [effects,setEffects]=useState(true);
+  const [layersOpen,setLayersOpen]=useState(false);
+  const [reset,setReset]=useState(0);
+  const [playing,setPlaying]=useState(false);
+  const [speed,setSpeed]=useState(1);
+  const [eventIndex,setEventIndex]=useState(-1);
+  const [range,setRange]=useState<[number,number]>([0,9999]);
+  const [era,setEra]=useState('');
+  const [calendar,setCalendar]=useState<Awaited<ReturnType<typeof convertYear>>|null>(null);
+  const [calendarError,setCalendarError]=useState('');
+  const [calendarBusy,setCalendarBusy]=useState(false);
+  const canonical=resolveCoreId(stele.id)||stele.id;
+  const identityRef=useRef(canonical);identityRef.current=canonical;
 
-export const GraphPage: React.FC<GraphPageProps> = ({ stele, onNavigate }) => {
-  const chartRef = useRef<HTMLDivElement>(null);
-  const chartInstance = useRef<echarts.ECharts | null>(null);
-
-  const [nodes, setNodes] = useState<GraphNode[]>([]);
-  const [links, setLinks] = useState<GraphLink[]>([]);
-  const [gisRoute, setGisRoute] = useState<GISWaypoint[]>([]);
-  const [selectedNode, setSelectedNode] = useState<GraphNode | null>(null);
-  const [selectedWaypoint, setSelectedWaypoint] = useState<number>(0);
-
-  // Ganzhi Calculator State
-  const [inputEra, setInputEra] = useState<string>('唐天宝十一载');
-  const [ganzhiResult, setGanzhiResult] = useState({
-    year: '公元 752 年',
-    ganzhi: '壬辰年 (水龙)',
-    zodiac: '属龙',
-    eraDesc: '唐玄宗李隆基天宝盛世，四海丰稔。是年楚金禅师建多宝塔，颜真卿书碑。'
-  });
-
-  // Calculate Ganzhi
-  const handleCalculateGanzhi = (eraText: string) => {
-    setInputEra(eraText);
-    if (eraText.includes('天宝十一') || eraText.includes('752')) {
-      setGanzhiResult({
-        year: '公元 752 年',
-        ganzhi: '壬辰年',
-        zodiac: '肖龙',
-        eraDesc: '唐玄宗李隆基天宝盛世，四海丰稔。是年楚金禅师建多宝塔，颜真卿书碑。'
-      });
-    } else if (eraText.includes('中平二') || eraText.includes('185')) {
-      setGanzhiResult({
-        year: '公元 185 年',
-        ganzhi: '乙丑年',
-        zodiac: '肖牛',
-        eraDesc: '东汉汉灵帝中平二年，黄巾余部掠界，郃阳令曹全平乱抚民，勒石纪功。'
-      });
-    } else if (eraText.includes('熙平二') || eraText.includes('517')) {
-      setGanzhiResult({
-        year: '公元 517 年',
-        ganzhi: '丁酉年',
-        zodiac: '肖鸡',
-        eraDesc: '北魏孝明帝熙平二年，胡太后临朝称制，洛阳宗室元怀薨逝归葬邙山。'
-      });
-    } else if (eraText.includes('建义元') || eraText.includes('528')) {
-      setGanzhiResult({
-        year: '公元 528 年',
-        ganzhi: '戊申年',
-        zodiac: '肖猴',
-        eraDesc: '北魏孝庄帝建义元年，尔朱荣掀起河阴之变，南北朝政局巨变，残碑存纪。'
-      });
-    } else {
-      setGanzhiResult({
-        year: '唐乾元元年 (758)',
-        ganzhi: '戊戌年',
-        zodiac: '肖狗',
-        eraDesc: '安史之乱爆发后颜真卿起兵平原，肃宗即位改元。'
-      });
-    }
+  useEffect(()=>{
+    let active=true;setError('');setPlaying(false);setEventIndex(-1);setQuery('');setTab('文物影像');setCalendar(null);setCalendarError('');
+    loadHistory(canonical).then(d=>{
+      if(!active)return;setData(d);setSelection({kind:'node',id:d.steleId});setEra(d.eraName);setCategory('all');
+      const years=d.events.flatMap(e=>e.yearCE===null?[]:[e.yearCE]);setRange([Math.min(...years,d.yearCE||9999),Math.max(...years,d.yearCE||0)]);
+      setCommand(c=>({kind:c.serial===0?'national':'focus',serial:c.serial+1}));
+      if(d.yearCE!==null)convertYear(d.eraName).then(result=>{if(active)setCalendar(result);}).catch(()=>{if(active)setCalendarError('纪年服务暂不可用');});
+    }).catch(()=>{if(active){setData(null);setError('图谱资料未能加载，请重新选择碑刻。');}});
+    return ()=>{active=false;};
+  },[canonical]);
+  const events=useMemo(()=>data?.events.filter(e=>e.yearCE===null||e.yearCE>=range[0]&&e.yearCE<=range[1]).sort((a,b)=>(a.yearCE??99999)-(b.yearCE??99999))||[],[data,range]);
+  const selectedNode=data?.nodes.find(n=>selection.kind==='node'&&n.id===selection.id);
+  const selectedPlace=data?.locations.find(p=>selection.kind==='place'&&p.id===selection.id);
+  const selectedEvent=data?.events.find(e=>selection.kind==='event'&&e.id===selection.id);
+  const selectedIds=useMemo(()=>selectedNode?.locationIds||(selectedPlace?[selectedPlace.id]:selectedEvent?.locationId?[selectedEvent.locationId]:[]),[selectedNode,selectedPlace,selectedEvent]);
+  const highlightedPlaces=useMemo(()=>data?selectedIds.map(id=>{const p=data.locations.find(l=>l.id===id);return p?.longitude===null?p.regionLocationId||id:id;}):[],[selectedIds,data]);
+  const selectedTitle=selectedNode?.name||selectedPlace?.name||selectedEvent?.title||data?.formalName||'';
+  const selectedDescription=selectedNode?.desc||selectedPlace?.note||selectedEvent?.description||data?.identity||'';
+  const selectedSource=selectedNode?.sourceUrl||selectedPlace?.sourceUrl||selectedEvent?.sourceUrl;
+  const searchResults=data?.locations.filter(p=>`${p.name}${p.modernName}`.includes(query))||[];
+  const visibleNodes=data?.nodes.filter(n=>category==='all'||n.category===category||n.category==='stele')||[];
+  const visibleNodeIds=new Set(visibleNodes.map(n=>n.id));
+  const visibleLinks=data?.links.filter(l=>visibleNodeIds.has(l.source)&&visibleNodeIds.has(l.target))||[];
+  const issueCommand=(kind:MapCommand['kind'],placeId?:string,zoom?:number)=>setCommand(c=>({kind,placeId,zoom,serial:c.serial+1}));
+  const selectPlace=(id:string,zoom?:number)=>{setPlaying(false);setSelection({kind:'place',id});setTab('地理关联');issueCommand('place',id,zoom);};
+  const selectNode=(id:string)=>{setPlaying(false);setSelection({kind:'node',id});setTab(id===data?.steleId?'文物影像':'人物关系');const n=data?.nodes.find(n=>n.id===id);if(n?.category==='stele')issueCommand('focus');else if(n?.locationIds.length)setCommand(c=>({kind:'focus',locationIds:n.locationIds,serial:c.serial+1}));};
+  const selectEvent=(event:HistoricalEvent,index:number)=>{setSelection({kind:'event',id:event.id});setEventIndex(index);setTab('基础信息');if(event.locationId)issueCommand('place',event.locationId);};
+  useEffect(()=>{
+    if(!playing||!events.length)return;
+    const timer=window.setTimeout(()=>{
+      const next=eventIndex+1;
+      if(next>=events.length){setPlaying(false);return;}
+      selectEvent(events[next],next);
+    },2500/speed);
+    return ()=>window.clearTimeout(timer);
+  },[playing,eventIndex,speed,events]);
+  useEffect(()=>{setPlaying(false);setEventIndex(-1);},[range]);
+  const calculate=async()=>{
+    const current=canonical;setCalendarBusy(true);setCalendarError('');
+    try {const result=await convertYear(era);if(identityRef.current===current)setCalendar(result);}
+    catch {if(identityRef.current===current){setCalendar(null);setCalendarError('纪年服务暂不可用，请确认后端连接。');}}
+    finally {setCalendarBusy(false);}
   };
-
-  // Fetch Graph Data
-  useEffect(() => {
-    let isMounted = true;
-    SteleService.getGraph(stele.id).then((data) => {
-      if (isMounted) {
-        setNodes(data.nodes);
-        setLinks(data.links);
-        setGisRoute(data.gis_route);
-        if (data.nodes.length > 0) {
-          setSelectedNode(data.nodes[1] || data.nodes[0]); // default to Yan Zhenqing
-        }
-      }
-    });
-    return () => { isMounted = false; };
-  }, [stele.id]);
-
-  // Render ECharts Graph
-  useEffect(() => {
-    if (!chartRef.current || nodes.length === 0) return;
-
-    if (!chartInstance.current) {
-      chartInstance.current = echarts.init(chartRef.current);
-    }
-
-    const chart = chartInstance.current;
-
-    // Node Categories & Colors: Song dynasty quad-colors
-    const categoryColors = {
-      stele: '#C83C23',    // Cinnabar
-      person: '#D4AF37',   // Gold
-      place: '#3E8E7E',    // Celadon
-      office: '#A68524',   // Dark Gold
-      script: '#62C0AC'    // Celadon light
-    };
-
-    const echartsNodes = nodes.map((n) => {
-      const isCore = n.category === 'stele';
-      const color = categoryColors[n.category] || '#D4AF37';
-
-      return {
-        id: n.id,
-        name: n.name,
-        value: n.value,
-        symbolSize: n.symbolSize || (isCore ? 64 : 48),
-        itemStyle: {
-          color: color,
-          borderColor: isCore ? '#FAF6EE' : '#D4AF37',
-          borderWidth: isCore ? 3 : 1.5,
-          shadowBlur: 15,
-          shadowColor: color,
-        },
-        label: {
-          show: true,
-          position: 'bottom' as const,
-          formatter: '{b}',
-          color: '#FAF6EE',
-          fontSize: isCore ? 14 : 12,
-          fontWeight: (isCore ? 'bold' : 'normal') as any,
-          fontFamily: 'serif',
-          textBorderColor: '#0A0D12',
-          textBorderWidth: 3,
-        },
-        raw: n
-      };
-    });
-
-    const echartsLinks = links.map((l) => ({
-      source: l.source,
-      target: l.target,
-      label: {
-        show: true,
-        formatter: l.relation,
-        fontSize: 10,
-        color: '#D4AF37',
-        fontFamily: 'serif',
-        textBorderColor: '#0A0D12',
-        textBorderWidth: 2,
-      },
-      lineStyle: {
-        color: 'rgba(212, 175, 55, 0.45)',
-        width: 1.8,
-        curveness: 0.12,
-      }
-    }));
-
-    const option: echarts.EChartsOption = {
-      backgroundColor: 'transparent',
-      tooltip: {
-        trigger: 'item',
-        backgroundColor: 'rgba(21, 28, 32, 0.95)',
-        borderColor: '#D4AF37',
-        borderWidth: 1,
-        textStyle: { color: '#FAF6EE', fontFamily: 'serif', fontSize: 12 },
-        formatter: (params: any) => {
-          if (params.dataType === 'node') {
-            const data = params.data.raw;
-            return `<b>${data.name}</b><br/><span style="color:#D4AF37">${data.desc || ''}</span>`;
-          } else {
-            return `关系: ${params.data.label.formatter}`;
-          }
-        }
-      },
-      series: [
-        {
-          type: 'graph',
-          layout: 'force',
-          data: echartsNodes,
-          links: echartsLinks,
-          roam: true,
-          label: {
-            show: true,
-          },
-          force: {
-            repulsion: 550,
-            edgeLength: [120, 200],
-            gravity: 0.08,
-            friction: 0.85,
-          },
-          emphasis: {
-            focus: 'adjacency',
-            lineStyle: {
-              width: 3.5,
-              color: '#F5D46E'
-            }
-          }
-        }
-      ]
-    };
-
-    chart.setOption(option);
-
-    chart.on('click', (params: any) => {
-      if (params.dataType === 'node') {
-        setSelectedNode(params.data.raw);
-      }
-    });
-
-    const handleResize = () => chart.resize();
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [nodes, links]);
-
-  return (
-    <div className="min-h-[calc(100vh-68px)] bg-[#0A0D12] text-slate-100 p-4 lg:p-6 flex flex-col space-y-6">
-      {/* Top Banner */}
-      <div className="flex flex-wrap items-center justify-between gap-4 px-2">
-        <div className="flex items-center space-x-3">
-          <div className="w-9 h-9 rounded-xl bg-celadon/20 border border-celadon/40 flex items-center justify-center text-celadon">
-            <Network className="w-5 h-5" />
-          </div>
-          <div>
-            <h2 className="text-xl font-serif font-bold text-white tracking-wide flex items-center gap-2">
-              <span>{stele.title} · 金石时空知识图谱与 GIS 舆图</span>
-            </h2>
-            <p className="text-xs text-slate-400 font-sans mt-0.5">
-              GraphRAG 实体网络 · 人物谱系 · 官制职阶 · 历法岁次换算 · 地理沿革互勘
-            </p>
-          </div>
+  const restore=()=>{setPlaying(false);setSpeed(1);setSelection({kind:'node',id:data!.steleId});setTab('文物影像');setCategory('all');setQuery('');setEventIndex(-1);setLabels(true);setBoundaries(true);setRivers(true);setLines(false);setEffects(true);setLayersOpen(false);setMode('全国视图');setReset(n=>n+1);setRange([Math.min(...data!.events.map(e=>e.yearCE??9999),data!.yearCE??9999),Math.max(...data!.events.map(e=>e.yearCE??0),data!.yearCE??0)]);setEra(data!.eraName);convertYear(data!.eraName).then(setCalendar).catch(()=>setCalendarError('纪年服务暂不可用'));issueCommand('national');};
+  const currentData=data?.steleId===canonical?data:null;
+  return <div className="graph-page">
+    <div className="graph-heading"><div className="heading-emblem"><Network size={28}/></div><div><h1>{currentData?.formalName||stele.title} · 金石时空知识图谱与 GIS 舆图</h1><p>GraphRAG 实体网络 · 人物谱系 · 现代地理底图 · 历史地望互勘</p></div><span className="heading-seal">金石<br/>合参</span></div>
+    <div className="core-stele-selector" aria-label="核心测试碑拓选择">{CORE_STELES.map(c=><button key={c.id} data-testid={`stele-${c.id}`} aria-pressed={canonical===c.id} onClick={()=>onSelectStele(c.recordId)}><span>{c.label.split('·')[0]}</span>{c.label.split('·')[1]}{c.id==='wei-jianyi'&&<small>身份待核</small>}</button>)}</div>
+    {error?<div role="alert" className="graph-load">{error}</div>:!data?<div role="status" className="graph-load">正在载入碑刻史料与地望…</div>:<>
+    <div className={`explorer-grid ${!currentData?'is-loading':''}`} aria-busy={!currentData}>
+      <section className="explorer-panel" aria-label="地图与知识网络">
+        <div className="mode-bar">{['全国视图','碑刻地理','人物关系','历史轨迹','地图与图谱联动'].map(m=><button key={m} aria-pressed={mode===m} onClick={()=>{setMode(m);if(m==='全国视图')issueCommand('national');if(m==='碑刻地理'||m==='历史轨迹')issueCommand('focus');}}>{m}</button>)}</div>
+        <div className="explorer-tools"><div className="place-search"><Search size={15}/><input aria-label="检索历史地名" value={query} onChange={e=>setQuery(e.target.value)} placeholder="检索历史地名 / 现代地名" onKeyDown={e=>{if(e.key==='Enter'&&searchResults[0])selectPlace(searchResults[0].id);}}/></div><button onClick={()=>issueCommand('focus')} title="定位碑刻关联范围"><LocateFixed size={15}/>自动定位</button><button onClick={()=>setLayersOpen(!layersOpen)} aria-expanded={layersOpen}><Layers size={15}/>图层</button><button onClick={restore} title="恢复所有默认状态"><RotateCcw size={15}/><span>重置</span></button></div>
+        {query&&<div className="search-results" role="listbox" aria-label="地名检索结果">{searchResults.length?searchResults.map(p=><button key={p.id} role="option" aria-selected={selectedIds.includes(p.id)} onClick={()=>{selectPlace(p.id);setQuery('');}}>{p.name}<small>{PRECISION[p.precision]}</small></button>):<p>未找到此碑刻的关联地名</p>}</div>}
+        {layersOpen&&<div className="layer-controls">{[['地点标签',labels,setLabels],['现代省界与国界',boundaries,setBoundaries],['真实主要水系',rivers,setRivers],['历史关联虚线',lines,setLines],['节点光晕与地形阴影',effects,setEffects]].map(([name,checked,set])=><label key={String(name)}><input type="checkbox" checked={Boolean(checked)} onChange={e=>(set as React.Dispatch<React.SetStateAction<boolean>>)(e.target.checked)}/>{String(name)}</label>)}</div>}
+        <div className={`explorer-stage ${mode==='地图与图谱联动'?'linked':''}`}>
+          <div className="map-region" style={{display:mode==='人物关系'?'none':'block'}}><Suspense fallback={<div className="graph-load">正在载入 GIS 引擎…</div>}><HistoricalMap data={data} command={command} selectedIds={highlightedPlaces} labels={labels} boundaries={boundaries} rivers={rivers} lines={lines} effects={effects} onSelect={selectPlace}/></Suspense></div>
+          {(mode==='人物关系'||mode==='地图与图谱联动')&&<div className="network-region"><Suspense fallback={<div className="graph-load">正在载入人物关系…</div>}><KnowledgeNetwork data={data} selectedId={selection.id} category={category} reset={reset} onSelect={selectNode}/></Suspense></div>}
+          <button className="national-return" onClick={()=>{if(mode==='人物关系')setMode('全国视图');issueCommand('national');}}>返回全国视图</button>
+          {mode==='人物关系'||mode==='地图与图谱联动'?<div className="node-filter"><select aria-label="筛选图谱节点" value={category} onChange={e=>setCategory(e.target.value)}><option value="all">全部实体</option><option value="person">金石人物</option><option value="place">历史地望</option><option value="era">金石纪年</option><option value="document">文献载体</option></select><span>{visibleNodes.length} 节点 · {visibleLinks.length} 关系</span></div>:null}
         </div>
-
-        {/* Quick Dynasty Presets for Calendar */}
-        <div className="flex items-center space-x-1.5 text-xs font-serif">
-          <span className="text-slate-400 mr-1 flex items-center gap-1">
-            <Calendar className="w-3.5 h-3.5 text-gold" /> 纪年快选:
-          </span>
-          <button
-            onClick={() => handleCalculateGanzhi('唐天宝十一载')}
-            className="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 hover:text-gold border border-slate-700"
-          >
-            唐天宝十一载
-          </button>
-          <button
-            onClick={() => handleCalculateGanzhi('东汉中平二年')}
-            className="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 hover:text-gold border border-slate-700"
-          >
-            东汉中平二年
-          </button>
-          <button
-            onClick={() => handleCalculateGanzhi('北魏熙平二年')}
-            className="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 hover:text-gold border border-slate-700"
-          >
-            北魏熙平二年
-          </button>
-        </div>
-      </div>
-
-      {/* Main Grid: Graph + Side Converter (Height 540px) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
-        {/* Left ECharts Graph Canvas (Col 8) */}
-        <div className="lg:col-span-8 relative h-[540px] rounded-2xl overflow-hidden glass-panel border border-gold/30 bg-[#090C10] shadow-2xl flex flex-col">
-          {/* Background Antique Map */}
-          <div 
-            className="absolute inset-0 opacity-20 pointer-events-none bg-center bg-cover mix-blend-screen"
-            style={{ backgroundImage: `url('/assets/stele/backgrounds/bg_graph_antique_map.png')` }}
-          />
-
-          {/* Graph Title & Legend */}
-          <div className="absolute top-3.5 left-4 z-10 flex items-center space-x-3 pointer-events-none">
-            <div className="px-3 py-1 rounded-full bg-slate-900/80 border border-gold/30 text-xs font-serif text-gold-light backdrop-blur-md">
-              GraphRAG 知识图谱 · 排斥力 550 · 碰撞检测
-            </div>
-            <div className="hidden sm:flex items-center space-x-2 text-[11px] text-slate-300 bg-slate-900/80 px-2.5 py-1 rounded-full border border-slate-800">
-              <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-cinnabar" /> 核心碑石</span>
-              <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-gold" /> 金石人物</span>
-              <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-celadon" /> 历史地望</span>
-              <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-amber-600" /> 职官书体</span>
-            </div>
+        <div className="map-provenance"><SourceLink url="https://github.com/MisterChangRay/geodeparse">天地图行政区划镜像 · 上游声明 GS(2024)0650 · MIT</SourceLink><SourceLink url="https://www.naturalearthdata.com/about/terms-of-use/">水系 Natural Earth · 公有领域</SourceLink><SourceLink url="/assets/gis/terrain/ATTRIBUTION.md">地形 Mapzen · USGS / NOAA 等</SourceLink><span>现代省界；古址精度另注。应用未单独审图。</span></div>
+        {lines&&<p className="association-note">泥金虚线：原石起讫关联；青绿点线：人物关联地。均不代表已考证的行进路线。</p>}
+      </section>
+      <aside className="research-sidebar">
+        <section className="research-panel"><header><UserRound size={20}/><h2>实体考据详录</h2><span>{selection.kind==='event'?'EVENT':selection.kind==='place'?'PLACE':selectedNode?.category.toUpperCase()||'STELE'}</span></header>
+          <div className="research-tabs" role="tablist" aria-label="考据资料">{TABS.map(t=><button key={t} role="tab" aria-selected={tab===t} onClick={()=>setTab(t)}>{t}</button>)}</div>
+          <div className="research-content" role="tabpanel">
+            <div className="selected-entity"><span className="entity-seal">{selection.kind==='place'?'地':selection.kind==='event'?'纪':selectedNode?.category==='person'?'人':'碑'}</span><div><h3>{selectedTitle}</h3><p>{selectedPlace?PRECISION[selectedPlace.precision]:selectedEvent?selectedEvent.eraName:data.eraName} {data.offline&&'· 本地离线史料'}</p></div></div>
+            {tab==='文物影像'&&<><div className="artifact-archive"><a href={data.image} target="_blank" rel="noopener noreferrer"><img src={data.image} alt={`${data.formalName} — ${data.imageStatus}`} loading="lazy"/></a><dl><dt>正式名称</dt><dd>{data.formalName}</dd><dt>原刻 / 标签</dt><dd>{data.eraName}（{data.yearCE??'待考'}）</dd><dt>书体</dt><dd>{data.script}</dd><dt>原石保存</dt><dd>{data.originalStoneCollection}</dd><dt>数字拓本</dt><dd>{data.digitalRubbingCollection}</dd><dt>典藏号</dt><dd>{data.collectionNumber}</dd></dl></div><p className="image-caption">{data.imageStatus}{data.imageStatus.startsWith('真实')&&' · 国立故宫博物院，台北，CC BY 4.0'}</p><SourceLink url={data.image}>查看图像原文件</SourceLink></>}
+            {tab==='基础信息'&&<><dl className="detail-list"><dt>原刻纪年 / 测试标签</dt><dd>{data.eraName} · {data.yearCE??'待考'}年</dd><dt>拓本年代</dt><dd>{data.rubbingPeriod}</dd><dt>撰文 / 书丹 / 碑主</dt><dd>{data.authors.join('；')||'尚未核验，不生成通用人物'}</dd><dt>原石保存地</dt><dd>{data.originalStoneCollection}</dd><dt>数字拓本馆藏</dt><dd>{data.digitalRubbingCollection}</dd></dl>{selectedEvent&&<div className="event-detail"><strong>{EVENT_TYPES[selectedEvent.eventType]}</strong><p>{selectedEvent.verification==='confirmed'?'有据':selectedEvent.verification==='approximate'?'区间 / 约略':'身份待核'}</p><p>{selectedEvent.description}</p></div>}</>}
+            {tab==='人物关系'&&<div className="entity-list">{data.nodes.filter(n=>n.category==='person'||n.id===selection.id).map(n=><button key={n.id} className={selection.id===n.id?'active':''} onClick={()=>selectNode(n.id)}><UserRound size={15}/><span><b>{n.name}</b><small>{n.desc}</small></span></button>)}{!data.nodes.some(n=>n.category==='person')&&<p>没有已核实人物关系；身份待核样本不补造人物。</p>}{data.links.filter(l=>l.source===selection.id||l.target===selection.id).map(l=><p key={`${l.source}-${l.target}`} className="relation-evidence">{data.nodes.find(n=>n.id===l.source)?.name} → {l.relation} → {data.nodes.find(n=>n.id===l.target)?.name}<SourceLink url={l.sourceUrl}>关系证据</SourceLink></p>)}</div>}
+            {tab==='地理关联'&&<><div className="entity-list">{data.locations.map(p=><button key={p.id} className={selectedIds.includes(p.id)?'active':''} onClick={()=>selectPlace(p.id)}><MapPin size={15}/><span><b>{p.name}</b><small>{p.modernName} · {PRECISION[p.precision]}</small></span></button>)}{!data.locations.length&&<p>暂无已核实地理点；地图不设置默认西安坐标。</p>}</div>{selectedPlace&&<div className="coordinate-detail"><p>{selectedPlace.longitude===null?'经纬度未核实；仅文字记录':`WGS84 [${selectedPlace.longitude}, ${selectedPlace.latitude}]`}</p><p>{selectedPlace.coordinateMethod}</p><p>{selectedPlace.note}</p><SourceLink url={selectedPlace.coordinateSourceUrl||undefined}>坐标数据来源</SourceLink></div>}</>}
+            {tab==='史料来源'&&<div className="source-list">{data.sources.filter(s=>data.sourceIds.includes(s.id)||selectedIds.some(id=>data.locations.find(l=>l.id===id)?.sourceId===s.id)).map(s=><div key={s.id}><SourceLink url={s.url}>{s.title}</SourceLink><p>{s.institution} · {s.status==='confirmed'?'已核验':'待核 / 约略'}</p><small>{s.notes}</small></div>)}</div>}
+            <div className="entity-evidence"><p>{selectedDescription}</p><SourceLink url={selectedSource}>查看本实体史料</SourceLink></div>
           </div>
-
-          {/* ECharts DOM Container */}
-          <div ref={chartRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
-        </div>
-
-        {/* Right Info & Ganzhi Converter (Col 4) */}
-        <div className="lg:col-span-4 flex flex-col space-y-4">
-          {/* Selected Node Details Card */}
-          <div className="glass-panel p-5 rounded-2xl border border-gold/30 bg-gradient-to-b from-[#151D24] to-[#0D1217] shadow-xl">
-            <div className="flex items-center justify-between border-b border-gold/15 pb-2.5 mb-3">
-              <div className="flex items-center space-x-2">
-                <User className="w-4 h-4 text-gold" />
-                <h3 className="font-serif font-bold text-sm text-gold-light">
-                  实体考据详录
-                </h3>
-              </div>
-              <span className="text-[10px] font-mono text-celadon-light px-2 py-0.5 rounded bg-celadon/15 border border-celadon/30">
-                {selectedNode ? selectedNode.category.toUpperCase() : 'ENTITY'}
-              </span>
-            </div>
-
-            {selectedNode ? (
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3.5">
-                  {selectedNode.portrait ? (
-                    <img 
-                      src={selectedNode.portrait} 
-                      alt={selectedNode.name} 
-                      className="w-14 h-14 rounded-xl object-cover border-2 border-gold/50 shadow-gold-glow"
-                    />
-                  ) : (
-                    <div className="w-14 h-14 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center font-serif text-xl font-bold text-gold">
-                      {selectedNode.name.charAt(0)}
-                    </div>
-                  )}
-
-                  <div>
-                    <h4 className="font-serif font-bold text-lg text-white">
-                      {selectedNode.name}
-                    </h4>
-                    <p className="text-xs text-slate-400 font-sans mt-0.5">
-                      图谱节点权重: <span className="font-mono text-gold-light font-bold">{selectedNode.value}</span>
-                    </p>
-                  </div>
-                </div>
-
-                <p className="text-xs text-slate-300 leading-relaxed font-sans bg-slate-950/50 p-3 rounded-xl border border-slate-800">
-                  {selectedNode.desc || '该实体与本通碑拓在书丹撰文、刊石营建、佛法传承或地理沿革上存在强关联。'}
-                </p>
-
-                {/* Related Links in Graph */}
-                <div className="text-[11px] text-slate-400 font-serif">
-                  <span className="text-gold/90">关联拓扑路径:</span>
-                  <div className="flex flex-wrap gap-1.5 mt-1.5">
-                    {links
-                      .filter(l => l.source === selectedNode.id || l.target === selectedNode.id)
-                      .map((l, idx) => (
-                        <span key={idx} className="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700 text-[10px]">
-                          {l.source} ➔ {l.relation} ➔ {l.target}
-                        </span>
-                      ))}
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className="py-8 text-center text-slate-400 text-xs font-serif">
-                在左侧图谱中点击任意节点查看人物画像与文献著录
-              </div>
-            )}
-          </div>
-
-          {/* Ganzhi Calendar Converter */}
-          <div className="glass-panel p-5 rounded-2xl border border-gold/30 bg-gradient-to-b from-[#151D24] to-[#0D1217] shadow-xl flex-1 flex flex-col justify-between">
-            <div>
-              <div className="flex items-center justify-between border-b border-gold/15 pb-2.5 mb-3">
-                <div className="flex items-center space-x-2">
-                  <Compass className="w-4 h-4 text-cinnabar" />
-                  <h3 className="font-serif font-bold text-sm text-gold-light">
-                    干支历法与金石纪年换算器
-                  </h3>
-                </div>
-                <span className="text-[10px] font-sans text-slate-400">正史正朔对齐</span>
-              </div>
-
-              {/* Input */}
-              <div className="flex items-center space-x-2 mb-3">
-                <input
-                  type="text"
-                  value={inputEra}
-                  onChange={(e) => setInputEra(e.target.value)}
-                  placeholder="输入年号，例如：唐天宝十一载"
-                  className="flex-1 bg-slate-950 border border-slate-700 focus:border-gold rounded-lg px-3 py-1.5 text-xs text-slate-200 outline-none"
-                />
-                <button
-                  onClick={() => handleCalculateGanzhi(inputEra)}
-                  className="px-3 py-1.5 rounded-lg bg-gold text-slate-950 font-serif font-bold text-xs hover:brightness-110 active:scale-95"
-                >
-                  换算
-                </button>
-              </div>
-
-              {/* Result Grid */}
-              <div className="grid grid-cols-2 gap-2 text-xs mb-3">
-                <div className="p-2 rounded-lg bg-slate-950/60 border border-slate-800">
-                  <span className="text-[10px] text-slate-400 font-serif">公历纪元:</span>
-                  <div className="font-mono font-bold text-gold-light text-sm mt-0.5">{ganzhiResult.year}</div>
-                </div>
-                <div className="p-2 rounded-lg bg-slate-950/60 border border-slate-800">
-                  <span className="text-[10px] text-slate-400 font-serif">干支生肖:</span>
-                  <div className="font-serif font-bold text-cinnabar-light text-sm mt-0.5">{ganzhiResult.ganzhi} ({ganzhiResult.zodiac})</div>
-                </div>
-              </div>
-
-              <p className="text-[11px] text-slate-300 leading-relaxed font-sans bg-slate-950/40 p-2.5 rounded-lg border border-slate-800">
-                {ganzhiResult.eraDesc}
-              </p>
-            </div>
-
-            <div className="pt-2 text-[10px] text-slate-500 font-serif flex items-center justify-between">
-              <span>基于二十四史正史帝王本纪校核</span>
-              <span className="text-gold">史历合参</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Spatio-temporal GIS Timeline Journey (Bottom Full Width) */}
-      <div className="glass-panel p-5 rounded-2xl border border-gold/30 bg-[#0C1014] shadow-2xl space-y-4">
-        <div className="flex items-center justify-between border-b border-gold/15 pb-2.5">
-          <div className="flex items-center space-x-2">
-            <MapPin className="w-4 h-4 text-celadon" />
-            <h3 className="font-serif font-bold text-sm text-gold-light">
-              金石行旅与历史 GIS 时空轨迹
-            </h3>
-          </div>
-          <span className="text-xs font-sans text-slate-400">
-            从唐代长安千福寺立石，到宋代迁入京兆府学孔庙（今西安碑林）
-          </span>
-        </div>
-
-        {/* Timeline Stages Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          {gisRoute.map((wp, idx) => (
-            <div
-              key={idx}
-              onClick={() => setSelectedWaypoint(idx)}
-              className={`p-3.5 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${
-                selectedWaypoint === idx
-                  ? 'bg-gold/15 border-gold shadow-gold-glow'
-                  : 'bg-slate-950/50 border-slate-800 hover:border-slate-700'
-              }`}
-            >
-              <div className="space-y-2">
-                {wp.image && (
-                  <div className="h-28 w-full rounded-lg overflow-hidden border border-slate-700">
-                    <img src={wp.image} alt={wp.name} className="w-full h-full object-cover" />
-                  </div>
-                )}
-                <div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono text-celadon-light font-bold">
-                      STAGE 0{idx + 1}
-                    </span>
-                    <span className="text-[10px] text-slate-400 font-mono">
-                      {wp.coords[0].toFixed(2)}°E, {wp.coords[1].toFixed(2)}°N
-                    </span>
-                  </div>
-                  <h4 className="font-serif font-bold text-sm text-white mt-1">
-                    {wp.name}
-                  </h4>
-                  <p className="text-[11px] text-gold-light font-serif mt-0.5">
-                    {wp.year}
-                  </p>
-                </div>
-                <p className="text-xs text-slate-300 leading-relaxed font-sans line-clamp-2">
-                  {wp.event}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+        </section>
+        <section className="calendar-panel" data-testid="calendar"><header><CalendarDays size={18}/><h2>干支历法与金石纪年换算器</h2></header><form onSubmit={e=>{e.preventDefault();calculate();}}><input aria-label="纪年输入" value={era} onChange={e=>setEra(e.target.value)} placeholder="年号与年次 / 公元年份"/><button disabled={calendarBusy} type="submit">{calendarBusy?'换算中':'换算'}</button></form>{calendar?.supported?<div className="calendar-result"><span>公元 <b>{calendar.solar_year}</b> 年</span><span><b>{calendar.ganzhi}</b>年 · 肖{calendar.zodiac}</span></div>:<p className="unsupported" role="status">{calendarError||calendar?.message||'等待纪年换算'}</p>}<small>年度干支 · 支持天宝、中平、熙平、建义年次。<br/>不推算古代朔闰及具体公历月日。</small></section>
+      </aside>
     </div>
-  );
+    <section className="history-timeline" aria-label="历史GIS动态时间轴"><header><MapPin size={21}/><h2>金石行旅与历史 GIS 时空轨迹</h2><p>{data.steleId==='wei-jianyi'?'样本标签待考 · 不绘历史迁移':`${events.length} 条史料事件 · 原石流转与人物生平分开标记`}</p><select aria-label="轨迹播放速度" value={speed} onChange={e=>setSpeed(Number(e.target.value))}><option value={.5}>0.5×</option><option value={1}>1×</option><option value={2}>2×</option></select></header>
+      <div className="timeline-body"><div className="playback-controls"><button className="play-button" aria-label={playing?'暂停历史轨迹':'播放历史轨迹'} disabled={!events.length} onClick={()=>{if(!playing&&eventIndex>=events.length-1)setEventIndex(-1);setPlaying(!playing);}}>{playing?<Pause size={24}/>:<Play size={24}/>}</button><button aria-label="重新播放" onClick={()=>{setEventIndex(-1);setPlaying(true);}} disabled={!events.length}><SkipBack size={17}/></button></div><div className="timeline-track" style={{'--progress':eventIndex<0?0:(eventIndex+1)/Math.max(events.length,1)} as React.CSSProperties}>{events.map((e,index)=><article className={`timeline-event ${selection.id===e.id?'active':''} ${e.eventType==='person_activity'?'person-event':''}`} key={e.id}><button data-testid={`event-${e.id}`} onClick={()=>{setPlaying(false);selectEvent(e,index);}}><span className="timeline-dot"/><span className="event-year">{e.eraName}<b>{e.yearCE===null?'纪年待考':`${e.yearCE}年${e.verification==='approximate'?' 起（区间）':''}`}</b></span><span className="event-story"><span className="event-thumbnail" role="img" aria-label="山水建筑概念装饰（非历史建筑复原）" style={{backgroundImage: `url(${sceneFor(e)})`,backgroundPosition: `${[9,30,55,76,92][index%5]}% 92%`}}/><span><small>{EVENT_TYPES[e.eventType]} · {e.verification==='confirmed'?'有据':e.verification==='approximate'?'约略':'待核'}</small><strong>{e.title}</strong><span>{data.locations.find(p=>p.id===e.locationId)?.name||'地点未核 / 未定'}</span></span></span></button><SourceLink url={e.sourceUrl}>史料依据</SourceLink></article>)}</div></div>
+      <div className="timeline-footer"><span>场景缩略图为概念装饰；地名与事件以来源为据。</span>{data.events.length>1&&<div className="year-range"><label>时间范围<input aria-label="时间范围起年" type="number" value={range[0]} min={1} max={range[1]} onChange={e=>setRange([Math.min(Number(e.target.value),range[1]),range[1]])}/></label><span>至</span><input aria-label="时间范围止年" type="number" value={range[1]} min={range[0]} max={9999} onChange={e=>setRange([range[0],Math.max(Number(e.target.value),range[0])])}/></div>}</div>
+    </section>
+    <div className="graph-footnote"><BookOpen size={14}/><span>史料可追溯 · 位置精度公开 · 原石与拓本独立建档</span><span>{data.locations.filter(l=>l.longitude!==null).length} 个空间索引 / {data.locations.length} 条地点记录</span></div>
+    </>}
+  </div>;
 };

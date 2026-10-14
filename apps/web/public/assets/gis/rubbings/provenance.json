@@ -1,0 +1,14 @@
+[
+  {
+    "file": "duobao-leaf.jpg",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/33063?dep=P",
+    "attribution": "国立故宫博物院，台北，CC BY 4.0；现有真实册页，无AI改字",
+    "sha256": "390d6bdc9e4fb51d7c3459cd8eab7d0662bd2cf4aaa24da520b0f1aae644e3f1"
+  },
+  {
+    "file": "caoquan-rubbing.jpg",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+    "attribution": "国立故宫博物院，台北，CC BY 4.0；现有真实拓本，无AI改字",
+    "sha256": "5611e652a6e908113bf7076977973f2719cb57107f86900c34a5919f3d2bfbb1"
+  }
+]

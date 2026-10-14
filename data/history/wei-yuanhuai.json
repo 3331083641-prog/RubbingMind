@@ -1,0 +1,263 @@
+{
+  "steleId": "wei-yuanhuai",
+  "formalName": "北魏·广平王元怀墓志铭",
+  "eraName": "北魏熙平二年",
+  "yearCE": 517,
+  "script": "楷书 / 魏碑",
+  "image": "/assets/stele/rubbings/stele_wei_yuanhuai.png",
+  "imageStatus": "项目演示图·真拓来源链未核实",
+  "identity": "元怀史实可核；本地图片与馆藏编号待核，绝不沿用吴高黎记录",
+  "rubbingPeriod": "年代待考",
+  "collectionNumber": "未核实",
+  "originalStoneCollection": "待考",
+  "digitalRubbingCollection": "待考",
+  "authors": [
+    "元怀 · 字宣义，广平王"
+  ],
+  "sourceIds": [
+    "yuan-paper",
+    "local-audit"
+  ],
+  "locations": [
+    {
+      "id": "luoyang",
+      "name": "北魏洛阳地区",
+      "modernName": "河南洛阳市区域",
+      "longitude": 112.43,
+      "latitude": 34.72,
+      "coordinateSystem": "WGS84",
+      "precision": "regional",
+      "type": "historical_activity",
+      "sourceId": "yuan-paper",
+      "sourceUrl": "https://ygx.sxu.edu.cn/db/%E6%9C%9F%E5%88%8A/gdwm/gdwm2013/1304pdf/1304009.pdf",
+      "sourceTitle": "刘军：《魏书·广平王元怀传》补疑（2013）",
+      "verified": true,
+      "coordinateSourceUrl": "https://github.com/MisterChangRay/geodeparse/tree/dfb4ce2c1f7f48a5da5ad7842cbfbe1b2cd29757/geo",
+      "coordinateMethod": "CGCS2000行政面内部代表点，取两位小数，仅示地理范围",
+      "accuracyKm": null,
+      "province": "河南省",
+      "note": "仅城市级索引，非元怀墓葬或乘轩里精确定位。",
+      "regionLocationId": null
+    },
+    {
+      "id": "yuan-tomb",
+      "name": "元怀墓葬 / 出土地",
+      "modernName": "河南洛阳地区（具体村址待考）",
+      "longitude": null,
+      "latitude": null,
+      "coordinateSystem": "WGS84",
+      "precision": "unknown",
+      "type": "excavation_site",
+      "sourceId": "yuan-paper",
+      "sourceUrl": "https://ygx.sxu.edu.cn/db/%E6%9C%9F%E5%88%8A/gdwm/gdwm2013/1304pdf/1304009.pdf",
+      "sourceTitle": "刘军：《魏书·广平王元怀传》补疑（2013）",
+      "verified": false,
+      "coordinateSourceUrl": null,
+      "coordinateMethod": "无已核实坐标，不上图",
+      "accuracyKm": null,
+      "province": null,
+      "note": "村名及原石馆藏尚无一致可靠记录，保留空坐标。",
+      "regionLocationId": "luoyang"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "wei-yuanhuai",
+      "name": "元怀墓志",
+      "category": "stele",
+      "desc": "熙平二年（517）；原石馆藏与图像待核。",
+      "sourceIds": [
+        "yuan-paper"
+      ],
+      "sourceUrl": "https://ygx.sxu.edu.cn/db/%E6%9C%9F%E5%88%8A/gdwm/gdwm2013/1304pdf/1304009.pdf",
+      "locationIds": [
+        "luoyang"
+      ],
+      "value": 100,
+      "symbolSize": 72,
+      "verification": "confirmed"
+    },
+    {
+      "id": "yuanhuai",
+      "name": "元怀",
+      "category": "person",
+      "desc": "字宣义，广平王；墓志称第四子、史料校勘第五子，保留分歧。",
+      "sourceIds": [
+        "yuan-paper"
+      ],
+      "sourceUrl": "https://ygx.sxu.edu.cn/db/%E6%9C%9F%E5%88%8A/gdwm/gdwm2013/1304pdf/1304009.pdf",
+      "locationIds": [
+        "luoyang"
+      ],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "confirmed"
+    },
+    {
+      "id": "yuanhong",
+      "name": "孝文帝元宏",
+      "category": "person",
+      "desc": "元怀之父。",
+      "sourceIds": [
+        "yuan-paper"
+      ],
+      "sourceUrl": "https://ygx.sxu.edu.cn/db/%E6%9C%9F%E5%88%8A/gdwm/gdwm2013/1304pdf/1304009.pdf",
+      "locationIds": [],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "confirmed"
+    },
+    {
+      "id": "yuanke",
+      "name": "宣武帝元恪",
+      "category": "person",
+      "desc": "元怀的同母兄。",
+      "sourceIds": [
+        "yuan-paper"
+      ],
+      "sourceUrl": "https://ygx.sxu.edu.cn/db/%E6%9C%9F%E5%88%8A/gdwm/gdwm2013/1304pdf/1304009.pdf",
+      "locationIds": [
+        "luoyang"
+      ],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "confirmed"
+    },
+    {
+      "id": "gaozhao",
+      "name": "高照容",
+      "category": "person",
+      "desc": "元怀与元恪之母。",
+      "sourceIds": [
+        "yuan-paper"
+      ],
+      "sourceUrl": "https://ygx.sxu.edu.cn/db/%E6%9C%9F%E5%88%8A/gdwm/gdwm2013/1304pdf/1304009.pdf",
+      "locationIds": [],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "confirmed"
+    },
+    {
+      "id": "luoyang",
+      "name": "北魏洛阳地区",
+      "category": "place",
+      "desc": "仅城市级索引，非元怀墓葬或乘轩里精确定位。",
+      "sourceIds": [
+        "yuan-paper"
+      ],
+      "sourceUrl": "https://ygx.sxu.edu.cn/db/%E6%9C%9F%E5%88%8A/gdwm/gdwm2013/1304pdf/1304009.pdf",
+      "locationIds": [
+        "luoyang"
+      ],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "confirmed"
+    },
+    {
+      "id": "era-517",
+      "name": "熙平二年",
+      "category": "era",
+      "desc": "517年薨卒纪年，未转换具体公历月日。",
+      "sourceIds": [
+        "yuan-paper"
+      ],
+      "sourceUrl": "https://ygx.sxu.edu.cn/db/%E6%9C%9F%E5%88%8A/gdwm/gdwm2013/1304pdf/1304009.pdf",
+      "locationIds": [],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "confirmed"
+    }
+  ],
+  "links": [
+    {
+      "source": "wei-yuanhuai",
+      "target": "yuanhuai",
+      "relation": "墓主",
+      "sourceIds": [
+        "yuan-paper"
+      ],
+      "sourceUrl": "https://ygx.sxu.edu.cn/db/%E6%9C%9F%E5%88%8A/gdwm/gdwm2013/1304pdf/1304009.pdf",
+      "verification": "confirmed"
+    },
+    {
+      "source": "yuanhuai",
+      "target": "yuanhong",
+      "relation": "父子",
+      "sourceIds": [
+        "yuan-paper"
+      ],
+      "sourceUrl": "https://ygx.sxu.edu.cn/db/%E6%9C%9F%E5%88%8A/gdwm/gdwm2013/1304pdf/1304009.pdf",
+      "verification": "confirmed"
+    },
+    {
+      "source": "yuanhuai",
+      "target": "yuanke",
+      "relation": "同母兄弟",
+      "sourceIds": [
+        "yuan-paper"
+      ],
+      "sourceUrl": "https://ygx.sxu.edu.cn/db/%E6%9C%9F%E5%88%8A/gdwm/gdwm2013/1304pdf/1304009.pdf",
+      "verification": "confirmed"
+    },
+    {
+      "source": "yuanhuai",
+      "target": "gaozhao",
+      "relation": "母子",
+      "sourceIds": [
+        "yuan-paper"
+      ],
+      "sourceUrl": "https://ygx.sxu.edu.cn/db/%E6%9C%9F%E5%88%8A/gdwm/gdwm2013/1304pdf/1304009.pdf",
+      "verification": "confirmed"
+    },
+    {
+      "source": "yuanhuai",
+      "target": "luoyang",
+      "relation": "活动区域",
+      "sourceIds": [
+        "yuan-paper"
+      ],
+      "sourceUrl": "https://ygx.sxu.edu.cn/db/%E6%9C%9F%E5%88%8A/gdwm/gdwm2013/1304pdf/1304009.pdf",
+      "verification": "confirmed"
+    },
+    {
+      "source": "wei-yuanhuai",
+      "target": "era-517",
+      "relation": "墓志纪年",
+      "sourceIds": [
+        "yuan-paper"
+      ],
+      "sourceUrl": "https://ygx.sxu.edu.cn/db/%E6%9C%9F%E5%88%8A/gdwm/gdwm2013/1304pdf/1304009.pdf",
+      "verification": "confirmed"
+    }
+  ],
+  "events": [
+    {
+      "id": "yuan-497",
+      "steleId": "wei-yuanhuai",
+      "yearCE": 497,
+      "eraName": "北魏太和二十一年",
+      "title": "册封广平王",
+      "description": "据论文引魏书；地点仅洛阳区域索引。",
+      "locationId": "luoyang",
+      "eventType": "person_activity",
+      "sourceId": "yuan-paper",
+      "sourceUrl": "https://ygx.sxu.edu.cn/db/%E6%9C%9F%E5%88%8A/gdwm/gdwm2013/1304pdf/1304009.pdf",
+      "verification": "confirmed"
+    },
+    {
+      "id": "yuan-517",
+      "steleId": "wei-yuanhuai",
+      "yearCE": 517,
+      "eraName": "北魏熙平二年",
+      "title": "元怀薨卒 · 墓志纪年",
+      "description": "墓志记熙平二年三月廿六日；无可靠历法表，不虚构公历日期。",
+      "locationId": "luoyang",
+      "eventType": "historical_context",
+      "sourceId": "yuan-paper",
+      "sourceUrl": "https://ygx.sxu.edu.cn/db/%E6%9C%9F%E5%88%8A/gdwm/gdwm2013/1304pdf/1304009.pdf",
+      "verification": "confirmed"
+    }
+  ],
+  "routes": [],
+  "aliases": []
+}

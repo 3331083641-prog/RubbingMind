@@ -1,0 +1,344 @@
+{
+  "steleId": "tang-duobao",
+  "formalName": "唐·多宝塔感应碑",
+  "eraName": "唐天宝十一载",
+  "yearCE": 752,
+  "script": "楷书",
+  "image": "/assets/gis/rubbings/duobao-leaf.jpg",
+  "imageStatus": "真实馆藏拓本·赠拓000365册页",
+  "identity": "文物身份已核；图像为拓本，与原石分开记录",
+  "rubbingPeriod": "明拓（现馆方著录；旧摄影标签为时代不明）",
+  "collectionNumber": "赠拓000365（拓本）",
+  "originalStoneCollection": "西安碑林博物馆",
+  "digitalRubbingCollection": "台北故宫博物院（拓本）",
+  "authors": [
+    "岑勋 · 撰文",
+    "颜真卿 · 书丹",
+    "徐浩 · 题额",
+    "楚金 · 建塔活动"
+  ],
+  "sourceIds": [
+    "beilin-duobao",
+    "dpm-duobao",
+    "npm-duobao"
+  ],
+  "locations": [
+    {
+      "id": "qianfu",
+      "name": "唐长安千福寺",
+      "modernName": "西安西站西南一带（馆方描述）",
+      "longitude": null,
+      "latitude": null,
+      "coordinateSystem": "WGS84",
+      "precision": "unknown",
+      "type": "original_site",
+      "sourceId": "beilin-duobao",
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+      "sourceTitle": "西安碑林博物馆：多宝塔感应碑",
+      "verified": true,
+      "coordinateSourceUrl": null,
+      "coordinateMethod": "无已核实坐标，不上图",
+      "accuracyKm": null,
+      "province": "陕西省",
+      "note": "具体古址待考；文字记录，不将城市点称作寺址。",
+      "regionLocationId": "xian"
+    },
+    {
+      "id": "xian",
+      "name": "唐长安城地望",
+      "modernName": "陕西西安市区域",
+      "longitude": 108.93,
+      "latitude": 34.21,
+      "coordinateSystem": "WGS84",
+      "precision": "regional",
+      "type": "historical_activity",
+      "sourceId": "beilin-duobao",
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+      "sourceTitle": "西安碑林博物馆：多宝塔感应碑",
+      "verified": true,
+      "coordinateSourceUrl": "https://github.com/MisterChangRay/geodeparse/tree/dfb4ce2c1f7f48a5da5ad7842cbfbe1b2cd29757/geo",
+      "coordinateMethod": "CGCS2000行政面内部代表点，取两位小数，仅示地理范围",
+      "accuracyKm": null,
+      "province": "陕西省",
+      "note": "现代雁塔区面内部代表点作为西安区域索引，不代表唐城中心或千福寺。",
+      "regionLocationId": null
+    },
+    {
+      "id": "beilin",
+      "name": "西安碑林博物馆",
+      "modernName": "陕西西安·三学街15号",
+      "longitude": 108.948132,
+      "latitude": 34.254721,
+      "coordinateSystem": "WGS84",
+      "precision": "approximate",
+      "type": "current_collection",
+      "sourceId": "beilin-duobao",
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+      "sourceTitle": "西安碑林博物馆：多宝塔感应碑",
+      "verified": true,
+      "coordinateSourceUrl": "https://commons.wikimedia.org/wiki/File:Beilin_Museum_Map_(14185587169).jpg",
+      "coordinateMethod": "实地摄影地理标记；馆区近似",
+      "accuracyKm": null,
+      "province": "陕西省",
+      "note": "原石保存馆区，非拓本馆藏；摄影点并非展位。",
+      "regionLocationId": null
+    }
+  ],
+  "nodes": [
+    {
+      "id": "tang-duobao",
+      "name": "多宝塔碑",
+      "category": "stele",
+      "desc": "752年立；原石现藏西安碑林。",
+      "sourceIds": [
+        "beilin-duobao"
+      ],
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+      "locationIds": [
+        "qianfu",
+        "beilin"
+      ],
+      "value": 100,
+      "symbolSize": 72,
+      "verification": "confirmed"
+    },
+    {
+      "id": "yan",
+      "name": "颜真卿",
+      "category": "person",
+      "desc": "书丹者；不额外推断行旅路线。",
+      "sourceIds": [
+        "beilin-duobao"
+      ],
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+      "locationIds": [
+        "qianfu"
+      ],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "confirmed"
+    },
+    {
+      "id": "cen",
+      "name": "岑勋",
+      "category": "person",
+      "desc": "碑文撰者。",
+      "sourceIds": [
+        "beilin-duobao"
+      ],
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+      "locationIds": [
+        "qianfu"
+      ],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "confirmed"
+    },
+    {
+      "id": "xu",
+      "name": "徐浩",
+      "category": "person",
+      "desc": "题额者。",
+      "sourceIds": [
+        "beilin-duobao"
+      ],
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+      "locationIds": [
+        "qianfu"
+      ],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "confirmed"
+    },
+    {
+      "id": "chujin",
+      "name": "楚金禅师",
+      "category": "person",
+      "desc": "创建多宝塔相关活动。",
+      "sourceIds": [
+        "beilin-duobao"
+      ],
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+      "locationIds": [
+        "qianfu"
+      ],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "confirmed"
+    },
+    {
+      "id": "qianfu",
+      "name": "长安千福寺",
+      "category": "place",
+      "desc": "具体古址待考；文字记录，不将城市点称作寺址。",
+      "sourceIds": [
+        "beilin-duobao"
+      ],
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+      "locationIds": [
+        "qianfu"
+      ],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "confirmed"
+    },
+    {
+      "id": "beilin",
+      "name": "西安碑林",
+      "category": "place",
+      "desc": "原石保存馆区，非拓本馆藏；摄影点并非展位。",
+      "sourceIds": [
+        "beilin-duobao"
+      ],
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+      "locationIds": [
+        "beilin"
+      ],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "confirmed"
+    },
+    {
+      "id": "era-752",
+      "name": "天宝十一载",
+      "category": "era",
+      "desc": "对应公元752年。",
+      "sourceIds": [
+        "beilin-duobao"
+      ],
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+      "locationIds": [],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "confirmed"
+    },
+    {
+      "id": "rubbing-duobao",
+      "name": "明拓数字册页",
+      "category": "document",
+      "desc": "赠拓000365；非原石。",
+      "sourceIds": [
+        "npm-duobao"
+      ],
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/33063?dep=P",
+      "locationIds": [],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "confirmed"
+    }
+  ],
+  "links": [
+    {
+      "source": "tang-duobao",
+      "target": "yan",
+      "relation": "书丹",
+      "sourceIds": [
+        "beilin-duobao"
+      ],
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+      "verification": "confirmed"
+    },
+    {
+      "source": "tang-duobao",
+      "target": "cen",
+      "relation": "撰文",
+      "sourceIds": [
+        "beilin-duobao"
+      ],
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+      "verification": "confirmed"
+    },
+    {
+      "source": "tang-duobao",
+      "target": "xu",
+      "relation": "题额",
+      "sourceIds": [
+        "beilin-duobao"
+      ],
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+      "verification": "confirmed"
+    },
+    {
+      "source": "tang-duobao",
+      "target": "chujin",
+      "relation": "记述建塔",
+      "sourceIds": [
+        "beilin-duobao"
+      ],
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+      "verification": "confirmed"
+    },
+    {
+      "source": "tang-duobao",
+      "target": "qianfu",
+      "relation": "原立于",
+      "sourceIds": [
+        "beilin-duobao"
+      ],
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+      "verification": "confirmed"
+    },
+    {
+      "source": "tang-duobao",
+      "target": "beilin",
+      "relation": "原石保存",
+      "sourceIds": [
+        "beilin-duobao"
+      ],
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+      "verification": "confirmed"
+    },
+    {
+      "source": "tang-duobao",
+      "target": "era-752",
+      "relation": "立碑纪年",
+      "sourceIds": [
+        "beilin-duobao"
+      ],
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+      "verification": "confirmed"
+    },
+    {
+      "source": "tang-duobao",
+      "target": "rubbing-duobao",
+      "relation": "传拓载体（独立实体）",
+      "sourceIds": [
+        "npm-duobao"
+      ],
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/33063?dep=P",
+      "verification": "confirmed"
+    }
+  ],
+  "events": [
+    {
+      "id": "duobao-752",
+      "steleId": "tang-duobao",
+      "yearCE": 752,
+      "eraName": "唐天宝十一载",
+      "title": "千福寺立碑",
+      "description": "原址坐标待考；以长安区域索引定位。",
+      "locationId": "qianfu",
+      "eventType": "stele_creation",
+      "sourceId": "beilin-duobao",
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+      "verification": "confirmed"
+    },
+    {
+      "id": "duobao-1103",
+      "steleId": "tang-duobao",
+      "yearCE": 1103,
+      "eraName": "北宋崇宁二年",
+      "title": "移存西安碑林",
+      "description": "馆方条目明确记1103年；交通路径未知。",
+      "locationId": "beilin",
+      "eventType": "transfer",
+      "sourceId": "beilin-duobao",
+      "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+      "verification": "confirmed"
+    }
+  ],
+  "routes": [],
+  "aliases": [
+    "tang_01_duobao"
+  ]
+}

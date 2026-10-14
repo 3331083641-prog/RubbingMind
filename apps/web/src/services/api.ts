@@ -85,19 +85,10 @@ export const SteleService = {
     }
   },
 
-  // 获取知识图谱与 GIS 轨迹
-  async getGraph(stele_id: string): Promise<{
-    nodes: GraphNode[];
-    links: GraphLink[];
-    gis_route: GISWaypoint[];
-  }> {
-    try {
-      const res = await fetch(`${API_BASE}/steles/${stele_id}/graph`);
-      if (!res.ok) throw new Error('Graph API failed');
-      return await res.json();
-    } catch (e) {
-      return getFallbackGraph(stele_id);
-    }
+  // Evidence graph uses the same JSON for online and offline views.
+  async getGraph(stele_id: string) {
+    const { loadHistory } = await import('./history');
+    return loadHistory(stele_id);
   },
 
   // 获取评测与报告
@@ -182,46 +173,6 @@ function getFallbackInference(stele_id: string): {
     };
   }
   
-  function getFallbackGraph(stele_id: string): {
-    nodes: GraphNode[];
-    links: GraphLink[];
-    gis_route: GISWaypoint[];
-  } {
-    return {
-      nodes: [
-        { id: 'stele', name: '多宝塔感应碑', category: 'stele' as const, value: 100, symbolSize: 64, desc: '天宝十一载千福寺立，颜真卿书' },
-      { id: 'yan', name: '颜真卿', category: 'person', value: 95, symbolSize: 58, portrait: '/assets/stele/portraits/portrait_yan_zhenqing.png', desc: '字清臣，京兆万年人，大唐著名书法家、忠烈重臣' },
-      { id: 'cen', name: '岑勋', category: 'person', value: 75, symbolSize: 48, portrait: '/assets/stele/portraits/portrait_cen_xun.png', desc: '南阳人，李白好友（将进酒“岑夫子”即其人），碑文撰者' },
-      { id: 'chujin', name: '楚金禅师', category: 'person', value: 80, symbolSize: 52, portrait: '/assets/stele/portraits/portrait_chujin.png', desc: '千福寺高僧，刺血写经，感舍利涌出而倡建多宝塔' },
-      { id: 'xuanzang', name: '玄奘法师', category: 'person', value: 85, symbolSize: 54, desc: '大唐三藏法师，西天取经之佛法衣钵法嗣源头' },
-      { id: 'xuanzong', name: '唐玄宗', category: 'person', value: 90, symbolSize: 56, desc: '开元天宝盛世之君，亲赐多宝塔额' },
-      { id: 'shihua', name: '史华', category: 'person', value: 70, symbolSize: 46, desc: '朝散大夫都官郎中，主持千福寺刊石大匠' },
-      { id: 'qianfusi', name: '长安千福寺', category: 'place', value: 85, symbolSize: 52, desc: '唐代长安城安定坊名刹，塔立于此寺' },
-      { id: 'nanyang', name: '南阳郡', category: 'place', value: 65, symbolSize: 42, desc: '岑勋之籍贯郡望' },
-      { id: 'chaoyilang', name: '朝议郎', category: 'office', value: 60, symbolSize: 38, desc: '颜真卿书丹时之官阶（文散官正六品上）' },
-      { id: 'kaishu', name: '早期颜体楷书', category: 'script', value: 78, symbolSize: 48, desc: '方整严密，秀媚多姿，骨肉丰停' }
-    ] as GraphNode[],
-    links: [
-      { source: 'stele', target: 'yan', relation: '书丹 (楷书)' },
-      { source: 'stele', target: 'cen', relation: '撰文 (骈体)' },
-      { source: 'stele', target: 'chujin', relation: '感应发愿立塔' },
-      { source: 'stele', target: 'shihua', relation: '督造刊石' },
-      { source: 'stele', target: 'qianfusi', relation: '立石原址 (安定坊)' },
-      { source: 'chujin', target: 'xuanzong', relation: '奉诏入内殿赐额' },
-      { source: 'chujin', target: 'xuanzang', relation: '宗门传承' },
-      { source: 'cen', target: 'nanyang', relation: '郡望' },
-      { source: 'yan', target: 'chaoyilang', relation: '任职官阶' },
-      { source: 'yan', target: 'kaishu', relation: '书体范式' }
-    ],
-    gis_route: [
-      { name: '长安千福寺 (安定坊)', year: '天宝十一载 (752)', event: '楚金禅师建多宝塔，颜真卿书碑立石', coords: [108.9398, 34.2655], image: '/assets/stele/scenes/scene_changan_qianfu_pagoda.png' },
-      { name: '洛阳内廷宫阙', year: '天宝十二载 (753)', event: '唐玄宗御览多宝塔碑拓本，下诏嘉奖', coords: [112.4540, 34.6197], image: '/assets/stele/scenes/scene_luoyang_palace.png' },
-      { name: '南阳涅阳故里', year: '天宝九载 (750)', event: '岑勋游历终南山，接千福寺造塔碑文之托', coords: [112.5283, 32.9908] },
-      { name: '西安碑林 (现代藏地)', year: '宋元祐二年 (1087) 迁入', event: '京兆府移碑入府学孔庙，至今完好保存', coords: [108.9534, 34.2541], image: '/assets/stele/scenes/scene_historical_pagoda.png' }
-    ]
-  };
-}
-
 function getFallbackReport(stele_id: string) {
   return {
     ablation: [

@@ -9,6 +9,7 @@ import { MuseumPage } from './pages/MuseumPage';
 import { WorkbenchPage } from './pages/WorkbenchPage';
 import { GraphPage } from './pages/GraphPage';
 import { ReportsPage } from './pages/ReportsPage';
+import { graphSelectionItems, resolveCoreId } from './data/graphSelection';
 
 export const App: React.FC = () => {
   const [currentTab, setCurrentTab] = useState<string>('home');
@@ -33,7 +34,10 @@ export const App: React.FC = () => {
     return () => { isMounted = false; };
   }, []);
 
-  const currentStele = steles.find((s) => s.id === selectedSteleId) || steles[0];
+  const coreItems = graphSelectionItems(steles);
+  const currentStele = steles.find((s) => s.id === selectedSteleId)
+    || coreItems.find(s => resolveCoreId(s.id) === resolveCoreId(selectedSteleId)) || steles[0];
+  const graphHeaderItems = [...coreItems, ...steles.filter(s => !coreItems.some(c => c.id === s.id))];
 
   const handleSelectStele = (id: string) => {
     setSelectedSteleId(id);
@@ -51,8 +55,8 @@ export const App: React.FC = () => {
       <Header
         currentTab={currentTab}
         onTabChange={setCurrentTab}
-        steles={steles}
-        selectedSteleId={selectedSteleId}
+        steles={currentTab === 'graph' ? graphHeaderItems : steles}
+        selectedSteleId={currentStele.id}
         onSelectStele={handleSelectStele}
         onOpenUpload={() => setIsUploadOpen(true)}
         isBackendConnected={isBackendConnected}
@@ -88,6 +92,7 @@ export const App: React.FC = () => {
           <GraphPage
             stele={currentStele}
             onNavigate={setCurrentTab}
+            onSelectStele={handleSelectStele}
           />
         )}
 

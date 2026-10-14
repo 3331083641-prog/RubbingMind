@@ -115,6 +115,7 @@ async def root():
     return JSONResponse({"status": "running", "message": "墨韵智考系统服务已启动"})
 
 
+@app.get("/health")
 @app.get("/api/health")
 async def health_check():
     """系统运行健康状态"""
@@ -297,100 +298,17 @@ async def get_stele_inference(stele_id: str):
 
 @app.get("/api/steles/{stele_id}/graph")
 async def get_stele_graph(stele_id: str):
-    """获取碑刻人物与时空图谱"""
-    stele = museum_manager.get_stele_by_id(stele_id)
-    if not stele:
-        sample_key = STELE_MAP.get(stele_id, "sample_1.png")
-        meta = knowledge_agent.get_rubbing_metadata(sample_key)
-        stele = {
-            "title": meta.get("title", "核心碑刻"),
-            "author": meta.get("author_calligraphy", ""),
-            "museum": meta.get("location_now", ""),
-            "dynasty": meta.get("dynasty", ""),
-            "summary": meta.get("summary", ""),
-            "gis_coords": [108.9534, 34.2541]
-        }
+    from history_graph import get_history_graph
+    graph = get_history_graph(stele_id, museum_manager.get_all_steles())
+    if graph is None:
+        raise HTTPException(status_code=404, detail="Historical record not found")
+    return graph
 
-    title = stele.get("title", "金石碑刻")
-    calligrapher = stele.get("calligrapher") or stele.get("author") or "善书名手"
-    author_essay = stele.get("inscriptionAuthor") or "文臣巨匠"
-    museum = stele.get("collectionInstitution") or stele.get("museum") or "博物馆藏"
-    dynasty = stele.get("dynasty", "历代")
-    coords = stele.get("gis_coords", [108.9534, 34.2541])
 
-    nodes = [
-        {
-            "id": "stele",
-            "name": title,
-            "category": "stele",
-            "value": 100,
-            "symbolSize": 64,
-            "desc": f"《{title}》· {dynasty} · {stele.get('collectionNumber', '原刻真拓')}"
-        },
-        {
-            "id": "calligrapher",
-            "name": calligrapher.split("（")[0].split(" / ")[0],
-            "category": "person",
-            "value": 88,
-            "symbolSize": 56,
-            "desc": f"书丹者: {calligrapher} · {dynasty}"
-        },
-        {
-            "id": "museum",
-            "name": museum,
-            "category": "place",
-            "value": 75,
-            "symbolSize": 48,
-            "desc": f"典藏机构: {museum} · 馆藏号: {stele.get('collectionNumber', '善本')}"
-        },
-        {
-            "id": "dynasty_era",
-            "name": f"{dynasty}纪年",
-            "category": "office",
-            "value": 70,
-            "symbolSize": 44,
-            "desc": f"原刻纪年: {stele.get('originalYear', dynasty)}"
-        }
-    ]
-
-    if author_essay and author_essay != "见馆藏原目" and author_essay != calligrapher:
-        nodes.append({
-            "id": "essayist",
-            "name": author_essay.split("（")[0].split(" / ")[0],
-            "category": "person",
-            "value": 80,
-            "symbolSize": 50,
-            "desc": f"撰文者: {author_essay} · {dynasty}"
-        })
-
-    links = [
-        {"source": "stele", "target": "calligrapher", "relation": "书丹刊刻"},
-        {"source": "stele", "target": "museum", "relation": "现藏流布"},
-        {"source": "stele", "target": "dynasty_era", "relation": "创刻时代"}
-    ]
-    if any(n["id"] == "essayist" for n in nodes):
-        links.append({"source": "stele", "target": "essayist", "relation": "撰述文辞"})
-
-    gis_route = [
-        {
-            "name": stele.get("originalLocation", "原刻立石故址"),
-            "year": stele.get("originalYear", dynasty),
-            "event": f"《{title}》刊刻立石，留传金石文脉",
-            "coords": coords
-        },
-        {
-            "name": museum,
-            "year": stele.get("rubbingPeriod", "现代典藏"),
-            "event": f"拓本入藏{museum}（馆藏号: {stele.get('collectionNumber', '典藏')}），建立数字档案",
-            "coords": [coords[0] + 0.15, coords[1] - 0.1] if "故宫" in museum else coords
-        }
-    ]
-
-    return {
-        "nodes": nodes,
-        "links": links,
-        "gis_route": gis_route
-    }
+@app.get("/generate")
+async def generate_historical_graph(stele_id: str = "tang-duobao"):
+    """Graph-only compatibility entry for /health -> /generate validation."""
+    return await get_stele_graph(stele_id)
 
 
 @app.get("/api/steles/{stele_id}/report")
@@ -542,7 +460,8 @@ async def upload_custom_image(
 @app.post("/api/calendar")
 async def convert_calendar(req: CalendarRequest):
     """古代干支历法与西历公元年号双向换算"""
-    return knowledge_agent.convert_ganzhi(req.query)
+    from history_graph import convert_historical_year
+    return convert_historical_year(req.query)
 
 
 if __name__ == "__main__":

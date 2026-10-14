@@ -1,0 +1,7 @@
+{
+  "kind": "ai_concept_decoration",
+  "tool": "imagegen",
+  "date": "2026-10-14",
+  "prompt": "Generate a single ultra-wide panoramic decorative background asset for a Chinese digital epigraphy research web application's historical timeline. Save / output a wide 3:1 or wider landscape composition. A restrained traditional Chinese shanshui engraving in very fine antique muted gold lines on deep ink black #080e13 and navy black. Layered distant mountains, mist, and dark silhouette outlines of generic historic Chinese pavilions and pagodas along the lower horizon. Inspired by a sophisticated museum interface, but absolutely NO UI, NO text, NO characters, NO calligraphy, NO labels, NO borders, NO circular nodes, NO map, NO geographic outlines, NO sovereignty boundaries. Soft subtle warm amber glow behind one pavilion near right third; fine celadon hints in mist. Center and upper half dark and quiet enough for timeline labels. Finely detailed but subdued dark tone. This is explicitly artistic conceptual decoration, not a real building reconstruction or geographic content. Wide panorama intended as timeline background, no user image edit.",
+  "use": "Timeline decoration only; not geography, ancient text or historical reconstruction"
+}

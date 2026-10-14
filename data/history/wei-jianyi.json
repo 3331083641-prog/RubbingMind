@@ -1,0 +1,103 @@
+{
+  "steleId": "wei-jianyi",
+  "formalName": "北魏碑拓数字化退化测试样本",
+  "eraName": "北魏建义元年",
+  "yearCE": 528,
+  "script": "示范魏碑字形",
+  "image": "/assets/stele/rubbings/stele_wei_jianyi_fragment.png",
+  "imageStatus": "算法演示图·身份待核",
+  "identity": "未确认与王诵墓志同一；528是测试标签，非本图已核实纪年",
+  "rubbingPeriod": "年代待考",
+  "collectionNumber": "未核实",
+  "originalStoneCollection": "待考",
+  "digitalRubbingCollection": "待考",
+  "authors": [],
+  "sourceIds": [
+    "local-audit",
+    "npm-wangsong"
+  ],
+  "locations": [],
+  "nodes": [
+    {
+      "id": "wei-jianyi",
+      "name": "建义退化测试样本",
+      "category": "stele",
+      "desc": "未确认与王诵墓志同一；528是测试标签，非本图已核实纪年",
+      "sourceIds": [
+        "local-audit"
+      ],
+      "sourceUrl": "/assets/gis/history-audit.md",
+      "locationIds": [],
+      "value": 100,
+      "symbolSize": 72,
+      "verification": "unverified"
+    },
+    {
+      "id": "era-528",
+      "name": "建义元年 · 528",
+      "category": "era",
+      "desc": "年号映射可核；测试图像的文物纪年未核。",
+      "sourceIds": [
+        "local-audit"
+      ],
+      "sourceUrl": "/assets/gis/history-audit.md",
+      "locationIds": [],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "unverified"
+    },
+    {
+      "id": "audit-sample",
+      "name": "来源链待核",
+      "category": "document",
+      "desc": "没有已确认馆藏号、人物或出土地；不借用王诵或韩夫人资料。",
+      "sourceIds": [
+        "local-audit"
+      ],
+      "sourceUrl": "/assets/gis/history-audit.md",
+      "locationIds": [],
+      "value": 75,
+      "symbolSize": 46,
+      "verification": "unverified"
+    }
+  ],
+  "links": [
+    {
+      "source": "wei-jianyi",
+      "target": "era-528",
+      "relation": "测试标签（待核）",
+      "sourceIds": [
+        "local-audit"
+      ],
+      "sourceUrl": "/assets/gis/history-audit.md",
+      "verification": "unverified"
+    },
+    {
+      "source": "wei-jianyi",
+      "target": "audit-sample",
+      "relation": "本地素材审计",
+      "sourceIds": [
+        "local-audit"
+      ],
+      "sourceUrl": "/assets/gis/history-audit.md",
+      "verification": "unverified"
+    }
+  ],
+  "events": [
+    {
+      "id": "sample-label",
+      "steleId": "wei-jianyi",
+      "yearCE": 528,
+      "eraName": "北魏建义元年",
+      "title": "样本纪年标签 · 待考",
+      "description": "保留算法测试入口；本地图片身份未核，无可绘制历史轨迹。",
+      "locationId": null,
+      "eventType": "historical_context",
+      "sourceId": "local-audit",
+      "sourceUrl": "/assets/gis/history-audit.md",
+      "verification": "unverified"
+    }
+  ],
+  "routes": [],
+  "aliases": []
+}

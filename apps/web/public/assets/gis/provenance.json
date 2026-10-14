@@ -1,0 +1,16 @@
+{
+  "provider": "天地图（镜像声称）",
+  "officialUrl": "https://cloudcenter.tianditu.gov.cn/administrativeDivision",
+  "mirrorUrl": "https://github.com/MisterChangRay/geodeparse/tree/dfb4ce2c1f7f48a5da5ad7842cbfbe1b2cd29757/geo",
+  "upstreamApprovalClaim": "GS(2024)0650",
+  "applicationApproval": "未单独审图，镜像声明非本应用审图证明",
+  "license": "MIT（镜像仓库）；上游授权需以原平台条款为准",
+  "crs": "EPSG:4490 / CGCS2000",
+  "displayCRS": "EPSG:3857",
+  "databaseCRS": "EPSG:4326 / WGS84",
+  "transform": "CGCS2000经纬度与WGS84在本项目公里级区域精度下采用零参数近似；不声称测量级转换，不使用GCJ-02或常数偏移",
+  "sha256": "841622088aff1f8126cbb8f1c0c855c50bc66cbd857d24e7162426d3ff3456da",
+  "retrieved": "2026-10-14",
+  "features": 42,
+  "riverProcessing": "Original Natural Earth feature geometry and identifiers retained; source and public-domain license embedded as GeoJSON foreign members."
+}
