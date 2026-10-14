@@ -77,7 +77,8 @@ def test_stele_report_endpoint():
     assert response.status_code == 200
     data = response.json()
     assert "ablation" in data
-    assert len(data["ablation"]) == 5
+    assert data["ablation"] == []
+    assert "未评测" in data["evaluation_summary"]
     assert "scholarly_analysis" in data
 
 

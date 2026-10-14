@@ -1,0 +1,112 @@
+{
+  "id": "han_02_yiying",
+  "source": "原始档案包/han_02_yiying/源文件_原样保存.pdf",
+  "pdf_page": 1,
+  "native_dimensions": [
+    2283,
+    3066
+  ],
+  "readable_bbox": [
+    473,
+    107,
+    1838,
+    2959
+  ],
+  "cover_bbox": [
+    473,
+    107,
+    1838,
+    2959
+  ],
+  "selection_reason": "保留完整残损拓面；不增强至虚假可识别",
+  "embedded_image_xref": 8,
+  "real_original_filename": "源文件_原样保存.pdf",
+  "source_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000009_%E6%BC%A2%E9%AD%AF%E7%9B%B8%E4%B9%99%E7%91%9B%E7%A2%91%E5%A2%A8%E6%8B%93%E6%9C%AC_%E8%BB%B8.pdf",
+  "source_sha256": "1ee71af3b141f4afe5c74f03ebec00d40dfe08867ae1a385542c8d9c56314fd3",
+  "archive_sha256": "95f3357e4c9b0a04eff52ad1c93a615b1542b929b968ec647fc171801b139014",
+  "crop_before_dimensions": [
+    2283,
+    3066
+  ],
+  "readable_after_dimensions": [
+    1365,
+    2852
+  ],
+  "cover_crop_after_dimensions": [
+    1365,
+    2852
+  ],
+  "cover_dimensions": [
+    1100,
+    1420
+  ],
+  "cover_scaled_dimensions": [
+    680,
+    1420
+  ],
+  "isotropic_scale_factor": 0.49789621318373073,
+  "conventional_upsampling": false,
+  "sampling_note": "缩放不增加源图信息；阅读版保持原始像素，不作超分辨率",
+  "padding_rgb": [
+    21,
+    22,
+    22
+  ],
+  "padding_offset": [
+    210,
+    0
+  ],
+  "contrast": {
+    "method": "grayscale + blend with global autocontrast",
+    "cutoff_percent": 0.1,
+    "blend": 0.1,
+    "CLAHE": false
+  },
+  "sharpen": {
+    "radius": 0.65,
+    "percent": 0,
+    "threshold": 4
+  },
+  "perspective_correction": false,
+  "generative_processing": false,
+  "stroke_reconstruction": false,
+  "geometry_change": "crop + isotropic resize only",
+  "image_license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "assistant_visual_review_status": "completed_source_pages_and_crop_comparison",
+  "human_review_status": "approved_by_user_in_integration_request",
+  "output_sha256": {
+    "archive.jpg": "95f3357e4c9b0a04eff52ad1c93a615b1542b929b968ec647fc171801b139014",
+    "readable.jpg": "5aec3d3a705eda460c90da28c5bb0d63f24b386b4421fa02607e4964d6a527c7",
+    "cover.jpg": "402e644868a67675e0037853b1ec594a73b758745cdf9fbc33bcb1ad2012dc3f"
+  },
+  "original_damage_note": "保留完整残损拓面；不增强至虚假可识别",
+  "additional_character_cutting": "none_observed_after_item_specific_border_review",
+  "attribution": "乙瑛碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+  "catalogue_url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full",
+  "visual_notes": [
+    "历史原拓缺笔、裂损及石花保留；不以输出像素宣称新增原件细节",
+    "原拓重损/墨薄，部分文字阅读受限"
+  ],
+  "quality_status": "通过制作核验；原件阅读受限",
+  "item_title": "乙瑛碑",
+  "dynasty": "东汉",
+  "institution": "台北故宫博物院",
+  "accession_number": "購拓000009",
+  "stone_date": "153年",
+  "rubbing_date": "未核定；不据拓印年改变朝代",
+  "pdf_page_numbering": "1-based",
+  "bbox_convention": "source pixels [left,top,right,bottom], right/bottom exclusive",
+  "original_filename_from_source": "NPM-購拓000009 漢魯相乙瑛碑墨拓本 軸.pdf",
+  "download_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000009_%E6%BC%A2%E9%AD%AF%E7%9B%B8%E4%B9%99%E7%91%9B%E7%A2%91%E5%A2%A8%E6%8B%93%E6%9C%AC_%E8%BB%B8.pdf",
+  "source_archive_type": "PDF containing native embedded JPEG(s) and metadata sheets",
+  "cover_relation": "完整拓片主体",
+  "working_source_path": "D:\\RubbingMind\\rubbings-review-v3\\originals\\han_02_yiying\\源文件_原样保存.pdf",
+  "deployedId": "han_02_yiying",
+  "reviewedId": "han_02_yiying",
+  "deployment_output_sha256": {
+    "archive.jpg": "95f3357e4c9b0a04eff52ad1c93a615b1542b929b968ec647fc171801b139014",
+    "readable.jpg": "5aec3d3a705eda460c90da28c5bb0d63f24b386b4421fa02607e4964d6a527c7",
+    "cover.jpg": "402e644868a67675e0037853b1ec594a73b758745cdf9fbc33bcb1ad2012dc3f"
+  }
+}

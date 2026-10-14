@@ -1,0 +1,110 @@
+{
+  "id": "qing_02_chongli_wushi",
+  "source": "原始档案包/qing_02_chongli_wushi/princeton_57837_0.jpg",
+  "pdf_page": null,
+  "native_dimensions": [
+    4016,
+    1649
+  ],
+  "readable_bbox": [
+    20,
+    10,
+    3996,
+    1636
+  ],
+  "cover_bbox": [
+    2839,
+    10,
+    3996,
+    1636
+  ],
+  "selection_reason": "1787年《重立武氏祠石记》；折叠纸面使正文列倾斜，直线局部裁切易伤字，封面改取右端完整清代署款大字（翁方纲）及刻工行；全部正文保留于阅读版；原边缘缺损保留",
+  "source_url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+  "real_original_filename": "princeton_57837_0.jpg",
+  "source_sha256": "948ac3c851bcb84bdb6dafa4856db3c79f0ea4342a31527bcbbf5972295e3ded",
+  "archive_sha256": "948ac3c851bcb84bdb6dafa4856db3c79f0ea4342a31527bcbbf5972295e3ded",
+  "crop_before_dimensions": [
+    4016,
+    1649
+  ],
+  "readable_after_dimensions": [
+    3976,
+    1626
+  ],
+  "cover_crop_after_dimensions": [
+    1157,
+    1626
+  ],
+  "cover_dimensions": [
+    1100,
+    1420
+  ],
+  "cover_scaled_dimensions": [
+    1010,
+    1420
+  ],
+  "isotropic_scale_factor": 0.8733087330873309,
+  "conventional_upsampling": false,
+  "sampling_note": "缩放不增加源图信息；阅读版保持原始像素，不作超分辨率",
+  "padding_rgb": [
+    21,
+    22,
+    22
+  ],
+  "padding_offset": [
+    45,
+    0
+  ],
+  "contrast": {
+    "method": "grayscale + blend with global autocontrast",
+    "cutoff_percent": 0.1,
+    "blend": 0.18,
+    "CLAHE": false
+  },
+  "sharpen": {
+    "radius": 0.65,
+    "percent": 22,
+    "threshold": 4
+  },
+  "perspective_correction": false,
+  "generative_processing": false,
+  "stroke_reconstruction": false,
+  "geometry_change": "crop + isotropic resize only",
+  "image_license": "Public Domain; museum permits download/use",
+  "license_url": "https://artmuseum.princeton.edu/art/our-collections/image-use-and-access",
+  "assistant_visual_review_status": "completed_source_pages_and_crop_comparison",
+  "human_review_status": "approved_by_user_in_integration_request",
+  "output_sha256": {
+    "archive.jpg": "948ac3c851bcb84bdb6dafa4856db3c79f0ea4342a31527bcbbf5972295e3ded",
+    "readable.jpg": "551b3c7a4a8c83f989a1d44b3c9c941b34f6c4eeb55c677c2940a29a7fb246e6",
+    "cover.jpg": "14c67c9a42c1dc35f37a74c10d720917cb8d2f10b810b353f51ce02c1d31a5a3"
+  },
+  "original_damage_note": "1787年《重立武氏祠石记》；折叠纸面使正文列倾斜，直线局部裁切易伤字，封面改取右端完整清代署款大字（翁方纲）及刻工行；全部正文保留于阅读版；原边缘缺损保留",
+  "additional_character_cutting": "none_observed_after_item_specific_border_review",
+  "attribution": "Image courtesy of the Princeton University Art Museum. Gift of George Rowley.",
+  "catalogue_url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+  "visual_notes": [
+    "历史原拓缺笔、裂损及石花保留；不以输出像素宣称新增原件细节",
+    "原纸撕裂和边缘缺损保留；馆方东汉时代标签与1787新刻日期矛盾已在候选元数据说明"
+  ],
+  "quality_status": "通过制作核验，待第三轮独立复核",
+  "item_title": "重立武氏祠石记",
+  "dynasty": "清代",
+  "institution": "普林斯顿大学艺术博物馆",
+  "accession_number": "y1957-139 b",
+  "stone_date": "1787年",
+  "rubbing_date": " 19th-early 20th century (rubbings)",
+  "pdf_page_numbering": "1-based",
+  "bbox_convention": "source pixels [left,top,right,bottom], right/bottom exclusive",
+  "original_filename_from_source": "INV65576/default.jpg",
+  "download_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV65576/full/max/0/default.jpg",
+  "cover_relation": "清代刻石署款局部，全文在阅读版",
+  "working_source_path": "D:\\RubbingMind\\rubbings-review-v3\\originals\\princeton_57837_0.jpg",
+  "deployedId": "qing_02_wushi_reerection",
+  "reviewedId": "qing_02_chongli_wushi",
+  "deployment_output_sha256": {
+    "archive.jpg": "948ac3c851bcb84bdb6dafa4856db3c79f0ea4342a31527bcbbf5972295e3ded",
+    "readable.jpg": "551b3c7a4a8c83f989a1d44b3c9c941b34f6c4eeb55c677c2940a29a7fb246e6",
+    "cover.jpg": "14c67c9a42c1dc35f37a74c10d720917cb8d2f10b810b353f51ce02c1d31a5a3"
+  }
+}

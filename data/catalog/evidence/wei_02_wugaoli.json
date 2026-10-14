@@ -1,0 +1,149 @@
+{
+  "officialExtractedText": "\n國立故宮博物院\n文物資料表\nNational Palace Museum, Taipei · Open Data 書畫類· 購拓000064 · 1 筆記錄\n基本資料（總記錄）Details of the album record\n作品Work\n北魏故士吳高黎墓誌銘墨拓本\n統一編號前綴Object number\nprefix\n購拓000064\n記錄數/ 影像數Records /\nimages\n1 筆/ 1 幅\n文物統一編號Object Number\n購拓000064N000000000\n作品號Work number\n購拓00006400000\n品名Title\n北魏故士吳高黎墓誌銘墨拓本Ink Rubbing of the Tomb Epitaph of the\nLate Gentleman Wu Gaolai\n分類Category\n拓片\n書體Script\n楷書\n數量Quantity\n一幅\n作品語文Language\n漢文\n開頁記錄\nLeaf records\n序\n文物統一編號\n品名\nOpen\nData\n1\n購拓000064N000000000\n北魏故士吳高黎墓誌銘墨拓本Ink Rubbing of the\nTomb Epitaph of the Late Gentleman Wu Gaolai\nP33674\n釋文（各記錄）Transcriptions\n文物統一編號\n釋文\n購拓000064N000000000\n魏故士吳君之墓誌。君諱高黎。徐州瑯琊郡治下里人也。宋世驃騎府錄\n事參。江夏太守之孫。員外散騎侍郎梁郡太守之子。聖世兗州城局參督\n護高平郡事。資洪源宵漢。稟神光□峻□。推蘭桂之英徽。發之妙嚮。才\n器□惠。□若天知。正始□年冬十月十五日卒於洛陽。妻高陽許樂女。樂\n為江夏王常侍。以正光五年十二月六日亡於第。孝昌二年正月丙午十三\n日癸申權殯於北□。刊召立記。\n授權與引用\nLicense and attribution\n授權條款License\nCC BY 4.0\nhttps://creativecommons.org/licenses/by/4.0/\n圖檔層級Image tier\n600 萬像素圖檔（中階圖像）/ IIIF full resolution\n姓名標示（中）Attribution\n北魏故士吳高黎墓誌銘墨拓本。國立故宮博物院，台北，CC BY 4.0 @\nwww.npm.gov.tw\n姓名標示（英）Attribution\n北魏故士吳高黎墓誌銘墨拓本, The National Palace Museum, Taipei,\nCC BY 4.0 @ www.npm.gov.tw\ni\n\n開放政策Policy\n開放院藏書畫類、器物類、織品類文物中階圖像（600 萬畫素），中階圖\n檔及本網站文字均以「CC 授權條款4.0」之CC BY 姓名標示規範，無須\n申請、不限用途、不用付費即可公開使用，惟需於適當位置呈現中文或\n英文姓名標示。\n網站授權聲明Site terms\nhttps://data.gov.tw/license\n數位影像\nDigital images\n影像數量Images\n1 幅\n取得方式Source\nIIIF Image API 2 full/full/0/default.jpg（原始最高解析度），JPEG 資\n料原樣嵌入本PDF，未重新編碼；頁面尺寸以300 dpi 換算；影像依影\n像編號排序（記錄N 號、影像P 序）\n服務位址Service\nhttps://iiifod.npm.gov.tw/iiif/2/B2I%2F{影像編號}\n影像清單\nImage list\n頁\n影像編號\n文物統一編號\n像素\n1\nB2I000064N000000000PAA\n購拓000064N000000000\n2858×2449\n來源與製作\nProvenance\n典藏單位Holder\n國立故宮博物院/ National Palace Museum, Taipei\n總記錄詳細資料Album record\nhttps://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=3\n3674&dep=P&mode=full\n總記錄IIIF manifest\nhttps://digitalarchive.npm.gov.tw/opendata/Integrate/GetJs\non?cid=33674&dept=P&imageName=\n各開記錄Leaf records\n見「開頁記錄」表之Open Data 編號，網址格式\nhttps://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=<編號\n>&dep=P\n擷取時間Retrieved\n2026-09-26T17:41:37-07:00\n附加檔案Attachments\nmetadata.json、records.json\n製作工具Tools\nbookget-py\nhttps://github.com/open-guji/bookget-py\nii\n",
+  "processing": {
+    "id": "wei_02_wugaoli",
+    "source": "原始档案包/wei_02_wugaoli/源文件_原样保存.pdf",
+    "pdf_page": 1,
+    "native_dimensions": [
+      2858,
+      2449
+    ],
+    "readable_bbox": [
+      689,
+      629,
+      1861,
+      1785
+    ],
+    "cover_bbox": [
+      689,
+      629,
+      1861,
+      1785
+    ],
+    "selection_reason": "原图只有一块墓志正文；从白纸与右侧尺卡中取整块；复查后下缘扩展以保留末行",
+    "embedded_image_xref": 8,
+    "real_original_filename": "源文件_原样保存.pdf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000064_%E5%8C%97%E9%AD%8F%E6%95%85%E5%A3%AB%E5%90%B3%E9%AB%98%E9%BB%8E%E5%A2%93%E8%AA%8C%E9%8A%98%E5%A2%A8%E6%8B%93%E6%9C%AC.pdf",
+    "source_sha256": "e2010873451d08dbac1cf399c046be9110874a31fbaf2f138b7f41c6530493cb",
+    "archive_sha256": "06a31b7c673b08a748c3f48a98d19ca85bdaaad90a458b75d3882f0f00cec9d2",
+    "crop_before_dimensions": [
+      2858,
+      2449
+    ],
+    "readable_after_dimensions": [
+      1172,
+      1156
+    ],
+    "cover_crop_after_dimensions": [
+      1172,
+      1156
+    ],
+    "cover_dimensions": [
+      1100,
+      1420
+    ],
+    "cover_scaled_dimensions": [
+      1100,
+      1085
+    ],
+    "isotropic_scale_factor": 0.9385665529010239,
+    "conventional_upsampling": false,
+    "sampling_note": "缩放不增加源图信息；阅读版保持原始像素，不作超分辨率",
+    "padding_rgb": [
+      21,
+      22,
+      22
+    ],
+    "padding_offset": [
+      0,
+      167
+    ],
+    "contrast": {
+      "method": "grayscale + blend with global autocontrast",
+      "cutoff_percent": 0.1,
+      "blend": 0.18,
+      "CLAHE": false
+    },
+    "sharpen": {
+      "radius": 0.65,
+      "percent": 22,
+      "threshold": 4
+    },
+    "perspective_correction": false,
+    "generative_processing": false,
+    "stroke_reconstruction": false,
+    "geometry_change": "crop + isotropic resize only",
+    "image_license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "assistant_visual_review_status": "completed_source_pages_and_crop_comparison",
+    "human_review_status": "pending_third_round_user_ChatGPT_review",
+    "output_sha256": {
+      "archive.jpg": "06a31b7c673b08a748c3f48a98d19ca85bdaaad90a458b75d3882f0f00cec9d2",
+      "readable.jpg": "12a8bfe268ddc8ba308e250922afa861cef6eda6ac748174d1a99724f63dd6f6",
+      "cover.jpg": "5e9058d374150808fb9b7b351ea39b0396de966dde92f253f8c410566ad21481"
+    },
+    "original_damage_note": "原图只有一块墓志正文；从白纸与右侧尺卡中取整块；复查后下缘扩展以保留末行",
+    "additional_character_cutting": "none_observed_after_item_specific_border_review",
+    "attribution": "吴高黎墓志。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "catalogue_url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full",
+    "visual_notes": [
+      "历史原拓缺笔、裂损及石花保留；不以输出像素宣称新增原件细节"
+    ],
+    "quality_status": "通过制作核验，待第三轮独立复核",
+    "item_title": "吴高黎墓志",
+    "dynasty": "北魏",
+    "institution": "台北故宫博物院",
+    "accession_number": "購拓000064",
+    "stone_date": "526年",
+    "rubbing_date": "未核定；不据拓印年改变朝代",
+    "pdf_page_numbering": "1-based",
+    "bbox_convention": "source pixels [left,top,right,bottom], right/bottom exclusive",
+    "original_filename_from_source": "NPM-購拓000064 北魏故士吳高黎墓誌銘墨拓本.pdf",
+    "download_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000064_%E5%8C%97%E9%AD%8F%E6%95%85%E5%A3%AB%E5%90%B3%E9%AB%98%E9%BB%8E%E5%A2%93%E8%AA%8C%E9%8A%98%E5%A2%A8%E6%8B%93%E6%9C%AC.pdf",
+    "source_archive_type": "PDF containing native embedded JPEG(s) and metadata sheets",
+    "cover_relation": "完整拓片主体",
+    "working_source_path": "D:\\RubbingMind\\rubbings-review-v3\\originals\\wei_02_wugaoli\\源文件_原样保存.pdf"
+  },
+  "reviewedMetadata": {
+    "id": "wei_02_wugaoli",
+    "dynasty": "北魏",
+    "title": "吴高黎墓志",
+    "stele_year_ce": 526,
+    "script": "楷书",
+    "repository": "台北故宫博物院",
+    "accession_number": "購拓000064",
+    "license": "CC BY 4.0",
+    "source_type": "真实馆藏碑拓数字影像",
+    "file_page_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000064_%E5%8C%97%E9%AD%8F%E6%95%85%E5%A3%AB%E5%90%B3%E9%AB%98%E9%BB%8E%E5%A2%93%E8%AA%8C%E9%8A%98%E5%A2%A8%E6%8B%93%E6%9C%AC.pdf",
+    "commons_filename": "NPM-購拓000064 北魏故士吳高黎墓誌銘墨拓本.pdf",
+    "original_format": "PDF",
+    "source_image_count": 1,
+    "description": "真实馆藏影像派生；526年。原拓残损保留。",
+    "attribution": "吴高黎墓志。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "web_museum_record_url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full",
+    "is_genuine_rubbing": "catalogued_as_rubbing",
+    "requires_original_inscription_verification": true,
+    "is_damage_level_verified": false,
+    "image_status": "已核验在线档案链接；图片文件须由下载工具获取",
+    "stele_date_basis": "孝昌二年正月葬/刊记，馆方释文",
+    "stele_date_label": "526年",
+    "candidate_status": "prepared_for_third_review",
+    "formal_database_modified": false,
+    "is_ai_generated": false,
+    "source_resolution": [
+      2858,
+      2449
+    ],
+    "selected_pdf_page": 1,
+    "source_sha256": "e2010873451d08dbac1cf399c046be9110874a31fbaf2f138b7f41c6530493cb",
+    "processing_path": "02_北魏/wei_02_wugaoli/processing.json",
+    "review_status": "completed_source_pages_and_crop_comparison",
+    "rubbing_date": "未核定；不据拓印年改变朝代",
+    "quality_status": "通过制作核验，待第三轮独立复核",
+    "image_paths": {
+      "archive": "02_北魏/wei_02_wugaoli/archive.jpg",
+      "readable": "02_北魏/wei_02_wugaoli/readable.jpg",
+      "cover": "02_北魏/wei_02_wugaoli/cover.jpg"
+    }
+  }
+}

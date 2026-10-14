@@ -107,18 +107,18 @@ def init_database(schema_only: bool = False, json_seed_path: Optional[str] = Non
                 data = json.load(fp)
             
             for item in data:
-                coords = item.get("gis_coords", [108.9534, 34.2541])
-                lng = coords[0] if len(coords) > 0 else 108.9534
-                lat = coords[1] if len(coords) > 1 else 34.2541
+                coords = item.get("gis_coords") or []
+                lng = coords[0] if len(coords) > 0 else None
+                lat = coords[1] if len(coords) > 1 else None
                 cursor.execute("""
-                INSERT OR REPLACE INTO steles (
+                INSERT INTO steles (
                     id, title, dynasty, dynasty_value, author, script_type, weathering_level,
                     year, ganzhi, location, museum, dimensions, summary, historical_context,
                     raw_image, clean_image, damaged_image, restored_image, source_url,
                     license, attribution, image_status, gis_lng, gis_lat, metrics_json, translation
                 ) VALUES (
                     ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
-                );
+                ) ON CONFLICT(id) DO NOTHING;
                 """, (
                     item.get("id"),
                     item.get("title"),
@@ -154,14 +154,17 @@ def init_database(schema_only: bool = False, json_seed_path: Optional[str] = Non
     conn.close()
 
 
-def query_steles(dynasty: Optional[str] = None) -> List[Dict[str, Any]]:
+def query_steles(dynasty: Optional[str] = None, include_retired: bool = False) -> List[Dict[str, Any]]:
     """查询碑刻列表"""
     conn = get_db_connection()
     cursor = conn.cursor()
+    conditions=[];params=[]
     if dynasty and dynasty != "all":
-        cursor.execute("SELECT * FROM steles WHERE dynasty_value = ? ORDER BY id", (dynasty,))
-    else:
-        cursor.execute("SELECT * FROM steles ORDER BY id")
+        conditions.append('dynasty_value = ?');params.append(dynasty)
+    if not include_retired and cursor.execute("SELECT name FROM sqlite_master WHERE name='museum_catalog_status'").fetchone():
+        conditions.append("id NOT IN (SELECT id FROM museum_catalog_status WHERE status='retired')")
+    query='SELECT * FROM steles'+(' WHERE '+' AND '.join(conditions) if conditions else '')+' ORDER BY id'
+    cursor.execute(query,params)
     rows = cursor.fetchall()
     conn.close()
     return [dict(r) for r in rows]

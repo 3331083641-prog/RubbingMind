@@ -1,0 +1,112 @@
+{
+  "id": "ming_03_wugou",
+  "source": "原始档案包/ming_03_wugou/源文件_原样保存.pdf",
+  "pdf_page": 1,
+  "native_dimensions": [
+    2291,
+    3055
+  ],
+  "readable_bbox": [
+    651,
+    122,
+    1748,
+    2942
+  ],
+  "cover_bbox": [
+    651,
+    122,
+    1748,
+    2942
+  ],
+  "selection_reason": "重度损泐，完整轮廓与残笔保留，禁止补笔，阅读能力受原件限制",
+  "embedded_image_xref": 8,
+  "real_original_filename": "源文件_原样保存.pdf",
+  "source_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000430%20%E6%98%8E%E7%84%A1%E5%9E%A2%E5%AD%90%E4%BD%95%E5%90%9B%E5%A2%93%E8%AA%8C%E9%8A%98%E5%A2%A8%E6%8B%93%E6%9C%AC%20%E8%BB%B8.pdf",
+  "source_sha256": "0d8152e57832ffa9b2580ba8be856efb077f52d423c4b742803e5cb3c60bd3dc",
+  "archive_sha256": "641a4eb90426d8a1f86e8fb265c50f13e95409976d5d4fbcbc8cef22d862fd6f",
+  "crop_before_dimensions": [
+    2291,
+    3055
+  ],
+  "readable_after_dimensions": [
+    1097,
+    2820
+  ],
+  "cover_crop_after_dimensions": [
+    1097,
+    2820
+  ],
+  "cover_dimensions": [
+    1100,
+    1420
+  ],
+  "cover_scaled_dimensions": [
+    552,
+    1420
+  ],
+  "isotropic_scale_factor": 0.5035460992907801,
+  "conventional_upsampling": false,
+  "sampling_note": "缩放不增加源图信息；阅读版保持原始像素，不作超分辨率",
+  "padding_rgb": [
+    21,
+    22,
+    22
+  ],
+  "padding_offset": [
+    274,
+    0
+  ],
+  "contrast": {
+    "method": "grayscale + blend with global autocontrast",
+    "cutoff_percent": 0.1,
+    "blend": 0.1,
+    "CLAHE": false
+  },
+  "sharpen": {
+    "radius": 0.65,
+    "percent": 0,
+    "threshold": 4
+  },
+  "perspective_correction": false,
+  "generative_processing": false,
+  "stroke_reconstruction": false,
+  "geometry_change": "crop + isotropic resize only",
+  "image_license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "assistant_visual_review_status": "completed_source_pages_and_crop_comparison",
+  "human_review_status": "approved_by_user_in_integration_request",
+  "output_sha256": {
+    "archive.jpg": "641a4eb90426d8a1f86e8fb265c50f13e95409976d5d4fbcbc8cef22d862fd6f",
+    "readable.jpg": "f9dde51133ab9938b86aef5ce52b63a3b26b5ab8cbd313dd82b817418eaceaf9",
+    "cover.jpg": "fc23453582abe8fba843ff3aea2f51a4bac398e1bef7a43ffafa93725bd1c2a1"
+  },
+  "original_damage_note": "重度损泐，完整轮廓与残笔保留，禁止补笔，阅读能力受原件限制",
+  "additional_character_cutting": "none_observed_after_item_specific_border_review",
+  "attribution": "无垢子何君墓志铭。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+  "catalogue_url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full",
+  "visual_notes": [
+    "历史原拓缺笔、裂损及石花保留；不以输出像素宣称新增原件细节",
+    "原拓重损/墨薄，部分文字阅读受限"
+  ],
+  "quality_status": "通过制作核验；原件阅读受限",
+  "item_title": "无垢子何君墓志铭",
+  "dynasty": "明代",
+  "institution": "台北故宫博物院",
+  "accession_number": "購拓000430",
+  "stone_date": "明代，确切原刻年份未核定",
+  "rubbing_date": "未核定；不据拓印年改变朝代",
+  "pdf_page_numbering": "1-based",
+  "bbox_convention": "source pixels [left,top,right,bottom], right/bottom exclusive",
+  "original_filename_from_source": "NPM-購拓000430 明無垢子何君墓誌銘墨拓本 軸.pdf",
+  "download_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000430%20%E6%98%8E%E7%84%A1%E5%9E%A2%E5%AD%90%E4%BD%95%E5%90%9B%E5%A2%93%E8%AA%8C%E9%8A%98%E5%A2%A8%E6%8B%93%E6%9C%AC%20%E8%BB%B8.pdf",
+  "source_archive_type": "PDF containing native embedded JPEG(s) and metadata sheets",
+  "cover_relation": "完整拓片主体",
+  "working_source_path": "D:\\RubbingMind\\rubbings-review-v3\\originals\\ming_03_wugou\\源文件_原样保存.pdf",
+  "deployedId": "ming_03_wugou",
+  "reviewedId": "ming_03_wugou",
+  "deployment_output_sha256": {
+    "archive.jpg": "641a4eb90426d8a1f86e8fb265c50f13e95409976d5d4fbcbc8cef22d862fd6f",
+    "readable.jpg": "f9dde51133ab9938b86aef5ce52b63a3b26b5ab8cbd313dd82b817418eaceaf9",
+    "cover.jpg": "fc23453582abe8fba843ff3aea2f51a4bac398e1bef7a43ffafa93725bd1c2a1"
+  }
+}

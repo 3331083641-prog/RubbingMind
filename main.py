@@ -20,6 +20,8 @@ from sample_generator import ensure_samples, SAMPLES_DIR, BASE_DIR
 from algorithm_engine import algorithm_engine, safe_read_image, mat_to_base64
 from knowledge_agent import knowledge_agent, AUTHENTIC_RUBBING_DATABASE
 from museum_manager import museum_manager
+from catalog import inference as catalog_inference, report as catalog_report, graph as catalog_graph
+from museum_processing import process_verified_request
 
 logging.basicConfig(level=logging.INFO, format="[%(asctime)s] %(levelname)s: %(message)s")
 logger = logging.getLogger("RubbingMindApp")
@@ -72,8 +74,7 @@ app.add_middleware(
 os.makedirs(STATIC_DIR, exist_ok=True)
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
-if os.path.exists(DIST_ASSETS_DIR):
-    app.mount("/assets", StaticFiles(directory=DIST_ASSETS_DIR), name="assets")
+app.mount("/assets", StaticFiles(directory=DIST_ASSETS_DIR if os.path.exists(DIST_ASSETS_DIR) else os.path.join(BASE_DIR,"apps","web","public","assets")), name="assets")
 
 
 # Pydantic 请求数据模型
@@ -199,6 +200,11 @@ def _format_stele_item(sample_key: str, data: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
+@app.post("/generate")
+async def compatibility_generate():
+    return catalog_graph(await get_stele("tang-duobao"))
+
+
 @app.get("/api/steles")
 async def get_steles():
     """获取所有真实馆藏碑拓列表 (28件馆藏 + 本地上传样本)"""
@@ -207,97 +213,24 @@ async def get_steles():
 
 @app.get("/api/steles/{stele_id}")
 async def get_stele(stele_id: str):
-    """获取指定碑拓详情"""
     item = museum_manager.get_stele_by_id(stele_id)
-    if item:
-        return item
-    # fallback
-    sample_key = STELE_MAP.get(stele_id, "sample_1.png")
-    data = AUTHENTIC_RUBBING_DATABASE.get(sample_key, AUTHENTIC_RUBBING_DATABASE["sample_1.png"])
-    return _format_stele_item(sample_key, data)
+    if item: return item
+    if stele_id in museum_manager.retired:
+        mapping = museum_manager.retired[stele_id]
+        raise HTTPException(status_code=410, detail={"message":"原记录已下架，推荐查看新馆藏（不同文物）", "oldId":stele_id,"recommendedId":mapping["newId"]})
+    raise HTTPException(status_code=404, detail="未找到该文物，不自动切换样本")
 
 
 @app.get("/api/steles/{stele_id}/infer")
 async def get_stele_inference(stele_id: str):
-    """获取碑刻释文与贝叶斯残字推演数据"""
-    stele = museum_manager.get_stele_by_id(stele_id)
-    
-    # 获取对应文本
-    if stele and stele.get("translation"):
-        raw_text = stele.get("translation", "")
-        title = stele.get("title", "")
-        damaged_list = stele.get("damaged_chars", [])
-    else:
-        sample_key = STELE_MAP.get(stele_id, "sample_1.png")
-        meta = knowledge_agent.get_rubbing_metadata(sample_key)
-        raw_text = meta.get("translation", "")
-        title = meta.get("title", "")
-        damaged_list = [d.get("char") for d in meta.get("damaged_characters", [])]
-
-    # 构建 35 字标准古籍字格 (5列 x 7字)
-    text = (raw_text.replace(" ", "").replace("，", "").replace("。", "").replace("、", "").replace("；", ""))[:35]
-    if len(text) < 35:
-        padding = "金石碑版字口微痕历代流传考据严核正范"
-        text = (text + padding)[:35]
-
-    chars = []
-    for idx, ch in enumerate(text):
-        col = (idx // 7) + 1
-        row = (idx % 7) + 1
-        c_id = f"c{idx+1}"
-        
-        # 判断是否为漫漶残字
-        if ch in damaged_list or (idx in [6, 13, 20] and ch not in ["之", "也", "于"]):
-            candidates = [
-                {
-                    "glyph": ch,
-                    "confidence": 0.942,
-                    "evidence": f"【金石文献互勘】清拓及同朝碑铭词频拓扑吻合，原石残存笔画结构与‘{ch}’字骨架置信度 94.2%",
-                    "font_style": stele.get("script_type", "楷书正体") if stele else "楷书",
-                    "source": f"《金石萃编》/ 馆藏著录考据网络"
-                },
-                {
-                    "glyph": "同",
-                    "confidence": 0.038,
-                    "evidence": "构词形近，但笔画分布与残痕外轮廓概率相左",
-                    "font_style": stele.get("script_type", "楷书正体") if stele else "楷书",
-                    "source": "通假字库"
-                },
-                {
-                    "glyph": "正",
-                    "confidence": 0.020,
-                    "evidence": "历史文献无对应互文搭配，概率极低",
-                    "font_style": stele.get("script_type", "楷书正体") if stele else "楷书",
-                    "source": "语料库频次先验"
-                }
-            ]
-            chars.append({
-                "id": c_id,
-                "char": ch,
-                "status": "damaged",
-                "col": col,
-                "row": row,
-                "damage_level": 0.68,
-                "inferred_candidates": candidates
-            })
-        else:
-            chars.append({
-                "id": c_id,
-                "char": ch,
-                "status": "clear",
-                "col": col,
-                "row": row
-            })
-            
-    return {
-        "transcript": raw_text,
-        "characters": chars,
-        "damaged_summary": f"针对《{title}》检测到 {len([c for c in chars if c['status']=='damaged'])} 个历史风化漫漶字口，已激活多模态贝叶斯推演与文献比对矩阵。"
-    }
+    return catalog_inference(await get_stele(stele_id))
 
 
 @app.get("/api/steles/{stele_id}/graph")
 async def get_stele_graph(stele_id: str):
+    verified = await get_stele(stele_id)
+    if verified.get("source_kind") == "verified_review_v3":
+        return catalog_graph(verified)
     from history_graph import get_history_graph
     graph = get_history_graph(stele_id, museum_manager.get_all_steles())
     if graph is None:
@@ -311,90 +244,15 @@ async def generate_historical_graph(stele_id: str = "tang-duobao"):
     return await get_stele_graph(stele_id)
 
 
+
 @app.get("/api/steles/{stele_id}/report")
 async def get_stele_report(stele_id: str):
-    """获取算法消融实验与金石考据报告数据"""
-    stele = museum_manager.get_stele_by_id(stele_id)
-    title = stele.get("title", "金石碑刻") if stele else "多宝塔感应碑"
-    dynasty = stele.get("dynasty", "唐代") if stele else "唐代"
-    museum = stele.get("collectionInstitution", "台北故宫博物院") if stele else "台北故宫博物院"
-    num = stele.get("collectionNumber", "善拓本") if stele else "善拓本"
-    
-    ablation = [
-        {"name": "原始退化拓片 (Baseline)", "psnr": 18.42, "ssim": 0.6120, "time_ms": 0, "color": "#9E2813"},
-        {"name": "仅空间域中值滤波 (Median)", "psnr": 23.15, "ssim": 0.7240, "time_ms": 32, "color": "#C83C23"},
-        {"name": "仅空域非局部均值 (NLM)", "psnr": 27.60, "ssim": 0.8190, "time_ms": 145, "color": "#A68524"},
-        {"name": "仅Butterworth频域滤波", "psnr": 29.85, "ssim": 0.8520, "time_ms": 68, "color": "#D4AF37"},
-        {"name": "频空域联合去噪 (本系统完整模型)", "psnr": 34.25, "ssim": 0.9482, "time_ms": 182, "color": "#3E8E7E"}
-    ]
-    
-    return {
-        "ablation": ablation,
-        "evaluation_summary": f"针对《{title}》（{dynasty}，{museum}藏，编号{num}），频空域联合去噪算法相较于单一空域中值滤波，PSNR 提升 +11.10 dB，SSIM 提升 +0.2242；相较于单一频域滤波，边缘轮廓保真度与字符笔画拓扑骨架完整性提高 +14.6%，有效消除了吉布斯震荡与斑驳纸纹。",
-        "scholarly_analysis": f"本通《{title}》由于传拓年代久远与自然风化，存在网状细裂纹与纸墨剥落。经过频域高斯陷波压制周期性拓布织纹、空域快速非局部均值保边去噪与 CLAHE 自适应直方图均衡化，拓片暗部微痕字口边界对比度提升 3.8 倍。",
-        "rubbing_dimensions": stele.get("dimensions", "高 285cm, 宽 102cm, 厚 38cm") if stele else "高 285cm, 宽 102cm",
-        "epigraphic_conclusion": f"金石考据确认：原碑漫漶微痕与《{title}》馆藏原目及清乾嘉善拓本完全契合，多模态智能体推演置信度达 94.2% 与 96.5%，符合金石著录定论。"
-    }
+    return catalog_report(await get_stele(stele_id))
 
 
 @app.post("/api/process")
 async def process_rubbing(req: ProcessRequest):
-    """
-    核心接口：执行频空域联合去噪与微痕修复，并返回图像与指标
-    """
-    try:
-        stele = museum_manager.get_stele_by_id(req.stele_id) if req.stele_id else None
-        
-        # 寻找本地真实拓片图像文件
-        target_input = None
-        if req.image_base64 and len(req.image_base64) > 100:
-            target_input = req.image_base64
-        elif stele:
-            local_cover = stele.get("localImagePath")
-            if local_cover and os.path.exists(local_cover):
-                target_input = local_cover
-            elif stele.get("raw_image") and os.path.exists(os.path.join(BASE_DIR, "apps", "web", "public", stele["raw_image"].lstrip("/"))):
-                target_input = os.path.join(BASE_DIR, "apps", "web", "public", stele["raw_image"].lstrip("/"))
-                
-        if not target_input:
-            sample_key = STELE_MAP.get(req.stele_id, req.sample_id or "sample_1.png")
-            if not sample_key.endswith(".png"):
-                sample_key = f"{sample_key}.png"
-            target_input = os.path.join(SAMPLES_DIR, sample_key)
-            if not os.path.exists(target_input):
-                ensure_samples()
-        
-        # 执行真实图像处理算法
-        result = algorithm_engine.process_rubbing(
-            image_input=target_input,
-            d0=req.d0,
-            nlm_h=req.h_nlm,
-            clahe_clip=req.clahe_clip,
-            morph_kernel=req.morph_kernel,
-            damage_mask=req.damage_mask,
-            cinnabar_style=req.cinnabar_style,
-        )
-        
-        # 兼容 React Workbench 字段
-        metrics = result.get("metrics", {})
-        return {
-            "stele_id": req.stele_id,
-            "restored_image": result.get("images", {}).get("restored", ""),
-            "fft_spectrum": result.get("images", {}).get("frequency_spectrum", ""),
-            "skeleton_b64": result.get("images", {}).get("character_skeleton", ""),
-            "cinnabar_b64": result.get("images", {}).get("cinnabar_rubbing", ""),
-            "psnr": metrics.get("psnr", 34.25),
-            "ssim": metrics.get("ssim", 0.9482),
-            "snr_gain": metrics.get("snr_gain", 18.6),
-            "glyph_completeness": metrics.get("stroke_connectivity", 95.8),
-            "character_accuracy": 97.4,
-            "processing_time_ms": int(result.get("processing_time_ms", 182)),
-            "metadata": stele if stele else knowledge_agent.get_rubbing_metadata("sample_1.png")
-        }
-
-    except Exception as e:
-        logger.error(f"图像处理发生异常: {e}", exc_info=True)
-        raise HTTPException(status_code=500, detail=f"图像处理算法异常: {str(e)}")
+    return process_verified_request(req, museum_manager, algorithm_engine)
 
 
 @app.post("/api/upload")

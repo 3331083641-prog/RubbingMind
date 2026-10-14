@@ -73,4 +73,6 @@ data/runtime/
 
 # 8. 原始归档大压缩包与测试下载的原始 PDF
 *.zip
+static/results/
+node_modules.partial-*/
 data/museum-images/*.pdf

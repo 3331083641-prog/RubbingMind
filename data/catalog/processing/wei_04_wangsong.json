@@ -1,0 +1,112 @@
+{
+  "id": "wei_04_wangsong",
+  "source": "原始档案包/wei_04_wangsong/源文件_原样保存.pdf",
+  "pdf_page": 1,
+  "native_dimensions": [
+    3058,
+    2289
+  ],
+  "readable_bbox": [
+    453,
+    323,
+    2639,
+    1991
+  ],
+  "cover_bbox": [
+    1569,
+    325,
+    2639,
+    1991
+  ],
+  "selection_reason": "对开正文，封面选右幅，阅读版保留左右幅",
+  "embedded_image_xref": 8,
+  "real_original_filename": "源文件_原样保存.pdf",
+  "source_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B4%88%E6%8B%93000382_%E5%8C%97%E9%AD%8F%E5%BB%BA%E7%BE%A9%E5%85%83%E5%B9%B4%E7%8E%8B%E8%AA%A6%E5%A2%93%E8%AA%8C_%E5%86%8A.pdf",
+  "source_sha256": "0f5f655d30fdd4d93348c809eed6a808b943ce9432a0bf5079c02cb8e45679b8",
+  "archive_sha256": "358f2dd054de4be97af1cfeed923897d3bed4ccfccb48a1e78b2676a1570ac12",
+  "crop_before_dimensions": [
+    3058,
+    2289
+  ],
+  "readable_after_dimensions": [
+    2186,
+    1668
+  ],
+  "cover_crop_after_dimensions": [
+    1070,
+    1666
+  ],
+  "cover_dimensions": [
+    1100,
+    1420
+  ],
+  "cover_scaled_dimensions": [
+    912,
+    1420
+  ],
+  "isotropic_scale_factor": 0.8523409363745498,
+  "conventional_upsampling": false,
+  "sampling_note": "缩放不增加源图信息；阅读版保持原始像素，不作超分辨率",
+  "padding_rgb": [
+    21,
+    22,
+    22
+  ],
+  "padding_offset": [
+    94,
+    0
+  ],
+  "contrast": {
+    "method": "grayscale + blend with global autocontrast",
+    "cutoff_percent": 0.1,
+    "blend": 0.18,
+    "CLAHE": false
+  },
+  "sharpen": {
+    "radius": 0.65,
+    "percent": 22,
+    "threshold": 4
+  },
+  "perspective_correction": false,
+  "generative_processing": false,
+  "stroke_reconstruction": false,
+  "geometry_change": "crop + isotropic resize only",
+  "image_license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "assistant_visual_review_status": "completed_source_pages_and_crop_comparison",
+  "human_review_status": "approved_by_user_in_integration_request",
+  "output_sha256": {
+    "archive.jpg": "358f2dd054de4be97af1cfeed923897d3bed4ccfccb48a1e78b2676a1570ac12",
+    "readable.jpg": "8d6406fb19dbfdd306eb5aeac8fd8d1858d2988fb69580641ed439d1c85503f2",
+    "cover.jpg": "0ba604dba920062a422e926bb1e2744cc227a10888a30d49e32193a947806d9d"
+  },
+  "original_damage_note": "对开正文，封面选右幅，阅读版保留左右幅",
+  "additional_character_cutting": "none_observed_after_item_specific_border_review",
+  "attribution": "建义元年王诵墓志。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+  "catalogue_url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29482&dep=P&mode=full",
+  "visual_notes": [
+    "历史原拓缺笔、裂损及石花保留；不以输出像素宣称新增原件细节",
+    "原册剪裱字块边界已有部分字形不全，未补写；新裁切位于整块字区之外"
+  ],
+  "quality_status": "通过制作核验，待第三轮独立复核",
+  "item_title": "建义元年王诵墓志",
+  "dynasty": "北魏",
+  "institution": "台北故宫博物院",
+  "accession_number": "贈拓000382",
+  "stone_date": "528年",
+  "rubbing_date": "未核定；不据拓印年改变朝代",
+  "pdf_page_numbering": "1-based",
+  "bbox_convention": "source pixels [left,top,right,bottom], right/bottom exclusive",
+  "original_filename_from_source": "NPM-贈拓000382 北魏建義元年王誦墓誌 冊.pdf",
+  "download_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B4%88%E6%8B%93000382_%E5%8C%97%E9%AD%8F%E5%BB%BA%E7%BE%A9%E5%85%83%E5%B9%B4%E7%8E%8B%E8%AA%A6%E5%A2%93%E8%AA%8C_%E5%86%8A.pdf",
+  "source_archive_type": "PDF containing native embedded JPEG(s) and metadata sheets",
+  "cover_relation": "正文册页/图文碑局部",
+  "working_source_path": "D:\\RubbingMind\\rubbings-review-v3\\originals\\wei_04_wangsong\\源文件_原样保存.pdf",
+  "deployedId": "wei_04_wangsong",
+  "reviewedId": "wei_04_wangsong",
+  "deployment_output_sha256": {
+    "archive.jpg": "358f2dd054de4be97af1cfeed923897d3bed4ccfccb48a1e78b2676a1570ac12",
+    "readable.jpg": "8d6406fb19dbfdd306eb5aeac8fd8d1858d2988fb69580641ed439d1c85503f2",
+    "cover.jpg": "0ba604dba920062a422e926bb1e2744cc227a10888a30d49e32193a947806d9d"
+  }
+}

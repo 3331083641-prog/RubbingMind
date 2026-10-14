@@ -1,0 +1,150 @@
+{
+  "officialExtractedText": "",
+  "processing": {
+    "id": "han_04_shichen",
+    "source": "原始档案包/han_04_shichen/met_36445_00.jpg",
+    "pdf_page": null,
+    "native_dimensions": [
+      3899,
+      3648
+    ],
+    "readable_bbox": [
+      472,
+      580,
+      3455,
+      3254
+    ],
+    "cover_bbox": [
+      2035,
+      580,
+      3455,
+      3254
+    ],
+    "selection_reason": "同一馆藏1992.166.2，馆方标leaf a,b（对应1992.166.2a,b）；DP363587原图3899×3648，右页为正文；两开保留阅读版；边界复查扩大右缘保全建宁等右列笔画",
+    "source_url": "https://www.metmuseum.org/art/collection/search/36445",
+    "download_url": "https://images.metmuseum.org/CRDImages/as/original/DP363587.jpg",
+    "leaf": "a,b; cover b",
+    "real_original_filename": "met_36445_00.jpg",
+    "source_sha256": "082a8bfcf47f4d3e90555f262afadda436a80887943de1b5f3130d23f61f522d",
+    "archive_sha256": "082a8bfcf47f4d3e90555f262afadda436a80887943de1b5f3130d23f61f522d",
+    "crop_before_dimensions": [
+      3899,
+      3648
+    ],
+    "readable_after_dimensions": [
+      2983,
+      2674
+    ],
+    "cover_crop_after_dimensions": [
+      1420,
+      2674
+    ],
+    "cover_dimensions": [
+      1100,
+      1420
+    ],
+    "cover_scaled_dimensions": [
+      754,
+      1420
+    ],
+    "isotropic_scale_factor": 0.531039640987285,
+    "conventional_upsampling": false,
+    "sampling_note": "缩放不增加源图信息；阅读版保持原始像素，不作超分辨率",
+    "padding_rgb": [
+      21,
+      22,
+      22
+    ],
+    "padding_offset": [
+      173,
+      0
+    ],
+    "contrast": {
+      "method": "grayscale + blend with global autocontrast",
+      "cutoff_percent": 0.1,
+      "blend": 0.18,
+      "CLAHE": false
+    },
+    "sharpen": {
+      "radius": 0.65,
+      "percent": 22,
+      "threshold": 4
+    },
+    "perspective_correction": false,
+    "generative_processing": false,
+    "stroke_reconstruction": false,
+    "geometry_change": "crop + isotropic resize only",
+    "image_license": "CC0 / Public Domain",
+    "license_url": "https://www.metmuseum.org/about-the-met/policies-and-documents/open-access",
+    "assistant_visual_review_status": "completed_source_pages_and_crop_comparison",
+    "human_review_status": "pending_third_round_user_ChatGPT_review",
+    "output_sha256": {
+      "archive.jpg": "082a8bfcf47f4d3e90555f262afadda436a80887943de1b5f3130d23f61f522d",
+      "readable.jpg": "952e2e42fd9886d57ef0b832384b9281047b27b8886044e420a510a8060ddf2f",
+      "cover.jpg": "bbd956f4543d5f4331dd15b999f6245da5006616df551f9e1f8bfa52b6b29cad"
+    },
+    "original_damage_note": "同一馆藏1992.166.2，馆方标leaf a,b（对应1992.166.2a,b）；DP363587原图3899×3648，右页为正文；两开保留阅读版；边界复查扩大右缘保全建宁等右列笔画",
+    "additional_character_cutting": "none_observed_after_item_specific_border_review",
+    "attribution": "《史晨碑》拓本，The Metropolitan Museum of Art, Open Access CC0",
+    "catalogue_url": "https://www.metmuseum.org/art/collection/search/36445",
+    "visual_notes": [
+      "历史原拓缺笔、裂损及石花保留；不以输出像素宣称新增原件细节"
+    ],
+    "quality_status": "通过制作核验，待第三轮独立复核",
+    "item_title": "史晨碑",
+    "dynasty": "东汉",
+    "institution": "美国大都会艺术博物馆",
+    "accession_number": "1992.166.2a–ff",
+    "stone_date": "169年",
+    "rubbing_date": "19世纪",
+    "pdf_page_numbering": "1-based",
+    "bbox_convention": "source pixels [left,top,right,bottom], right/bottom exclusive",
+    "original_filename_from_source": "DP363587.jpg",
+    "cover_relation": "正文册页/图文碑局部",
+    "working_source_path": "D:\\RubbingMind\\rubbings-review-v3\\originals\\met_36445_00.jpg"
+  },
+  "reviewedMetadata": {
+    "id": "han_04_shichen",
+    "dynasty": "东汉",
+    "title": "史晨碑",
+    "stele_year_ce": 169,
+    "script": "隶书",
+    "repository": "美国大都会艺术博物馆",
+    "accession_number": "1992.166.2a–ff",
+    "license": "CC0",
+    "source_type": "真实馆藏碑拓数字影像",
+    "file_page_url": "https://www.metmuseum.org/art/collection/search/36445",
+    "commons_filename": "清拓 《史晨碑》 冊 十九世紀拓本-Stele for Shi Chen MET 1992 166 2ab.jpg",
+    "original_format": "JPG",
+    "source_image_count": 1,
+    "description": "真实馆藏影像派生；169年。原拓残损保留。",
+    "attribution": "《史晨碑》拓本，The Metropolitan Museum of Art, Open Access CC0",
+    "web_museum_record_url": "https://www.metmuseum.org/art/collection/search/36445",
+    "is_genuine_rubbing": "catalogued_as_rubbing",
+    "requires_original_inscription_verification": true,
+    "is_damage_level_verified": false,
+    "image_status": "已核验在线档案链接；图片文件须由下载工具获取",
+    "stele_date_label": "169年",
+    "rubbing_date": "19世纪",
+    "selected_leaf": "a,b；封面b",
+    "source_download_url": "https://images.metmuseum.org/CRDImages/as/original/DP363587.jpg",
+    "higher_resolution_source_reacquired": true,
+    "candidate_status": "prepared_for_third_review",
+    "formal_database_modified": false,
+    "is_ai_generated": false,
+    "source_resolution": [
+      3899,
+      3648
+    ],
+    "selected_pdf_page": null,
+    "source_sha256": "082a8bfcf47f4d3e90555f262afadda436a80887943de1b5f3130d23f61f522d",
+    "processing_path": "01_东汉/han_04_shichen/processing.json",
+    "review_status": "completed_source_pages_and_crop_comparison",
+    "quality_status": "通过制作核验，待第三轮独立复核",
+    "image_paths": {
+      "archive": "01_东汉/han_04_shichen/archive.jpg",
+      "readable": "01_东汉/han_04_shichen/readable.jpg",
+      "cover": "01_东汉/han_04_shichen/cover.jpg"
+    }
+  }
+}

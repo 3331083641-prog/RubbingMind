@@ -1,0 +1,26 @@
+[
+  {
+    "coreSampleId": "tang-duobao",
+    "museumSteleId": "tang_01_duobao",
+    "relationship": "same_work",
+    "note": "同一碑刻题名；不同图像及实验身份，不证明为同一馆藏拓本。"
+  },
+  {
+    "coreSampleId": "han-caoquan",
+    "museumSteleId": "han_01_caoquan",
+    "relationship": "same_work",
+    "note": "同一碑刻题名；不同图像及实验身份，不证明为同一馆藏拓本。"
+  },
+  {
+    "coreSampleId": "wei-yuanhuai",
+    "museumSteleId": null,
+    "relationship": "demo_only",
+    "note": "未核实与28件中某一具体馆藏一致，不建立强制关联。"
+  },
+  {
+    "coreSampleId": "wei-jianyi",
+    "museumSteleId": null,
+    "relationship": "demo_only",
+    "note": "未核实与28件中某一具体馆藏一致，不建立强制关联。"
+  }
+]

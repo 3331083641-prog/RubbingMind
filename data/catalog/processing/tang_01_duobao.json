@@ -1,0 +1,112 @@
+{
+  "id": "tang_01_duobao",
+  "source": "原始档案包/tang_01_duobao/源文件_原样保存.pdf",
+  "pdf_page": 2,
+  "native_dimensions": [
+    3058,
+    2289
+  ],
+  "readable_bbox": [
+    618,
+    261,
+    2492,
+    1907
+  ],
+  "cover_bbox": [
+    1599,
+    259,
+    2489,
+    1907
+  ],
+  "selection_reason": "第1页非正文；第2页右幅为正文开头，保留整幅字块",
+  "embedded_image_xref": 15,
+  "real_original_filename": "源文件_原样保存.pdf",
+  "source_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B4%88%E6%8B%93000365_%E6%98%8E%E6%8B%93%E5%94%90%E9%A1%8F%E7%9C%9F%E5%8D%BF%E5%A4%9A%E5%AF%B6%E5%A1%94%E5%A2%A8%E6%8B%93%E6%9C%AC_%E5%86%8A.pdf",
+  "source_sha256": "009ad313197fad46b0ac0cea7048f15b012b2a9f83f58fe7d3cc74f7435eace9",
+  "archive_sha256": "989671354f3e716d030aedd20179766a989f15b640b2b44397bf030ae5da98f0",
+  "crop_before_dimensions": [
+    3058,
+    2289
+  ],
+  "readable_after_dimensions": [
+    1874,
+    1646
+  ],
+  "cover_crop_after_dimensions": [
+    890,
+    1648
+  ],
+  "cover_dimensions": [
+    1100,
+    1420
+  ],
+  "cover_scaled_dimensions": [
+    767,
+    1420
+  ],
+  "isotropic_scale_factor": 0.8616504854368932,
+  "conventional_upsampling": false,
+  "sampling_note": "缩放不增加源图信息；阅读版保持原始像素，不作超分辨率",
+  "padding_rgb": [
+    21,
+    22,
+    22
+  ],
+  "padding_offset": [
+    166,
+    0
+  ],
+  "contrast": {
+    "method": "grayscale + blend with global autocontrast",
+    "cutoff_percent": 0.1,
+    "blend": 0.18,
+    "CLAHE": false
+  },
+  "sharpen": {
+    "radius": 0.65,
+    "percent": 22,
+    "threshold": 4
+  },
+  "perspective_correction": false,
+  "generative_processing": false,
+  "stroke_reconstruction": false,
+  "geometry_change": "crop + isotropic resize only",
+  "image_license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "assistant_visual_review_status": "completed_source_pages_and_crop_comparison",
+  "human_review_status": "approved_by_user_in_integration_request",
+  "output_sha256": {
+    "archive.jpg": "989671354f3e716d030aedd20179766a989f15b640b2b44397bf030ae5da98f0",
+    "readable.jpg": "e59f12e90d4804a08e9db63523725223478986c9148b4a62c6012db0610971c2",
+    "cover.jpg": "9ec2c2847a0be8e222830fa11aab50083abef2c2c78fa74676640e177a44c036"
+  },
+  "original_damage_note": "第1页非正文；第2页右幅为正文开头，保留整幅字块",
+  "additional_character_cutting": "none_observed_after_item_specific_border_review",
+  "attribution": "多宝塔感应碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+  "catalogue_url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+  "visual_notes": [
+    "历史原拓缺笔、裂损及石花保留；不以输出像素宣称新增原件细节",
+    "原册剪裱字块边界已有部分字形不全，未补写；新裁切位于整块字区之外"
+  ],
+  "quality_status": "通过制作核验，待第三轮独立复核",
+  "item_title": "多宝塔感应碑",
+  "dynasty": "唐代",
+  "institution": "台北故宫博物院",
+  "accession_number": "贈拓000365",
+  "stone_date": "752年",
+  "rubbing_date": "未核定；不据拓印年改变朝代",
+  "pdf_page_numbering": "1-based",
+  "bbox_convention": "source pixels [left,top,right,bottom], right/bottom exclusive",
+  "original_filename_from_source": "NPM-贈拓000365 明拓唐顏真卿多寶塔墨拓本 冊.pdf",
+  "download_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B4%88%E6%8B%93000365_%E6%98%8E%E6%8B%93%E5%94%90%E9%A1%8F%E7%9C%9F%E5%8D%BF%E5%A4%9A%E5%AF%B6%E5%A1%94%E5%A2%A8%E6%8B%93%E6%9C%AC_%E5%86%8A.pdf",
+  "source_archive_type": "PDF containing native embedded JPEG(s) and metadata sheets",
+  "cover_relation": "正文册页/图文碑局部",
+  "working_source_path": "D:\\RubbingMind\\rubbings-review-v3\\originals\\tang_01_duobao\\源文件_原样保存.pdf",
+  "deployedId": "tang_01_duobao",
+  "reviewedId": "tang_01_duobao",
+  "deployment_output_sha256": {
+    "archive.jpg": "989671354f3e716d030aedd20179766a989f15b640b2b44397bf030ae5da98f0",
+    "readable.jpg": "e59f12e90d4804a08e9db63523725223478986c9148b4a62c6012db0610971c2",
+    "cover.jpg": "9ec2c2847a0be8e222830fa11aab50083abef2c2c78fa74676640e177a44c036"
+  }
+}

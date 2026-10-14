@@ -1,0 +1,111 @@
+{
+  "id": "song_02_wenxuan",
+  "source": "原始档案包/song_02_wenxuan/源文件_原样保存.pdf",
+  "pdf_page": 1,
+  "native_dimensions": [
+    2296,
+    3049
+  ],
+  "readable_bbox": [
+    473,
+    58,
+    1727,
+    2976
+  ],
+  "cover_bbox": [
+    473,
+    58,
+    1727,
+    2976
+  ],
+  "selection_reason": "额与碑身完整保存，细长比例以深色留边展示",
+  "embedded_image_xref": 8,
+  "real_original_filename": "源文件_原样保存.pdf",
+  "source_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000260%20%E5%AE%8B%E5%A4%AA%E5%AE%97%E5%BE%A1%E8%A3%BD%E8%87%B3%E8%81%96%E6%96%87%E5%AE%A3%E7%8E%8B%E8%B4%8A%E7%A2%91%E5%A2%A8%E6%8B%93%E6%9C%AC%20%E8%BB%B8.pdf",
+  "source_sha256": "dcdcefe1d35e87b62da1dedaae9f652e3b07142fac75e5290b548c715e30a174",
+  "archive_sha256": "15803083f5d0c32a77dedd8f88bce233c5943df1c64de9c34afd338e1783362c",
+  "crop_before_dimensions": [
+    2296,
+    3049
+  ],
+  "readable_after_dimensions": [
+    1254,
+    2918
+  ],
+  "cover_crop_after_dimensions": [
+    1254,
+    2918
+  ],
+  "cover_dimensions": [
+    1100,
+    1420
+  ],
+  "cover_scaled_dimensions": [
+    610,
+    1420
+  ],
+  "isotropic_scale_factor": 0.4866346812885538,
+  "conventional_upsampling": false,
+  "sampling_note": "缩放不增加源图信息；阅读版保持原始像素，不作超分辨率",
+  "padding_rgb": [
+    21,
+    22,
+    22
+  ],
+  "padding_offset": [
+    245,
+    0
+  ],
+  "contrast": {
+    "method": "grayscale + blend with global autocontrast",
+    "cutoff_percent": 0.1,
+    "blend": 0.18,
+    "CLAHE": false
+  },
+  "sharpen": {
+    "radius": 0.65,
+    "percent": 22,
+    "threshold": 4
+  },
+  "perspective_correction": false,
+  "generative_processing": false,
+  "stroke_reconstruction": false,
+  "geometry_change": "crop + isotropic resize only",
+  "image_license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "assistant_visual_review_status": "completed_source_pages_and_crop_comparison",
+  "human_review_status": "approved_by_user_in_integration_request",
+  "output_sha256": {
+    "archive.jpg": "15803083f5d0c32a77dedd8f88bce233c5943df1c64de9c34afd338e1783362c",
+    "readable.jpg": "3564d46727fa2f9157d77a43df4a4b988de875eb2166a5d5ab98bd540af9d2da",
+    "cover.jpg": "43d7e31f2b014899f1e2fc06084a7433c7c22e8d4d7525e1d38540b487493af6"
+  },
+  "original_damage_note": "额与碑身完整保存，细长比例以深色留边展示",
+  "additional_character_cutting": "none_observed_after_item_specific_border_review",
+  "attribution": "宋太宗御制至圣文宣王赞碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+  "catalogue_url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full",
+  "visual_notes": [
+    "历史原拓缺笔、裂损及石花保留；不以输出像素宣称新增原件细节"
+  ],
+  "quality_status": "通过制作核验，待第三轮独立复核",
+  "item_title": "宋太宗御制至圣文宣王赞碑",
+  "dynasty": "宋代",
+  "institution": "台北故宫博物院",
+  "accession_number": "購拓000260",
+  "stone_date": "宋代；释文含1008/1012年诏令，实际刊刻年未独立核定",
+  "rubbing_date": "未核定；不据拓印年改变朝代",
+  "pdf_page_numbering": "1-based",
+  "bbox_convention": "source pixels [left,top,right,bottom], right/bottom exclusive",
+  "original_filename_from_source": "NPM-購拓000260 宋太宗御製至聖文宣王贊碑墨拓本 軸.pdf",
+  "download_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000260%20%E5%AE%8B%E5%A4%AA%E5%AE%97%E5%BE%A1%E8%A3%BD%E8%87%B3%E8%81%96%E6%96%87%E5%AE%A3%E7%8E%8B%E8%B4%8A%E7%A2%91%E5%A2%A8%E6%8B%93%E6%9C%AC%20%E8%BB%B8.pdf",
+  "source_archive_type": "PDF containing native embedded JPEG(s) and metadata sheets",
+  "cover_relation": "完整拓片主体",
+  "working_source_path": "D:\\RubbingMind\\rubbings-review-v3\\originals\\song_02_wenxuan\\源文件_原样保存.pdf",
+  "deployedId": "song_02_wenxuan",
+  "reviewedId": "song_02_wenxuan",
+  "deployment_output_sha256": {
+    "archive.jpg": "15803083f5d0c32a77dedd8f88bce233c5943df1c64de9c34afd338e1783362c",
+    "readable.jpg": "3564d46727fa2f9157d77a43df4a4b988de875eb2166a5d5ab98bd540af9d2da",
+    "cover.jpg": "43d7e31f2b014899f1e2fc06084a7433c7c22e8d4d7525e1d38540b487493af6"
+  }
+}

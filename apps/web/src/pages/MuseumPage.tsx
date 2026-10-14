@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { SteleItem, DYNASTY_OPTIONS } from '../types/stele';
+import { RubbingArchiveViewer } from '../components/RubbingArchiveViewer';
 import { SteleFullscreenViewer } from '../components/stele3d/SteleFullscreenViewer';
 import { 
   Search, 
@@ -34,6 +35,8 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
   const [selectedWeathering, setSelectedWeathering] = useState<string>('全部');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [viewing3DStele, setViewing3DStele] = useState<SteleItem | null>(null);
+  const [viewingArchive, setViewingArchive] = useState<{stele:SteleItem;mode:'readable'|'archive'} | null>(null);
+  const [failedImages, setFailedImages] = useState<Record<string,boolean>>({});
   const [pendingNoticeStele, setPendingNoticeStele] = useState<SteleItem | null>(null);
 
   const weatheringLevels = ['全部', '轻度风化', '中度风化', '重度风化', '严重漫漶', '待评估'];
@@ -122,16 +125,16 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
         <div className="relative z-10 space-y-2 max-w-2xl">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gold/15 border border-gold/40 text-gold-light text-xs font-serif">
             <BookOpen className="w-3.5 h-3.5 text-gold" />
-            <span>中华贞石数字典藏文库 · 七朝代真实馆藏碑拓数字化工程</span>
+            <span>墨韵智考 · 七朝代真实馆藏碑拓数字化工程</span>
           </div>
           <h1 className="text-3xl font-serif font-bold text-white tracking-wide flex items-center gap-3">
-            <span>中华贞石数字典藏馆</span>
+            <span>墨韵智考数字典藏馆</span>
             <span className="text-xs px-2.5 py-0.5 rounded-full bg-cinnabar/20 border border-cinnabar/40 text-cinnabar-light font-mono font-normal">
-              已入库 28 件真实馆藏
+              已入库 {steles.length} 件真实馆藏
             </span>
           </h1>
           <p className="text-xs md:text-sm text-slate-300 leading-relaxed font-sans">
-            汇聚东汉、北魏、唐代、宋代、元代、明代、清代七大历史时期 28 件传世名碑真拓。依据台北故宫博物院、大都会艺术博物馆、国家图书馆及台湾大学图书馆真实著录体系，建立严谨的数字人文档案。
+            汇聚七朝代 {steles.length} 件已审核馆藏影像。依据台北故宫博物院、美国大都会艺术博物馆及普林斯顿大学艺术博物馆著录，保留来源、许可与处理记录。
           </p>
         </div>
 
@@ -251,61 +254,27 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {filteredSteles.map((stele) => {
-            const hasGenuineImage = (stele.imageStatus === '高清图像已获取' || stele.imageStatus?.includes('已获取')) && stele.raw_image;
+            const hasGenuineImage = !!stele.imageAssets?.cover && !failedImages[stele.id];
 
             return (
               <div
                 key={stele.id}
+                data-testid="museum-card" data-stele-id={stele.id}
                 className="glass-panel rounded-2xl overflow-hidden border border-gold/20 hover:border-gold/60 transition-all duration-300 flex flex-col group hover:-translate-y-1 shadow-lg bg-[#0E1319]/90"
               >
                 {/* Image or Pending Placeholder Box */}
                 <div className="relative h-60 w-full bg-[#080B0E] overflow-hidden flex items-center justify-center border-b border-gold/15">
                   {hasGenuineImage ? (
                     <img
-                      src={stele.raw_image}
+                      src={stele.imageAssets?.cover} loading="lazy" decoding="async" data-testid="museum-cover"
                       alt={stele.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter contrast-125 brightness-95"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).src = '/assets/stele/rubbings/stele_tang_duobao_damaged.png';
-                      }}
+                      className="w-full h-full object-contain"
+                      onError={() => setFailedImages(prev => ({...prev,[stele.id]:true}))}
                     />
                   ) : (
-                    /* Elegant Museum Archive Placeholder */
-                    <div className="w-full h-full p-4 flex flex-col justify-between bg-gradient-to-br from-[#121820] to-[#0A0D12] text-slate-300 relative overflow-hidden">
-                      <div className="absolute -right-6 -bottom-6 w-28 h-28 border-4 border-slate-800/40 rounded-full flex items-center justify-center opacity-30 select-none pointer-events-none">
-                        <span className="font-serif text-3xl font-bold text-slate-700">藏</span>
-                      </div>
-                      
-                      <div className="space-y-1.5 z-10">
-                        <div className="flex items-center justify-between">
-                          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-cinnabar/20 border border-cinnabar/40 text-cinnabar-light font-bold">
-                            馆藏著录 · 待授权获取
-                          </span>
-                          <span className="text-[10px] font-mono text-slate-500">
-                            {stele.collectionNumber || '档案在册'}
-                          </span>
-                        </div>
-                        <h4 className="font-serif font-bold text-slate-200 text-sm line-clamp-2 pt-1">
-                          {stele.title}
-                        </h4>
-                      </div>
-
-                      <div className="space-y-2 z-10 text-[11px] text-slate-400 font-sans border-t border-slate-800/80 pt-2">
-                        <p className="line-clamp-2 leading-relaxed text-slate-400">
-                          {stele.collectionInstitution}重点著录。依数字版权与学术规范，原始高清影像遵循馆际授权流程。
-                        </p>
-                        {stele.sourceUrl && (
-                          <a
-                            href={stele.sourceUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-[11px] font-serif text-gold hover:underline hover:text-gold-light"
-                          >
-                            <span>查阅官方著录来源</span>
-                            <ExternalLink className="w-3 h-3" />
-                          </a>
-                        )}
-                      </div>
+                    <div className="text-sm text-slate-300 text-center p-5">本件图像加载失败
+                      <button className="block mx-auto text-gold underline mt-3" onClick={() => setFailedImages(prev => ({...prev,[stele.id]:false}))}>重试</button>
+                      <a className="block text-gold mt-3" href={stele.sourceUrl} target="_blank" rel="noreferrer">查看馆藏来源</a>
                     </div>
                   )}
                   
@@ -335,7 +304,7 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
                   {/* Bottom HUD: PSNR / Image Status */}
                   <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-[11px] px-2 py-1 rounded bg-black/70 backdrop-blur-sm border border-slate-800 font-mono">
                     <span className="text-gold-light">
-                      {hasGenuineImage ? `PSNR: ${stele.metrics?.psnr || 33.2} dB` : '数字化档案已录入'}
+                      {stele.metrics?.psnr == null ? '未评测' : `PSNR: ${stele.metrics.psnr} dB`}
                     </span>
                     <span className={hasGenuineImage ? 'text-celadon-light' : 'text-amber-400'}>
                       {stele.imageStatus || '著录公开'}
@@ -361,12 +330,12 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
                     {/* Metadata Items */}
                     <div className="space-y-1 text-xs text-slate-400 font-sans">
                       <p className="flex items-center gap-1.5">
-                        <span className="text-gold/80 font-serif">书丹/立石:</span>
-                        <span className="text-slate-300 truncate">{stele.author}</span>
+                        <span className="text-gold/80 font-serif">撰文 / 书丹:</span>
+                        <span className="text-slate-300 truncate">{stele.inscriptionAuthor} / {stele.calligrapher}</span>
                       </p>
                       <p className="flex items-center gap-1.5">
                         <Calendar className="w-3.5 h-3.5 text-slate-500" />
-                        <span className="truncate">{stele.year} {stele.rubbingPeriod ? `(${stele.rubbingPeriod})` : ''}</span>
+                        <span className="leading-relaxed">原刻：{stele.year}</span>
                       </p>
                       <p className="flex items-center gap-1.5">
                         <MapPin className="w-3.5 h-3.5 text-slate-500" />
@@ -374,6 +343,7 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
                       </p>
                     </div>
 
+                    <p className="text-xs text-slate-400">拓本：{stele.rubbingPeriod}</p><p className="text-xs text-slate-400">类型：{stele.artifactType}</p>
                     {/* Academic Summary */}
                     <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed pt-0.5 font-sans">
                       {stele.summary}
@@ -385,6 +355,11 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
                     </div>
                   </div>
 
+                  <div className="flex flex-wrap gap-2 text-xs text-gold">
+                    <button onClick={() => setViewingArchive({stele,mode:'readable'})}>查看高清拓本</button>
+                    <button onClick={() => setViewingArchive({stele,mode:'archive'})}>查看完整档案</button>
+                    <a href={stele.sourceUrl} target="_blank" rel="noreferrer">查看馆藏来源</a>
+                  </div>
                   {/* Action Buttons */}
                   <div className="pt-2.5 border-t border-slate-800/80 flex items-center justify-between gap-1.5">
                     <button
@@ -438,12 +413,13 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
         </div>
       )}
 
+      {viewingArchive && <RubbingArchiveViewer stele={viewingArchive.stele} mode={viewingArchive.mode} onClose={() => setViewingArchive(null)} />}
       {/* 3D Stele Viewer Modal */}
       {viewing3DStele && (
         <SteleFullscreenViewer
           isOpen={!!viewing3DStele}
           onClose={() => setViewing3DStele(null)}
-          customRubbingUrl={viewing3DStele.damaged_image || viewing3DStele.raw_image}
+          customRubbingUrl={viewing3DStele.imageAssets?.cover || viewing3DStele.raw_image}
           steleTitle={`${viewing3DStele.title} · 三维数字展陈`}
           onOpenWorkbench={() => {
             onSelectStele(viewing3DStele.id);
@@ -466,7 +442,7 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
               《<span className="text-gold font-serif font-bold">{pendingNoticeStele.title}</span>》（馆藏号: {pendingNoticeStele.collectionNumber}）属于已核验证书的<span className="text-paper-light font-semibold">{pendingNoticeStele.collectionInstitution}</span>正式馆藏著录。
             </p>
             <p className="text-xs text-slate-400 leading-relaxed font-sans">
-              根据数字人文规范，本系统严禁使用 AI 随机虚构图像伪造真实文物。当前该档案处于“馆藏记录已导入 · 原图待授权获取”状态，建议查阅官方著录链接或在典藏馆浏览已获取的 23 件高清母本。
+              根据数字人文规范，本系统严禁使用 AI 随机虚构图像伪造真实文物。当前该档案处于“馆藏记录已导入 · 原图待授权获取”状态，建议查阅官方著录链接或在典藏馆浏览已获取的 已审核馆藏图片。
             </p>
 
             <div className="pt-2 border-t border-slate-800 flex items-center justify-between gap-3">

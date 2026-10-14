@@ -10,6 +10,7 @@ export const DYNASTY_OPTIONS = [
 ] as const;
 
 export type DynastyValue = typeof DYNASTY_OPTIONS[number]['value'];
+export interface RubbingAssets { cover: string; readable: string; archive: string; }
 
 export interface SteleItem {
   id: string;
@@ -33,11 +34,11 @@ export interface SteleItem {
   restored_image?: string;
   fragment_image?: string;
   metrics: {
-    psnr: number;
-    ssim: number;
-    snr_gain: number;
-    glyph_completeness: number;
-    character_accuracy: number;
+    psnr: number | null;
+    ssim: number | null;
+    snr_gain: number | null;
+    glyph_completeness: number | null;
+    character_accuracy: number | null;
   };
   translation: string;
   // 真实馆藏数字化扩展字段 (SteleRecord Schema)
@@ -60,6 +61,14 @@ export interface SteleItem {
   imageStatus?: string;
   isDemo?: boolean;
   source_kind?: string;
+  imageAssets?: RubbingAssets;
+  artifactType?: string;
+  licenseUrl?: string;
+  modifications?: string;
+  rubbingCollectionInstitution?: string;
+  physicalCollectionInstitution?: string | null;
+  evaluationStatus?: string;
+  inferenceDemo?: {transcript:string;characters:CharacterItem[];damaged_summary:string};
 }
 
 export interface ProcessingParams {
@@ -75,11 +84,11 @@ export interface ProcessingResult {
   fft_spectrum?: string;
   skeleton_b64?: string;
   cinnabar_b64?: string;
-  psnr: number;
-  ssim: number;
-  snr_gain: number;
-  glyph_completeness: number;
-  character_accuracy: number;
+  psnr: number | null;
+  ssim: number | null;
+  snr_gain: number | null;
+  glyph_completeness: number | null;
+  character_accuracy: number | null;
   processing_time_ms: number;
   stele_id: string;
 }

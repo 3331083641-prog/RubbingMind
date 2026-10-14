@@ -1,0 +1,590 @@
+[
+  {
+    "id": "han_01_caoquan",
+    "title": "曹全碑",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34589&dep=P&mode=full",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "曹全碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "cec4baf0e69c24ca164246faf8cbc64a429c4eb46a1a3c3d119f12f450bf0e3b",
+    "outputSha256": {
+      "archive.jpg": "8cc91f116d1de99a32bd55e7512ae02707cf91c87b6f59ef00d7c4d471b38a8d",
+      "readable.jpg": "e585c3231ba491e2b8ce0494da52fb8e375e7525673344acc2650d73b8c0dbd2",
+      "cover.jpg": "b441ecf8abad25d76b61365f490a175235b520af4465d3b280f2d28b43343a19"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/han_01_caoquan_archive.jpg?v=8cc91f116d1d",
+      "readable": "/assets/stele/museum-rubbings/han_01_caoquan_readable.jpg?v=e585c3231ba4",
+      "cover": "/assets/stele/museum-rubbings/han_01_caoquan_cover.jpg?v=b441ecf8abad"
+    },
+    "auditedLicenseLabel": "CC BY 4.0"
+  },
+  {
+    "id": "han_02_yiying",
+    "title": "乙瑛碑",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "乙瑛碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "1ee71af3b141f4afe5c74f03ebec00d40dfe08867ae1a385542c8d9c56314fd3",
+    "outputSha256": {
+      "archive.jpg": "95f3357e4c9b0a04eff52ad1c93a615b1542b929b968ec647fc171801b139014",
+      "readable.jpg": "5aec3d3a705eda460c90da28c5bb0d63f24b386b4421fa02607e4964d6a527c7",
+      "cover.jpg": "402e644868a67675e0037853b1ec594a73b758745cdf9fbc33bcb1ad2012dc3f"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/han_02_yiying_archive.jpg?v=95f3357e4c9b",
+      "readable": "/assets/stele/museum-rubbings/han_02_yiying_readable.jpg?v=5aec3d3a705e",
+      "cover": "/assets/stele/museum-rubbings/han_02_yiying_cover.jpg?v=402e644868a6"
+    },
+    "auditedLicenseLabel": "CC BY 4.0"
+  },
+  {
+    "id": "han_03_liqi",
+    "title": "礼器碑",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34648&dep=P&mode=full",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "礼器碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "a3352bdc7fea877021b4bf41a3225a4dc9774ccd818013c22eb5b5acb103ef97",
+    "outputSha256": {
+      "archive.jpg": "7b5f373e3b3ce452c43140a2ca950ce755dfd1f5b3379232f769eb6ae0d168da",
+      "readable.jpg": "bf5787e578fc2203c2955e13ee3c83ed5b325f2e5d32ca6779777e2d65666bfe",
+      "cover.jpg": "dbb371ce66eca05b01f5d096b4a76bfc806beb78a8fdc55a21faf1fad96d2ffa"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/han_03_liqi_archive.jpg?v=7b5f373e3b3c",
+      "readable": "/assets/stele/museum-rubbings/han_03_liqi_readable.jpg?v=bf5787e578fc",
+      "cover": "/assets/stele/museum-rubbings/han_03_liqi_cover.jpg?v=dbb371ce66ec"
+    },
+    "auditedLicenseLabel": "CC BY 4.0"
+  },
+  {
+    "id": "han_04_shichen",
+    "title": "史晨碑",
+    "sourceUrl": "https://www.metmuseum.org/art/collection/search/36445",
+    "license": "CC0",
+    "licenseUrl": "https://www.metmuseum.org/about-the-met/policies-and-documents/open-access",
+    "attribution": "《史晨碑》拓本，The Metropolitan Museum of Art, Open Access CC0",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "082a8bfcf47f4d3e90555f262afadda436a80887943de1b5f3130d23f61f522d",
+    "outputSha256": {
+      "archive.jpg": "082a8bfcf47f4d3e90555f262afadda436a80887943de1b5f3130d23f61f522d",
+      "readable.jpg": "952e2e42fd9886d57ef0b832384b9281047b27b8886044e420a510a8060ddf2f",
+      "cover.jpg": "bbd956f4543d5f4331dd15b999f6245da5006616df551f9e1f8bfa52b6b29cad"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/han_04_shichen_archive.jpg?v=082a8bfcf47f",
+      "readable": "/assets/stele/museum-rubbings/han_04_shichen_readable.jpg?v=952e2e42fd98",
+      "cover": "/assets/stele/museum-rubbings/han_04_shichen_cover.jpg?v=bbd956f4543d"
+    },
+    "auditedLicenseLabel": "CC0 / Public Domain"
+  },
+  {
+    "id": "wei_01_zhangmenglong",
+    "title": "张猛龙碑",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33681&dep=P&mode=full",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "张猛龙碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "1d9f6b1e442fb54f769b2c553f7c044822eb5eeae60872425225df3b241ba46d",
+    "outputSha256": {
+      "archive.jpg": "d737b734ae97ba3314c13a973bcc9d5e411875a98596135c0d39f04d966d61a7",
+      "readable.jpg": "2e884fdf44d1e9b3b1e57dfc325e6202fcef0ae42fc8f9f02a5311a8c0fefa79",
+      "cover.jpg": "748b0f816887dfb069f4883b60e9998d0f9a71cad89a6d1f6becd21acde771a1"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/wei_01_zhangmenglong_archive.jpg?v=d737b734ae97",
+      "readable": "/assets/stele/museum-rubbings/wei_01_zhangmenglong_readable.jpg?v=2e884fdf44d1",
+      "cover": "/assets/stele/museum-rubbings/wei_01_zhangmenglong_cover.jpg?v=748b0f816887"
+    },
+    "auditedLicenseLabel": "CC BY 4.0"
+  },
+  {
+    "id": "wei_02_wugaoli",
+    "title": "吴高黎墓志",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "吴高黎墓志。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "e2010873451d08dbac1cf399c046be9110874a31fbaf2f138b7f41c6530493cb",
+    "outputSha256": {
+      "archive.jpg": "06a31b7c673b08a748c3f48a98d19ca85bdaaad90a458b75d3882f0f00cec9d2",
+      "readable.jpg": "12a8bfe268ddc8ba308e250922afa861cef6eda6ac748174d1a99724f63dd6f6",
+      "cover.jpg": "5e9058d374150808fb9b7b351ea39b0396de966dde92f253f8c410566ad21481"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/wei_02_wugaoli_archive.jpg?v=06a31b7c673b",
+      "readable": "/assets/stele/museum-rubbings/wei_02_wugaoli_readable.jpg?v=12a8bfe268dd",
+      "cover": "/assets/stele/museum-rubbings/wei_02_wugaoli_cover.jpg?v=5e9058d37415"
+    },
+    "auditedLicenseLabel": "CC BY 4.0"
+  },
+  {
+    "id": "wei_03_kouyan",
+    "title": "寇演墓志",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30320&dep=P&mode=full",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "寇演墓志。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "153cc74cd90a67a9985261f67845e4714afdd7bcee8bf8f38cbeedaa5be59759",
+    "outputSha256": {
+      "archive.jpg": "6da605988e6baef47baad6fecbf15ff08187693f103a57f7e8c2b73b7a822fdd",
+      "readable.jpg": "9c26464baff318f32e90c4242c96c3f570d778e887e278a118f43875cf069210",
+      "cover.jpg": "dcdfa6b0b68b2ca2dc7d912dd65e22eabbc04c41615cb1afc882ec9b28ea0e90"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/wei_03_kouyan_archive.jpg?v=6da605988e6b",
+      "readable": "/assets/stele/museum-rubbings/wei_03_kouyan_readable.jpg?v=9c26464baff3",
+      "cover": "/assets/stele/museum-rubbings/wei_03_kouyan_cover.jpg?v=dcdfa6b0b68b"
+    },
+    "auditedLicenseLabel": "CC BY 4.0"
+  },
+  {
+    "id": "wei_04_wangsong",
+    "title": "建义元年王诵墓志",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29482&dep=P&mode=full",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "建义元年王诵墓志。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "0f5f655d30fdd4d93348c809eed6a808b943ce9432a0bf5079c02cb8e45679b8",
+    "outputSha256": {
+      "archive.jpg": "358f2dd054de4be97af1cfeed923897d3bed4ccfccb48a1e78b2676a1570ac12",
+      "readable.jpg": "8d6406fb19dbfdd306eb5aeac8fd8d1858d2988fb69580641ed439d1c85503f2",
+      "cover.jpg": "0ba604dba920062a422e926bb1e2744cc227a10888a30d49e32193a947806d9d"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/wei_04_wangsong_archive.jpg?v=358f2dd054de",
+      "readable": "/assets/stele/museum-rubbings/wei_04_wangsong_readable.jpg?v=8d6406fb19db",
+      "cover": "/assets/stele/museum-rubbings/wei_04_wangsong_cover.jpg?v=0ba604dba920"
+    },
+    "auditedLicenseLabel": "CC BY 4.0"
+  },
+  {
+    "id": "tang_01_duobao",
+    "title": "多宝塔感应碑",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "多宝塔感应碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "009ad313197fad46b0ac0cea7048f15b012b2a9f83f58fe7d3cc74f7435eace9",
+    "outputSha256": {
+      "archive.jpg": "989671354f3e716d030aedd20179766a989f15b640b2b44397bf030ae5da98f0",
+      "readable.jpg": "e59f12e90d4804a08e9db63523725223478986c9148b4a62c6012db0610971c2",
+      "cover.jpg": "9ec2c2847a0be8e222830fa11aab50083abef2c2c78fa74676640e177a44c036"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/tang_01_duobao_archive.jpg?v=989671354f3e",
+      "readable": "/assets/stele/museum-rubbings/tang_01_duobao_readable.jpg?v=e59f12e90d48",
+      "cover": "/assets/stele/museum-rubbings/tang_01_duobao_cover.jpg?v=9ec2c2847a0b"
+    },
+    "auditedLicenseLabel": "CC BY 4.0"
+  },
+  {
+    "id": "tang_02_jiucheng",
+    "title": "九成宫醴泉铭",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=24521&dep=P&mode=full",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "九成宫醴泉铭。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "957bd964c1ca5e9b3c012d4e0588b0d913042ab9a49e96741c305b1f7b6869f8",
+    "outputSha256": {
+      "archive.jpg": "4ad64079d75975babcf67e84eb7f77d0ee4193337f62efbf1e0d900e8be01705",
+      "readable.jpg": "4317318d2de973e92fcbc3c933c6862a22e3a197552a54d87ee8a6de21de04e3",
+      "cover.jpg": "de15d1e00ede79e7a8925131994018b5fd69ebc3888c2921ef1f087793aff019"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/tang_02_jiucheng_archive.jpg?v=4ad64079d759",
+      "readable": "/assets/stele/museum-rubbings/tang_02_jiucheng_readable.jpg?v=4317318d2de9",
+      "cover": "/assets/stele/museum-rubbings/tang_02_jiucheng_cover.jpg?v=de15d1e00ede"
+    },
+    "auditedLicenseLabel": "CC BY 4.0"
+  },
+  {
+    "id": "tang_03_yanjiamiao",
+    "title": "颜氏家庙碑",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "颜氏家庙碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "1db357191b9d9fd5fc6a395cdfaac68150a7f4aa632ef12f8e427d9902ca28fd",
+    "outputSha256": {
+      "archive.jpg": "9930703f92852b4b825fba3c3aeb2bb0c1aab2ae54c5455c2f95a50a92a37486",
+      "readable.jpg": "5603575174433ce8d9bbe5e8bde8c8baa27e7f73228497b8952cc330b7e385d8",
+      "cover.jpg": "9b714e179949d016440b7e0666873ecb69b50866b89bd6222f956cea85153e82"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/tang_03_yanjiamiao_archive.jpg?v=9930703f9285",
+      "readable": "/assets/stele/museum-rubbings/tang_03_yanjiamiao_readable.jpg?v=560357517443",
+      "cover": "/assets/stele/museum-rubbings/tang_03_yanjiamiao_cover.jpg?v=9b714e179949"
+    },
+    "auditedLicenseLabel": "CC BY 4.0"
+  },
+  {
+    "id": "tang_04_xuanmita",
+    "title": "玄秘塔碑",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29090&dep=P&mode=full",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "玄秘塔碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "d0ea8c9212bd7e49ba0b48f1b77adc621470946ade1dbcebb489f4012dc92569",
+    "outputSha256": {
+      "archive.jpg": "65a3af290040f11c40eb9fa734f502e559f760d25f8e20232d6722b050d75666",
+      "readable.jpg": "221d42a2a7fb20b2e9985f4555d764fca3f869fae63c87b0532383fc49424644",
+      "cover.jpg": "446dbe140a02c712cdbbafaf2ad38f9e878ffcb4ff2c3678fb79960ff75faa57"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/tang_04_xuanmita_archive.jpg?v=65a3af290040",
+      "readable": "/assets/stele/museum-rubbings/tang_04_xuanmita_readable.jpg?v=221d42a2a7fb",
+      "cover": "/assets/stele/museum-rubbings/tang_04_xuanmita_cover.jpg?v=446dbe140a02"
+    },
+    "auditedLicenseLabel": "CC BY 4.0"
+  },
+  {
+    "id": "song_01_yuanyou",
+    "title": "元祐党籍碑",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32237&dep=P&mode=full",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "元祐党籍碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "7700c8e3336dcf483a91903d0c49145c1880e5c71367d8aea5c714f88e9ed43d",
+    "outputSha256": {
+      "archive.jpg": "d5f83e8d84bfa59ee8c5958fdd1fffced857d45be49709ef3a9a73931684893b",
+      "readable.jpg": "20e25ab7b522971efd135fbc0a73387d5899ed4f044afbef2b90aa5cc0ec2975",
+      "cover.jpg": "23aeab3b0c6f26e8b2fa3449e017bdc240c7161df8394485c6688abad428683c"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/song_01_yuanyou_archive.jpg?v=d5f83e8d84bf",
+      "readable": "/assets/stele/museum-rubbings/song_01_yuanyou_readable.jpg?v=20e25ab7b522",
+      "cover": "/assets/stele/museum-rubbings/song_01_yuanyou_cover.jpg?v=23aeab3b0c6f"
+    },
+    "auditedLicenseLabel": "CC BY 4.0"
+  },
+  {
+    "id": "song_02_wenxuan",
+    "title": "宋太宗御制至圣文宣王赞碑",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "宋太宗御制至圣文宣王赞碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "dcdcefe1d35e87b62da1dedaae9f652e3b07142fac75e5290b548c715e30a174",
+    "outputSha256": {
+      "archive.jpg": "15803083f5d0c32a77dedd8f88bce233c5943df1c64de9c34afd338e1783362c",
+      "readable.jpg": "3564d46727fa2f9157d77a43df4a4b988de875eb2166a5d5ab98bd540af9d2da",
+      "cover.jpg": "43d7e31f2b014899f1e2fc06084a7433c7c22e8d4d7525e1d38540b487493af6"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/song_02_wenxuan_archive.jpg?v=15803083f5d0",
+      "readable": "/assets/stele/museum-rubbings/song_02_wenxuan_readable.jpg?v=3564d46727fa",
+      "cover": "/assets/stele/museum-rubbings/song_02_wenxuan_cover.jpg?v=43d7e31f2b01"
+    },
+    "auditedLicenseLabel": "CC BY 4.0"
+  },
+  {
+    "id": "song_03_daguan",
+    "title": "大观圣作碑",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32018&dep=P&mode=full",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "大观圣作碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "7daed181c0ba9b8feb30a8d383712834ae1e67c9c017d753d8b99c9cde731d21",
+    "outputSha256": {
+      "archive.jpg": "c84b847543c96af9b40643c1b48a0f3d78b3a4cd0dc4706b7c7e8b5da6cac9d7",
+      "readable.jpg": "2630a62ec73a363fdeaddb0f35afa0c693df879c9beddca581f523f964955a45",
+      "cover.jpg": "e550430440d9c52f21ab56dd4de239a884b50409761aac787575fdc3fe1767d3"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/song_03_daguan_archive.jpg?v=c84b847543c9",
+      "readable": "/assets/stele/museum-rubbings/song_03_daguan_readable.jpg?v=2630a62ec73a",
+      "cover": "/assets/stele/museum-rubbings/song_03_daguan_cover.jpg?v=e550430440d9"
+    },
+    "auditedLicenseLabel": "CC BY 4.0"
+  },
+  {
+    "id": "song_04_mengying",
+    "title": "释梦英十八体书碑",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "释梦英十八体书碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "b613403e0c03ac4c815e71a5734d3397a81b2d21d1072b3e28a178305c539532",
+    "outputSha256": {
+      "archive.jpg": "fe0bbfb58960f5bf8d6c5e2becc1d4e99847b7258053e118385d9422228ea8fd",
+      "readable.jpg": "2fa87d2293ef3b99ce74392408466264f32e7bdf057d04b3b82c69e806aac424",
+      "cover.jpg": "0fa2e4ec1ef48fe71bcbd65c0e4a88df510ef3a283fd9ff70f98e4428317c562"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/song_04_mengying_archive.jpg?v=fe0bbfb58960",
+      "readable": "/assets/stele/museum-rubbings/song_04_mengying_readable.jpg?v=2fa87d2293ef",
+      "cover": "/assets/stele/museum-rubbings/song_04_mengying_cover.jpg?v=0fa2e4ec1ef4"
+    },
+    "auditedLicenseLabel": "CC BY 4.0"
+  },
+  {
+    "id": "yuan_01_yufu",
+    "title": "大元敕藏御服之碑",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29089&dep=P&mode=full",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "大元敕藏御服之碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "03fd0e11841b4f519c9ed1c9676f09d1e7415d544af7109f55b83af06f1f09c6",
+    "outputSha256": {
+      "archive.jpg": "1f4654d528ae5add18de271effc6154de5f89a424f4a3d312b6480692659b595",
+      "readable.jpg": "1b1beea0dd67cf7186b5f58314d64a0090e60cf174631b44175625510e6077b0",
+      "cover.jpg": "ede7c0809ab17c5716d1081663e6c04e8a2d48a5cb5cf0652bc8d6526c48be6b"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/yuan_01_yufu_archive.jpg?v=1f4654d528ae",
+      "readable": "/assets/stele/museum-rubbings/yuan_01_yufu_readable.jpg?v=1b1beea0dd67",
+      "cover": "/assets/stele/museum-rubbings/yuan_01_yufu_cover.jpg?v=ede7c0809ab1"
+    },
+    "auditedLicenseLabel": "CC BY 4.0"
+  },
+  {
+    "id": "yuan_02_sundeyu",
+    "title": "元重阳宫孙德彧道行碑",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34667&dep=P&mode=full",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "元重阳宫孙德彧道行碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "2ca6c573948002bcd457360a11ba9e80a82dde26c0c7aa3f5223b735678d0452",
+    "outputSha256": {
+      "archive.jpg": "f03f52d3ddc31231473efc1c267fe43260c3ca1a8e8e031eb3fc45562b755b31",
+      "readable.jpg": "3ada3ac0a7ae548f16841c40b8541b9697a0f2751ec11847aa11f45c9adcf8c9",
+      "cover.jpg": "bedbe212f28bb47a99c3cdb62c9a8ff9b0f610a6c0cd8976acb83176899478a0"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/yuan_02_sundeyu_archive.jpg?v=f03f52d3ddc3",
+      "readable": "/assets/stele/museum-rubbings/yuan_02_sundeyu_readable.jpg?v=3ada3ac0a7ae",
+      "cover": "/assets/stele/museum-rubbings/yuan_02_sundeyu_cover.jpg?v=bedbe212f28b"
+    },
+    "auditedLicenseLabel": "CC BY 4.0"
+  },
+  {
+    "id": "yuan_03_shengzhu",
+    "title": "圣主本命长生之碑",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34561&dep=P&mode=full",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "圣主本命长生之碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "d818483a2f71930f41fe27018022499217dd25f5566e24144ad93509c09b5ed5",
+    "outputSha256": {
+      "archive.jpg": "c59d95488c1d641b8a5d438d1dc04e3920aed3061265f372203385adec303c98",
+      "readable.jpg": "7062c2d1b5bcdb2574c422da4c07a2042f78812666065447d15f8befaaad9e62",
+      "cover.jpg": "30bf1fc731dfb3151c8a74ff75fe869d21f05e5b3aa477f2cd307fc806be745b"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/yuan_03_shengzhu_archive.jpg?v=c59d95488c1d",
+      "readable": "/assets/stele/museum-rubbings/yuan_03_shengzhu_readable.jpg?v=7062c2d1b5bc",
+      "cover": "/assets/stele/museum-rubbings/yuan_03_shengzhu_cover.jpg?v=30bf1fc731df"
+    },
+    "auditedLicenseLabel": "CC BY 4.0"
+  },
+  {
+    "id": "yuan_04_jingyuanchang",
+    "title": "赵孟頫书敬元长墓碣铭",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34668?dep=P",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "元赵孟頫书元故太常博士敬元长墓碣铭。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "24f8c82a46d8b7882675cb21a4218bf775e308351440fd19636e2107716f8b23",
+    "outputSha256": {
+      "archive.jpg": "bc98a3330757bceab3c05a270e8d6759eb2c4e36a206adf23e3b0691c6ee8ca9",
+      "readable.jpg": "fcd557011d464cdf2224f2dadebc8f1e6d6f8cc8fbfffd3f917584023a5b0fa2",
+      "cover.jpg": "afcac05d9fb1d2e3c29a21f8607514b82641e6e76ed3f57701ffdcd9f2046ebb"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/yuan_04_jingyuanchang_archive.jpg?v=bc98a3330757",
+      "readable": "/assets/stele/museum-rubbings/yuan_04_jingyuanchang_readable.jpg?v=fcd557011d46",
+      "cover": "/assets/stele/museum-rubbings/yuan_04_jingyuanchang_cover.jpg?v=afcac05d9fb1"
+    },
+    "auditedLicenseLabel": "CC BY 4.0"
+  },
+  {
+    "id": "ming_01_xianfu",
+    "title": "明弘治八年西安府学题名碑",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "明弘治八年西安府学题名碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "f957e8226bf1729c2d0ce387f73581435bd313ec03754929614c5e24744768b2",
+    "outputSha256": {
+      "archive.jpg": "217d36e301a81f0b1fd869db86a45fa79dbb9fd8bb795c7e901068838f450017",
+      "readable.jpg": "70d472b2c7f61830f52c41683fbd99f43c093947ca519622e8951dc2be214d2c",
+      "cover.jpg": "eff7525128ccaf49dfb517c344da12a0504846058ad7c525563cc9bf99fd347d"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/ming_01_xianfu_archive.jpg?v=217d36e301a8",
+      "readable": "/assets/stele/museum-rubbings/ming_01_xianfu_readable.jpg?v=70d472b2c7f6",
+      "cover": "/assets/stele/museum-rubbings/ming_01_xianfu_cover.jpg?v=eff7525128cc"
+    },
+    "auditedLicenseLabel": "CC BY 4.0"
+  },
+  {
+    "id": "ming_02_luxianzhi",
+    "title": "文徵明书陆献之墓志铭",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30367&dep=P&mode=full",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "文徵明书陆献之墓志铭。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "b8a8a673471246368f0215c4680508ff2b0dee988a5719d7421751835387833b",
+    "outputSha256": {
+      "archive.jpg": "316f3e564460127a1255850cda82bb2bee7e3c72b4b5d1f8790f99c9fe175799",
+      "readable.jpg": "ccdb8b6adbb28f69ee074cb21d088c60cfe89770169873fd2d2f978a8d408b53",
+      "cover.jpg": "169c105086e8f4417b345a50d63f1d893afe2e255ac0ca9779829c04b0f315a3"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/ming_02_luxianzhi_archive.jpg?v=316f3e564460",
+      "readable": "/assets/stele/museum-rubbings/ming_02_luxianzhi_readable.jpg?v=ccdb8b6adbb2",
+      "cover": "/assets/stele/museum-rubbings/ming_02_luxianzhi_cover.jpg?v=169c105086e8"
+    },
+    "auditedLicenseLabel": "CC BY 4.0"
+  },
+  {
+    "id": "ming_03_wugou",
+    "title": "无垢子何君墓志铭",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "无垢子何君墓志铭。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "0d8152e57832ffa9b2580ba8be856efb077f52d423c4b742803e5cb3c60bd3dc",
+    "outputSha256": {
+      "archive.jpg": "641a4eb90426d8a1f86e8fb265c50f13e95409976d5d4fbcbc8cef22d862fd6f",
+      "readable.jpg": "f9dde51133ab9938b86aef5ce52b63a3b26b5ab8cbd313dd82b817418eaceaf9",
+      "cover.jpg": "fc23453582abe8fba843ff3aea2f51a4bac398e1bef7a43ffafa93725bd1c2a1"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/ming_03_wugou_archive.jpg?v=641a4eb90426",
+      "readable": "/assets/stele/museum-rubbings/ming_03_wugou_readable.jpg?v=f9dde51133ab",
+      "cover": "/assets/stele/museum-rubbings/ming_03_wugou_cover.jpg?v=fc23453582ab"
+    },
+    "auditedLicenseLabel": "CC BY 4.0"
+  },
+  {
+    "id": "ming_04_tongdian",
+    "title": "大峨山永明华藏寺新建铜殿记碑",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34907&dep=P&mode=full",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "大峨山永明华藏寺新建铜殿记碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "cc9e7e63a3d187e8655998d501860ceba7c8a7bd6ea1b8b69d5d6e5936ce4c92",
+    "outputSha256": {
+      "archive.jpg": "73d02b4d540c17899c258080b5f3489d92b00e8edd04d77288574cc589b933c5",
+      "readable.jpg": "a7c277dcfab319521377fa3a9277827ab3d2ffe1799a07a9f60d99e870693b7c",
+      "cover.jpg": "1a2c34a09236016e89414744f327787e52c537569bdacda7ec33877eb5191462"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/ming_04_tongdian_archive.jpg?v=73d02b4d540c",
+      "readable": "/assets/stele/museum-rubbings/ming_04_tongdian_readable.jpg?v=a7c277dcfab3",
+      "cover": "/assets/stele/museum-rubbings/ming_04_tongdian_cover.jpg?v=1a2c34a09236"
+    },
+    "auditedLicenseLabel": "CC BY 4.0"
+  },
+  {
+    "id": "qing_01_qianlong_heart_sutra",
+    "title": "乾隆御书般若波罗蜜多心经",
+    "sourceUrl": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+    "license": "Public Domain",
+    "licenseUrl": "https://artmuseum.princeton.edu/art/our-collections/image-use-and-access",
+    "attribution": "Image courtesy of the Princeton University Art Museum. Gift of George Rowley.",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "504851fefe45202105241d4590793e32df14ee552d9c4e42a6bcb846b6259dec",
+    "outputSha256": {
+      "archive.jpg": "504851fefe45202105241d4590793e32df14ee552d9c4e42a6bcb846b6259dec",
+      "readable.jpg": "72cc05f5ad38039f298ff2c0c05f4fb9def0d55912bd3a111f5f35f739f734b9",
+      "cover.jpg": "6d9c3beef4fc1fc8435672767ad5e257d60f7ec407c6c7d9676646eb82b47a79"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/qing_01_qianlong_heart_sutra_archive.jpg?v=504851fefe45",
+      "readable": "/assets/stele/museum-rubbings/qing_01_qianlong_heart_sutra_readable.jpg?v=72cc05f5ad38",
+      "cover": "/assets/stele/museum-rubbings/qing_01_qianlong_heart_sutra_cover.jpg?v=6d9c3beef4fc"
+    },
+    "auditedLicenseLabel": "Public Domain; museum permits download/use"
+  },
+  {
+    "id": "qing_02_wushi_reerection",
+    "title": "重立武氏祠石记",
+    "sourceUrl": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+    "license": "Public Domain",
+    "licenseUrl": "https://artmuseum.princeton.edu/art/our-collections/image-use-and-access",
+    "attribution": "Image courtesy of the Princeton University Art Museum. Gift of George Rowley.",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "948ac3c851bcb84bdb6dafa4856db3c79f0ea4342a31527bcbbf5972295e3ded",
+    "outputSha256": {
+      "archive.jpg": "948ac3c851bcb84bdb6dafa4856db3c79f0ea4342a31527bcbbf5972295e3ded",
+      "readable.jpg": "551b3c7a4a8c83f989a1d44b3c9c941b34f6c4eeb55c677c2940a29a7fb246e6",
+      "cover.jpg": "14c67c9a42c1dc35f37a74c10d720917cb8d2f10b810b353f51ce02c1d31a5a3"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/qing_02_wushi_reerection_archive.jpg?v=948ac3c851bc",
+      "readable": "/assets/stele/museum-rubbings/qing_02_wushi_reerection_readable.jpg?v=551b3c7a4a8c",
+      "cover": "/assets/stele/museum-rubbings/qing_02_wushi_reerection_cover.jpg?v=14c67c9a42c1"
+    },
+    "auditedLicenseLabel": "Public Domain; museum permits download/use"
+  },
+  {
+    "id": "qing_03_sanxitang_preface",
+    "title": "御刻三希堂石渠宝笈法帖·乾隆御序",
+    "sourceUrl": "https://www.metmuseum.org/art/collection/search/36142",
+    "license": "CC0",
+    "licenseUrl": "https://www.metmuseum.org/about-the-met/policies-and-documents/open-access",
+    "attribution": "The Metropolitan Museum of Art, Gift of Marie-Hélène and Guy Weill, 1984. CC0.",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "3d007db7a35d1a74c7562584cf9ad391f39e38fe89ecec969dbe3ceee97ed7dd",
+    "outputSha256": {
+      "archive.jpg": "3d007db7a35d1a74c7562584cf9ad391f39e38fe89ecec969dbe3ceee97ed7dd",
+      "readable.jpg": "5d59ef8ebd9407c17bf14f53222aa7539bf6e917a9c07d3531723f61706f1ac3",
+      "cover.jpg": "d32eaa9fdd265f64be7dc64d547a72771352fcd9584c5dc304ebb7c899314a56"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/qing_03_sanxitang_preface_archive.jpg?v=3d007db7a35d",
+      "readable": "/assets/stele/museum-rubbings/qing_03_sanxitang_preface_readable.jpg?v=5d59ef8ebd94",
+      "cover": "/assets/stele/museum-rubbings/qing_03_sanxitang_preface_cover.jpg?v=d32eaa9fdd26"
+    },
+    "auditedLicenseLabel": "CC0 / Public Domain"
+  },
+  {
+    "id": "qing_04_ayuwang_reliquary",
+    "title": "阿育王寺舍利塔碑",
+    "sourceUrl": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+    "license": "Public Domain",
+    "licenseUrl": "https://artmuseum.princeton.edu/art/our-collections/image-use-and-access",
+    "attribution": "Image courtesy of the Princeton University Art Museum. Gift of George Rowley.",
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "sourceSha256": "336b48bb4babbd1c6c10b193df45791f6ff349bc68cd846af268a75f82a565ed",
+    "outputSha256": {
+      "archive.jpg": "336b48bb4babbd1c6c10b193df45791f6ff349bc68cd846af268a75f82a565ed",
+      "readable.jpg": "87cca76e152c4c9b4125e24859c30664f4606711f6aaac4f95eb088d58eb03ad",
+      "cover.jpg": "ad742b2565c05a3c6533c991f55a4e4e08d179435aa95dfcb51d77577a96a4d7"
+    },
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/qing_04_ayuwang_reliquary_archive.jpg?v=336b48bb4bab",
+      "readable": "/assets/stele/museum-rubbings/qing_04_ayuwang_reliquary_readable.jpg?v=87cca76e152c",
+      "cover": "/assets/stele/museum-rubbings/qing_04_ayuwang_reliquary_cover.jpg?v=ad742b2565c0"
+    },
+    "auditedLicenseLabel": "Public Domain; museum permits download/use"
+  }
+]

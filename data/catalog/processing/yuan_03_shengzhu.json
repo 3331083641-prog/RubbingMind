@@ -1,0 +1,111 @@
+{
+  "id": "yuan_03_shengzhu",
+  "source": "原始档案包/yuan_03_shengzhu/源文件_原样保存.pdf",
+  "pdf_page": 1,
+  "native_dimensions": [
+    2233,
+    3134
+  ],
+  "readable_bbox": [
+    357,
+    56,
+    1780,
+    3034
+  ],
+  "cover_bbox": [
+    357,
+    56,
+    1780,
+    3034
+  ],
+  "selection_reason": "保留真实分置碑额和碑身；排除右侧尺卡，不重组碑面",
+  "embedded_image_xref": 8,
+  "real_original_filename": "源文件_原样保存.pdf",
+  "source_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B4%88%E6%8B%93000410%20%E5%85%83%E8%B6%99%E5%AD%9F%E9%A0%AB%E6%9B%B8%E8%81%96%E4%B8%BB%E6%9C%AC%E5%91%BD%E9%95%B7%E7%94%9F%E4%B9%8B%E7%A2%91%E5%B9%B6%E7%A2%91%E9%A1%8D%E5%A2%A8%E6%8B%93%E6%9C%AC.pdf",
+  "source_sha256": "d818483a2f71930f41fe27018022499217dd25f5566e24144ad93509c09b5ed5",
+  "archive_sha256": "c59d95488c1d641b8a5d438d1dc04e3920aed3061265f372203385adec303c98",
+  "crop_before_dimensions": [
+    2233,
+    3134
+  ],
+  "readable_after_dimensions": [
+    1423,
+    2978
+  ],
+  "cover_crop_after_dimensions": [
+    1423,
+    2978
+  ],
+  "cover_dimensions": [
+    1100,
+    1420
+  ],
+  "cover_scaled_dimensions": [
+    679,
+    1420
+  ],
+  "isotropic_scale_factor": 0.4768300873069174,
+  "conventional_upsampling": false,
+  "sampling_note": "缩放不增加源图信息；阅读版保持原始像素，不作超分辨率",
+  "padding_rgb": [
+    21,
+    22,
+    22
+  ],
+  "padding_offset": [
+    210,
+    0
+  ],
+  "contrast": {
+    "method": "grayscale + blend with global autocontrast",
+    "cutoff_percent": 0.1,
+    "blend": 0.18,
+    "CLAHE": false
+  },
+  "sharpen": {
+    "radius": 0.65,
+    "percent": 22,
+    "threshold": 4
+  },
+  "perspective_correction": false,
+  "generative_processing": false,
+  "stroke_reconstruction": false,
+  "geometry_change": "crop + isotropic resize only",
+  "image_license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "assistant_visual_review_status": "completed_source_pages_and_crop_comparison",
+  "human_review_status": "approved_by_user_in_integration_request",
+  "output_sha256": {
+    "archive.jpg": "c59d95488c1d641b8a5d438d1dc04e3920aed3061265f372203385adec303c98",
+    "readable.jpg": "7062c2d1b5bcdb2574c422da4c07a2042f78812666065447d15f8befaaad9e62",
+    "cover.jpg": "30bf1fc731dfb3151c8a74ff75fe869d21f05e5b3aa477f2cd307fc806be745b"
+  },
+  "original_damage_note": "保留真实分置碑额和碑身；排除右侧尺卡，不重组碑面",
+  "additional_character_cutting": "none_observed_after_item_specific_border_review",
+  "attribution": "圣主本命长生之碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+  "catalogue_url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34561&dep=P&mode=full",
+  "visual_notes": [
+    "历史原拓缺笔、裂损及石花保留；不以输出像素宣称新增原件细节"
+  ],
+  "quality_status": "通过制作核验，待第三轮独立复核",
+  "item_title": "圣主本命长生之碑",
+  "dynasty": "元代",
+  "institution": "台北故宫博物院",
+  "accession_number": "贈拓000410",
+  "stone_date": "1317年",
+  "rubbing_date": "未核定；不据拓印年改变朝代",
+  "pdf_page_numbering": "1-based",
+  "bbox_convention": "source pixels [left,top,right,bottom], right/bottom exclusive",
+  "original_filename_from_source": "NPM-贈拓000410 元趙孟頫書聖主本命長生之碑并碑額墨拓本.pdf",
+  "download_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B4%88%E6%8B%93000410%20%E5%85%83%E8%B6%99%E5%AD%9F%E9%A0%AB%E6%9B%B8%E8%81%96%E4%B8%BB%E6%9C%AC%E5%91%BD%E9%95%B7%E7%94%9F%E4%B9%8B%E7%A2%91%E5%B9%B6%E7%A2%91%E9%A1%8D%E5%A2%A8%E6%8B%93%E6%9C%AC.pdf",
+  "source_archive_type": "PDF containing native embedded JPEG(s) and metadata sheets",
+  "cover_relation": "完整拓片主体",
+  "working_source_path": "D:\\RubbingMind\\rubbings-review-v3\\originals\\yuan_03_shengzhu\\源文件_原样保存.pdf",
+  "deployedId": "yuan_03_shengzhu",
+  "reviewedId": "yuan_03_shengzhu",
+  "deployment_output_sha256": {
+    "archive.jpg": "c59d95488c1d641b8a5d438d1dc04e3920aed3061265f372203385adec303c98",
+    "readable.jpg": "7062c2d1b5bcdb2574c422da4c07a2042f78812666065447d15f8befaaad9e62",
+    "cover.jpg": "30bf1fc731dfb3151c8a74ff75fe869d21f05e5b3aa477f2cd307fc806be745b"
+  }
+}

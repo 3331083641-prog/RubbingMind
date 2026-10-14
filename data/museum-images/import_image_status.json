@@ -1,147 +1,226 @@
 {
   "han_01_caoquan": {
-    "status": "downloaded",
-    "image_status": "高清图像已获取",
-    "cover_url": "/assets/stele/museum-rubbings/han_01_caoquan_cover.jpg"
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/han_01_caoquan_archive.jpg?v=8cc91f116d1d",
+      "readable": "/assets/stele/museum-rubbings/han_01_caoquan_readable.jpg?v=e585c3231ba4",
+      "cover": "/assets/stele/museum-rubbings/han_01_caoquan_cover.jpg?v=b441ecf8abad"
+    }
   },
   "han_02_yiying": {
-    "status": "downloaded",
-    "image_status": "高清图像已获取",
-    "cover_url": "/assets/stele/museum-rubbings/han_02_yiying_cover.jpg"
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/han_02_yiying_archive.jpg?v=95f3357e4c9b",
+      "readable": "/assets/stele/museum-rubbings/han_02_yiying_readable.jpg?v=5aec3d3a705e",
+      "cover": "/assets/stele/museum-rubbings/han_02_yiying_cover.jpg?v=402e644868a6"
+    }
   },
   "han_03_liqi": {
-    "status": "downloaded",
-    "image_status": "高清图像已获取",
-    "cover_url": "/assets/stele/museum-rubbings/han_03_liqi_cover.jpg"
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/han_03_liqi_archive.jpg?v=7b5f373e3b3c",
+      "readable": "/assets/stele/museum-rubbings/han_03_liqi_readable.jpg?v=bf5787e578fc",
+      "cover": "/assets/stele/museum-rubbings/han_03_liqi_cover.jpg?v=dbb371ce66ec"
+    }
   },
   "han_04_shichen": {
-    "status": "downloaded",
-    "image_status": "高清图像已获取",
-    "cover_url": "/assets/stele/museum-rubbings/han_04_shichen_cover.jpg"
-  },
-  "tang_01_duobao": {
-    "status": "downloaded",
-    "image_status": "高清图像已获取",
-    "cover_url": "/assets/stele/museum-rubbings/tang_01_duobao_cover.jpg"
-  },
-  "tang_02_jiucheng": {
-    "status": "downloaded",
-    "image_status": "高清图像已获取",
-    "cover_url": "/assets/stele/museum-rubbings/tang_02_jiucheng_cover.jpg"
-  },
-  "tang_03_yanjiamiao": {
-    "status": "downloaded",
-    "image_status": "高清图像已获取",
-    "cover_url": "/assets/stele/museum-rubbings/tang_03_yanjiamiao_cover.jpg"
-  },
-  "tang_04_xuanmita": {
-    "status": "downloaded",
-    "image_status": "高清图像已获取",
-    "cover_url": "/assets/stele/museum-rubbings/tang_04_xuanmita_cover.jpg"
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/han_04_shichen_archive.jpg?v=082a8bfcf47f",
+      "readable": "/assets/stele/museum-rubbings/han_04_shichen_readable.jpg?v=952e2e42fd98",
+      "cover": "/assets/stele/museum-rubbings/han_04_shichen_cover.jpg?v=bbd956f4543d"
+    }
   },
   "wei_01_zhangmenglong": {
-    "status": "downloaded",
-    "image_status": "高清图像已获取",
-    "cover_url": "/assets/stele/museum-rubbings/wei_01_zhangmenglong_cover.jpg"
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/wei_01_zhangmenglong_archive.jpg?v=d737b734ae97",
+      "readable": "/assets/stele/museum-rubbings/wei_01_zhangmenglong_readable.jpg?v=2e884fdf44d1",
+      "cover": "/assets/stele/museum-rubbings/wei_01_zhangmenglong_cover.jpg?v=748b0f816887"
+    }
   },
   "wei_02_wugaoli": {
-    "status": "downloaded",
-    "image_status": "高清图像已获取",
-    "cover_url": "/assets/stele/museum-rubbings/wei_02_wugaoli_cover.jpg"
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/wei_02_wugaoli_archive.jpg?v=06a31b7c673b",
+      "readable": "/assets/stele/museum-rubbings/wei_02_wugaoli_readable.jpg?v=12a8bfe268dd",
+      "cover": "/assets/stele/museum-rubbings/wei_02_wugaoli_cover.jpg?v=5e9058d37415"
+    }
   },
   "wei_03_kouyan": {
-    "status": "downloaded",
-    "image_status": "高清图像已获取",
-    "cover_url": "/assets/stele/museum-rubbings/wei_03_kouyan_cover.jpg"
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/wei_03_kouyan_archive.jpg?v=6da605988e6b",
+      "readable": "/assets/stele/museum-rubbings/wei_03_kouyan_readable.jpg?v=9c26464baff3",
+      "cover": "/assets/stele/museum-rubbings/wei_03_kouyan_cover.jpg?v=dcdfa6b0b68b"
+    }
   },
   "wei_04_wangsong": {
-    "status": "downloaded",
-    "image_status": "高清图像已获取",
-    "cover_url": "/assets/stele/museum-rubbings/wei_04_wangsong_cover.jpg"
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/wei_04_wangsong_archive.jpg?v=358f2dd054de",
+      "readable": "/assets/stele/museum-rubbings/wei_04_wangsong_readable.jpg?v=8d6406fb19db",
+      "cover": "/assets/stele/museum-rubbings/wei_04_wangsong_cover.jpg?v=0ba604dba920"
+    }
+  },
+  "tang_01_duobao": {
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/tang_01_duobao_archive.jpg?v=989671354f3e",
+      "readable": "/assets/stele/museum-rubbings/tang_01_duobao_readable.jpg?v=e59f12e90d48",
+      "cover": "/assets/stele/museum-rubbings/tang_01_duobao_cover.jpg?v=9ec2c2847a0b"
+    }
+  },
+  "tang_02_jiucheng": {
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/tang_02_jiucheng_archive.jpg?v=4ad64079d759",
+      "readable": "/assets/stele/museum-rubbings/tang_02_jiucheng_readable.jpg?v=4317318d2de9",
+      "cover": "/assets/stele/museum-rubbings/tang_02_jiucheng_cover.jpg?v=de15d1e00ede"
+    }
+  },
+  "tang_03_yanjiamiao": {
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/tang_03_yanjiamiao_archive.jpg?v=9930703f9285",
+      "readable": "/assets/stele/museum-rubbings/tang_03_yanjiamiao_readable.jpg?v=560357517443",
+      "cover": "/assets/stele/museum-rubbings/tang_03_yanjiamiao_cover.jpg?v=9b714e179949"
+    }
+  },
+  "tang_04_xuanmita": {
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/tang_04_xuanmita_archive.jpg?v=65a3af290040",
+      "readable": "/assets/stele/museum-rubbings/tang_04_xuanmita_readable.jpg?v=221d42a2a7fb",
+      "cover": "/assets/stele/museum-rubbings/tang_04_xuanmita_cover.jpg?v=446dbe140a02"
+    }
   },
   "song_01_yuanyou": {
-    "status": "downloaded",
-    "image_status": "高清图像已获取",
-    "cover_url": "/assets/stele/museum-rubbings/song_01_yuanyou_cover.jpg"
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/song_01_yuanyou_archive.jpg?v=d5f83e8d84bf",
+      "readable": "/assets/stele/museum-rubbings/song_01_yuanyou_readable.jpg?v=20e25ab7b522",
+      "cover": "/assets/stele/museum-rubbings/song_01_yuanyou_cover.jpg?v=23aeab3b0c6f"
+    }
   },
   "song_02_wenxuan": {
-    "status": "downloaded",
-    "image_status": "高清图像已获取",
-    "cover_url": "/assets/stele/museum-rubbings/song_02_wenxuan_cover.jpg"
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/song_02_wenxuan_archive.jpg?v=15803083f5d0",
+      "readable": "/assets/stele/museum-rubbings/song_02_wenxuan_readable.jpg?v=3564d46727fa",
+      "cover": "/assets/stele/museum-rubbings/song_02_wenxuan_cover.jpg?v=43d7e31f2b01"
+    }
   },
   "song_03_daguan": {
-    "status": "downloaded",
-    "image_status": "高清图像已获取",
-    "cover_url": "/assets/stele/museum-rubbings/song_03_daguan_cover.jpg"
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/song_03_daguan_archive.jpg?v=c84b847543c9",
+      "readable": "/assets/stele/museum-rubbings/song_03_daguan_readable.jpg?v=2630a62ec73a",
+      "cover": "/assets/stele/museum-rubbings/song_03_daguan_cover.jpg?v=e550430440d9"
+    }
   },
   "song_04_mengying": {
-    "status": "downloaded",
-    "image_status": "高清图像已获取",
-    "cover_url": "/assets/stele/museum-rubbings/song_04_mengying_cover.jpg"
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/song_04_mengying_archive.jpg?v=fe0bbfb58960",
+      "readable": "/assets/stele/museum-rubbings/song_04_mengying_readable.jpg?v=2fa87d2293ef",
+      "cover": "/assets/stele/museum-rubbings/song_04_mengying_cover.jpg?v=0fa2e4ec1ef4"
+    }
   },
   "yuan_01_yufu": {
-    "status": "downloaded",
-    "image_status": "高清图像已获取",
-    "cover_url": "/assets/stele/museum-rubbings/yuan_01_yufu_cover.jpg"
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/yuan_01_yufu_archive.jpg?v=1f4654d528ae",
+      "readable": "/assets/stele/museum-rubbings/yuan_01_yufu_readable.jpg?v=1b1beea0dd67",
+      "cover": "/assets/stele/museum-rubbings/yuan_01_yufu_cover.jpg?v=ede7c0809ab1"
+    }
   },
   "yuan_02_sundeyu": {
-    "status": "downloaded",
-    "image_status": "高清图像已获取",
-    "cover_url": "/assets/stele/museum-rubbings/yuan_02_sundeyu_cover.jpg"
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/yuan_02_sundeyu_archive.jpg?v=f03f52d3ddc3",
+      "readable": "/assets/stele/museum-rubbings/yuan_02_sundeyu_readable.jpg?v=3ada3ac0a7ae",
+      "cover": "/assets/stele/museum-rubbings/yuan_02_sundeyu_cover.jpg?v=bedbe212f28b"
+    }
   },
   "yuan_03_shengzhu": {
-    "status": "downloaded",
-    "image_status": "高清图像已获取",
-    "cover_url": "/assets/stele/museum-rubbings/yuan_03_shengzhu_cover.jpg"
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/yuan_03_shengzhu_archive.jpg?v=c59d95488c1d",
+      "readable": "/assets/stele/museum-rubbings/yuan_03_shengzhu_readable.jpg?v=7062c2d1b5bc",
+      "cover": "/assets/stele/museum-rubbings/yuan_03_shengzhu_cover.jpg?v=30bf1fc731df"
+    }
   },
-  "yuan_04_jiulao": {
-    "status": "catalog_record",
-    "image_status": "原图待授权或待获取",
-    "cover_url": null,
-    "notes": "符合馆藏著录规范，未私自捏造图像"
+  "yuan_04_jingyuanchang": {
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/yuan_04_jingyuanchang_archive.jpg?v=bc98a3330757",
+      "readable": "/assets/stele/museum-rubbings/yuan_04_jingyuanchang_readable.jpg?v=fcd557011d46",
+      "cover": "/assets/stele/museum-rubbings/yuan_04_jingyuanchang_cover.jpg?v=afcac05d9fb1"
+    }
   },
   "ming_01_xianfu": {
-    "status": "downloaded",
-    "image_status": "高清图像已获取",
-    "cover_url": "/assets/stele/museum-rubbings/ming_01_xianfu_cover.jpg"
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/ming_01_xianfu_archive.jpg?v=217d36e301a8",
+      "readable": "/assets/stele/museum-rubbings/ming_01_xianfu_readable.jpg?v=70d472b2c7f6",
+      "cover": "/assets/stele/museum-rubbings/ming_01_xianfu_cover.jpg?v=eff7525128cc"
+    }
   },
   "ming_02_luxianzhi": {
-    "status": "downloaded",
-    "image_status": "高清图像已获取",
-    "cover_url": "/assets/stele/museum-rubbings/ming_02_luxianzhi_cover.jpg"
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/ming_02_luxianzhi_archive.jpg?v=316f3e564460",
+      "readable": "/assets/stele/museum-rubbings/ming_02_luxianzhi_readable.jpg?v=ccdb8b6adbb2",
+      "cover": "/assets/stele/museum-rubbings/ming_02_luxianzhi_cover.jpg?v=169c105086e8"
+    }
   },
   "ming_03_wugou": {
-    "status": "error",
-    "image_status": "原图待授权或待获取",
-    "error": "429 Client Error: Too Many Requests for url: https://commons.wikimedia.org/w/api.php?action=query&prop=imageinfo&iiprop=url%7Csize%7Cmime&iiurlwidth=1200&titles=File%3ANPM-%E8%B3%BC%E6%8B%93000430+%E6%98%8E%E7%84%A1%E5%9E%A2%E5%AD%90%E4%BD%95%E5%90%9B%E5%A2%93%E8%AA%8C%E9%8A%98%E5%A2%A8%E6%8B%93%E6%9C%AC+%E8%BB%B8.pdf&format=json&formatversion=2"
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/ming_03_wugou_archive.jpg?v=641a4eb90426",
+      "readable": "/assets/stele/museum-rubbings/ming_03_wugou_readable.jpg?v=f9dde51133ab",
+      "cover": "/assets/stele/museum-rubbings/ming_03_wugou_cover.jpg?v=fc23453582ab"
+    }
   },
   "ming_04_tongdian": {
-    "status": "error",
-    "image_status": "原图待授权或待获取",
-    "error": "429 Client Error: Too Many Requests for url: https://commons.wikimedia.org/w/api.php?action=query&prop=imageinfo&iiprop=url%7Csize%7Cmime&iiurlwidth=1200&titles=File%3ANPM-%E8%B3%BC%E6%8B%93000276+%E6%98%8E%E5%A4%A7%E5%B3%A9%E5%B1%B1%E6%B0%B8%E6%98%8E%E8%8F%AF%E8%97%8F%E5%AF%BA%E6%96%B0%E5%BB%BA%E9%8A%85%E6%AE%BF%E8%A8%98%E7%A2%91%E5%A2%A8%E6%8B%93%E6%9C%AC+%E8%BB%B8.pdf&format=json&formatversion=2"
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/ming_04_tongdian_archive.jpg?v=73d02b4d540c",
+      "readable": "/assets/stele/museum-rubbings/ming_04_tongdian_readable.jpg?v=a7c277dcfab3",
+      "cover": "/assets/stele/museum-rubbings/ming_04_tongdian_cover.jpg?v=1a2c34a09236"
+    }
   },
-  "qing_01_shilang": {
-    "status": "catalog_record",
-    "image_status": "原图待授权或待获取",
-    "cover_url": null,
-    "notes": "符合馆藏著录规范，未私自捏造图像"
+  "qing_01_qianlong_heart_sutra": {
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/qing_01_qianlong_heart_sutra_archive.jpg?v=504851fefe45",
+      "readable": "/assets/stele/museum-rubbings/qing_01_qianlong_heart_sutra_readable.jpg?v=72cc05f5ad38",
+      "cover": "/assets/stele/museum-rubbings/qing_01_qianlong_heart_sutra_cover.jpg?v=6d9c3beef4fc"
+    }
   },
-  "qing_02_gaocheng": {
-    "status": "catalog_record",
-    "image_status": "原图待授权或待获取",
-    "cover_url": null,
-    "notes": "符合馆藏著录规范，未私自捏造图像"
+  "qing_02_wushi_reerection": {
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/qing_02_wushi_reerection_archive.jpg?v=948ac3c851bc",
+      "readable": "/assets/stele/museum-rubbings/qing_02_wushi_reerection_readable.jpg?v=551b3c7a4a8c",
+      "cover": "/assets/stele/museum-rubbings/qing_02_wushi_reerection_cover.jpg?v=14c67c9a42c1"
+    }
   },
-  "qing_03_yanjin": {
-    "status": "catalog_record",
-    "image_status": "原图待授权或待获取",
-    "cover_url": null,
-    "notes": "符合馆藏著录规范，未私自捏造图像"
+  "qing_03_sanxitang_preface": {
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/qing_03_sanxitang_preface_archive.jpg?v=3d007db7a35d",
+      "readable": "/assets/stele/museum-rubbings/qing_03_sanxitang_preface_readable.jpg?v=5d59ef8ebd94",
+      "cover": "/assets/stele/museum-rubbings/qing_03_sanxitang_preface_cover.jpg?v=d32eaa9fdd26"
+    }
   },
-  "qing_04_gongchen": {
-    "status": "catalog_record",
-    "image_status": "原图待授权或待获取",
-    "cover_url": null,
-    "notes": "符合馆藏著录规范，未私自捏造图像"
+  "qing_04_ayuwang_reliquary": {
+    "status": "第三轮已审核 · 真实影像",
+    "imageAssets": {
+      "archive": "/assets/stele/museum-rubbings/qing_04_ayuwang_reliquary_archive.jpg?v=336b48bb4bab",
+      "readable": "/assets/stele/museum-rubbings/qing_04_ayuwang_reliquary_readable.jpg?v=87cca76e152c",
+      "cover": "/assets/stele/museum-rubbings/qing_04_ayuwang_reliquary_cover.jpg?v=ad742b2565c0"
+    }
   }
 }

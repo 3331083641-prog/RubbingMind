@@ -1,0 +1,112 @@
+{
+  "id": "ming_02_luxianzhi",
+  "source": "原始档案包/ming_02_luxianzhi/源文件_原样保存.pdf",
+  "pdf_page": 2,
+  "native_dimensions": [
+    3058,
+    2289
+  ],
+  "readable_bbox": [
+    333,
+    591,
+    2709,
+    1838
+  ],
+  "cover_bbox": [
+    2138,
+    591,
+    2709,
+    1838
+  ],
+  "selection_reason": "13页全检；1-5正文，6-7题跋，8-13资料；第2页右幅正文，保留浅纸黑字原貌",
+  "embedded_image_xref": 15,
+  "real_original_filename": "源文件_原样保存.pdf",
+  "source_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B4%88%E6%8B%93000385%20%E6%98%8E%E6%96%87%E5%BE%B5%E6%98%8E%E6%9B%B8%E9%99%B8%E7%8D%BB%E4%B9%8B%E5%A2%93%E8%AA%8C%E9%8A%98%20%E5%86%8A.pdf",
+  "source_sha256": "b8a8a673471246368f0215c4680508ff2b0dee988a5719d7421751835387833b",
+  "archive_sha256": "316f3e564460127a1255850cda82bb2bee7e3c72b4b5d1f8790f99c9fe175799",
+  "crop_before_dimensions": [
+    3058,
+    2289
+  ],
+  "readable_after_dimensions": [
+    2376,
+    1247
+  ],
+  "cover_crop_after_dimensions": [
+    571,
+    1247
+  ],
+  "cover_dimensions": [
+    1100,
+    1420
+  ],
+  "cover_scaled_dimensions": [
+    650,
+    1420
+  ],
+  "isotropic_scale_factor": 1.1387329591018445,
+  "conventional_upsampling": true,
+  "sampling_note": "缩放不增加源图信息；阅读版保持原始像素，不作超分辨率",
+  "padding_rgb": [
+    21,
+    22,
+    22
+  ],
+  "padding_offset": [
+    225,
+    0
+  ],
+  "contrast": {
+    "method": "grayscale + blend with global autocontrast",
+    "cutoff_percent": 0.1,
+    "blend": 0.12,
+    "CLAHE": false
+  },
+  "sharpen": {
+    "radius": 0.65,
+    "percent": 15,
+    "threshold": 4
+  },
+  "perspective_correction": false,
+  "generative_processing": false,
+  "stroke_reconstruction": false,
+  "geometry_change": "crop + isotropic resize only",
+  "image_license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "assistant_visual_review_status": "completed_source_pages_and_crop_comparison",
+  "human_review_status": "approved_by_user_in_integration_request",
+  "output_sha256": {
+    "archive.jpg": "316f3e564460127a1255850cda82bb2bee7e3c72b4b5d1f8790f99c9fe175799",
+    "readable.jpg": "ccdb8b6adbb28f69ee074cb21d088c60cfe89770169873fd2d2f978a8d408b53",
+    "cover.jpg": "169c105086e8f4417b345a50d63f1d893afe2e255ac0ca9779829c04b0f315a3"
+  },
+  "original_damage_note": "13页全检；1-5正文，6-7题跋，8-13资料；第2页右幅正文，保留浅纸黑字原貌",
+  "additional_character_cutting": "none_observed_after_item_specific_border_review",
+  "attribution": "文徵明书陆献之墓志铭。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+  "catalogue_url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30367&dep=P&mode=full",
+  "visual_notes": [
+    "历史原拓缺笔、裂损及石花保留；不以输出像素宣称新增原件细节",
+    "馆方拓片分类；浅底正文保留，题跋非正文，实物媒介语义待馆方进一步释明"
+  ],
+  "quality_status": "通过制作核验，待第三轮独立复核",
+  "item_title": "文徵明书陆献之墓志铭",
+  "dynasty": "明代",
+  "institution": "台北故宫博物院",
+  "accession_number": "贈拓000385",
+  "stone_date": "明代，确切原刻年份未核定",
+  "rubbing_date": "未核定；不据拓印年改变朝代",
+  "pdf_page_numbering": "1-based",
+  "bbox_convention": "source pixels [left,top,right,bottom], right/bottom exclusive",
+  "original_filename_from_source": "NPM-贈拓000385 明文徵明書陸獻之墓誌銘 冊.pdf",
+  "download_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B4%88%E6%8B%93000385%20%E6%98%8E%E6%96%87%E5%BE%B5%E6%98%8E%E6%9B%B8%E9%99%B8%E7%8D%BB%E4%B9%8B%E5%A2%93%E8%AA%8C%E9%8A%98%20%E5%86%8A.pdf",
+  "source_archive_type": "PDF containing native embedded JPEG(s) and metadata sheets",
+  "cover_relation": "正文册页/图文碑局部",
+  "working_source_path": "D:\\RubbingMind\\rubbings-review-v3\\originals\\ming_02_luxianzhi\\源文件_原样保存.pdf",
+  "deployedId": "ming_02_luxianzhi",
+  "reviewedId": "ming_02_luxianzhi",
+  "deployment_output_sha256": {
+    "archive.jpg": "316f3e564460127a1255850cda82bb2bee7e3c72b4b5d1f8790f99c9fe175799",
+    "readable.jpg": "ccdb8b6adbb28f69ee074cb21d088c60cfe89770169873fd2d2f978a8d408b53",
+    "cover.jpg": "169c105086e8f4417b345a50d63f1d893afe2e255ac0ca9779829c04b0f315a3"
+  }
+}

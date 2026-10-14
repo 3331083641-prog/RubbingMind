@@ -1,0 +1,111 @@
+{
+  "id": "ming_01_xianfu",
+  "source": "原始档案包/ming_01_xianfu/源文件_原样保存.pdf",
+  "pdf_page": 1,
+  "native_dimensions": [
+    2269,
+    3085
+  ],
+  "readable_bbox": [
+    390,
+    176,
+    1947,
+    2934
+  ],
+  "cover_bbox": [
+    390,
+    176,
+    1947,
+    2934
+  ],
+  "selection_reason": "整碑题名与行列完整，去左色阶和白裱边",
+  "embedded_image_xref": 8,
+  "real_original_filename": "源文件_原样保存.pdf",
+  "source_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000274%20%E6%98%8E%E5%BC%98%E6%B2%BB%E5%85%AB%E5%B9%B4%E8%A5%BF%E5%AE%89%E5%BA%9C%E5%AD%B8%E9%A1%8C%E5%90%8D%E7%A2%91%E5%A2%A8%E6%8B%93%E6%9C%AC%20%E6%A9%AB%E6%8A%AB.pdf",
+  "source_sha256": "f957e8226bf1729c2d0ce387f73581435bd313ec03754929614c5e24744768b2",
+  "archive_sha256": "217d36e301a81f0b1fd869db86a45fa79dbb9fd8bb795c7e901068838f450017",
+  "crop_before_dimensions": [
+    2269,
+    3085
+  ],
+  "readable_after_dimensions": [
+    1557,
+    2758
+  ],
+  "cover_crop_after_dimensions": [
+    1557,
+    2758
+  ],
+  "cover_dimensions": [
+    1100,
+    1420
+  ],
+  "cover_scaled_dimensions": [
+    802,
+    1420
+  ],
+  "isotropic_scale_factor": 0.5148658448150834,
+  "conventional_upsampling": false,
+  "sampling_note": "缩放不增加源图信息；阅读版保持原始像素，不作超分辨率",
+  "padding_rgb": [
+    21,
+    22,
+    22
+  ],
+  "padding_offset": [
+    149,
+    0
+  ],
+  "contrast": {
+    "method": "grayscale + blend with global autocontrast",
+    "cutoff_percent": 0.1,
+    "blend": 0.18,
+    "CLAHE": false
+  },
+  "sharpen": {
+    "radius": 0.65,
+    "percent": 22,
+    "threshold": 4
+  },
+  "perspective_correction": false,
+  "generative_processing": false,
+  "stroke_reconstruction": false,
+  "geometry_change": "crop + isotropic resize only",
+  "image_license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "assistant_visual_review_status": "completed_source_pages_and_crop_comparison",
+  "human_review_status": "approved_by_user_in_integration_request",
+  "output_sha256": {
+    "archive.jpg": "217d36e301a81f0b1fd869db86a45fa79dbb9fd8bb795c7e901068838f450017",
+    "readable.jpg": "70d472b2c7f61830f52c41683fbd99f43c093947ca519622e8951dc2be214d2c",
+    "cover.jpg": "eff7525128ccaf49dfb517c344da12a0504846058ad7c525563cc9bf99fd347d"
+  },
+  "original_damage_note": "整碑题名与行列完整，去左色阶和白裱边",
+  "additional_character_cutting": "none_observed_after_item_specific_border_review",
+  "attribution": "明弘治八年西安府学题名碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+  "catalogue_url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full",
+  "visual_notes": [
+    "历史原拓缺笔、裂损及石花保留；不以输出像素宣称新增原件细节"
+  ],
+  "quality_status": "通过制作核验，待第三轮独立复核",
+  "item_title": "明弘治八年西安府学题名碑",
+  "dynasty": "明代",
+  "institution": "台北故宫博物院",
+  "accession_number": "購拓000274",
+  "stone_date": "1495年",
+  "rubbing_date": "未核定；不据拓印年改变朝代",
+  "pdf_page_numbering": "1-based",
+  "bbox_convention": "source pixels [left,top,right,bottom], right/bottom exclusive",
+  "original_filename_from_source": "NPM-購拓000274 明弘治八年西安府學題名碑墨拓本 橫披.pdf",
+  "download_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000274%20%E6%98%8E%E5%BC%98%E6%B2%BB%E5%85%AB%E5%B9%B4%E8%A5%BF%E5%AE%89%E5%BA%9C%E5%AD%B8%E9%A1%8C%E5%90%8D%E7%A2%91%E5%A2%A8%E6%8B%93%E6%9C%AC%20%E6%A9%AB%E6%8A%AB.pdf",
+  "source_archive_type": "PDF containing native embedded JPEG(s) and metadata sheets",
+  "cover_relation": "完整拓片主体",
+  "working_source_path": "D:\\RubbingMind\\rubbings-review-v3\\originals\\ming_01_xianfu\\源文件_原样保存.pdf",
+  "deployedId": "ming_01_xianfu",
+  "reviewedId": "ming_01_xianfu",
+  "deployment_output_sha256": {
+    "archive.jpg": "217d36e301a81f0b1fd869db86a45fa79dbb9fd8bb795c7e901068838f450017",
+    "readable.jpg": "70d472b2c7f61830f52c41683fbd99f43c093947ca519622e8951dc2be214d2c",
+    "cover.jpg": "eff7525128ccaf49dfb517c344da12a0504846058ad7c525563cc9bf99fd347d"
+  }
+}

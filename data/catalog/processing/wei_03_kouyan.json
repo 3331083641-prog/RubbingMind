@@ -1,0 +1,111 @@
+{
+  "id": "wei_03_kouyan",
+  "source": "原始档案包/wei_03_kouyan/源文件_原样保存.pdf",
+  "pdf_page": 1,
+  "native_dimensions": [
+    2616,
+    2676
+  ],
+  "readable_bbox": [
+    201,
+    201,
+    2388,
+    2470
+  ],
+  "cover_bbox": [
+    201,
+    201,
+    2388,
+    2470
+  ],
+  "selection_reason": "第1页是完整墓志，第2和3页为上下分段；选完整影像",
+  "embedded_image_xref": 8,
+  "real_original_filename": "源文件_原样保存.pdf",
+  "source_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B4%88%E6%8B%93000234_%E5%8C%97%E9%AD%8F%E6%95%85%E6%B1%9D%E5%8D%97%E5%A4%AA%E5%AE%88%E5%AF%87%E5%BA%9C%E5%90%9B%E6%BC%94%E5%A2%93%E8%AA%8C%E9%8A%98%E6%8B%93%E7%89%87_%E8%BB%B8.pdf",
+  "source_sha256": "153cc74cd90a67a9985261f67845e4714afdd7bcee8bf8f38cbeedaa5be59759",
+  "archive_sha256": "6da605988e6baef47baad6fecbf15ff08187693f103a57f7e8c2b73b7a822fdd",
+  "crop_before_dimensions": [
+    2616,
+    2676
+  ],
+  "readable_after_dimensions": [
+    2187,
+    2269
+  ],
+  "cover_crop_after_dimensions": [
+    2187,
+    2269
+  ],
+  "cover_dimensions": [
+    1100,
+    1420
+  ],
+  "cover_scaled_dimensions": [
+    1100,
+    1141
+  ],
+  "isotropic_scale_factor": 0.5029721079103795,
+  "conventional_upsampling": false,
+  "sampling_note": "缩放不增加源图信息；阅读版保持原始像素，不作超分辨率",
+  "padding_rgb": [
+    21,
+    22,
+    22
+  ],
+  "padding_offset": [
+    0,
+    139
+  ],
+  "contrast": {
+    "method": "grayscale + blend with global autocontrast",
+    "cutoff_percent": 0.1,
+    "blend": 0.18,
+    "CLAHE": false
+  },
+  "sharpen": {
+    "radius": 0.65,
+    "percent": 22,
+    "threshold": 4
+  },
+  "perspective_correction": false,
+  "generative_processing": false,
+  "stroke_reconstruction": false,
+  "geometry_change": "crop + isotropic resize only",
+  "image_license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "assistant_visual_review_status": "completed_source_pages_and_crop_comparison",
+  "human_review_status": "approved_by_user_in_integration_request",
+  "output_sha256": {
+    "archive.jpg": "6da605988e6baef47baad6fecbf15ff08187693f103a57f7e8c2b73b7a822fdd",
+    "readable.jpg": "9c26464baff318f32e90c4242c96c3f570d778e887e278a118f43875cf069210",
+    "cover.jpg": "dcdfa6b0b68b2ca2dc7d912dd65e22eabbc04c41615cb1afc882ec9b28ea0e90"
+  },
+  "original_damage_note": "第1页是完整墓志，第2和3页为上下分段；选完整影像",
+  "additional_character_cutting": "none_observed_after_item_specific_border_review",
+  "attribution": "寇演墓志。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+  "catalogue_url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30320&dep=P&mode=full",
+  "visual_notes": [
+    "历史原拓缺笔、裂损及石花保留；不以输出像素宣称新增原件细节"
+  ],
+  "quality_status": "通过制作核验，待第三轮独立复核",
+  "item_title": "寇演墓志",
+  "dynasty": "北魏",
+  "institution": "台北故宫博物院",
+  "accession_number": "贈拓000234",
+  "stone_date": "519年",
+  "rubbing_date": "未核定；不据拓印年改变朝代",
+  "pdf_page_numbering": "1-based",
+  "bbox_convention": "source pixels [left,top,right,bottom], right/bottom exclusive",
+  "original_filename_from_source": "NPM-贈拓000234 北魏故汝南太守寇府君演墓誌銘拓片 軸.pdf",
+  "download_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B4%88%E6%8B%93000234_%E5%8C%97%E9%AD%8F%E6%95%85%E6%B1%9D%E5%8D%97%E5%A4%AA%E5%AE%88%E5%AF%87%E5%BA%9C%E5%90%9B%E6%BC%94%E5%A2%93%E8%AA%8C%E9%8A%98%E6%8B%93%E7%89%87_%E8%BB%B8.pdf",
+  "source_archive_type": "PDF containing native embedded JPEG(s) and metadata sheets",
+  "cover_relation": "完整拓片主体",
+  "working_source_path": "D:\\RubbingMind\\rubbings-review-v3\\originals\\wei_03_kouyan\\源文件_原样保存.pdf",
+  "deployedId": "wei_03_kouyan",
+  "reviewedId": "wei_03_kouyan",
+  "deployment_output_sha256": {
+    "archive.jpg": "6da605988e6baef47baad6fecbf15ff08187693f103a57f7e8c2b73b7a822fdd",
+    "readable.jpg": "9c26464baff318f32e90c4242c96c3f570d778e887e278a118f43875cf069210",
+    "cover.jpg": "dcdfa6b0b68b2ca2dc7d912dd65e22eabbc04c41615cb1afc882ec9b28ea0e90"
+  }
+}

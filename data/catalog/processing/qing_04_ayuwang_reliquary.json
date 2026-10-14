@@ -1,0 +1,109 @@
+{
+  "id": "qing_04_ayuwang_reliquary",
+  "source": "原始档案包/qing_04_ayuwang_reliquary/princeton_57684_0.jpg",
+  "pdf_page": null,
+  "native_dimensions": [
+    1069,
+    2000
+  ],
+  "readable_bbox": [
+    16,
+    4,
+    1056,
+    1998
+  ],
+  "cover_bbox": [
+    48,
+    730,
+    1038,
+    1982
+  ],
+  "selection_reason": "1884年图文碑；封面下部包含两侧记文、舍利塔和底部正文，佛像区保留档案版，不将图文碑改名为纯文字碑",
+  "source_url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+  "real_original_filename": "princeton_57684_0.jpg",
+  "source_sha256": "336b48bb4babbd1c6c10b193df45791f6ff349bc68cd846af268a75f82a565ed",
+  "archive_sha256": "336b48bb4babbd1c6c10b193df45791f6ff349bc68cd846af268a75f82a565ed",
+  "crop_before_dimensions": [
+    1069,
+    2000
+  ],
+  "readable_after_dimensions": [
+    1040,
+    1994
+  ],
+  "cover_crop_after_dimensions": [
+    990,
+    1252
+  ],
+  "cover_dimensions": [
+    1100,
+    1420
+  ],
+  "cover_scaled_dimensions": [
+    1100,
+    1391
+  ],
+  "isotropic_scale_factor": 1.1111111111111112,
+  "conventional_upsampling": true,
+  "sampling_note": "缩放不增加源图信息；阅读版保持原始像素，不作超分辨率",
+  "padding_rgb": [
+    21,
+    22,
+    22
+  ],
+  "padding_offset": [
+    0,
+    14
+  ],
+  "contrast": {
+    "method": "grayscale + blend with global autocontrast",
+    "cutoff_percent": 0.1,
+    "blend": 0.18,
+    "CLAHE": false
+  },
+  "sharpen": {
+    "radius": 0.65,
+    "percent": 22,
+    "threshold": 4
+  },
+  "perspective_correction": false,
+  "generative_processing": false,
+  "stroke_reconstruction": false,
+  "geometry_change": "crop + isotropic resize only",
+  "image_license": "Public Domain; museum permits download/use",
+  "license_url": "https://artmuseum.princeton.edu/art/our-collections/image-use-and-access",
+  "assistant_visual_review_status": "completed_source_pages_and_crop_comparison",
+  "human_review_status": "approved_by_user_in_integration_request",
+  "output_sha256": {
+    "archive.jpg": "336b48bb4babbd1c6c10b193df45791f6ff349bc68cd846af268a75f82a565ed",
+    "readable.jpg": "87cca76e152c4c9b4125e24859c30664f4606711f6aaac4f95eb088d58eb03ad",
+    "cover.jpg": "ad742b2565c05a3c6533c991f55a4e4e08d179435aa95dfcb51d77577a96a4d7"
+  },
+  "original_damage_note": "1884年图文碑；封面下部包含两侧记文、舍利塔和底部正文，佛像区保留档案版，不将图文碑改名为纯文字碑",
+  "additional_character_cutting": "none_observed_after_item_specific_border_review",
+  "attribution": "Image courtesy of the Princeton University Art Museum. Gift of George Rowley.",
+  "catalogue_url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+  "visual_notes": [
+    "历史原拓缺笔、裂损及石花保留；不以输出像素宣称新增原件细节"
+  ],
+  "quality_status": "通过制作核验，待第三轮独立复核",
+  "item_title": "阿育王寺舍利塔碑",
+  "dynasty": "清代",
+  "institution": "普林斯顿大学艺术博物馆",
+  "accession_number": "y1958-279",
+  "stone_date": "1884年",
+  "rubbing_date": "late 19th to first half of 20th century",
+  "pdf_page_numbering": "1-based",
+  "bbox_convention": "source pixels [left,top,right,bottom], right/bottom exclusive",
+  "original_filename_from_source": "INV04610/default.jpg",
+  "download_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV04610/full/max/0/default.jpg",
+  "cover_relation": "正文册页/图文碑局部",
+  "working_source_path": "D:\\RubbingMind\\rubbings-review-v3\\originals\\princeton_57684_0.jpg",
+  "deployedId": "qing_04_ayuwang_reliquary",
+  "reviewedId": "qing_04_ayuwang_reliquary",
+  "deployment_output_sha256": {
+    "archive.jpg": "336b48bb4babbd1c6c10b193df45791f6ff349bc68cd846af268a75f82a565ed",
+    "readable.jpg": "87cca76e152c4c9b4125e24859c30664f4606711f6aaac4f95eb088d58eb03ad",
+    "cover.jpg": "ad742b2565c05a3c6533c991f55a4e4e08d179435aa95dfcb51d77577a96a4d7"
+  }
+}

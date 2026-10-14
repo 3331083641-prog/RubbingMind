@@ -1,0 +1,111 @@
+{
+  "id": "tang_04_xuanmita",
+  "source": "原始档案包/tang_04_xuanmita/源文件_原样保存.pdf",
+  "pdf_page": 4,
+  "native_dimensions": [
+    3058,
+    2289
+  ],
+  "readable_bbox": [
+    541,
+    300,
+    2498,
+    2076
+  ],
+  "cover_bbox": [
+    1520,
+    300,
+    2498,
+    2076
+  ],
+  "selection_reason": "第1页混有篆额，第8页后段/题跋；第4页右幅为完整楷书正文",
+  "embedded_image_xref": 25,
+  "real_original_filename": "源文件_原样保存.pdf",
+  "source_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B4%88%E6%8B%93000309_%E5%94%90%E6%9F%B3%E5%85%AC%E6%AC%8A%E5%B0%8F%E6%A5%B7%E6%9B%B8%E6%95%85%E5%B7%A6%E8%A1%97%E5%83%A7%E9%8C%84%E5%A4%A7%E9%81%94%E6%B3%95%E5%B8%AB%E7%8E%84%E7%A7%98%E5%A1%94%E7%A2%91%E9%8A%98%E5%A2%A8%E6%8B%93%E6%9C%AC_%E5%86%8A.pdf",
+  "source_sha256": "d0ea8c9212bd7e49ba0b48f1b77adc621470946ade1dbcebb489f4012dc92569",
+  "archive_sha256": "65a3af290040f11c40eb9fa734f502e559f760d25f8e20232d6722b050d75666",
+  "crop_before_dimensions": [
+    3058,
+    2289
+  ],
+  "readable_after_dimensions": [
+    1957,
+    1776
+  ],
+  "cover_crop_after_dimensions": [
+    978,
+    1776
+  ],
+  "cover_dimensions": [
+    1100,
+    1420
+  ],
+  "cover_scaled_dimensions": [
+    782,
+    1420
+  ],
+  "isotropic_scale_factor": 0.7995495495495496,
+  "conventional_upsampling": false,
+  "sampling_note": "缩放不增加源图信息；阅读版保持原始像素，不作超分辨率",
+  "padding_rgb": [
+    21,
+    22,
+    22
+  ],
+  "padding_offset": [
+    159,
+    0
+  ],
+  "contrast": {
+    "method": "grayscale + blend with global autocontrast",
+    "cutoff_percent": 0.1,
+    "blend": 0.18,
+    "CLAHE": false
+  },
+  "sharpen": {
+    "radius": 0.65,
+    "percent": 22,
+    "threshold": 4
+  },
+  "perspective_correction": false,
+  "generative_processing": false,
+  "stroke_reconstruction": false,
+  "geometry_change": "crop + isotropic resize only",
+  "image_license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "assistant_visual_review_status": "completed_source_pages_and_crop_comparison",
+  "human_review_status": "approved_by_user_in_integration_request",
+  "output_sha256": {
+    "archive.jpg": "65a3af290040f11c40eb9fa734f502e559f760d25f8e20232d6722b050d75666",
+    "readable.jpg": "221d42a2a7fb20b2e9985f4555d764fca3f869fae63c87b0532383fc49424644",
+    "cover.jpg": "446dbe140a02c712cdbbafaf2ad38f9e878ffcb4ff2c3678fb79960ff75faa57"
+  },
+  "original_damage_note": "第1页混有篆额，第8页后段/题跋；第4页右幅为完整楷书正文",
+  "additional_character_cutting": "none_observed_after_item_specific_border_review",
+  "attribution": "玄秘塔碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+  "catalogue_url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29090&dep=P&mode=full",
+  "visual_notes": [
+    "历史原拓缺笔、裂损及石花保留；不以输出像素宣称新增原件细节"
+  ],
+  "quality_status": "通过制作核验，待第三轮独立复核",
+  "item_title": "玄秘塔碑",
+  "dynasty": "唐代",
+  "institution": "台北故宫博物院",
+  "accession_number": "贈拓000309",
+  "stone_date": "841年",
+  "rubbing_date": "未核定；不据拓印年改变朝代",
+  "pdf_page_numbering": "1-based",
+  "bbox_convention": "source pixels [left,top,right,bottom], right/bottom exclusive",
+  "original_filename_from_source": "NPM-贈拓000309 唐柳公權小楷書故左街僧錄大達法師玄秘塔碑銘墨拓本 冊.pdf",
+  "download_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B4%88%E6%8B%93000309_%E5%94%90%E6%9F%B3%E5%85%AC%E6%AC%8A%E5%B0%8F%E6%A5%B7%E6%9B%B8%E6%95%85%E5%B7%A6%E8%A1%97%E5%83%A7%E9%8C%84%E5%A4%A7%E9%81%94%E6%B3%95%E5%B8%AB%E7%8E%84%E7%A7%98%E5%A1%94%E7%A2%91%E9%8A%98%E5%A2%A8%E6%8B%93%E6%9C%AC_%E5%86%8A.pdf",
+  "source_archive_type": "PDF containing native embedded JPEG(s) and metadata sheets",
+  "cover_relation": "正文册页/图文碑局部",
+  "working_source_path": "D:\\RubbingMind\\rubbings-review-v3\\originals\\tang_04_xuanmita\\源文件_原样保存.pdf",
+  "deployedId": "tang_04_xuanmita",
+  "reviewedId": "tang_04_xuanmita",
+  "deployment_output_sha256": {
+    "archive.jpg": "65a3af290040f11c40eb9fa734f502e559f760d25f8e20232d6722b050d75666",
+    "readable.jpg": "221d42a2a7fb20b2e9985f4555d764fca3f869fae63c87b0532383fc49424644",
+    "cover.jpg": "446dbe140a02c712cdbbafaf2ad38f9e878ffcb4ff2c3678fb79960ff75faa57"
+  }
+}

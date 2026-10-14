@@ -54,6 +54,12 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({ stele, onNavigate }) =
   // Render ECharts Radar & Bar Charts
   useEffect(() => {
     if (!radarChartRef.current || !barChartRef.current) return;
+    if (!ablationData.length) {
+      radarInstance.current?.dispose(); radarInstance.current = null;
+      barInstance.current?.dispose(); barInstance.current = null;
+      radarChartRef.current.textContent = '未评测：无配对真值或已完成实验记录';
+      barChartRef.current.textContent = '未开展消融实验'; return;
+    }
 
     // 1. Radar Chart
     if (!radarInstance.current) {
@@ -109,14 +115,14 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({ stele, onNavigate }) =
           type: 'radar',
           data: [
             {
-              value: [18.4, 0.61, 55, 48, 62],
+              value: [],
               name: '原始退化拓片 (Baseline)',
               lineStyle: { color: '#C83C23', width: 2, type: 'dashed' },
               areaStyle: { color: 'rgba(200, 60, 35, 0.2)' },
               itemStyle: { color: '#C83C23' }
             },
             {
-              value: [34.25, 0.948, 96, 94, 97.4],
+              value: [],
               name: '频空域联合去噪系统 (Ours)',
               lineStyle: { color: '#D4AF37', width: 3 },
               areaStyle: { color: 'rgba(212, 175, 55, 0.35)' },
@@ -357,7 +363,7 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({ stele, onNavigate }) =
               <Latex math="\text{PSNR} = 10 \cdot \log_{10}\left(\frac{255^2}{\text{MSE}}\right), \quad \text{SSIM} \in [0, 1]" block={true} />
             </div>
             <p className="text-[11px] text-slate-400 leading-relaxed font-sans">
-              以数字图像客观质量指标全面监督去噪全流程，本模型达到 PSNR 34.25 dB 与 SSIM 0.9482，处于业界领先水准。
+              本件未完成配对评测，不提供预设PSNR、SSIM或准确率。
             </p>
           </div>
         </div>
@@ -400,7 +406,7 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({ stele, onNavigate }) =
               一、 碑石基本规制与退化病害现状
             </h3>
             <p className="text-justify indent-8 text-[#3D2C1C]">
-              {stele.summary} {stele.historical_context} 经高分辨率激光扫描测定，本通碑刻形制为{stele.dimensions}。因岁月沧桑与历代传拓拓布机械磨损，碑石表面存在纵横交错之岩石解理微裂隙及拓包印墨堆积，退化病害等级评定为「<span className="font-bold text-cinnabar">{stele.weathering_level}</span>」，基线图像峰值信噪比仅为 18.42 dB。
+              {stele.summary} 拓本现藏：{stele.collectionInstitution || stele.museum}；原刻年代：{stele.year}；拓本年代：{stele.rubbingPeriod || '未核定'}。
             </p>
           </div>
 
@@ -422,7 +428,7 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({ stele, onNavigate }) =
               三、 残字推演与金石史料互勘定论
             </h3>
             <p className="text-justify indent-8 text-[#3D2C1C]">
-              {reportText.epigraphic_conclusion} 通过结合 GraphRAG 人物谱系知识图谱，与《全唐文》、《新唐书·艺文志》及长安安定坊千福寺出土相关石刻铭记互校，确认拓片第 2 行第 5 字确系「感」字，第 4 行第 3 字为「岑」字，字形拓扑置信度均达 94% 以上，彻底廓清了明清金石家关于此处残损释文的长年争议。
+              {reportText.epigraphic_conclusion}
             </p>
           </div>
 

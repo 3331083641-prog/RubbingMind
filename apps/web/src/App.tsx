@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SteleItem } from './types/stele';
-import { SteleService, FALLBACK_STELES } from './services/api';
+import { SteleService, FALLBACK_STELES, backendAvailable } from './services/api';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { UploadModal } from './components/UploadModal';
@@ -10,6 +10,8 @@ import { WorkbenchPage } from './pages/WorkbenchPage';
 import { GraphPage } from './pages/GraphPage';
 import { ReportsPage } from './pages/ReportsPage';
 import { graphSelectionItems, resolveCoreId } from './data/graphSelection';
+import { CORE_SAMPLES, resolveSelected } from './data/catalogSelection';
+import { VerifiedMuseumGraph } from './components/VerifiedMuseumGraph';
 
 export const App: React.FC = () => {
   const [currentTab, setCurrentTab] = useState<string>('home');
@@ -25,7 +27,7 @@ export const App: React.FC = () => {
       .then((data) => {
         if (isMounted && data && data.length > 0) {
           setSteles(data);
-          setIsBackendConnected(true);
+          setIsBackendConnected(backendAvailable);
         }
       })
       .catch(() => {
@@ -35,8 +37,7 @@ export const App: React.FC = () => {
   }, []);
 
   const coreItems = graphSelectionItems(steles);
-  const currentStele = steles.find((s) => s.id === selectedSteleId)
-    || coreItems.find(s => resolveCoreId(s.id) === resolveCoreId(selectedSteleId)) || steles[0];
+  const currentStele = resolveSelected(steles, selectedSteleId);
   const graphHeaderItems = [...coreItems, ...steles.filter(s => !coreItems.some(c => c.id === s.id))];
 
   const handleSelectStele = (id: string) => {
@@ -55,8 +56,8 @@ export const App: React.FC = () => {
       <Header
         currentTab={currentTab}
         onTabChange={setCurrentTab}
-        steles={currentTab === 'graph' ? graphHeaderItems : steles}
-        selectedSteleId={currentStele.id}
+        steles={currentTab === 'graph' ? [...CORE_SAMPLES, ...graphHeaderItems.filter(s => !CORE_SAMPLES.some(c => c.id === s.id))] : [...CORE_SAMPLES, ...steles]}
+        selectedSteleId={selectedSteleId}
         onSelectStele={handleSelectStele}
         onOpenUpload={() => setIsUploadOpen(true)}
         isBackendConnected={isBackendConnected}
@@ -74,7 +75,7 @@ export const App: React.FC = () => {
 
         {currentTab === 'museum' && (
           <MuseumPage
-            steles={steles}
+            steles={steles.filter(s => s.source_kind === 'verified_review_v3')}
             onSelectStele={handleSelectStele}
             onNavigate={setCurrentTab}
             onOpenUpload={() => setIsUploadOpen(true)}
@@ -83,21 +84,24 @@ export const App: React.FC = () => {
 
         {currentTab === 'workbench' && (
           <WorkbenchPage
+            key={currentStele.id}
             stele={currentStele}
             onNavigate={setCurrentTab}
           />
         )}
 
-        {currentTab === 'graph' && (
+        {currentTab === 'graph' && currentStele.source_kind === 'verified_review_v3' && <VerifiedMuseumGraph stele={currentStele} onNavigate={setCurrentTab} />}
+        {currentTab === 'graph' && currentStele.source_kind !== 'verified_review_v3' && (
           <GraphPage
             stele={currentStele}
-            onNavigate={setCurrentTab}
             onSelectStele={handleSelectStele}
+            onNavigate={setCurrentTab}
           />
         )}
 
         {currentTab === 'reports' && (
           <ReportsPage
+            key={currentStele.id}
             stele={currentStele}
             onNavigate={setCurrentTab}
           />

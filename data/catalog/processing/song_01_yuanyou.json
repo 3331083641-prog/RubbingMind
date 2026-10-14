@@ -1,0 +1,112 @@
+{
+  "id": "song_01_yuanyou",
+  "source": "原始档案包/song_01_yuanyou/源文件_原样保存.pdf",
+  "pdf_page": 1,
+  "native_dimensions": [
+    2292,
+    3054
+  ],
+  "readable_bbox": [
+    193,
+    214,
+    2157,
+    2859
+  ],
+  "cover_bbox": [
+    193,
+    214,
+    2157,
+    2859
+  ],
+  "selection_reason": "保留碑额与党籍正文；去侧卡、上下装裱",
+  "embedded_image_xref": 8,
+  "real_original_filename": "源文件_原样保存.pdf",
+  "source_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000449%20%E5%AE%8B%E5%85%83%E7%A5%90%E9%BB%A8%E7%B1%8D%E7%A2%91%E5%A2%A8%E6%8B%93%E6%9C%AC%20%E8%BB%B8.pdf",
+  "source_sha256": "7700c8e3336dcf483a91903d0c49145c1880e5c71367d8aea5c714f88e9ed43d",
+  "archive_sha256": "d5f83e8d84bfa59ee8c5958fdd1fffced857d45be49709ef3a9a73931684893b",
+  "crop_before_dimensions": [
+    2292,
+    3054
+  ],
+  "readable_after_dimensions": [
+    1964,
+    2645
+  ],
+  "cover_crop_after_dimensions": [
+    1964,
+    2645
+  ],
+  "cover_dimensions": [
+    1100,
+    1420
+  ],
+  "cover_scaled_dimensions": [
+    1054,
+    1420
+  ],
+  "isotropic_scale_factor": 0.5368620037807184,
+  "conventional_upsampling": false,
+  "sampling_note": "缩放不增加源图信息；阅读版保持原始像素，不作超分辨率",
+  "padding_rgb": [
+    21,
+    22,
+    22
+  ],
+  "padding_offset": [
+    23,
+    0
+  ],
+  "contrast": {
+    "method": "grayscale + blend with global autocontrast",
+    "cutoff_percent": 0.1,
+    "blend": 0.1,
+    "CLAHE": false
+  },
+  "sharpen": {
+    "radius": 0.65,
+    "percent": 0,
+    "threshold": 4
+  },
+  "perspective_correction": false,
+  "generative_processing": false,
+  "stroke_reconstruction": false,
+  "geometry_change": "crop + isotropic resize only",
+  "image_license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "assistant_visual_review_status": "completed_source_pages_and_crop_comparison",
+  "human_review_status": "approved_by_user_in_integration_request",
+  "output_sha256": {
+    "archive.jpg": "d5f83e8d84bfa59ee8c5958fdd1fffced857d45be49709ef3a9a73931684893b",
+    "readable.jpg": "20e25ab7b522971efd135fbc0a73387d5899ed4f044afbef2b90aa5cc0ec2975",
+    "cover.jpg": "23aeab3b0c6f26e8b2fa3449e017bdc240c7161df8394485c6688abad428683c"
+  },
+  "original_damage_note": "保留碑额与党籍正文；去侧卡、上下装裱",
+  "additional_character_cutting": "none_observed_after_item_specific_border_review",
+  "attribution": "元祐党籍碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+  "catalogue_url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32237&dep=P&mode=full",
+  "visual_notes": [
+    "历史原拓缺笔、裂损及石花保留；不以输出像素宣称新增原件细节",
+    "原拓重损/墨薄，部分文字阅读受限"
+  ],
+  "quality_status": "通过制作核验；原件阅读受限",
+  "item_title": "元祐党籍碑",
+  "dynasty": "宋代",
+  "institution": "台北故宫博物院",
+  "accession_number": "購拓000449",
+  "stone_date": "宋代，确切原刻年份未核定",
+  "rubbing_date": "未核定；不据拓印年改变朝代",
+  "pdf_page_numbering": "1-based",
+  "bbox_convention": "source pixels [left,top,right,bottom], right/bottom exclusive",
+  "original_filename_from_source": "NPM-購拓000449 宋元祐黨籍碑墨拓本 軸.pdf",
+  "download_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000449%20%E5%AE%8B%E5%85%83%E7%A5%90%E9%BB%A8%E7%B1%8D%E7%A2%91%E5%A2%A8%E6%8B%93%E6%9C%AC%20%E8%BB%B8.pdf",
+  "source_archive_type": "PDF containing native embedded JPEG(s) and metadata sheets",
+  "cover_relation": "完整拓片主体",
+  "working_source_path": "D:\\RubbingMind\\rubbings-review-v3\\originals\\song_01_yuanyou\\源文件_原样保存.pdf",
+  "deployedId": "song_01_yuanyou",
+  "reviewedId": "song_01_yuanyou",
+  "deployment_output_sha256": {
+    "archive.jpg": "d5f83e8d84bfa59ee8c5958fdd1fffced857d45be49709ef3a9a73931684893b",
+    "readable.jpg": "20e25ab7b522971efd135fbc0a73387d5899ed4f044afbef2b90aa5cc0ec2975",
+    "cover.jpg": "23aeab3b0c6f26e8b2fa3449e017bdc240c7161df8394485c6688abad428683c"
+  }
+}

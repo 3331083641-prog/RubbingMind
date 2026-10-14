@@ -1,0 +1,354 @@
+{
+  "officialRecord": {
+    "secondaryobjectnumber": null,
+    "periodterms": [],
+    "creditline": "Gift of George Rowley",
+    "caption": "Chinese, Eastern Han dynasty (25–220 CE), Weng Fanggang 翁方綱, author and calligrapher (1733–1818), Zheng Zhizong, carver (active ca. 1787), Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記), 1787 (stones), late 19th-early 20th century (rubbings). Sheet; ink rubbing on paper; 31.5 x 85 cm. Gift of George Rowley (y1957-139 b)",
+    "cultureterms": [
+      {
+        "id": 2033355,
+        "culture": "Chinese"
+      }
+    ],
+    "type": "artobject",
+    "dimensionsproposed": "",
+    "terms": [
+      {
+        "id": 2121598,
+        "term": "inscriptions",
+        "aatid": 300028702,
+        "termtype": "Subject"
+      },
+      {
+        "id": 2033355,
+        "term": "Chinese",
+        "aatid": 300018322,
+        "termtype": "Culture"
+      },
+      {
+        "id": 2054786,
+        "term": "rubbings",
+        "aatid": 300103035,
+        "termtype": "Classification"
+      }
+    ],
+    "geography": [
+      {
+        "displaygeography": "Place made: Asia, China, Shandong province, Wuzhaishan 武宅山 village",
+        "code": "Place made",
+        "continent": "Asia",
+        "subcontinent": null,
+        "country": "China",
+        "region": null,
+        "state": "Shandong province",
+        "city": null,
+        "county": "Jiaxiang 嘉祥 county",
+        "subregion": null,
+        "locale": "Wuzhaishan 武宅山 village",
+        "locus": null,
+        "river": null,
+        "excavation": null,
+        "geoname": null,
+        "location": {
+          "lat": "",
+          "lon": ""
+        }
+      }
+    ],
+    "dimensionelements": [
+      {
+        "element": "Overall",
+        "type": "Height",
+        "units": "centimeters",
+        "dimension": "31.50"
+      },
+      {
+        "element": "Overall",
+        "type": "Width",
+        "units": "centimeters",
+        "dimension": "85.00"
+      }
+    ],
+    "markings": "Outer titleslip (red paper, on sheet g)\r\n漢武梁祠像全部\r\n",
+    "accessionyear": "1957-01-01",
+    "newaccession": 0,
+    "makers": [
+      {
+        "id": 945,
+        "displayname": "Zheng Zhizong",
+        "displaydate": "active ca. 1787",
+        "datebegin": 1780,
+        "dateend": 1793,
+        "prefix": null,
+        "suffix": ", carver",
+        "role": "Artist",
+        "displaymaker": "Zheng Zhizong, carver, active ca. 1787",
+        "displayorder": 4
+      },
+      {
+        "id": 1830,
+        "displayname": "Weng Fanggang 翁方綱",
+        "displaydate": "1733–1818",
+        "datebegin": 1733,
+        "dateend": 1818,
+        "prefix": null,
+        "suffix": ", author and calligrapher",
+        "role": "Artist",
+        "displaymaker": "Weng Fanggang 翁方綱, author and calligrapher, 1733–1818",
+        "displayorder": 3
+      }
+    ],
+    "datecomputed": 1787,
+    "signed": null,
+    "restrictions": null,
+    "classification": "Rubbings",
+    "packages": [],
+    "catalograisonne": null,
+    "classifications": [
+      {
+        "id": 2054786,
+        "classification": "rubbings"
+      }
+    ],
+    "exhibitions": [],
+    "cultures": [
+      {
+        "id": 13592,
+        "culture": "Chinese",
+        "alphasort": "Chinese",
+        "begindate": 0,
+        "enddate": 0,
+        "displayculture": "Chinese",
+        "displaydate": null
+      }
+    ],
+    "primaryimage": [
+      "https://media.artmuseum.princeton.edu/iiif/3/collection/INV65576"
+    ],
+    "displaytitle": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+    "displayculture": "Chinese",
+    "displaymaker": "Weng Fanggang 翁方綱, author and calligrapher, 1733–1818 | Zheng Zhizong, carver, active ca. 1787",
+    "captionhtml": "Chinese, Eastern Han dynasty (25–220 CE), Weng Fanggang 翁方綱, author and calligrapher (1733–1818), Zheng Zhizong, carver (active ca. 1787), <i>Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)</i>, 1787 (stones), late 19th-early 20th century (rubbings). Sheet; ink rubbing on paper; 31.5 x 85 cm. Gift of George Rowley (y1957-139 b)",
+    "displaydate": "1787 (stones), late 19th-early 20th century (rubbings)",
+    "medium": "Sheet; ink rubbing on paper",
+    "media": [
+      {
+        "id": 147742,
+        "uri": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV65576",
+        "isprimary": 1,
+        "rank": 1,
+        "mediatypeid": 1,
+        "mediaviewtype": "(not assigned)",
+        "restrictions": null,
+        "caption": "Inventory Project"
+      },
+      {
+        "id": 135834,
+        "uri": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV58178",
+        "isprimary": 0,
+        "rank": 2,
+        "mediatypeid": 1,
+        "mediaviewtype": "(not assigned)",
+        "restrictions": null,
+        "caption": "Inventory Project"
+      }
+    ],
+    "displayperiod": "Eastern Han dynasty, 25–220 CE",
+    "extended_content": false,
+    "campuscollections": "false",
+    "bibliography": [
+      {
+        "boilertext": "Frances Follin Jones, \"Recent aquisitions of Ancient Art\", <em>Record of the Art Museum, Princeton University,</em> 17, no. 1 (1958): p. 41–43.",
+        "citation": "Frances Follin Jones, \"Recent aquisitions of Ancient Art\", <em>Record of the Art Museum, Princeton University,</em> 17, no. 1 (1958): p. 41–43., p. 43",
+        "date": 1958,
+        "id": 3191,
+        "uri": "https://www.jstor.org/stable/i291447"
+      }
+    ],
+    "nowebuse": "False",
+    "periods": [
+      {
+        "id": 12606,
+        "period": "Eastern Han dynasty",
+        "alphasort": "Eastern Han dynasty",
+        "begindate": 25,
+        "enddate": 220,
+        "displayperiod": "Eastern Han dynasty, 25–220 CE",
+        "displaydate": "25–220 CE"
+      }
+    ],
+    "department": "Asian Art",
+    "attribute_groups": [
+      {
+        "id": 2199319,
+        "term": "Asian Art",
+        "termtype": "Collecting Area"
+      },
+      {
+        "id": 2199327,
+        "term": "Prints and Drawings",
+        "termtype": "Collecting Area"
+      }
+    ],
+    "daterange": "A.D. 1700-1800",
+    "dateend": 1787,
+    "depicted": [],
+    "titles": [
+      {
+        "title": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+        "titletype": "Primary Title",
+        "displayorder": 1
+      }
+    ],
+    "hasimage": "true",
+    "creditlinerepro": null,
+    "objectnumber": "y1957-139 b",
+    "inscribed": null,
+    "texts": [],
+    "datebegin": 1787,
+    "sortnumber": "1957  139yb",
+    "published_date": "2026-02-11 12:18:59.200519",
+    "objectid": 57837,
+    "dimensions": "31.5 x 85 cm. (12 3/8 x 33 7/16 in.)",
+    "on_view": false
+  },
+  "processing": {
+    "id": "qing_02_chongli_wushi",
+    "source": "原始档案包/qing_02_chongli_wushi/princeton_57837_0.jpg",
+    "pdf_page": null,
+    "native_dimensions": [
+      4016,
+      1649
+    ],
+    "readable_bbox": [
+      20,
+      10,
+      3996,
+      1636
+    ],
+    "cover_bbox": [
+      2839,
+      10,
+      3996,
+      1636
+    ],
+    "selection_reason": "1787年《重立武氏祠石记》；折叠纸面使正文列倾斜，直线局部裁切易伤字，封面改取右端完整清代署款大字（翁方纲）及刻工行；全部正文保留于阅读版；原边缘缺损保留",
+    "source_url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+    "real_original_filename": "princeton_57837_0.jpg",
+    "source_sha256": "948ac3c851bcb84bdb6dafa4856db3c79f0ea4342a31527bcbbf5972295e3ded",
+    "archive_sha256": "948ac3c851bcb84bdb6dafa4856db3c79f0ea4342a31527bcbbf5972295e3ded",
+    "crop_before_dimensions": [
+      4016,
+      1649
+    ],
+    "readable_after_dimensions": [
+      3976,
+      1626
+    ],
+    "cover_crop_after_dimensions": [
+      1157,
+      1626
+    ],
+    "cover_dimensions": [
+      1100,
+      1420
+    ],
+    "cover_scaled_dimensions": [
+      1010,
+      1420
+    ],
+    "isotropic_scale_factor": 0.8733087330873309,
+    "conventional_upsampling": false,
+    "sampling_note": "缩放不增加源图信息；阅读版保持原始像素，不作超分辨率",
+    "padding_rgb": [
+      21,
+      22,
+      22
+    ],
+    "padding_offset": [
+      45,
+      0
+    ],
+    "contrast": {
+      "method": "grayscale + blend with global autocontrast",
+      "cutoff_percent": 0.1,
+      "blend": 0.18,
+      "CLAHE": false
+    },
+    "sharpen": {
+      "radius": 0.65,
+      "percent": 22,
+      "threshold": 4
+    },
+    "perspective_correction": false,
+    "generative_processing": false,
+    "stroke_reconstruction": false,
+    "geometry_change": "crop + isotropic resize only",
+    "image_license": "Public Domain; museum permits download/use",
+    "license_url": "https://artmuseum.princeton.edu/art/our-collections/image-use-and-access",
+    "assistant_visual_review_status": "completed_source_pages_and_crop_comparison",
+    "human_review_status": "pending_third_round_user_ChatGPT_review",
+    "output_sha256": {
+      "archive.jpg": "948ac3c851bcb84bdb6dafa4856db3c79f0ea4342a31527bcbbf5972295e3ded",
+      "readable.jpg": "551b3c7a4a8c83f989a1d44b3c9c941b34f6c4eeb55c677c2940a29a7fb246e6",
+      "cover.jpg": "14c67c9a42c1dc35f37a74c10d720917cb8d2f10b810b353f51ce02c1d31a5a3"
+    },
+    "original_damage_note": "1787年《重立武氏祠石记》；折叠纸面使正文列倾斜，直线局部裁切易伤字，封面改取右端完整清代署款大字（翁方纲）及刻工行；全部正文保留于阅读版；原边缘缺损保留",
+    "additional_character_cutting": "none_observed_after_item_specific_border_review",
+    "attribution": "Image courtesy of the Princeton University Art Museum. Gift of George Rowley.",
+    "catalogue_url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+    "visual_notes": [
+      "历史原拓缺笔、裂损及石花保留；不以输出像素宣称新增原件细节",
+      "原纸撕裂和边缘缺损保留；馆方东汉时代标签与1787新刻日期矛盾已在候选元数据说明"
+    ],
+    "quality_status": "通过制作核验，待第三轮独立复核",
+    "item_title": "重立武氏祠石记",
+    "dynasty": "清代",
+    "institution": "普林斯顿大学艺术博物馆",
+    "accession_number": "y1957-139 b",
+    "stone_date": "1787年",
+    "rubbing_date": " 19th-early 20th century (rubbings)",
+    "pdf_page_numbering": "1-based",
+    "bbox_convention": "source pixels [left,top,right,bottom], right/bottom exclusive",
+    "original_filename_from_source": "INV65576/default.jpg",
+    "download_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV65576/full/max/0/default.jpg",
+    "cover_relation": "清代刻石署款局部，全文在阅读版",
+    "working_source_path": "D:\\RubbingMind\\rubbings-review-v3\\originals\\princeton_57837_0.jpg"
+  },
+  "reviewedMetadata": {
+    "id": "qing_02_chongli_wushi",
+    "dynasty": "清代",
+    "title": "重立武氏祠石记",
+    "stele_year_ce": 1787,
+    "stele_date_label": "1787年",
+    "repository": "普林斯顿大学艺术博物馆",
+    "accession_number": "y1957-139 b",
+    "web_museum_record_url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+    "file_page_url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+    "license": "Public Domain",
+    "description": "翁方纲撰书，郑之宗刻，1787年重建武氏祠的新刻记文；不是东汉画像石。馆方时代标签沿用东汉，本文依明确石刻纪年、作者生卒及影像文字将本件归清代。",
+    "source_resolution": [
+      4016,
+      1649
+    ],
+    "source_sha256": "948ac3c851bcb84bdb6dafa4856db3c79f0ea4342a31527bcbbf5972295e3ded",
+    "selected_pdf_page": null,
+    "is_genuine_rubbing": "catalogued_as_rubbing",
+    "is_ai_generated": false,
+    "candidate_status": "prepared_for_third_review",
+    "formal_database_modified": false,
+    "review_status": "completed_source_pages_and_crop_comparison",
+    "rubbing_date": " 19th-early 20th century (rubbings)",
+    "attribution": "Image courtesy of the Princeton University Art Museum. Gift of George Rowley.",
+    "source_download_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV65576/full/max/0/default.jpg",
+    "source_title_english": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+    "source_period_label": "Eastern Han dynasty, 25–220 CE",
+    "quality_status": "通过制作核验，待第三轮独立复核",
+    "image_paths": {
+      "archive": "07_清代/qing_02_chongli_wushi/archive.jpg",
+      "readable": "07_清代/qing_02_chongli_wushi/readable.jpg",
+      "cover": "07_清代/qing_02_chongli_wushi/cover.jpg"
+    },
+    "processing_path": "07_清代/qing_02_chongli_wushi/processing.json"
+  }
+}

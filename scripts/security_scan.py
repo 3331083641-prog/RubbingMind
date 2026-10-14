@@ -13,12 +13,13 @@ PATTERNS = [
     (re.compile(r"gho_[a-zA-Z0-9]{30,}"), "GitHub OAuth Token (gho_...)"),
     (re.compile(r"-----BEGIN (RSA|EC|DSA|OPENSSH|PRIVATE) KEY-----"), "Private Key Block"),
     (re.compile(r"(?:api[_-]?key|secret_key|access_token|password)\s*[:=]\s*['\"][a-zA-Z0-9_\-]{16,}['\"]", re.IGNORECASE), "Generic Hardcoded Secret"),
-    (re.compile(r"[1-9]\d{10}"), "Phone Number (Possible 11-digit mobile)"),
+    # Provenance SHA-256 values are not standalone telephone numbers.
+    (re.compile(r"(?<![A-Za-z0-9])[1-9]\d{10}(?![A-Za-z0-9])"), "Phone Number (Possible 11-digit mobile)"),
 ]
 
 IGNORED_DIRS = {
     "node_modules", "dist", ".vite", ".git", "__pycache__", ".pytest_cache", ".ruff_cache",
-    ".gemini", "venv", ".venv"
+    ".gemini", "venv", ".venv", "runtime", "results"
 }
 
 IGNORED_FILES = {
@@ -31,7 +32,7 @@ def scan_repository(root_dir="."):
     
     file_count = 0
     for root, dirs, files in os.walk(root_dir):
-        dirs[:] = [d for d in dirs if d not in IGNORED_DIRS]
+        dirs[:] = [d for d in dirs if d not in IGNORED_DIRS and not d.startswith('node_modules.partial-')]
         for f in files:
             if f in IGNORED_FILES or f.endswith(('.png', '.jpg', '.jpeg', '.webp', '.zip', '.pdf', '.woff', '.woff2', '.ttf')):
                 continue
@@ -66,7 +67,7 @@ def scan_repository(root_dir="."):
     else:
         print(f"[!] Found {len(findings)} potential security findings:")
         for f in findings:
-            print(f"    - [{f['desc']}] {f['file']}:{f['line']} -> {f['snippet']}")
+            print(f"    - [{f['desc']}] {f['file']}:{f['line']} (content redacted)")
         return 1
 
 if __name__ == "__main__":

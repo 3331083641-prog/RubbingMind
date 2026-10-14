@@ -1,0 +1,111 @@
+{
+  "id": "wei_02_wugaoli",
+  "source": "原始档案包/wei_02_wugaoli/源文件_原样保存.pdf",
+  "pdf_page": 1,
+  "native_dimensions": [
+    2858,
+    2449
+  ],
+  "readable_bbox": [
+    689,
+    629,
+    1861,
+    1785
+  ],
+  "cover_bbox": [
+    689,
+    629,
+    1861,
+    1785
+  ],
+  "selection_reason": "原图只有一块墓志正文；从白纸与右侧尺卡中取整块；复查后下缘扩展以保留末行",
+  "embedded_image_xref": 8,
+  "real_original_filename": "源文件_原样保存.pdf",
+  "source_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000064_%E5%8C%97%E9%AD%8F%E6%95%85%E5%A3%AB%E5%90%B3%E9%AB%98%E9%BB%8E%E5%A2%93%E8%AA%8C%E9%8A%98%E5%A2%A8%E6%8B%93%E6%9C%AC.pdf",
+  "source_sha256": "e2010873451d08dbac1cf399c046be9110874a31fbaf2f138b7f41c6530493cb",
+  "archive_sha256": "06a31b7c673b08a748c3f48a98d19ca85bdaaad90a458b75d3882f0f00cec9d2",
+  "crop_before_dimensions": [
+    2858,
+    2449
+  ],
+  "readable_after_dimensions": [
+    1172,
+    1156
+  ],
+  "cover_crop_after_dimensions": [
+    1172,
+    1156
+  ],
+  "cover_dimensions": [
+    1100,
+    1420
+  ],
+  "cover_scaled_dimensions": [
+    1100,
+    1085
+  ],
+  "isotropic_scale_factor": 0.9385665529010239,
+  "conventional_upsampling": false,
+  "sampling_note": "缩放不增加源图信息；阅读版保持原始像素，不作超分辨率",
+  "padding_rgb": [
+    21,
+    22,
+    22
+  ],
+  "padding_offset": [
+    0,
+    167
+  ],
+  "contrast": {
+    "method": "grayscale + blend with global autocontrast",
+    "cutoff_percent": 0.1,
+    "blend": 0.18,
+    "CLAHE": false
+  },
+  "sharpen": {
+    "radius": 0.65,
+    "percent": 22,
+    "threshold": 4
+  },
+  "perspective_correction": false,
+  "generative_processing": false,
+  "stroke_reconstruction": false,
+  "geometry_change": "crop + isotropic resize only",
+  "image_license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "assistant_visual_review_status": "completed_source_pages_and_crop_comparison",
+  "human_review_status": "approved_by_user_in_integration_request",
+  "output_sha256": {
+    "archive.jpg": "06a31b7c673b08a748c3f48a98d19ca85bdaaad90a458b75d3882f0f00cec9d2",
+    "readable.jpg": "12a8bfe268ddc8ba308e250922afa861cef6eda6ac748174d1a99724f63dd6f6",
+    "cover.jpg": "5e9058d374150808fb9b7b351ea39b0396de966dde92f253f8c410566ad21481"
+  },
+  "original_damage_note": "原图只有一块墓志正文；从白纸与右侧尺卡中取整块；复查后下缘扩展以保留末行",
+  "additional_character_cutting": "none_observed_after_item_specific_border_review",
+  "attribution": "吴高黎墓志。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+  "catalogue_url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full",
+  "visual_notes": [
+    "历史原拓缺笔、裂损及石花保留；不以输出像素宣称新增原件细节"
+  ],
+  "quality_status": "通过制作核验，待第三轮独立复核",
+  "item_title": "吴高黎墓志",
+  "dynasty": "北魏",
+  "institution": "台北故宫博物院",
+  "accession_number": "購拓000064",
+  "stone_date": "526年",
+  "rubbing_date": "未核定；不据拓印年改变朝代",
+  "pdf_page_numbering": "1-based",
+  "bbox_convention": "source pixels [left,top,right,bottom], right/bottom exclusive",
+  "original_filename_from_source": "NPM-購拓000064 北魏故士吳高黎墓誌銘墨拓本.pdf",
+  "download_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000064_%E5%8C%97%E9%AD%8F%E6%95%85%E5%A3%AB%E5%90%B3%E9%AB%98%E9%BB%8E%E5%A2%93%E8%AA%8C%E9%8A%98%E5%A2%A8%E6%8B%93%E6%9C%AC.pdf",
+  "source_archive_type": "PDF containing native embedded JPEG(s) and metadata sheets",
+  "cover_relation": "完整拓片主体",
+  "working_source_path": "D:\\RubbingMind\\rubbings-review-v3\\originals\\wei_02_wugaoli\\源文件_原样保存.pdf",
+  "deployedId": "wei_02_wugaoli",
+  "reviewedId": "wei_02_wugaoli",
+  "deployment_output_sha256": {
+    "archive.jpg": "06a31b7c673b08a748c3f48a98d19ca85bdaaad90a458b75d3882f0f00cec9d2",
+    "readable.jpg": "12a8bfe268ddc8ba308e250922afa861cef6eda6ac748174d1a99724f63dd6f6",
+    "cover.jpg": "5e9058d374150808fb9b7b351ea39b0396de966dde92f253f8c410566ad21481"
+  }
+}

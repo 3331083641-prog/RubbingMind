@@ -12,10 +12,12 @@ if BASE_DIR not in sys.path:
     sys.path.insert(0, BASE_DIR)
 
 from database import init_database, query_steles, DB_PATH
+from scripts.migrate_museum_v3 import migrate
 
 def main():
     print(f"[*] 正在初始化墨韵智考 SQLite 数据库: {DB_PATH}")
     init_database()
+    migrate()
     steles = query_steles()
     print(f"[OK] 数据库表结构创建成功，已加载 {len(steles)} 件真实馆藏档案记录。")
 

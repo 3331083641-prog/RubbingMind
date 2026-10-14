@@ -1,0 +1,1202 @@
+[
+  {
+    "id": "tang-duobao",
+    "title": "唐·多宝塔感应碑（核心实验样本）",
+    "dynasty": "唐朝·天宝十一载（公元752年）",
+    "author": "颜真卿（书丹，琅琊临沂）",
+    "calligrapher": "颜真卿（书丹，琅琊临沂）",
+    "script_type": "唐楷（颜体早期风貌）",
+    "weathering_level": "待评估",
+    "year": "公元 752 年 5 月（唐玄宗时期）",
+    "originalYear": "公元 752 年 5 月（唐玄宗时期）",
+    "ganzhi": "未核定",
+    "location": "西安碑林博物馆第一室",
+    "museum": "核心算法演示样本，非第三轮馆藏影像",
+    "dimensions": "实验图像尺寸见文件",
+    "summary": "保留既有核心实验样本；影像来源未完成本轮馆藏核验，不计入28件真实馆藏。",
+    "historical_context": "实验样本身份与真实馆藏身份分离。",
+    "badges": [
+      "核心实验样本"
+    ],
+    "raw_image": "/assets/stele/rubbings/stele_tang_duobao_damaged.png",
+    "clean_image": "/assets/stele/rubbings/stele_tang_duobao_damaged.png",
+    "damaged_image": "/assets/stele/rubbings/stele_tang_duobao_damaged.png",
+    "restored_image": "",
+    "metrics": {
+      "psnr": null,
+      "ssim": null,
+      "snr_gain": null,
+      "glyph_completeness": null,
+      "character_accuracy": null
+    },
+    "translation": "大唐西京千福寺多寶佛塔感應碑文。南陽岑勛撰，朝議郎判尚書武部員外郎琅邪顏真卿書，朝散大夫檢校尚書都官郎中東海徐浩題額。粵妙法蓮華，諸佛之秘藏也；多寶佛塔，證經之踴現也。發明資乎十力，弘建在於四依。有禪師法號楚金，姓程，廣平人也。祖父並信著釋門，慶歸法胤。母高氏，久而無妊，夜夢諸佛，覺而有娠……",
+    "isDemo": true,
+    "source_kind": "core_demo",
+    "evaluationStatus": "未评测",
+    "coreSampleNumber": 1,
+    "inferenceDemo": {
+      "transcript": "大唐西京千福寺多寶佛塔感應碑文。南陽岑勛撰，朝議郎判尚書武部員外郎琅邪顏真卿書，朝散大夫檢校尚書都官郎中東海徐浩題額。粵妙法蓮華，諸佛之秘藏也；多寶佛塔，證經之踴現也。發明資乎十力，弘建在於四依。有禪師法號楚金，姓程，廣平人也。祖父並信著釋門，慶歸法胤。母高氏，久而無妊，夜夢諸佛，覺而有娠……",
+      "characters": [
+        {
+          "id": "c1",
+          "char": "大",
+          "status": "clear",
+          "col": 1,
+          "row": 1
+        },
+        {
+          "id": "c2",
+          "char": "唐",
+          "status": "clear",
+          "col": 1,
+          "row": 2
+        },
+        {
+          "id": "c3",
+          "char": "西",
+          "status": "clear",
+          "col": 1,
+          "row": 3
+        },
+        {
+          "id": "c4",
+          "char": "京",
+          "status": "clear",
+          "col": 1,
+          "row": 4
+        },
+        {
+          "id": "c5",
+          "char": "千",
+          "status": "clear",
+          "col": 1,
+          "row": 5
+        },
+        {
+          "id": "c6",
+          "char": "福",
+          "status": "clear",
+          "col": 1,
+          "row": 6
+        },
+        {
+          "id": "c7",
+          "char": "寺",
+          "status": "clear",
+          "col": 1,
+          "row": 7
+        },
+        {
+          "id": "c8",
+          "char": "多",
+          "status": "clear",
+          "col": 2,
+          "row": 1
+        },
+        {
+          "id": "c9",
+          "char": "寶",
+          "status": "clear",
+          "col": 2,
+          "row": 2
+        },
+        {
+          "id": "c10",
+          "char": "佛",
+          "status": "clear",
+          "col": 2,
+          "row": 3
+        },
+        {
+          "id": "c11",
+          "char": "塔",
+          "status": "clear",
+          "col": 2,
+          "row": 4
+        },
+        {
+          "id": "c12",
+          "char": "感",
+          "status": "clear",
+          "col": 2,
+          "row": 5
+        },
+        {
+          "id": "c13",
+          "char": "應",
+          "status": "clear",
+          "col": 2,
+          "row": 6
+        },
+        {
+          "id": "c14",
+          "char": "碑",
+          "status": "clear",
+          "col": 2,
+          "row": 7
+        },
+        {
+          "id": "c15",
+          "char": "文",
+          "status": "clear",
+          "col": 3,
+          "row": 1
+        },
+        {
+          "id": "c16",
+          "char": "南",
+          "status": "clear",
+          "col": 3,
+          "row": 2
+        },
+        {
+          "id": "c17",
+          "char": "陽",
+          "status": "clear",
+          "col": 3,
+          "row": 3
+        },
+        {
+          "id": "c18",
+          "char": "岑",
+          "status": "clear",
+          "col": 3,
+          "row": 4
+        },
+        {
+          "id": "c19",
+          "char": "勛",
+          "status": "clear",
+          "col": 3,
+          "row": 5
+        },
+        {
+          "id": "c20",
+          "char": "撰",
+          "status": "clear",
+          "col": 3,
+          "row": 6
+        },
+        {
+          "id": "c21",
+          "char": "朝",
+          "status": "clear",
+          "col": 3,
+          "row": 7
+        },
+        {
+          "id": "c22",
+          "char": "議",
+          "status": "clear",
+          "col": 4,
+          "row": 1
+        },
+        {
+          "id": "c23",
+          "char": "郎",
+          "status": "clear",
+          "col": 4,
+          "row": 2
+        },
+        {
+          "id": "c24",
+          "char": "判",
+          "status": "clear",
+          "col": 4,
+          "row": 3
+        },
+        {
+          "id": "c25",
+          "char": "尚",
+          "status": "clear",
+          "col": 4,
+          "row": 4
+        },
+        {
+          "id": "c26",
+          "char": "書",
+          "status": "clear",
+          "col": 4,
+          "row": 5
+        },
+        {
+          "id": "c27",
+          "char": "武",
+          "status": "clear",
+          "col": 4,
+          "row": 6
+        },
+        {
+          "id": "c28",
+          "char": "部",
+          "status": "clear",
+          "col": 4,
+          "row": 7
+        },
+        {
+          "id": "c29",
+          "char": "員",
+          "status": "clear",
+          "col": 5,
+          "row": 1
+        },
+        {
+          "id": "c30",
+          "char": "外",
+          "status": "clear",
+          "col": 5,
+          "row": 2
+        },
+        {
+          "id": "c31",
+          "char": "郎",
+          "status": "clear",
+          "col": 5,
+          "row": 3
+        },
+        {
+          "id": "c32",
+          "char": "琅",
+          "status": "clear",
+          "col": 5,
+          "row": 4
+        },
+        {
+          "id": "c33",
+          "char": "邪",
+          "status": "clear",
+          "col": 5,
+          "row": 5
+        },
+        {
+          "id": "c34",
+          "char": "顏",
+          "status": "clear",
+          "col": 5,
+          "row": 6
+        },
+        {
+          "id": "c35",
+          "char": "真",
+          "status": "clear",
+          "col": 5,
+          "row": 7
+        }
+      ],
+      "damaged_summary": "核心样本预置推演案例；非本次图像检测或实测置信度。",
+      "demoMode": true
+    }
+  },
+  {
+    "id": "han-caoquan",
+    "title": "东汉·郃阳令曹全碑（核心实验样本）",
+    "dynasty": "东汉·中平二年（公元185年）",
+    "author": "汉代书吏（无名氏，典型东汉八分书）",
+    "calligrapher": "汉代书吏（无名氏，典型东汉八分书）",
+    "script_type": "汉隶极则（秀美飞动、长波大磔）",
+    "weathering_level": "待评估",
+    "year": "公元 185 年（汉灵帝中平二年）",
+    "originalYear": "公元 185 年（汉灵帝中平二年）",
+    "ganzhi": "未核定",
+    "location": "西安碑林博物馆第三室",
+    "museum": "核心算法演示样本，非第三轮馆藏影像",
+    "dimensions": "实验图像尺寸见文件",
+    "summary": "保留既有核心实验样本；影像来源未完成本轮馆藏核验，不计入28件真实馆藏。",
+    "historical_context": "实验样本身份与真实馆藏身份分离。",
+    "badges": [
+      "核心实验样本"
+    ],
+    "raw_image": "/assets/stele/rubbings/stele_han_caoquan.png",
+    "clean_image": "/assets/stele/rubbings/stele_han_caoquan.png",
+    "damaged_image": "/assets/stele/rubbings/stele_han_caoquan.png",
+    "restored_image": "",
+    "metrics": {
+      "psnr": null,
+      "ssim": null,
+      "snr_gain": null,
+      "glyph_completeness": null,
+      "character_accuracy": null
+    },
+    "translation": "君諱全，字景完，敦煌效穀人也。其先蓋周之冑，武王秉乾之機，翦伐殷商，既定爾勳，福祿攸同，封弟叔振鐸於曹國，因氏焉……建寧二年舉孝廉，除郎中，拜西域戊部司馬……遷郃陽令。",
+    "isDemo": true,
+    "source_kind": "core_demo",
+    "evaluationStatus": "未评测",
+    "coreSampleNumber": 2,
+    "inferenceDemo": {
+      "transcript": "君諱全，字景完，敦煌效穀人也。其先蓋周之冑，武王秉乾之機，翦伐殷商，既定爾勳，福祿攸同，封弟叔振鐸於曹國，因氏焉……建寧二年舉孝廉，除郎中，拜西域戊部司馬……遷郃陽令。",
+      "characters": [
+        {
+          "id": "c1",
+          "char": "君",
+          "status": "clear",
+          "col": 1,
+          "row": 1
+        },
+        {
+          "id": "c2",
+          "char": "諱",
+          "status": "clear",
+          "col": 1,
+          "row": 2
+        },
+        {
+          "id": "c3",
+          "char": "全",
+          "status": "clear",
+          "col": 1,
+          "row": 3
+        },
+        {
+          "id": "c4",
+          "char": "字",
+          "status": "clear",
+          "col": 1,
+          "row": 4
+        },
+        {
+          "id": "c5",
+          "char": "景",
+          "status": "clear",
+          "col": 1,
+          "row": 5
+        },
+        {
+          "id": "c6",
+          "char": "完",
+          "status": "clear",
+          "col": 1,
+          "row": 6
+        },
+        {
+          "id": "c7",
+          "char": "敦",
+          "status": "clear",
+          "col": 1,
+          "row": 7
+        },
+        {
+          "id": "c8",
+          "char": "煌",
+          "status": "clear",
+          "col": 2,
+          "row": 1
+        },
+        {
+          "id": "c9",
+          "char": "效",
+          "status": "damaged",
+          "col": 2,
+          "row": 2,
+          "damage_level": null,
+          "inferred_candidates": [
+            {
+              "glyph": "效",
+              "confidence": 0.935,
+              "evidence": "核心演示案例（预置示例，非本轮实测）：【地理志文献证据】《汉书·地理志》记载敦煌郡下辖效谷县，汉武帝得天马处。碑面残存‘交’字长横波挑与反捺极度清晰。",
+              "font_style": "汉隶极则（秀美飞动、长波大磔）",
+              "source": "原核心实验资料，未用于28件馆藏自动判定"
+            },
+            {
+              "glyph": "郊",
+              "confidence": 0.045,
+              "evidence": "核心演示案例（预置示例，非本轮实测）：音近通假，但汉代官郡县名不作‘郊谷’。",
+              "font_style": "汉隶极则（秀美飞动、长波大磔）",
+              "source": "原核心实验资料，未用于28件馆藏自动判定"
+            },
+            {
+              "glyph": "校",
+              "confidence": 0.02,
+              "evidence": "核心演示案例（预置示例，非本轮实测）：形近误认，笔画不合汉隶结构。",
+              "font_style": "汉隶极则（秀美飞动、长波大磔）",
+              "source": "原核心实验资料，未用于28件馆藏自动判定"
+            }
+          ]
+        },
+        {
+          "id": "c10",
+          "char": "穀",
+          "status": "clear",
+          "col": 2,
+          "row": 3
+        },
+        {
+          "id": "c11",
+          "char": "人",
+          "status": "clear",
+          "col": 2,
+          "row": 4
+        },
+        {
+          "id": "c12",
+          "char": "也",
+          "status": "clear",
+          "col": 2,
+          "row": 5
+        },
+        {
+          "id": "c13",
+          "char": "其",
+          "status": "clear",
+          "col": 2,
+          "row": 6
+        },
+        {
+          "id": "c14",
+          "char": "先",
+          "status": "clear",
+          "col": 2,
+          "row": 7
+        },
+        {
+          "id": "c15",
+          "char": "蓋",
+          "status": "clear",
+          "col": 3,
+          "row": 1
+        },
+        {
+          "id": "c16",
+          "char": "周",
+          "status": "clear",
+          "col": 3,
+          "row": 2
+        },
+        {
+          "id": "c17",
+          "char": "之",
+          "status": "clear",
+          "col": 3,
+          "row": 3
+        },
+        {
+          "id": "c18",
+          "char": "冑",
+          "status": "clear",
+          "col": 3,
+          "row": 4
+        },
+        {
+          "id": "c19",
+          "char": "武",
+          "status": "clear",
+          "col": 3,
+          "row": 5
+        },
+        {
+          "id": "c20",
+          "char": "王",
+          "status": "clear",
+          "col": 3,
+          "row": 6
+        },
+        {
+          "id": "c21",
+          "char": "秉",
+          "status": "clear",
+          "col": 3,
+          "row": 7
+        },
+        {
+          "id": "c22",
+          "char": "乾",
+          "status": "clear",
+          "col": 4,
+          "row": 1
+        },
+        {
+          "id": "c23",
+          "char": "之",
+          "status": "clear",
+          "col": 4,
+          "row": 2
+        },
+        {
+          "id": "c24",
+          "char": "機",
+          "status": "clear",
+          "col": 4,
+          "row": 3
+        },
+        {
+          "id": "c25",
+          "char": "翦",
+          "status": "clear",
+          "col": 4,
+          "row": 4
+        },
+        {
+          "id": "c26",
+          "char": "伐",
+          "status": "clear",
+          "col": 4,
+          "row": 5
+        },
+        {
+          "id": "c27",
+          "char": "殷",
+          "status": "clear",
+          "col": 4,
+          "row": 6
+        },
+        {
+          "id": "c28",
+          "char": "商",
+          "status": "clear",
+          "col": 4,
+          "row": 7
+        },
+        {
+          "id": "c29",
+          "char": "既",
+          "status": "clear",
+          "col": 5,
+          "row": 1
+        },
+        {
+          "id": "c30",
+          "char": "定",
+          "status": "clear",
+          "col": 5,
+          "row": 2
+        },
+        {
+          "id": "c31",
+          "char": "爾",
+          "status": "clear",
+          "col": 5,
+          "row": 3
+        },
+        {
+          "id": "c32",
+          "char": "勳",
+          "status": "clear",
+          "col": 5,
+          "row": 4
+        },
+        {
+          "id": "c33",
+          "char": "福",
+          "status": "clear",
+          "col": 5,
+          "row": 5
+        },
+        {
+          "id": "c34",
+          "char": "祿",
+          "status": "clear",
+          "col": 5,
+          "row": 6
+        },
+        {
+          "id": "c35",
+          "char": "攸",
+          "status": "clear",
+          "col": 5,
+          "row": 7
+        }
+      ],
+      "damaged_summary": "核心样本预置推演案例；非本次图像检测或实测置信度。",
+      "demoMode": true
+    }
+  },
+  {
+    "id": "wei-yuanhuai",
+    "title": "北魏·广平王元怀墓志铭（核心实验样本）",
+    "dynasty": "北魏·熙平二年（公元517年）",
+    "author": "北魏宗室御用书家",
+    "calligrapher": "北魏宗室御用书家",
+    "script_type": "洛阳魏碑体（峻拔雄奇、结体端整）",
+    "weathering_level": "待评估",
+    "year": "公元 517 年 4 月 27 日（北魏孝明帝时期）",
+    "originalYear": "公元 517 年 4 月 27 日（北魏孝明帝时期）",
+    "ganzhi": "未核定",
+    "location": "开封市博物馆（1925年洛阳邙山出土）",
+    "museum": "核心算法演示样本，非第三轮馆藏影像",
+    "dimensions": "实验图像尺寸见文件",
+    "summary": "保留既有核心实验样本；影像来源未完成本轮馆藏核验，不计入28件真实馆藏。",
+    "historical_context": "实验样本身份与真实馆藏身份分离。",
+    "badges": [
+      "核心实验样本"
+    ],
+    "raw_image": "/assets/stele/rubbings/stele_wei_yuanhuai.png",
+    "clean_image": "/assets/stele/rubbings/stele_wei_yuanhuai.png",
+    "damaged_image": "/assets/stele/rubbings/stele_wei_yuanhuai.png",
+    "restored_image": "",
+    "metrics": {
+      "psnr": null,
+      "ssim": null,
+      "snr_gain": null,
+      "glyph_completeness": null,
+      "character_accuracy": null
+    },
+    "translation": "魏故侍中太保領司徒公廣平王，姓元諱懷，字宣義，河南洛陽乘軒里人，顯祖獻文皇帝之孫，高祖孝文皇帝之第四子，世宗宣武皇帝之母弟，皇上之叔父也。體乾坤之叡性，承日月之貞暉……春秋卅，熙平二年三月廿六日丁亥薨，追崇使持節假黃鉞都督中外諸軍事太師領太尉公……",
+    "isDemo": true,
+    "source_kind": "core_demo",
+    "evaluationStatus": "未评测",
+    "coreSampleNumber": 3,
+    "inferenceDemo": {
+      "transcript": "魏故侍中太保領司徒公廣平王，姓元諱懷，字宣義，河南洛陽乘軒里人，顯祖獻文皇帝之孫，高祖孝文皇帝之第四子，世宗宣武皇帝之母弟，皇上之叔父也。體乾坤之叡性，承日月之貞暉……春秋卅，熙平二年三月廿六日丁亥薨，追崇使持節假黃鉞都督中外諸軍事太師領太尉公……",
+      "characters": [
+        {
+          "id": "c1",
+          "char": "魏",
+          "status": "clear",
+          "col": 1,
+          "row": 1
+        },
+        {
+          "id": "c2",
+          "char": "故",
+          "status": "clear",
+          "col": 1,
+          "row": 2
+        },
+        {
+          "id": "c3",
+          "char": "侍",
+          "status": "clear",
+          "col": 1,
+          "row": 3
+        },
+        {
+          "id": "c4",
+          "char": "中",
+          "status": "clear",
+          "col": 1,
+          "row": 4
+        },
+        {
+          "id": "c5",
+          "char": "太",
+          "status": "clear",
+          "col": 1,
+          "row": 5
+        },
+        {
+          "id": "c6",
+          "char": "保",
+          "status": "clear",
+          "col": 1,
+          "row": 6
+        },
+        {
+          "id": "c7",
+          "char": "領",
+          "status": "clear",
+          "col": 1,
+          "row": 7
+        },
+        {
+          "id": "c8",
+          "char": "司",
+          "status": "clear",
+          "col": 2,
+          "row": 1
+        },
+        {
+          "id": "c9",
+          "char": "徒",
+          "status": "clear",
+          "col": 2,
+          "row": 2
+        },
+        {
+          "id": "c10",
+          "char": "公",
+          "status": "clear",
+          "col": 2,
+          "row": 3
+        },
+        {
+          "id": "c11",
+          "char": "廣",
+          "status": "clear",
+          "col": 2,
+          "row": 4
+        },
+        {
+          "id": "c12",
+          "char": "平",
+          "status": "clear",
+          "col": 2,
+          "row": 5
+        },
+        {
+          "id": "c13",
+          "char": "王",
+          "status": "clear",
+          "col": 2,
+          "row": 6
+        },
+        {
+          "id": "c14",
+          "char": "姓",
+          "status": "clear",
+          "col": 2,
+          "row": 7
+        },
+        {
+          "id": "c15",
+          "char": "元",
+          "status": "clear",
+          "col": 3,
+          "row": 1
+        },
+        {
+          "id": "c16",
+          "char": "諱",
+          "status": "clear",
+          "col": 3,
+          "row": 2
+        },
+        {
+          "id": "c17",
+          "char": "懷",
+          "status": "clear",
+          "col": 3,
+          "row": 3
+        },
+        {
+          "id": "c18",
+          "char": "字",
+          "status": "clear",
+          "col": 3,
+          "row": 4
+        },
+        {
+          "id": "c19",
+          "char": "宣",
+          "status": "clear",
+          "col": 3,
+          "row": 5
+        },
+        {
+          "id": "c20",
+          "char": "義",
+          "status": "clear",
+          "col": 3,
+          "row": 6
+        },
+        {
+          "id": "c21",
+          "char": "河",
+          "status": "clear",
+          "col": 3,
+          "row": 7
+        },
+        {
+          "id": "c22",
+          "char": "南",
+          "status": "clear",
+          "col": 4,
+          "row": 1
+        },
+        {
+          "id": "c23",
+          "char": "洛",
+          "status": "clear",
+          "col": 4,
+          "row": 2
+        },
+        {
+          "id": "c24",
+          "char": "陽",
+          "status": "clear",
+          "col": 4,
+          "row": 3
+        },
+        {
+          "id": "c25",
+          "char": "乘",
+          "status": "clear",
+          "col": 4,
+          "row": 4
+        },
+        {
+          "id": "c26",
+          "char": "軒",
+          "status": "clear",
+          "col": 4,
+          "row": 5
+        },
+        {
+          "id": "c27",
+          "char": "里",
+          "status": "clear",
+          "col": 4,
+          "row": 6
+        },
+        {
+          "id": "c28",
+          "char": "人",
+          "status": "clear",
+          "col": 4,
+          "row": 7
+        },
+        {
+          "id": "c29",
+          "char": "顯",
+          "status": "clear",
+          "col": 5,
+          "row": 1
+        },
+        {
+          "id": "c30",
+          "char": "祖",
+          "status": "clear",
+          "col": 5,
+          "row": 2
+        },
+        {
+          "id": "c31",
+          "char": "獻",
+          "status": "clear",
+          "col": 5,
+          "row": 3
+        },
+        {
+          "id": "c32",
+          "char": "文",
+          "status": "clear",
+          "col": 5,
+          "row": 4
+        },
+        {
+          "id": "c33",
+          "char": "皇",
+          "status": "clear",
+          "col": 5,
+          "row": 5
+        },
+        {
+          "id": "c34",
+          "char": "帝",
+          "status": "clear",
+          "col": 5,
+          "row": 6
+        },
+        {
+          "id": "c35",
+          "char": "之",
+          "status": "clear",
+          "col": 5,
+          "row": 7
+        }
+      ],
+      "damaged_summary": "核心样本预置推演案例；非本次图像检测或实测置信度。",
+      "demoMode": true
+    }
+  },
+  {
+    "id": "wei-jianyi",
+    "title": "北魏·建义元年重度风化墓志（核心实验样本）",
+    "dynasty": "北魏·建义/永安元年（公元528年）",
+    "author": "北朝民间刻工",
+    "calligrapher": "北朝民间刻工",
+    "script_type": "洛阳魏碑体（漫漶风化重灾区）",
+    "weathering_level": "待评估",
+    "year": "公元 528 年（北魏孝庄帝建义元年，河阴之变同年）",
+    "originalYear": "公元 528 年（北魏孝庄帝建义元年，河阴之变同年）",
+    "ganzhi": "未核定",
+    "location": "洛阳古墓博物馆石刻馆",
+    "museum": "核心算法演示样本，非第三轮馆藏影像",
+    "dimensions": "实验图像尺寸见文件",
+    "summary": "保留既有核心实验样本；影像来源未完成本轮馆藏核验，不计入28件真实馆藏。",
+    "historical_context": "实验样本身份与真实馆藏身份分离。",
+    "badges": [
+      "核心实验样本"
+    ],
+    "raw_image": "/assets/stele/rubbings/stele_wei_jianyi_fragment.png",
+    "clean_image": "/assets/stele/rubbings/stele_wei_jianyi_fragment.png",
+    "damaged_image": "/assets/stele/rubbings/stele_wei_jianyi_fragment.png",
+    "restored_image": "",
+    "metrics": {
+      "psnr": null,
+      "ssim": null,
+      "snr_gain": null,
+      "glyph_completeness": null,
+      "character_accuracy": null
+    },
+    "translation": "夫人諱某，昌黎人也……春秋五十有一，以建義元年九月廿一日終于第，粵永安元年歲次戊申十一月申寅朔廿日癸酉葬於西陵。恐岸谷更遷，勒玄石以傳之。其詞曰：綿邈悠代，奕葉留光，後季承慶，官列周行……",
+    "isDemo": true,
+    "source_kind": "core_demo",
+    "evaluationStatus": "未评测",
+    "coreSampleNumber": 4,
+    "inferenceDemo": {
+      "transcript": "夫人諱某，昌黎人也……春秋五十有一，以建義元年九月廿一日終于第，粵永安元年歲次戊申十一月申寅朔廿日癸酉葬於西陵。恐岸谷更遷，勒玄石以傳之。其詞曰：綿邈悠代，奕葉留光，後季承慶，官列周行……",
+      "characters": [
+        {
+          "id": "c1",
+          "char": "夫",
+          "status": "clear",
+          "col": 1,
+          "row": 1
+        },
+        {
+          "id": "c2",
+          "char": "人",
+          "status": "clear",
+          "col": 1,
+          "row": 2
+        },
+        {
+          "id": "c3",
+          "char": "諱",
+          "status": "clear",
+          "col": 1,
+          "row": 3
+        },
+        {
+          "id": "c4",
+          "char": "某",
+          "status": "clear",
+          "col": 1,
+          "row": 4
+        },
+        {
+          "id": "c5",
+          "char": "昌",
+          "status": "damaged",
+          "col": 1,
+          "row": 5,
+          "damage_level": null,
+          "inferred_candidates": [
+            {
+              "glyph": "昌",
+              "confidence": 0.851,
+              "evidence": "核心演示案例（预置示例，非本轮实测）：【北魏门阀郡望志】‘昌黎’为北方世家望族（昌黎韩氏/慕容氏），上下两‘日’重叠字形残痕隐约可见。",
+              "font_style": "洛阳魏碑体（漫漶风化重灾区）",
+              "source": "原核心实验资料，未用于28件馆藏自动判定"
+            },
+            {
+              "glyph": "晉",
+              "confidence": 0.102,
+              "evidence": "核心演示案例（预置示例，非本轮实测）：古地名‘晋黎’极罕见，字形上部略似。",
+              "font_style": "洛阳魏碑体（漫漶风化重灾区）",
+              "source": "原核心实验资料，未用于28件馆藏自动判定"
+            },
+            {
+              "glyph": "廣",
+              "confidence": 0.047,
+              "evidence": "核心演示案例（预置示例，非本轮实测）：广字头不符合剥蚀区域笔划拓扑。",
+              "font_style": "洛阳魏碑体（漫漶风化重灾区）",
+              "source": "原核心实验资料，未用于28件馆藏自动判定"
+            }
+          ]
+        },
+        {
+          "id": "c6",
+          "char": "黎",
+          "status": "clear",
+          "col": 1,
+          "row": 6
+        },
+        {
+          "id": "c7",
+          "char": "人",
+          "status": "clear",
+          "col": 1,
+          "row": 7
+        },
+        {
+          "id": "c8",
+          "char": "也",
+          "status": "clear",
+          "col": 2,
+          "row": 1
+        },
+        {
+          "id": "c9",
+          "char": "春",
+          "status": "clear",
+          "col": 2,
+          "row": 2
+        },
+        {
+          "id": "c10",
+          "char": "秋",
+          "status": "clear",
+          "col": 2,
+          "row": 3
+        },
+        {
+          "id": "c11",
+          "char": "五",
+          "status": "clear",
+          "col": 2,
+          "row": 4
+        },
+        {
+          "id": "c12",
+          "char": "十",
+          "status": "clear",
+          "col": 2,
+          "row": 5
+        },
+        {
+          "id": "c13",
+          "char": "有",
+          "status": "clear",
+          "col": 2,
+          "row": 6
+        },
+        {
+          "id": "c14",
+          "char": "一",
+          "status": "clear",
+          "col": 2,
+          "row": 7
+        },
+        {
+          "id": "c15",
+          "char": "以",
+          "status": "clear",
+          "col": 3,
+          "row": 1
+        },
+        {
+          "id": "c16",
+          "char": "建",
+          "status": "clear",
+          "col": 3,
+          "row": 2
+        },
+        {
+          "id": "c17",
+          "char": "義",
+          "status": "clear",
+          "col": 3,
+          "row": 3
+        },
+        {
+          "id": "c18",
+          "char": "元",
+          "status": "clear",
+          "col": 3,
+          "row": 4
+        },
+        {
+          "id": "c19",
+          "char": "年",
+          "status": "clear",
+          "col": 3,
+          "row": 5
+        },
+        {
+          "id": "c20",
+          "char": "九",
+          "status": "clear",
+          "col": 3,
+          "row": 6
+        },
+        {
+          "id": "c21",
+          "char": "月",
+          "status": "clear",
+          "col": 3,
+          "row": 7
+        },
+        {
+          "id": "c22",
+          "char": "廿",
+          "status": "clear",
+          "col": 4,
+          "row": 1
+        },
+        {
+          "id": "c23",
+          "char": "一",
+          "status": "clear",
+          "col": 4,
+          "row": 2
+        },
+        {
+          "id": "c24",
+          "char": "日",
+          "status": "clear",
+          "col": 4,
+          "row": 3
+        },
+        {
+          "id": "c25",
+          "char": "終",
+          "status": "clear",
+          "col": 4,
+          "row": 4
+        },
+        {
+          "id": "c26",
+          "char": "于",
+          "status": "clear",
+          "col": 4,
+          "row": 5
+        },
+        {
+          "id": "c27",
+          "char": "第",
+          "status": "clear",
+          "col": 4,
+          "row": 6
+        },
+        {
+          "id": "c28",
+          "char": "粵",
+          "status": "clear",
+          "col": 4,
+          "row": 7
+        },
+        {
+          "id": "c29",
+          "char": "永",
+          "status": "clear",
+          "col": 5,
+          "row": 1
+        },
+        {
+          "id": "c30",
+          "char": "安",
+          "status": "clear",
+          "col": 5,
+          "row": 2
+        },
+        {
+          "id": "c31",
+          "char": "元",
+          "status": "clear",
+          "col": 5,
+          "row": 3
+        },
+        {
+          "id": "c32",
+          "char": "年",
+          "status": "clear",
+          "col": 5,
+          "row": 4
+        },
+        {
+          "id": "c33",
+          "char": "歲",
+          "status": "clear",
+          "col": 5,
+          "row": 5
+        },
+        {
+          "id": "c34",
+          "char": "次",
+          "status": "clear",
+          "col": 5,
+          "row": 6
+        },
+        {
+          "id": "c35",
+          "char": "戊",
+          "status": "clear",
+          "col": 5,
+          "row": 7
+        }
+      ],
+      "damaged_summary": "核心样本预置推演案例；非本次图像检测或实测置信度。",
+      "demoMode": true
+    }
+  }
+]

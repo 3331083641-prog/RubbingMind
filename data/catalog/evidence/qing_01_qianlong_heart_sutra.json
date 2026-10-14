@@ -1,0 +1,388 @@
+{
+  "officialRecord": {
+    "secondaryobjectnumber": null,
+    "periodterms": [
+      {
+        "id": 2033603,
+        "period": "Qing"
+      }
+    ],
+    "creditline": "Gift of George Rowley",
+    "caption": "Chinese, Qing dynasty (1644–1912), Hongli 弘曆, calligrapher (1711–1799), Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經), 1744 (stone); late 19th to first half of 20th century (rubbing). Hanging scroll; ink rubbing on paper; 147.8 x 54.5 cm (image), 168 x 58.8 cm. Gift of George Rowley (y1958-220)",
+    "cultureterms": [
+      {
+        "id": 2033355,
+        "culture": "Chinese"
+      }
+    ],
+    "type": "artobject",
+    "dimensionsproposed": "",
+    "terms": [
+      {
+        "id": 2054786,
+        "term": "rubbings",
+        "aatid": 300103035,
+        "termtype": "Classification"
+      },
+      {
+        "id": 2096941,
+        "term": "Buddhism",
+        "aatid": 300073738,
+        "termtype": "Subject"
+      },
+      {
+        "id": 2121598,
+        "term": "inscriptions",
+        "aatid": 300028702,
+        "termtype": "Subject"
+      },
+      {
+        "id": 2033355,
+        "term": "Chinese",
+        "aatid": 300018322,
+        "termtype": "Culture"
+      },
+      {
+        "id": 2033603,
+        "term": "Qing",
+        "aatid": 300018478,
+        "termtype": "Period / Style"
+      },
+      {
+        "id": 2095964,
+        "term": "religious art",
+        "aatid": 300248179,
+        "termtype": "Subject"
+      }
+    ],
+    "geography": [
+      {
+        "displaygeography": "Place made: Asia, China",
+        "code": "Place made",
+        "continent": "Asia",
+        "subcontinent": null,
+        "country": "China",
+        "region": null,
+        "state": null,
+        "city": null,
+        "county": null,
+        "subregion": null,
+        "locale": null,
+        "locus": null,
+        "river": null,
+        "excavation": null,
+        "geoname": null,
+        "location": {
+          "lat": "",
+          "lon": ""
+        }
+      }
+    ],
+    "dimensionelements": [
+      {
+        "element": "Overall",
+        "type": "Height",
+        "units": "centimeters",
+        "dimension": "168.00"
+      },
+      {
+        "element": "Overall",
+        "type": "Width",
+        "units": "centimeters",
+        "dimension": "58.80"
+      },
+      {
+        "element": "image",
+        "type": "Height",
+        "units": "centimeters",
+        "dimension": "147.80"
+      },
+      {
+        "element": "image",
+        "type": "Width",
+        "units": "centimeters",
+        "dimension": "54.50"
+      }
+    ],
+    "markings": "Hongli 弘曆 (1711-1799; Qianlong emperor)\r\n\t“Qianlong chenhan” 乾隆宸翰, sq. relief\r\n\t“Chizao wei chun” 摛藻為春, sq. intaglio\r\n",
+    "accessionyear": "1958-01-01",
+    "newaccession": 0,
+    "makers": [
+      {
+        "id": 5370,
+        "displayname": "Hongli 弘曆",
+        "displaydate": "1711–1799",
+        "datebegin": 1711,
+        "dateend": 1799,
+        "prefix": null,
+        "suffix": ", calligrapher",
+        "role": "Artist",
+        "displaymaker": "Hongli 弘曆, calligrapher, 1711–1799",
+        "displayorder": 3
+      }
+    ],
+    "datecomputed": 1847,
+    "signed": null,
+    "restrictions": null,
+    "classification": "Rubbings",
+    "packages": [
+      {
+        "packageid": 225978,
+        "name": "2023_EAS534_04_05"
+      }
+    ],
+    "catalograisonne": null,
+    "classifications": [
+      {
+        "id": 2054786,
+        "classification": "rubbings"
+      }
+    ],
+    "exhibitions": [],
+    "cultures": [
+      {
+        "id": 13592,
+        "culture": "Chinese",
+        "alphasort": "Chinese",
+        "begindate": 0,
+        "enddate": 0,
+        "displayculture": "Chinese",
+        "displaydate": null
+      }
+    ],
+    "primaryimage": [
+      "https://media.artmuseum.princeton.edu/iiif/3/collection/INV05350"
+    ],
+    "displaytitle": "Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)",
+    "displayculture": "Chinese",
+    "displaymaker": "Hongli 弘曆, calligrapher, 1711–1799",
+    "captionhtml": "Chinese, Qing dynasty (1644–1912), Hongli 弘曆, calligrapher (1711–1799), <i>Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)</i>, 1744 (stone); late 19th to first half of 20th century (rubbing). Hanging scroll; ink rubbing on paper; 147.8 x 54.5 cm (image), 168 x 58.8 cm. Gift of George Rowley (y1958-220)",
+    "displaydate": "1744 (stone); late 19th to first half of 20th century (rubbing)",
+    "medium": "Hanging scroll; ink rubbing on paper",
+    "media": [
+      {
+        "id": 59830,
+        "uri": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV05350",
+        "isprimary": 1,
+        "rank": 1,
+        "mediatypeid": 1,
+        "mediaviewtype": "(not assigned)",
+        "restrictions": null,
+        "caption": "Inventory Project"
+      },
+      {
+        "id": 59875,
+        "uri": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV05226",
+        "isprimary": 0,
+        "rank": 2,
+        "mediatypeid": 1,
+        "mediaviewtype": "(not assigned)",
+        "restrictions": null,
+        "caption": "Inventory Project"
+      }
+    ],
+    "displayperiod": "Qing dynasty, 1644–1912",
+    "extended_content": false,
+    "campuscollections": "false",
+    "bibliography": [
+      {
+        "boilertext": "&quot;Recent Acquisitions,&quot; <i>Record of the Art Museum, Princeton University</i> 18, no. 1 (1959): p. 40-42.",
+        "citation": "&quot;Recent Acquisitions,&quot; <i>Record of the Art Museum, Princeton University</i> 18, no. 1 (1959): p. 40-42., p. 42",
+        "date": 1959,
+        "id": 876,
+        "uri": "https://www.jstor.org/stable/3774388"
+      }
+    ],
+    "nowebuse": "False",
+    "periods": [
+      {
+        "id": 15366,
+        "period": "Qing dynasty",
+        "alphasort": "Qing dynasty",
+        "begindate": 1644,
+        "enddate": 1912,
+        "displayperiod": "Qing dynasty, 1644–1912",
+        "displaydate": "1644–1912"
+      }
+    ],
+    "department": "Asian Art",
+    "attribute_groups": [
+      {
+        "id": 2199319,
+        "term": "Asian Art",
+        "termtype": "Collecting Area"
+      },
+      {
+        "id": 2199327,
+        "term": "Prints and Drawings",
+        "termtype": "Collecting Area"
+      }
+    ],
+    "daterange": "A.D. 1800-1850",
+    "dateend": 1950,
+    "depicted": [],
+    "titles": [
+      {
+        "title": "Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)",
+        "titletype": "Primary Title",
+        "displayorder": 1
+      }
+    ],
+    "hasimage": "true",
+    "creditlinerepro": null,
+    "objectnumber": "y1958-220",
+    "inscribed": "For transcription and translation of sutra text, see https://chungtai.org.au/wp-content/uploads/2017/12/Sutra-1-Heart-Sutra.pdf   \r\n般若波羅蜜多心經\r\n觀自在菩薩。行深般若波羅蜜多時。 照見五蘊皆空。度一切苦厄。舍利子。 色不異空。空不異色。色即是空。空 即是色。受想行識。亦復如是。舍利子。是諸法空相。不生不滅。不 垢不淨。不增不減。是故空中無色。 無受想行識。無眼耳鼻舌身意。無色 聲香味觸法。無眼界。乃至無意識界。 無無明。亦無無明盡。乃至無老死。 亦無老死盡。無苦集滅道。 無智亦無得。以無所得故。菩提薩埵。 依般若波羅蜜多故。心無罣礙。無罣 礙故。無有恐怖。遠離顛倒夢想。究 竟涅槃。三世諸佛。依般若波羅蜜多 故。得阿耨多羅三藐三菩提。故知般 若波羅蜜多。是大神咒。是大明咒。是 無上咒。是無等等咒。能除一切苦。真 實不虛。故說般若波羅蜜多咒。即說 咒曰。揭諦揭諦。波羅揭諦。波羅僧 揭諦。菩提薩婆訶。 \r\n般若波羅蜜多心經\t乾隆甲子秋九月御筆敬書\r\n\r\nLeft, bottom of pictorial scene:\r\n丁觀鹏敬摹\r\n",
+    "texts": [
+      {
+        "texttype": "Online",
+        "textpurpose": "Description",
+        "textentryhtml": "<p>The Heart Sutra in the calligraphy of the Qianlong emperor is written in eleven columns flanked by the title of the sutra repeated at right and left along with the emperor’s inscription dated 1744. The title is also written in large seal-script calligraphy in a band across the top. Below the sutra text is a scene showing a figure and attendant in a cave looking out at a figure walking on turbulent waves of a mountain stream. This scene is said to be the Tongzi lifo tu 童子禮佛图 by the Qianlong emperor as copied by the court artist Ding Guanpeng 丁觀鹏 (d. ca. 1770). A decorative band encircles all.&nbsp; <br></p><p>The engraved stone from which this rubbing was taken was carved in 1744 on a stele erected in front of the Dahongbao Dian 大雄寶殿hall in the Fayuan Si 法源寺 temple, Beijing. The Qianlong emperor’s Fayuan Si zhanli shi 法源寺瞻禮詩 was cut in 1780 on the back of this stele.&nbsp; <br></p>",
+        "remarks": null
+      }
+    ],
+    "datebegin": 1744,
+    "sortnumber": "1958  220y",
+    "published_date": "2026-02-11 12:18:11.424331",
+    "objectid": 57606,
+    "dimensions": "image: 147.8 x 54.5 cm. (58 3/16 x 21 7/16 in.)\r\n168 x 58.8 cm. (66 1/8 x 23 1/8 in.)",
+    "on_view": false
+  },
+  "processing": {
+    "id": "qing_01_qianlong_heart_sutra",
+    "source": "原始档案包/qing_01_qianlong_heart_sutra/princeton_57606_0.jpg",
+    "pdf_page": null,
+    "native_dimensions": [
+      752,
+      2000
+    ],
+    "readable_bbox": [
+      9,
+      4,
+      743,
+      1996
+    ],
+    "cover_bbox": [
+      13,
+      20,
+      739,
+      1532
+    ],
+    "selection_reason": "1744年刻，晚19至20世纪上半叶拓；正文与篆额为封面，底部童子礼佛图保留档案与阅读版",
+    "source_url": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+    "real_original_filename": "princeton_57606_0.jpg",
+    "source_sha256": "504851fefe45202105241d4590793e32df14ee552d9c4e42a6bcb846b6259dec",
+    "archive_sha256": "504851fefe45202105241d4590793e32df14ee552d9c4e42a6bcb846b6259dec",
+    "crop_before_dimensions": [
+      752,
+      2000
+    ],
+    "readable_after_dimensions": [
+      734,
+      1992
+    ],
+    "cover_crop_after_dimensions": [
+      726,
+      1512
+    ],
+    "cover_dimensions": [
+      1100,
+      1420
+    ],
+    "cover_scaled_dimensions": [
+      682,
+      1420
+    ],
+    "isotropic_scale_factor": 0.9391534391534392,
+    "conventional_upsampling": false,
+    "sampling_note": "缩放不增加源图信息；阅读版保持原始像素，不作超分辨率",
+    "padding_rgb": [
+      21,
+      22,
+      22
+    ],
+    "padding_offset": [
+      209,
+      0
+    ],
+    "contrast": {
+      "method": "grayscale + blend with global autocontrast",
+      "cutoff_percent": 0.1,
+      "blend": 0.18,
+      "CLAHE": false
+    },
+    "sharpen": {
+      "radius": 0.65,
+      "percent": 22,
+      "threshold": 4
+    },
+    "perspective_correction": false,
+    "generative_processing": false,
+    "stroke_reconstruction": false,
+    "geometry_change": "crop + isotropic resize only",
+    "image_license": "Public Domain; museum permits download/use",
+    "license_url": "https://artmuseum.princeton.edu/art/our-collections/image-use-and-access",
+    "assistant_visual_review_status": "completed_source_pages_and_crop_comparison",
+    "human_review_status": "pending_third_round_user_ChatGPT_review",
+    "output_sha256": {
+      "archive.jpg": "504851fefe45202105241d4590793e32df14ee552d9c4e42a6bcb846b6259dec",
+      "readable.jpg": "72cc05f5ad38039f298ff2c0c05f4fb9def0d55912bd3a111f5f35f739f734b9",
+      "cover.jpg": "6d9c3beef4fc1fc8435672767ad5e257d60f7ec407c6c7d9676646eb82b47a79"
+    },
+    "original_damage_note": "1744年刻，晚19至20世纪上半叶拓；正文与篆额为封面，底部童子礼佛图保留档案与阅读版",
+    "additional_character_cutting": "none_observed_after_item_specific_border_review",
+    "attribution": "Image courtesy of the Princeton University Art Museum. Gift of George Rowley.",
+    "catalogue_url": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+    "visual_notes": [
+      "历史原拓缺笔、裂损及石花保留；不以输出像素宣称新增原件细节"
+    ],
+    "quality_status": "通过制作核验，待第三轮独立复核",
+    "item_title": "乾隆御书般若波罗蜜多心经",
+    "dynasty": "清代",
+    "institution": "普林斯顿大学艺术博物馆",
+    "accession_number": "y1958-220",
+    "stone_date": "1744年",
+    "rubbing_date": "late 19th to first half of 20th century",
+    "pdf_page_numbering": "1-based",
+    "bbox_convention": "source pixels [left,top,right,bottom], right/bottom exclusive",
+    "original_filename_from_source": "INV05350/default.jpg",
+    "download_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV05350/full/max/0/default.jpg",
+    "cover_relation": "正文册页/图文碑局部",
+    "working_source_path": "D:\\RubbingMind\\rubbings-review-v3\\originals\\princeton_57606_0.jpg"
+  },
+  "reviewedMetadata": {
+    "id": "qing_01_qianlong_heart_sutra",
+    "dynasty": "清代",
+    "title": "乾隆御书般若波罗蜜多心经",
+    "stele_year_ce": 1744,
+    "stele_date_label": "1744年",
+    "repository": "普林斯顿大学艺术博物馆",
+    "accession_number": "y1958-220",
+    "web_museum_record_url": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+    "file_page_url": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+    "license": "Public Domain",
+    "description": "乾隆御书心经文字与童子礼佛图构成的图文石刻，1744年原刻；封面取经文部分。",
+    "source_resolution": [
+      752,
+      2000
+    ],
+    "source_sha256": "504851fefe45202105241d4590793e32df14ee552d9c4e42a6bcb846b6259dec",
+    "selected_pdf_page": null,
+    "is_genuine_rubbing": "catalogued_as_rubbing",
+    "is_ai_generated": false,
+    "candidate_status": "prepared_for_third_review",
+    "formal_database_modified": false,
+    "review_status": "completed_source_pages_and_crop_comparison",
+    "rubbing_date": "late 19th to first half of 20th century",
+    "attribution": "Image courtesy of the Princeton University Art Museum. Gift of George Rowley.",
+    "source_download_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV05350/full/max/0/default.jpg",
+    "source_title_english": "Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)",
+    "source_period_label": "Qing dynasty, 1644–1912",
+    "quality_status": "通过制作核验，待第三轮独立复核",
+    "image_paths": {
+      "archive": "07_清代/qing_01_qianlong_heart_sutra/archive.jpg",
+      "readable": "07_清代/qing_01_qianlong_heart_sutra/readable.jpg",
+      "cover": "07_清代/qing_01_qianlong_heart_sutra/cover.jpg"
+    },
+    "processing_path": "07_清代/qing_01_qianlong_heart_sutra/processing.json"
+  }
+}

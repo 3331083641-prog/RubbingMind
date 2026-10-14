@@ -1,0 +1,110 @@
+{
+  "id": "yuan_04_jingyuanchang",
+  "source": "原始档案包/yuan_04_jingyuanchang/yuan_04_jingyuanchang.pdf",
+  "pdf_page": 1,
+  "native_dimensions": [
+    2268,
+    3087
+  ],
+  "readable_bbox": [
+    270,
+    139,
+    1984,
+    2957
+  ],
+  "cover_bbox": [
+    270,
+    139,
+    1984,
+    2957
+  ],
+  "selection_reason": "新元代原件含两件分片；保留原布局、拼缝和残损，排除右側色卡",
+  "real_original_filename": "yuan_04_jingyuanchang.pdf",
+  "source_url": "https://commons.wikimedia.org/wiki/File:NPM-贈拓000412_元趙孟頫書元故太常博士敬元長墓碣銘墨拓本.pdf",
+  "source_sha256": "24f8c82a46d8b7882675cb21a4218bf775e308351440fd19636e2107716f8b23",
+  "archive_sha256": "bc98a3330757bceab3c05a270e8d6759eb2c4e36a206adf23e3b0691c6ee8ca9",
+  "crop_before_dimensions": [
+    2268,
+    3087
+  ],
+  "readable_after_dimensions": [
+    1714,
+    2818
+  ],
+  "cover_crop_after_dimensions": [
+    1714,
+    2818
+  ],
+  "cover_dimensions": [
+    1100,
+    1420
+  ],
+  "cover_scaled_dimensions": [
+    864,
+    1420
+  ],
+  "isotropic_scale_factor": 0.5039034776437189,
+  "conventional_upsampling": false,
+  "sampling_note": "缩放不增加源图信息；阅读版保持原始像素，不作超分辨率",
+  "padding_rgb": [
+    21,
+    22,
+    22
+  ],
+  "padding_offset": [
+    118,
+    0
+  ],
+  "contrast": {
+    "method": "grayscale + blend with global autocontrast",
+    "cutoff_percent": 0.1,
+    "blend": 0.18,
+    "CLAHE": false
+  },
+  "sharpen": {
+    "radius": 0.65,
+    "percent": 22,
+    "threshold": 4
+  },
+  "perspective_correction": false,
+  "generative_processing": false,
+  "stroke_reconstruction": false,
+  "geometry_change": "crop + isotropic resize only",
+  "image_license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "assistant_visual_review_status": "completed_source_pages_and_crop_comparison",
+  "human_review_status": "approved_by_user_in_integration_request",
+  "output_sha256": {
+    "archive.jpg": "bc98a3330757bceab3c05a270e8d6759eb2c4e36a206adf23e3b0691c6ee8ca9",
+    "readable.jpg": "fcd557011d464cdf2224f2dadebc8f1e6d6f8cc8fbfffd3f917584023a5b0fa2",
+    "cover.jpg": "afcac05d9fb1d2e3c29a21f8607514b82641e6e76ed3f57701ffdcd9f2046ebb"
+  },
+  "original_damage_note": "新元代原件含两件分片；保留原布局、拼缝和残损，排除右側色卡",
+  "additional_character_cutting": "none_observed_after_item_specific_border_review",
+  "attribution": "元赵孟頫书元故太常博士敬元长墓碣铭。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+  "catalogue_url": "https://digitalarchive.npm.gov.tw/Collection/Detail/34668?dep=P",
+  "visual_notes": [
+    "历史原拓缺笔、裂损及石花保留；不以输出像素宣称新增原件细节"
+  ],
+  "quality_status": "通过制作核验，待第三轮独立复核",
+  "item_title": "元赵孟頫书元故太常博士敬元长墓碣铭",
+  "dynasty": "元代",
+  "institution": "台北故宫博物院",
+  "accession_number": "贈拓000412",
+  "stone_date": "元代，具体原刻年份未核定",
+  "rubbing_date": "未核定",
+  "pdf_page_numbering": "1-based",
+  "bbox_convention": "source pixels [left,top,right,bottom], right/bottom exclusive",
+  "original_filename_from_source": "NPM-贈拓000412 元趙孟頫書元故太常博士敬元長墓碣銘墨拓本.pdf",
+  "download_url": "https://upload.wikimedia.org/wikipedia/commons/6/66/NPM-%E8%B4%88%E6%8B%93000412_%E5%85%83%E8%B6%99%E5%AD%9F%E9%A0%AB%E6%9B%B8%E5%85%83%E6%95%85%E5%A4%AA%E5%B8%B8%E5%8D%9A%E5%A3%AB%E6%95%AC%E5%85%83%E9%95%B7%E5%A2%93%E7%A2%A3%E9%8A%98%E5%A2%A8%E6%8B%93%E6%9C%AC.pdf?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+  "source_archive_type": "PDF, 4 pages; page 1 source image, pages 2-4 metadata",
+  "cover_relation": "完整拓片主体",
+  "working_source_path": "D:\\RubbingMind\\rubbings-review-v3\\originals\\yuan_04_jingyuanchang.pdf",
+  "deployedId": "yuan_04_jingyuanchang",
+  "reviewedId": "yuan_04_jingyuanchang",
+  "deployment_output_sha256": {
+    "archive.jpg": "bc98a3330757bceab3c05a270e8d6759eb2c4e36a206adf23e3b0691c6ee8ca9",
+    "readable.jpg": "fcd557011d464cdf2224f2dadebc8f1e6d6f8cc8fbfffd3f917584023a5b0fa2",
+    "cover.jpg": "afcac05d9fb1d2e3c29a21f8607514b82641e6e76ed3f57701ffdcd9f2046ebb"
+  }
+}

@@ -1,0 +1,517 @@
+[
+  {
+    "id": "yuan_04_jiulao",
+    "title": "中兴路重建九老仙都宫记（题名待核对原目录）",
+    "dynasty": "元代",
+    "dynasty_value": "yuan",
+    "author": "揭傒斯（富州，奎章阁授经郎） / 虞集（临川，奎章阁侍书学士）",
+    "script_type": "正书",
+    "weathering_level": "待评估",
+    "year": "公元1343年",
+    "ganzhi": "大元至正三年（公元1343年）",
+    "location": "国家图书馆古籍馆藏拓（馆藏号: 金2516）",
+    "museum": "国家图书馆金石拓片数据库",
+    "dimensions": "高 215cm, 宽 92cm",
+    "summary": "元代‘元诗四大家’之虞集撰文、揭傒斯书丹之‘二绝碑’。文章典赡，书法峻严清整，元代文治盛世之缩影。",
+    "historical_context": "国家图书馆金石拓片古籍库重点著录。由于原拓高清影像未开放公开再利用许可，本系统遵照学术规范标注来源著录并保持原图待授权状态。",
+    "badges": [
+      "元代",
+      "正书",
+      "原图待授权或待获取"
+    ],
+    "raw_image": "",
+    "clean_image": "",
+    "damaged_image": "",
+    "restored_image": "",
+    "metrics": {
+      "psnr": 0.0,
+      "ssim": 0.0,
+      "snr_gain": 0.0,
+      "glyph_completeness": 0.0,
+      "character_accuracy": 0.0
+    },
+    "translation": "中兴路重建九老仙都宫记虞集撰文揭傒斯书丹荆州胜境九老故都重修琳宇以彰道化",
+    "originalYear": "公元1343年",
+    "rubbingPeriod": "民国藏拓（国家图书馆金石拓片著录）",
+    "calligraphyStyle": "正书",
+    "inscriptionAuthor": "虞集（临川，奎章阁侍书学士）",
+    "calligrapher": "揭傒斯（富州，奎章阁授经郎）",
+    "collectionInstitution": "国家图书馆金石拓片数据库",
+    "collectionNumber": "金2516",
+    "originalLocation": "湖北江陵中兴路九老仙都宫",
+    "currentLocation": "国家图书馆古籍馆藏拓（馆藏号: 金2516）",
+    "description": "元代‘元诗四大家’之虞集撰文、揭傒斯书丹之‘二绝碑’。文章典赡，书法峻严清整，元代文治盛世之缩影。",
+    "sourceUrl": "https://catalog.digitalarchives.tw/item/00/14/fc/a3.html",
+    "imageUrl": "",
+    "license": "许可不明，需联系国家图书馆",
+    "attribution": "中兴路重建九老仙都宫记（题名待核对原目录） · 典藏来源: 国家图书馆金石拓片数据库",
+    "weatheringLevel": "待评估",
+    "imageStatus": "原图待授权或待获取",
+    "isDemo": false,
+    "source_kind": "catalog_record",
+    "commons_filename": null,
+    "gis_coords": [
+      112.241,
+      30.335
+    ],
+    "damaged_chars": [
+      "集",
+      "揭",
+      "傒"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "qing_01_shilang",
+    "title": "靖海将军侯施公功德碑记",
+    "dynasty": "清代",
+    "dynasty_value": "qing",
+    "author": "清康熙闽浙善书幕宾 / 台湾文武官僚及绅民公立",
+    "script_type": "楷书",
+    "weathering_level": "待评估",
+    "year": "公元1693年",
+    "ganzhi": "清康熙三十二年（公元1693年）",
+    "location": "台南赤嵌楼碑林（台大图书馆古碑拓本藏）",
+    "museum": "台湾大学图书馆古碑拓本数字典藏",
+    "dimensions": "高 280cm, 宽 96cm, 厚 26cm",
+    "summary": "清初国家统一与治台历史丰碑。详述靖海侯施琅统一台湾后招抚流民、轻徭薄赋之施政实绩，边疆史地第一手文献。",
+    "historical_context": "台湾大学图书馆重点典藏古碑拓本（ntul-mr-rt00046）。系统严守知识产权与馆藏授权规范，保持馆藏著录规范展示。",
+    "badges": [
+      "清代",
+      "楷书",
+      "原图待授权或待获取"
+    ],
+    "raw_image": "",
+    "clean_image": "",
+    "damaged_image": "",
+    "restored_image": "",
+    "metrics": {
+      "psnr": 0.0,
+      "ssim": 0.0,
+      "snr_gain": 0.0,
+      "glyph_completeness": 0.0,
+      "character_accuracy": 0.0
+    },
+    "translation": "靖海将军侯施公功德碑记恭纪大将军一等靖海侯施公平台安辑抚循黎庶海氛永靖",
+    "originalYear": "公元1693年",
+    "rubbingPeriod": "台湾古碑拓本数字典藏（ntul-mr-rt00046）",
+    "calligraphyStyle": "楷书",
+    "inscriptionAuthor": "台湾文武官僚及绅民公立",
+    "calligrapher": "清康熙闽浙善书幕宾",
+    "collectionInstitution": "台湾大学图书馆古碑拓本数字典藏",
+    "collectionNumber": "ntul-mr-rt00046",
+    "originalLocation": "台湾府城（今台南市）",
+    "currentLocation": "台南赤嵌楼碑林（台大图书馆古碑拓本藏）",
+    "description": "清初国家统一与治台历史丰碑。详述靖海侯施琅统一台湾后招抚流民、轻徭薄赋之施政实绩，边疆史地第一手文献。",
+    "sourceUrl": "https://dl.lib.ntu.edu.tw/s/rt/item/853071",
+    "imageUrl": "",
+    "license": "待核验馆方再利用许可",
+    "attribution": "靖海将军侯施公功德碑记 · 典藏来源: 台湾大学图书馆古碑拓本数字典藏",
+    "weatheringLevel": "待评估",
+    "imageStatus": "原图待授权或待获取",
+    "isDemo": false,
+    "source_kind": "catalog_record",
+    "commons_filename": null,
+    "gis_coords": [
+      120.202,
+      22.997
+    ],
+    "damaged_chars": [
+      "施",
+      "靖",
+      "氛"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "qing_02_gaocheng",
+    "title": "御制平定台湾告成热河文庙碑文（汉文）",
+    "dynasty": "清代",
+    "dynasty_value": "qing",
+    "author": "军机处满汉进呈善书内阁学士 / 清高宗乾隆帝（御制）",
+    "script_type": "楷书",
+    "weathering_level": "待评估",
+    "year": "公元1788年",
+    "ganzhi": "清乾隆五十三年（公元1788年）",
+    "location": "承德文庙尊经阁前碑亭（台大藏拓: ntul-mr-rt00042_9）",
+    "museum": "台湾大学图书馆古碑拓本数字典藏",
+    "dimensions": "高 360cm, 宽 130cm, 巨型御碑",
+    "summary": "乾隆‘十全武功’之平定台湾纪功御碑。汉文正楷端丽谨严，馆阁体极品，体量恢宏，展现盛清皇朝极盛气象。",
+    "historical_context": "承德文庙原石保存完好，台大藏拓完整收录汉文全本，文字法度谨严，端庄穆肃。",
+    "badges": [
+      "清代",
+      "楷书",
+      "原图待授权或待获取"
+    ],
+    "raw_image": "",
+    "clean_image": "",
+    "damaged_image": "",
+    "restored_image": "",
+    "metrics": {
+      "psnr": 0.0,
+      "ssim": 0.0,
+      "snr_gain": 0.0,
+      "glyph_completeness": 0.0,
+      "character_accuracy": 0.0
+    },
+    "translation": "御制平定台湾告成热河文庙碑文乾隆五十三年平定林爽文捷奏告成告奠热河先师庙",
+    "originalYear": "公元1788年",
+    "rubbingPeriod": "清乾隆原拓（台大图书馆藏）",
+    "calligraphyStyle": "楷书",
+    "inscriptionAuthor": "清高宗乾隆帝（御制）",
+    "calligrapher": "军机处满汉进呈善书内阁学士",
+    "collectionInstitution": "台湾大学图书馆古碑拓本数字典藏",
+    "collectionNumber": "ntul-mr-rt00042_9",
+    "originalLocation": "热河承德文庙（今河北承德避暑山庄文庙）",
+    "currentLocation": "承德文庙尊经阁前碑亭（台大藏拓: ntul-mr-rt00042_9）",
+    "description": "乾隆‘十全武功’之平定台湾纪功御碑。汉文正楷端丽谨严，馆阁体极品，体量恢宏，展现盛清皇朝极盛气象。",
+    "sourceUrl": "https://dl.lib.ntu.edu.tw/s/rt/item/853056",
+    "imageUrl": "",
+    "license": "待核验馆方再利用许可",
+    "attribution": "御制平定台湾告成热河文庙碑文（汉文） · 典藏来源: 台湾大学图书馆古碑拓本数字典藏",
+    "weatheringLevel": "待评估",
+    "imageStatus": "原图待授权或待获取",
+    "isDemo": false,
+    "source_kind": "catalog_record",
+    "commons_filename": null,
+    "gis_coords": [
+      117.939,
+      40.978
+    ],
+    "damaged_chars": [
+      "爽",
+      "告",
+      "奠"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "qing_03_yanjin",
+    "title": "严禁海口陋规碑记",
+    "dynasty": "清代",
+    "dynasty_value": "qing",
+    "author": "清嘉庆安平海防官署赞书 / 台湾府海防同知",
+    "script_type": "楷书",
+    "weathering_level": "待评估",
+    "year": "公元1796年",
+    "ganzhi": "清嘉庆元年（公元1796年）",
+    "location": "台南安平古堡陈列（台大藏拓: ntul-mr-rt00057）",
+    "museum": "台湾大学图书馆古碑拓本数字典藏",
+    "dimensions": "高 145cm, 宽 65cm",
+    "summary": "清代海洋贸易与海防司法制度石刻。官府严禁汛防差役索勒商船陋规，保护海疆闽台商贾民船往来，海洋经济史要籍。",
+    "historical_context": "海港盐卤潮气浸蚀，文字朴实生动，是研究清代前期两岸通商口岸管理史之珍稀实物。",
+    "badges": [
+      "清代",
+      "楷书",
+      "原图待授权或待获取"
+    ],
+    "raw_image": "",
+    "clean_image": "",
+    "damaged_image": "",
+    "restored_image": "",
+    "metrics": {
+      "psnr": 0.0,
+      "ssim": 0.0,
+      "snr_gain": 0.0,
+      "glyph_completeness": 0.0,
+      "character_accuracy": 0.0
+    },
+    "translation": "严禁海口陋规碑记特调台湾府安平海防同知严禁港口汛防差役索取番饷规例以恤商民",
+    "originalYear": "公元1796年",
+    "rubbingPeriod": "清代晚期地方拓本",
+    "calligraphyStyle": "楷书",
+    "inscriptionAuthor": "台湾府海防同知",
+    "calligrapher": "清嘉庆安平海防官署赞书",
+    "collectionInstitution": "台湾大学图书馆古碑拓本数字典藏",
+    "collectionNumber": "ntul-mr-rt00057",
+    "originalLocation": "台湾安平港口（今台南安平古堡前）",
+    "currentLocation": "台南安平古堡陈列（台大藏拓: ntul-mr-rt00057）",
+    "description": "清代海洋贸易与海防司法制度石刻。官府严禁汛防差役索勒商船陋规，保护海疆闽台商贾民船往来，海洋经济史要籍。",
+    "sourceUrl": "https://dl.lib.ntu.edu.tw/s/rt/item/853116",
+    "imageUrl": "",
+    "license": "待核验馆方再利用许可",
+    "attribution": "严禁海口陋规碑记 · 典藏来源: 台湾大学图书馆古碑拓本数字典藏",
+    "weatheringLevel": "待评估",
+    "imageStatus": "原图待授权或待获取",
+    "isDemo": false,
+    "source_kind": "catalog_record",
+    "commons_filename": null,
+    "gis_coords": [
+      120.161,
+      23.001
+    ],
+    "damaged_chars": [
+      "汛",
+      "役",
+      "饷"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  },
+  {
+    "id": "qing_04_gongchen",
+    "title": "御制平定台湾二十功臣像赞序（汉文）",
+    "dynasty": "清代",
+    "dynasty_value": "qing",
+    "author": "清内廷大学士工部尚书 / 清高宗乾隆帝（御制序文）",
+    "script_type": "楷书",
+    "weathering_level": "待评估",
+    "year": "公元1788年",
+    "ganzhi": "清乾隆五十三年（公元1788年）",
+    "location": "台南市大南门碑林（台大藏拓: ntul-mr-rt00042_7）",
+    "museum": "台湾大学图书馆古碑拓本数字典藏",
+    "dimensions": "高 310cm, 宽 115cm, 厚 32cm",
+    "summary": "紫光阁功臣像序文碑。乾隆赞许福康安、海兰察等二十位戡乱功臣，书法流美稳健，御制文华美典瞻。",
+    "historical_context": "原刻石碑分立北京与台湾两地，台南大南门碑林存碑至今，具有重大国家统一历史见证意义。",
+    "badges": [
+      "清代",
+      "楷书",
+      "原图待授权或待获取"
+    ],
+    "raw_image": "",
+    "clean_image": "",
+    "damaged_image": "",
+    "restored_image": "",
+    "metrics": {
+      "psnr": 0.0,
+      "ssim": 0.0,
+      "snr_gain": 0.0,
+      "glyph_completeness": 0.0,
+      "character_accuracy": 0.0
+    },
+    "translation": "御制平定台湾二十功臣像赞序紫光阁绘福康安海兰察诸功臣像特制序铭告昭海内",
+    "originalYear": "公元1788年",
+    "rubbingPeriod": "清乾隆原刻拓本",
+    "calligraphyStyle": "楷书",
+    "inscriptionAuthor": "清高宗乾隆帝（御制序文）",
+    "calligrapher": "清内廷大学士工部尚书",
+    "collectionInstitution": "台湾大学图书馆古碑拓本数字典藏",
+    "collectionNumber": "ntul-mr-rt00042_7",
+    "originalLocation": "北京中南海紫光阁 / 台湾府城大南门碑林",
+    "currentLocation": "台南市大南门碑林（台大藏拓: ntul-mr-rt00042_7）",
+    "description": "紫光阁功臣像序文碑。乾隆赞许福康安、海兰察等二十位戡乱功臣，书法流美稳健，御制文华美典瞻。",
+    "sourceUrl": "https://dl.lib.ntu.edu.tw/s/rt/item/853050",
+    "imageUrl": "",
+    "license": "待核验馆方再利用许可",
+    "attribution": "御制平定台湾二十功臣像赞序（汉文） · 典藏来源: 台湾大学图书馆古碑拓本数字典藏",
+    "weatheringLevel": "待评估",
+    "imageStatus": "原图待授权或待获取",
+    "isDemo": false,
+    "source_kind": "catalog_record",
+    "commons_filename": null,
+    "gis_coords": [
+      120.203,
+      22.987
+    ],
+    "damaged_chars": [
+      "赞",
+      "福",
+      "兰"
+    ],
+    "ablation_experiments": [
+      {
+        "method": "原始风化拓片",
+        "psnr": 18.4,
+        "ssim": 0.64,
+        "noise_sup": 0.0,
+        "edge_gain": 0.0,
+        "ocr_acc": 59.1
+      },
+      {
+        "method": "传统高斯滤波",
+        "psnr": 21.6,
+        "ssim": 0.73,
+        "noise_sup": 46.2,
+        "edge_gain": -11.8,
+        "ocr_acc": 65.2
+      },
+      {
+        "method": "数学形态学开闭",
+        "psnr": 24.1,
+        "ssim": 0.77,
+        "noise_sup": 63.5,
+        "edge_gain": 5.8,
+        "ocr_acc": 72.8
+      },
+      {
+        "method": "单纯非局部均值 NLM",
+        "psnr": 26.2,
+        "ssim": 0.82,
+        "noise_sup": 75.9,
+        "edge_gain": 8.5,
+        "ocr_acc": 79.6
+      },
+      {
+        "method": "频空域联合算法 (Ours)",
+        "psnr": 33.15,
+        "ssim": 0.948,
+        "noise_sup": 90.2,
+        "edge_gain": 25.1,
+        "ocr_acc": 94.6
+      }
+    ]
+  }
+]

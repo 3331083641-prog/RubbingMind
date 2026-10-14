@@ -1,0 +1,425 @@
+{
+  "officialRecord": {
+    "secondaryobjectnumber": null,
+    "periodterms": [
+      {
+        "id": 2033603,
+        "period": "Qing"
+      }
+    ],
+    "creditline": "Gift of George Rowley",
+    "caption": "Chinese, Qing dynasty (1644–1912), Shoulun 授輪, carving agent (active late Qing dynasty), Yuanlun 圓倫, carving agent (active late Qing dynasty), Dishou 諦受, carving agent (active late Qing dynasty), Daoxiu 道修, carving agent (active late Qing dynasty), Stele of the Ayuwang Temple Śarīra Reliquary, 1884 (stone); late 19th to first half of 20th century (rubbing). Hanging scroll; ink rubbing on paper; 105.1 x 54.7 cm (image), 125 x 58.2 cm. Gift of George Rowley (y1958-279)",
+    "cultureterms": [
+      {
+        "id": 2033355,
+        "culture": "Chinese"
+      }
+    ],
+    "type": "artobject",
+    "dimensionsproposed": "",
+    "terms": [
+      {
+        "id": 2054786,
+        "term": "rubbings",
+        "aatid": 300103035,
+        "termtype": "Classification"
+      },
+      {
+        "id": 2096941,
+        "term": "Buddhism",
+        "aatid": 300073738,
+        "termtype": "Subject"
+      },
+      {
+        "id": 2033355,
+        "term": "Chinese",
+        "aatid": 300018322,
+        "termtype": "Culture"
+      },
+      {
+        "id": 2033603,
+        "term": "Qing",
+        "aatid": 300018478,
+        "termtype": "Period / Style"
+      },
+      {
+        "id": 2088270,
+        "term": "men",
+        "aatid": 300025928,
+        "termtype": "Subject"
+      },
+      {
+        "id": 2095964,
+        "term": "religious art",
+        "aatid": 300248179,
+        "termtype": "Subject"
+      },
+      {
+        "id": 2055657,
+        "term": "figures (representations)",
+        "aatid": 300189808,
+        "termtype": "Subject"
+      }
+    ],
+    "geography": [
+      {
+        "displaygeography": "Place made: Asia, China",
+        "code": "Place made",
+        "continent": "Asia",
+        "subcontinent": null,
+        "country": "China",
+        "region": null,
+        "state": null,
+        "city": null,
+        "county": null,
+        "subregion": null,
+        "locale": null,
+        "locus": null,
+        "river": null,
+        "excavation": null,
+        "geoname": null,
+        "location": {
+          "lat": "",
+          "lon": ""
+        }
+      }
+    ],
+    "dimensionelements": [
+      {
+        "element": "Overall",
+        "type": "Height",
+        "units": "centimeters",
+        "dimension": "125.00"
+      },
+      {
+        "element": "Overall",
+        "type": "Width",
+        "units": "centimeters",
+        "dimension": "58.20"
+      },
+      {
+        "element": "image",
+        "type": "Height",
+        "units": "centimeters",
+        "dimension": "105.10"
+      },
+      {
+        "element": "image",
+        "type": "Width",
+        "units": "centimeters",
+        "dimension": "54.70"
+      }
+    ],
+    "markings": null,
+    "accessionyear": "1958-01-01",
+    "newaccession": 0,
+    "makers": [
+      {
+        "id": 22639,
+        "displayname": "Shoulun 授輪",
+        "displaydate": "active late Qing dynasty",
+        "datebegin": 1800,
+        "dateend": 1912,
+        "prefix": null,
+        "suffix": ", carving agent",
+        "role": "Artist",
+        "displaymaker": "Shoulun 授輪, carving agent, active late Qing dynasty",
+        "displayorder": 3
+      },
+      {
+        "id": 22640,
+        "displayname": "Yuanlun 圓倫",
+        "displaydate": "active late Qing dynasty",
+        "datebegin": 1800,
+        "dateend": 1912,
+        "prefix": null,
+        "suffix": ", carving agent",
+        "role": "Artist",
+        "displaymaker": "Yuanlun 圓倫, carving agent, active late Qing dynasty",
+        "displayorder": 4
+      },
+      {
+        "id": 22641,
+        "displayname": "Dishou 諦受",
+        "displaydate": "active late Qing dynasty",
+        "datebegin": 1800,
+        "dateend": 1912,
+        "prefix": null,
+        "suffix": ", carving agent",
+        "role": "Artist",
+        "displaymaker": "Dishou 諦受, carving agent, active late Qing dynasty",
+        "displayorder": 5
+      },
+      {
+        "id": 22642,
+        "displayname": "Daoxiu 道修",
+        "displaydate": "active late Qing dynasty",
+        "datebegin": 1800,
+        "dateend": 1912,
+        "prefix": null,
+        "suffix": ", carving agent",
+        "role": "Artist",
+        "displaymaker": "Daoxiu 道修, carving agent, active late Qing dynasty",
+        "displayorder": 6
+      }
+    ],
+    "datecomputed": 1917,
+    "signed": null,
+    "restrictions": null,
+    "classification": "Rubbings",
+    "packages": [],
+    "catalograisonne": null,
+    "classifications": [
+      {
+        "id": 2054786,
+        "classification": "rubbings"
+      }
+    ],
+    "exhibitions": [],
+    "cultures": [
+      {
+        "id": 13592,
+        "culture": "Chinese",
+        "alphasort": "Chinese",
+        "begindate": 0,
+        "enddate": 0,
+        "displayculture": "Chinese",
+        "displaydate": null
+      }
+    ],
+    "primaryimage": [
+      "https://media.artmuseum.princeton.edu/iiif/3/collection/INV04610"
+    ],
+    "displaytitle": "Stele of the Ayuwang Temple Śarīra Reliquary",
+    "displayculture": "Chinese",
+    "displaymaker": "Shoulun 授輪, carving agent, active late Qing dynasty | Yuanlun 圓倫, carving agent, active late Qing dynasty | Dishou 諦受, carving agent, active late Qing dynasty | Daoxiu 道修, carving agent, active late Qing dynasty",
+    "captionhtml": "Chinese, Qing dynasty (1644–1912), Shoulun 授輪, carving agent (active late Qing dynasty), Yuanlun 圓倫, carving agent (active late Qing dynasty), Dishou 諦受, carving agent (active late Qing dynasty), Daoxiu 道修, carving agent (active late Qing dynasty), <i>Stele of the Ayuwang Temple Śarīra Reliquary</i>, 1884 (stone); late 19th to first half of 20th century (rubbing). Hanging scroll; ink rubbing on paper; 105.1 x 54.7 cm (image), 125 x 58.2 cm. Gift of George Rowley (y1958-279)",
+    "displaydate": "1884 (stone); late 19th to first half of 20th century (rubbing)",
+    "medium": "Hanging scroll; ink rubbing on paper",
+    "media": [
+      {
+        "id": 59356,
+        "uri": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV04610",
+        "isprimary": 1,
+        "rank": 1,
+        "mediatypeid": 1,
+        "mediaviewtype": "(not assigned)",
+        "restrictions": null,
+        "caption": "Inventory Project"
+      },
+      {
+        "id": 59357,
+        "uri": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV04609",
+        "isprimary": 0,
+        "rank": 2,
+        "mediatypeid": 1,
+        "mediaviewtype": "(not assigned)",
+        "restrictions": null,
+        "caption": "Inventory Project"
+      }
+    ],
+    "displayperiod": "Qing dynasty, 1644–1912",
+    "extended_content": false,
+    "campuscollections": "false",
+    "bibliography": [
+      {
+        "boilertext": "&quot;Recent Acquisitions,&quot; <i>Record of the Art Museum, Princeton University</i> 18, no. 1 (1959): p. 40-42.",
+        "citation": "&quot;Recent Acquisitions,&quot; <i>Record of the Art Museum, Princeton University</i> 18, no. 1 (1959): p. 40-42., p. 42",
+        "date": 1959,
+        "id": 876,
+        "uri": "https://www.jstor.org/stable/3774388"
+      }
+    ],
+    "nowebuse": "False",
+    "periods": [
+      {
+        "id": 15366,
+        "period": "Qing dynasty",
+        "alphasort": "Qing dynasty",
+        "begindate": 1644,
+        "enddate": 1912,
+        "displayperiod": "Qing dynasty, 1644–1912",
+        "displaydate": "1644–1912"
+      }
+    ],
+    "department": "Asian Art",
+    "attribute_groups": [
+      {
+        "id": 2199319,
+        "term": "Asian Art",
+        "termtype": "Collecting Area"
+      },
+      {
+        "id": 2199327,
+        "term": "Prints and Drawings",
+        "termtype": "Collecting Area"
+      }
+    ],
+    "daterange": "A.D. 1900-1945",
+    "dateend": 1950,
+    "depicted": [],
+    "titles": [
+      {
+        "title": "Stele of the Ayuwang Temple Śarīra Reliquary",
+        "titletype": "Primary Title",
+        "displayorder": 1
+      }
+    ],
+    "hasimage": "true",
+    "creditlinerepro": null,
+    "objectnumber": "y1958-279",
+    "inscribed": "Right:\r\n一心頂禮中天教主本師釋迦牟尼佛真身舍利寶塔 拜下默念觀想\r\n諸佛法身如虛空  化事住世難思議\r\n我身影現化事前  一一皆悉皈命禮\r\n經云釋迦如來所說金光明照[]神咒若有修行此陀羅尼者於釋迦\r\n牟尼舍利塔前五體投地悔過自責六時行道當誦此咒八十一遍此\r\n陀羅尼乃是過去九十九億諸佛所說我今說之\r\n\r\nLeft:\r\n諸路不帝那置  畢耆帝那置  烏蘇多帝那置  耆牟多帝那置  若\r\n不多帝那置  阿若娑若兜帝那置  若波多帝那置  耆牟波若帝那\r\n置  烏耆副帝那置  蜜耆蘇帝那置  耶蜜耆帝那置  破知彌帝那\r\n置  畢黎帝吒帝那置  娑訶\r\n經云若有衆生修行此陀羅尼者過去億百千刦障道五逆四重現世滅\r\n除令無遺餘十方諸佛放大光明來觸其身是人即得四沙門果乃至佛地 \r\n\r\nBottom:\r\n大覺世尊，本三界導師，四生慈父，為我等故，捨身手足，\r\n甚修難行，得證菩提。昔成佛已來，甚大久遠，常住不滅，\r\n為悲憐群迷，同歸覺路，故應跡於周昭[i.e., 照]王二十四年甲\r\n寅四月初八日午時，從兜率而降迦毗羅國，於摩耶夫\r\n人右脅誔生。其中應現度生，轉大法輪，神通妙相，算數\r\n難知。及至穆王五十三年壬申二月十五日子詩，於雙\r\n林間而入涅槃。為利人天瞻禮獲福，故入金刚剛三昧，碎\r\n身骨成末舍利，分布天上龍宫。一分於人間，八萬四千。\r\n百年後，西天竺有阿育王承宿因願，取佛舍利，役使鬼\r\n神，碎七寶末，建八萬四千塔，一夜交竣，詩有羅漢耶舍\r\n尊者，於手五指放八萬四千光，照四天下，命諸夜叉承\r\n光照处，八吉祥地安供舍利。至西晋太康三年，并州有\r\n劉薩訶，弋獵為業，遇病身亡，见一梵僧謂曰：“汝罪應入\r\n地獄，吾憫汝故，赦汝回陽，當作沙門，丹陽、會稽有\r\n釋迦如來舍利寶塔，可詣勒求禮懺，得免斯苦。”語已蘇\r\n醒，受教出家，法名慧達。南行求覓，至寧波鄮山，敬禮懇\r\n禱，忽聞地下鐘聲。復禮三日，寶塔從地湧出，光明殊勝，\r\n高一尺四寸，方廣七寸，露盤五層，四角挺然。中懸金色\r\n小鐘，舍利綴於鐘下，圓轉不定。繞塔四周，俱有佛天金\r\n剛神祗擁護之像。寶塔從斯應現於世，迄今二千餘載。\r\n東震旦土，十有九處，惟斯最為靈應。若人發心敬禮寶\r\n塔者，八萬四千拜，功成一藏。或薦宗亲親，及自求懺，從無\r\n量刦，十恶惡忤逆，及重罪障，悉皆消滅。願生四方者，更以\r\n念佛回向，定生極樂，花開見佛。或昇忉利兜率天宫，或\r\n祈現世福果，随願感格，古今瑞應，神通妙相，讃莫能窮。\r\n普願人人信受瞻禮，能離五濁之苦，得獲涅槃聖果。\r\n大清光緒十年[1884]小春吉旦，釋子授輪、圓倫、諦受、道修仝募刊。\r\n寧波府鄞邑鄮山阿育王寺藏碑\r\nReading notes:\r\n1. For a slightly different transcription of this stele text, see 《阿育王寺新志》卷七 舍利塔图石刻碑 as cited in 《宁波佛教志》第六节碑记 http://122.224.135.171:9999/zjrwdt/datasinfo/detail?id=1010347&flag=indexareas (accessed 5/8/2020)",
+    "texts": [
+      {
+        "texttype": "Online",
+        "textpurpose": "Description",
+        "textentryhtml": "At the center is a Buddhist reliquary in the shape of a stupa or burial structure. Square in plan, prominent finials rise from the four upper corners, and in the center is a spire with multiple parasols. Two figures standing on pedestals flank the reliquary, and above them are the Four Heavenly Kings (Si da tianwang 四大天王) standing on clouds. A cloud trail swirls up from the top of the spire to support the Shakyamuni buddha seated on a lotus base, and he is encircled by six bodhisattvas and attendants standing on clouds (two holding inscribed banners). Over the buddha floats a canopy, and to its sides are pairs of floating apsaras who are dropping flowers from the sky. To the right and left of the reliquary scene are inscribed dharani incantations, and at the bottom is an 1884 inscription signed by the monks Shoulun, Yuanlun, Dishou, and Daoxiu that indicate this was carved on a stele in the Ayuwang Si 阿育王寺 (Ashoka) temple in Ningbo 寧波, Zhejiang province. There are numerous legends about the founding of this temple, which reportedly was established in 282 during the Western Jin dynasty by monk Huida (惠達) from the Western Regions. Its prized possession is a parietal bone of the Shakyamuni buddha presently stored in a stupa shaped reliquary kept in the Relic Hall (Sheli Dian 舍利殿). The form of a stupa serves as a symbol for individuals who have achieved nirvana, and the central spire, called the “heart pillar” (xinzhu 心住), symbolizes the link between the mundane and spiritual realms and the journey to reach enlightenment.",
+        "remarks": null
+      }
+    ],
+    "datebegin": 1884,
+    "sortnumber": "1958  279y",
+    "published_date": "2026-02-11 12:18:28.022375",
+    "objectid": 57684,
+    "dimensions": "image: 105.1 x 54.7 cm. (41 3/8 x 21 9/16 in.)\r\n125 x 58.2 cm. (49 3/16 x 22 15/16 in.)",
+    "on_view": false
+  },
+  "processing": {
+    "id": "qing_04_ayuwang_reliquary",
+    "source": "原始档案包/qing_04_ayuwang_reliquary/princeton_57684_0.jpg",
+    "pdf_page": null,
+    "native_dimensions": [
+      1069,
+      2000
+    ],
+    "readable_bbox": [
+      16,
+      4,
+      1056,
+      1998
+    ],
+    "cover_bbox": [
+      48,
+      730,
+      1038,
+      1982
+    ],
+    "selection_reason": "1884年图文碑；封面下部包含两侧记文、舍利塔和底部正文，佛像区保留档案版，不将图文碑改名为纯文字碑",
+    "source_url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+    "real_original_filename": "princeton_57684_0.jpg",
+    "source_sha256": "336b48bb4babbd1c6c10b193df45791f6ff349bc68cd846af268a75f82a565ed",
+    "archive_sha256": "336b48bb4babbd1c6c10b193df45791f6ff349bc68cd846af268a75f82a565ed",
+    "crop_before_dimensions": [
+      1069,
+      2000
+    ],
+    "readable_after_dimensions": [
+      1040,
+      1994
+    ],
+    "cover_crop_after_dimensions": [
+      990,
+      1252
+    ],
+    "cover_dimensions": [
+      1100,
+      1420
+    ],
+    "cover_scaled_dimensions": [
+      1100,
+      1391
+    ],
+    "isotropic_scale_factor": 1.1111111111111112,
+    "conventional_upsampling": true,
+    "sampling_note": "缩放不增加源图信息；阅读版保持原始像素，不作超分辨率",
+    "padding_rgb": [
+      21,
+      22,
+      22
+    ],
+    "padding_offset": [
+      0,
+      14
+    ],
+    "contrast": {
+      "method": "grayscale + blend with global autocontrast",
+      "cutoff_percent": 0.1,
+      "blend": 0.18,
+      "CLAHE": false
+    },
+    "sharpen": {
+      "radius": 0.65,
+      "percent": 22,
+      "threshold": 4
+    },
+    "perspective_correction": false,
+    "generative_processing": false,
+    "stroke_reconstruction": false,
+    "geometry_change": "crop + isotropic resize only",
+    "image_license": "Public Domain; museum permits download/use",
+    "license_url": "https://artmuseum.princeton.edu/art/our-collections/image-use-and-access",
+    "assistant_visual_review_status": "completed_source_pages_and_crop_comparison",
+    "human_review_status": "pending_third_round_user_ChatGPT_review",
+    "output_sha256": {
+      "archive.jpg": "336b48bb4babbd1c6c10b193df45791f6ff349bc68cd846af268a75f82a565ed",
+      "readable.jpg": "87cca76e152c4c9b4125e24859c30664f4606711f6aaac4f95eb088d58eb03ad",
+      "cover.jpg": "ad742b2565c05a3c6533c991f55a4e4e08d179435aa95dfcb51d77577a96a4d7"
+    },
+    "original_damage_note": "1884年图文碑；封面下部包含两侧记文、舍利塔和底部正文，佛像区保留档案版，不将图文碑改名为纯文字碑",
+    "additional_character_cutting": "none_observed_after_item_specific_border_review",
+    "attribution": "Image courtesy of the Princeton University Art Museum. Gift of George Rowley.",
+    "catalogue_url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+    "visual_notes": [
+      "历史原拓缺笔、裂损及石花保留；不以输出像素宣称新增原件细节"
+    ],
+    "quality_status": "通过制作核验，待第三轮独立复核",
+    "item_title": "阿育王寺舍利塔碑",
+    "dynasty": "清代",
+    "institution": "普林斯顿大学艺术博物馆",
+    "accession_number": "y1958-279",
+    "stone_date": "1884年",
+    "rubbing_date": "late 19th to first half of 20th century",
+    "pdf_page_numbering": "1-based",
+    "bbox_convention": "source pixels [left,top,right,bottom], right/bottom exclusive",
+    "original_filename_from_source": "INV04610/default.jpg",
+    "download_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV04610/full/max/0/default.jpg",
+    "cover_relation": "正文册页/图文碑局部",
+    "working_source_path": "D:\\RubbingMind\\rubbings-review-v3\\originals\\princeton_57684_0.jpg"
+  },
+  "reviewedMetadata": {
+    "id": "qing_04_ayuwang_reliquary",
+    "dynasty": "清代",
+    "title": "阿育王寺舍利塔碑",
+    "stele_year_ce": 1884,
+    "stele_date_label": "1884年",
+    "repository": "普林斯顿大学艺术博物馆",
+    "accession_number": "y1958-279",
+    "web_museum_record_url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+    "file_page_url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+    "license": "Public Domain",
+    "description": "清1884年舍利塔图文碑；保留图像和文字全貌，封面为下部图文区域。",
+    "source_resolution": [
+      1069,
+      2000
+    ],
+    "source_sha256": "336b48bb4babbd1c6c10b193df45791f6ff349bc68cd846af268a75f82a565ed",
+    "selected_pdf_page": null,
+    "is_genuine_rubbing": "catalogued_as_rubbing",
+    "is_ai_generated": false,
+    "candidate_status": "prepared_for_third_review",
+    "formal_database_modified": false,
+    "review_status": "completed_source_pages_and_crop_comparison",
+    "rubbing_date": "late 19th to first half of 20th century",
+    "attribution": "Image courtesy of the Princeton University Art Museum. Gift of George Rowley.",
+    "source_download_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV04610/full/max/0/default.jpg",
+    "source_title_english": "Stele of the Ayuwang Temple Śarīra Reliquary",
+    "source_period_label": "Qing dynasty, 1644–1912",
+    "quality_status": "通过制作核验，待第三轮独立复核",
+    "image_paths": {
+      "archive": "07_清代/qing_04_ayuwang_reliquary/archive.jpg",
+      "readable": "07_清代/qing_04_ayuwang_reliquary/readable.jpg",
+      "cover": "07_清代/qing_04_ayuwang_reliquary/cover.jpg"
+    },
+    "processing_path": "07_清代/qing_04_ayuwang_reliquary/processing.json"
+  }
+}

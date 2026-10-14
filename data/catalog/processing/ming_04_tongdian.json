@@ -1,0 +1,112 @@
+{
+  "id": "ming_04_tongdian",
+  "source": "原始档案包/ming_04_tongdian/源文件_原样保存.pdf",
+  "pdf_page": 1,
+  "native_dimensions": [
+    2269,
+    3085
+  ],
+  "readable_bbox": [
+    386,
+    154,
+    1938,
+    2921
+  ],
+  "cover_bbox": [
+    386,
+    154,
+    1938,
+    2921
+  ],
+  "selection_reason": "完整铜殿记碑面；字细且墨薄，轻度增强不改缺笔",
+  "embedded_image_xref": 8,
+  "real_original_filename": "源文件_原样保存.pdf",
+  "source_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000276%20%E6%98%8E%E5%A4%A7%E5%B3%A9%E5%B1%B1%E6%B0%B8%E6%98%8E%E8%8F%AF%E8%97%8F%E5%AF%BA%E6%96%B0%E5%BB%BA%E9%8A%85%E6%AE%BF%E8%A8%98%E7%A2%91%E5%A2%A8%E6%8B%93%E6%9C%AC%20%E8%BB%B8.pdf",
+  "source_sha256": "cc9e7e63a3d187e8655998d501860ceba7c8a7bd6ea1b8b69d5d6e5936ce4c92",
+  "archive_sha256": "73d02b4d540c17899c258080b5f3489d92b00e8edd04d77288574cc589b933c5",
+  "crop_before_dimensions": [
+    2269,
+    3085
+  ],
+  "readable_after_dimensions": [
+    1552,
+    2767
+  ],
+  "cover_crop_after_dimensions": [
+    1552,
+    2767
+  ],
+  "cover_dimensions": [
+    1100,
+    1420
+  ],
+  "cover_scaled_dimensions": [
+    796,
+    1420
+  ],
+  "isotropic_scale_factor": 0.5131911817853271,
+  "conventional_upsampling": false,
+  "sampling_note": "缩放不增加源图信息；阅读版保持原始像素，不作超分辨率",
+  "padding_rgb": [
+    21,
+    22,
+    22
+  ],
+  "padding_offset": [
+    152,
+    0
+  ],
+  "contrast": {
+    "method": "grayscale + blend with global autocontrast",
+    "cutoff_percent": 0.1,
+    "blend": 0.18,
+    "CLAHE": false
+  },
+  "sharpen": {
+    "radius": 0.65,
+    "percent": 22,
+    "threshold": 4
+  },
+  "perspective_correction": false,
+  "generative_processing": false,
+  "stroke_reconstruction": false,
+  "geometry_change": "crop + isotropic resize only",
+  "image_license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "assistant_visual_review_status": "completed_source_pages_and_crop_comparison",
+  "human_review_status": "approved_by_user_in_integration_request",
+  "output_sha256": {
+    "archive.jpg": "73d02b4d540c17899c258080b5f3489d92b00e8edd04d77288574cc589b933c5",
+    "readable.jpg": "a7c277dcfab319521377fa3a9277827ab3d2ffe1799a07a9f60d99e870693b7c",
+    "cover.jpg": "1a2c34a09236016e89414744f327787e52c537569bdacda7ec33877eb5191462"
+  },
+  "original_damage_note": "完整铜殿记碑面；字细且墨薄，轻度增强不改缺笔",
+  "additional_character_cutting": "none_observed_after_item_specific_border_review",
+  "attribution": "大峨山永明华藏寺新建铜殿记碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+  "catalogue_url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34907&dep=P&mode=full",
+  "visual_notes": [
+    "历史原拓缺笔、裂损及石花保留；不以输出像素宣称新增原件细节",
+    "原拓重损/墨薄，部分文字阅读受限"
+  ],
+  "quality_status": "通过制作核验；原件阅读受限",
+  "item_title": "大峨山永明华藏寺新建铜殿记碑",
+  "dynasty": "明代",
+  "institution": "台北故宫博物院",
+  "accession_number": "購拓000276",
+  "stone_date": "1603年",
+  "rubbing_date": "未核定；不据拓印年改变朝代",
+  "pdf_page_numbering": "1-based",
+  "bbox_convention": "source pixels [left,top,right,bottom], right/bottom exclusive",
+  "original_filename_from_source": "NPM-購拓000276 明大峩山永明華藏寺新建銅殿記碑墨拓本 軸.pdf",
+  "download_url": "https://commons.wikimedia.org/wiki/File:NPM-%E8%B3%BC%E6%8B%93000276%20%E6%98%8E%E5%A4%A7%E5%B3%A9%E5%B1%B1%E6%B0%B8%E6%98%8E%E8%8F%AF%E8%97%8F%E5%AF%BA%E6%96%B0%E5%BB%BA%E9%8A%85%E6%AE%BF%E8%A8%98%E7%A2%91%E5%A2%A8%E6%8B%93%E6%9C%AC%20%E8%BB%B8.pdf",
+  "source_archive_type": "PDF containing native embedded JPEG(s) and metadata sheets",
+  "cover_relation": "完整拓片主体",
+  "working_source_path": "D:\\RubbingMind\\rubbings-review-v3\\originals\\ming_04_tongdian\\源文件_原样保存.pdf",
+  "deployedId": "ming_04_tongdian",
+  "reviewedId": "ming_04_tongdian",
+  "deployment_output_sha256": {
+    "archive.jpg": "73d02b4d540c17899c258080b5f3489d92b00e8edd04d77288574cc589b933c5",
+    "readable.jpg": "a7c277dcfab319521377fa3a9277827ab3d2ffe1799a07a9f60d99e870693b7c",
+    "cover.jpg": "1a2c34a09236016e89414744f327787e52c537569bdacda7ec33877eb5191462"
+  }
+}

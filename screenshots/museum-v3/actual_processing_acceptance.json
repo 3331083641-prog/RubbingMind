@@ -1,0 +1,42 @@
+[
+  {
+    "id": "qing_01_qianlong_heart_sutra",
+    "status": 200,
+    "restored_image": "/static/results/qing_01_qianlong_heart_sutra/20261014T165541_1ad47a0d/restored.png",
+    "processingTimeMs": 893.3,
+    "evaluation": "未评测，无配对真值",
+    "outputExistsInProject": true
+  },
+  {
+    "id": "tang-duobao",
+    "status": 200,
+    "restored_image": "/static/results/tang-duobao/20261014T165542_5fc44fba/restored.png",
+    "processingTimeMs": 912.5,
+    "evaluation": "未评测，无配对真值",
+    "outputExistsInProject": true
+  },
+  {
+    "id": "han-caoquan",
+    "status": 200,
+    "restored_image": "/static/results/han-caoquan/20261014T165543_438081c6/restored.png",
+    "processingTimeMs": 881.1,
+    "evaluation": "未评测，无配对真值",
+    "outputExistsInProject": true
+  },
+  {
+    "id": "wei-yuanhuai",
+    "status": 200,
+    "restored_image": "/static/results/wei-yuanhuai/20261014T165544_937dd487/restored.png",
+    "processingTimeMs": 854.4,
+    "evaluation": "未评测，无配对真值",
+    "outputExistsInProject": true
+  },
+  {
+    "id": "wei-jianyi",
+    "status": 200,
+    "restored_image": "/static/results/wei-jianyi/20261014T165545_535ae9e0/restored.png",
+    "processingTimeMs": 846.8,
+    "evaluation": "未评测，无配对真值",
+    "outputExistsInProject": true
+  }
+]

@@ -38,6 +38,9 @@ jobs:
         run: |
           pytest tests/ -v
 
+      - name: Validate museum catalogue and all runtime images
+        run: python scripts/validate_museum_v3.py
+
   frontend-build:
     name: Frontend CI (React & TypeScript)
     runs-on: ubuntu-latest

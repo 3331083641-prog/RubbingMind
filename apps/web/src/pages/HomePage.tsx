@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { CORE_SAMPLES } from '../data/catalogSelection';
 import { SteleItem } from '../types/stele';
 import { SteleViewer } from '../components/stele3d/SteleViewer';
 import { SteleFullscreenViewer } from '../components/stele3d/SteleFullscreenViewer';
@@ -11,7 +12,7 @@ interface HomePageProps {
 }
 
 export const HomePage: React.FC<HomePageProps> = ({ steles, onSelectStele, onNavigate }) => {
-  const currentStele = steles[0] || null;
+  const currentStele = CORE_SAMPLES[0];
   const [isFullscreen3D, setIsFullscreen3D] = useState(false);
 
   return (
@@ -56,7 +57,7 @@ export const HomePage: React.FC<HomePageProps> = ({ steles, onSelectStele, onNav
               <div className="glass-panel p-3.5 rounded-xl border border-gold/20 flex flex-col">
                 <span className="text-[11px] text-slate-400 font-serif">去噪信噪比增益</span>
                 <div className="text-2xl font-serif font-bold text-gold-light mt-1">+18.6 <span className="text-xs font-normal">dB</span></div>
-                <span className="text-[10px] text-celadon-light mt-0.5">PSNR 从 18.42 提升至 34.25</span>
+                <span className="text-[10px] text-celadon-light mt-0.5">演示指标；不代表馆藏实测</span>
               </div>
               <div className="glass-panel p-3.5 rounded-xl border border-gold/20 flex flex-col">
                 <span className="text-[11px] text-slate-400 font-serif">残字推演置信度</span>
@@ -229,7 +230,7 @@ export const HomePage: React.FC<HomePageProps> = ({ steles, onSelectStele, onNav
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {steles.slice(0, 4).map((stele) => (
+          {CORE_SAMPLES.map((stele) => (
             <div
               key={stele.id}
               className="glass-panel rounded-xl overflow-hidden border border-gold/20 hover:border-gold/60 transition-all duration-300 flex flex-col group"
@@ -259,8 +260,8 @@ export const HomePage: React.FC<HomePageProps> = ({ steles, onSelectStele, onNav
                 </div>
 
                 <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-[11px] text-slate-300">
-                  <span className="font-mono text-gold-light">PSNR: {stele.metrics?.psnr || 32.5} dB</span>
-                  <span className="font-mono text-celadon-light">SSIM: {stele.metrics?.ssim || 0.92}</span>
+                  <span className="font-mono text-gold-light">PSNR: {stele.metrics?.psnr ?? '未评测'} dB</span>
+                  <span className="font-mono text-celadon-light">SSIM: {stele.metrics?.ssim ?? '未评测'}</span>
                 </div>
               </div>
 

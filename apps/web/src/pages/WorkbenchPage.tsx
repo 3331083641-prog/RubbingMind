@@ -39,15 +39,15 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
 
   // Dynamic Image URLs & Metrics
-  const [restoredImageUrl, setRestoredImageUrl] = useState<string>(stele.restored_image || stele.clean_image);
-  const [skeletonUrl, setSkeletonUrl] = useState<string>('/assets/stele/analysis/stroke_topology_demo.png');
-  const [cinnabarUrl, setCinnabarUrl] = useState<string>(stele.clean_image);
+  const [restoredImageUrl, setRestoredImageUrl] = useState<string>('');
+  const [skeletonUrl, setSkeletonUrl] = useState<string>('');
+  const [cinnabarUrl, setCinnabarUrl] = useState<string>('');
   const [metrics, setMetrics] = useState({
-    psnr: stele.metrics?.psnr || 34.25,
-    ssim: stele.metrics?.ssim || 0.9482,
-    snr_gain: stele.metrics?.snr_gain || 18.6,
-    glyph_completeness: stele.metrics?.glyph_completeness || 95.8,
-    character_accuracy: stele.metrics?.character_accuracy || 97.4,
+    psnr: stele.metrics?.psnr ?? null,
+    ssim: stele.metrics?.ssim ?? null,
+    snr_gain: stele.metrics?.snr_gain ?? null,
+    glyph_completeness: stele.metrics?.glyph_completeness ?? null,
+    character_accuracy: stele.metrics?.character_accuracy ?? null,
   });
 
   // Ancient Book & Character States
@@ -73,13 +73,13 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
     });
 
     // Reset parameters to stele defaults
-    setRestoredImageUrl(stele.restored_image || stele.clean_image);
+    setRestoredImageUrl(''); setSkeletonUrl(''); setCinnabarUrl(''); setAdoptionSuccessMsg('');
     setMetrics({
-      psnr: stele.metrics?.psnr || 34.25,
-      ssim: stele.metrics?.ssim || 0.9482,
-      snr_gain: stele.metrics?.snr_gain || 18.6,
-      glyph_completeness: stele.metrics?.glyph_completeness || 95.8,
-      character_accuracy: stele.metrics?.character_accuracy || 97.4,
+      psnr: stele.metrics?.psnr ?? null,
+      ssim: stele.metrics?.ssim ?? null,
+      snr_gain: stele.metrics?.snr_gain ?? null,
+      glyph_completeness: stele.metrics?.glyph_completeness ?? null,
+      character_accuracy: stele.metrics?.character_accuracy ?? null,
     });
 
     return () => { isMounted = false; };
@@ -134,6 +134,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
       });
     } catch (e) {
       console.error('Algorithm execution error:', e);
+      setAdoptionSuccessMsg('实际处理失败，请检查后端服务；没有生成模拟修复结果。');
     } finally {
       setIsProcessing(false);
     }
@@ -158,6 +159,8 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
   return (
     <div className="min-h-[calc(100vh-68px)] bg-[#0A0D12] text-slate-100 p-4 lg:p-6 flex flex-col space-y-4">
       {/* Top Breadcrumb & Quick Stele Info Banner */}
+      <p className="text-xs text-slate-400" role="status">{stele.isDemo ? '核心实验样本：预置释文和推演案例用于演示，置信度非本轮实测。' : '真实馆藏：释文依据馆方资料，未执行本图残字检测或配对评测。'}</p>
+      {adoptionSuccessMsg && <p role="alert" className="text-xs text-gold">{adoptionSuccessMsg}</p>}
       <div className="flex flex-wrap items-center justify-between gap-3 px-2">
         <div className="flex items-center space-x-3">
           <div className="w-8 h-8 rounded-lg bg-cinnabar/20 border border-cinnabar/40 flex items-center justify-center text-cinnabar">
@@ -314,6 +317,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
                 </div>
               )}
 
+              {!restoredImageUrl && <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-[#090D12]"><img src={stele.damaged_image || stele.raw_image} alt={stele.title} className="w-full h-full object-contain" /><span className="absolute bottom-3 text-xs bg-black/80 p-2">当前文物输入图像 · 尚未生成算法修复结果</span></div>}
               {viewMode === 'split' && (
                 <div 
                   className="relative w-full h-full flex items-center justify-center"
@@ -321,12 +325,10 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
                 >
                   {/* Restored Layer (Right Base) */}
                   <img
-                    src={restoredImageUrl}
+                    src={restoredImageUrl || undefined}
                     alt="Restored Stele"
                     className="absolute inset-0 w-full h-full object-contain filter contrast-125"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = stele.clean_image;
-                    }}
+                    onError={() => { setRestoredImageUrl(''); setAdoptionSuccessMsg('本次处理结果加载失败，请重试实际算法。'); }}
                   />
 
                   {/* Damaged Layer (Left Overlay with Clip Path) */}
@@ -335,7 +337,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
                     style={{ width: `${sliderPos}%` }}
                   >
                     <img
-                      src={stele.damaged_image}
+                      src={stele.damaged_image || stele.raw_image}
                       alt="Damaged Stele"
                       className="absolute top-0 left-0 h-full object-contain max-w-none filter contrast-110"
                       style={{ width: sliderContainerRef.current?.clientWidth || '100%' }}
@@ -345,7 +347,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
                     />
                     {/* Left Tag */}
                     <div className="absolute top-12 left-4 z-20 px-2.5 py-1 rounded-md bg-black/75 border border-cinnabar/60 text-[11px] font-serif text-cinnabar-light shadow-md">
-                      退化原拓 (Before)
+                      {stele.isDemo ? '核心实验输入 (Before)' : '真实馆藏输入 (Before)'}
                     </div>
                   </div>
 
@@ -375,13 +377,13 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
                   style={{ transform: `scale(${zoomLevel})` }}
                 >
                   <div className="relative border border-cinnabar/30 rounded-xl overflow-hidden bg-black/60 flex items-center justify-center">
-                    <img src={stele.damaged_image} alt="Damaged" className="w-full h-full object-contain" />
+                    <img src={stele.damaged_image || stele.raw_image} alt="Damaged" className="w-full h-full object-contain" />
                     <span className="absolute top-3 left-3 px-2 py-0.5 rounded bg-black/80 text-cinnabar text-[11px] font-serif border border-cinnabar/40">
-                      退化前
+                      输入图像
                     </span>
                   </div>
                   <div className="relative border border-gold/30 rounded-xl overflow-hidden bg-black/60 flex items-center justify-center">
-                    <img src={restoredImageUrl} alt="Restored" className="w-full h-full object-contain" />
+                    <img src={restoredImageUrl || undefined} alt="Restored" className="w-full h-full object-contain" />
                     <span className="absolute top-3 right-3 px-2 py-0.5 rounded bg-black/80 text-gold text-[11px] font-serif border border-gold/40">
                       修复后
                     </span>
@@ -391,7 +393,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
 
               {viewMode === 'clean' && (
                 <div className="w-full h-full flex items-center justify-center p-2" style={{ transform: `scale(${zoomLevel})` }}>
-                  <img src={restoredImageUrl} alt="Clean Restored" className="w-full h-full object-contain" />
+                  <img src={restoredImageUrl || undefined} alt="Clean Restored" className="w-full h-full object-contain" />
                 </div>
               )}
 
@@ -399,12 +401,12 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
                 <div className="w-full h-full flex items-center justify-center p-2" style={{ transform: `scale(${zoomLevel})` }}>
                   <div className="relative w-full h-full flex items-center justify-center bg-[#8B1A10]/20 rounded-xl">
                     <img 
-                      src={cinnabarUrl} 
+                      src={cinnabarUrl || undefined}
                       alt="Cinnabar Rubbing" 
                       className="w-full h-full object-contain filter invert hue-rotate-[320deg] saturate-200" 
                     />
                     <div className="absolute top-4 left-4 px-2.5 py-1 rounded bg-cinnabar/80 text-white font-serif text-xs">
-                      清宫御府鉴藏 · 乾隆朱砂拓本模拟
+                      实际算法输出 · 朱砂风格可视化（非历史拓本）
                     </div>
                   </div>
                 </div>
@@ -413,7 +415,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
               {viewMode === 'skeleton' && (
                 <div className="w-full h-full flex items-center justify-center p-2" style={{ transform: `scale(${zoomLevel})` }}>
                   <div className="relative w-full h-full flex items-center justify-center bg-black/90 rounded-xl">
-                    <img src={skeletonUrl} alt="Stroke Skeleton" className="w-full h-full object-contain" />
+                    <img src={skeletonUrl || undefined} alt="Stroke Skeleton" className="w-full h-full object-contain" />
                     <div className="absolute top-4 left-4 px-2.5 py-1 rounded bg-celadon/80 text-white font-serif text-xs">
                       细化中轴拓扑骨架 (Medial Axis Skeleton)
                     </div>
@@ -434,23 +436,23 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
               <div className="flex items-center space-x-4 md:space-x-6 overflow-x-auto no-scrollbar">
                 <div className="flex items-baseline space-x-1.5">
                   <span className="text-slate-400 font-serif text-[11px]">峰值信噪比 PSNR:</span>
-                  <span className="font-mono font-bold text-gold-light text-sm">{metrics.psnr} dB</span>
-                  <span className="text-[10px] text-celadon-light font-mono">(+{metrics.snr_gain}dB)</span>
+                  <span className="font-mono font-bold text-gold-light text-sm">{metrics.psnr ?? '未评测'} dB</span>
+                  <span className="text-[10px] text-celadon-light font-mono">(+{metrics.snr_gain ?? '未评测'}dB)</span>
                 </div>
 
                 <div className="flex items-baseline space-x-1.5">
                   <span className="text-slate-400 font-serif text-[11px]">结构相似度 SSIM:</span>
-                  <span className="font-mono font-bold text-gold-light text-sm">{metrics.ssim}</span>
+                  <span className="font-mono font-bold text-gold-light text-sm">{metrics.ssim ?? '未评测'}</span>
                 </div>
 
                 <div className="flex items-baseline space-x-1.5">
                   <span className="text-slate-400 font-serif text-[11px]">字形骨架完整度:</span>
-                  <span className="font-mono font-bold text-celadon-light text-sm">{metrics.glyph_completeness}%</span>
+                  <span className="font-mono font-bold text-celadon-light text-sm">{metrics.glyph_completeness ?? '未评测'}%</span>
                 </div>
 
                 <div className="flex items-baseline space-x-1.5">
                   <span className="text-slate-400 font-serif text-[11px]">字符识别率:</span>
-                  <span className="font-mono font-bold text-cinnabar-light text-sm">{metrics.character_accuracy}%</span>
+                  <span className="font-mono font-bold text-cinnabar-light text-sm">{metrics.character_accuracy ?? '未评测'}%</span>
                 </div>
               </div>
 
