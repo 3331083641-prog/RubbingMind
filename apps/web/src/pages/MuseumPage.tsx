@@ -307,7 +307,7 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
                       {stele.metrics?.psnr == null ? '未评测' : `PSNR: ${stele.metrics.psnr} dB`}
                     </span>
                     <span className={hasGenuineImage ? 'text-celadon-light' : 'text-amber-400'}>
-                      {stele.imageStatus || '著录公开'}
+                      {hasGenuineImage ? '真实影像' : '图像加载失败'}
                     </span>
                   </div>
                 </div>
