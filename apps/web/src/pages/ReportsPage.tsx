@@ -6,6 +6,7 @@ interface Props { stele: SteleItem; onNavigate: (tab: string) => void }
 type Report = Awaited<ReturnType<typeof SteleService.getReport>>;
 
 export const ReportsPage: React.FC<Props> = ({ stele, onNavigate }) => {
+  useEffect(() => { document.body.classList.add('printing-report'); return () => document.body.classList.remove('printing-report'); }, []);
   const [runs, setRuns] = useState<ProcessingRun[]>([]);
   const [runId, setRunId] = useState('');
   const [report, setReport] = useState<Report | null>(null);
@@ -82,17 +83,20 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate }) => {
           <p>运行 ID：{run.runId}；算法版本：{run.algorithmVersion}；耗时：{run.processing_time_ms} ms。</p>
           <p>开始：{run.startedAt}；结束：{run.finishedAt}。</p>
           <p>输入 SHA-256：<code className="break-all">{run.inputImageSha256}</code></p>
-          <p>参数：{JSON.stringify(run.algorithmParameters)}</p>
+          <div>参数：<pre className="whitespace-pre-wrap break-all text-xs">{JSON.stringify(run.algorithmParameters, null, 2)}</pre></div>
           <p>评测状态：{run.evaluationStatus === 'paired_reference' ? '有配对真值' : '未进行配对质量评测'}。</p>
           {run.evaluationStatus === 'paired_reference' && <p>PSNR：{run.evaluationMetrics?.psnr ?? '未评测'}；SSIM：{run.evaluationMetrics?.ssim ?? '未评测'}。</p>}
-          <p>输入／输出诊断变化量：{JSON.stringify(run.diagnosticMetrics)}。这些数值不代表原字修复正确率。</p>
+          <div>输入／输出诊断变化量：<pre className="whitespace-pre-wrap break-all text-xs">{JSON.stringify(run.diagnosticMetrics, null, 2)}</pre>这些数值不代表原字修复正确率。</div>
           {run.outputImages?.restored && <figure className="max-w-lg"><img src={run.outputImages.restored} alt={`${stele.title}本次处理结果`} className="max-h-[460px] object-contain"/><figcaption className="text-xs">本次算法输出；不作为原刻真值。</figcaption></figure>}
         </div> : <p>尚未执行处理。没有真实运行输出或配对真值评测。</p>}
       </section>
       <section><h3 className="font-bold">残字推演与人工确认</h3>
-        {report?.inferenceRecords?.length ? <ul className="list-disc pl-5">{report.inferenceRecords.map((item, index) => <li key={index}>
-          {String((item as unknown as Record<string, unknown>).id || index)} · {String((item as unknown as Record<string, unknown>).status || '待核实')} · {String((item as unknown as Record<string, unknown>).acceptedCharacter || '未采纳')}
-        </li>)}</ul> : <p>未完成真实残字推演；没有人工确认结论。</p>}
+        {report?.inferenceRecords?.length ? <ul className="list-disc pl-5">{report.inferenceRecords.map((item, index) => <li key={item.inferenceId || index} className="mb-2">
+          <p>记录 {item.inferenceId} · {item.source} · {item.status} · 人工采纳：{item.adoptedGlyph || '无'}</p>
+          <p>选区：{item.bbox.x}, {item.bbox.y}, {item.bbox.w}×{item.bbox.h}；上下文：{item.context || '未提供'}</p>
+          <p>候选：{item.candidates.map(c=>`${c.glyph}（${c.scoreBasis}）`).join('、') || '无可靠候选'}</p>
+          {item.candidates.flatMap(c=>c.sourceUrls).map(url=><a key={url} href={url} className="underline break-all block">{url}</a>)}
+        </li>)}</ul> : <p>未完成与本运行关联的真实残字推演；没有人工确认结论。</p>}
       </section>
       <footer className="border-t border-[#937d5d] pt-3 text-xs">实验结果仅描述此次处理与已有资料；任何文物释读结论须由具备领域知识的人员复核。</footer>
     </article>

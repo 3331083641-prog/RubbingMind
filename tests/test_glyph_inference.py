@@ -33,6 +33,7 @@ def test_actual_crop_rule_accept_revoke_and_persistence(client):
 
 
 def test_crop_context_and_model_failure_states(client, monkeypatch):
+    assert client.post('/api/steles/tang_01_duobao/inferences', json={'bbox': {'x': 10, 'y': 10, 'w': 40, 'h': 40}, 'runId': 'missing'}).status_code == 404
     assert client.post('/api/steles/tang_01_duobao/inferences', json={'bbox': {'x': -1, 'y': 0, 'w': 40, 'h': 40}}).status_code == 422
     assert client.post('/api/steles/tang_01_duobao/inferences', json={'bbox': {'x': 99999, 'y': 0, 'w': 40, 'h': 40}}).status_code == 422
     empty = client.post('/api/steles/tang_01_duobao/inferences', json={'bbox': {'x': 10, 'y': 10, 'w': 40, 'h': 40}, 'context': ''}).json()

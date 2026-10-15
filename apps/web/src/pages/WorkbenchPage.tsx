@@ -655,7 +655,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
         {/* RIGHT COLUMN: Ancient Xuan Paper & Inference (Col 5 - 42%) */}
         {/* ========================================================= */}
         <div className="lg:col-span-5 flex flex-col space-y-4">
-          <GlyphInferencePanel stele={stele} activeChar={activeChar} onDecision={handleGlyphDecision} />
+          <GlyphInferencePanel stele={stele} activeChar={activeChar} runId={selectedRunId || undefined} onDecision={handleGlyphDecision} />
           {/* Top Xuan Paper Ancient Book Text View */}
           <div className="glass-panel rounded-2xl border border-gold/30 p-5 flex flex-col bg-gradient-to-b from-[#131920] to-[#0D1217] space-y-4 shadow-xl">
             {/* Header */}

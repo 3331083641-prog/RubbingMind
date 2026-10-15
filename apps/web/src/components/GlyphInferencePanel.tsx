@@ -7,8 +7,9 @@ type Box = { x: number; y: number; w: number; h: number };
 export const GlyphInferencePanel: React.FC<{
   stele: SteleItem;
   activeChar?: CharacterItem;
+  runId?: string;
   onDecision: (record: GlyphInferenceRecord) => void;
-}> = ({ stele, activeChar, onDecision }) => {
+}> = ({ stele, activeChar, runId, onDecision }) => {
   const [open, setOpen] = useState(false);
   const [box, setBox] = useState<Box | null>(null);
   const [context, setContext] = useState('');
@@ -45,7 +46,7 @@ export const GlyphInferencePanel: React.FC<{
     try {
       const item = await SteleService.inferGlyph(stele.id, {
         bbox:box, context, characterId:activeChar?.id,
-        originalGlyph:activeChar?.char, originalStatus:activeChar?.status
+        originalGlyph:activeChar?.char, originalStatus:activeChar?.status, runId
       });
       setRecords(items => [item, ...items]);
       setOpen(false);

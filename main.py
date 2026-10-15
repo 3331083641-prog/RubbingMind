@@ -65,13 +65,13 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# 允许跨域请求
+# Development clients use the same-origin proxy; limit direct CORS to local Vite.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origin_regex=r"^http://(127\.0\.0\.1|localhost):517[0-9]$",
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "DELETE"],
+    allow_headers=["Content-Type"],
 )
 
 # 挂载静态资源目录
@@ -117,6 +117,7 @@ class GlyphInferenceRequest(BaseModel):
     characterId: Optional[str] = Field(default=None, max_length=80)
     originalGlyph: Optional[str] = Field(default=None, max_length=1)
     originalStatus: Optional[str] = Field(default=None, max_length=20)
+    runId: Optional[str] = Field(default=None, max_length=40)
 
 
 class GlyphDecisionRequest(BaseModel):
@@ -152,81 +153,9 @@ async def health_check():
     }
 
 
-def _format_stele_item(sample_key: str, data: Dict[str, Any]) -> Dict[str, Any]:
-    stele_id = STELE_REVERSE_MAP.get(sample_key, sample_key.replace(".png", ""))
-    
-    # 图像路径映射
-    img_map = {
-        "sample_1.png": {
-            "raw": "/assets/stele/rubbings/stele_tang_duobao_damaged.png",
-            "clean": "/assets/stele/rubbings/stele_tang_duobao_clean.png",
-            "damaged": "/assets/stele/rubbings/stele_tang_duobao_damaged.png",
-            "restored": "/assets/stele/rubbings/stele_tang_duobao_restored_demo.png",
-        },
-        "sample_2.png": {
-            "raw": "/assets/stele/rubbings/stele_han_caoquan.png",
-            "clean": "/assets/stele/rubbings/stele_han_caoquan.png",
-            "damaged": "/assets/stele/rubbings/stele_han_caoquan.png",
-            "restored": "/assets/stele/rubbings/stele_han_caoquan.png",
-        },
-        "sample_3.png": {
-            "raw": "/assets/stele/rubbings/stele_wei_yuanhuai.png",
-            "clean": "/assets/stele/rubbings/stele_wei_yuanhuai.png",
-            "damaged": "/assets/stele/rubbings/stele_wei_yuanhuai.png",
-            "restored": "/assets/stele/rubbings/stele_wei_yuanhuai.png",
-        },
-        "sample_4.png": {
-            "raw": "/assets/stele/rubbings/stele_wei_jianyi_fragment.png",
-            "clean": "/assets/stele/rubbings/stele_wei_jianyi_fragment.png",
-            "damaged": "/assets/stele/rubbings/stele_wei_jianyi_fragment.png",
-            "restored": "/assets/stele/rubbings/stele_wei_jianyi_fragment.png",
-        }
-    }
-    
-    imgs = img_map.get(sample_key, {
-        "raw": f"/static/samples/{sample_key}",
-        "clean": f"/static/samples/{sample_key}",
-        "damaged": f"/static/samples/{sample_key}",
-        "restored": f"/static/samples/{sample_key}"
-    })
-    
-    # 指标
-    psnr_val = 34.25 if sample_key == "sample_1.png" else 32.18 if sample_key == "sample_2.png" else 31.42 if sample_key == "sample_3.png" else 29.80
-    ssim_val = 0.9482 if sample_key == "sample_1.png" else 0.9120 if sample_key == "sample_2.png" else 0.8975 if sample_key == "sample_3.png" else 0.8540
-
-    return {
-        "id": stele_id,
-        "title": data.get("title", ""),
-        "dynasty": data.get("dynasty", ""),
-        "author": f"{data.get('author_calligraphy', '')} / {data.get('author_essay', '')}".strip(" /"),
-        "script_type": data.get("script_style", "楷书"),
-        "weathering_level": data.get("weathering_badge", "重度风化"),
-        "year": data.get("era_converted", "公元752年"),
-        "ganzhi": data.get("historical_era", "").split("岁次")[-1][:3] if "岁次" in data.get("historical_era", "") else "壬辰年",
-        "location": data.get("location_now", ""),
-        "museum": data.get("location_now", ""),
-        "dimensions": "高 285cm, 宽 102cm, 厚 38cm" if sample_key == "sample_1.png" else "高 253cm, 宽 123cm",
-        "summary": data.get("summary", ""),
-        "historical_context": data.get("calligraphy_appreciation", ""),
-        "badges": [data.get("dynasty_badge", "石刻碑拓"), data.get("weathering_badge", "风化"), "全字考据"],
-        "raw_image": imgs["raw"],
-        "clean_image": imgs["clean"],
-        "damaged_image": imgs["damaged"],
-        "restored_image": imgs["restored"],
-        "metrics": {
-            "psnr": psnr_val,
-            "ssim": ssim_val,
-            "snr_gain": round(psnr_val - 15.6, 1),
-            "glyph_completeness": 95.8,
-            "character_accuracy": 97.4
-        },
-        "translation": data.get("translation", "")
-    }
-
-
 @app.post("/generate")
 async def compatibility_generate():
-    return catalog_graph(await get_stele("tang-duobao"))
+    return {'steleId':'tang-duobao',**catalog_graph(await get_stele("tang-duobao"))}
 
 
 @app.get("/api/steles")
@@ -278,9 +207,9 @@ async def get_stele_report(stele_id: str, run_id: Optional[str] = None):
     if run_id and not selected:
         raise HTTPException(status_code=404,detail='处理记录不存在')
     result['run']=selected
-    result['inferenceRecords']=list_inferences(stele_id)
+    result['inferenceRecords']=[item for item in list_inferences(stele_id) if not selected or item.get('runId')==selected['runId']]
     result['sourceRecords']=[{'title':record['title'],'url':record.get('sourceUrl'),'license':record.get('license')}]
-    result['evaluation_summary']='实际处理已执行，但没有配对真值；未进行配对质量评测。' if selected else '尚未执行处理；无配对真值或消融评测。'
+    result['evaluation_summary']='实际处理已执行，但没有配对真值；配对质量未评测。' if selected else '尚未执行处理；配对质量未评测。'
     result['reportId']=f"RM-{stele_id}-{selected['runId']}" if selected else None
     return result
 
@@ -364,8 +293,10 @@ async def get_uploaded_image(upload_id: str):
 @app.post('/api/steles/{stele_id}/inferences')
 async def create_glyph_inference(stele_id: str, request: GlyphInferenceRequest):
     record = await get_stele(stele_id)
+    if request.runId and not read_run(stele_id, request.runId):
+        raise HTTPException(status_code=404, detail='关联的处理运行不存在')
     try:
-        return await infer_crop(record, request.bbox.model_dump(), request.context, request.characterId, request.originalGlyph, request.originalStatus)
+        return await infer_crop(record, request.bbox.model_dump(), request.context, request.characterId, request.originalGlyph, request.originalStatus, request.runId)
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc))
 

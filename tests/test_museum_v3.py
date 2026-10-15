@@ -11,7 +11,9 @@ def test_reviewed_assets_and_exports():assert validate()['sha256Match']==84
 
 def test_all_identities_in_api():
     client=TestClient(app)
-    assert client.get('/api/steles').json()==museum_records()
+    all_records=client.get('/api/steles').json()
+    assert [r for r in all_records if r.get('source_kind')=='verified_review_v3']==museum_records()
+    assert all(r.get('source_kind')=='user_upload' for r in all_records if r.get('source_kind')!='verified_review_v3')
     for r in museum_records():
         assert client.get('/api/steles/'+r['id']).json()==r
         report=client.get('/api/steles/'+r['id']+'/report').json()

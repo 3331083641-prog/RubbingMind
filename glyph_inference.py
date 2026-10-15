@@ -109,7 +109,7 @@ async def _suggest(image_bytes: bytes, context: str):
             'note': '仅基于上下文给出待核建议，未运行图像模型。' if candidates else '无可核实候选；请提供更充分的上下文或配置可选视觉模型。'}
 
 
-async def infer(record, bbox: dict, context: str, character_id: str | None = None, original_glyph: str | None = None, original_status: str | None = None):
+async def infer(record, bbox: dict, context: str, character_id: str | None = None, original_glyph: str | None = None, original_status: str | None = None, run_id: str | None = None):
     source_path = _source_path(record)
     if source_path is None or not source_path.is_file():
         raise ValueError('当前文物原始图像不可用')
@@ -130,7 +130,7 @@ async def infer(record, bbox: dict, context: str, character_id: str | None = Non
     inference_id = uuid.uuid4().hex
     now = datetime.now(timezone.utc).isoformat()
     record_json = {
-        'inferenceId': inference_id, 'steleId': record['id'], 'characterId': character_id,
+        'inferenceId': inference_id, 'steleId': record['id'], 'runId': run_id, 'characterId': character_id,
         'originalGlyph': original_glyph, 'originalStatus': original_status,
         'bbox': bbox, 'context': context[:1000], 'inputImageSha256': hashlib.sha256(source_bytes).hexdigest(),
         'cropSha256': hashlib.sha256(crop_bytes).hexdigest(), 'cropUrl': f'/api/inferences/{inference_id}/crop',

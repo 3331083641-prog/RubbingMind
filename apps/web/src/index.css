@@ -118,3 +118,13 @@
   border-color: #D4AF37;
   box-shadow: 0 0 25px rgba(212, 175, 55, 0.22);
 }
+
+@media print {
+  body.printing-report #root > div > header,
+  body.printing-report #root > div > footer { display: none !important; }
+  body.printing-report #root > div,
+  body.printing-report main,
+  body.printing-report main > div { background: white !important; color: black; }
+  body.printing-report article { max-width: none; margin: 0; border-radius: 0; box-shadow: none; }
+  body.printing-report article section { break-inside: avoid; }
+}
