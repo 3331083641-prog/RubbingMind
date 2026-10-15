@@ -1,0 +1,23 @@
+{
+  "experimentId": "controlled-rubbings-2026-10-15",
+  "seed": 20261015,
+  "referenceNote": "审核通过的拓本局部图仅作为受控退化实验的相对参考；不代表碑石原始无损笔画。",
+  "samples": [
+    {
+      "id": "han_01_caoquan",
+      "file": "apps/web/public/assets/stele/museum-rubbings/han_01_caoquan_readable.jpg",
+      "crop": [300, 400, 556, 656],
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34589&dep=P&mode=full"
+    },
+    {
+      "id": "tang_01_duobao",
+      "file": "apps/web/public/assets/stele/museum-rubbings/tang_01_duobao_readable.jpg",
+      "crop": [250, 250, 506, 506],
+      "license": "CC BY 4.0",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full"
+    }
+  ],
+  "degradations": ["gaussian", "salt_pepper", "periodic", "blur", "occlusion"],
+  "methods": ["degraded", "gaussian_lowpass", "butterworth_lowpass", "notch", "morphology", "fast_nlm", "nlm_clahe", "joint"]
+}
