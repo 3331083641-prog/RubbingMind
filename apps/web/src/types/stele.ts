@@ -76,7 +76,8 @@ export interface ProcessingParams {
   filter_order: number; // 滤波器阶数
   h_nlm: number; // NLM 滤波强度
   clahe_clip: number; // CLAHE 对比度限幅
-  enhancement_level?: number;
+  filter_type: 'gaussian' | 'butterworth' | 'notch';
+  morph_kernel: number;
 }
 
 export interface ProcessingResult {

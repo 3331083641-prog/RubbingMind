@@ -13,7 +13,7 @@ export const SteleService = {
     try { const res=await fetch(`/api/steles/${id}`); if(!res.ok) throw new Error('文物不可用'); return await res.json(); }
     catch { return selected(id); }
   },
-  async processStele(params: { stele_id: string; d0: number; filter_order: number; h_nlm: number; clahe_clip: number; enhancement_level?: number }): Promise<ProcessingResult> {
+  async processStele(params: { stele_id: string; d0: number; filter_order: number; filter_type: 'gaussian' | 'butterworth' | 'notch'; h_nlm: number; clahe_clip: number; morph_kernel: number }): Promise<ProcessingResult> {
     const res=await fetch('/api/process',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(params)});
     if(!res.ok) throw new Error('实际处理未成功，请检查后端服务；不会生成模拟结果');
     const result=await res.json(); if(result.stele_id!==params.stele_id) throw new Error('处理结果文物ID不一致'); return result;

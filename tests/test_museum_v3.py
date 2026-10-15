@@ -63,7 +63,7 @@ def test_real_processing_uses_selected_image_and_saves_result(monkeypatch,tmp_pa
     class Engine:
         def process_rubbing(self,**kwargs):
             assert 'qing_02_wushi_reerection_readable.jpg' in kwargs['image_input']
-            return {'restored_b64':encoded,'metrics':{'elapsed_ms':1,'psnr':42}}
+            return {'restored_b64':encoded,'metrics':{'elapsed_ms':1,'psnr':None},'diagnostic_metrics':{'input_output_mean_absolute_difference':2.5}}
     from main import ProcessRequest
     from museum_manager import museum_manager
     import shutil
@@ -75,4 +75,4 @@ def test_real_processing_uses_selected_image_and_saves_result(monkeypatch,tmp_pa
     result=museum_processing.process_verified_request(ProcessRequest(stele_id='qing_02_wushi_reerection'),museum_manager,Engine())
     assert result['stele_id']=='qing_02_wushi_reerection' and result['psnr'] is None
     assert (tmp_path/result['restored_image'].lstrip('/')).is_file()
-    assert result['engineDiagnosticMetrics']['psnr']==42
+    assert result['engineDiagnosticMetrics']['input_output_mean_absolute_difference']==2.5

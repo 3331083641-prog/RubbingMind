@@ -34,6 +34,8 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
   // Algorithm Parameters
   const [d0, setD0] = useState<number>(45);
   const [filterOrder, setFilterOrder] = useState<number>(2);
+  const [filterType, setFilterType] = useState<'gaussian' | 'butterworth' | 'notch'>('butterworth');
+  const [morphKernel, setMorphKernel] = useState<number>(3);
   const [hNlm, setHNlm] = useState<number>(10);
   const [claheClip, setClaheClip] = useState<number>(2.5);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
@@ -111,8 +113,10 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
         stele_id: stele.id,
         d0,
         filter_order: filterOrder,
+        filter_type: filterType,
         h_nlm: hNlm,
-        clahe_clip: claheClip
+        clahe_clip: claheClip,
+        morph_kernel: morphKernel
       });
 
       if (result.restored_image) {
@@ -473,16 +477,23 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
                 </h3>
               </div>
               <span className="text-[11px] font-sans text-slate-400">
-                2D-FFT 高斯频域陷波 + 快速非局部均值 (Fast NLM) + CLAHE
+                2D-FFT 频域滤波 + 快速非局部均值 (Fast NLM) + CLAHE
               </span>
             </div>
 
-            {/* 4 Sliders Grid */}
+            <label className="text-xs text-slate-300">频域处理方式
+              <select aria-label="频域处理方式" value={filterType} onChange={e => setFilterType(e.target.value as typeof filterType)} className="ml-3 rounded bg-slate-900 border border-slate-700 p-1 text-gold-light">
+                <option value="butterworth">Butterworth 低通</option>
+                <option value="gaussian">高斯低通</option>
+                <option value="notch">自动陷波（仅检出周期峰时生效）</option>
+              </select>
+            </label>
+            {/* Parameter controls */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
               {/* Slider 1: D0 */}
               <div className="space-y-1.5 bg-slate-950/40 p-2.5 rounded-xl border border-slate-800">
                 <div className="flex items-center justify-between text-[11px]">
-                  <span className="text-slate-300 font-serif">截止频率 D₀ (频域陷波)</span>
+                  <span className="text-slate-300 font-serif">截止频率 D₀ / 陷波宽度</span>
                   <span className="font-mono text-gold-light font-bold">{d0}</span>
                 </div>
                 <input
@@ -495,8 +506,8 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
                   className="w-full accent-[#D4AF37] cursor-pointer h-1.5 bg-slate-700 rounded-lg"
                 />
                 <div className="flex justify-between text-[9px] text-slate-500">
-                  <span>10 (精细纹理)</span>
-                  <span>100 (强力滤波)</span>
+                  <span>10</span>
+                  <span>100</span>
                 </div>
               </div>
 
@@ -512,6 +523,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
                   max="5"
                   step="1"
                   value={filterOrder}
+                  disabled={filterType !== 'butterworth'}
                   onChange={(e) => setFilterOrder(Number(e.target.value))}
                   className="w-full accent-[#D4AF37] cursor-pointer h-1.5 bg-slate-700 rounded-lg"
                 />
@@ -562,6 +574,10 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
                   <span>5.0 (极限凸显)</span>
                 </div>
               </div>
+              <label className="space-y-1.5 bg-slate-950/40 p-2.5 rounded-xl border border-slate-800">
+                <span className="text-slate-300 font-serif">形态学核径：{morphKernel}</span>
+                <input aria-label="形态学核径" type="range" min="1" max="9" step="2" value={morphKernel} onChange={e => setMorphKernel(Number(e.target.value))} className="w-full accent-[#D4AF37]" />
+              </label>
             </div>
 
             {/* Run Algorithm Action */}

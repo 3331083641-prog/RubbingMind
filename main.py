@@ -8,13 +8,13 @@ import os
 import sys
 import logging
 from contextlib import asynccontextmanager
-from typing import Optional, List, Dict, Any
+from typing import Optional, List, Dict, Any, Literal
 
 from fastapi import FastAPI, File, UploadFile, Form, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from sample_generator import ensure_samples, SAMPLES_DIR, BASE_DIR
 from algorithm_engine import algorithm_engine, safe_read_image, mat_to_base64
@@ -82,12 +82,12 @@ class ProcessRequest(BaseModel):
     stele_id: Optional[str] = "tang-duobao"
     sample_id: Optional[str] = None
     image_base64: Optional[str] = None
-    d0: Optional[float] = 45.0
-    filter_order: Optional[int] = 2
-    h_nlm: Optional[float] = 10.0
-    clahe_clip: Optional[float] = 2.5
-    enhancement_level: Optional[float] = 1.0
-    morph_kernel: Optional[int] = 3
+    d0: float = Field(default=45.0, ge=1, le=500)
+    filter_order: int = Field(default=2, ge=1, le=8)
+    filter_type: Literal['gaussian', 'butterworth', 'notch'] = 'butterworth'
+    h_nlm: float = Field(default=10.0, ge=0, le=50)
+    clahe_clip: float = Field(default=2.5, ge=0.1, le=10)
+    morph_kernel: int = Field(default=3, ge=1, le=9)
     damage_mask: Optional[str] = None
     cinnabar_style: Optional[str] = "cinnabar"
 

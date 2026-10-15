@@ -20,7 +20,6 @@ from PIL import Image
 
 try:
     from skimage.metrics import structural_similarity as compute_ssim
-    from skimage.metrics import peak_signal_noise_ratio as compute_psnr
     HAS_SKIMAGE = True
 except ImportError:
     HAS_SKIMAGE = False
@@ -102,52 +101,32 @@ def fallback_ssim(img1, img2):
     return float(ssim_map.mean())
 
 
-def compute_metrics(orig_gray, restored_gray):
-    """综合计算 PSNR、SSIM、石花抑制率与清晰度增益"""
-    # 1. PSNR
-    mse = np.mean((orig_gray.astype(np.float64) - restored_gray.astype(np.float64)) ** 2)
-    if mse == 0:
-        psnr_val = 45.0
-    else:
-        psnr_val = 10 * np.log10((255.0 ** 2) / mse)
-    # 将其校准到碑拓去噪合理的评估区间 [24.0, 36.5]
-    psnr_score = round(float(np.clip(psnr_val + 8.5, 22.0, 38.5)), 2)
+def compute_metrics(reference_gray, restored_gray):
+    """Paired 8-bit reference metrics. The reference must be an actual experiment target."""
+    if reference_gray.shape != restored_gray.shape or reference_gray.dtype != np.uint8 or restored_gray.dtype != np.uint8:
+        raise ValueError("配对真值和输出必须是同尺寸的 8 位灰度图")
+    if min(reference_gray.shape) < 7:
+        raise ValueError("SSIM 需要至少 7×7 像素")
+    if not HAS_SKIMAGE:
+        raise RuntimeError("配对 SSIM 评测需要 scikit-image")
+    mse = float(np.mean((reference_gray.astype(np.float64) - restored_gray.astype(np.float64)) ** 2))
+    psnr = float('inf') if mse == 0 else float(10 * np.log10(255.0 ** 2 / mse))
+    return {"psnr": psnr, "ssim": float(compute_ssim(reference_gray, restored_gray, data_range=255))}
 
-    # 2. SSIM
-    if HAS_SKIMAGE:
-        try:
-            ssim_val = float(compute_ssim(orig_gray, restored_gray, data_range=255))
-        except Exception:
-            ssim_val = fallback_ssim(orig_gray, restored_gray)
-    else:
-        ssim_val = fallback_ssim(orig_gray, restored_gray)
-    ssim_score = round(float(np.clip(ssim_val, 0.78, 0.98)), 3)
 
-    # 3. 石花噪点抑制率 (基于孤立高频亮噪点前后数量统计)
-    _, orig_thresh = cv2.threshold(orig_gray, 180, 255, cv2.THRESH_BINARY)
-    _, rest_thresh = cv2.threshold(restored_gray, 180, 255, cv2.THRESH_BINARY)
-
-    # 形态学顶帽提取微小噪点 (1~3px)
-    k_noise = cv2.getStructuringElement(cv2.MORPH_RECT, (2, 2))
-    orig_noise_pts = cv2.morphologyEx(orig_thresh, cv2.MORPH_TOPHAT, k_noise)
-    rest_noise_pts = cv2.morphologyEx(rest_thresh, cv2.MORPH_TOPHAT, k_noise)
-
-    cnt_orig = np.sum(orig_noise_pts > 0) + 1e-5
-    cnt_rest = np.sum(rest_noise_pts > 0)
-    noise_suppression = float((cnt_orig - cnt_rest) / cnt_orig * 100.0)
-    noise_suppression_score = round(float(np.clip(noise_suppression + 42.0, 68.5, 96.8)), 1)
-
-    # 4. 边缘清晰度增益
-    orig_ten = calculate_tenengrad(orig_gray) + 1e-5
-    rest_ten = calculate_tenengrad(restored_gray)
-    edge_gain = float((rest_ten - orig_ten) / orig_ten * 100.0)
-    edge_gain_score = round(float(np.clip(edge_gain + 25.0, 15.0, 68.0)), 1)
-
+def compute_diagnostics(input_gray, output_gray):
+    """Input/output change diagnostics; neither number measures restoration accuracy."""
+    _, before = cv2.threshold(input_gray, 180, 255, cv2.THRESH_BINARY)
+    _, after = cv2.threshold(output_gray, 180, 255, cv2.THRESH_BINARY)
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (2, 2))
+    before_count = int(np.count_nonzero(cv2.morphologyEx(before, cv2.MORPH_TOPHAT, kernel)))
+    after_count = int(np.count_nonzero(cv2.morphologyEx(after, cv2.MORPH_TOPHAT, kernel)))
+    before_edge = calculate_tenengrad(input_gray)
+    after_edge = calculate_tenengrad(output_gray)
     return {
-        "psnr": psnr_score,
-        "ssim": ssim_score,
-        "noise_suppression": noise_suppression_score,
-        "edge_gain": edge_gain_score,
+        "isolated_bright_pixel_change_percent": 100.0 * (before_count - after_count) / before_count if before_count else None,
+        "tenengrad_change_percent": 100.0 * (after_edge - before_edge) / before_edge if before_edge else None,
+        "input_output_mean_absolute_difference": float(np.mean(cv2.absdiff(input_gray, output_gray))),
     }
 
 
@@ -157,7 +136,7 @@ class RubbingAlgorithmEngine:
     def __init__(self):
         pass
 
-    def apply_frequency_domain_filter(self, gray_img, d0=60, filter_type="gaussian"):
+    def apply_frequency_domain_filter(self, gray_img, d0=60, filter_type="butterworth", order=2, return_details=False):
         """
         2D-FFT 频域自适应低通/陷波滤波
         """
@@ -176,24 +155,55 @@ class RubbingAlgorithmEngine:
         y, x = np.ogrid[:h, :w]
         dist_sq = (x - cx) ** 2 + (y - cy) ** 2
 
+        details = {"mode": filter_type, "notchApplied": False, "detectedPairs": []}
+        if d0 <= 0 or not 1 <= order <= 8:
+            raise ValueError("截止频率或滤波器阶数无效")
         if filter_type == "gaussian":
             # 高斯滤波保真度更高，边缘无吉布斯震荡振铃效应
             filter_mask = np.exp(-dist_sq / (2 * (d0 ** 2)))
+        elif filter_type == "butterworth":
+            filter_mask = 1.0 / (1.0 + (dist_sq / (d0 ** 2)) ** order)
+        elif filter_type == "notch":
+            # Compare peaks to a smoothed local log-spectrum. Real imagery may have no
+            # isolated periodic peaks; in that case leave it unchanged.
+            log_spectrum = np.log1p(np.abs(fshift))
+            background = cv2.GaussianBlur(log_spectrum, (0, 0), 6)
+            excess = log_spectrum - background
+            exclusion = max(12, min(h, w) // 12)
+            excess[dist_sq < exclusion ** 2] = 0
+            threshold = max(2.5, float(np.percentile(excess, 99.9)))
+            local_max = cv2.dilate(excess.astype(np.float32), np.ones((9, 9), np.uint8))
+            candidates = np.argwhere((excess >= threshold) & (excess >= local_max - 1e-6))
+            filter_mask = np.ones((h, w), np.float32)
+            seen = set()
+            for py, px in sorted(candidates, key=lambda p: -excess[p[0], p[1]]):
+                mirror_y, mirror_x = (2 * cy - int(py)) % h, (2 * cx - int(px)) % w
+                pair = tuple(sorted(((int(py), int(px)), (mirror_y, mirror_x))))
+                if pair in seen or min(excess[py, px], excess[mirror_y, mirror_x]) < threshold:
+                    continue
+                seen.add(pair)
+                details["detectedPairs"].append([list(pair[0]), list(pair[1])])
+                for ny, nx in pair:
+                    distance = (y - ny) ** 2 + (x - nx) ** 2
+                    filter_mask *= 1.0 - np.exp(-distance / (2.0 * max(1.5, d0 / 16.0) ** 2))
+                if len(seen) == 8:
+                    break
+            details["notchApplied"] = bool(seen)
         else:
-            # Butterworth 二阶平滑低通
-            filter_mask = 1.0 / (1.0 + (dist_sq / (d0 ** 2)) ** 2)
+            raise ValueError("未知频域处理模式")
 
         # 保留极低频分量避免整体失真
-        filter_mask = np.clip(filter_mask * 0.85 + 0.15, 0.0, 1.0)
+        if filter_type != "notch":
+            filter_mask = np.clip(filter_mask * 0.85 + 0.15, 0.0, 1.0)
 
         # 4. 频域相乘与逆变换
         filtered_fshift = fshift * filter_mask
         f_ishift = np.fft.ifftshift(filtered_fshift)
         img_back = np.fft.ifft2(f_ishift)
-        img_back = np.abs(img_back)
+        img_back = np.real(img_back)
         img_back = np.clip(img_back, 0, 255).astype(np.uint8)
 
-        return img_back, spectrum_color
+        return (img_back, spectrum_color, details) if return_details else (img_back, spectrum_color)
 
     def apply_spatial_domain_enhancement(self, gray_img, nlm_h=10, clahe_clip=2.5, morph_kernel=3):
         """
@@ -289,11 +299,14 @@ class RubbingAlgorithmEngine:
         self,
         image_input,
         d0=60,
+        filter_order=2,
+        filter_type="butterworth",
         nlm_h=10,
         clahe_clip=2.5,
         morph_kernel=3,
         damage_mask=None,
         cinnabar_style="cinnabar",
+        reference_image=None,
     ):
         """
         全流程频空域联合去噪与微痕修复管线
@@ -327,7 +340,9 @@ class RubbingAlgorithmEngine:
                 orig_bgr = cv2.cvtColor(orig_gray, cv2.COLOR_GRAY2BGR)
 
         # 3. 频域滤波与 2D-FFT 频谱伪彩色渲染
-        freq_filtered_gray, spectrum_color = self.apply_frequency_domain_filter(orig_gray, d0=d0)
+        freq_filtered_gray, spectrum_color, frequency_details = self.apply_frequency_domain_filter(
+            orig_gray, d0=d0, filter_type=filter_type, order=filter_order, return_details=True
+        )
 
         # 4. 空域形态学 + NLM + CLAHE 联合去噪增强
         restored_gray = self.apply_spatial_domain_enhancement(
@@ -347,7 +362,9 @@ class RubbingAlgorithmEngine:
         skeleton_bgr = self.render_stroke_skeleton(restored_gray)
 
         # 7. 计算质量评价指标
-        metrics = compute_metrics(orig_gray, restored_gray)
+        reference_gray = safe_read_image(reference_image, is_gray=True) if reference_image is not None else None
+        metrics = compute_metrics(reference_gray, restored_gray) if reference_gray is not None else {"psnr": None, "ssim": None}
+        diagnostics = compute_diagnostics(orig_gray, restored_gray)
         elapsed_ms = round((time.perf_counter() - start_time) * 1000, 1)
         metrics["elapsed_ms"] = elapsed_ms
 
@@ -359,6 +376,8 @@ class RubbingAlgorithmEngine:
             "cinnabar_b64": mat_to_base64(cinnabar_bgr),
             "skeleton_b64": mat_to_base64(skeleton_bgr),
             "metrics": metrics,
+            "diagnostic_metrics": diagnostics,
+            "frequency_details": frequency_details,
         }
 
     def render_stroke_skeleton(self, restored_gray):
