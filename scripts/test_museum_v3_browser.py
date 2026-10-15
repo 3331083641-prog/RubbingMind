@@ -96,12 +96,13 @@ def run(url,output):
             expect(page.get_by_role('heading',name='重立武氏祠石记 · 馆藏资料关联')).to_be_visible()
             assert '翁方纲' in page.inner_text('main');results[mode]['verifiedMuseumGraph']=True
             page.get_by_role('button',name='算法评测报告').click()
-            expect(page.get_by_role('heading',name=re.compile('重立武氏祠石记 · 算法'))).to_be_visible()
-            expect(page.get_by_text('未开展消融实验',exact=True)).to_be_visible()
-            with page.expect_download() as info:page.get_by_role('button',name='导出 JSON 评测数据').click()
+            expect(page.get_by_role('heading',name='墨韵智考·金石数字化实验报告').last).to_be_visible()
+            page.get_by_role('combobox',name='选择报告运行记录').select_option('')
+            expect(page.get_by_text('尚未执行处理。没有真实运行输出或配对真值评测。')).to_be_visible()
+            with page.expect_download() as info:page.get_by_role('button',name='导出 JSON').click()
             download=info.value;dest=output/(mode+'_报告.json');download.save_as(dest)
-            report=json.loads(dest.read_text('utf-8'));assert report['stele_id']=='qing_02_wushi_reerection' and report['title']=='重立武氏祠石记' and report['ablation']==[]
-            page.evaluate('window.print=()=>window.__printCalled=true');page.get_by_role('button',name='导出 PDF / 打印研判报告').click();assert page.evaluate('window.__printCalled')
+            report=json.loads(dest.read_text('utf-8'));assert report['stele']['id']=='qing_02_wushi_reerection' and report['stele']['title']=='重立武氏祠石记' and report['evaluationStatus']=='not_run'
+            page.evaluate('window.print=()=>window.__printCalled=true');page.get_by_role('button',name='打印 / 保存 PDF').click();assert page.evaluate('window.__printCalled')
             if not offline:page.pdf(path=str(output/'14_实际网页报告.pdf'),format='A4',print_background=True)
             results[mode]['jsonAndPrintPdf']=True
             # Second required viewport.

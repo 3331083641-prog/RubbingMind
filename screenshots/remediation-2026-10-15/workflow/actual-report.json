@@ -1,0 +1,82 @@
+{
+  "reportId": "RM-upload-5a5c1798479147f9838fa1866935f9e8-20261015T064459_07576008",
+  "exportedAt": "2026-10-15T06:45:01.121Z",
+  "stele": {
+    "id": "upload-5a5c1798479147f9838fa1866935f9e8",
+    "title": "浏览器验收私有样本",
+    "dynasty": "唐代",
+    "originalYear": "未考证",
+    "collectionInstitution": "用户本地上传"
+  },
+  "runId": "20261015T064459_07576008",
+  "algorithmVersion": "frequency-spatial-v2.1",
+  "inputImageSha256": "88154972ad065e1cd85f610922a232a5c270aafc67895818fb224c11da26dd60",
+  "algorithmParameters": {
+    "stele_id": "upload-5a5c1798479147f9838fa1866935f9e8",
+    "sample_id": null,
+    "d0": 45,
+    "filter_order": 2,
+    "filter_type": "butterworth",
+    "h_nlm": 10,
+    "clahe_clip": 2.5,
+    "morph_kernel": 3,
+    "cinnabar_style": "cinnabar"
+  },
+  "startedAt": "2026-10-15T06:44:59.268384+00:00",
+  "finishedAt": "2026-10-15T06:44:59.407122+00:00",
+  "processingTimeMs": 120.5,
+  "outputImages": {
+    "original": "/static/results/upload-5a5c1798479147f9838fa1866935f9e8/20261015T064459_07576008/original.png",
+    "restored": "/static/results/upload-5a5c1798479147f9838fa1866935f9e8/20261015T064459_07576008/restored.png",
+    "frequency_spectrum": "/static/results/upload-5a5c1798479147f9838fa1866935f9e8/20261015T064459_07576008/frequency_spectrum.png",
+    "character_skeleton": "/static/results/upload-5a5c1798479147f9838fa1866935f9e8/20261015T064459_07576008/character_skeleton.png",
+    "cinnabar_rubbing": "/static/results/upload-5a5c1798479147f9838fa1866935f9e8/20261015T064459_07576008/cinnabar_rubbing.png"
+  },
+  "evaluationStatus": "unassessed",
+  "evaluationMetrics": {
+    "psnr": null,
+    "ssim": null
+  },
+  "diagnosticMetrics": {
+    "isolated_bright_pixel_change_percent": 0,
+    "tenengrad_change_percent": -1.834537194914233,
+    "input_output_mean_absolute_difference": 5.8876171875
+  },
+  "inferenceRecords": [
+    {
+      "inferenceId": "3c177f7011024998af42acb38d6de776",
+      "steleId": "upload-5a5c1798479147f9838fa1866935f9e8",
+      "runId": "20261015T064459_07576008",
+      "characterId": null,
+      "originalGlyph": null,
+      "originalStatus": null,
+      "bbox": {
+        "x": 25,
+        "y": 25,
+        "w": 55,
+        "h": 55
+      },
+      "context": "未核实",
+      "inputImageSha256": "88154972ad065e1cd85f610922a232a5c270aafc67895818fb224c11da26dd60",
+      "cropSha256": "6e358df48e89310f9dc12d662e7e79119c4f8e850abb72c49ed35d3b292e029b",
+      "cropUrl": "/api/inferences/3c177f7011024998af42acb38d6de776/crop",
+      "source": "unavailable",
+      "model": null,
+      "candidates": [],
+      "note": "无可核实候选；请提供更充分的上下文或配置可选视觉模型。",
+      "sourceUrl": null,
+      "status": "no_candidate",
+      "adoptedGlyph": null,
+      "decisions": [],
+      "createdAt": "2026-10-15T06:45:00.265807+00:00"
+    }
+  ],
+  "sourceRecords": [
+    {
+      "title": "浏览器验收私有样本",
+      "url": null,
+      "license": null
+    }
+  ],
+  "note": "无配对真值时，诊断变化量不代表修复质量；残字建议须经人工核实。"
+}

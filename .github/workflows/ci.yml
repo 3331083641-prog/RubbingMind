@@ -58,7 +58,7 @@ jobs:
       - name: Install Frontend Dependencies
         working-directory: apps/web
         run: |
-          npm install
+          npm ci
 
       - name: TypeScript Check & Vite Build
         working-directory: apps/web
@@ -83,3 +83,38 @@ jobs:
           test -f screenshots/04_graphrag_gis.png
           test -f screenshots/05_ablation_reports.png
           echo "All critical repository files and screenshots verified successfully."
+
+  browser-smoke:
+    name: Browser smoke (online and fallback)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install test dependencies and Chromium
+        run: |
+          pip install -r requirements-browser.txt
+          python -m playwright install --with-deps chromium
+          cd apps/web && npm ci
+      - name: Start backend, verify /health and /generate, then start frontend
+        run: |
+          python -m uvicorn main:app --host 127.0.0.1 --port 8000 > /tmp/rubbingmind-api.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8000/health > /dev/null; then break; fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:8000/health > /dev/null
+          curl -fsS http://127.0.0.1:8000/generate > /dev/null
+          cd apps/web
+          npm run dev -- --host 127.0.0.1 --port 5173 > /tmp/rubbingmind-web.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:5173/ > /dev/null; then break; fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:5173/ > /dev/null
+      - name: Verify browser navigation and catalogue
+        run: python scripts/ci_browser_smoke.py
