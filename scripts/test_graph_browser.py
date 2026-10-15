@@ -7,7 +7,7 @@ from playwright.sync_api import sync_playwright, expect
 ROOT=Path(__file__).resolve().parents[1]
 BACKEND_URL=os.environ.get('GRAPH_BACKEND_URL','http://127.0.0.1:8000')
 FRONTEND_URL=os.environ.get('GRAPH_FRONTEND_URL','http://127.0.0.1:5173')
-OUT=ROOT/'screenshots/graph-final'
+OUT=Path(os.environ.get('GRAPH_SCREENSHOT_DIR', str(ROOT/'screenshots/remediation-2026-10-15/graph')))
 OUT.mkdir(parents=True,exist_ok=True)
 if hasattr(sys.stdout,'reconfigure'): sys.stdout.reconfigure(encoding='utf-8')
 
@@ -53,7 +53,7 @@ def run():
             for core,record,year,file in ids:
                 page.get_by_test_id('stele-'+core).click()
                 expect(page.locator('.calendar-result')).to_contain_text(str(year))
-                expect(page.locator('header select').first).to_have_value(record)
+                expect(page.locator('header select').first).to_have_value(core)
                 page.get_by_role('button',name='碑刻地理',exact=True).click()
                 page.wait_for_timeout(950)
                 assert page.evaluate('document.documentElement.scrollWidth')<=width, '横向溢出'

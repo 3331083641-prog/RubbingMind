@@ -89,7 +89,7 @@ export const GraphPage:React.FC<Props> = ({stele,onSelectStele}) => {
   const currentData=data?.steleId===canonical?data:null;
   return <div className="graph-page">
     <div className="graph-heading"><div className="heading-emblem"><Network size={28}/></div><div><h1>{currentData?.formalName||stele.title} · 金石时空知识图谱与 GIS 舆图</h1><p>GraphRAG 实体网络 · 人物谱系 · 现代地理底图 · 历史地望互勘</p></div><span className="heading-seal">金石<br/>合参</span></div>
-    <div className="core-stele-selector" aria-label="核心测试碑拓选择">{CORE_STELES.map(c=><button key={c.id} data-testid={`stele-${c.id}`} aria-pressed={canonical===c.id} onClick={()=>onSelectStele(c.recordId)}><span>{c.label.split('·')[0]}</span>{c.label.split('·')[1]}{c.id==='wei-jianyi'&&<small>身份待核</small>}</button>)}</div>
+    <div className="core-stele-selector" aria-label="核心测试碑拓选择">{CORE_STELES.map(c=><button key={c.id} data-testid={`stele-${c.id}`} aria-pressed={canonical===c.id} onClick={()=>onSelectStele(c.id)}><span>{c.label.split('·')[0]}</span>{c.label.split('·')[1]}{c.id==='wei-jianyi'&&<small>身份待核</small>}</button>)}</div>
     {error?<div role="alert" className="graph-load">{error}</div>:!data?<div role="status" className="graph-load">正在载入碑刻史料与地望…</div>:<>
     <div className={`explorer-grid ${!currentData?'is-loading':''}`} aria-busy={!currentData}>
       <section className="explorer-panel" aria-label="地图与知识网络">
