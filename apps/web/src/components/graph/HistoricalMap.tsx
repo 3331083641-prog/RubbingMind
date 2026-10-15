@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import maplibregl, { type StyleSpecification } from 'maplibre-gl';
-import workerUrl from 'maplibre-gl/dist/maplibre-gl-csp-worker.js?url';
+import * as maplibregl from 'maplibre-gl';
+import type { StyleSpecification } from 'maplibre-gl';
+import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { Compass, MapPin } from 'lucide-react';
 import type { HistoryDataset, HistoricalLocation } from '../../types/history';
