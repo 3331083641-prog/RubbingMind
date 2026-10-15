@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { SteleItem, CharacterItem, ProcessingResult } from '../types/stele';
 import { SteleService } from '../services/api';
+import type { GlyphInferenceRecord } from '../services/api';
+import { GlyphInferencePanel } from '../components/GlyphInferencePanel';
 import { 
   Sliders, 
   Layers, 
@@ -144,17 +146,16 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
     }
   };
 
-  // Adopt Inferred Character
-  const handleAdoptCandidate = (glyph: string) => {
+  // Update the displayed transcription only after a durable human decision.
+  const handleGlyphDecision = (record: GlyphInferenceRecord) => {
     setCharacters((prev) =>
       prev.map((c) =>
-        c.id === selectedCharId
-          ? { ...c, char: glyph, status: 'restored' as const }
+        c.id === record.characterId
+          ? { ...c, char: record.adoptedGlyph || record.originalGlyph || c.char,
+              status: record.adoptedGlyph ? 'restored' as const : (record.originalStatus || 'damaged') as CharacterItem['status'] }
           : c
       )
     );
-    setAdoptionSuccessMsg(`已成功采纳「${glyph}」字，古籍拓文与拓扑骨架已完成高精度对齐！`);
-    setTimeout(() => setAdoptionSuccessMsg(''), 4500);
   };
 
   // Currently selected character
@@ -163,7 +164,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
   return (
     <div className="min-h-[calc(100vh-68px)] bg-[#0A0D12] text-slate-100 p-4 lg:p-6 flex flex-col space-y-4">
       {/* Top Breadcrumb & Quick Stele Info Banner */}
-      <p className="text-xs text-slate-400" role="status">{stele.isDemo ? '核心实验样本：预置释文和推演案例用于演示，置信度非本轮实测。' : '真实馆藏：释文依据馆方资料，未执行本图残字检测或配对评测。'}</p>
+      <p className="text-xs text-slate-400" role="status">{stele.isDemo ? '核心实验样本：预置释文仅作演示；实际推演须提交图像选区。' : '真实馆藏：释文依据馆方资料，残字检测与配对评测需独立进行。'}</p>
       {adoptionSuccessMsg && <p role="alert" className="text-xs text-gold">{adoptionSuccessMsg}</p>}
       <div className="flex flex-wrap items-center justify-between gap-3 px-2">
         <div className="flex items-center space-x-3">
@@ -610,6 +611,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
         {/* RIGHT COLUMN: Ancient Xuan Paper & Inference (Col 5 - 42%) */}
         {/* ========================================================= */}
         <div className="lg:col-span-5 flex flex-col space-y-4">
+          <GlyphInferencePanel stele={stele} activeChar={activeChar} onDecision={handleGlyphDecision} />
           {/* Top Xuan Paper Ancient Book Text View */}
           <div className="glass-panel rounded-2xl border border-gold/30 p-5 flex flex-col bg-gradient-to-b from-[#131920] to-[#0D1217] space-y-4 shadow-xl">
             {/* Header */}
@@ -621,7 +623,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
                 </h3>
               </div>
               <span className="text-[10px] text-slate-400 font-serif">
-                点击红框残字激活贝叶斯推演
+                点击字符可关联人工选区
               </span>
             </div>
 
@@ -720,11 +722,11 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
               <div className="flex items-center space-x-2">
                 <Sparkles className="w-4 h-4 text-gold" />
                 <h3 className="font-serif font-bold text-sm text-gold-light">
-                  多模态字形拓扑与贝叶斯推演引擎
+                  预置释文候选示例
                 </h3>
               </div>
               <span className="text-[11px] font-mono text-celadon-light">
-                Context-Glyph Bayesian
+                DEMO ONLY
               </span>
             </div>
 
@@ -740,11 +742,11 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
                       <div className="font-serif font-bold text-sm text-slate-100 flex items-center gap-2">
                         <span>待释读漫漶残字 #{activeChar.id}</span>
                         <span className="text-[11px] font-mono text-cinnabar px-1.5 py-0.5 rounded bg-cinnabar/10 border border-cinnabar/20">
-                          风化残损度: {((activeChar.damage_level || 0.6) * 100).toFixed(0)}%
+                          演示标签 · 未实测
                         </span>
                       </div>
                       <p className="text-[11px] text-slate-400 font-sans mt-0.5">
-                        基于字心裂隙、残余点画外轮廓与前后文义理的多维似然度计算
+                        这些候选来自项目预置案例，没有与当前选区进行笔画比对。
                       </p>
                     </div>
                   </div>
@@ -753,7 +755,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
                 {/* Candidate List (Top 3) */}
                 <div className="space-y-2">
                   <span className="text-[11px] font-serif text-slate-400">
-                    贝叶斯后验概率 Top-3 候选释字:
+                    预置候选排序（非概率）:
                   </span>
                   
                   {activeChar.inferred_candidates.map((cand, idx) => (
@@ -781,19 +783,9 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
                         </div>
                         <div className="flex items-center space-x-1.5">
                           <span className="text-xs font-mono font-bold text-gold-light">
-                            {(cand.confidence * 100).toFixed(1)}%
+                            演示顺序 {idx + 1}
                           </span>
                         </div>
-                      </div>
-
-                      {/* Progress Bar */}
-                      <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden mb-2">
-                        <div
-                          className={`h-full rounded-full transition-all duration-500 ${
-                            idx === 0 ? 'bg-gradient-to-r from-gold to-gold-light' : 'bg-slate-600'
-                          }`}
-                          style={{ width: `${cand.confidence * 100}%` }}
-                        />
                       </div>
 
                       <div className="text-[11px] text-slate-300 leading-relaxed font-sans">
@@ -815,14 +807,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
                   </div>
                 )}
 
-                {/* Adopt Button */}
-                <button
-                  onClick={() => handleAdoptCandidate(activeChar.inferred_candidates![0].glyph)}
-                  className="w-full py-2.5 rounded-xl font-serif font-bold text-xs bg-gradient-to-r from-cinnabar to-cinnabar-dark text-paper-light border border-cinnabar-light/40 shadow-cinnabar-glow hover:brightness-110 active:scale-98 transition-all flex items-center justify-center space-x-2"
-                >
-                  <Check className="w-4 h-4" />
-                  <span>一键采纳 Top-1 推演结果并修补古籍拓文</span>
-                </button>
+                <p className="text-xs text-slate-400">请在上方“实际残字推演”中框选图像，保存实际候选后再人工采纳。</p>
               </div>
             ) : (
               <div className="p-6 text-center text-slate-400 font-serif text-xs">

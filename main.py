@@ -25,6 +25,7 @@ from museum_manager import museum_manager
 from catalog import inference as catalog_inference, report as catalog_report, graph as catalog_graph
 from museum_processing import process_verified_request
 from upload_storage import create_upload, get_upload, image_path
+from glyph_inference import infer as infer_crop, list_inferences, get_inference, decide as decide_glyph, crop_path
 
 logging.basicConfig(level=logging.INFO, format="[%(asctime)s] %(levelname)s: %(message)s")
 logger = logging.getLogger("RubbingMindApp")
@@ -101,6 +102,26 @@ class DeduceRequest(BaseModel):
     api_key: Optional[str] = None
     base_url: Optional[str] = None
     model_name: Optional[str] = None
+
+
+class GlyphBox(BaseModel):
+    x: int = Field(ge=0)
+    y: int = Field(ge=0)
+    w: int = Field(ge=16, le=1024)
+    h: int = Field(ge=16, le=1024)
+
+
+class GlyphInferenceRequest(BaseModel):
+    bbox: GlyphBox
+    context: str = Field(default='', max_length=1000)
+    characterId: Optional[str] = Field(default=None, max_length=80)
+    originalGlyph: Optional[str] = Field(default=None, max_length=1)
+    originalStatus: Optional[str] = Field(default=None, max_length=20)
+
+
+class GlyphDecisionRequest(BaseModel):
+    action: Literal['accept', 'revoke']
+    glyph: Optional[str] = None
 
 
 class CalendarRequest(BaseModel):
@@ -311,6 +332,39 @@ async def get_uploaded_image(upload_id: str):
     if path is None or not path.is_file():
         raise HTTPException(status_code=404, detail='上传图像不存在')
     return FileResponse(path, media_type={'png': 'image/png', 'jpeg': 'image/jpeg', 'webp': 'image/webp'}[record['uploadFormat']])
+
+
+@app.post('/api/steles/{stele_id}/inferences')
+async def create_glyph_inference(stele_id: str, request: GlyphInferenceRequest):
+    record = await get_stele(stele_id)
+    try:
+        return await infer_crop(record, request.bbox.model_dump(), request.context, request.characterId, request.originalGlyph, request.originalStatus)
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc))
+
+
+@app.get('/api/steles/{stele_id}/inferences')
+async def get_glyph_inferences(stele_id: str):
+    await get_stele(stele_id)
+    return list_inferences(stele_id)
+
+
+@app.get('/api/inferences/{inference_id}/crop')
+async def get_glyph_crop(inference_id: str):
+    path = crop_path(inference_id)
+    if path is None or not path.is_file():
+        raise HTTPException(status_code=404, detail='选区图像不存在')
+    return FileResponse(path, media_type='image/png')
+
+
+@app.post('/api/inferences/{inference_id}/decision')
+async def decide_glyph_inference(inference_id: str, request: GlyphDecisionRequest):
+    try:
+        return decide_glyph(inference_id, request.action, request.glyph)
+    except LookupError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc))
 
 
 @app.post("/api/calendar")

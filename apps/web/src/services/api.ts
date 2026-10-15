@@ -3,6 +3,24 @@ import STILES_28_DATA from '../data/steles28.json';
 import { CORE_SAMPLES, resolveSelected } from '../data/catalogSelection';
 export const FALLBACK_STELES = STILES_28_DATA as unknown as SteleItem[];
 export let backendAvailable = false;
+export interface GlyphInferenceRecord {
+  inferenceId: string;
+  steleId: string;
+  characterId: string | null;
+  originalGlyph: string | null;
+  originalStatus: string | null;
+  bbox: {x:number;y:number;w:number;h:number};
+  context: string;
+  cropUrl: string;
+  source: 'vision_model' | 'context_rule' | 'unavailable' | 'model_unavailable';
+  model: string | null;
+  candidates: {glyph:string;visualEvidence:string;contextEvidence:string;sourceUrls:string[];scoreBasis:string}[];
+  note: string;
+  status: string;
+  adoptedGlyph: string | null;
+  decisions: {action:string;glyph:string|null;at:string;actor:string}[];
+  createdAt: string;
+}
 function selected(id: string) { return resolveSelected(FALLBACK_STELES, id); }
 export const SteleService = {
   async getSteles(): Promise<SteleItem[]> {
@@ -36,5 +54,25 @@ export const SteleService = {
     catch { throw new Error('后端不可用，上传未保存'); }
     if(!res.ok){const body=await res.json().catch(()=>({}));throw new Error(typeof body.detail==='string'?body.detail:`上传失败（HTTP ${res.status}）`);}
     return await res.json();
-  }
+  },
+  async listRuns(id: string): Promise<any[]> {
+    const res = await fetch(`/api/steles/${encodeURIComponent(id)}/runs`);
+    if (!res.ok) throw new Error('处理历史不可用');
+    return res.json();
+  },
+  async listGlyphInferences(id: string): Promise<GlyphInferenceRecord[]> {
+    const res = await fetch(`/api/steles/${encodeURIComponent(id)}/inferences`);
+    if (!res.ok) throw new Error('推演记录不可用');
+    return res.json();
+  },
+  async inferGlyph(id: string, payload: {bbox:{x:number;y:number;w:number;h:number};context:string;characterId?:string;originalGlyph?:string;originalStatus?:string}): Promise<GlyphInferenceRecord> {
+    const res = await fetch(`/api/steles/${encodeURIComponent(id)}/inferences`, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    if (!res.ok) { const detail=await res.json().catch(()=>({})); throw new Error(typeof detail.detail==='string'?detail.detail:'残字推演失败'); }
+    return res.json();
+  },
+  async decideGlyph(inferenceId: string, action:'accept'|'revoke', glyph?:string): Promise<GlyphInferenceRecord> {
+    const res=await fetch(`/api/inferences/${inferenceId}/decision`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action,glyph})});
+    if (!res.ok) throw new Error('人工确认记录保存失败');
+    return res.json();
+  },
 };

@@ -3,10 +3,10 @@
 墨韵智考（RubbingMind）- 金石学考据数据包与多模态智能体推演引擎
 包含：
 1. 与 4 张样本 100% 逐字吻合的结构化金石考据与人物/官制/时空轨迹库
-2. 漫漶残字 Top-3 概率推演引擎（文献搭配先验 + 拓扑笔画骨架 + 职官制度依据）
+2. 预置演示释文资料；实际残字选区由 glyph_inference.py 单独处理
 3. 异体字与避讳字消歧引擎
 4. 中国古代干支历法与年号公历双向精确换算器
-5. 兼容 OpenAI 格式的多模态大模型智能推演接口（支持自定义 Key/URL，提供离线兜底）
+5. 可选 OpenAI 兼容视觉模型接口；无模型时仅给出已标注的上下文规则建议
 """
 
 import os
@@ -510,114 +510,16 @@ class KnowledgeAgentEngine:
             "note": "输入未识别，推荐格式：‘天宝十一载’、‘中平二年’、‘752’或‘壬辰’",
         }
 
-    async def deduce_character_llm(
-        self,
-        image_crop_b64: str,
-        context_text: str,
-        api_key: Optional[str] = None,
-        base_url: Optional[str] = None,
-        model_name: Optional[str] = None,
-    ) -> Dict[str, Any]:
-        """
-        调用兼容 OpenAI 格式的多模态大模型进行残字释读与推演；
-        若无 API Key 则自动调用金石学术语规则知识库进行智能推演兜底。
-        """
-        # 如果提供了 API Key 则发起真实请求
-        if api_key and api_key.strip():
-            client_base = base_url.strip() if base_url and base_url.strip() else "https://api.openai.com/v1"
-            m_name = model_name.strip() if model_name and model_name.strip() else "gpt-4o"
-            prompt = (
-                f"你是一位精通中国古代金石学、汉字学（六书说文解字）与石刻文献考证的专家。"
-                f"已知该碑刻上下文为：‘{context_text}’，请根据上下文文献词库搭配、朝代制度规制及图像微痕残迹，"
-                f"推演该漫漶残字的最可能候选字 Top-3，输出 JSON 格式："
-                f"[{'char': '字', 'prob': 90.0, 'rationale': '考据依据'}]"
-            )
-            try:
-                async with httpx.AsyncClient(timeout=15.0) as client:
-                    headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
-                    payload = {
-                        "model": m_name,
-                        "messages": [
-                            {
-                                "role": "user",
-                                "content": [
-                                    {"type": "text", "text": prompt},
-                                    {"type": "image_url", "image_url": {"url": image_crop_b64}},
-                                ],
-                            }
-                        ],
-                        "temperature": 0.2,
-                    }
-                    resp = await client.post(f"{client_base}/chat/completions", headers=headers, json=payload)
-                    if resp.status_code == 200:
-                        data = resp.json()
-                        text_content = data["choices"][0]["message"]["content"]
-                        # 尝试解析 JSON
-                        import re
-                        m = re.search(r"\[.*\]", text_content, re.DOTALL)
-                        if m:
-                            parsed = json.loads(m.group(0))
-                            return {"source": "llm", "candidates": parsed}
-            except Exception as e:
-                logger.warning(f"多模态 LLM 请求失败，回退到离线推演引擎: {e}")
-
-        # 离线推演引擎逻辑
-        # 针对典型上下文的启发式匹配
-        if "慶歸法" in context_text or "法胤" in context_text:
-            return {
-                "source": "knowledge_rule",
-                "candidates": [
-                    {"char": "胤", "prob": 91.2, "rationale": "【金石学佛门规制】‘慶歸法胤’为佛教碑铭高频宗系套语，残存月部及乚笔画拓扑吻合。"},
-                    {"char": "嗣", "prob": 6.4, "rationale": "法嗣虽通，但残字横画结构不显。"},
-                    {"char": "統", "prob": 2.4, "rationale": "法统偏后世用词，置信度较低。"},
-                ],
-            }
-        elif "尚書" in context_text or "都官" in context_text:
-            return {
-                "source": "knowledge_rule",
-                "candidates": [
-                    {"char": "檢", "prob": 88.7, "rationale": "【唐代职官制】‘檢校尚書都官郎中’，徐浩本官定称，木字旁微痕隐约。"},
-                    {"char": "撿", "prob": 8.1, "rationale": "碑刻异体俗写。"},
-                    {"char": "僉", "prob": 3.2, "rationale": "略见古籍残存。"},
-                ],
-            }
-        elif "敦煌" in context_text or "穀" in context_text:
-            return {
-                "source": "knowledge_rule",
-                "candidates": [
-                    {"char": "效", "prob": 93.5, "rationale": "【汉书地理志】敦煌郡效谷县，曹全祖籍，左部交字波磔极清晰。"},
-                    {"char": "郊", "prob": 4.5, "rationale": "音近通假字。"},
-                    {"char": "校", "prob": 2.0, "rationale": "形近误认。"},
-                ],
-            }
-        elif "岸谷更" in context_text or "玄石" in context_text:
-            return {
-                "source": "knowledge_rule",
-                "candidates": [
-                    {"char": "遷", "prob": 87.9, "rationale": "【北魏悼亡套语】‘恐岸谷更遷，勒玄石以傳之’，化用《诗经》典故。"},
-                    {"char": "變", "prob": 8.3, "rationale": "岸谷更变南朝罕见借用。"},
-                    {"char": "移", "prob": 3.8, "rationale": "单字移不谐北魏骈俪文风。"},
-                ],
-            }
-        elif "假黃" in context_text or "都督" in context_text:
-            return {
-                "source": "knowledge_rule",
-                "candidates": [
-                    {"char": "鉞", "prob": 90.4, "rationale": "【北魏亲王殊礼】‘假黄钺都督中外诸军事’，元怀追崇官阶殊礼。"},
-                    {"char": "越", "prob": 6.8, "rationale": "走字旁假象。"},
-                    {"char": "钺", "prob": 2.8, "rationale": "现代简体字。"},
-                ],
-            }
-
-        # 默认推演输出
-        return {
-            "source": "statistical_prior",
-            "candidates": [
-                {"char": "銘", "prob": 82.5, "rationale": "【碑志固定结构】石刻结语常作‘勒铭玄石’，金字旁微痕可辨。"},
-                {"char": "文", "prob": 11.2, "rationale": "石刻常称‘铭文’或‘碑文’。"},
-                {"char": "辭", "prob": 6.3, "rationale": "悼亡颂辞常用意象。"},
-            ],
-        }
+    async def deduce_character_llm(self, image_crop_b64: str, context_text: str) -> Dict[str, Any]:
+        """Delegate an actual crop to the configured visual model or labelled context rule."""
+        import base64
+        from glyph_inference import _suggest
+        if not image_crop_b64.startswith('data:image/png;base64,'):
+            raise ValueError('需要真实 PNG 残字局部图像')
+        image_bytes = base64.b64decode(image_crop_b64.split(',', 1)[1], validate=True)
+        if not image_bytes:
+            raise ValueError('残字局部图像为空')
+        return await _suggest(image_bytes, context_text)
 
 
 # 全局单例
