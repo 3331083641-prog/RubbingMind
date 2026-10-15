@@ -93,6 +93,16 @@ def test_health_then_generate():
     assert client.get('/health').json()['status']=='healthy'
     assert client.get('/generate?stele_id=han-caoquan').json()['steleId']=='han-caoquan'
 
+
+@pytest.mark.parametrize('core,museum', [('han-caoquan', 'han_01_caoquan'), ('tang-duobao', 'tang_01_duobao')])
+def test_graph_images_use_reviewed_rubbings(core, museum):
+    from catalog import museum_records
+    record = next(r for r in museum_records() if r['id'] == museum)
+    offline = json.loads((ROOT / 'data/history' / f'{core}.json').read_text(encoding='utf-8'))
+    online = client.get(f'/api/steles/{core}/graph').json()
+    assert offline['image'] == online['image'] == record['imageAssets']['readable']
+    assert record['collectionNumber'].replace('購', '购').replace('贈', '赠') in online['collectionNumber']
+
 def test_admin_region_containment():
     from scripts.validate_history_gis import validate
     assert len(validate())==12
