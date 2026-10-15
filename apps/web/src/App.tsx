@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { lazy, Suspense, useState, useEffect } from 'react';
 import { SteleItem } from './types/stele';
 import { SteleService, FALLBACK_STELES, backendAvailable } from './services/api';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { UploadModal } from './components/UploadModal';
 import { HomePage } from './pages/HomePage';
-import { MuseumPage } from './pages/MuseumPage';
-import { WorkbenchPage } from './pages/WorkbenchPage';
-import { GraphPage } from './pages/GraphPage';
-import { ReportsPage } from './pages/ReportsPage';
+const MuseumPage = lazy(() => import('./pages/MuseumPage').then(module => ({default:module.MuseumPage})));
+const WorkbenchPage = lazy(() => import('./pages/WorkbenchPage').then(module => ({default:module.WorkbenchPage})));
+const GraphPage = lazy(() => import('./pages/GraphPage').then(module => ({default:module.GraphPage})));
+const ReportsPage = lazy(() => import('./pages/ReportsPage').then(module => ({default:module.ReportsPage})));
 import { graphSelectionItems, resolveCoreId } from './data/graphSelection';
 import { CORE_SAMPLES, resolveSelected } from './data/catalogSelection';
 import { VerifiedMuseumGraph } from './components/VerifiedMuseumGraph';
@@ -65,6 +65,7 @@ export const App: React.FC = () => {
 
       {/* Main Dynamic View with 300ms Fade Transition */}
       <main className="flex-1 transition-opacity duration-300">
+        <Suspense fallback={<div role="status" className="p-8 text-gold">正在载入当前页面…</div>}>
         {currentTab === 'home' && (
           <HomePage
             steles={steles}
@@ -106,6 +107,7 @@ export const App: React.FC = () => {
             onNavigate={setCurrentTab}
           />
         )}
+        </Suspense>
       </main>
 
       {/* Footer */}

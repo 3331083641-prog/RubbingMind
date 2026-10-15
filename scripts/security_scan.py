@@ -25,6 +25,8 @@ IGNORED_DIRS = {
 IGNORED_FILES = {
     "security_scan.py", "package-lock.json"
 }
+TEXT_EXTENSIONS = {'.py', '.ts', '.tsx', '.js', '.json', '.md', '.txt', '.yaml', '.yml',
+                   '.ps1', '.bat', '.toml', '.ini', '.css', '.html', '.sh', '.csv'}
 
 def scan_repository(root_dir="."):
     findings = []
@@ -34,7 +36,7 @@ def scan_repository(root_dir="."):
     for root, dirs, files in os.walk(root_dir):
         dirs[:] = [d for d in dirs if d not in IGNORED_DIRS and not d.startswith('node_modules.partial-')]
         for f in files:
-            if f in IGNORED_FILES or f.endswith(('.png', '.jpg', '.jpeg', '.webp', '.zip', '.pdf', '.woff', '.woff2', '.ttf')):
+            if f in IGNORED_FILES or os.path.splitext(f)[1].lower() not in TEXT_EXTENSIONS:
                 continue
             
             filepath = os.path.join(root, f)

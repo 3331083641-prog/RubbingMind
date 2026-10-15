@@ -1,55 +1,59 @@
-# -*- coding: utf-8 -*-
-Write-Host "==========================================================================" -ForegroundColor Yellow
-Write-Host "  《墨韵智考》——金石碑拓微痕修复与智能史料考据系统 (RubbingMind Pro 2.0)" -ForegroundColor Cyan
-Write-Host "  全球校园人工智能算法精英大赛（智能文化赛道）全栈运行环境启动" -ForegroundColor DarkYellow
-Write-Host "==========================================================================" -ForegroundColor Yellow
+﻿$ErrorActionPreference = 'Stop'
+$projectRoot = $PSScriptRoot
+$webRoot = Join-Path $projectRoot 'apps/web'
+$distIndex = Join-Path $webRoot 'dist/index.html'
+$runtime = Join-Path $projectRoot 'data/runtime'
+$statePath = Join-Path $runtime 'server-process.json'
 
-$projectRoot = "D:\RubbingMind"
-Set-Location $projectRoot
-
-# 1. 检查端口占用并清理
-$existingConn = Get-NetTCPConnection -LocalPort 8000 -ErrorAction SilentlyContinue
-if ($existingConn) {
-    Write-Host "[!] 检测到 8000 端口已被占用，正在释放..." -ForegroundColor Yellow
-    $pidToKill = $existingConn.OwningProcess | Select-Object -Unique
-    Stop-Process -Id $pidToKill -Force -ErrorAction SilentlyContinue
-    Start-Sleep -Seconds 1
-}
-
-# 2. 检查前端生产构建
-$distIndex = Join-Path $projectRoot "apps\web\dist\index.html"
-if (-not (Test-Path $distIndex)) {
-    Write-Host "[*] 检测到前端尚未构建，正在编译 React + Three.js 现代化大屏..." -ForegroundColor Cyan
-    Set-Location (Join-Path $projectRoot "apps\web")
-    npm run build
-    Set-Location $projectRoot
-}
-
-# 3. 启动 FastAPI 后端服务
-Write-Host "[*] 正在启动 FastAPI 后端服务 (http://127.0.0.1:8000)..." -ForegroundColor Green
-$serverJob = Start-Process python -ArgumentList "main.py" -WorkingDirectory $projectRoot -PassThru -WindowStyle Hidden
-
-# 4. 等待服务就绪
-$ready = $false
-for ($i = 0; $i -lt 15; $i++) {
-    Start-Sleep -Milliseconds 800
-    try {
-        $resp = Invoke-RestMethod -Uri "http://127.0.0.1:8000/api/health" -Method Get -TimeoutSec 2
-        if ($resp.status -eq "healthy") {
-            $ready = $true
-            break
-        }
-    } catch {
-        # continue waiting
+if (Test-Path $statePath) {
+    $old = Get-Content -Raw -Encoding UTF8 $statePath | ConvertFrom-Json
+    $running = Get-CimInstance Win32_Process -Filter "ProcessId=$($old.pid)" -ErrorAction SilentlyContinue
+    if ($running -and $running.CommandLine.Contains('uvicorn main:app') -and $running.CommandLine.Contains($projectRoot)) {
+        Write-Host "本项目服务已经启动：http://127.0.0.1:$($old.port)"
+        exit 0
     }
+    Remove-Item -LiteralPath $statePath
 }
-
-if ($ready) {
-    Write-Host "[✓] 《墨韵智考》前后端服务已成功启动！" -ForegroundColor Green
-    Write-Host "    - 服务主入口: http://127.0.0.1:8000" -ForegroundColor Cyan
-    Write-Host "    - OpenAPI 文档: http://127.0.0.1:8000/docs" -ForegroundColor DarkCyan
-    Write-Host "    - 正在自动打开默认浏览器访问系统..." -ForegroundColor Yellow
-    Start-Process "http://127.0.0.1:8000"
-} else {
-    Write-Host "[×] 服务启动超时，请运行 check.ps1 检查日志及依赖环境。" -ForegroundColor Red
+if (-not (Get-Command python -ErrorAction SilentlyContinue)) { throw '未找到 Python，请先安装依赖。' }
+if (-not (Get-Command npm -ErrorAction SilentlyContinue)) { throw '未找到 npm，请先安装 Node.js。' }
+if (-not (Test-Path (Join-Path $webRoot 'node_modules'))) {
+    Push-Location $webRoot
+    try { & npm ci; if ($LASTEXITCODE -ne 0) { throw 'npm ci 失败' } }
+    finally { Pop-Location }
 }
+$sourceFiles = Get-ChildItem (Join-Path $webRoot 'src') -Recurse -File
+$sourceFiles += Get-Item (Join-Path $webRoot 'index.html')
+$needsBuild = -not (Test-Path $distIndex)
+if (-not $needsBuild) {
+    $builtAt = (Get-Item $distIndex).LastWriteTimeUtc
+    $needsBuild = [bool]($sourceFiles | Where-Object LastWriteTimeUtc -GT $builtAt | Select-Object -First 1)
+}
+if ($needsBuild) {
+    Push-Location $webRoot
+    try { & npm run build; if ($LASTEXITCODE -ne 0) { throw '前端构建失败' } }
+    finally { Pop-Location }
+}
+New-Item -ItemType Directory -Path $runtime -Force | Out-Null
+$port = 8000
+while (Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinue) { $port++ }
+if ($port -gt 8100) { throw '8000–8100 端口均已占用。' }
+$logPath = Join-Path $runtime 'server.log'
+$errPath = Join-Path $runtime 'server-error.log'
+$process = Start-Process python -ArgumentList @('-m','uvicorn','main:app','--app-dir',"`"$projectRoot`"",'--host','127.0.0.1','--port',"$port") -WorkingDirectory $projectRoot -RedirectStandardOutput $logPath -RedirectStandardError $errPath -PassThru -WindowStyle Hidden
+$ready = $false
+for ($i = 0; $i -lt 25; $i++) {
+    Start-Sleep -Milliseconds 500
+    if ($process.HasExited) { break }
+    try {
+        $health = Invoke-RestMethod "http://127.0.0.1:$port/health" -TimeoutSec 2
+        $generated = Invoke-RestMethod "http://127.0.0.1:$port/generate" -Method Post -TimeoutSec 5
+        if ($health.status -eq 'healthy' -and $generated) { $ready = $true; break }
+    } catch {}
+}
+if (-not $ready) {
+    if (-not $process.HasExited) { Stop-Process -Id $process.Id -ErrorAction SilentlyContinue }
+    throw "服务未通过 /health 和 /generate 检查。查看 $errPath"
+}
+@{ pid = $process.Id; port = $port; root = $projectRoot; startedAt = (Get-Date).ToUniversalTime().ToString('o') } |
+    ConvertTo-Json | Set-Content -Encoding UTF8 $statePath
+Write-Host "墨韵智考已启动：http://127.0.0.1:$port"
