@@ -31,6 +31,10 @@ export const SteleService = {
     catch { const r=selected(id);return {ablation:[],evaluation_summary:'未评测：未建立配对真值或消融实验记录。',scholarly_analysis:r.description || r.summary,rubbing_dimensions:r.dimensions,epigraphic_conclusion:`《${r.title}》以馆藏记录为依据；未形成新增残字定论。`}; }
   },
   async uploadRubbing(formData: FormData): Promise<{success:boolean;stele:SteleItem}> {
-    const res=await fetch('/api/upload',{method:'POST',body:formData});if(!res.ok) throw new Error('Upload failed');return await res.json();
+    let res: Response;
+    try { res=await fetch('/api/upload',{method:'POST',body:formData}); }
+    catch { throw new Error('后端不可用，上传未保存'); }
+    if(!res.ok){const body=await res.json().catch(()=>({}));throw new Error(typeof body.detail==='string'?body.detail:`上传失败（HTTP ${res.status}）`);}
+    return await res.json();
   }
 };

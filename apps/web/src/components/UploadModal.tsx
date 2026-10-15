@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Upload, Check, AlertCircle } from 'lucide-react';
 import { SteleItem } from '../types/stele';
 import { SteleService } from '../services/api';
@@ -20,11 +20,15 @@ export const UploadModal: React.FC<UploadModalProps> = ({ isOpen, onClose, onUpl
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
+  useEffect(() => () => { if (previewUrl) URL.revokeObjectURL(previewUrl); }, [previewUrl]);
+
   if (!isOpen) return null;
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const selected = e.target.files[0];
+      setErrorMsg('');
+      if (selected.size > 12 * 1024 * 1024) { setFile(null); setErrorMsg('文件超过 12 MiB 限制'); return; }
       setFile(selected);
       const url = URL.createObjectURL(selected);
       setPreviewUrl(url);
@@ -48,7 +52,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({ isOpen, onClose, onUpl
       formData.append('file', file);
       formData.append('title', title);
       formData.append('dynasty', dynasty);
-      formData.append('author', author || '佚名书家');
+      formData.append('author', author);
       formData.append('script_type', scriptType);
       formData.append('weathering_level', weathering);
 
@@ -60,37 +64,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({ isOpen, onClose, onUpl
         throw new Error('上传返回格式错误');
       }
     } catch (err) {
-      // Local graceful fallback if backend upload encounters file permission or proxy issues
-      const newId = `custom-${Date.now()}`;
-      const mockNewStele: SteleItem = {
-        id: newId,
-        title: title || '新上传珍稀拓片',
-        dynasty: dynasty,
-        author: author || '历代金石大匠',
-        script_type: scriptType,
-        weathering_level: weathering,
-        year: '考据中...',
-        ganzhi: '待研判',
-        location: '民间珍藏',
-        museum: '个人数字藏馆',
-        dimensions: '待红外测定',
-        summary: `新收录金石拓片《${title}》，待进行频空域联合去噪与字格比对。`,
-        historical_context: '通过多模态智能体初筛，该碑刻兼具重要文献勘正价值。',
-        badges: ['新上传样本', '待全字勘校', weathering],
-        raw_image: previewUrl || '/assets/stele/rubbings/stele_tang_duobao_damaged.png',
-        clean_image: previewUrl || '/assets/stele/rubbings/stele_tang_duobao_clean.png',
-        damaged_image: previewUrl || '/assets/stele/rubbings/stele_tang_duobao_damaged.png',
-        metrics: {
-          psnr: 28.5,
-          ssim: 0.865,
-          snr_gain: 13.2,
-          glyph_completeness: 88.0,
-          character_accuracy: 91.5
-        },
-        translation: '碑文录入考据中，已启动 GraphRAG 时空谱系比对...'
-      };
-      onUploaded(mockNewStele);
-      onClose();
+      setErrorMsg(err instanceof Error ? err.message : '上传失败，请检查文件与后端服务');
     } finally {
       setLoading(false);
     }
@@ -125,7 +99,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({ isOpen, onClose, onUpl
           <div className="border-2 border-dashed border-gold/30 hover:border-gold/60 rounded-xl p-4 text-center cursor-pointer transition-colors bg-xuan-panel/50 relative">
             <input 
               type="file" 
-              accept="image/*" 
+              accept="image/png,image/jpeg,image/webp" 
               onChange={handleFileChange}
               className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
             />

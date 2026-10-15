@@ -12,9 +12,13 @@ def process_verified_request(req, manager, engine):
     if req.image_base64:
         image=req.image_base64
     elif record:
-        url=(record.get('damaged_image') or record['raw_image']).split('?')[0]
-        image=BASE/'apps/web/public'/url.lstrip('/')
-        if not image.is_file():raise HTTPException(status_code=404,detail='该文物处理图像缺失')
+        if record.get('source_kind') == 'user_upload':
+            from upload_storage import image_path
+            image=image_path(record['id'])
+        else:
+            url=(record.get('damaged_image') or record['raw_image']).split('?')[0]
+            image=BASE/'apps/web/public'/url.lstrip('/')
+        if image is None or not image.is_file():raise HTTPException(status_code=404,detail='该文物处理图像缺失')
         image=str(image)
     elif req.sample_id in ('sample_1.png','sample_2.png','sample_3.png','sample_4.png'):
         image=str(BASE/'static/samples'/req.sample_id)

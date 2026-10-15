@@ -7,6 +7,7 @@
 import os
 import sys
 import logging
+import io
 from contextlib import asynccontextmanager
 from typing import Optional, List, Dict, Any, Literal
 
@@ -15,6 +16,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
+from PIL import Image, UnidentifiedImageError
 
 from sample_generator import ensure_samples, SAMPLES_DIR, BASE_DIR
 from algorithm_engine import algorithm_engine, safe_read_image, mat_to_base64
@@ -22,6 +24,7 @@ from knowledge_agent import knowledge_agent, AUTHENTIC_RUBBING_DATABASE
 from museum_manager import museum_manager
 from catalog import inference as catalog_inference, report as catalog_report, graph as catalog_graph
 from museum_processing import process_verified_request
+from upload_storage import create_upload, get_upload, image_path
 
 logging.basicConfig(level=logging.INFO, format="[%(asctime)s] %(levelname)s: %(message)s")
 logger = logging.getLogger("RubbingMindApp")
@@ -259,60 +262,55 @@ async def process_rubbing(req: ProcessRequest):
 async def upload_custom_image(
     file: UploadFile = File(...),
     title: str = Form("用户上传碑拓"),
-    dynasty: str = Form("唐代"),
-    author: str = Form("佚名书家"),
+    dynasty: str = Form("未考证"),
+    author: str = Form(""),
     script_type: str = Form("楷书"),
     weathering_level: str = Form("重度风化"),
 ):
-    """处理用户上传的自定义拓片图像"""
+    """Validate and persist a user-owned image without inventing a restoration result."""
+    max_bytes = 12 * 1024 * 1024
+    mime_to_format = {'image/png': 'png', 'image/jpeg': 'jpeg', 'image/webp': 'webp'}
+    if file.content_type not in mime_to_format:
+        raise HTTPException(status_code=415, detail='仅支持 PNG、JPG 或 WEBP 图像')
     try:
-        content = await file.read()
-        if len(content) < 100:
-            raise HTTPException(status_code=400, detail="上传文件为空或无效")
+        content = await file.read(max_bytes + 1)
+        if len(content) > max_bytes:
+            raise HTTPException(status_code=413, detail='文件超过 12 MiB 限制')
+        if not content:
+            raise HTTPException(status_code=400, detail='文件为空')
+        with Image.open(io.BytesIO(content)) as image:
+            actual_format = image.format.lower()
+            width, height = image.size
+            if actual_format != mime_to_format[file.content_type]:
+                raise HTTPException(status_code=415, detail='文件内容与 MIME 类型不一致')
+            if min(width, height) < 32 or max(width, height) > 5000 or width * height > 12_000_000:
+                raise HTTPException(status_code=413, detail='图像尺寸超出 32–5000 像素或 1200 万像素限制')
+            image.verify()
+        if not title.strip() or len(title.strip()) > 120:
+            raise HTTPException(status_code=422, detail='名称长度需为 1–120 个字符')
+        new_stele = create_upload(content, actual_format, width, height, {
+            'title': title.strip(), 'dynasty': dynasty[:40], 'author': author[:120],
+            'script_type': script_type[:40], 'weathering_level': weathering_level[:40]
+        })
+        return {'success': True, 'stele': new_stele}
+    except (UnidentifiedImageError, OSError, Image.DecompressionBombError):
+        raise HTTPException(status_code=400, detail='图像损坏或无法解码')
+    except HTTPException:
+        raise
+    except Exception:
+        logger.exception('用户图像保存失败')
+        raise HTTPException(status_code=500, detail='服务端保存失败，未创建上传记录')
+    finally:
+        await file.close()
 
-        result = algorithm_engine.process_rubbing(
-            image_input=content,
-            d0=45.0,
-            nlm_h=10.0,
-            clahe_clip=2.5,
-            morph_kernel=3,
-            cinnabar_style="cinnabar",
-        )
-        
-        new_id = f"custom-{len(AUTHENTIC_RUBBING_DATABASE) + 1}"
-        new_stele = {
-            "id": new_id,
-            "title": title,
-            "dynasty": dynasty,
-            "author": author,
-            "script_type": script_type,
-            "weathering_level": weathering_level,
-            "year": "考据中...",
-            "ganzhi": "待研判",
-            "location": "民间珍藏",
-            "museum": "个人数字藏馆",
-            "dimensions": "待测定",
-            "summary": f"新收录金石拓片《{title}》，待进行频空域联合去噪与字格比对。",
-            "historical_context": "通过多模态智能体初筛，该碑刻兼具重要文献勘正价值。",
-            "badges": ["新上传样本", weathering_level, script_type],
-            "raw_image": result.get("images", {}).get("original", ""),
-            "clean_image": result.get("images", {}).get("restored", ""),
-            "damaged_image": result.get("images", {}).get("original", ""),
-            "restored_image": result.get("images", {}).get("restored", ""),
-            "metrics": {
-                "psnr": result.get("metrics", {}).get("psnr", 32.5),
-                "ssim": result.get("metrics", {}).get("ssim", 0.912),
-                "snr_gain": 15.2,
-                "glyph_completeness": 92.0,
-                "character_accuracy": 94.5
-            },
-            "translation": "碑文录入考据中，已启动 GraphRAG 时空谱系比对..."
-        }
-        
-        return {"success": True, "stele": new_stele}
-    except Exception as e:
-        logger.error(f"自定义上传拓片处理失败: {e}", exc_info=True)
-        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get('/api/uploads/{upload_id}/image')
+async def get_uploaded_image(upload_id: str):
+    record = get_upload(upload_id)
+    path = image_path(upload_id) if record else None
+    if path is None or not path.is_file():
+        raise HTTPException(status_code=404, detail='上传图像不存在')
+    return FileResponse(path, media_type={'png': 'image/png', 'jpeg': 'image/jpeg', 'webp': 'image/webp'}[record['uploadFormat']])
 
 
 @app.post("/api/calendar")

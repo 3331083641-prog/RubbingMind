@@ -2,12 +2,15 @@
 from collections import Counter
 from catalog import BASE,load,museum_records
 import json
+from upload_storage import get_upload, list_uploads
 class MuseumManager:
     def __init__(self):
         self.steles=museum_records();self.cores=load('core_samples.json')
         self.retired={r['oldId']:r for r in load('replacement_mapping.json')};self.aliases=load('review_aliases.json')
-    def get_all_steles(self):return self.steles
+    def get_all_steles(self):return self.steles+list_uploads()
     def get_stele_by_id(self,stele_id):
+        if stele_id.startswith('upload-'):
+            return get_upload(stele_id)
         target=self.aliases.get(stele_id,stele_id)
         for r in self.steles+self.cores:
             if r['id']==target:return r
