@@ -473,7 +473,7 @@ export const SteleViewer: React.FC<SteleViewerProps> = ({
           <p className="text-slate-200 leading-relaxed font-sans">{selectedHotspot.desc}</p>
           <div className="mt-2.5 pt-2 border-t border-slate-800 flex items-center justify-between">
             <span className="text-[11px] font-mono text-cinnabar-light">
-              后验概率: {(selectedHotspot.confidence * 100).toFixed(1)}%
+              交互演示评分: {(selectedHotspot.confidence * 100).toFixed(1)}%（非实测概率）
             </span>
             {onOpenWorkbench && (
               <button

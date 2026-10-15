@@ -13,6 +13,8 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = ({ steles, onSelectStele, onNavigate }) => {
   const currentStele = CORE_SAMPLES[0];
+  const verifiedSteles = steles.filter(item => item.source_kind === 'verified_review_v3');
+  const dynastyCount = new Set(verifiedSteles.map(item => item.dynasty_value)).size;
   const [isFullscreen3D, setIsFullscreen3D] = useState(false);
 
   return (
@@ -47,32 +49,32 @@ export const HomePage: React.FC<HomePageProps> = ({ steles, onSelectStele, onNav
 
             <p className="text-slate-300 font-sans text-sm md:text-base leading-relaxed max-w-2xl text-justify">
               针对历代传世金石碑拓因自然风化、漫漶残缺、纸墨斑驳及拓工织纹干扰造成的字口微痕丢失难题，
-              系统开创性融合 <span className="text-gold font-serif">二维傅里叶变换频域陷波</span> 与 <span className="text-gold font-serif">空域快速非局部均值保边滤波</span>，
-              并构筑 <span className="text-celadon-light font-serif">GraphRAG 时空知识图谱</span> 与 <span className="text-celadon-light font-serif">贝叶斯字形残缺推演引擎</span>，
-              实现从“物理微痕恢复”到“史实多源互勘”的全链条数字人文科研范式。
+              系统提供二维傅里叶频域低通与有条件自动陷波、空域非局部均值及对比度增强，
+              并结合可追溯的馆藏资料、时空关系展示与人工确认的残字候选。
+              无真值拓片的处理结果不会被标为已验证的原字复原。
             </p>
 
             {/* 4 Stats Cards */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
               <div className="glass-panel p-3.5 rounded-xl border border-gold/20 flex flex-col">
-                <span className="text-[11px] text-slate-400 font-serif">去噪信噪比增益</span>
-                <div className="text-2xl font-serif font-bold text-gold-light mt-1">+18.6 <span className="text-xs font-normal">dB</span></div>
-                <span className="text-[10px] text-celadon-light mt-0.5">演示指标；不代表馆藏实测</span>
+                <span className="text-[11px] text-slate-400 font-serif">已核验真实馆藏</span>
+                <div className="text-2xl font-serif font-bold text-gold-light mt-1">{verifiedSteles.length} <span className="text-xs font-normal">件</span></div>
+                <span className="text-[10px] text-celadon-light mt-0.5">依据逐件来源清单</span>
               </div>
               <div className="glass-panel p-3.5 rounded-xl border border-gold/20 flex flex-col">
-                <span className="text-[11px] text-slate-400 font-serif">残字推演置信度</span>
-                <div className="text-2xl font-serif font-bold text-cinnabar-light mt-1">97.4 <span className="text-xs font-normal">%</span></div>
-                <span className="text-[10px] text-slate-400 mt-0.5">多模态字形拓扑对齐</span>
+                <span className="text-[11px] text-slate-400 font-serif">覆盖历史时期</span>
+                <div className="text-2xl font-serif font-bold text-cinnabar-light mt-1">{dynastyCount} <span className="text-xs font-normal">个</span></div>
+                <span className="text-[10px] text-slate-400 mt-0.5">以原刻年代归类</span>
               </div>
               <div className="glass-panel p-3.5 rounded-xl border border-gold/20 flex flex-col">
-                <span className="text-[11px] text-slate-400 font-serif">历代碑拓标本</span>
-                <div className="text-2xl font-serif font-bold text-slate-100 mt-1">120 <span className="text-xs font-normal">通+</span></div>
-                <span className="text-[10px] text-slate-400 mt-0.5">覆盖汉隶/魏碑/盛唐楷书</span>
+                <span className="text-[11px] text-slate-400 font-serif">核心算法样本</span>
+                <div className="text-2xl font-serif font-bold text-slate-100 mt-1">{CORE_SAMPLES.length} <span className="text-xs font-normal">件</span></div>
+                <span className="text-[10px] text-slate-400 mt-0.5">与正式馆藏独立管理</span>
               </div>
               <div className="glass-panel p-3.5 rounded-xl border border-gold/20 flex flex-col">
-                <span className="text-[11px] text-slate-400 font-serif">金石时空实体</span>
-                <div className="text-2xl font-serif font-bold text-celadon-light mt-1">350 <span className="text-xs font-normal">个+</span></div>
-                <span className="text-[10px] text-slate-400 mt-0.5">GraphRAG 历史谱系网络</span>
+                <span className="text-[11px] text-slate-400 font-serif">有来源馆藏</span>
+                <div className="text-2xl font-serif font-bold text-celadon-light mt-1">{verifiedSteles.filter(item => Boolean(item.sourceUrl)).length} <span className="text-xs font-normal">件</span></div>
+                <span className="text-[10px] text-slate-400 mt-0.5">可查看馆藏出处</span>
               </div>
             </div>
 
@@ -162,12 +164,12 @@ export const HomePage: React.FC<HomePageProps> = ({ steles, onSelectStele, onNav
                 <h3 className="text-lg font-serif font-bold text-slate-100 mt-1">频空域联合滤波去噪</h3>
               </div>
               <p className="text-xs text-slate-300 leading-relaxed text-justify">
-                采用二维离散傅里叶变换（2D-FFT）提取频域频谱，利用高斯陷波滤波器精确压制拓布经纬纸纹；配合空域快速非局部均值（Fast NLM）和自适应直方图均衡化（CLAHE），在抑制杂波的同时锐化笔画边缘。
+                采用二维离散傅里叶变换（2D-FFT），提供高斯及 Butterworth 低通；仅在检测到显著对称周期峰时采用自动陷波。随后可使用 Fast NLM 与 CLAHE。效果取决于退化类型。
               </p>
             </div>
             <div className="pt-4 border-t border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
-              <span>PSNR 提升 +11.1 dB</span>
-              <span className="text-gold font-mono font-medium">SSIM 0.9482</span>
+              <span>受控退化实验可复现</span>
+              <span className="text-gold font-mono font-medium">无真值时未评测</span>
             </div>
           </div>
 
@@ -179,15 +181,15 @@ export const HomePage: React.FC<HomePageProps> = ({ steles, onSelectStele, onNav
               </div>
               <div>
                 <span className="text-[11px] font-mono text-cinnabar/80">STAGE 02 · 智能释读</span>
-                <h3 className="text-lg font-serif font-bold text-slate-100 mt-1">字形拓扑与贝叶斯残字推演</h3>
+                <h3 className="text-lg font-serif font-bold text-slate-100 mt-1">残字选区与候选推演</h3>
               </div>
               <p className="text-xs text-slate-300 leading-relaxed text-justify">
-                抽取残损字符的细化骨架拓扑（Skeleton Topology），结合古籍语言模型先验概率与字形相似度似然度，通过贝叶斯公式计算 Top-3 残字候选集合，给出历史引证与置信度量化打分。
+                用户可手动框选实际残字、填写邻近上下文并保存裁切图。配置可选视觉模型时提交图像建议；服务不可用时仅显示明确标注的规则候选，采纳须人工确认。
               </p>
             </div>
             <div className="pt-4 border-t border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
-              <span>Top-1 置信度 97.4%</span>
-              <span className="text-cinnabar-light font-mono font-medium">贝叶斯后验概率</span>
+              <span>候选未经概率校准</span>
+              <span className="text-cinnabar-light font-mono font-medium">支持撤销采纳</span>
             </div>
           </div>
 
@@ -202,12 +204,12 @@ export const HomePage: React.FC<HomePageProps> = ({ steles, onSelectStele, onNav
                 <h3 className="text-lg font-serif font-bold text-slate-100 mt-1">GraphRAG 时空谱系与 GIS 舆图</h3>
               </div>
               <p className="text-xs text-slate-300 leading-relaxed text-justify">
-                自动构建金石人物、官职秩品、地理沿革与正史古籍的多层关联网络。配备天干地支历法换算引擎与历史 GIS 时空行旅轨迹，完成从单一字词到宏观历史脉络的闭环互证。
+                展示已整理的金石人物、藏所与历史地点资料，并提供来源链接和定位精度说明。文献关联图仅辅助检索，推断关系仍需人工核实。
               </p>
             </div>
             <div className="pt-4 border-t border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
-              <span>350+ 知识实体节点</span>
-              <span className="text-celadon-light font-mono font-medium">多源史料互证</span>
+              <span>馆藏与地点分别标注</span>
+              <span className="text-celadon-light font-mono font-medium">来源可查</span>
             </div>
           </div>
         </div>
@@ -224,7 +226,7 @@ export const HomePage: React.FC<HomePageProps> = ({ steles, onSelectStele, onNav
             onClick={() => onNavigate('museum')}
             className="text-xs text-gold hover:underline flex items-center space-x-1 font-serif"
           >
-            <span>查看典藏馆全部碑拓 ({steles.length})</span>
+            <span>查看典藏馆全部碑拓 ({verifiedSteles.length})</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>

@@ -2,7 +2,7 @@
 """
 墨韵智考（RubbingMind）- 金石学考据数据包与多模态智能体推演引擎
 包含：
-1. 与 4 张样本 100% 逐字吻合的结构化金石考据与人物/官制/时空轨迹库
+1. 四件核心演示样本的预置释文及待复核史料关系
 2. 预置演示释文资料；实际残字选区由 glyph_inference.py 单独处理
 3. 异体字与避讳字消歧引擎
 4. 中国古代干支历法与年号公历双向精确换算器
@@ -367,6 +367,17 @@ AUTHENTIC_RUBBING_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
     },
 }
+
+
+for _sample in AUTHENTIC_RUBBING_DATABASE.values():
+    # Older sample packs contain hand-authored percentages and mock ablation
+    # rows. They are retained in version history, not exposed as measurements.
+    _sample.pop("ablation_experiments", None)
+    _sample["evidence_status"] = "预置演示释文；未进行本图残字检测或概率校准"
+    for _fragment in _sample.get("damaged_characters", []):
+        for _candidate in _fragment.get("candidates", []):
+            _candidate.pop("prob", None)
+            _candidate["rationale"] = "预置释文候选；未核验本图局部笔画，需人工对照原始图像与文献。"
 
 
 class KnowledgeAgentEngine:
