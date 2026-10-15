@@ -76,3 +76,14 @@ def test_real_processing_uses_selected_image_and_saves_result(monkeypatch,tmp_pa
     assert result['stele_id']=='qing_02_wushi_reerection' and result['psnr'] is None
     assert (tmp_path/result['restored_image'].lstrip('/')).is_file()
     assert result['engineDiagnosticMetrics']['input_output_mean_absolute_difference']==2.5
+    run_id=result['runId']
+    client=TestClient(app)
+    history=client.get('/api/steles/qing_02_wushi_reerection/runs').json()
+    assert history[0]['runId']==run_id
+    assert history[0]['inputImageSha256'] and history[0]['outputSha256']['restored']
+    report=client.get(f'/api/steles/qing_02_wushi_reerection/report?run_id={run_id}').json()
+    assert report['run']['runId']==run_id and report['run']['evaluationStatus']=='unassessed'
+    assert report['reportId'].endswith(run_id)
+    assert client.delete(f'/api/steles/qing_02_wushi_reerection/runs/{run_id}').status_code==400
+    assert client.delete(f'/api/steles/qing_02_wushi_reerection/runs/{run_id}?confirm=true').status_code==200
+    assert client.get('/api/steles/qing_02_wushi_reerection/runs').json()==[]

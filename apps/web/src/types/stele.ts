@@ -81,6 +81,11 @@ export interface ProcessingParams {
 }
 
 export interface ProcessingResult {
+  runId: string;
+  algorithmVersion: string;
+  evaluationStatus: 'unassessed' | 'paired_reference';
+  outputImages: Record<string, string>;
+  engineDiagnosticMetrics?: Record<string, number | null>;
   restored_image: string;
   fft_spectrum?: string;
   skeleton_b64?: string;
@@ -92,6 +97,18 @@ export interface ProcessingResult {
   character_accuracy: number | null;
   processing_time_ms: number;
   stele_id: string;
+}
+
+export interface ProcessingRun extends ProcessingResult {
+  steleId: string;
+  inputImageSha256: string;
+  algorithmParameters: Record<string, string | number | null>;
+  startedAt: string;
+  finishedAt: string;
+  evaluationMetrics: {psnr:number|null;ssim:number|null};
+  diagnosticMetrics: Record<string, number | null>;
+  inferenceRecords: unknown[];
+  sourceRecords: {title:string|null;url:string|null;license:string|null}[];
 }
 
 export interface CharacterItem {

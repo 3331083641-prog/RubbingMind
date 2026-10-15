@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { SteleItem, CharacterItem, ProcessingResult } from '../types/stele';
+import { SteleItem, CharacterItem, ProcessingResult, ProcessingRun } from '../types/stele';
 import { SteleService } from '../services/api';
 import type { GlyphInferenceRecord } from '../services/api';
 import { GlyphInferencePanel } from '../components/GlyphInferencePanel';
@@ -41,6 +41,8 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
   const [hNlm, setHNlm] = useState<number>(10);
   const [claheClip, setClaheClip] = useState<number>(2.5);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
+  const [runs, setRuns] = useState<ProcessingRun[]>([]);
+  const [selectedRunId, setSelectedRunId] = useState('');
 
   // Dynamic Image URLs & Metrics
   const [restoredImageUrl, setRestoredImageUrl] = useState<string>('');
@@ -75,9 +77,11 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
         }
       }
     });
+    SteleService.listRuns(stele.id).then(items => { if (isMounted) setRuns(items); }).catch(() => { if (isMounted) setRuns([]); });
 
     // Reset parameters to stele defaults
     setRestoredImageUrl(''); setSkeletonUrl(''); setCinnabarUrl(''); setAdoptionSuccessMsg('');
+    setSelectedRunId('');
     setMetrics({
       psnr: stele.metrics?.psnr ?? null,
       ssim: stele.metrics?.ssim ?? null,
@@ -138,12 +142,34 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
         glyph_completeness: result.glyph_completeness,
         character_accuracy: result.character_accuracy
       });
+      setSelectedRunId(result.runId);
+      SteleService.listRuns(stele.id).then(setRuns).catch(() => setAdoptionSuccessMsg('处理已保存，但历史列表暂不可用。'));
     } catch (e) {
       console.error('Algorithm execution error:', e);
       setAdoptionSuccessMsg('实际处理失败，请检查后端服务；没有生成模拟修复结果。');
     } finally {
       setIsProcessing(false);
     }
+  };
+
+  const restoreRun = (run: ProcessingRun) => {
+    setSelectedRunId(run.runId);
+    setRestoredImageUrl(run.outputImages?.restored || run.restored_image);
+    setSkeletonUrl(run.outputImages?.character_skeleton || run.skeleton_b64 || '');
+    setCinnabarUrl(run.outputImages?.cinnabar_rubbing || run.cinnabar_b64 || '');
+    setMetrics({psnr:run.evaluationMetrics?.psnr ?? null,ssim:run.evaluationMetrics?.ssim ?? null,
+      snr_gain:null,glyph_completeness:null,character_accuracy:null});
+    setAdoptionSuccessMsg(`已载入处理记录 ${run.runId}；无配对真值时质量指标保持未评测。`);
+  };
+
+  const removeRun = async () => {
+    if (!selectedRunId || !window.confirm(`确定删除本件的单次处理记录 ${selectedRunId}？此操作会删除对应的输出文件。`)) return;
+    try {
+      await SteleService.deleteRun(stele.id, selectedRunId);
+      setRuns(items => items.filter(item => item.runId !== selectedRunId));
+      setSelectedRunId(''); setRestoredImageUrl(''); setSkeletonUrl(''); setCinnabarUrl('');
+      setAdoptionSuccessMsg('所选处理记录及输出文件已删除。');
+    } catch (error) { setAdoptionSuccessMsg(error instanceof Error?error.message:'删除失败'); }
   };
 
   // Update the displayed transcription only after a durable human decision.
@@ -230,6 +256,24 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
           </button>
         </div>
       </div>
+
+      <section className="glass-panel p-4 rounded-xl border border-gold/20 text-xs space-y-2" aria-label="处理历史">
+        <h3 className="text-gold font-serif font-bold">真实处理历史</h3>
+        {runs.length ? <>
+          <label>选择运行记录
+            <select aria-label="选择运行记录" value={selectedRunId} onChange={e => { const run=runs.find(item=>item.runId===e.target.value); if(run) restoreRun(run); else setSelectedRunId(''); }} className="ml-2 bg-slate-900 text-slate-200 border border-slate-700 rounded p-1">
+              <option value="">选择已保存运行</option>
+              {runs.map(run=><option key={run.runId} value={run.runId}>{run.runId} · {run.algorithmParameters?.filter_type || '旧版参数'}</option>)}
+            </select>
+          </label>
+          {selectedRunId && (() => { const run=runs.find(item=>item.runId===selectedRunId); return run ? <div className="space-y-1 text-slate-300">
+            <p>运行 ID：{run.runId} · 算法：{run.algorithmVersion} · 耗时：{run.processing_time_ms} ms</p>
+            <p>保存参数：D₀ {run.algorithmParameters?.d0}；阶数 {run.algorithmParameters?.filter_order}；NLM {run.algorithmParameters?.h_nlm}；CLAHE {run.algorithmParameters?.clahe_clip}。当前滑块：{d0} / {filterOrder} / {hNlm} / {claheClip}。</p>
+            <p>配对评测：{run.evaluationStatus==='paired_reference'?'已有实验记录':'未评测'}；输入 SHA-256：{run.inputImageSha256}</p>
+            <div className="flex gap-4 text-gold"><a href={run.outputImages?.restored || run.restored_image} download>保存处理结果</a><button onClick={removeRun}>删除此记录</button></div>
+          </div> : null; })()}
+        </> : <p className="text-slate-400">尚未执行处理。</p>}
+      </section>
 
       {/* Main 2-Column Core Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 flex-1">

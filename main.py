@@ -23,7 +23,7 @@ from algorithm_engine import algorithm_engine, safe_read_image, mat_to_base64
 from knowledge_agent import knowledge_agent, AUTHENTIC_RUBBING_DATABASE
 from museum_manager import museum_manager
 from catalog import inference as catalog_inference, report as catalog_report, graph as catalog_graph
-from museum_processing import process_verified_request
+from museum_processing import process_verified_request, list_runs, read_run, delete_run
 from upload_storage import create_upload, get_upload, image_path
 from glyph_inference import infer as infer_crop, list_inferences, get_inference, decide as decide_glyph, crop_path
 
@@ -270,8 +270,35 @@ async def generate_historical_graph(stele_id: str = "tang-duobao"):
 
 
 @app.get("/api/steles/{stele_id}/report")
-async def get_stele_report(stele_id: str):
-    return catalog_report(await get_stele(stele_id))
+async def get_stele_report(stele_id: str, run_id: Optional[str] = None):
+    record=await get_stele(stele_id)
+    result=catalog_report(record)
+    runs=list_runs(stele_id)
+    selected=read_run(stele_id,run_id) if run_id else (runs[0] if runs else None)
+    if run_id and not selected:
+        raise HTTPException(status_code=404,detail='处理记录不存在')
+    result['run']=selected
+    result['inferenceRecords']=list_inferences(stele_id)
+    result['sourceRecords']=[{'title':record['title'],'url':record.get('sourceUrl'),'license':record.get('license')}]
+    result['evaluation_summary']='实际处理已执行，但没有配对真值；未进行配对质量评测。' if selected else '尚未执行处理；无配对真值或消融评测。'
+    result['reportId']=f"RM-{stele_id}-{selected['runId']}" if selected else None
+    return result
+
+
+@app.get('/api/steles/{stele_id}/runs')
+async def get_processing_runs(stele_id: str):
+    await get_stele(stele_id)
+    return list_runs(stele_id)
+
+
+@app.delete('/api/steles/{stele_id}/runs/{run_id}')
+async def remove_processing_run(stele_id: str, run_id: str, confirm: bool = False):
+    await get_stele(stele_id)
+    if not confirm:
+        raise HTTPException(status_code=400,detail='删除单次处理记录需要明确确认')
+    if not delete_run(stele_id,run_id):
+        raise HTTPException(status_code=404,detail='处理记录不存在')
+    return {'deleted':run_id,'steleId':stele_id}
 
 
 @app.post("/api/process")

@@ -1,4 +1,4 @@
-import { SteleItem, ProcessingResult, CharacterItem, GraphNode, GraphLink, GISWaypoint, AblationMetric } from '../types/stele';
+import { SteleItem, ProcessingResult, ProcessingRun, CharacterItem, GraphNode, GraphLink, GISWaypoint, AblationMetric } from '../types/stele';
 import STILES_28_DATA from '../data/steles28.json';
 import { CORE_SAMPLES, resolveSelected } from '../data/catalogSelection';
 export const FALLBACK_STELES = STILES_28_DATA as unknown as SteleItem[];
@@ -44,9 +44,9 @@ export const SteleService = {
     const { loadHistory } = await import('./history');
     return loadHistory(stele_id);
   },
-  async getReport(id: string): Promise<{ablation:AblationMetric[];evaluation_summary:string;scholarly_analysis:string;rubbing_dimensions:string;epigraphic_conclusion:string}> {
-    try { const res=await fetch(`/api/steles/${id}/report`);if(!res.ok) throw new Error(); return await res.json(); }
-    catch { const r=selected(id);return {ablation:[],evaluation_summary:'未评测：未建立配对真值或消融实验记录。',scholarly_analysis:r.description || r.summary,rubbing_dimensions:r.dimensions,epigraphic_conclusion:`《${r.title}》以馆藏记录为依据；未形成新增残字定论。`}; }
+  async getReport(id: string, runId?: string): Promise<{ablation:AblationMetric[];evaluation_summary:string;scholarly_analysis:string;rubbing_dimensions:string;epigraphic_conclusion:string;run:ProcessingRun|null;inferenceRecords:GlyphInferenceRecord[];sourceRecords:{title:string|null;url:string|null;license:string|null}[];reportId:string|null}> {
+    try { const res=await fetch(`/api/steles/${id}/report${runId?`?run_id=${encodeURIComponent(runId)}`:''}`);if(!res.ok) throw new Error(); return await res.json(); }
+    catch { const r=selected(id);return {ablation:[],evaluation_summary:'尚未执行处理或后端不可用；无配对真值评测。',scholarly_analysis:r.description || r.summary,rubbing_dimensions:r.dimensions,epigraphic_conclusion:`《${r.title}》以馆藏记录为依据；未形成新增残字定论。`,run:null,inferenceRecords:[],sourceRecords:[{title:r.title,url:r.sourceUrl||null,license:r.license||null}],reportId:null}; }
   },
   async uploadRubbing(formData: FormData): Promise<{success:boolean;stele:SteleItem}> {
     let res: Response;
@@ -55,10 +55,14 @@ export const SteleService = {
     if(!res.ok){const body=await res.json().catch(()=>({}));throw new Error(typeof body.detail==='string'?body.detail:`上传失败（HTTP ${res.status}）`);}
     return await res.json();
   },
-  async listRuns(id: string): Promise<any[]> {
+  async listRuns(id: string): Promise<ProcessingRun[]> {
     const res = await fetch(`/api/steles/${encodeURIComponent(id)}/runs`);
     if (!res.ok) throw new Error('处理历史不可用');
     return res.json();
+  },
+  async deleteRun(id: string, runId: string): Promise<void> {
+    const res=await fetch(`/api/steles/${encodeURIComponent(id)}/runs/${encodeURIComponent(runId)}?confirm=true`,{method:'DELETE'});
+    if(!res.ok) throw new Error('处理记录删除失败');
   },
   async listGlyphInferences(id: string): Promise<GlyphInferenceRecord[]> {
     const res = await fetch(`/api/steles/${encodeURIComponent(id)}/inferences`);
