@@ -76,7 +76,7 @@ export interface ProcessingParams {
   filter_order: number; // 滤波器阶数
   h_nlm: number; // NLM 滤波强度
   clahe_clip: number; // CLAHE 对比度限幅
-  filter_type: 'gaussian' | 'butterworth' | 'notch';
+  filter_type: 'adaptive' | 'gaussian' | 'butterworth' | 'notch';
   morph_kernel: number;
 }
 
@@ -85,6 +85,7 @@ export interface ProcessingResult {
   algorithmVersion: string;
   evaluationStatus: 'unassessed' | 'paired_reference';
   outputImages: Record<string, string>;
+  adaptiveDiagnostics?: Record<string, unknown> | null;
   engineDiagnosticMetrics?: Record<string, number | null>;
   restored_image: string;
   fft_spectrum?: string;
@@ -100,6 +101,11 @@ export interface ProcessingResult {
 }
 
 export interface ProcessingRun extends ProcessingResult {
+  workingImage?: {sourceShape:number[];workingShape:number[];scale:number;interpolation:string};
+  randomSeed?: number;
+  damageMaskSha256?: string|null;
+  outputSha256?: Record<string,string>;
+  imageRoles?: Record<string,string>;
   steleId: string;
   inputImageSha256: string;
   algorithmParameters: Record<string, string | number | null>;

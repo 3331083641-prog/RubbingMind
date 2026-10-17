@@ -126,5 +126,14 @@
   body.printing-report main,
   body.printing-report main > div { background: white !important; color: black; }
   body.printing-report article { max-width: none; margin: 0; border-radius: 0; box-shadow: none; }
-  body.printing-report article section { break-inside: avoid; }
+  body.printing-report main > div { min-height: 0 !important; padding: 0 !important; }
+  body.printing-report article { font-size: 11px; line-height: 1.4; }
+  body.printing-report article section { break-inside: auto; }
+  body.printing-report article h1,
+  body.printing-report article h3 { break-after: avoid; }
+  body.printing-report article p,
+  body.printing-report article pre,
+  body.printing-report article figure { break-inside: avoid; }
+  body.printing-report article pre { font-size: 9px; line-height: 1.25; }
+  body.printing-report article figure img { max-height: 280px !important; }
 }

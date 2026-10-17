@@ -118,3 +118,12 @@ jobs:
           curl -fsS http://127.0.0.1:5173/ > /dev/null
       - name: Verify browser navigation and catalogue
         run: python scripts/ci_browser_smoke.py
+      - name: Verify adaptive workflow, evidence retrieval and real experiment UI
+        run: python scripts/test_technical_v2_browser.py --ci --url http://127.0.0.1:5173
+      - name: Save technical browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: technical-v2-browser-evidence
+          path: screenshots/technical-v2/
+          retention-days: 7

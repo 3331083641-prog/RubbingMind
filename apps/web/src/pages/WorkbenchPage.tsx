@@ -36,13 +36,14 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
   // Algorithm Parameters
   const [d0, setD0] = useState<number>(45);
   const [filterOrder, setFilterOrder] = useState<number>(2);
-  const [filterType, setFilterType] = useState<'gaussian' | 'butterworth' | 'notch'>('butterworth');
+  const [filterType, setFilterType] = useState<'adaptive' | 'gaussian' | 'butterworth' | 'notch'>('adaptive');
   const [morphKernel, setMorphKernel] = useState<number>(3);
   const [hNlm, setHNlm] = useState<number>(10);
   const [claheClip, setClaheClip] = useState<number>(2.5);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [runs, setRuns] = useState<ProcessingRun[]>([]);
   const [selectedRunId, setSelectedRunId] = useState('');
+  const [adaptiveDetails,setAdaptiveDetails]=useState<Record<string,unknown>|null>(null);
 
   // Dynamic Image URLs & Metrics
   const [restoredImageUrl, setRestoredImageUrl] = useState<string>('');
@@ -143,6 +144,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
         character_accuracy: result.character_accuracy
       });
       setSelectedRunId(result.runId);
+      setAdaptiveDetails(result.adaptiveDiagnostics||null);
       SteleService.listRuns(stele.id).then(setRuns).catch(() => setAdoptionSuccessMsg('处理已保存，但历史列表暂不可用。'));
     } catch (e) {
       console.error('Algorithm execution error:', e);
@@ -153,6 +155,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
   };
 
   const restoreRun = (run: ProcessingRun) => {
+    setAdaptiveDetails(run.adaptiveDiagnostics||null);
     setSelectedRunId(run.runId);
     setRestoredImageUrl(run.outputImages?.restored || run.restored_image);
     setSkeletonUrl(run.outputImages?.character_skeleton || run.skeleton_b64 || '');
@@ -528,6 +531,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
 
             <label className="text-xs text-slate-300">频域处理方式
               <select aria-label="频域处理方式" value={filterType} onChange={e => setFilterType(e.target.value as typeof filterType)} className="ml-3 rounded bg-slate-900 border border-slate-700 p-1 text-gold-light">
+                <option value="adaptive">图像自适应（带保真门控）</option>
                 <option value="butterworth">Butterworth 低通</option>
                 <option value="gaussian">高斯低通</option>
                 <option value="notch">自动陷波（仅检出周期峰时生效）</option>
@@ -611,6 +615,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
                   max="5.0"
                   step="0.1"
                   value={claheClip}
+                  disabled={filterType === 'adaptive'}
                   onChange={(e) => setClaheClip(Number(e.target.value))}
                   className="w-full accent-[#D4AF37] cursor-pointer h-1.5 bg-slate-700 rounded-lg"
                 />
@@ -621,10 +626,11 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
               </div>
               <label className="space-y-1.5 bg-slate-950/40 p-2.5 rounded-xl border border-slate-800">
                 <span className="text-slate-300 font-serif">形态学核径：{morphKernel}</span>
-                <input aria-label="形态学核径" type="range" min="1" max="9" step="2" value={morphKernel} onChange={e => setMorphKernel(Number(e.target.value))} className="w-full accent-[#D4AF37]" />
+                <input aria-label="形态学核径" disabled={filterType === 'adaptive'} type="range" min="1" max="9" step="2" value={morphKernel} onChange={e => setMorphKernel(Number(e.target.value))} className="w-full accent-[#D4AF37]" />
               </label>
             </div>
 
+            {filterType === 'adaptive' && <p className="text-xs text-slate-400">自适应模式按输入频谱和残差选择陷波、孤立噪点处理或NLM，也可保留原图。D₀控制陷波宽度，NLM控制相对强度；CLAHE和形态学核径仅用于固定对照模式。没有缺字补全能力。</p>}
             {/* Run Algorithm Action */}
             <div className="flex items-center justify-between pt-1">
               <span className="text-[11px] text-slate-400">
@@ -655,6 +661,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
         {/* RIGHT COLUMN: Ancient Xuan Paper & Inference (Col 5 - 42%) */}
         {/* ========================================================= */}
         <div className="lg:col-span-5 flex flex-col space-y-4">
+          {adaptiveDetails && <details className="glass-panel p-3 text-xs"><summary className="text-gold cursor-pointer">本次自适应决策与保真诊断</summary><pre className="whitespace-pre-wrap break-all mt-2 max-h-80 overflow-auto">{JSON.stringify(adaptiveDetails,null,2)}</pre></details>}
           <GlyphInferencePanel stele={stele} activeChar={activeChar} runId={selectedRunId || undefined} onDecision={handleGlyphDecision} />
           {/* Top Xuan Paper Ancient Book Text View */}
           <div className="glass-panel rounded-2xl border border-gold/30 p-5 flex flex-col bg-gradient-to-b from-[#131920] to-[#0D1217] space-y-4 shadow-xl">

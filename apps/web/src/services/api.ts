@@ -13,7 +13,10 @@ export interface GlyphInferenceRecord {
   bbox: {x:number;y:number;w:number;h:number};
   context: string;
   cropUrl: string;
-  source: 'vision_model' | 'context_rule' | 'unavailable' | 'model_unavailable';
+  source: 'vision_model' | 'context_rule' | 'unavailable' | 'model_unavailable' | 'local_shape_retrieval';
+  visualAnalysis?: {version:string;warnings:string[];componentCount:number;skeletonPixels:number;identityStatus:string;foregroundPolarity:string};
+  analysisImages?: Record<string,string>;
+  retrievalCandidates?: {glyph:string;visualEvidence:string;contextEvidence:string;sourceUrls:string[];scoreBasis:string}[];
   model: string | null;
   candidates: {glyph:string;visualEvidence:string;contextEvidence:string;sourceUrls:string[];scoreBasis:string}[];
   note: string;
@@ -23,6 +26,10 @@ export interface GlyphInferenceRecord {
   createdAt: string;
 }
 function selected(id: string) { return resolveSelected(FALLBACK_STELES, id); }
+function transcriptionText(text:string):string {
+  return text.replace(/\u0000/g,'').split('授權與引用')[0].split('License and attribution')[0].split(/\r?\n/)
+    .filter(line=>!['（各記錄）Transcriptions','文物統一編號','釋文'].includes(line.trim())&&!/^(?:[贈購赠购]拓[0-9]+[A-Z0-9]*|[ivxlcdm]{1,7})$/.test(line.trim())).join('\n').trim();
+}
 export const SteleService = {
   async getSteles(): Promise<SteleItem[]> {
     try { const res=await fetch('/api/steles'); if(!res.ok) throw new Error('Unavailable'); const data=await res.json(); backendAvailable=true; return data.steles || data; }
@@ -32,14 +39,14 @@ export const SteleService = {
     try { const res=await fetch(`/api/steles/${id}`); if(!res.ok) throw new Error('文物不可用'); return await res.json(); }
     catch { return selected(id); }
   },
-  async processStele(params: { stele_id: string; d0: number; filter_order: number; filter_type: 'gaussian' | 'butterworth' | 'notch'; h_nlm: number; clahe_clip: number; morph_kernel: number }): Promise<ProcessingResult> {
+  async processStele(params: { stele_id: string; d0: number; filter_order: number; filter_type: 'adaptive' | 'gaussian' | 'butterworth' | 'notch'; h_nlm: number; clahe_clip: number; morph_kernel: number }): Promise<ProcessingResult> {
     const res=await fetch('/api/process',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(params)});
     if(!res.ok) throw new Error('实际处理未成功，请检查后端服务；不会生成模拟结果');
     const result=await res.json(); if(result.stele_id!==params.stele_id) throw new Error('处理结果文物ID不一致'); return result;
   },
   async getInference(id: string): Promise<{transcript:string;characters:CharacterItem[];damaged_summary:string}> {
     try { const res=await fetch(`/api/steles/${id}/infer`); if(!res.ok) throw new Error(); return await res.json(); }
-    catch { const record=selected(id); if(record.isDemo && record.inferenceDemo) return record.inferenceDemo; const text=record.translation || ''; const chars=Array.from(text).filter(c => /[\u3400-\u9fff]/.test(c)).slice(0,35);return {transcript:text,characters:chars.map((char,i)=>({id:`c${i+1}`,char,status:'clear',col:Math.floor(i/7)+1,row:i%7+1})),damaged_summary:'释文参考，未执行本图残字检测或概率推演。'}; }
+    catch { const record=selected(id); if(record.isDemo && record.inferenceDemo) return record.inferenceDemo; const text=transcriptionText(record.translation || ''); const chars=Array.from(text).filter(c => /[\u3400-\u9fff]/.test(c)).slice(0,35);return {transcript:text,characters:chars.map((char,i)=>({id:`c${i+1}`,char,status:'clear',col:Math.floor(i/7)+1,row:i%7+1})),damaged_summary:'释文参考，未执行本图残字检测或概率推演。'}; }
   },
   async getGraph(stele_id: string) {
     const { loadHistory } = await import('./history');
@@ -75,9 +82,13 @@ export const SteleService = {
     if (!res.ok) { const detail=await res.json().catch(()=>({})); throw new Error(typeof detail.detail==='string'?detail.detail:'残字推演失败'); }
     return res.json();
   },
-  async decideGlyph(inferenceId: string, action:'accept'|'revoke', glyph?:string): Promise<GlyphInferenceRecord> {
+  async decideGlyph(inferenceId: string, action:'accept'|'revoke'|'reject', glyph?:string): Promise<GlyphInferenceRecord> {
     const res=await fetch(`/api/inferences/${inferenceId}/decision`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action,glyph})});
     if (!res.ok) throw new Error('人工确认记录保存失败');
     return res.json();
+  },
+  async saveGlyphTemplate(inferenceId:string,glyph:string,basis:string,annotator:string):Promise<void> {
+    const res=await fetch(`/api/inferences/${inferenceId}/template`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({glyph,basis,annotator})});
+    if(!res.ok) throw new Error('参考字形保存失败，请检查标注内容');
   },
 };

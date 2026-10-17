@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ProcessingRun, SteleItem } from '../types/stele';
 import { SteleService } from '../services/api';
+import { ExperimentExplorer } from '../components/ExperimentExplorer';
 
 interface Props { stele: SteleItem; onNavigate: (tab: string) => void }
 type Report = Awaited<ReturnType<typeof SteleService.getReport>>;
@@ -39,6 +40,9 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate }) => {
         license: stele.license },
       runId: run?.runId || null, algorithmVersion: run?.algorithmVersion || null,
       inputImageSha256: run?.inputImageSha256 || null,
+      workingImage:run?.workingImage||null,randomSeed:run?.randomSeed??null,
+      damageMaskSha256:run?.damageMaskSha256||null,outputSha256:run?.outputSha256||null,
+      imageRoles:run?.imageRoles||null,adaptiveDiagnostics:run?.adaptiveDiagnostics||null,
       algorithmParameters: run?.algorithmParameters || null,
       startedAt: run?.startedAt || null, finishedAt: run?.finishedAt || null,
       processingTimeMs: run?.processing_time_ms || null, outputImages: run?.outputImages || null,
@@ -68,6 +72,7 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate }) => {
       <button className="ml-4 text-gold underline" onClick={()=>onNavigate('workbench')}>前往工作台</button>
     </label>
     {error && <p role="alert" className="text-cinnabar">{error}</p>}
+    <ExperimentExplorer />
     <article className="bg-[#eee4d2] text-[#30271d] p-6 md:p-10 rounded-xl max-w-5xl mx-auto space-y-6 print:shadow-none print:p-0">
       <div className="border-b border-[#937d5d] pb-4"><h1 className="text-2xl font-serif font-bold">墨韵智考·金石数字化实验报告</h1>
         <p>《{stele.title}》 · {stele.dynasty} · 原刻：{stele.originalYear || stele.year}</p>
@@ -95,7 +100,7 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate }) => {
           <p>记录 {item.inferenceId} · {item.source} · {item.status} · 人工采纳：{item.adoptedGlyph || '无'}</p>
           <p>选区：{item.bbox.x}, {item.bbox.y}, {item.bbox.w}×{item.bbox.h}；上下文：{item.context || '未提供'}</p>
           <p>候选：{item.candidates.map(c=>`${c.glyph}（${c.scoreBasis}）`).join('、') || '无可靠候选'}</p>
-          {item.candidates.flatMap(c=>c.sourceUrls).map(url=><a key={url} href={url} className="underline break-all block">{url}</a>)}
+          {item.candidates.flatMap(c=>c.sourceUrls).map(url=><p key={url}>候选建议来源（未作为核验引用）：<a href={url} className="underline break-all">{url}</a></p>)}
         </li>)}</ul> : <p>未完成与本运行关联的真实残字推演；没有人工确认结论。</p>}
       </section>
       <footer className="border-t border-[#937d5d] pt-3 text-xs">实验结果仅描述此次处理与已有资料；任何文物释读结论须由具备领域知识的人员复核。</footer>

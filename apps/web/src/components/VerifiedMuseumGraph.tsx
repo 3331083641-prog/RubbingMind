@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { SteleItem } from '../types/stele';
 import { RubbingArchiveViewer } from './RubbingArchiveViewer';
+import { EvidenceSearch } from './EvidenceSearch';
 export const VerifiedMuseumGraph: React.FC<{stele: SteleItem; onNavigate: (tab: string) => void}> = ({stele, onNavigate}) => {
   const [viewer, setViewer] = useState<'readable' | 'archive' | null>(null);
   const [failedId, setFailedId] = useState<string | null>(null);
   return <div className="max-w-7xl mx-auto p-8 space-y-6">
   <h1 className="text-2xl font-serif text-gold">{stele.title} · 馆藏资料关联</h1>
+  <EvidenceSearch key={stele.id} steleId={stele.id} />
   <section aria-label="真实文物影像" className="glass-panel rounded-xl p-6 space-y-4">
     <h2 className="text-lg font-serif text-gold">真实文物影像</h2>
     {failedId === stele.id ? <div role="status">本件图像加载失败。<button className="ml-3 text-gold" onClick={() => setFailedId(null)}>重试</button></div> :
@@ -26,7 +28,7 @@ export const VerifiedMuseumGraph: React.FC<{stele: SteleItem; onNavigate: (tab: 
     <p>拓本现藏：{stele.collectionInstitution}</p><p>馆藏编号：{stele.collectionNumber}</p>
     <p>原碑所在地：{stele.originalLocation || '未核定'}</p><p>原石现藏机构：{stele.physicalCollectionInstitution || '未核定'}</p>
   </div>
-  <p>{stele.description}</p><p className="text-slate-400">本馆藏尚无经过核验的 GIS 轨迹与 GraphRAG 推理记录。四件核心样本的时空图谱可从顶部选择器进入。</p>
+  <p>{stele.description}</p><p className="text-slate-400">本件可检索馆藏著录及有据关系；没有核验地点时不生成地图坐标或迁移轨迹。四件核心样本的GIS交互保留在顶部选择器。</p>
   <a href={stele.sourceUrl} target="_blank" rel="noreferrer" className="text-gold underline">查看馆藏来源</a>
   <button onClick={() => onNavigate('museum')} className="ml-6 text-gold">返回典藏馆</button>
   {viewer && <RubbingArchiveViewer key={`${stele.id}-${viewer}`} stele={stele} mode={viewer} onClose={() => setViewer(null)} />}
