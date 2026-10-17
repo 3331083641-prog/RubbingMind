@@ -1,0 +1,230 @@
+{
+  "reportId": "RM-upload-cf737e88c3cd46efa98bba45beb55a94-20261017T100420_297da746",
+  "exportedAt": "2026-10-17T10:04:21.283Z",
+  "stele": {
+    "id": "upload-cf737e88c3cd46efa98bba45beb55a94",
+    "title": "浏览器验收私有样本",
+    "dynasty": "唐代",
+    "originalYear": "未考证",
+    "collectionInstitution": "用户本地上传"
+  },
+  "runId": "20261017T100420_297da746",
+  "algorithmVersion": "adaptive-rubbing-v2.0",
+  "inputImageSha256": "88154972ad065e1cd85f610922a232a5c270aafc67895818fb224c11da26dd60",
+  "workingImage": {
+    "sourceShape": [
+      160,
+      160
+    ],
+    "workingShape": [
+      160,
+      160
+    ],
+    "scale": 1,
+    "interpolation": "none"
+  },
+  "randomSeed": 0,
+  "damageMaskSha256": null,
+  "outputSha256": {
+    "original": "bb28c84cada3c904c3c45b6bdd217cb1e1062326e90dfe2e846469e977c0dda7",
+    "restored": "f58365648fd1b64d04c0fc449a6ce2cc94cfc1f825691c3ab4459229d761b9a7",
+    "frequency_spectrum": "5eff9b224b059a660e8d47b06cb8f43d921a00ff437aa8c20d5e9ca859c5aea8",
+    "character_skeleton": "56d4ca25a702bf2c2d72ec6a75248ce1a94515b68e6f77e295d3d00b5cec9820",
+    "binary_skeleton": "acf3fee22a1633b8d63e374ea5c695297535365f4a9e85334522db47550103ab",
+    "contour": "e81a40fd6cd71c1b5d8497749c6842417ccb03d34a17151e6bcb239231db38a8",
+    "cinnabar_rubbing": "ea34de9c23c929bc959bab183c67253f21ce3d6dd15c9adf881b4000f22237d3"
+  },
+  "imageRoles": {
+    "source": "immutable_source",
+    "original": "working_input",
+    "restored": "algorithm_output",
+    "cinnabar_rubbing": "artistic_display_not_evaluated"
+  },
+  "adaptiveDiagnostics": {
+    "version": "adaptive-rubbing-v2.0",
+    "features": {
+      "noiseSigmaMAD": 0,
+      "residualMAD": 0,
+      "impulseFraction": 0,
+      "periodicPeaks": [
+        {
+          "positions": [
+            [
+              80,
+              57
+            ],
+            [
+              80,
+              103
+            ]
+          ],
+          "amplitude": 10.908003807067871,
+          "energyFraction": 0.012231463566422462,
+          "logProminence": 4.234211444854736
+        },
+        {
+          "positions": [
+            [
+              80,
+              61
+            ],
+            [
+              80,
+              99
+            ]
+          ],
+          "amplitude": 10.01418685913086,
+          "energyFraction": 0.010309061966836452,
+          "logProminence": 4.7037177085876465
+        },
+        {
+          "positions": [
+            [
+              80,
+              66
+            ],
+            [
+              80,
+              94
+            ]
+          ],
+          "amplitude": 9.444360733032227,
+          "energyFraction": 0.009169231168925762,
+          "logProminence": 4.038787364959717
+        }
+      ],
+      "highFrequencyEnergyFraction": 0.04089266434311867,
+      "localContrastRMS": 39.8973503112793,
+      "gradientMean": 57.96879959106445,
+      "laplacianVariance": 163.11305236816406,
+      "darkFraction": 0,
+      "brightFraction": 0,
+      "dynamicRange": 177,
+      "thinStrokeRisk": 0.21300813008130082,
+      "note": "无参考诊断；噪声、模糊和笔画风险可能受真实石花/纸纹影响，不是修复准确率。"
+    },
+    "decisions": [
+      {
+        "operator": "notch",
+        "width": 0.75,
+        "reason": "检出共轭显著峰、幅值和能量证据"
+      },
+      {
+        "operator": "identity",
+        "reason": "残差证据弱；不锐化、不强制CLAHE/形态学"
+      }
+    ],
+    "fidelityGate": {
+      "accepted": true,
+      "strongEdgeRetention": 0.9638204574584961,
+      "meanAbsoluteChange": 10.736171875,
+      "contrastRatio": 0.9762445820684571,
+      "reasons": [],
+      "basis": "输入输出启发式保真门控，非质量真值"
+    },
+    "selectedOutput": "candidate",
+    "limitations": "不补全遮挡/剥落，不识别或重绘缺失笔画；无真值不计算修复准确率。"
+  },
+  "algorithmParameters": {
+    "stele_id": "upload-cf737e88c3cd46efa98bba45beb55a94",
+    "sample_id": null,
+    "d0": 45,
+    "filter_order": 2,
+    "filter_type": "adaptive",
+    "h_nlm": 10,
+    "clahe_clip": 2.5,
+    "morph_kernel": 3,
+    "cinnabar_style": "cinnabar",
+    "random_seed": 0
+  },
+  "startedAt": "2026-10-17T10:04:20.377048+00:00",
+  "finishedAt": "2026-10-17T10:04:20.399403+00:00",
+  "processingTimeMs": 10.9,
+  "outputImages": {
+    "original": "/static/results/upload-cf737e88c3cd46efa98bba45beb55a94/20261017T100420_297da746/original.png",
+    "restored": "/static/results/upload-cf737e88c3cd46efa98bba45beb55a94/20261017T100420_297da746/restored.png",
+    "frequency_spectrum": "/static/results/upload-cf737e88c3cd46efa98bba45beb55a94/20261017T100420_297da746/frequency_spectrum.png",
+    "character_skeleton": "/static/results/upload-cf737e88c3cd46efa98bba45beb55a94/20261017T100420_297da746/character_skeleton.png",
+    "binary_skeleton": "/static/results/upload-cf737e88c3cd46efa98bba45beb55a94/20261017T100420_297da746/binary_skeleton.png",
+    "contour": "/static/results/upload-cf737e88c3cd46efa98bba45beb55a94/20261017T100420_297da746/contour.png",
+    "cinnabar_rubbing": "/static/results/upload-cf737e88c3cd46efa98bba45beb55a94/20261017T100420_297da746/cinnabar_rubbing.png"
+  },
+  "evaluationStatus": "unassessed",
+  "evaluationMetrics": {
+    "psnr": null,
+    "ssim": null
+  },
+  "diagnosticMetrics": {
+    "isolated_bright_pixel_change_percent": 0,
+    "tenengrad_change_percent": -17.825220731724038,
+    "input_output_mean_absolute_difference": 10.736171875
+  },
+  "inferenceRecords": [
+    {
+      "inferenceId": "f0059bf1e9744eac821960075347cc1a",
+      "steleId": "upload-cf737e88c3cd46efa98bba45beb55a94",
+      "runId": "20261017T100420_297da746",
+      "characterId": null,
+      "originalGlyph": null,
+      "originalStatus": null,
+      "bbox": {
+        "x": 25,
+        "y": 25,
+        "w": 55,
+        "h": 55
+      },
+      "context": "未核实",
+      "inputImageSha256": "88154972ad065e1cd85f610922a232a5c270aafc67895818fb224c11da26dd60",
+      "cropSha256": "6e358df48e89310f9dc12d662e7e79119c4f8e850abb72c49ed35d3b292e029b",
+      "cropUrl": "/api/inferences/f0059bf1e9744eac821960075347cc1a/crop",
+      "source": "unavailable",
+      "model": null,
+      "candidates": [],
+      "note": "无可核实候选；请提供更充分的上下文或配置可选视觉模型。",
+      "sourceUrl": null,
+      "status": "no_candidate",
+      "adoptedGlyph": null,
+      "decisions": [],
+      "createdAt": "2026-10-17T10:04:20.751543+00:00",
+      "visualAnalysis": {
+        "version": "glyph-shape-v2.0",
+        "foregroundPolarity": "dark",
+        "contentBox": [
+          0,
+          0,
+          43,
+          55
+        ],
+        "foregroundFraction": 0.34545454545454546,
+        "componentCount": 2,
+        "skeletonPixels": 95,
+        "horizontalStrokeDistribution": [
+          0.029292929292929294,
+          0.03636363636363636,
+          0.028708133971291867
+        ],
+        "borderForegroundFraction": 0.42272727272727273,
+        "noisePixelCount": 0,
+        "warnings": [
+          "前景触及选区边缘，可能裁断字符或包含邻字"
+        ],
+        "identityStatus": "未识别；二值连通结构不等于真实汉字笔画拓扑或完整性真值"
+      },
+      "analysisImages": {
+        "gray": "/api/inferences/f0059bf1e9744eac821960075347cc1a/analysis/gray",
+        "foreground": "/api/inferences/f0059bf1e9744eac821960075347cc1a/analysis/foreground",
+        "skeleton": "/api/inferences/f0059bf1e9744eac821960075347cc1a/analysis/skeleton",
+        "noise": "/api/inferences/f0059bf1e9744eac821960075347cc1a/analysis/noise"
+      },
+      "retrievalCandidates": []
+    }
+  ],
+  "sourceRecords": [
+    {
+      "title": "浏览器验收私有样本",
+      "url": null,
+      "license": null
+    }
+  ],
+  "note": "无配对真值时，诊断变化量不代表修复质量；残字建议须经人工核实。"
+}

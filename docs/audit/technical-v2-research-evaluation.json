@@ -1,0 +1,2150 @@
+{
+  "basis": "工程回归断言，取自现有已审核馆藏著录及data/history；不是独立人工检索准确率标注集。",
+  "allAssertionsPass": true,
+  "cases": [
+    {
+      "id": "authors",
+      "assertions": {
+        "岑勋": true,
+        "颜真卿": true,
+        "expectedEvidenceHit": true
+      },
+      "passed": true,
+      "actual": {
+        "query": "《多宝塔碑》的撰文者与书丹者是谁？",
+        "scopeSteleId": null,
+        "status": "evidence_found",
+        "answer": "以下为现有资料原文/著录摘录，未调用语言模型：\n[1] 多宝塔碑 → 书丹 → 颜真卿。书丹者；不额外推断行旅路线。\n[2] 唐·多宝塔感应碑。文物身份已核；图像为拓本，与原石分开记录。原刻/样本标签：唐天宝十一载；拓本年代：明拓（现馆方著录；旧摄影标签为时代不明）；原石现藏：西安碑林博物馆；数字拓本：台北故宫博物院（拓本）；编号：赠拓000365（拓本）。相关作者：岑勋 · 撰文；颜真卿 · 书丹；徐浩 · 题额；楚金 · 建塔活动。752年立；1103年移存碑林；作者及千福寺地望。\n[3] 多宝塔碑 → 撰文 → 岑勋。碑文撰者。\n[4] 多宝塔碑 → 题额 → 徐浩。题额者。",
+        "answerMode": "extractive_evidence_only",
+        "algorithmVersion": "fts5-evidence-graph-v2.1",
+        "indexFingerprint": "ec04cba9493931a6300a647a634f0511ef6ac0b17369f1707bac46e1da60158d",
+        "evidence": [
+          {
+            "sourceId": "history:tang-duobao:relation:0",
+            "steleId": "tang_01_duobao",
+            "title": "唐·多宝塔感应碑 · 书丹",
+            "text": "多宝塔碑 → 书丹 → 颜真卿。书丹者；不额外推断行旅路线。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/tang-duobao.json#links/0",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "3e747f000a23879acff153e975bdb73d4a11bc82a98ab94da5a16c5ba416e5a3",
+            "retrievalScore": 40.46176322056744
+          },
+          {
+            "sourceId": "history:tang-duobao:beilin-duobao",
+            "steleId": "tang_01_duobao",
+            "title": "西安碑林博物馆：多宝塔感应碑",
+            "text": "唐·多宝塔感应碑。文物身份已核；图像为拓本，与原石分开记录。原刻/样本标签：唐天宝十一载；拓本年代：明拓（现馆方著录；旧摄影标签为时代不明）；原石现藏：西安碑林博物馆；数字拓本：台北故宫博物院（拓本）；编号：赠拓000365（拓本）。相关作者：岑勋 · 撰文；颜真卿 · 书丹；徐浩 · 题额；楚金 · 建塔活动。752年立；1103年移存碑林；作者及千福寺地望。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "institution": "西安碑林博物馆",
+            "evidenceLevel": "curated_source_summary",
+            "originalPosition": "data/history/tang-duobao.json",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "ed815d6aa02195e96014c54fc037c73edabc7e5ce99c3c58da27d35b7ae44f0f",
+            "retrievalScore": 32.97160570573418
+          },
+          {
+            "sourceId": "history:tang-duobao:relation:1",
+            "steleId": "tang_01_duobao",
+            "title": "唐·多宝塔感应碑 · 撰文",
+            "text": "多宝塔碑 → 撰文 → 岑勋。碑文撰者。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/tang-duobao.json#links/1",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "f833abb77a57af320848173e7dfa6e3e835ec016586fa869bd82866a8031f919",
+            "retrievalScore": 32.80760826895482
+          },
+          {
+            "sourceId": "history:tang-duobao:relation:2",
+            "steleId": "tang_01_duobao",
+            "title": "唐·多宝塔感应碑 · 题额",
+            "text": "多宝塔碑 → 题额 → 徐浩。题额者。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/tang-duobao.json#links/2",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "68ef5ca36cddedc3e97226990adc5260634451d1027b439ae6218759635a5224",
+            "retrievalScore": 29.41991827545936
+          },
+          {
+            "sourceId": "history:tang-duobao:relation:6",
+            "steleId": "tang_01_duobao",
+            "title": "唐·多宝塔感应碑 · 立碑纪年",
+            "text": "多宝塔碑 → 立碑纪年 → 天宝十一载。对应公元752年。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/tang-duobao.json#links/6",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "56523182704efd37a13dba14147fa9fda926a87dc79d8e6e4275c5516da10a78",
+            "retrievalScore": 28.03233397399255
+          },
+          {
+            "sourceId": "history:tang-duobao:relation:3",
+            "steleId": "tang_01_duobao",
+            "title": "唐·多宝塔感应碑 · 记述建塔",
+            "text": "多宝塔碑 → 记述建塔 → 楚金禅师。创建多宝塔相关活动。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/tang-duobao.json#links/3",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "4f5ee6072f3288b4b862ffd7f4b42e344b5d89862baac3163aec9cedc1740822",
+            "retrievalScore": 27.98873844411066
+          },
+          {
+            "sourceId": "history:tang-duobao:relation:5",
+            "steleId": "tang_01_duobao",
+            "title": "唐·多宝塔感应碑 · 原石保存",
+            "text": "多宝塔碑 → 原石保存 → 西安碑林。原石保存馆区，非拓本馆藏；摄影点并非展位。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/tang-duobao.json#links/5",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "ead7cc8c6671ea2f288159ee8af458e590a37b03f19118f4a0d650a88d216638",
+            "retrievalScore": 27.648257384023378
+          },
+          {
+            "sourceId": "history:tang-duobao:relation:7",
+            "steleId": "tang_01_duobao",
+            "title": "唐·多宝塔感应碑 · 传拓载体（独立实体）",
+            "text": "多宝塔碑 → 传拓载体（独立实体） → 明拓数字册页。赠拓000365；非原石。",
+            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/33063?dep=P",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/tang-duobao.json#links/7",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "08ef9e2904969ae54421f6b545ba4dcc901a62f4b2b4e042ec8cdd5505d9dbe5",
+            "retrievalScore": 27.648257384023378
+          },
+          {
+            "sourceId": "history:tang-duobao:relation:4",
+            "steleId": "tang_01_duobao",
+            "title": "唐·多宝塔感应碑 · 原立于",
+            "text": "多宝塔碑 → 原立于 → 长安千福寺。具体古址待考；文字记录，不将城市点称作寺址。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/tang-duobao.json#links/4",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "41828667782a374b36024ea30c49600d0e5d54030e95a0c04690fd8b49e39442",
+            "retrievalScore": 27.4833414700723
+          },
+          {
+            "sourceId": "history:tang-duobao:dpm-duobao",
+            "steleId": "tang_01_duobao",
+            "title": "故宫博物院：多宝塔碑",
+            "text": "唐·多宝塔感应碑。文物身份已核；图像为拓本，与原石分开记录。原刻/样本标签：唐天宝十一载；拓本年代：明拓（现馆方著录；旧摄影标签为时代不明）；原石现藏：西安碑林博物馆；数字拓本：台北故宫博物院（拓本）；编号：赠拓000365（拓本）。相关作者：岑勋 · 撰文；颜真卿 · 书丹；徐浩 · 题额；楚金 · 建塔活动。原石与馆藏宋拓分属不同实体。",
+            "url": "https://www.dpm.org.cn/collection/impres/234169.html",
+            "institution": "故宫博物院",
+            "evidenceLevel": "curated_source_summary",
+            "originalPosition": "data/history/tang-duobao.json",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "7a39fdf83f426190f722ba109a45013575e354bad1fb462bed4e7d9182b2fdf7",
+            "retrievalScore": 25.51457796318605
+          },
+          {
+            "sourceId": "history:tang-duobao:npm-duobao",
+            "steleId": "tang_01_duobao",
+            "title": "明拓唐颜真卿多宝塔墨拓本 册（赠拓000365）",
+            "text": "唐·多宝塔感应碑。文物身份已核；图像为拓本，与原石分开记录。原刻/样本标签：唐天宝十一载；拓本年代：明拓（现馆方著录；旧摄影标签为时代不明）；原石现藏：西安碑林博物馆；数字拓本：台北故宫博物院（拓本）；编号：赠拓000365（拓本）。相关作者：岑勋 · 撰文；颜真卿 · 书丹；徐浩 · 题额；楚金 · 建塔活动。原馆正式著录为明拓，摄影旧标签时代不明；拓本非原石，CC BY 4.0。",
+            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/33063?dep=P",
+            "institution": "国立故宫博物院",
+            "evidenceLevel": "curated_source_summary",
+            "originalPosition": "data/history/tang-duobao.json",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "3f5a067e72d4fe2436720ec7a9f360284b20ffd78130ed70e3591ca8f95d7550",
+            "retrievalScore": 22.90270850022483
+          },
+          {
+            "sourceId": "catalog:tang_01_duobao",
+            "steleId": "tang_01_duobao",
+            "title": "多宝塔感应碑 · 馆藏著录",
+            "text": "多宝塔感应碑。原刻朝代：唐代；原刻年代：752年；拓本年代：未核定；不据拓印年改变朝代；文物类型：碑刻拓本；撰文：岑勋；书丹：颜真卿；拓本现藏机构：台北故宫博物院；拓本馆藏编号：贈拓000365；原石现藏机构：未核定；原碑所在地：未核定。",
+            "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+            "institution": "台北故宫博物院",
+            "evidenceLevel": "catalogue_record",
+            "originalPosition": "data/catalog/steles28.json#tang_01_duobao",
+            "license": "CC BY 4.0",
+            "origin": "reviewed_local_record",
+            "textSha256": "b29bf46a9778dc819f19860417ace2dda563d1536bc423a62825cff372449bcc",
+            "retrievalScore": 21.595282393234758
+          }
+        ],
+        "entities": [
+          {
+            "id": "tang-duobao:tang-duobao",
+            "name": "多宝塔碑",
+            "category": "stele",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:beilin-duobao"
+            ]
+          },
+          {
+            "id": "tang-duobao:yan",
+            "name": "颜真卿",
+            "category": "person",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:beilin-duobao"
+            ]
+          },
+          {
+            "id": "tang-duobao:cen",
+            "name": "岑勋",
+            "category": "person",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:beilin-duobao"
+            ]
+          },
+          {
+            "id": "tang-duobao:xu",
+            "name": "徐浩",
+            "category": "person",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:beilin-duobao"
+            ]
+          },
+          {
+            "id": "tang-duobao:chujin",
+            "name": "楚金禅师",
+            "category": "person",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:beilin-duobao"
+            ]
+          },
+          {
+            "id": "tang-duobao:qianfu",
+            "name": "长安千福寺",
+            "category": "place",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:beilin-duobao"
+            ]
+          },
+          {
+            "id": "tang-duobao:beilin",
+            "name": "西安碑林",
+            "category": "place",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:beilin-duobao"
+            ]
+          },
+          {
+            "id": "tang-duobao:era-752",
+            "name": "天宝十一载",
+            "category": "era",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:beilin-duobao"
+            ]
+          },
+          {
+            "id": "tang-duobao:rubbing-duobao",
+            "name": "明拓数字册页",
+            "category": "document",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:npm-duobao"
+            ]
+          }
+        ],
+        "relations": [
+          {
+            "source": "tang-duobao:tang-duobao",
+            "target": "tang-duobao:yan",
+            "relation": "书丹",
+            "sourceIds": [
+              "history:tang-duobao:relation:0"
+            ],
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "verification": "confirmed"
+          },
+          {
+            "source": "tang-duobao:tang-duobao",
+            "target": "tang-duobao:cen",
+            "relation": "撰文",
+            "sourceIds": [
+              "history:tang-duobao:relation:1"
+            ],
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "verification": "confirmed"
+          },
+          {
+            "source": "tang-duobao:tang-duobao",
+            "target": "tang-duobao:xu",
+            "relation": "题额",
+            "sourceIds": [
+              "history:tang-duobao:relation:2"
+            ],
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "verification": "confirmed"
+          },
+          {
+            "source": "tang-duobao:tang-duobao",
+            "target": "tang-duobao:chujin",
+            "relation": "记述建塔",
+            "sourceIds": [
+              "history:tang-duobao:relation:3"
+            ],
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "verification": "confirmed"
+          },
+          {
+            "source": "tang-duobao:tang-duobao",
+            "target": "tang-duobao:qianfu",
+            "relation": "原立于",
+            "sourceIds": [
+              "history:tang-duobao:relation:4"
+            ],
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "verification": "confirmed"
+          },
+          {
+            "source": "tang-duobao:tang-duobao",
+            "target": "tang-duobao:beilin",
+            "relation": "原石保存",
+            "sourceIds": [
+              "history:tang-duobao:relation:5"
+            ],
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "verification": "confirmed"
+          },
+          {
+            "source": "tang-duobao:tang-duobao",
+            "target": "tang-duobao:era-752",
+            "relation": "立碑纪年",
+            "sourceIds": [
+              "history:tang-duobao:relation:6"
+            ],
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "verification": "confirmed"
+          },
+          {
+            "source": "tang-duobao:tang-duobao",
+            "target": "tang-duobao:rubbing-duobao",
+            "relation": "传拓载体（独立实体）",
+            "sourceIds": [
+              "history:tang-duobao:relation:7"
+            ],
+            "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/33063?dep=P",
+            "verification": "confirmed"
+          }
+        ],
+        "places": [
+          {
+            "id": "qianfu",
+            "name": "唐长安千福寺",
+            "modernName": "西安西站西南一带（馆方描述）",
+            "longitude": null,
+            "latitude": null,
+            "coordinateSystem": "WGS84",
+            "precision": "unknown",
+            "type": "original_site",
+            "sourceId": "beilin-duobao",
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "sourceTitle": "西安碑林博物馆：多宝塔感应碑",
+            "verified": true,
+            "coordinateSourceUrl": null,
+            "coordinateMethod": "无已核实坐标，不上图",
+            "accuracyKm": null,
+            "province": "陕西省",
+            "note": "具体古址待考；文字记录，不将城市点称作寺址。",
+            "regionLocationId": "xian",
+            "steleId": "tang_01_duobao",
+            "coreSampleId": "tang-duobao"
+          },
+          {
+            "id": "xian",
+            "name": "唐长安城地望",
+            "modernName": "陕西西安市区域",
+            "longitude": 108.93,
+            "latitude": 34.21,
+            "coordinateSystem": "WGS84",
+            "precision": "regional",
+            "type": "historical_activity",
+            "sourceId": "beilin-duobao",
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "sourceTitle": "西安碑林博物馆：多宝塔感应碑",
+            "verified": true,
+            "coordinateSourceUrl": "https://github.com/MisterChangRay/geodeparse/tree/dfb4ce2c1f7f48a5da5ad7842cbfbe1b2cd29757/geo",
+            "coordinateMethod": "CGCS2000行政面内部代表点，取两位小数，仅示地理范围",
+            "accuracyKm": null,
+            "province": "陕西省",
+            "note": "现代雁塔区面内部代表点作为西安区域索引，不代表唐城中心或千福寺。",
+            "regionLocationId": null,
+            "steleId": "tang_01_duobao",
+            "coreSampleId": "tang-duobao"
+          },
+          {
+            "id": "beilin",
+            "name": "西安碑林博物馆",
+            "modernName": "陕西西安·三学街15号",
+            "longitude": 108.948132,
+            "latitude": 34.254721,
+            "coordinateSystem": "WGS84",
+            "precision": "approximate",
+            "type": "current_collection",
+            "sourceId": "beilin-duobao",
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "sourceTitle": "西安碑林博物馆：多宝塔感应碑",
+            "verified": true,
+            "coordinateSourceUrl": "https://commons.wikimedia.org/wiki/File:Beilin_Museum_Map_(14185587169).jpg",
+            "coordinateMethod": "实地摄影地理标记；馆区近似",
+            "accuracyKm": null,
+            "province": "陕西省",
+            "note": "原石保存馆区，非拓本馆藏；摄影点并非展位。",
+            "regionLocationId": null,
+            "steleId": "tang_01_duobao",
+            "coreSampleId": "tang-duobao"
+          }
+        ],
+        "generation": null,
+        "limitations": "BM25与实体一跳扩展；摘记可能不完整，未进行语义蕴含或独立史学鉴定。来源可追溯不表示链接实时可用。"
+      }
+    },
+    {
+      "id": "date",
+      "assertions": {
+        "185": true,
+        "expectedEvidenceHit": true
+      },
+      "passed": true,
+      "actual": {
+        "query": "《曹全碑》原刻于什么年代？",
+        "scopeSteleId": null,
+        "status": "evidence_found",
+        "answer": "以下为现有资料原文/著录摘录，未调用语言模型：\n[1] 曹全碑。原刻朝代：东汉；原刻年代：185年；拓本年代：未核定；不据拓印年改变朝代；文物类型：碑刻拓本；撰文：未核定；书丹：未核定；拓本现藏机构：台北故宫博物院；拓本馆藏编号：購拓000033；原石现藏机构：未核定；原碑所在地：未核定。\n[2] 东汉·郃阳令曹全碑。原石与购拓000033分别建档。原刻/样本标签：东汉中平二年；拓本年代：年代待考；原石现藏：西安碑林博物馆；数字拓本：台北故宫博物院（拓本）；编号：购拓000033（拓本）。相关作者：曹全 · 碑主，字景完；王敞等 · 门生故吏刊石纪功。185年立、万历年间莘里出土、1956年移藏；169年举孝廉及酒泉任职。\n[3] 曹全碑 → 原石现存 → 西安碑林博物馆。原石保存馆区，非拓本馆藏；摄影点并非展位。\n[4] 曹全碑 → 碑主 → 曹全 · 景完。敦煌效谷人，任郃阳令；生平地点不等于石碑流转。",
+        "answerMode": "extractive_evidence_only",
+        "algorithmVersion": "fts5-evidence-graph-v2.1",
+        "indexFingerprint": "ec04cba9493931a6300a647a634f0511ef6ac0b17369f1707bac46e1da60158d",
+        "evidence": [
+          {
+            "sourceId": "catalog:han_01_caoquan",
+            "steleId": "han_01_caoquan",
+            "title": "曹全碑 · 馆藏著录",
+            "text": "曹全碑。原刻朝代：东汉；原刻年代：185年；拓本年代：未核定；不据拓印年改变朝代；文物类型：碑刻拓本；撰文：未核定；书丹：未核定；拓本现藏机构：台北故宫博物院；拓本馆藏编号：購拓000033；原石现藏机构：未核定；原碑所在地：未核定。",
+            "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34589&dep=P&mode=full",
+            "institution": "台北故宫博物院",
+            "evidenceLevel": "catalogue_record",
+            "originalPosition": "data/catalog/steles28.json#han_01_caoquan",
+            "license": "CC BY 4.0",
+            "origin": "reviewed_local_record",
+            "textSha256": "2609cb3514bc011bb523672738a635e4c694927983550a7d8c0ffef32f3c23a2",
+            "retrievalScore": 54.24849354023127
+          },
+          {
+            "sourceId": "history:han-caoquan:beilin-cao",
+            "steleId": "han_01_caoquan",
+            "title": "西安碑林博物馆：曹全碑",
+            "text": "东汉·郃阳令曹全碑。原石与购拓000033分别建档。原刻/样本标签：东汉中平二年；拓本年代：年代待考；原石现藏：西安碑林博物馆；数字拓本：台北故宫博物院（拓本）；编号：购拓000033（拓本）。相关作者：曹全 · 碑主，字景完；王敞等 · 门生故吏刊石纪功。185年立、万历年间莘里出土、1956年移藏；169年举孝廉及酒泉任职。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+            "institution": "西安碑林博物馆",
+            "evidenceLevel": "curated_source_summary",
+            "originalPosition": "data/history/han-caoquan.json",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "f3faf647d2552542f5bf323aa473d215590edd746cf6964afb2a84d7cc3a6f9f",
+            "retrievalScore": 28.837796903280747
+          },
+          {
+            "sourceId": "history:han-caoquan:relation:4",
+            "steleId": "han_01_caoquan",
+            "title": "东汉·郃阳令曹全碑 · 原石现存",
+            "text": "曹全碑 → 原石现存 → 西安碑林博物馆。原石保存馆区，非拓本馆藏；摄影点并非展位。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/han-caoquan.json#links/4",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "6895c55eb8d6f1664dd521fe368cf4db85df97f72dceda31e9acd7dc04520265",
+            "retrievalScore": 25.916091515209608
+          },
+          {
+            "sourceId": "history:han-caoquan:relation:0",
+            "steleId": "han_01_caoquan",
+            "title": "东汉·郃阳令曹全碑 · 碑主",
+            "text": "曹全碑 → 碑主 → 曹全 · 景完。敦煌效谷人，任郃阳令；生平地点不等于石碑流转。",
+            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/han-caoquan.json#links/0",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "d71d5b3611c52f08421b1e6fb0469021d782e4714a2f7d0eb10fde0d40244286",
+            "retrievalScore": 25.00805187126086
+          },
+          {
+            "sourceId": "history:han-caoquan:relation:2",
+            "steleId": "han_01_caoquan",
+            "title": "东汉·郃阳令曹全碑 · 立碑地望",
+            "text": "曹全碑 → 立碑地望 → 郃阳县地望。县域代表点，非原立石位置。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/han-caoquan.json#links/2",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "bcda21fbd4857aa6717259290a67507ffa72b1ce017fe7c77a58d7ebcf3ce7a4",
+            "retrievalScore": 24.19485880520746
+          },
+          {
+            "sourceId": "history:han-caoquan:relation:8",
+            "steleId": "han_01_caoquan",
+            "title": "东汉·郃阳令曹全碑 · 刊刻纪年",
+            "text": "曹全碑 → 刊刻纪年 → 中平二年。对应公元185年。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/han-caoquan.json#links/8",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "e48256f19b667f53e829f4208774b50c64ce37012e9e9c7fd2229d18d39de5e5",
+            "retrievalScore": 24.189632204565925
+          },
+          {
+            "sourceId": "history:han-caoquan:relation:9",
+            "steleId": "han_01_caoquan",
+            "title": "东汉·郃阳令曹全碑 · 传拓载体",
+            "text": "曹全碑 → 传拓载体 → 购拓000033。纸本墨拓轴；原石现藏碑林，拓本现藏台北故宫。",
+            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/han-caoquan.json#links/9",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "eb4ae9ed9fc479965260a32e655e5a87c0be85420eb1d1852bee39f5d9d7d380",
+            "retrievalScore": 23.36457766318042
+          },
+          {
+            "sourceId": "history:han-caoquan:relation:1",
+            "steleId": "han_01_caoquan",
+            "title": "东汉·郃阳令曹全碑 · 刊石纪功",
+            "text": "曹全碑 → 刊石纪功 → 王敞。门下掾，与故吏共同刊石纪功。",
+            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/han-caoquan.json#links/1",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "c273116613cf6742e169343d3b4c741012d9073314df3dfdd69e80bb59d7c14f",
+            "retrievalScore": 23.09390477995827
+          },
+          {
+            "sourceId": "history:han-caoquan:relation:3",
+            "steleId": "han_01_caoquan",
+            "title": "东汉·郃阳令曹全碑 · 出土",
+            "text": "曹全碑 → 出土 → 合阳莘里村出土地。村级坐标未核实，依合阳县域索引，地图不另放伪精确点。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/han-caoquan.json#links/3",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "dde47de0c48728c29c58db2806ba2c123612eb704da397b6ce6c48ef535a8d6e",
+            "retrievalScore": 22.759407677629532
+          },
+          {
+            "sourceId": "history:han-caoquan:relation:7",
+            "steleId": "han_01_caoquan",
+            "title": "东汉·郃阳令曹全碑 · 碑文记征讨（非路线）",
+            "text": "曹全 · 景完 → 碑文记征讨（非路线） → 西域疏勒国地望。仅表示疏勒国喀什区域；不等于现代疏勒县，不绘征讨线路。",
+            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/han-caoquan.json#links/7",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "c3f045f8e02f7c37bba93d052bd39e363b4473dfe471fabe31a76101d38b81c5",
+            "retrievalScore": 22.021635743223822
+          },
+          {
+            "sourceId": "history:han-caoquan:npm-cao",
+            "steleId": "han_01_caoquan",
+            "title": "汉曹全碑墨拓本（购拓000033）",
+            "text": "东汉·郃阳令曹全碑。原石与购拓000033分别建档。原刻/样本标签：东汉中平二年；拓本年代：年代待考；原石现藏：西安碑林博物馆；数字拓本：台北故宫博物院（拓本）；编号：购拓000033（拓本）。相关作者：曹全 · 碑主，字景完；王敞等 · 门生故吏刊石纪功。完整释文；曹全字景完、敦煌效谷、疏勒征讨、酒泉禄福长、王敞等立石。CC BY 4.0。",
+            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+            "institution": "国立故宫博物院",
+            "evidenceLevel": "curated_source_summary",
+            "originalPosition": "data/history/han-caoquan.json",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "87ca7b98bb56c20a06a5a97e2d9caf18d9fe321c79de66067275adb76f4a0565",
+            "retrievalScore": 18.764446182138308
+          },
+          {
+            "sourceId": "history:han-caoquan:relation:5",
+            "steleId": "han_01_caoquan",
+            "title": "东汉·郃阳令曹全碑 · 籍贯区域",
+            "text": "曹全 · 景完 → 籍贯区域 → 敦煌效谷地望。曹全籍贯；敦煌市代表点不等于古效谷县治。",
+            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/han-caoquan.json#links/5",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "ef54e624d536ee28ce400b1bec72b1f22e906590a9f4f897c02e86f7d59c29dd",
+            "retrievalScore": 17.084824370360572
+          }
+        ],
+        "entities": [
+          {
+            "id": "han_01_caoquan",
+            "name": "曹全碑",
+            "category": "work",
+            "steleId": "han_01_caoquan",
+            "sourceIds": [
+              "catalog:han_01_caoquan"
+            ]
+          },
+          {
+            "id": "han_01_caoquan:stone",
+            "name": "曹全碑原石",
+            "category": "stone",
+            "steleId": "han_01_caoquan",
+            "sourceIds": [
+              "catalog:han_01_caoquan"
+            ]
+          },
+          {
+            "id": "han_01_caoquan:rubbing",
+            "name": "購拓000033拓本",
+            "category": "rubbing",
+            "steleId": "han_01_caoquan",
+            "sourceIds": [
+              "catalog:han_01_caoquan"
+            ]
+          },
+          {
+            "id": "han_01_caoquan:year",
+            "name": "185年",
+            "category": "date",
+            "steleId": "han_01_caoquan",
+            "sourceIds": [
+              "catalog:han_01_caoquan"
+            ]
+          },
+          {
+            "id": "han-caoquan:han-caoquan",
+            "name": "曹全碑",
+            "category": "stele",
+            "steleId": "han_01_caoquan",
+            "sourceIds": [
+              "history:han-caoquan:beilin-cao"
+            ]
+          },
+          {
+            "id": "han-caoquan:cao",
+            "name": "曹全 · 景完",
+            "category": "person",
+            "steleId": "han_01_caoquan",
+            "sourceIds": [
+              "history:han-caoquan:npm-cao"
+            ]
+          },
+          {
+            "id": "han-caoquan:wangchang",
+            "name": "王敞",
+            "category": "person",
+            "steleId": "han_01_caoquan",
+            "sourceIds": [
+              "history:han-caoquan:npm-cao"
+            ]
+          },
+          {
+            "id": "han-caoquan:heyang",
+            "name": "郃阳县地望",
+            "category": "place",
+            "steleId": "han_01_caoquan",
+            "sourceIds": [
+              "history:han-caoquan:beilin-cao"
+            ]
+          },
+          {
+            "id": "han-caoquan:xinli",
+            "name": "合阳莘里村出土地",
+            "category": "place",
+            "steleId": "han_01_caoquan",
+            "sourceIds": [
+              "history:han-caoquan:beilin-cao"
+            ]
+          },
+          {
+            "id": "han-caoquan:beilin",
+            "name": "西安碑林博物馆",
+            "category": "place",
+            "steleId": "han_01_caoquan",
+            "sourceIds": [
+              "history:han-caoquan:beilin-cao"
+            ]
+          },
+          {
+            "id": "han-caoquan:era-185",
+            "name": "中平二年",
+            "category": "era",
+            "steleId": "han_01_caoquan",
+            "sourceIds": [
+              "history:han-caoquan:beilin-cao"
+            ]
+          },
+          {
+            "id": "han-caoquan:rubbing-cao",
+            "name": "购拓000033",
+            "category": "document",
+            "steleId": "han_01_caoquan",
+            "sourceIds": [
+              "history:han-caoquan:npm-cao"
+            ]
+          }
+        ],
+        "relations": [
+          {
+            "source": "han_01_caoquan",
+            "target": "han_01_caoquan:stone",
+            "relation": "原刻",
+            "sourceIds": [
+              "catalog:han_01_caoquan"
+            ],
+            "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34589&dep=P&mode=full"
+          },
+          {
+            "source": "han_01_caoquan",
+            "target": "han_01_caoquan:rubbing",
+            "relation": "拓本见证",
+            "sourceIds": [
+              "catalog:han_01_caoquan"
+            ],
+            "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34589&dep=P&mode=full"
+          },
+          {
+            "source": "han_01_caoquan",
+            "target": "han_01_caoquan:year",
+            "relation": "原刻纪年",
+            "sourceIds": [
+              "catalog:han_01_caoquan"
+            ],
+            "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34589&dep=P&mode=full"
+          },
+          {
+            "source": "han-caoquan:han-caoquan",
+            "target": "han-caoquan:cao",
+            "relation": "碑主",
+            "sourceIds": [
+              "history:han-caoquan:relation:0"
+            ],
+            "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+            "verification": "confirmed"
+          },
+          {
+            "source": "han-caoquan:han-caoquan",
+            "target": "han-caoquan:wangchang",
+            "relation": "刊石纪功",
+            "sourceIds": [
+              "history:han-caoquan:relation:1"
+            ],
+            "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+            "verification": "confirmed"
+          },
+          {
+            "source": "han-caoquan:han-caoquan",
+            "target": "han-caoquan:heyang",
+            "relation": "立碑地望",
+            "sourceIds": [
+              "history:han-caoquan:relation:2"
+            ],
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+            "verification": "confirmed"
+          },
+          {
+            "source": "han-caoquan:han-caoquan",
+            "target": "han-caoquan:xinli",
+            "relation": "出土",
+            "sourceIds": [
+              "history:han-caoquan:relation:3"
+            ],
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+            "verification": "confirmed"
+          },
+          {
+            "source": "han-caoquan:han-caoquan",
+            "target": "han-caoquan:beilin",
+            "relation": "原石现存",
+            "sourceIds": [
+              "history:han-caoquan:relation:4"
+            ],
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+            "verification": "confirmed"
+          },
+          {
+            "source": "han-caoquan:han-caoquan",
+            "target": "han-caoquan:era-185",
+            "relation": "刊刻纪年",
+            "sourceIds": [
+              "history:han-caoquan:relation:8"
+            ],
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+            "verification": "confirmed"
+          },
+          {
+            "source": "han-caoquan:han-caoquan",
+            "target": "han-caoquan:rubbing-cao",
+            "relation": "传拓载体",
+            "sourceIds": [
+              "history:han-caoquan:relation:9"
+            ],
+            "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+            "verification": "confirmed"
+          }
+        ],
+        "places": [
+          {
+            "id": "heyang",
+            "name": "郃阳县地望",
+            "modernName": "陕西渭南市合阳县",
+            "longitude": 110.2,
+            "latitude": 35.2,
+            "coordinateSystem": "WGS84",
+            "precision": "regional",
+            "type": "original_site",
+            "sourceId": "beilin-cao",
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+            "sourceTitle": "西安碑林博物馆：曹全碑",
+            "verified": true,
+            "coordinateSourceUrl": "https://github.com/MisterChangRay/geodeparse/tree/dfb4ce2c1f7f48a5da5ad7842cbfbe1b2cd29757/geo",
+            "coordinateMethod": "CGCS2000行政面内部代表点，取两位小数，仅示地理范围",
+            "accuracyKm": null,
+            "province": "陕西省",
+            "note": "县域代表点，非原立石位置。",
+            "regionLocationId": null,
+            "steleId": "han_01_caoquan",
+            "coreSampleId": "han-caoquan"
+          },
+          {
+            "id": "xinli",
+            "name": "合阳莘里村出土地",
+            "modernName": "陕西合阳·旧莘里村",
+            "longitude": null,
+            "latitude": null,
+            "coordinateSystem": "WGS84",
+            "precision": "unknown",
+            "type": "excavation_site",
+            "sourceId": "beilin-cao",
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+            "sourceTitle": "西安碑林博物馆：曹全碑",
+            "verified": true,
+            "coordinateSourceUrl": null,
+            "coordinateMethod": "无已核实坐标，不上图",
+            "accuracyKm": null,
+            "province": "陕西省",
+            "note": "村级坐标未核实，依合阳县域索引，地图不另放伪精确点。",
+            "regionLocationId": "heyang",
+            "steleId": "han_01_caoquan",
+            "coreSampleId": "han-caoquan"
+          },
+          {
+            "id": "beilin",
+            "name": "西安碑林博物馆",
+            "modernName": "陕西西安·三学街15号",
+            "longitude": 108.948132,
+            "latitude": 34.254721,
+            "coordinateSystem": "WGS84",
+            "precision": "approximate",
+            "type": "current_collection",
+            "sourceId": "beilin-duobao",
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "sourceTitle": "西安碑林博物馆：多宝塔感应碑",
+            "verified": true,
+            "coordinateSourceUrl": "https://commons.wikimedia.org/wiki/File:Beilin_Museum_Map_(14185587169).jpg",
+            "coordinateMethod": "实地摄影地理标记；馆区近似",
+            "accuracyKm": null,
+            "province": "陕西省",
+            "note": "原石保存馆区，非拓本馆藏；摄影点并非展位。",
+            "regionLocationId": null,
+            "steleId": "han_01_caoquan",
+            "coreSampleId": "han-caoquan"
+          },
+          {
+            "id": "dunhuang",
+            "name": "敦煌效谷地望",
+            "modernName": "甘肃敦煌市区域",
+            "longitude": 94.05,
+            "latitude": 40.61,
+            "coordinateSystem": "WGS84",
+            "precision": "regional",
+            "type": "ancestral_origin",
+            "sourceId": "npm-cao",
+            "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+            "sourceTitle": "汉曹全碑墨拓本（购拓000033）",
+            "verified": true,
+            "coordinateSourceUrl": "https://github.com/MisterChangRay/geodeparse/tree/dfb4ce2c1f7f48a5da5ad7842cbfbe1b2cd29757/geo",
+            "coordinateMethod": "CGCS2000行政面内部代表点，取两位小数，仅示地理范围",
+            "accuracyKm": null,
+            "province": "甘肃省",
+            "note": "曹全籍贯；敦煌市代表点不等于古效谷县治。",
+            "regionLocationId": null,
+            "steleId": "han_01_caoquan",
+            "coreSampleId": "han-caoquan"
+          },
+          {
+            "id": "jiuquan",
+            "name": "酒泉禄福地望",
+            "modernName": "甘肃酒泉市肃州区",
+            "longitude": 98.75,
+            "latitude": 39.57,
+            "coordinateSystem": "WGS84",
+            "precision": "regional",
+            "type": "historical_activity",
+            "sourceId": "npm-cao",
+            "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+            "sourceTitle": "汉曹全碑墨拓本（购拓000033）",
+            "verified": true,
+            "coordinateSourceUrl": "https://github.com/MisterChangRay/geodeparse/tree/dfb4ce2c1f7f48a5da5ad7842cbfbe1b2cd29757/geo",
+            "coordinateMethod": "CGCS2000行政面内部代表点，取两位小数，仅示地理范围",
+            "accuracyKm": null,
+            "province": "甘肃省",
+            "note": "曹全任职地区；现代县域代表点，不是古县治GPS。",
+            "regionLocationId": null,
+            "steleId": "han_01_caoquan",
+            "coreSampleId": "han-caoquan"
+          },
+          {
+            "id": "shule",
+            "name": "西域疏勒国地望",
+            "modernName": "新疆喀什地区",
+            "longitude": 76.21,
+            "latitude": 39.52,
+            "coordinateSystem": "WGS84",
+            "precision": "regional",
+            "type": "historical_activity",
+            "sourceId": "npm-cao",
+            "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+            "sourceTitle": "汉曹全碑墨拓本（购拓000033）",
+            "verified": true,
+            "coordinateSourceUrl": "https://github.com/MisterChangRay/geodeparse/tree/dfb4ce2c1f7f48a5da5ad7842cbfbe1b2cd29757/geo",
+            "coordinateMethod": "CGCS2000行政面内部代表点，取两位小数，仅示地理范围",
+            "accuracyKm": null,
+            "province": "新疆维吾尔自治区",
+            "note": "仅表示疏勒国喀什区域；不等于现代疏勒县，不绘征讨线路。",
+            "regionLocationId": null,
+            "steleId": "han_01_caoquan",
+            "coreSampleId": "han-caoquan"
+          },
+          {
+            "id": "npm-taipei",
+            "name": "台北故宫博物院",
+            "modernName": "台北市士林区",
+            "longitude": null,
+            "latitude": null,
+            "coordinateSystem": "WGS84",
+            "precision": "unknown",
+            "type": "rubbing_collection",
+            "sourceId": "npm-cao",
+            "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+            "sourceTitle": "汉曹全碑墨拓本（购拓000033）",
+            "verified": true,
+            "coordinateSourceUrl": null,
+            "coordinateMethod": "无已核实坐标，不上图",
+            "accuracyKm": null,
+            "province": null,
+            "note": "仅登记已核实数字拓本馆藏，不据此推断原石迁台。",
+            "regionLocationId": null,
+            "steleId": "han_01_caoquan",
+            "coreSampleId": "han-caoquan"
+          }
+        ],
+        "generation": null,
+        "limitations": "BM25与实体一跳扩展；摘记可能不完整，未进行语义蕴含或独立史学鉴定。来源可追溯不表示链接实时可用。"
+      }
+    },
+    {
+      "id": "stone-rubbing",
+      "assertions": {
+        "西安碑林": true,
+        "台北故宫": true,
+        "expectedEvidenceHit": true
+      },
+      "passed": true,
+      "actual": {
+        "query": "《多宝塔碑》原石与台北故宫藏拓本是什么关系？",
+        "scopeSteleId": null,
+        "status": "evidence_found",
+        "answer": "以下为现有资料原文/著录摘录，未调用语言模型：\n[1] 唐·多宝塔感应碑。文物身份已核；图像为拓本，与原石分开记录。原刻/样本标签：唐天宝十一载；拓本年代：明拓（现馆方著录；旧摄影标签为时代不明）；原石现藏：西安碑林博物馆；数字拓本：台北故宫博物院（拓本）；编号：赠拓000365（拓本）。相关作者：岑勋 · 撰文；颜真卿 · 书丹；徐浩 · 题额；楚金 · 建塔活动。752年立；1103年移存碑林；作者及千福寺地望。\n[2] 唐·多宝塔感应碑。文物身份已核；图像为拓本，与原石分开记录。原刻/样本标签：唐天宝十一载；拓本年代：明拓（现馆方著录；旧摄影标签为时代不明）；原石现藏：西安碑林博物馆；数字拓本：台北故宫博物院（拓本）；编号：赠拓000365（拓本）。相关作者：岑勋 · 撰文；颜真卿 · 书丹；徐浩 · 题额；楚金 · 建塔活动。原石与馆藏宋拓分属不同实体。\n[3] 多宝塔碑 → 原石保存 → 西安碑林。原石保存馆区，非拓本馆藏；摄影点并非展位。\n[4] 多宝塔碑 → 记述建塔 → 楚金禅师。创建多宝塔相关活动。",
+        "answerMode": "extractive_evidence_only",
+        "algorithmVersion": "fts5-evidence-graph-v2.1",
+        "indexFingerprint": "ec04cba9493931a6300a647a634f0511ef6ac0b17369f1707bac46e1da60158d",
+        "evidence": [
+          {
+            "sourceId": "history:tang-duobao:beilin-duobao",
+            "steleId": "tang_01_duobao",
+            "title": "西安碑林博物馆：多宝塔感应碑",
+            "text": "唐·多宝塔感应碑。文物身份已核；图像为拓本，与原石分开记录。原刻/样本标签：唐天宝十一载；拓本年代：明拓（现馆方著录；旧摄影标签为时代不明）；原石现藏：西安碑林博物馆；数字拓本：台北故宫博物院（拓本）；编号：赠拓000365（拓本）。相关作者：岑勋 · 撰文；颜真卿 · 书丹；徐浩 · 题额；楚金 · 建塔活动。752年立；1103年移存碑林；作者及千福寺地望。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "institution": "西安碑林博物馆",
+            "evidenceLevel": "curated_source_summary",
+            "originalPosition": "data/history/tang-duobao.json",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "ed815d6aa02195e96014c54fc037c73edabc7e5ce99c3c58da27d35b7ae44f0f",
+            "retrievalScore": 39.35595612325855
+          },
+          {
+            "sourceId": "history:tang-duobao:dpm-duobao",
+            "steleId": "tang_01_duobao",
+            "title": "故宫博物院：多宝塔碑",
+            "text": "唐·多宝塔感应碑。文物身份已核；图像为拓本，与原石分开记录。原刻/样本标签：唐天宝十一载；拓本年代：明拓（现馆方著录；旧摄影标签为时代不明）；原石现藏：西安碑林博物馆；数字拓本：台北故宫博物院（拓本）；编号：赠拓000365（拓本）。相关作者：岑勋 · 撰文；颜真卿 · 书丹；徐浩 · 题额；楚金 · 建塔活动。原石与馆藏宋拓分属不同实体。",
+            "url": "https://www.dpm.org.cn/collection/impres/234169.html",
+            "institution": "故宫博物院",
+            "evidenceLevel": "curated_source_summary",
+            "originalPosition": "data/history/tang-duobao.json",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "7a39fdf83f426190f722ba109a45013575e354bad1fb462bed4e7d9182b2fdf7",
+            "retrievalScore": 36.9225270032524
+          },
+          {
+            "sourceId": "history:tang-duobao:relation:5",
+            "steleId": "tang_01_duobao",
+            "title": "唐·多宝塔感应碑 · 原石保存",
+            "text": "多宝塔碑 → 原石保存 → 西安碑林。原石保存馆区，非拓本馆藏；摄影点并非展位。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/tang-duobao.json#links/5",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "ead7cc8c6671ea2f288159ee8af458e590a37b03f19118f4a0d650a88d216638",
+            "retrievalScore": 34.56349914625259
+          },
+          {
+            "sourceId": "history:tang-duobao:relation:3",
+            "steleId": "tang_01_duobao",
+            "title": "唐·多宝塔感应碑 · 记述建塔",
+            "text": "多宝塔碑 → 记述建塔 → 楚金禅师。创建多宝塔相关活动。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/tang-duobao.json#links/3",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "4f5ee6072f3288b4b862ffd7f4b42e344b5d89862baac3163aec9cedc1740822",
+            "retrievalScore": 31.624127272265483
+          },
+          {
+            "sourceId": "history:tang-duobao:relation:4",
+            "steleId": "tang_01_duobao",
+            "title": "唐·多宝塔感应碑 · 原立于",
+            "text": "多宝塔碑 → 原立于 → 长安千福寺。具体古址待考；文字记录，不将城市点称作寺址。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/tang-duobao.json#links/4",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "41828667782a374b36024ea30c49600d0e5d54030e95a0c04690fd8b49e39442",
+            "retrievalScore": 30.587753268109847
+          },
+          {
+            "sourceId": "history:tang-duobao:relation:7",
+            "steleId": "tang_01_duobao",
+            "title": "唐·多宝塔感应碑 · 传拓载体（独立实体）",
+            "text": "多宝塔碑 → 传拓载体（独立实体） → 明拓数字册页。赠拓000365；非原石。",
+            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/33063?dep=P",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/tang-duobao.json#links/7",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "08ef9e2904969ae54421f6b545ba4dcc901a62f4b2b4e042ec8cdd5505d9dbe5",
+            "retrievalScore": 30.155187733342085
+          },
+          {
+            "sourceId": "history:tang-duobao:npm-duobao",
+            "steleId": "tang_01_duobao",
+            "title": "明拓唐颜真卿多宝塔墨拓本 册（赠拓000365）",
+            "text": "唐·多宝塔感应碑。文物身份已核；图像为拓本，与原石分开记录。原刻/样本标签：唐天宝十一载；拓本年代：明拓（现馆方著录；旧摄影标签为时代不明）；原石现藏：西安碑林博物馆；数字拓本：台北故宫博物院（拓本）；编号：赠拓000365（拓本）。相关作者：岑勋 · 撰文；颜真卿 · 书丹；徐浩 · 题额；楚金 · 建塔活动。原馆正式著录为明拓，摄影旧标签时代不明；拓本非原石，CC BY 4.0。",
+            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/33063?dep=P",
+            "institution": "国立故宫博物院",
+            "evidenceLevel": "curated_source_summary",
+            "originalPosition": "data/history/tang-duobao.json",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "3f5a067e72d4fe2436720ec7a9f360284b20ffd78130ed70e3591ca8f95d7550",
+            "retrievalScore": 29.801612630723017
+          },
+          {
+            "sourceId": "catalog:tang_01_duobao",
+            "steleId": "tang_01_duobao",
+            "title": "多宝塔感应碑 · 馆藏著录",
+            "text": "多宝塔感应碑。原刻朝代：唐代；原刻年代：752年；拓本年代：未核定；不据拓印年改变朝代；文物类型：碑刻拓本；撰文：岑勋；书丹：颜真卿；拓本现藏机构：台北故宫博物院；拓本馆藏编号：贈拓000365；原石现藏机构：未核定；原碑所在地：未核定。",
+            "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+            "institution": "台北故宫博物院",
+            "evidenceLevel": "catalogue_record",
+            "originalPosition": "data/catalog/steles28.json#tang_01_duobao",
+            "license": "CC BY 4.0",
+            "origin": "reviewed_local_record",
+            "textSha256": "b29bf46a9778dc819f19860417ace2dda563d1536bc423a62825cff372449bcc",
+            "retrievalScore": 28.593685760388567
+          },
+          {
+            "sourceId": "history:tang-duobao:relation:2",
+            "steleId": "tang_01_duobao",
+            "title": "唐·多宝塔感应碑 · 题额",
+            "text": "多宝塔碑 → 题额 → 徐浩。题额者。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/tang-duobao.json#links/2",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "68ef5ca36cddedc3e97226990adc5260634451d1027b439ae6218759635a5224",
+            "retrievalScore": 28.412667021337608
+          },
+          {
+            "sourceId": "history:tang-duobao:relation:1",
+            "steleId": "tang_01_duobao",
+            "title": "唐·多宝塔感应碑 · 撰文",
+            "text": "多宝塔碑 → 撰文 → 岑勋。碑文撰者。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/tang-duobao.json#links/1",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "f833abb77a57af320848173e7dfa6e3e835ec016586fa869bd82866a8031f919",
+            "retrievalScore": 28.366991584632935
+          },
+          {
+            "sourceId": "history:tang-duobao:relation:6",
+            "steleId": "tang_01_duobao",
+            "title": "唐·多宝塔感应碑 · 立碑纪年",
+            "text": "多宝塔碑 → 立碑纪年 → 天宝十一载。对应公元752年。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/tang-duobao.json#links/6",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "56523182704efd37a13dba14147fa9fda926a87dc79d8e6e4275c5516da10a78",
+            "retrievalScore": 28.03233397399255
+          },
+          {
+            "sourceId": "history:tang-duobao:relation:0",
+            "steleId": "tang_01_duobao",
+            "title": "唐·多宝塔感应碑 · 书丹",
+            "text": "多宝塔碑 → 书丹 → 颜真卿。书丹者；不额外推断行旅路线。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/tang-duobao.json#links/0",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "3e747f000a23879acff153e975bdb73d4a11bc82a98ab94da5a16c5ba416e5a3",
+            "retrievalScore": 27.96702881890122
+          }
+        ],
+        "entities": [
+          {
+            "id": "tang-duobao:tang-duobao",
+            "name": "多宝塔碑",
+            "category": "stele",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:beilin-duobao"
+            ]
+          },
+          {
+            "id": "tang-duobao:yan",
+            "name": "颜真卿",
+            "category": "person",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:beilin-duobao"
+            ]
+          },
+          {
+            "id": "tang-duobao:cen",
+            "name": "岑勋",
+            "category": "person",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:beilin-duobao"
+            ]
+          },
+          {
+            "id": "tang-duobao:xu",
+            "name": "徐浩",
+            "category": "person",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:beilin-duobao"
+            ]
+          },
+          {
+            "id": "tang-duobao:chujin",
+            "name": "楚金禅师",
+            "category": "person",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:beilin-duobao"
+            ]
+          },
+          {
+            "id": "tang-duobao:qianfu",
+            "name": "长安千福寺",
+            "category": "place",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:beilin-duobao"
+            ]
+          },
+          {
+            "id": "tang-duobao:beilin",
+            "name": "西安碑林",
+            "category": "place",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:beilin-duobao"
+            ]
+          },
+          {
+            "id": "tang-duobao:era-752",
+            "name": "天宝十一载",
+            "category": "era",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:beilin-duobao"
+            ]
+          },
+          {
+            "id": "tang-duobao:rubbing-duobao",
+            "name": "明拓数字册页",
+            "category": "document",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:npm-duobao"
+            ]
+          }
+        ],
+        "relations": [
+          {
+            "source": "tang-duobao:tang-duobao",
+            "target": "tang-duobao:yan",
+            "relation": "书丹",
+            "sourceIds": [
+              "history:tang-duobao:relation:0"
+            ],
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "verification": "confirmed"
+          },
+          {
+            "source": "tang-duobao:tang-duobao",
+            "target": "tang-duobao:cen",
+            "relation": "撰文",
+            "sourceIds": [
+              "history:tang-duobao:relation:1"
+            ],
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "verification": "confirmed"
+          },
+          {
+            "source": "tang-duobao:tang-duobao",
+            "target": "tang-duobao:xu",
+            "relation": "题额",
+            "sourceIds": [
+              "history:tang-duobao:relation:2"
+            ],
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "verification": "confirmed"
+          },
+          {
+            "source": "tang-duobao:tang-duobao",
+            "target": "tang-duobao:chujin",
+            "relation": "记述建塔",
+            "sourceIds": [
+              "history:tang-duobao:relation:3"
+            ],
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "verification": "confirmed"
+          },
+          {
+            "source": "tang-duobao:tang-duobao",
+            "target": "tang-duobao:qianfu",
+            "relation": "原立于",
+            "sourceIds": [
+              "history:tang-duobao:relation:4"
+            ],
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "verification": "confirmed"
+          },
+          {
+            "source": "tang-duobao:tang-duobao",
+            "target": "tang-duobao:beilin",
+            "relation": "原石保存",
+            "sourceIds": [
+              "history:tang-duobao:relation:5"
+            ],
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "verification": "confirmed"
+          },
+          {
+            "source": "tang-duobao:tang-duobao",
+            "target": "tang-duobao:era-752",
+            "relation": "立碑纪年",
+            "sourceIds": [
+              "history:tang-duobao:relation:6"
+            ],
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "verification": "confirmed"
+          },
+          {
+            "source": "tang-duobao:tang-duobao",
+            "target": "tang-duobao:rubbing-duobao",
+            "relation": "传拓载体（独立实体）",
+            "sourceIds": [
+              "history:tang-duobao:relation:7"
+            ],
+            "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/33063?dep=P",
+            "verification": "confirmed"
+          }
+        ],
+        "places": [
+          {
+            "id": "qianfu",
+            "name": "唐长安千福寺",
+            "modernName": "西安西站西南一带（馆方描述）",
+            "longitude": null,
+            "latitude": null,
+            "coordinateSystem": "WGS84",
+            "precision": "unknown",
+            "type": "original_site",
+            "sourceId": "beilin-duobao",
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "sourceTitle": "西安碑林博物馆：多宝塔感应碑",
+            "verified": true,
+            "coordinateSourceUrl": null,
+            "coordinateMethod": "无已核实坐标，不上图",
+            "accuracyKm": null,
+            "province": "陕西省",
+            "note": "具体古址待考；文字记录，不将城市点称作寺址。",
+            "regionLocationId": "xian",
+            "steleId": "tang_01_duobao",
+            "coreSampleId": "tang-duobao"
+          },
+          {
+            "id": "xian",
+            "name": "唐长安城地望",
+            "modernName": "陕西西安市区域",
+            "longitude": 108.93,
+            "latitude": 34.21,
+            "coordinateSystem": "WGS84",
+            "precision": "regional",
+            "type": "historical_activity",
+            "sourceId": "beilin-duobao",
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "sourceTitle": "西安碑林博物馆：多宝塔感应碑",
+            "verified": true,
+            "coordinateSourceUrl": "https://github.com/MisterChangRay/geodeparse/tree/dfb4ce2c1f7f48a5da5ad7842cbfbe1b2cd29757/geo",
+            "coordinateMethod": "CGCS2000行政面内部代表点，取两位小数，仅示地理范围",
+            "accuracyKm": null,
+            "province": "陕西省",
+            "note": "现代雁塔区面内部代表点作为西安区域索引，不代表唐城中心或千福寺。",
+            "regionLocationId": null,
+            "steleId": "tang_01_duobao",
+            "coreSampleId": "tang-duobao"
+          },
+          {
+            "id": "beilin",
+            "name": "西安碑林博物馆",
+            "modernName": "陕西西安·三学街15号",
+            "longitude": 108.948132,
+            "latitude": 34.254721,
+            "coordinateSystem": "WGS84",
+            "precision": "approximate",
+            "type": "current_collection",
+            "sourceId": "beilin-duobao",
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "sourceTitle": "西安碑林博物馆：多宝塔感应碑",
+            "verified": true,
+            "coordinateSourceUrl": "https://commons.wikimedia.org/wiki/File:Beilin_Museum_Map_(14185587169).jpg",
+            "coordinateMethod": "实地摄影地理标记；馆区近似",
+            "accuracyKm": null,
+            "province": "陕西省",
+            "note": "原石保存馆区，非拓本馆藏；摄影点并非展位。",
+            "regionLocationId": null,
+            "steleId": "tang_01_duobao",
+            "coreSampleId": "tang-duobao"
+          }
+        ],
+        "generation": null,
+        "limitations": "BM25与实体一跳扩展；摘记可能不完整，未进行语义蕴含或独立史学鉴定。来源可追溯不表示链接实时可用。"
+      }
+    },
+    {
+      "id": "different-periods",
+      "assertions": {
+        "明拓": true,
+        "752": true,
+        "expectedEvidenceHit": true
+      },
+      "passed": true,
+      "actual": {
+        "query": "多宝塔碑拓本年代与原刻年代是否相同？",
+        "scopeSteleId": null,
+        "status": "evidence_found",
+        "answer": "以下为现有资料原文/著录摘录，未调用语言模型：\n[1] 唐·多宝塔感应碑。文物身份已核；图像为拓本，与原石分开记录。原刻/样本标签：唐天宝十一载；拓本年代：明拓（现馆方著录；旧摄影标签为时代不明）；原石现藏：西安碑林博物馆；数字拓本：台北故宫博物院（拓本）；编号：赠拓000365（拓本）。相关作者：岑勋 · 撰文；颜真卿 · 书丹；徐浩 · 题额；楚金 · 建塔活动。752年立；1103年移存碑林；作者及千福寺地望。\n[2] 唐·多宝塔感应碑。文物身份已核；图像为拓本，与原石分开记录。原刻/样本标签：唐天宝十一载；拓本年代：明拓（现馆方著录；旧摄影标签为时代不明）；原石现藏：西安碑林博物馆；数字拓本：台北故宫博物院（拓本）；编号：赠拓000365（拓本）。相关作者：岑勋 · 撰文；颜真卿 · 书丹；徐浩 · 题额；楚金 · 建塔活动。原石与馆藏宋拓分属不同实体。\n[3] 多宝塔碑 → 原石保存 → 西安碑林。原石保存馆区，非拓本馆藏；摄影点并非展位。\n[4] 多宝塔碑 → 记述建塔 → 楚金禅师。创建多宝塔相关活动。",
+        "answerMode": "extractive_evidence_only",
+        "algorithmVersion": "fts5-evidence-graph-v2.1",
+        "indexFingerprint": "ec04cba9493931a6300a647a634f0511ef6ac0b17369f1707bac46e1da60158d",
+        "evidence": [
+          {
+            "sourceId": "history:tang-duobao:beilin-duobao",
+            "steleId": "tang_01_duobao",
+            "title": "西安碑林博物馆：多宝塔感应碑",
+            "text": "唐·多宝塔感应碑。文物身份已核；图像为拓本，与原石分开记录。原刻/样本标签：唐天宝十一载；拓本年代：明拓（现馆方著录；旧摄影标签为时代不明）；原石现藏：西安碑林博物馆；数字拓本：台北故宫博物院（拓本）；编号：赠拓000365（拓本）。相关作者：岑勋 · 撰文；颜真卿 · 书丹；徐浩 · 题额；楚金 · 建塔活动。752年立；1103年移存碑林；作者及千福寺地望。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "institution": "西安碑林博物馆",
+            "evidenceLevel": "curated_source_summary",
+            "originalPosition": "data/history/tang-duobao.json",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "ed815d6aa02195e96014c54fc037c73edabc7e5ce99c3c58da27d35b7ae44f0f",
+            "retrievalScore": 38.27405240966789
+          },
+          {
+            "sourceId": "history:tang-duobao:dpm-duobao",
+            "steleId": "tang_01_duobao",
+            "title": "故宫博物院：多宝塔碑",
+            "text": "唐·多宝塔感应碑。文物身份已核；图像为拓本，与原石分开记录。原刻/样本标签：唐天宝十一载；拓本年代：明拓（现馆方著录；旧摄影标签为时代不明）；原石现藏：西安碑林博物馆；数字拓本：台北故宫博物院（拓本）；编号：赠拓000365（拓本）。相关作者：岑勋 · 撰文；颜真卿 · 书丹；徐浩 · 题额；楚金 · 建塔活动。原石与馆藏宋拓分属不同实体。",
+            "url": "https://www.dpm.org.cn/collection/impres/234169.html",
+            "institution": "故宫博物院",
+            "evidenceLevel": "curated_source_summary",
+            "originalPosition": "data/history/tang-duobao.json",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "7a39fdf83f426190f722ba109a45013575e354bad1fb462bed4e7d9182b2fdf7",
+            "retrievalScore": 32.326898639021515
+          },
+          {
+            "sourceId": "history:tang-duobao:relation:5",
+            "steleId": "tang_01_duobao",
+            "title": "唐·多宝塔感应碑 · 原石保存",
+            "text": "多宝塔碑 → 原石保存 → 西安碑林。原石保存馆区，非拓本馆藏；摄影点并非展位。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/tang-duobao.json#links/5",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "ead7cc8c6671ea2f288159ee8af458e590a37b03f19118f4a0d650a88d216638",
+            "retrievalScore": 30.377142638888635
+          },
+          {
+            "sourceId": "history:tang-duobao:relation:3",
+            "steleId": "tang_01_duobao",
+            "title": "唐·多宝塔感应碑 · 记述建塔",
+            "text": "多宝塔碑 → 记述建塔 → 楚金禅师。创建多宝塔相关活动。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/tang-duobao.json#links/3",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "4f5ee6072f3288b4b862ffd7f4b42e344b5d89862baac3163aec9cedc1740822",
+            "retrievalScore": 29.40750733959006
+          },
+          {
+            "sourceId": "history:tang-duobao:relation:7",
+            "steleId": "tang_01_duobao",
+            "title": "唐·多宝塔感应碑 · 传拓载体（独立实体）",
+            "text": "多宝塔碑 → 传拓载体（独立实体） → 明拓数字册页。赠拓000365；非原石。",
+            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/33063?dep=P",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/tang-duobao.json#links/7",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "08ef9e2904969ae54421f6b545ba4dcc901a62f4b2b4e042ec8cdd5505d9dbe5",
+            "retrievalScore": 29.161962845180405
+          },
+          {
+            "sourceId": "history:tang-duobao:npm-duobao",
+            "steleId": "tang_01_duobao",
+            "title": "明拓唐颜真卿多宝塔墨拓本 册（赠拓000365）",
+            "text": "唐·多宝塔感应碑。文物身份已核；图像为拓本，与原石分开记录。原刻/样本标签：唐天宝十一载；拓本年代：明拓（现馆方著录；旧摄影标签为时代不明）；原石现藏：西安碑林博物馆；数字拓本：台北故宫博物院（拓本）；编号：赠拓000365（拓本）。相关作者：岑勋 · 撰文；颜真卿 · 书丹；徐浩 · 题额；楚金 · 建塔活动。原馆正式著录为明拓，摄影旧标签时代不明；拓本非原石，CC BY 4.0。",
+            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/33063?dep=P",
+            "institution": "国立故宫博物院",
+            "evidenceLevel": "curated_source_summary",
+            "originalPosition": "data/history/tang-duobao.json",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "3f5a067e72d4fe2436720ec7a9f360284b20ffd78130ed70e3591ca8f95d7550",
+            "retrievalScore": 28.724361966982578
+          },
+          {
+            "sourceId": "history:tang-duobao:relation:2",
+            "steleId": "tang_01_duobao",
+            "title": "唐·多宝塔感应碑 · 题额",
+            "text": "多宝塔碑 → 题额 → 徐浩。题额者。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/tang-duobao.json#links/2",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "68ef5ca36cddedc3e97226990adc5260634451d1027b439ae6218759635a5224",
+            "retrievalScore": 28.412667021337608
+          },
+          {
+            "sourceId": "history:tang-duobao:relation:1",
+            "steleId": "tang_01_duobao",
+            "title": "唐·多宝塔感应碑 · 撰文",
+            "text": "多宝塔碑 → 撰文 → 岑勋。碑文撰者。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/tang-duobao.json#links/1",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "f833abb77a57af320848173e7dfa6e3e835ec016586fa869bd82866a8031f919",
+            "retrievalScore": 28.366991584632935
+          },
+          {
+            "sourceId": "history:tang-duobao:relation:6",
+            "steleId": "tang_01_duobao",
+            "title": "唐·多宝塔感应碑 · 立碑纪年",
+            "text": "多宝塔碑 → 立碑纪年 → 天宝十一载。对应公元752年。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/tang-duobao.json#links/6",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "56523182704efd37a13dba14147fa9fda926a87dc79d8e6e4275c5516da10a78",
+            "retrievalScore": 28.032335773201805
+          },
+          {
+            "sourceId": "history:tang-duobao:relation:4",
+            "steleId": "tang_01_duobao",
+            "title": "唐·多宝塔感应碑 · 原立于",
+            "text": "多宝塔碑 → 原立于 → 长安千福寺。具体古址待考；文字记录，不将城市点称作寺址。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/tang-duobao.json#links/4",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "41828667782a374b36024ea30c49600d0e5d54030e95a0c04690fd8b49e39442",
+            "retrievalScore": 28.014330449504577
+          },
+          {
+            "sourceId": "history:tang-duobao:relation:0",
+            "steleId": "tang_01_duobao",
+            "title": "唐·多宝塔感应碑 · 书丹",
+            "text": "多宝塔碑 → 书丹 → 颜真卿。书丹者；不额外推断行旅路线。",
+            "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/tang-duobao.json#links/0",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "3e747f000a23879acff153e975bdb73d4a11bc82a98ab94da5a16c5ba416e5a3",
+            "retrievalScore": 27.96702881890122
+          },
+          {
+            "sourceId": "catalog:tang_01_duobao",
+            "steleId": "tang_01_duobao",
+            "title": "多宝塔感应碑 · 馆藏著录",
+            "text": "多宝塔感应碑。原刻朝代：唐代；原刻年代：752年；拓本年代：未核定；不据拓印年改变朝代；文物类型：碑刻拓本；撰文：岑勋；书丹：颜真卿；拓本现藏机构：台北故宫博物院；拓本馆藏编号：贈拓000365；原石现藏机构：未核定；原碑所在地：未核定。",
+            "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+            "institution": "台北故宫博物院",
+            "evidenceLevel": "catalogue_record",
+            "originalPosition": "data/catalog/steles28.json#tang_01_duobao",
+            "license": "CC BY 4.0",
+            "origin": "reviewed_local_record",
+            "textSha256": "b29bf46a9778dc819f19860417ace2dda563d1536bc423a62825cff372449bcc",
+            "retrievalScore": 24.25651275599471
+          }
+        ],
+        "entities": [
+          {
+            "id": "tang-duobao:tang-duobao",
+            "name": "多宝塔碑",
+            "category": "stele",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:beilin-duobao"
+            ]
+          },
+          {
+            "id": "tang-duobao:yan",
+            "name": "颜真卿",
+            "category": "person",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:beilin-duobao"
+            ]
+          },
+          {
+            "id": "tang-duobao:cen",
+            "name": "岑勋",
+            "category": "person",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:beilin-duobao"
+            ]
+          },
+          {
+            "id": "tang-duobao:xu",
+            "name": "徐浩",
+            "category": "person",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:beilin-duobao"
+            ]
+          },
+          {
+            "id": "tang-duobao:chujin",
+            "name": "楚金禅师",
+            "category": "person",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:beilin-duobao"
+            ]
+          },
+          {
+            "id": "tang-duobao:qianfu",
+            "name": "长安千福寺",
+            "category": "place",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:beilin-duobao"
+            ]
+          },
+          {
+            "id": "tang-duobao:beilin",
+            "name": "西安碑林",
+            "category": "place",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:beilin-duobao"
+            ]
+          },
+          {
+            "id": "tang-duobao:era-752",
+            "name": "天宝十一载",
+            "category": "era",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:beilin-duobao"
+            ]
+          },
+          {
+            "id": "tang-duobao:rubbing-duobao",
+            "name": "明拓数字册页",
+            "category": "document",
+            "steleId": "tang_01_duobao",
+            "sourceIds": [
+              "history:tang-duobao:npm-duobao"
+            ]
+          }
+        ],
+        "relations": [
+          {
+            "source": "tang-duobao:tang-duobao",
+            "target": "tang-duobao:yan",
+            "relation": "书丹",
+            "sourceIds": [
+              "history:tang-duobao:relation:0"
+            ],
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "verification": "confirmed"
+          },
+          {
+            "source": "tang-duobao:tang-duobao",
+            "target": "tang-duobao:cen",
+            "relation": "撰文",
+            "sourceIds": [
+              "history:tang-duobao:relation:1"
+            ],
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "verification": "confirmed"
+          },
+          {
+            "source": "tang-duobao:tang-duobao",
+            "target": "tang-duobao:xu",
+            "relation": "题额",
+            "sourceIds": [
+              "history:tang-duobao:relation:2"
+            ],
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "verification": "confirmed"
+          },
+          {
+            "source": "tang-duobao:tang-duobao",
+            "target": "tang-duobao:chujin",
+            "relation": "记述建塔",
+            "sourceIds": [
+              "history:tang-duobao:relation:3"
+            ],
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "verification": "confirmed"
+          },
+          {
+            "source": "tang-duobao:tang-duobao",
+            "target": "tang-duobao:qianfu",
+            "relation": "原立于",
+            "sourceIds": [
+              "history:tang-duobao:relation:4"
+            ],
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "verification": "confirmed"
+          },
+          {
+            "source": "tang-duobao:tang-duobao",
+            "target": "tang-duobao:beilin",
+            "relation": "原石保存",
+            "sourceIds": [
+              "history:tang-duobao:relation:5"
+            ],
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "verification": "confirmed"
+          },
+          {
+            "source": "tang-duobao:tang-duobao",
+            "target": "tang-duobao:era-752",
+            "relation": "立碑纪年",
+            "sourceIds": [
+              "history:tang-duobao:relation:6"
+            ],
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "verification": "confirmed"
+          },
+          {
+            "source": "tang-duobao:tang-duobao",
+            "target": "tang-duobao:rubbing-duobao",
+            "relation": "传拓载体（独立实体）",
+            "sourceIds": [
+              "history:tang-duobao:relation:7"
+            ],
+            "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/33063?dep=P",
+            "verification": "confirmed"
+          }
+        ],
+        "places": [
+          {
+            "id": "qianfu",
+            "name": "唐长安千福寺",
+            "modernName": "西安西站西南一带（馆方描述）",
+            "longitude": null,
+            "latitude": null,
+            "coordinateSystem": "WGS84",
+            "precision": "unknown",
+            "type": "original_site",
+            "sourceId": "beilin-duobao",
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "sourceTitle": "西安碑林博物馆：多宝塔感应碑",
+            "verified": true,
+            "coordinateSourceUrl": null,
+            "coordinateMethod": "无已核实坐标，不上图",
+            "accuracyKm": null,
+            "province": "陕西省",
+            "note": "具体古址待考；文字记录，不将城市点称作寺址。",
+            "regionLocationId": "xian",
+            "steleId": "tang_01_duobao",
+            "coreSampleId": "tang-duobao"
+          },
+          {
+            "id": "xian",
+            "name": "唐长安城地望",
+            "modernName": "陕西西安市区域",
+            "longitude": 108.93,
+            "latitude": 34.21,
+            "coordinateSystem": "WGS84",
+            "precision": "regional",
+            "type": "historical_activity",
+            "sourceId": "beilin-duobao",
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "sourceTitle": "西安碑林博物馆：多宝塔感应碑",
+            "verified": true,
+            "coordinateSourceUrl": "https://github.com/MisterChangRay/geodeparse/tree/dfb4ce2c1f7f48a5da5ad7842cbfbe1b2cd29757/geo",
+            "coordinateMethod": "CGCS2000行政面内部代表点，取两位小数，仅示地理范围",
+            "accuracyKm": null,
+            "province": "陕西省",
+            "note": "现代雁塔区面内部代表点作为西安区域索引，不代表唐城中心或千福寺。",
+            "regionLocationId": null,
+            "steleId": "tang_01_duobao",
+            "coreSampleId": "tang-duobao"
+          },
+          {
+            "id": "beilin",
+            "name": "西安碑林博物馆",
+            "modernName": "陕西西安·三学街15号",
+            "longitude": 108.948132,
+            "latitude": 34.254721,
+            "coordinateSystem": "WGS84",
+            "precision": "approximate",
+            "type": "current_collection",
+            "sourceId": "beilin-duobao",
+            "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+            "sourceTitle": "西安碑林博物馆：多宝塔感应碑",
+            "verified": true,
+            "coordinateSourceUrl": "https://commons.wikimedia.org/wiki/File:Beilin_Museum_Map_(14185587169).jpg",
+            "coordinateMethod": "实地摄影地理标记；馆区近似",
+            "accuracyKm": null,
+            "province": "陕西省",
+            "note": "原石保存馆区，非拓本馆藏；摄影点并非展位。",
+            "regionLocationId": null,
+            "steleId": "tang_01_duobao",
+            "coreSampleId": "tang-duobao"
+          }
+        ],
+        "generation": null,
+        "limitations": "BM25与实体一跳扩展；摘记可能不完整，未进行语义蕴含或独立史学鉴定。来源可追溯不表示链接实时可用。"
+      }
+    },
+    {
+      "id": "unverified-identity",
+      "assertions": {
+        "未确认": true,
+        "测试标签": true,
+        "expectedEvidenceHit": true
+      },
+      "passed": true,
+      "actual": {
+        "query": "北魏建义元年演示样本是否已经确认真实文物身份？",
+        "scopeSteleId": null,
+        "status": "evidence_found",
+        "answer": "以下为现有资料原文/著录摘录，未调用语言模型：\n[1] 北魏碑拓数字化退化测试样本。未确认与王诵墓志同一；528是测试标签，非本图已核实纪年。原刻/样本标签：北魏建义元年；拓本年代：年代待考；原石现藏：待考；数字拓本：待考；编号：未核实。相关作者：。sample_generator.py 的 sample_4 使用昌黎夫人合成文字；knowledge_agent.py 配韩夫人；馆藏另为王诵。元怀误映射吴高黎。\n[2] 北魏碑拓数字化退化测试样本。未确认与王诵墓志同一；528是测试标签，非本图已核实纪年。原刻/样本标签：北魏建义元年；拓本年代：年代待考；原石现藏：待考；数字拓本：待考；编号：未核实。相关作者：。真实王诵拓本存在；不能据此认定核心风化样本同一性。CC BY 4.0。\n[3] 建义退化测试样本 → 本地素材审计 → 来源链待核。没有已确认馆藏号、人物或出土地；不借用王诵或韩夫人资料。\n[4] 建义退化测试样本 → 测试标签（待核） → 建义元年 · 528。年号映射可核；测试图像的文物纪年未核。",
+        "answerMode": "extractive_evidence_only",
+        "algorithmVersion": "fts5-evidence-graph-v2.1",
+        "indexFingerprint": "ec04cba9493931a6300a647a634f0511ef6ac0b17369f1707bac46e1da60158d",
+        "evidence": [
+          {
+            "sourceId": "history:wei-jianyi:local-audit",
+            "steleId": "wei-jianyi",
+            "title": "本地核心样本身份与别名审计",
+            "text": "北魏碑拓数字化退化测试样本。未确认与王诵墓志同一；528是测试标签，非本图已核实纪年。原刻/样本标签：北魏建义元年；拓本年代：年代待考；原石现藏：待考；数字拓本：待考；编号：未核实。相关作者：。sample_generator.py 的 sample_4 使用昌黎夫人合成文字；knowledge_agent.py 配韩夫人；馆藏另为王诵。元怀误映射吴高黎。",
+            "url": "/assets/gis/history-audit.md",
+            "institution": "墨韵智考 / 本地来源审计",
+            "evidenceLevel": "identity_unverified",
+            "originalPosition": "data/history/wei-jianyi.json",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "d3e2d1d0229fd8fdc4a6625e71cba19d1764aba054c9134d056c7fa0ec0b22a5",
+            "retrievalScore": 88.14705906167924
+          },
+          {
+            "sourceId": "history:wei-jianyi:npm-wangsong",
+            "steleId": "wei-jianyi",
+            "title": "北魏建义元年王诵墓志 册（赠拓000382）",
+            "text": "北魏碑拓数字化退化测试样本。未确认与王诵墓志同一；528是测试标签，非本图已核实纪年。原刻/样本标签：北魏建义元年；拓本年代：年代待考；原石现藏：待考；数字拓本：待考；编号：未核实。相关作者：。真实王诵拓本存在；不能据此认定核心风化样本同一性。CC BY 4.0。",
+            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/29482?dep=P",
+            "institution": "国立故宫博物院",
+            "evidenceLevel": "identity_unverified",
+            "originalPosition": "data/history/wei-jianyi.json",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "5cc518a69a240f8dc33c4c469522a4907d2280af7a571909d974dbd50190a72b",
+            "retrievalScore": 62.07159943007941
+          },
+          {
+            "sourceId": "history:wei-jianyi:relation:1",
+            "steleId": "wei-jianyi",
+            "title": "北魏碑拓数字化退化测试样本 · 本地素材审计",
+            "text": "建义退化测试样本 → 本地素材审计 → 来源链待核。没有已确认馆藏号、人物或出土地；不借用王诵或韩夫人资料。",
+            "url": "/assets/gis/history-audit.md",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "identity_unverified",
+            "originalPosition": "data/history/wei-jianyi.json#links/1",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "a0923f8b6a31e283a835a70ec9c49e952cda6e64845e215355b61f077dba07b9",
+            "retrievalScore": 47.761967464480605
+          },
+          {
+            "sourceId": "history:wei-jianyi:relation:0",
+            "steleId": "wei-jianyi",
+            "title": "北魏碑拓数字化退化测试样本 · 测试标签（待核）",
+            "text": "建义退化测试样本 → 测试标签（待核） → 建义元年 · 528。年号映射可核；测试图像的文物纪年未核。",
+            "url": "/assets/gis/history-audit.md",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "identity_unverified",
+            "originalPosition": "data/history/wei-jianyi.json#links/0",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "903e23a06bc3a5f67784c0a8e0e92d6176fc7a07188cd1f8453aeb3c0b2fbe8f",
+            "retrievalScore": 41.72000203380597
+          }
+        ],
+        "entities": [
+          {
+            "id": "wei-jianyi:wei-jianyi",
+            "name": "建义退化测试样本",
+            "category": "stele",
+            "steleId": "wei-jianyi",
+            "sourceIds": [
+              "history:wei-jianyi:local-audit"
+            ]
+          },
+          {
+            "id": "wei-jianyi:era-528",
+            "name": "建义元年 · 528",
+            "category": "era",
+            "steleId": "wei-jianyi",
+            "sourceIds": [
+              "history:wei-jianyi:local-audit"
+            ]
+          },
+          {
+            "id": "wei-jianyi:audit-sample",
+            "name": "来源链待核",
+            "category": "document",
+            "steleId": "wei-jianyi",
+            "sourceIds": [
+              "history:wei-jianyi:local-audit"
+            ]
+          }
+        ],
+        "relations": [
+          {
+            "source": "wei-jianyi:wei-jianyi",
+            "target": "wei-jianyi:era-528",
+            "relation": "测试标签（待核）",
+            "sourceIds": [
+              "history:wei-jianyi:relation:0"
+            ],
+            "sourceUrl": "/assets/gis/history-audit.md",
+            "verification": "unverified"
+          },
+          {
+            "source": "wei-jianyi:wei-jianyi",
+            "target": "wei-jianyi:audit-sample",
+            "relation": "本地素材审计",
+            "sourceIds": [
+              "history:wei-jianyi:relation:1"
+            ],
+            "sourceUrl": "/assets/gis/history-audit.md",
+            "verification": "unverified"
+          }
+        ],
+        "places": [],
+        "generation": null,
+        "limitations": "BM25与实体一跳扩展；摘记可能不完整，未进行语义蕴含或独立史学鉴定。来源可追溯不表示链接实时可用。"
+      }
+    },
+    {
+      "id": "no-answer",
+      "assertions": {
+        "status": true
+      },
+      "passed": true,
+      "actual": {
+        "query": "请解释暗物质粒子",
+        "scopeSteleId": null,
+        "status": "insufficient_evidence",
+        "answer": "现有资料不足以回答该问题。以下为相关检索条目，不构成问题结论。",
+        "answerMode": "extractive_evidence_only",
+        "algorithmVersion": "fts5-evidence-graph-v2.1",
+        "indexFingerprint": "ec04cba9493931a6300a647a634f0511ef6ac0b17369f1707bac46e1da60158d",
+        "evidence": [
+          {
+            "sourceId": "catalog:ming_02_luxianzhi",
+            "steleId": "ming_02_luxianzhi",
+            "title": "文徵明书陆献之墓志铭 · 馆藏著录",
+            "text": "文徵明书陆献之墓志铭。原刻朝代：明代；原刻年代：明代，确切原刻年份未核定；拓本年代：未核定；不据拓印年改变朝代；文物类型：馆方著录拓片（册页；草稿／手迹性质待考）；撰文：未核定；书丹：文徵明；拓本现藏机构：台北故宫博物院；拓本馆藏编号：贈拓000385；原石现藏机构：未核定；原碑所在地：未核定。",
+            "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30367&dep=P&mode=full",
+            "institution": "台北故宫博物院",
+            "evidenceLevel": "catalogue_record",
+            "originalPosition": "data/catalog/steles28.json#ming_02_luxianzhi",
+            "license": "CC BY 4.0",
+            "origin": "reviewed_local_record",
+            "textSha256": "aa34ec8891bf19ec4563067944071eda7b2f3515444b9a331451b341df9075ec",
+            "retrievalScore": 6.038720133405306
+          },
+          {
+            "sourceId": "catalog:ming_01_xianfu:transcript:0",
+            "steleId": "ming_01_xianfu",
+            "title": "明弘治八年西安府学题名碑 · 馆方释文摘录",
+            "text": "維弘治八年（西元一四九五年）歲次乙卯。八月辛亥朔。越七日丁巳。監\n臨官巡按陝西監察御史李瀚。提調官陝西布政司左布政使陳道等。監試\n官陝西按察司副使韓明等。考試官都昌縣教諭孫文原等。洎掌卷受卷執\n事等官。西安府知府嚴永濬等。謹瀝誠露悃叩天而誓曰。賓薦賢能。國家\n重事。瀚等濫以軄事承任使。夙夜兢惕。深懼志慮有所不周。聦明有所不\n逮。希神默相。使我進退予奪。悉當人心。罔俾遺才在下。凡茲同事之\n人。或為利誘。或為勢動。或報復恩讐。或黨庇親故。私受請托。暗通關\n節。以致是非顛倒。倖人得志。賢士遭抑。神其降之百殃。奪其官祿。覆\n宗絕嗣。以示懲於人人。謹告。監臨官。巡按陝西監察御史李瀚。叔淵。\n山西沁水縣人。辛丑進士。\n提調官。陝西等處承宣布政使司左布政使陳道。德脩。直隸盱眙縣人。\n甲申進士。陝西等處承宣布政使司右參政韓重。淳夫。山西絳州人。戊戌\n進士。監試官。陝西等處提刑按察司副使韓明。惟遠。浙江餘姚縣人。乙\n未進士。陝西等處提刑按察司僉事謝顯。時榮。浙江會稽縣人。己丑進\n士。考試官。江西南康府都昌縣儒學教諭孫文原。宗道。浙江慈谿縣人。\n己酉貢士。直隸鳳陽府鳳陽縣儒學教諭羅聰。廷謨。浙江桐廬縣人。",
+            "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full",
+            "institution": "台北故宫博物院",
+            "evidenceLevel": "archival_transcription",
+            "originalPosition": "data/catalog/evidence/ming_01_xianfu.json#transcription:0",
+            "license": "CC BY 4.0",
+            "origin": "reviewed_local_record",
+            "textSha256": "94c3613c7f5c44c8815b26e76872004b22ec806bcc7152464f676c73d1dc8d9f",
+            "retrievalScore": 3.2973299307402253
+          },
+          {
+            "sourceId": "catalog:tang_04_xuanmita:transcript:1000",
+            "steleId": "tang_04_xuanmita",
+            "title": "玄秘塔碑 · 馆方释文摘录",
+            "text": "。薦金寶以致誠。僧端嚴而禮足。日\n有千數。不可殫書。而和尚即眾生以觀佛。離四相以修善。心下如地。坦\n無丘陵。王公輿臺。皆以誠接。議者以為成就常無輕行者。唯和尚而已。\n夫將欲駕橫海之大航。拯迷途於彼岸者。固必有奇功妙道歟。　以開成\n元年六月一日。西向右脅而滅。當暑而尊容如生。竟夕而異香猶欝。其年\n七月六日。遷於長樂之南原。遺命茶毗。得舍利三百餘粒。方熾而神光月\n皎。既燼而靈骨珠圓。賜諡大達。塔曰玄秘。俗壽六十七。僧臘卌八。門\n弟子比丘比丘尼約千餘輩。\n或講論玄言。或紀綱大寺。脩禪秉律。分作人師。五十其徒。皆為達者。\n於戲。和尚其出家之雄乎。不然。何至德殊祥如此其盛也。承襲弟子義\n均。自政。正言等。克荷先業。虔守遺風。大懼徽猷有時堙沒。而今閤門\n使劉公。法力冣深。道契弥固。亦以為請。願播清塵。休嘗遊其藩。備其\n事。隨喜讚歎。盖無愧辭。銘曰。賢劫千佛。第四能仁。哀我生靈。出經\n破塵。教綱高張。孰辯孰分。有大法師。如從親聞。經律論藏。戒定慧\n學。深淺同源。先後相覺。異宗偏義。孰正孰駮。有大法師。為作霜雹。\n趣真則滯。涉俗則流。象狂猿輕。鉤檻莫收。柅制刀斷。尚生瘡疣。有大\n法師。絕念而遊。巨唐啟",
+            "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29090&dep=P&mode=full",
+            "institution": "台北故宫博物院",
+            "evidenceLevel": "archival_transcription",
+            "originalPosition": "data/catalog/evidence/tang_04_xuanmita.json#transcription:1000",
+            "license": "CC BY 4.0",
+            "origin": "reviewed_local_record",
+            "textSha256": "0a9391e04ce57496a80b2daf86728a5494a609ed0e364f7576c7c397735a7cdc",
+            "retrievalScore": 3.200716373252265
+          },
+          {
+            "sourceId": "catalog:wei_04_wangsong:transcript:0",
+            "steleId": "wei_04_wangsong",
+            "title": "建义元年王诵墓志 · 馆方释文摘录",
+            "text": "魏故使持節侍中司空尚書左僕射驃騎大將軍徐州刺史王公墓誌銘。祖奐。\n齊尚書左僕射鎮北將軍雍州刺史。父融。給事黃門侍郎東宮中庶子。公\n諱誦。字國章。徐州琅邪臨沂人。導遙源於神跡。啟盛冑於仙儲。洪流與\n江河並逝。峻峰共嵩岱爭聳。離翦擅於興秦。吉駿稱乎隆漢。積仁義而為\n門。累台槐而成族。八世祖丞相文獻公。德邁五臣。功齊十亂。迺祖司\n徒。師表雅俗。高祖特進。羽儀冠冕。祖僕射使君。器惟瑚璉。才實經\n邦。考黃門使君。民之秀極。物之領袖。公膺慶積善。資靈川岳。遠大表\n自觿辰。珪璋發乎綺歲。年甫十二。備遭荼蓼。泣血孺慕。幾於毀滅。寅\n門之慟。不曰是過。既面告靡依。趨庭闕範。勉躬砥礪。動不逾節。處家\n雍穆為本。治身恭儉自居。\n敏學同於生知。好善由乎不及。於是徽譽藉甚。親朋揖慕。值齊季道銷。\n天下競逐。懼比屋之禍。求息肩之地。遂尊卑席卷。投誠魏闕。解褐員外\n散騎侍郎司徒主簿。仍轉府屬。遷司空諮議參軍通直散騎常侍領汝南王\n友。復為司徒諮議。加前將軍。旬日除光祿大夫。諮議如故。俄解諮議。\n領散騎常侍。公道兼大小。才允出內。凡所經涉。並樹聲芳。正光之末。\n燕薊多虞。兵民叛命。威懷邊服。諒難其舉。以本官行幽州事。下",
+            "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29482&dep=P&mode=full",
+            "institution": "台北故宫博物院",
+            "evidenceLevel": "archival_transcription",
+            "originalPosition": "data/catalog/evidence/wei_04_wangsong.json#transcription:0",
+            "license": "CC BY 4.0",
+            "origin": "reviewed_local_record",
+            "textSha256": "dd3a187b62918d3a6b003ad4a8e610950be0f6ae6faf76f7066398ef9e6d2b89",
+            "retrievalScore": 3.110886059017605
+          },
+          {
+            "sourceId": "catalog:han_03_liqi:transcript:0",
+            "steleId": "han_03_liqi",
+            "title": "礼器碑 · 馆方释文摘录",
+            "text": "（碑陽）惟永壽二年。青龍在涒歎。霜月之靈。皇極之日。魯相河南京韓\n君。追惟太古。華生皇雄。顏□育孔寶。俱制元道。百王不改。孔子近\n聖。為漢定道。自天王以下。至于初學。莫不驥思。嘆卬師鏡。顏氏聖\n舅。家居魯親里。並官聖妃。在安樂里。聖族之親。禮所宜異。復顏氏并\n官氏邑中繇發。以尊孔心。念聖歷世。禮樂陵遲。秦項作亂。不尊圖書。\n倍道畔德。離敗聖輿。食糧亡于沙丘。君於是造立禮器。樂之音苻。鐘磬\n瑟鼓。雷洗觴觚。爵鹿柤梪。籩柉禁壺。脩飾宅廟。更作二輿。朝車威\n熹。宣抒玄汙。以注水流。法舊不煩。備而不奢。上合紫臺。稽之中和。\n下合聖制。事得禮儀。於是四方土仁。聞君風燿。敬咏其德。尊琦大人之\n意。逴之思。乃共立表石。\n紀傳億載。其文曰。皇戲統華。承天畫卦。顏育空桑。孔制元孝。俱祖\n紫宮。大一所授。前闓九頭。以什言教。後制百王。獲麟來吐。制不空\n作。承天之語。乾元以來。三九之載。八皇三代。至孔乃備。聖人不世。\n期五百載。三陽吐圖。二陰出讖。制作之義。以俟知奧。於穆韓君。獨見\n天意。復聖二族。逴越絕思。脩造禮樂。胡輦器用。存古舊宇。慇懃宅\n廟。朝車威熹。出誠造□。漆不水解。工不爭賈。深除玄汙。水通四注",
+            "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34648&dep=P&mode=full",
+            "institution": "台北故宫博物院",
+            "evidenceLevel": "archival_transcription",
+            "originalPosition": "data/catalog/evidence/han_03_liqi.json#transcription:0",
+            "license": "CC BY 4.0",
+            "origin": "reviewed_local_record",
+            "textSha256": "41f479b0c9dde2ecd5985722c8801024af34b5d81292f62617049ca0b56007be",
+            "retrievalScore": 2.924823678549354
+          },
+          {
+            "sourceId": "catalog:ming_04_tongdian:transcript:500",
+            "steleId": "ming_04_tongdian",
+            "title": "大峨山永明华藏寺新建铜殿记碑 · 馆方释文摘录",
+            "text": "天。所以使人見\n像起信。故信為功德之母。萬善所繇生也。法界有情。種種顛倒。執妄為\n真。随因成果。堕入法趣。當知空為本性。性中本空。真常不滅。六塵緣\n影。互相磨盪。如金在熔爐冶煎。灼非金之性。舍彼鎔金。求金之性。了\n不可得。十方剎土。\n皆吾法身。一切種智。或淨或染。有情無情。皆吾法性。大覺聖人。起哀\n憐心。廣說三乘。惟寂智用。渾之為一。然非因像生。信因信生。悟欲求\n解脫。若濟河無筏。無有是處。故密義內熏。莊嚴外度。爰闢廟塔。以為\n瞻禮。馨絜香花。以為供養。財法並施。以破貪執。皆以使人革妄。歸貞\n了達。本體而已。正徧知覺。善思念之。登公號妙峯。力脩梵行。智用高\n爽。法中之龍象。山西蒲州萬固寺僧也。乃系以贊曰。世尊大慈父。利益\n於眾生。功德所建立。種種諸方便。後代踵遐軌。嚴飾日益勝。如來說諸\n相。皆是虛妄作。云何大蘭若。福徧一切處。微塵剎土中。塵塵皆是佛。\n眾生正昏迷。深夜行大澤。覿面不見佛。冥冥罔所覩。忽遇紅日輪。赫然\n出東方。三千与大千。\n萬象俱悉照。亦如陽春至。百昌盡發生。本自含萌芽。因法而溉潤。亦如\n母憶子。形神兩相通。瞻彼慈憫相。酌我甘露乳。唯知佛願弘。聖凡盡融\n攝。熒熒白毫相。出",
+            "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34907&dep=P&mode=full",
+            "institution": "台北故宫博物院",
+            "evidenceLevel": "archival_transcription",
+            "originalPosition": "data/catalog/evidence/ming_04_tongdian.json#transcription:500",
+            "license": "CC BY 4.0",
+            "origin": "reviewed_local_record",
+            "textSha256": "1fce6eba8fd688f6dca5db8cbf6ee42b29122e113b22bca3b481522ccafd7feb",
+            "retrievalScore": 2.840123916097487
+          },
+          {
+            "sourceId": "catalog:tang_01_duobao:transcript:1000",
+            "steleId": "tang_01_duobao",
+            "title": "多宝塔感应碑 · 馆方释文摘录",
+            "text": "。大哉觀佛之光利。用賔于法王。禪師謂同學\n曰。鵬運滄溟。非雲羅之可頓。心遊寂滅。豈愛䋄之能加。精進法門。菩\n薩以自強不息。本期同行。復遂宿心。鑿井見泥。去水不遠。鑽木未熱。\n得火何階。凡我七僧。聿懷一志。晝夜塔下。誦持法華。香煙不斷。經聲\n逓續。炯以為常。沒身不替。自三載每春秋二時。集同行大德四十九人。\n行法華三昧。尋奉恩旨。許為恆式。前後道場。所感舍利。凡三千七十\n粒。至六載。欲葬舍利。預嚴道場。又降一百八粒。畫普賢變。於筆鋒\n上。聯得一十九粒。\n莫不圓體自動。浮光瑩然。禪師無我觀身。了空求法。先刾血寫法華經一\n部。菩薩戒一卷。觀普賢行經一卷。乃取舍利三千粒。盛以石。兼造自\n身石影。跪而戴之。同置塔下。表至敬也。使夫舟遷夜壑。無變度門。劫\n筭墨塵。永垂貞範。又奉為主上及蒼生。寫妙法蓮華經一千部。金字三十\n六部。用鎮寳塔。又寫一千部。散施受持。靈應既多。具如本傳。其載內侍吳懷實。賜金銅香鑪。高一丈五尺。奉表陳謝。手詔批云。師弘濟之\n願。感達人天。莊嚴之心。義成因果。則法施財施。信所宜先也。主上握\n至道之靈符。受如來之法印。非禪師大慧超悟。無以感於宸衷。非主上至\n聖文眀。無以鑒於誠願。倬",
+            "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+            "institution": "台北故宫博物院",
+            "evidenceLevel": "archival_transcription",
+            "originalPosition": "data/catalog/evidence/tang_01_duobao.json#transcription:1000",
+            "license": "CC BY 4.0",
+            "origin": "reviewed_local_record",
+            "textSha256": "a5de796162c02c9471d174780ef94f12ae07840821943a2a4120772a1a77b8b8",
+            "retrievalScore": 2.7239767235609715
+          },
+          {
+            "sourceId": "catalog:tang_01_duobao:transcript:2000",
+            "steleId": "tang_01_duobao",
+            "title": "多宝塔感应碑 · 馆方释文摘录",
+            "text": "覩相未\n言。而降伏之心。已過半矣。同行禪師。抱玉飛錫。襲衡台之祕躅。傳止\n觀之精義。或名高帝選或行密眾師。共弘開示之宗。盡契圓常之理。門人\n苾。如巖靈悟淨真真空法濟等。以定慧為文質。以戒忍為剛柔。含朴玉\n之光輝。等旃檀之圍繞。夫發行者因。因圓則福廣。起因者相。相遣則慧\n深。求無為於有為。\n\n通解脫於文字。舉事徵理。含毫強名。偈曰。佛有妙法。比象蓮華。圓頓\n深入。真淨無瑕。慧通法界。福利恆沙。直至寳所。俱乘大車。其一。於\n戲上士。發行正勤。緬想寳塔。思弘勝因。圓階已就。層覆初陳。乃昭帝\n夢。福應天人。其二。輪奐斯崇。為淨域。真僧草創。（章）（錯裝）。飾。\n中座眈眈。飛簷翼翼。荐臻靈感。歸我帝力。其三。（聖主增）（錯裝）。\n念彼後學。心滯迷封。昏衢未曉。中道難逢。常驚夜杌。還懼真龍。不有\n禪伯。誰朙大宗。其四。大海吞流。崇山納壤。教門稱頓。慈力能廣。功\n起聚沙。德成合掌。開佛知見。法為無上。其五。情塵雖雜。性海無漏。\n定養聖胎。染生迷鷇。斷常起縛。空色同謬。薝蔔現前。餘香何嗅。其\n六。彤彤法宇。\n繄我四依。事該理暢。玉粹金輝。慧鏡無垢。慈燈照微。空王可託。本願\n同歸。其七。天寳十一載（西元",
+            "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+            "institution": "台北故宫博物院",
+            "evidenceLevel": "archival_transcription",
+            "originalPosition": "data/catalog/evidence/tang_01_duobao.json#transcription:2000",
+            "license": "CC BY 4.0",
+            "origin": "reviewed_local_record",
+            "textSha256": "d37ecc909ebaf3df7e366aaf948ecb1ea02f3d425128f70a2462ede99945b60d",
+            "retrievalScore": 2.2877967002356
+          },
+          {
+            "sourceId": "catalog:ming_03_wugou",
+            "steleId": "ming_03_wugou",
+            "title": "无垢子何君墓志铭 · 馆藏著录",
+            "text": "无垢子何君墓志铭。原刻朝代：明代；原刻年代：明代，确切原刻年份未核定；拓本年代：未核定；不据拓印年改变朝代；文物类型：墓志拓本；撰文：未核定；书丹：未核定；拓本现藏机构：台北故宫博物院；拓本馆藏编号：購拓000430；原石现藏机构：未核定；原碑所在地：未核定。",
+            "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full",
+            "institution": "台北故宫博物院",
+            "evidenceLevel": "catalogue_record",
+            "originalPosition": "data/catalog/steles28.json#ming_03_wugou",
+            "license": "CC BY 4.0",
+            "origin": "reviewed_local_record",
+            "textSha256": "652e4bdf0c1a90c013f810bcc892be3342c3422233ab2ee1d91637fa2beadfe1",
+            "retrievalScore": 2.0554863977910034
+          },
+          {
+            "sourceId": "catalog:ming_03_wugou:transcript:1000",
+            "steleId": "ming_03_wugou",
+            "title": "无垢子何君墓志铭 · 馆方释文摘录",
+            "text": "化惻。然曰。君子死無愧。\n惠以□砌之費。於是月十九日。奏其蛻□□城東眾仙□塋□之（中闕）醇\n醉。無□□其容貌儼若神。人言論從容能不立異。以駭人不謟詞以隨□\n援□為頌。□輒數百□初不經意（以下闕損）幽深不可曉也。嗚呼。貞不\n□已。靜不撓物。純以體□。一以守己。其得□丘之學者粹矣。□□□化\n（以下闕損）銘曰。生何為。死為歸。大患有□。知其非象帝之。\n先孰□微忘□□酉識者□□深□□幽玄□濁世必神□□□南（以下闕損）\n年杭新城周昉譔維楊夾谷希顏篆額將仕佐郎西安□儒學□授會稽宋□書。\n□□元年歲在己卯九月重陽日。弟子樓觀袁了春。青城居士王匡□常王\n士□□。（楷書）。",
+            "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full",
+            "institution": "台北故宫博物院",
+            "evidenceLevel": "archival_transcription",
+            "originalPosition": "data/catalog/evidence/ming_03_wugou.json#transcription:1000",
+            "license": "CC BY 4.0",
+            "origin": "reviewed_local_record",
+            "textSha256": "132c657c1e8ec079a1bde718021e6a1cc051bc51924758e8afcfea495788f157",
+            "retrievalScore": 1.6220320513815065
+          },
+          {
+            "sourceId": "history:wei-yuanhuai:relation:1",
+            "steleId": "wei-yuanhuai",
+            "title": "北魏·广平王元怀墓志铭 · 父子",
+            "text": "元怀 → 父子 → 孝文帝元宏。元怀之父。",
+            "url": "https://ygx.sxu.edu.cn/db/%E6%9C%9F%E5%88%8A/gdwm/gdwm2013/1304pdf/1304009.pdf",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/wei-yuanhuai.json#links/1",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "360bab47fe7710d8f168a6824d7dfad071b96374b3cede75072112480e9cb6a0",
+            "retrievalScore": 1.4924866481178862
+          },
+          {
+            "sourceId": "history:wei-yuanhuai:relation:3",
+            "steleId": "wei-yuanhuai",
+            "title": "北魏·广平王元怀墓志铭 · 母子",
+            "text": "元怀 → 母子 → 高照容。元怀与元恪之母。",
+            "url": "https://ygx.sxu.edu.cn/db/%E6%9C%9F%E5%88%8A/gdwm/gdwm2013/1304pdf/1304009.pdf",
+            "institution": "项目已核史料摘记",
+            "evidenceLevel": "sourced_relationship",
+            "originalPosition": "data/history/wei-yuanhuai.json#links/3",
+            "license": null,
+            "origin": "reviewed_local_record",
+            "textSha256": "d4c3d390d89398d8eb641522ee45269257b7be88a7e17a9ef02cf126e07145a3",
+            "retrievalScore": 1.4890433240010819
+          }
+        ],
+        "entities": [],
+        "relations": [],
+        "places": [],
+        "generation": null,
+        "limitations": "BM25与实体一跳扩展；摘记可能不完整，未进行语义蕴含或独立史学鉴定。来源可追溯不表示链接实时可用。"
+      }
+    }
+  ]
+}

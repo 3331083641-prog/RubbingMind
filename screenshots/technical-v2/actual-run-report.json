@@ -1,0 +1,194 @@
+{
+  "reportId": "RM-tang_01_duobao-20261017T101240_cba0e0d8",
+  "exportedAt": "2026-10-17T10:12:43.930Z",
+  "stele": {
+    "id": "tang_01_duobao",
+    "title": "多宝塔感应碑",
+    "dynasty": "唐代",
+    "originalYear": "752年",
+    "rubbingPeriod": "未核定；不据拓印年改变朝代",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "贈拓000365",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+    "license": "CC BY 4.0"
+  },
+  "runId": "20261017T101240_cba0e0d8",
+  "algorithmVersion": "adaptive-rubbing-v2.0",
+  "inputImageSha256": "e59f12e90d4804a08e9db63523725223478986c9148b4a62c6012db0610971c2",
+  "workingImage": {
+    "sourceShape": [
+      1646,
+      1874
+    ],
+    "workingShape": [
+      1185,
+      1349
+    ],
+    "scale": 0.7202118829332675,
+    "interpolation": "INTER_AREA"
+  },
+  "randomSeed": 0,
+  "damageMaskSha256": null,
+  "outputSha256": {
+    "original": "5532e85185cb30680e916770e609e5a56adcbe2e6e16a114b4653b986acbc6c3",
+    "restored": "5532e85185cb30680e916770e609e5a56adcbe2e6e16a114b4653b986acbc6c3",
+    "frequency_spectrum": "c1c313dfd30cd4df41fae915c1ea1693866c9332b54947c9659ca71a06c924f9",
+    "character_skeleton": "bfceb40378ce9a848538ff981f6f605757cd77c024fd12f8d3e0afc877d24f49",
+    "binary_skeleton": "b64d7578994d25cf6257035273eeb20e339f2c713bef0cb167c7845261855e3c",
+    "contour": "85a678223b04b7d07fddc7b295e69dd06657981007b9ae1bde1c0f9ecda2aa7f",
+    "cinnabar_rubbing": "52e5bcad12ac997c7cd8b39aad181cce3c6a4812889fe81edfeda03dd2f3449c"
+  },
+  "imageRoles": {
+    "source": "immutable_source",
+    "original": "working_input",
+    "restored": "algorithm_output",
+    "cinnabar_rubbing": "artistic_display_not_evaluated"
+  },
+  "adaptiveDiagnostics": {
+    "version": "adaptive-rubbing-v2.0",
+    "features": {
+      "noiseSigmaMAD": 2.2239034175872803,
+      "residualMAD": 2,
+      "impulseFraction": 0,
+      "periodicPeaks": [],
+      "highFrequencyEnergyFraction": 0.00806000642478466,
+      "localContrastRMS": 20.336429595947266,
+      "gradientMean": 40.49921417236328,
+      "laplacianVariance": 47.032447814941406,
+      "darkFraction": 0.002586069380976063,
+      "brightFraction": 0.026851582513066408,
+      "dynamicRange": 178,
+      "thinStrokeRisk": 0.20140079637868197,
+      "note": "无参考诊断；噪声、模糊和笔画风险可能受真实石花/纸纹影响，不是修复准确率。"
+    },
+    "decisions": [
+      {
+        "operator": "skip_notch",
+        "reason": "未检出符合阈值的周期峰；不强行陷波"
+      },
+      {
+        "operator": "identity",
+        "reason": "残差证据弱；不锐化、不强制CLAHE/形态学"
+      }
+    ],
+    "fidelityGate": {
+      "accepted": true,
+      "strongEdgeRetention": 1,
+      "meanAbsoluteChange": 0,
+      "contrastRatio": 1,
+      "reasons": [],
+      "basis": "输入输出启发式保真门控，非质量真值"
+    },
+    "selectedOutput": "candidate",
+    "limitations": "不补全遮挡/剥落，不识别或重绘缺失笔画；无真值不计算修复准确率。"
+  },
+  "algorithmParameters": {
+    "stele_id": "tang_01_duobao",
+    "sample_id": null,
+    "d0": 45,
+    "filter_order": 2,
+    "filter_type": "adaptive",
+    "h_nlm": 10,
+    "clahe_clip": 2.5,
+    "morph_kernel": 3,
+    "cinnabar_style": "cinnabar",
+    "random_seed": 0
+  },
+  "startedAt": "2026-10-17T10:12:39.143294+00:00",
+  "finishedAt": "2026-10-17T10:12:40.375867+00:00",
+  "processingTimeMs": 864.8,
+  "outputImages": {
+    "original": "/static/results/tang_01_duobao/20261017T101240_cba0e0d8/original.png",
+    "restored": "/static/results/tang_01_duobao/20261017T101240_cba0e0d8/restored.png",
+    "frequency_spectrum": "/static/results/tang_01_duobao/20261017T101240_cba0e0d8/frequency_spectrum.png",
+    "character_skeleton": "/static/results/tang_01_duobao/20261017T101240_cba0e0d8/character_skeleton.png",
+    "binary_skeleton": "/static/results/tang_01_duobao/20261017T101240_cba0e0d8/binary_skeleton.png",
+    "contour": "/static/results/tang_01_duobao/20261017T101240_cba0e0d8/contour.png",
+    "cinnabar_rubbing": "/static/results/tang_01_duobao/20261017T101240_cba0e0d8/cinnabar_rubbing.png"
+  },
+  "evaluationStatus": "unassessed",
+  "evaluationMetrics": {
+    "psnr": null,
+    "ssim": null
+  },
+  "diagnosticMetrics": {
+    "isolated_bright_pixel_change_percent": 0,
+    "tenengrad_change_percent": 0,
+    "input_output_mean_absolute_difference": 0
+  },
+  "inferenceRecords": [
+    {
+      "inferenceId": "90bc0df8984d4d488871aebadef27238",
+      "steleId": "tang_01_duobao",
+      "runId": "20261017T101240_cba0e0d8",
+      "characterId": "c12",
+      "originalGlyph": "感",
+      "originalStatus": "clear",
+      "bbox": {
+        "x": 469,
+        "y": 412,
+        "w": 281,
+        "h": 329
+      },
+      "context": "",
+      "inputImageSha256": "e59f12e90d4804a08e9db63523725223478986c9148b4a62c6012db0610971c2",
+      "cropSha256": "bc94f22c21aa986ba6cbc825f8f2dff4edc8f571258c3905f00dbe6d2aafbeea",
+      "cropUrl": "/api/inferences/90bc0df8984d4d488871aebadef27238/crop",
+      "source": "unavailable",
+      "model": null,
+      "candidates": [],
+      "note": "无可核实候选；请提供更充分的上下文或配置可选视觉模型。",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+      "status": "human_rejected",
+      "adoptedGlyph": null,
+      "decisions": [
+        {
+          "action": "reject",
+          "glyph": null,
+          "at": "2026-10-17T10:12:40.897071+00:00",
+          "actor": "local_user"
+        }
+      ],
+      "createdAt": "2026-10-17T10:12:40.851679+00:00",
+      "visualAnalysis": {
+        "version": "glyph-shape-v2.0",
+        "foregroundPolarity": "bright",
+        "contentBox": [
+          0,
+          0,
+          281,
+          329
+        ],
+        "foregroundFraction": 0.10858960075284751,
+        "componentCount": 10,
+        "skeletonPixels": 1162,
+        "horizontalStrokeDistribution": [
+          0.009827287864442195,
+          0.014331931413781947,
+          0.013523131672597865
+        ],
+        "borderForegroundFraction": 0.14098360655737704,
+        "noisePixelCount": 67,
+        "warnings": [
+          "前景触及选区边缘，可能裁断字符或包含邻字"
+        ],
+        "identityStatus": "未识别；二值连通结构不等于真实汉字笔画拓扑或完整性真值"
+      },
+      "analysisImages": {
+        "gray": "/api/inferences/90bc0df8984d4d488871aebadef27238/analysis/gray",
+        "foreground": "/api/inferences/90bc0df8984d4d488871aebadef27238/analysis/foreground",
+        "skeleton": "/api/inferences/90bc0df8984d4d488871aebadef27238/analysis/skeleton",
+        "noise": "/api/inferences/90bc0df8984d4d488871aebadef27238/analysis/noise"
+      },
+      "retrievalCandidates": []
+    }
+  ],
+  "sourceRecords": [
+    {
+      "title": "多宝塔感应碑",
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+      "license": "CC BY 4.0"
+    }
+  ],
+  "note": "无配对真值时，诊断变化量不代表修复质量；残字建议须经人工核实。"
+}

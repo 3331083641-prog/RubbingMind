@@ -1,0 +1,13 @@
+{
+  "errors": [],
+  "screenshots": [
+    "D:\\RubbingMind\\screenshots\\technical-v2\\upload-regression\\01-home.png",
+    "D:\\RubbingMind\\screenshots\\technical-v2\\upload-regression\\02-real-processing.png",
+    "D:\\RubbingMind\\screenshots\\technical-v2\\upload-regression\\03-real-crop.png",
+    "D:\\RubbingMind\\screenshots\\technical-v2\\upload-regression\\04-report.png",
+    "D:\\RubbingMind\\screenshots\\technical-v2\\upload-regression\\05-graph.png"
+  ],
+  "uploadId": "upload-cf737e88c3cd46efa98bba45beb55a94",
+  "runId": "20261017T100420_297da746",
+  "inferenceId": "f0059bf1e9744eac821960075347cc1a"
+}

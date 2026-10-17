@@ -1,0 +1,216 @@
+{
+  "checkedOn": "2026-10-17",
+  "note": "HTTP可达性不代表内容独立鉴定；403/超时保留，不伪称链接通过。",
+  "links": [
+    {
+      "url": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+      "httpStatus": 403,
+      "finalUrl": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+      "reachable": false
+    },
+    {
+      "url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+      "httpStatus": 403,
+      "finalUrl": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+      "reachable": false
+    },
+    {
+      "url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+      "httpStatus": 403,
+      "finalUrl": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/29482?dep=P",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/29482?dep=P",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/33063?dep=P",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/33063?dep=P",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/34668?dep=P",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34668?dep=P",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=24521&dep=P&mode=full",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=24521&dep=P&mode=full",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29089&dep=P&mode=full",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29089&dep=P&mode=full",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29090&dep=P&mode=full",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29090&dep=P&mode=full",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29482&dep=P&mode=full",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29482&dep=P&mode=full",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30320&dep=P&mode=full",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30320&dep=P&mode=full",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30367&dep=P&mode=full",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30367&dep=P&mode=full",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32018&dep=P&mode=full",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32018&dep=P&mode=full",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32237&dep=P&mode=full",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32237&dep=P&mode=full",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33681&dep=P&mode=full",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33681&dep=P&mode=full",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34561&dep=P&mode=full",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34561&dep=P&mode=full",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34589&dep=P&mode=full",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34589&dep=P&mode=full",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34648&dep=P&mode=full",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34648&dep=P&mode=full",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34667&dep=P&mode=full",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34667&dep=P&mode=full",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full",
+      "reachable": false
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34907&dep=P&mode=full",
+      "httpStatus": 403,
+      "finalUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34907&dep=P&mode=full",
+      "reachable": false
+    },
+    {
+      "url": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+      "httpStatus": null,
+      "errorType": "SSLError",
+      "reachable": false
+    },
+    {
+      "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+      "httpStatus": null,
+      "errorType": "SSLError",
+      "reachable": false
+    },
+    {
+      "url": "https://www.dpm.org.cn/collection/impres/234169.html",
+      "httpStatus": 200,
+      "finalUrl": "https://www.dpm.org.cn/collection/impres/234169.html",
+      "reachable": true
+    },
+    {
+      "url": "https://www.metmuseum.org/art/collection/search/36142",
+      "httpStatus": 429,
+      "finalUrl": "https://www.metmuseum.org/art/collection/search/36142",
+      "reachable": false
+    },
+    {
+      "url": "https://www.metmuseum.org/art/collection/search/36445",
+      "httpStatus": 429,
+      "finalUrl": "https://www.metmuseum.org/art/collection/search/36445",
+      "reachable": false
+    },
+    {
+      "url": "https://ygx.sxu.edu.cn/db/%E6%9C%9F%E5%88%8A/gdwm/gdwm2013/1304pdf/1304009.pdf",
+      "httpStatus": null,
+      "errorType": "SSLError",
+      "reachable": false
+    }
+  ]
+}

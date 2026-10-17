@@ -1,0 +1,34 @@
+{
+  "pageErrors": [],
+  "checks": [
+    "Three.js six direction controls",
+    "28 covers native width and seven dynasty filters",
+    "official input adaptive processing, real crop, visual analysis and durable rejection",
+    "real evidence retrieval, sourced expansion, unverified identity refusal and museum research",
+    "selected real run report JSON/PDF, source-linked experiment images and API/UI numeric equality",
+    "API unavailable: 28-item fallback retained and research reports failure"
+  ],
+  "screenshots": [
+    "01-home.png",
+    "02-museum.png",
+    "03-adaptive-workbench.png",
+    "04-actual-glyph-analysis.png",
+    "05-evidence-graphrag.png",
+    "06-unverified-identity.png",
+    "07-museum-unified-research.png",
+    "08-experiment-explorer.png",
+    "09-reports-1920.png",
+    "10-graph-1920.png",
+    "11-workbench-1920.png",
+    "09-reports-1440.png",
+    "10-graph-1440.png",
+    "11-workbench-1440.png",
+    "09-reports-1366.png",
+    "10-graph-1366.png",
+    "11-workbench-1366.png",
+    "12-mobile-touch-retrieval.png"
+  ],
+  "runId": "20261017T101240_cba0e0d8",
+  "inferenceId": "90bc0df8984d4d488871aebadef27238",
+  "mobileOverflow": false
+}
