@@ -111,4 +111,14 @@ npm run build
 
 ## GitHub与清洁克隆
 
-待本地最终文件审查后分批正常提交。完成推送、Actions和临时克隆检查后，在本节追加实际SHA、链接及结果；在此之前不将其标为通过。仓库保持原有Private状态，不强推、不清理历史。
+代码分批提交到 `codex/technical-v2`，正常快进合并并推送 `main`。后端/实验 `f9aebdb`、前端/CI `22762c6`、证据文档 `98ffb28`、pytest跨启动方式修复 `41ee69e2ff2bac2be4617bd243960085a907b632`。仓库保持Private，不强推、不清理历史。
+
+首次 [Actions 39024429038](https://github.com/3331083641-prog/RubbingMind/actions/runs/39024429038) 的后端作业失败：pytest命令行入口未把项目根目录加入sys.path，新增测试首个导入失败；不是算法数值失败。添加 `pytest.ini` 后，本机两种启动方式均90通过。提交 `41ee69e` 的 [Actions 39041939971](https://github.com/3331083641-prog/RubbingMind/actions/runs/39041939971) **四项作业全部成功**：Python、安全/资源验证、React/TypeScript构建、在线/fallback及新增技术浏览器验收。原失败运行保留，完整成功记录见 `technical-v2-ci-verification.json`。
+
+已从GitHub独立克隆到 `D:\Codex\verification\rubbingmind-technical-v2-20261017`，核对HEAD为 `41ee69e`。新venv、新npm缓存、全新数据库，没有复制原工作区依赖、运行数据库或缓存。机器配置的依赖镜像首次TLS下载失败，保留失败日志后改用官方PyPI，未关闭证书校验。安装45个Python包，实际版本列表见 `technical-v2-clean-clone.json`。
+
+清洁环境实际结果：**90 passed / 1 warning**；28件/84图校验通过；TypeScript/Vite构建通过（大块警告保留）；8016端口 `/health` 正常、`/generate` HTTP200后启动5181前端；真实Edge浏览器验证在线/fallback五页、筛选、自适应运行、ROI分析与持久化驳回、来源检索、实验筛选及数值一致性、JSON/PDF，页面脚本错误0。该独立克隆在同一Windows电脑运行，不能冒称另一台物理电脑；GitHub Actions另覆盖Linux、Python3.11和Node20。
+
+独立克隆的测试运行ID为 `20261017T145222_4b38ce27`，与原工作区验收运行独立。结果、版本、命令日志位置写入 `technical-v2-clean-clone.json`；冻结资产最终比对见 `technical-v2-frozen-verification.json`。后续纯文档收尾提交不改变已经验证的技术代码。全部本轮文件与内容校验列于 `technical-v2-change-manifest.json`，按Git规范化LF文本计算哈希，二进制保持原字节，清单排除自身。
+
+后续研究工作与真实限制单列于 [接续开发记录](technical-v2-handoff.md)，不会将待人工标注、未调用的外部识字模型或公网多用户能力列为已完成。

@@ -1,0 +1,256 @@
+{
+  "validatedCommit": "41ee69e2ff2bac2be4617bd243960085a907b632",
+  "repository": "https://github.com/3331083641-prog/RubbingMind",
+  "cloneDirectory": "D:\\Codex\\verification\\rubbingmind-technical-v2-20261017",
+  "notCopiedFromOriginal": [
+    "node_modules",
+    "venv",
+    "database",
+    "runtime caches"
+  ],
+  "system": "Windows / Python 3.12.4 / Node 24.15.0 / npm 11.12.1",
+  "scopeNote": "Independent environment on the same Windows computer; Linux Python 3.11 / Node 20 also exercised by GitHub Actions. Not a second physical computer test.",
+  "initialInstallFailure": "Configured Tsinghua index failed TLS handshake; retry used official PyPI with TLS validation intact.",
+  "installedPythonPackages": [
+    {
+      "name": "annotated-doc",
+      "version": "0.0.5"
+    },
+    {
+      "name": "annotated-types",
+      "version": "0.8.0"
+    },
+    {
+      "name": "anyio",
+      "version": "4.15.1"
+    },
+    {
+      "name": "certifi",
+      "version": "2026.7.22"
+    },
+    {
+      "name": "charset-normalizer",
+      "version": "3.5.2"
+    },
+    {
+      "name": "click",
+      "version": "8.5.0"
+    },
+    {
+      "name": "colorama",
+      "version": "0.4.6"
+    },
+    {
+      "name": "fastapi",
+      "version": "0.143.3"
+    },
+    {
+      "name": "greenlet",
+      "version": "3.5.6"
+    },
+    {
+      "name": "h11",
+      "version": "0.16.0"
+    },
+    {
+      "name": "httpcore",
+      "version": "1.0.9"
+    },
+    {
+      "name": "httptools",
+      "version": "0.9.0"
+    },
+    {
+      "name": "httpx",
+      "version": "0.28.1"
+    },
+    {
+      "name": "idna",
+      "version": "3.20"
+    },
+    {
+      "name": "ImageIO",
+      "version": "2.38.1"
+    },
+    {
+      "name": "iniconfig",
+      "version": "2.3.1"
+    },
+    {
+      "name": "lazy-loader",
+      "version": "0.6"
+    },
+    {
+      "name": "networkx",
+      "version": "3.7"
+    },
+    {
+      "name": "numpy",
+      "version": "2.5.4"
+    },
+    {
+      "name": "opencv-python",
+      "version": "5.0.0.93"
+    },
+    {
+      "name": "opentelemetry-api",
+      "version": "1.45.1"
+    },
+    {
+      "name": "packaging",
+      "version": "26.3"
+    },
+    {
+      "name": "pillow",
+      "version": "13.0.0"
+    },
+    {
+      "name": "pip",
+      "version": "24.0"
+    },
+    {
+      "name": "playwright",
+      "version": "1.63.0"
+    },
+    {
+      "name": "pluggy",
+      "version": "1.7.0"
+    },
+    {
+      "name": "pydantic",
+      "version": "2.14.1"
+    },
+    {
+      "name": "pydantic_core",
+      "version": "2.50.1"
+    },
+    {
+      "name": "pyee",
+      "version": "13.0.1"
+    },
+    {
+      "name": "Pygments",
+      "version": "2.21.0"
+    },
+    {
+      "name": "pytest",
+      "version": "9.1.1"
+    },
+    {
+      "name": "python-dotenv",
+      "version": "1.2.4"
+    },
+    {
+      "name": "python-multipart",
+      "version": "0.0.32"
+    },
+    {
+      "name": "PyYAML",
+      "version": "6.0.3"
+    },
+    {
+      "name": "requests",
+      "version": "2.34.2"
+    },
+    {
+      "name": "scikit-image",
+      "version": "0.26.0"
+    },
+    {
+      "name": "scipy",
+      "version": "1.18.1"
+    },
+    {
+      "name": "starlette",
+      "version": "1.8.0"
+    },
+    {
+      "name": "tifffile",
+      "version": "2026.10.15"
+    },
+    {
+      "name": "typing_extensions",
+      "version": "4.16.0"
+    },
+    {
+      "name": "typing-inspection",
+      "version": "0.4.4"
+    },
+    {
+      "name": "urllib3",
+      "version": "2.8.0"
+    },
+    {
+      "name": "uvicorn",
+      "version": "0.54.0"
+    },
+    {
+      "name": "watchfiles",
+      "version": "1.3.0"
+    },
+    {
+      "name": "websockets",
+      "version": "17.2"
+    }
+  ],
+  "checks": {
+    "fresh_https_clone": true,
+    "isolated_venv_from_official_pypi": true,
+    "fresh_npm_ci_with_separate_cache": true,
+    "new_database_initialized": true,
+    "python_tests": {
+      "passed": 90,
+      "warnings": 1,
+      "summary": "90 passed, 1 warning in 31.76s"
+    },
+    "museum_validation": {
+      "passed": true,
+      "items": 28,
+      "images": 84
+    },
+    "typescript_and_vite_build": {
+      "passed": true,
+      "large_chunk_warning": true
+    },
+    "backend_health": "healthy",
+    "backend_generate_http": 200,
+    "online_and_fallback_smoke": true,
+    "technical_browser": {
+      "pageErrors": [],
+      "checks": [
+        "28 covers native width and seven dynasty filters",
+        "official input adaptive processing, real crop, visual analysis and durable rejection",
+        "real evidence retrieval, sourced expansion, unverified identity refusal and museum research",
+        "selected real run report JSON/PDF, source-linked experiment images and API/UI numeric equality",
+        "API unavailable: 28-item fallback retained and research reports failure"
+      ],
+      "screenshots": [
+        "01-home.png",
+        "02-museum.png",
+        "03-adaptive-workbench.png",
+        "04-actual-glyph-analysis.png",
+        "05-evidence-graphrag.png",
+        "06-unverified-identity.png",
+        "07-museum-unified-research.png",
+        "08-experiment-explorer.png",
+        "09-reports-1440.png",
+        "10-graph-1440.png",
+        "11-workbench-1440.png"
+      ],
+      "runId": "20261017T145222_4b38ce27",
+      "inferenceId": "c67486959f8c4ba68ffcf13cc0f1c1a1"
+    }
+  },
+  "status": "passed",
+  "localLogs": [
+    "D:\\Codex\\verification\\rubbingmind-v2-pip-install-initial.log",
+    "D:\\Codex\\verification\\rubbingmind-v2-pip-install.log",
+    "D:\\Codex\\verification\\rubbingmind-v2-npm-install.log",
+    "D:\\Codex\\verification\\rubbingmind-v2-db-init.log",
+    "D:\\Codex\\verification\\rubbingmind-v2-tests.log",
+    "D:\\Codex\\verification\\rubbingmind-v2-catalogue.log",
+    "D:\\Codex\\verification\\rubbingmind-v2-build.log",
+    "D:\\Codex\\verification\\rubbingmind-v2-browser-smoke.log",
+    "D:\\Codex\\verification\\rubbingmind-v2-browser-technical.log"
+  ]
+}
