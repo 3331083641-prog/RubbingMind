@@ -1,0 +1,11 @@
+{
+  "annotationBasis": "工程回归断言，取自现有已审核馆藏著录及data/history；不是独立人工检索准确率标注集。",
+  "cases": [
+    {"id":"authors","question":"《多宝塔碑》的撰文者与书丹者是谁？","expectedTerms":["岑勋","颜真卿"],"expectedEvidenceId":"history:tang-duobao:relation:0"},
+    {"id":"date","question":"《曹全碑》原刻于什么年代？","expectedTerms":["185"],"expectedEvidenceId":"catalog:han_01_caoquan"},
+    {"id":"stone-rubbing","question":"《多宝塔碑》原石与台北故宫藏拓本是什么关系？","expectedTerms":["西安碑林","台北故宫"],"expectedEvidenceId":"history:tang-duobao:relation:7"},
+    {"id":"different-periods","question":"多宝塔碑拓本年代与原刻年代是否相同？","expectedTerms":["明拓","752"],"expectedEvidenceId":"history:tang-duobao:beilin-duobao"},
+    {"id":"unverified-identity","question":"北魏建义元年演示样本是否已经确认真实文物身份？","expectedTerms":["未确认","测试标签"],"expectedEvidenceId":"history:wei-jianyi:local-audit"},
+    {"id":"no-answer","question":"请解释暗物质粒子","expectedStatus":"insufficient_evidence","expectedTerms":[]}
+  ]
+}

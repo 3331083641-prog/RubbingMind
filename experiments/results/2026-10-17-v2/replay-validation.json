@@ -1,0 +1,6 @@
+{
+  "rows": 1260,
+  "outputAndMetricMismatches": [],
+  "replayDirectory": "D:\\RubbingMind\\data\\runtime\\experiment-v2-replay",
+  "note": "耗时不要求逐值复现；像素与数值在本环境精确一致。"
+}

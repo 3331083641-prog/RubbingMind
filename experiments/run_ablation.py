@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from algorithm_engine import algorithm_engine, compute_metrics
 CONFIG = Path(__file__).with_name('config.json')
-OUT = Path(__file__).parent / 'results' / '2026-10-15'
+OUT = Path(__file__).parent / 'results' / '2026-10-17-label-free-controls'
 
 
 def degrade(reference: np.ndarray, mode: str, seed: int) -> np.ndarray:
@@ -46,7 +46,7 @@ def degrade(reference: np.ndarray, mode: str, seed: int) -> np.ndarray:
     return np.clip(result, 0, 255).astype(np.uint8)
 
 
-def apply_method(image: np.ndarray, method: str, degradation: str):
+def apply_method(image: np.ndarray, method: str):
     frequency = algorithm_engine.apply_frequency_domain_filter
     if method == 'degraded':
         return image.copy(), 'baseline'
@@ -67,7 +67,7 @@ def apply_method(image: np.ndarray, method: str, degradation: str):
         return cv2.createCLAHE(clipLimit=2.5, tileGridSize=(8, 8)).apply(denoised), 'applied'
     if method == 'joint':
         # The joint pipeline is the same frequency+spatial implementation used by the API.
-        mode = 'notch' if degradation == 'periodic' else 'butterworth'
+        mode = 'butterworth'
         filtered, _, details = frequency(image, d0=60, filter_type=mode, order=2, return_details=True)
         output = algorithm_engine.apply_spatial_domain_enhancement(filtered, nlm_h=10, clahe_clip=2.5, morph_kernel=3)
         return output, 'notch_applied' if details['notchApplied'] else 'applied'
@@ -75,6 +75,8 @@ def apply_method(image: np.ndarray, method: str, degradation: str):
 
 
 def run(config_path: Path = CONFIG, output_dir: Path = OUT):
+    if (output_dir/'results.json').exists():
+        raise ValueError('批次已存在，禁止覆盖历史实验')
     config = json.loads(config_path.read_text(encoding='utf-8'))
     output_dir.mkdir(parents=True, exist_ok=True)
     records = []
@@ -93,7 +95,7 @@ def run(config_path: Path = CONFIG, output_dir: Path = OUT):
             comparison = [('reference', reference)]
             for method in config['methods']:
                 start = time.perf_counter()
-                output, applicability = apply_method(damaged, method, degradation)
+                output, applicability = apply_method(damaged, method)
                 elapsed_ms = (time.perf_counter() - start) * 1000
                 filename = f"{sample['id']}_{degradation}_{method}.png"
                 cv2.imwrite(str(output_dir / filename), output)

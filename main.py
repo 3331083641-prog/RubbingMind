@@ -8,6 +8,7 @@ import os
 import sys
 import logging
 import io
+import threading
 from contextlib import asynccontextmanager
 from typing import Optional, List, Dict, Any, Literal
 
@@ -75,6 +76,9 @@ app.add_middleware(
 )
 
 # 挂载静态资源目录
+from runtime_guard import RuntimeGuard
+app.add_middleware(RuntimeGuard)
+PROCESS_LOCK=threading.Lock()
 os.makedirs(STATIC_DIR, exist_ok=True)
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
@@ -85,15 +89,16 @@ app.mount("/assets", StaticFiles(directory=DIST_ASSETS_DIR if os.path.exists(DIS
 class ProcessRequest(BaseModel):
     stele_id: Optional[str] = "tang-duobao"
     sample_id: Optional[str] = None
-    image_base64: Optional[str] = None
+    image_base64: Optional[str] = Field(default=None,max_length=17_000_000)
     d0: float = Field(default=45.0, ge=1, le=500)
     filter_order: int = Field(default=2, ge=1, le=8)
-    filter_type: Literal['gaussian', 'butterworth', 'notch'] = 'butterworth'
+    filter_type: Literal['adaptive', 'gaussian', 'butterworth', 'notch'] = 'adaptive'
     h_nlm: float = Field(default=10.0, ge=0, le=50)
     clahe_clip: float = Field(default=2.5, ge=0.1, le=10)
     morph_kernel: int = Field(default=3, ge=1, le=9)
-    damage_mask: Optional[str] = None
+    damage_mask: Optional[str] = Field(default=None,max_length=17_000_000)
     cinnabar_style: Optional[str] = "cinnabar"
+    random_seed: int = Field(default=0, ge=0, le=4294967295)
 
 
 class DeduceRequest(BaseModel):
@@ -121,12 +126,69 @@ class GlyphInferenceRequest(BaseModel):
 
 
 class GlyphDecisionRequest(BaseModel):
-    action: Literal['accept', 'revoke']
+    action: Literal['accept', 'revoke', 'reject']
     glyph: Optional[str] = None
+
+
+class GlyphTemplateRequest(BaseModel):
+    glyph: str = Field(min_length=1,max_length=1)
+    basis: str = Field(min_length=1,max_length=500)
+    annotator: str = Field(min_length=1,max_length=80)
 
 
 class CalendarRequest(BaseModel):
     query: str
+
+
+class EvidenceQueryRequest(BaseModel):
+    question: str = Field(min_length=2,max_length=500)
+    steleId: Optional[str] = Field(default=None,max_length=100)
+
+
+@app.post('/api/research/query')
+def query_evidence(request: EvidenceQueryRequest):
+    from evidence_retrieval import query
+    if request.steleId and not museum_manager.get_stele_by_id(request.steleId):
+        raise HTTPException(status_code=404,detail='文物不存在')
+    return query(request.question,request.steleId)
+
+
+@app.get('/api/research/steles/{stele_id}')
+def get_research_graph(stele_id: str):
+    if not museum_manager.get_stele_by_id(stele_id):raise HTTPException(status_code=404,detail='文物不存在')
+    from evidence_retrieval import artifact_graph
+    return artifact_graph(stele_id)
+
+
+@app.get('/api/experiments')
+def list_experiments():
+    from experiment_registry import batches
+    return batches()
+
+
+@app.get('/api/experiments/{experiment_id}')
+def get_experiment(experiment_id: str):
+    from experiment_registry import batch
+    data=batch(experiment_id)
+    if data is None:raise HTTPException(status_code=404,detail='实验批次不存在')
+    return data
+
+
+@app.get('/api/experiments/{experiment_id}/assets/{filename}')
+def get_experiment_asset(experiment_id: str,filename: str):
+    from experiment_registry import asset
+    try:path=asset(experiment_id,filename)
+    except ValueError as exc:raise HTTPException(status_code=409,detail=str(exc))
+    if path is None:raise HTTPException(status_code=404,detail='未登记的实验影像')
+    return FileResponse(path)
+
+
+@app.get('/api/experiments/{experiment_id}/export/{kind}')
+def export_experiment(experiment_id: str,kind: str):
+    from experiment_registry import export_file
+    path=export_file(experiment_id,kind)
+    if path is None or not path.is_file():raise HTTPException(status_code=404,detail='实验导出不存在')
+    return FileResponse(path,filename=experiment_id+'-'+kind)
 
 
 @app.get("/")
@@ -231,8 +293,11 @@ async def remove_processing_run(stele_id: str, run_id: str, confirm: bool = Fals
 
 
 @app.post("/api/process")
-async def process_rubbing(req: ProcessRequest):
-    return process_verified_request(req, museum_manager, algorithm_engine)
+def process_rubbing(req: ProcessRequest):
+    if not PROCESS_LOCK.acquire(blocking=False):raise HTTPException(status_code=429,detail='已有图像任务运行，请稍后重试')
+    try:return process_verified_request(req, museum_manager, algorithm_engine)
+    except (ValueError,TypeError) as exc:raise HTTPException(status_code=422,detail=str(exc))
+    finally:PROCESS_LOCK.release()
 
 
 @app.post("/api/upload")
@@ -323,6 +388,22 @@ async def decide_glyph_inference(inference_id: str, request: GlyphDecisionReques
         raise HTTPException(status_code=404, detail=str(exc))
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc))
+
+
+@app.get('/api/inferences/{inference_id}/analysis/{role}')
+async def get_glyph_analysis(inference_id: str,role: str):
+    from glyph_inference import analysis_path
+    path=analysis_path(inference_id,role)
+    if path is None:raise HTTPException(status_code=404,detail='分析图不存在')
+    return FileResponse(path,media_type='image/png')
+
+
+@app.post('/api/inferences/{inference_id}/template')
+async def save_glyph_template(inference_id: str,request: GlyphTemplateRequest):
+    from glyph_inference import register_template
+    try:return register_template(inference_id,request.glyph,request.basis,request.annotator)
+    except LookupError as exc:raise HTTPException(status_code=404,detail=str(exc))
+    except ValueError as exc:raise HTTPException(status_code=422,detail=str(exc))
 
 
 @app.post("/api/calendar")

@@ -18,6 +18,7 @@ from algorithm_engine import safe_read_image
 from catalog import BASE
 from database import get_db_connection
 from upload_storage import image_path as uploaded_image_path
+from glyph_vision import analyze_crop, shape_similarity
 
 INFERENCE_DIR = BASE / 'data' / 'runtime' / 'glyph-inferences'
 RULES = {
@@ -34,6 +35,7 @@ def _connection():
     conn.execute('''CREATE TABLE IF NOT EXISTS glyph_inferences (
         id TEXT PRIMARY KEY, stele_id TEXT NOT NULL, record_json TEXT NOT NULL, created_at TEXT NOT NULL
     )''')
+    conn.execute('CREATE TABLE IF NOT EXISTS glyph_templates (id TEXT PRIMARY KEY, record_json TEXT NOT NULL)')
     conn.commit()
     return conn
 
@@ -126,7 +128,12 @@ async def infer(record, bbox: dict, context: str, character_id: str | None = Non
     if not ok:
         raise ValueError('残字选区无法编码')
     crop_bytes = encoded.tobytes()
+    analysis, analysis_images = analyze_crop(crop)
     suggestion = await _suggest(crop_bytes, context[:1000])
+    retrieved = retrieve_templates(analysis_images['foreground'])
+    if not suggestion['candidates'] and retrieved:
+        suggestion.update(source='local_shape_retrieval',model='glyph-shape-v2.0',candidates=retrieved,
+                          note='仅与用户确认的参考字形比较；相似评分未经识字概率校准，需人工核验。')
     inference_id = uuid.uuid4().hex
     now = datetime.now(timezone.utc).isoformat()
     record_json = {
@@ -138,19 +145,69 @@ async def infer(record, bbox: dict, context: str, character_id: str | None = Non
         'note': suggestion['note'], 'sourceUrl': record.get('sourceUrl'),
         'status': 'pending_review' if suggestion['candidates'] else 'no_candidate',
         'adoptedGlyph': None, 'decisions': [], 'createdAt': now,
+        'visualAnalysis':analysis,'analysisImages':{role:f'/api/inferences/{inference_id}/analysis/{role}' for role in analysis_images},
+        'retrievalCandidates':retrieved,
     }
     INFERENCE_DIR.mkdir(parents=True, exist_ok=True)
     crop_path = INFERENCE_DIR / (inference_id + '.png')
     try:
         crop_path.write_bytes(crop_bytes)
+        for role,pixels in analysis_images.items():
+            ok, encoded_image=cv2.imencode('.png',pixels)
+            if not ok:raise ValueError('分析图无法编码')
+            (INFERENCE_DIR/(inference_id+'_'+role+'.png')).write_bytes(encoded_image.tobytes())
         with closing(_connection()) as conn:
             with conn:
                 conn.execute('INSERT INTO glyph_inferences VALUES (?,?,?,?)',
                              (inference_id, record['id'], json.dumps(record_json, ensure_ascii=False), now))
     except Exception:
         crop_path.unlink(missing_ok=True)
+        for role in analysis_images:(INFERENCE_DIR/(inference_id+'_'+role+'.png')).unlink(missing_ok=True)
         raise
     return record_json
+
+
+def retrieve_templates(foreground):
+    with closing(_connection()) as conn:
+        rows=conn.execute('SELECT record_json FROM glyph_templates ORDER BY id').fetchall()
+    matches=[]
+    for row in rows:
+        template=json.loads(row['record_json'])
+        path=INFERENCE_DIR/(template['inferenceId']+'_foreground.png')
+        if not path.is_file():continue
+        pixels=safe_read_image(str(path),is_gray=True)
+        score=shape_similarity(foreground,pixels)
+        if score<.45:continue
+        matches.append({'glyph':template['glyph'],'visualEvidence':f"与人工参考 {template['templateId']} 归一化轮廓距离/投影相似评分 {score:.3f}",
+            'shapeScore':score,'contextEvidence':'模板标签由本地用户确认，未自动核验古文字身份',
+            'sourceUrls':[template['sourceUrl']] if template.get('sourceUrl') else [],
+            'scoreBasis':'对称距离变换与投影距离的启发式相似评分，非统计概率',
+            'templateId':template['templateId'],'templateSteleId':template['steleId']})
+    best={}
+    for match in sorted(matches,key=lambda r:-r['shapeScore']):best.setdefault(match['glyph'],match)
+    return list(best.values())[:3]
+
+
+def register_template(inference_id,glyph,basis,annotator):
+    record=get_inference(inference_id)
+    if record is None:raise LookupError('推演记录不存在')
+    if len(glyph)!=1 or not '\u3400'<=glyph<='\u9fff' or not basis.strip() or not annotator.strip():
+        raise ValueError('参考字必须是单字，且填写人工标注者和依据')
+    # No inferred candidate is silently promoted into a trusted reference.
+    template_id=uuid.uuid4().hex
+    template={'templateId':template_id,'inferenceId':inference_id,'steleId':record['steleId'],'glyph':glyph,
+        'bbox':record['bbox'],'cropSha256':record['cropSha256'],'inputImageSha256':record['inputImageSha256'],
+        'sourceUrl':record.get('sourceUrl'),'annotationBasis':basis[:500],'annotator':annotator[:80],
+        'verification':'local_human_label_not_independent_ground_truth','createdAt':datetime.now(timezone.utc).isoformat()}
+    with closing(_connection()) as conn:
+        with conn:conn.execute('INSERT INTO glyph_templates VALUES (?,?)',(template_id,json.dumps(template,ensure_ascii=False)))
+    return template
+
+
+def analysis_path(inference_id,role):
+    if role not in ('gray','foreground','skeleton','noise') or not get_inference(inference_id):return None
+    path=INFERENCE_DIR/(inference_id+'_'+role+'.png')
+    return path if path.is_file() else None
 
 
 def decide(inference_id: str, action: str, glyph: str | None = None):
@@ -165,6 +222,9 @@ def decide(inference_id: str, action: str, glyph: str | None = None):
     elif action == 'revoke':
         record['adoptedGlyph'] = None
         record['status'] = 'pending_review'
+    elif action == 'reject':
+        record['adoptedGlyph'] = None
+        record['status'] = 'human_rejected'
     else:
         raise ValueError('未知采纳操作')
     record['decisions'].append({'action': action, 'glyph': glyph if action == 'accept' else None,

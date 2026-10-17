@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "status": "awaiting_independent_human_annotations",
+  "annotations": [],
+  "requiredFields": ["id", "steleId", "imageSha256", "bbox", "glyph", "annotator", "annotationBasis", "sourceUrl", "humanVerified", "split"],
+  "rules": [
+    "仅收录许可允许的实际拓片选区；标注必须核对当前图像与释文位置。",
+    "文物ID分组；同一文物不得同时出现在参考检索库与独立测试集。",
+    "无法确定的字保持拒识，不强制填写真值。",
+    "界面本地用户参考字形不自动提升为独立人工核验测试集。",
+    "自动化测试中的合成形状仅验证软件链路，不计入古碑识字准确率。"
+  ],
+  "limitation": "截至2026-10-17，没有独立人工逐字标注。Top-1、Top-3和拒识率未评测；不以模板自匹配冒充识读实验。"
+}

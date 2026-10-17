@@ -1,0 +1,9 @@
+{
+  "status": "not_evaluated",
+  "n": 0,
+  "top1": null,
+  "top3": null,
+  "rejectionRate": null,
+  "reason": "截至2026-10-17，没有独立人工逐字标注。Top-1、Top-3和拒识率未评测；不以模板自匹配冒充识读实验。",
+  "predictions": []
+}

@@ -1,0 +1,88 @@
+{
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.4",
+  "rows": [
+    {
+      "sourceShape": [
+        512,
+        768
+      ],
+      "workingImage": {
+        "sourceShape": [
+          512,
+          768
+        ],
+        "workingShape": [
+          512,
+          768
+        ],
+        "scale": 1.0,
+        "interpolation": "none"
+      },
+      "elapsedSeconds": 0.3883901000081096,
+      "peakResidentMiB": 123.62890625,
+      "metrics": {
+        "psnr": null,
+        "ssim": null,
+        "elapsed_ms": 301.3
+      },
+      "seed": 20261017,
+      "measurement": "fresh-process lifetime peak RSS includes imports, arrays, PNG and base64 output"
+    },
+    {
+      "sourceShape": [
+        1024,
+        1536
+      ],
+      "workingImage": {
+        "sourceShape": [
+          1024,
+          1536
+        ],
+        "workingShape": [
+          1024,
+          1536
+        ],
+        "scale": 1.0,
+        "interpolation": "none"
+      },
+      "elapsedSeconds": 1.3457373999990523,
+      "peakResidentMiB": 248.5,
+      "metrics": {
+        "psnr": null,
+        "ssim": null,
+        "elapsed_ms": 965.2
+      },
+      "seed": 20261017,
+      "measurement": "fresh-process lifetime peak RSS includes imports, arrays, PNG and base64 output"
+    },
+    {
+      "sourceShape": [
+        2000,
+        2400
+      ],
+      "workingImage": {
+        "sourceShape": [
+          2000,
+          2400
+        ],
+        "workingShape": [
+          1154,
+          1385
+        ],
+        "scale": 0.5773502691896257,
+        "interpolation": "INTER_AREA"
+      },
+      "elapsedSeconds": 1.4213722000131384,
+      "peakResidentMiB": 253.50390625,
+      "metrics": {
+        "psnr": null,
+        "ssim": null,
+        "elapsed_ms": 1069.4
+      },
+      "seed": 20261017,
+      "measurement": "fresh-process lifetime peak RSS includes imports, arrays, PNG and base64 output"
+    }
+  ],
+  "limitations": "单机单次合成噪声输入；非并发服务压力测试。工作副本上限160万像素，非历史真值。"
+}

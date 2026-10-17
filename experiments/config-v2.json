@@ -1,0 +1,273 @@
+{
+  "experimentId": "controlled-rubbings-v2-2026-10-17",
+  "seed": 20261017,
+  "samples": [
+    {
+      "id": "han_01_caoquan",
+      "dynasty": "东汉",
+      "script": "隶书",
+      "split": "development",
+      "file": "apps/web/public/assets/stele/museum-rubbings/han_01_caoquan_readable.jpg",
+      "crop": [
+        486,
+        1282,
+        742,
+        1538
+      ],
+      "license": "CC BY 4.0",
+      "attribution": "曹全碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34589&dep=P&mode=full",
+      "sourceSha256": "e585c3231ba491e2b8ce0494da52fb8e375e7525673344acc2650d73b8c0dbd2"
+    },
+    {
+      "id": "han_02_yiying",
+      "dynasty": "东汉",
+      "script": "隶书",
+      "split": "test",
+      "file": "apps/web/public/assets/stele/museum-rubbings/han_02_yiying_readable.jpg",
+      "crop": [
+        554,
+        1298,
+        810,
+        1554
+      ],
+      "license": "CC BY 4.0",
+      "attribution": "乙瑛碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full",
+      "sourceSha256": "5aec3d3a705eda460c90da28c5bb0d63f24b386b4421fa02607e4964d6a527c7"
+    },
+    {
+      "id": "wei_01_zhangmenglong",
+      "dynasty": "北魏",
+      "script": "楷书",
+      "split": "development",
+      "file": "apps/web/public/assets/stele/museum-rubbings/wei_01_zhangmenglong_readable.jpg",
+      "crop": [
+        699,
+        1285,
+        955,
+        1541
+      ],
+      "license": "CC BY 4.0",
+      "attribution": "张猛龙碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33681&dep=P&mode=full",
+      "sourceSha256": "2e884fdf44d1e9b3b1e57dfc325e6202fcef0ae42fc8f9f02a5311a8c0fefa79"
+    },
+    {
+      "id": "wei_02_wugaoli",
+      "dynasty": "北魏",
+      "script": "楷书",
+      "split": "test",
+      "file": "apps/web/public/assets/stele/museum-rubbings/wei_02_wugaoli_readable.jpg",
+      "crop": [
+        458,
+        450,
+        714,
+        706
+      ],
+      "license": "CC BY 4.0",
+      "attribution": "吴高黎墓志。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full",
+      "sourceSha256": "12a8bfe268ddc8ba308e250922afa861cef6eda6ac748174d1a99724f63dd6f6"
+    },
+    {
+      "id": "tang_01_duobao",
+      "dynasty": "唐代",
+      "script": "楷书",
+      "split": "development",
+      "file": "apps/web/public/assets/stele/museum-rubbings/tang_01_duobao_readable.jpg",
+      "crop": [
+        809,
+        695,
+        1065,
+        951
+      ],
+      "license": "CC BY 4.0",
+      "attribution": "多宝塔感应碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+      "sourceSha256": "e59f12e90d4804a08e9db63523725223478986c9148b4a62c6012db0610971c2"
+    },
+    {
+      "id": "tang_02_jiucheng",
+      "dynasty": "唐代",
+      "script": "楷书",
+      "split": "test",
+      "file": "apps/web/public/assets/stele/museum-rubbings/tang_02_jiucheng_readable.jpg",
+      "crop": [
+        699,
+        531,
+        955,
+        787
+      ],
+      "license": "CC BY 4.0",
+      "attribution": "九成宫醴泉铭。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=24521&dep=P&mode=full",
+      "sourceSha256": "4317318d2de973e92fcbc3c933c6862a22e3a197552a54d87ee8a6de21de04e3"
+    },
+    {
+      "id": "song_01_yuanyou",
+      "dynasty": "宋代",
+      "script": "楷书",
+      "split": "development",
+      "file": "apps/web/public/assets/stele/museum-rubbings/song_01_yuanyou_readable.jpg",
+      "crop": [
+        854,
+        1194,
+        1110,
+        1450
+      ],
+      "license": "CC BY 4.0",
+      "attribution": "元祐党籍碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32237&dep=P&mode=full",
+      "sourceSha256": "20e25ab7b522971efd135fbc0a73387d5899ed4f044afbef2b90aa5cc0ec2975"
+    },
+    {
+      "id": "song_02_wenxuan",
+      "dynasty": "宋代",
+      "script": "行楷书",
+      "split": "test",
+      "file": "apps/web/public/assets/stele/museum-rubbings/song_02_wenxuan_readable.jpg",
+      "crop": [
+        499,
+        1331,
+        755,
+        1587
+      ],
+      "license": "CC BY 4.0",
+      "attribution": "宋太宗御制至圣文宣王赞碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full",
+      "sourceSha256": "3564d46727fa2f9157d77a43df4a4b988de875eb2166a5d5ab98bd540af9d2da"
+    },
+    {
+      "id": "yuan_01_yufu",
+      "dynasty": "元代",
+      "script": "行楷书",
+      "split": "development",
+      "file": "apps/web/public/assets/stele/museum-rubbings/yuan_01_yufu_readable.jpg",
+      "crop": [
+        731,
+        681,
+        987,
+        937
+      ],
+      "license": "CC BY 4.0",
+      "attribution": "大元敕藏御服之碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29089&dep=P&mode=full",
+      "sourceSha256": "1b1beea0dd67cf7186b5f58314d64a0090e60cf174631b44175625510e6077b0"
+    },
+    {
+      "id": "yuan_02_sundeyu",
+      "dynasty": "元代",
+      "script": "楷书",
+      "split": "test",
+      "file": "apps/web/public/assets/stele/museum-rubbings/yuan_02_sundeyu_readable.jpg",
+      "crop": [
+        614,
+        1447,
+        870,
+        1703
+      ],
+      "license": "CC BY 4.0",
+      "attribution": "元重阳宫孙德彧道行碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34667&dep=P&mode=full",
+      "sourceSha256": "3ada3ac0a7ae548f16841c40b8541b9697a0f2751ec11847aa11f45c9adcf8c9"
+    },
+    {
+      "id": "ming_01_xianfu",
+      "dynasty": "明代",
+      "script": "楷书",
+      "split": "development",
+      "file": "apps/web/public/assets/stele/museum-rubbings/ming_01_xianfu_readable.jpg",
+      "crop": [
+        650,
+        1251,
+        906,
+        1507
+      ],
+      "license": "CC BY 4.0",
+      "attribution": "明弘治八年西安府学题名碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full",
+      "sourceSha256": "70d472b2c7f61830f52c41683fbd99f43c093947ca519622e8951dc2be214d2c"
+    },
+    {
+      "id": "ming_02_luxianzhi",
+      "dynasty": "明代",
+      "script": "行书",
+      "split": "test",
+      "file": "apps/web/public/assets/stele/museum-rubbings/ming_02_luxianzhi_readable.jpg",
+      "crop": [
+        1060,
+        495,
+        1316,
+        751
+      ],
+      "license": "CC BY 4.0",
+      "attribution": "文徵明书陆献之墓志铭。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30367&dep=P&mode=full",
+      "sourceSha256": "ccdb8b6adbb28f69ee074cb21d088c60cfe89770169873fd2d2f978a8d408b53"
+    },
+    {
+      "id": "qing_01_qianlong_heart_sutra",
+      "dynasty": "清代",
+      "script": "楷书",
+      "split": "development",
+      "file": "apps/web/public/assets/stele/museum-rubbings/qing_01_qianlong_heart_sutra_readable.jpg",
+      "crop": [
+        239,
+        868,
+        495,
+        1124
+      ],
+      "license": "Public Domain",
+      "attribution": "Image courtesy of the Princeton University Art Museum. Gift of George Rowley.",
+      "sourceUrl": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+      "sourceSha256": "72cc05f5ad38039f298ff2c0c05f4fb9def0d55912bd3a111f5f35f739f734b9"
+    },
+    {
+      "id": "qing_02_wushi_reerection",
+      "dynasty": "清代",
+      "script": "楷书",
+      "split": "test",
+      "file": "apps/web/public/assets/stele/museum-rubbings/qing_02_wushi_reerection_readable.jpg",
+      "crop": [
+        1860,
+        685,
+        2116,
+        941
+      ],
+      "license": "Public Domain",
+      "attribution": "Image courtesy of the Princeton University Art Museum. Gift of George Rowley.",
+      "sourceUrl": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+      "sourceSha256": "551b3c7a4a8c83f989a1d44b3c9c941b34f6c4eeb55c677c2940a29a7fb246e6"
+    }
+  ],
+  "methods": [
+    "degraded",
+    "gaussian_lowpass",
+    "butterworth_lowpass",
+    "notch",
+    "fast_nlm",
+    "morphology",
+    "nlm_clahe",
+    "joint",
+    "adaptive_joint"
+  ],
+  "degradations": [
+    "gaussian",
+    "salt_pepper",
+    "periodic",
+    "blur",
+    "occlusion"
+  ],
+  "strengths": [
+    0.65,
+    1.3
+  ],
+  "samplingRule": "前两件按馆藏清单顺序；中心256方形；首件开发，次件测试；无按性能筛选。",
+  "referenceNote": "受控参考为真实拓本阅读图局部，仍含历史噪声；不等于原石历史真值。",
+  "limitations": [
+    "每朝代独立测试仅1件；不支持普遍优势结论",
+    "没有人工字符标注，不报告OCR准确率",
+    "非盲选中心区域可能含纸边/空白，保留所有失败区域"
+  ]
+}

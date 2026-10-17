@@ -17,6 +17,8 @@ import time
 import numpy as np
 import cv2
 from PIL import Image
+from skimage.morphology import skeletonize
+from degradation_analysis import AdaptiveRubbingRestorer
 
 try:
     from skimage.metrics import structural_similarity as compute_ssim
@@ -247,7 +249,7 @@ class RubbingAlgorithmEngine:
 
         return unsharp
 
-    def render_cinnabar_rubbing(self, enhanced_gray, orig_bgr, style="cinnabar"):
+    def render_cinnabar_rubbing(self, enhanced_gray, orig_bgr, style="cinnabar", seed=0):
         """
         古典宣纸朱砂/墨拓仿真艺术复原
         - 宣纸质感底色：米黄 #f6f0e4 (RGB: 246, 240, 228)
@@ -262,7 +264,7 @@ class RubbingAlgorithmEngine:
         paper_base[:, :, 2] = 246.0  # R
 
         # 叠加微弱木纤维纸纹噪点
-        paper_grain = np.random.normal(0, 4.0, (h, w, 3)).astype(np.float32)
+        paper_grain = np.random.default_rng(seed).normal(0, 4.0, (h, w, 3)).astype(np.float32)
         paper = np.clip(paper_base + paper_grain, 0, 255)
 
         # 2. 提取文字微痕二值与柔化掩码 (Soft Ink Mask)
@@ -300,13 +302,14 @@ class RubbingAlgorithmEngine:
         image_input,
         d0=60,
         filter_order=2,
-        filter_type="butterworth",
+        filter_type="adaptive",
         nlm_h=10,
         clahe_clip=2.5,
         morph_kernel=3,
         damage_mask=None,
         cinnabar_style="cinnabar",
         reference_image=None,
+        random_seed=0,
     ):
         """
         全流程频空域联合去噪与微痕修复管线
@@ -322,7 +325,13 @@ class RubbingAlgorithmEngine:
 
         if orig_bgr is None:
             raise ValueError("无法解码输入的拓片图像")
+        if orig_bgr.shape[0]*orig_bgr.shape[1] > 20_000_000:
+            raise ValueError('源图超过2000万像素处理上限；请创建独立工作样本')
 
+        source_shape = list(orig_bgr.shape[:2])
+        scale = min(1., (1_600_000 / (orig_bgr.shape[0]*orig_bgr.shape[1]))**.5, 1800/max(orig_bgr.shape[:2]))
+        if scale < 1:
+            orig_bgr = cv2.resize(orig_bgr, (max(16,int(orig_bgr.shape[1]*scale)),max(16,int(orig_bgr.shape[0]*scale))), interpolation=cv2.INTER_AREA)
         orig_gray = cv2.cvtColor(orig_bgr, cv2.COLOR_BGR2GRAY)
 
         # 2. 如果存在前端传来的手动风化掩码，先模拟漫漶风化损伤
@@ -332,37 +341,42 @@ class RubbingAlgorithmEngine:
             else:
                 mask_mat = damage_mask
 
-            if mask_mat is not None and mask_mat.shape[:2] == orig_gray.shape[:2]:
+            if mask_mat is None or list(mask_mat.shape[:2]) != source_shape:
+                raise ValueError('风化掩码必须与源图同尺寸')
+            if scale < 1:
+                mask_mat = cv2.resize(mask_mat,(orig_gray.shape[1],orig_gray.shape[0]),interpolation=cv2.INTER_NEAREST)
+            if mask_mat is not None:
                 mask_norm = (mask_mat > 30).astype(np.float32)
                 # 在涂抹区域模拟重度石花斑点与风化磨损
-                weather_noise = np.random.randint(90, 240, orig_gray.shape, dtype=np.uint8)
+                weather_noise = np.random.default_rng(random_seed).integers(90, 240, orig_gray.shape, dtype=np.uint8)
                 orig_gray = np.where(mask_norm > 0.5, cv2.addWeighted(orig_gray, 0.4, weather_noise, 0.6, 0), orig_gray)
                 orig_bgr = cv2.cvtColor(orig_gray, cv2.COLOR_GRAY2BGR)
 
         # 3. 频域滤波与 2D-FFT 频谱伪彩色渲染
-        freq_filtered_gray, spectrum_color, frequency_details = self.apply_frequency_domain_filter(
-            orig_gray, d0=d0, filter_type=filter_type, order=filter_order, return_details=True
-        )
-
-        # 4. 空域形态学 + NLM + CLAHE 联合去噪增强
-        restored_gray = self.apply_spatial_domain_enhancement(
-            freq_filtered_gray,
-            nlm_h=nlm_h,
-            clahe_clip=clahe_clip,
-            morph_kernel=morph_kernel,
-        )
+        if filter_type == 'adaptive':
+            restored_gray, adaptive_details = AdaptiveRubbingRestorer().restore(orig_gray, strength=max(.1,nlm_h/10), notch_width=max(.5,d0/60))
+            spectrum = np.log1p(np.abs(np.fft.fftshift(np.fft.fft2(orig_gray))))
+            spectrum_color = cv2.applyColorMap(cv2.normalize(spectrum,None,0,255,cv2.NORM_MINMAX).astype(np.uint8),cv2.COLORMAP_VIRIDIS)
+            frequency_details = {'mode':'adaptive','notchApplied':any(d['operator']=='notch' for d in adaptive_details['decisions']), 'adaptive':adaptive_details}
+        else:
+            freq_filtered_gray, spectrum_color, frequency_details = self.apply_frequency_domain_filter(
+                orig_gray, d0=d0, filter_type=filter_type, order=filter_order, return_details=True
+            )
+            restored_gray = self.apply_spatial_domain_enhancement(freq_filtered_gray,nlm_h=nlm_h,clahe_clip=clahe_clip,morph_kernel=morph_kernel)
 
         # 将去噪后的灰度转为 BGR 显示
         restored_bgr = cv2.cvtColor(restored_gray, cv2.COLOR_GRAY2BGR)
 
         # 5. 渲染古典宣纸朱砂复原图
-        cinnabar_bgr = self.render_cinnabar_rubbing(restored_gray, orig_bgr, style=cinnabar_style)
+        cinnabar_bgr = self.render_cinnabar_rubbing(restored_gray, orig_bgr, style=cinnabar_style, seed=random_seed)
 
         # 6. 渲染笔画拓扑骨架图（玄青底 + 泥金微痕骨架）
         skeleton_bgr = self.render_stroke_skeleton(restored_gray)
 
         # 7. 计算质量评价指标
         reference_gray = safe_read_image(reference_image, is_gray=True) if reference_image is not None else None
+        if reference_gray is not None and scale < 1:
+            raise ValueError('配对评测请预先生成同尺度工作参考图，不隐式缩放真值')
         metrics = compute_metrics(reference_gray, restored_gray) if reference_gray is not None else {"psnr": None, "ssim": None}
         diagnostics = compute_diagnostics(orig_gray, restored_gray)
         elapsed_ms = round((time.perf_counter() - start_time) * 1000, 1)
@@ -375,32 +389,27 @@ class RubbingAlgorithmEngine:
             "fft_spectrum_b64": mat_to_base64(spectrum_color),
             "cinnabar_b64": mat_to_base64(cinnabar_bgr),
             "skeleton_b64": mat_to_base64(skeleton_bgr),
+            "binary_skeleton_b64": mat_to_base64(self.extract_stroke_skeleton(restored_gray)),
+            "contour_b64": mat_to_base64(cv2.Canny(restored_gray,50,150)),
             "metrics": metrics,
             "diagnostic_metrics": diagnostics,
             "frequency_details": frequency_details,
+            "working_image": {'sourceShape':source_shape,'workingShape':list(orig_gray.shape),'scale':scale,'interpolation':'INTER_AREA' if scale<1 else 'none'},
+            "random_seed": int(random_seed),
         }
+
+    def extract_stroke_skeleton(self, restored_gray):
+        _, binary = cv2.threshold(restored_gray,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+        if np.mean(binary > 0) > .5:
+            binary = 255-binary
+        return (skeletonize(binary>0)*255).astype(np.uint8)
 
     def render_stroke_skeleton(self, restored_gray):
         """
         基于形态学骨架抽取与高保真微痕边缘拓扑细化
         渲染成深邃玄青底色 (#0a0d12) 搭配泥金色 (#d4af37) 与青瓷色高光笔画骨架图
         """
-        _, binary = cv2.threshold(restored_gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-        skel = np.zeros(binary.shape, np.uint8)
-        element = cv2.getStructuringElement(cv2.MORPH_CROSS, (3, 3))
-        temp_img = binary.copy()
-
-        for _ in range(12):
-            eroded = cv2.erode(temp_img, element)
-            temp = cv2.dilate(eroded, element)
-            temp = cv2.subtract(temp_img, temp)
-            skel = cv2.bitwise_or(skel, temp)
-            temp_img = eroded.copy()
-            if cv2.countNonZero(temp_img) == 0:
-                break
-
-        edges = cv2.Canny(restored_gray, 50, 150)
-        combined = cv2.addWeighted(skel, 0.75, edges, 0.45, 0)
+        combined = self.extract_stroke_skeleton(restored_gray)
 
         h, w = restored_gray.shape
         out_bgr = np.zeros((h, w, 3), dtype=np.uint8)

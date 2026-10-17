@@ -10,7 +10,10 @@ def process_verified_request(req, manager, engine):
     record=manager.get_stele_by_id(req.stele_id) if req.stele_id else None
     if req.stele_id and record is None:
         raise HTTPException(status_code=410 if req.stele_id in manager.retired else 404,detail='指定文物不可用，不替换为其他样本')
+    if record and req.image_base64:
+        raise HTTPException(status_code=422,detail='文物ID不能与外部图像混用；请先上传到独立用户样本空间')
     if req.image_base64:
+        raise HTTPException(status_code=422,detail='请通过上传接口建立独立样本后再处理')
         image=req.image_base64
     elif record:
         if record.get('source_kind') == 'user_upload':
@@ -24,13 +27,13 @@ def process_verified_request(req, manager, engine):
     elif req.sample_id in ('sample_1.png','sample_2.png','sample_3.png','sample_4.png'):
         image=str(BASE/'static/samples'/req.sample_id)
     else:raise HTTPException(status_code=400,detail='需要文物ID或用户图像')
-    result=engine.process_rubbing(image_input=image,d0=req.d0,filter_order=req.filter_order,filter_type=req.filter_type,nlm_h=req.h_nlm,clahe_clip=req.clahe_clip,morph_kernel=req.morph_kernel,damage_mask=req.damage_mask,cinnabar_style=req.cinnabar_style)
+    result=engine.process_rubbing(image_input=image,d0=req.d0,filter_order=req.filter_order,filter_type=req.filter_type,nlm_h=req.h_nlm,clahe_clip=req.clahe_clip,morph_kernel=req.morph_kernel,damage_mask=req.damage_mask,cinnabar_style=req.cinnabar_style,random_seed=req.random_seed)
     if result.get('error'):raise HTTPException(status_code=422,detail=result['error'])
     run_id=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')+'_'+uuid.uuid4().hex[:8]
     artifact_id=record['id'] if record else 'uploaded-image'
     out=BASE/'static/results'/artifact_id/run_id;out.mkdir(parents=True,exist_ok=True)
     saved={};hashes={}
-    images = {role: result.get(key,'') for role,key in [('original','original_b64'),('restored','restored_b64'),('frequency_spectrum','fft_spectrum_b64'),('character_skeleton','skeleton_b64'),('cinnabar_rubbing','cinnabar_b64')]}
+    images = {role: result.get(key,'') for role,key in [('original','original_b64'),('restored','restored_b64'),('frequency_spectrum','fft_spectrum_b64'),('character_skeleton','skeleton_b64'),('binary_skeleton','binary_skeleton_b64'),('contour','contour_b64'),('cinnabar_rubbing','cinnabar_b64')]}
     try:
         for role,encoded in images.items():
             if not encoded:continue
@@ -48,7 +51,8 @@ def process_verified_request(req, manager, engine):
     response['engineDiagnosticMetrics']=result.get('diagnostic_metrics',{})
     response['frequencyDetails']=result.get('frequency_details',{})
     response['runId']=run_id
-    response['algorithmVersion']='frequency-spatial-v2.1'
+    response['algorithmVersion']='adaptive-rubbing-v2.0' if req.filter_type=='adaptive' else 'fixed-frequency-spatial-v2.1'
+    response['adaptiveDiagnostics']=result.get('frequency_details',{}).get('adaptive')
     response['evaluationStatus']='unassessed'
     response['outputImages']=saved
     input_sha=hashlib.sha256(Path(image).read_bytes()).hexdigest() if not req.image_base64 else hashlib.sha256(base64.b64decode(req.image_base64.split(',',1)[-1])).hexdigest()
@@ -56,6 +60,9 @@ def process_verified_request(req, manager, engine):
         inputImageSha256=input_sha,outputSha256=hashes,startedAt=started_at,finishedAt=datetime.now(timezone.utc).isoformat(),
         processingTime=result.get('metrics',{}).get('elapsed_ms'),evaluationMetrics={'psnr':None,'ssim':None},
         diagnosticMetrics=result.get('diagnostic_metrics',{}),inferenceRecords=[],
+        workingImage=result.get('working_image'),randomSeed=req.random_seed,
+        damageMaskSha256=hashlib.sha256(base64.b64decode(req.damage_mask.split(',',1)[-1],validate=True)).hexdigest() if req.damage_mask else None,
+        imageRoles={'source':'immutable_source','original':'synthetic_degradation' if req.damage_mask else 'working_input','restored':'algorithm_output','cinnabar_rubbing':'artistic_display_not_evaluated'},
         sourceRecords=[{'title':record.get('title'),'url':record.get('sourceUrl'),'license':record.get('license')} ] if record else [])
     (out/'processing.json').write_text(json.dumps(record_json,ensure_ascii=False,indent=2,allow_nan=False),'utf-8')
     return response

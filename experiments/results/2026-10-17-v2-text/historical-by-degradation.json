@@ -1,0 +1,282 @@
+[
+  {
+    "degradation": "gaussian",
+    "method": "degraded",
+    "n": 2,
+    "psnrMean": 23.02840078464068,
+    "ssimMean": 0.4483234727478623
+  },
+  {
+    "degradation": "gaussian",
+    "method": "gaussian_lowpass",
+    "n": 2,
+    "psnrMean": 27.295079982246566,
+    "ssimMean": 0.6574772941892832
+  },
+  {
+    "degradation": "gaussian",
+    "method": "butterworth_lowpass",
+    "n": 2,
+    "psnrMean": 27.317075910777202,
+    "ssimMean": 0.6820848806788332
+  },
+  {
+    "degradation": "gaussian",
+    "method": "notch",
+    "n": 2,
+    "psnrMean": 23.017156257105867,
+    "ssimMean": 0.4480467662349281
+  },
+  {
+    "degradation": "gaussian",
+    "method": "morphology",
+    "n": 2,
+    "psnrMean": 20.106582851471508,
+    "ssimMean": 0.5508464597353848
+  },
+  {
+    "degradation": "gaussian",
+    "method": "fast_nlm",
+    "n": 2,
+    "psnrMean": 24.68155237803672,
+    "ssimMean": 0.5344916826023917
+  },
+  {
+    "degradation": "gaussian",
+    "method": "nlm_clahe",
+    "n": 2,
+    "psnrMean": 14.629420367449134,
+    "ssimMean": 0.3015753696512198
+  },
+  {
+    "degradation": "gaussian",
+    "method": "joint",
+    "n": 2,
+    "psnrMean": 22.763128652702797,
+    "ssimMean": 0.718531267767293
+  },
+  {
+    "degradation": "salt_pepper",
+    "method": "degraded",
+    "n": 2,
+    "psnrMean": 19.40579981577205,
+    "ssimMean": 0.48448256381585353
+  },
+  {
+    "degradation": "salt_pepper",
+    "method": "gaussian_lowpass",
+    "n": 2,
+    "psnrMean": 24.579942957598554,
+    "ssimMean": 0.6045885300128614
+  },
+  {
+    "degradation": "salt_pepper",
+    "method": "butterworth_lowpass",
+    "n": 2,
+    "psnrMean": 25.000951284364778,
+    "ssimMean": 0.6175518066055379
+  },
+  {
+    "degradation": "salt_pepper",
+    "method": "notch",
+    "n": 2,
+    "psnrMean": 19.411855322970865,
+    "ssimMean": 0.48463364818446797
+  },
+  {
+    "degradation": "salt_pepper",
+    "method": "morphology",
+    "n": 2,
+    "psnrMean": 21.761263329785404,
+    "ssimMean": 0.6069409878764139
+  },
+  {
+    "degradation": "salt_pepper",
+    "method": "fast_nlm",
+    "n": 2,
+    "psnrMean": 19.50425872441555,
+    "ssimMean": 0.49169439083598687
+  },
+  {
+    "degradation": "salt_pepper",
+    "method": "nlm_clahe",
+    "n": 2,
+    "psnrMean": 18.14679110625477,
+    "ssimMean": 0.48109547942362174
+  },
+  {
+    "degradation": "salt_pepper",
+    "method": "joint",
+    "n": 2,
+    "psnrMean": 22.66384472718521,
+    "ssimMean": 0.7064484764355292
+  },
+  {
+    "degradation": "periodic",
+    "method": "degraded",
+    "n": 2,
+    "psnrMean": 22.42004595983126,
+    "ssimMean": 0.4226285312236491
+  },
+  {
+    "degradation": "periodic",
+    "method": "gaussian_lowpass",
+    "n": 2,
+    "psnrMean": 22.80019123606784,
+    "ssimMean": 0.4149400581943344
+  },
+  {
+    "degradation": "periodic",
+    "method": "butterworth_lowpass",
+    "n": 2,
+    "psnrMean": 22.200566277557826,
+    "ssimMean": 0.3893836134905485
+  },
+  {
+    "degradation": "periodic",
+    "method": "notch",
+    "n": 2,
+    "psnrMean": 41.3639200158681,
+    "ssimMean": 0.984830362494491
+  },
+  {
+    "degradation": "periodic",
+    "method": "morphology",
+    "n": 2,
+    "psnrMean": 20.810231264331364,
+    "ssimMean": 0.35934420031537945
+  },
+  {
+    "degradation": "periodic",
+    "method": "fast_nlm",
+    "n": 2,
+    "psnrMean": 22.649848294868512,
+    "ssimMean": 0.38354049927642
+  },
+  {
+    "degradation": "periodic",
+    "method": "nlm_clahe",
+    "n": 2,
+    "psnrMean": 15.042387159023,
+    "ssimMean": 0.2595194068373662
+  },
+  {
+    "degradation": "periodic",
+    "method": "joint",
+    "n": 2,
+    "psnrMean": 23.758693048606723,
+    "ssimMean": 0.7412152886472965
+  },
+  {
+    "degradation": "blur",
+    "method": "degraded",
+    "n": 2,
+    "psnrMean": 25.006144309161755,
+    "ssimMean": 0.7652330965291718
+  },
+  {
+    "degradation": "blur",
+    "method": "gaussian_lowpass",
+    "n": 2,
+    "psnrMean": 24.57936664683055,
+    "ssimMean": 0.7455411853666849
+  },
+  {
+    "degradation": "blur",
+    "method": "butterworth_lowpass",
+    "n": 2,
+    "psnrMean": 24.684364519986325,
+    "ssimMean": 0.7493685551015412
+  },
+  {
+    "degradation": "blur",
+    "method": "notch",
+    "n": 2,
+    "psnrMean": 25.007150190830703,
+    "ssimMean": 0.7648015633080212
+  },
+  {
+    "degradation": "blur",
+    "method": "morphology",
+    "n": 2,
+    "psnrMean": 24.413464936659985,
+    "ssimMean": 0.740712860848483
+  },
+  {
+    "degradation": "blur",
+    "method": "fast_nlm",
+    "n": 2,
+    "psnrMean": 24.45405123593887,
+    "ssimMean": 0.7060559444955228
+  },
+  {
+    "degradation": "blur",
+    "method": "nlm_clahe",
+    "n": 2,
+    "psnrMean": 21.61128971595241,
+    "ssimMean": 0.6863955234104391
+  },
+  {
+    "degradation": "blur",
+    "method": "joint",
+    "n": 2,
+    "psnrMean": 20.856669634640575,
+    "ssimMean": 0.658693872329329
+  },
+  {
+    "degradation": "occlusion",
+    "method": "degraded",
+    "n": 2,
+    "psnrMean": 30.28894897719841,
+    "ssimMean": 0.9847088451994928
+  },
+  {
+    "degradation": "occlusion",
+    "method": "gaussian_lowpass",
+    "n": 2,
+    "psnrMean": 27.70162135463152,
+    "ssimMean": 0.930313211561703
+  },
+  {
+    "degradation": "occlusion",
+    "method": "butterworth_lowpass",
+    "n": 2,
+    "psnrMean": 27.112529174912417,
+    "ssimMean": 0.9086486060596577
+  },
+  {
+    "degradation": "occlusion",
+    "method": "notch",
+    "n": 2,
+    "psnrMean": 30.26628532584857,
+    "ssimMean": 0.9838300087348837
+  },
+  {
+    "degradation": "occlusion",
+    "method": "morphology",
+    "n": 2,
+    "psnrMean": 23.422002483153406,
+    "ssimMean": 0.8135024225831475
+  },
+  {
+    "degradation": "occlusion",
+    "method": "fast_nlm",
+    "n": 2,
+    "psnrMean": 29.018876803631805,
+    "ssimMean": 0.8169046513870111
+  },
+  {
+    "degradation": "occlusion",
+    "method": "nlm_clahe",
+    "n": 2,
+    "psnrMean": 25.120811450266075,
+    "ssimMean": 0.8098732373255568
+  },
+  {
+    "degradation": "occlusion",
+    "method": "joint",
+    "n": 2,
+    "psnrMean": 22.441908097615084,
+    "ssimMean": 0.7190311965672174
+  }
+]
