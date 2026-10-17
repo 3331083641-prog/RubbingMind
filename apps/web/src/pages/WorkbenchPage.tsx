@@ -662,7 +662,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
         {/* ========================================================= */}
         <div className="lg:col-span-5 flex flex-col space-y-4">
           {adaptiveDetails && <details className="glass-panel p-3 text-xs"><summary className="text-gold cursor-pointer">本次自适应决策与保真诊断</summary><pre className="whitespace-pre-wrap break-all mt-2 max-h-80 overflow-auto">{JSON.stringify(adaptiveDetails,null,2)}</pre></details>}
-          <GlyphInferencePanel stele={stele} activeChar={activeChar} runId={selectedRunId || undefined} onDecision={handleGlyphDecision} />
+          <GlyphInferencePanel stele={stele} activeChar={activeChar} runId={selectedRunId || undefined} restoredUrl={restoredImageUrl} onDecision={handleGlyphDecision} />
           {/* Top Xuan Paper Ancient Book Text View */}
           <div className="glass-panel rounded-2xl border border-gold/30 p-5 flex flex-col bg-gradient-to-b from-[#131920] to-[#0D1217] space-y-4 shadow-xl">
             {/* Header */}

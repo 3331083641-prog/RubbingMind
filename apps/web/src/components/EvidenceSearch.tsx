@@ -3,7 +3,7 @@ import React,{useEffect,useState} from 'react';
 type Evidence={sourceId:string;steleId:string;title:string;text:string;url:string;originalPosition:string;evidenceLevel:string};
 type Relation={source:string;target:string;relation:string;sourceIds:string[];sourceUrl:string};
 type Place={id:string;name:string;longitude:number|null;latitude:number|null;coreSampleId:string;precision:string};
-type SearchResult={answer:string;status:string;algorithmVersion:string;evidence:Evidence[];relations:Relation[];entities:{id:string;name:string}[];places:Place[];limitations:string};
+type SearchResult={answer:string;status:string;judgment?:string|null;algorithmVersion:string;evidence:Evidence[];relations:Relation[];entities:{id:string;name:string}[];places:Place[];limitations:string};
 
 export const EvidenceSearch:React.FC<{steleId:string;onLocate?:(id:string)=>void}>=({steleId,onLocate})=>{
   const [question,setQuestion]=useState('');const [scope,setScope]=useState(true);
@@ -32,7 +32,7 @@ export const EvidenceSearch:React.FC<{steleId:string;onLocate?:(id:string)=>void
       <div className="lg:col-span-2 text-sm space-y-3 min-w-0" aria-live="polite">
         {error && <p role="alert" className="text-cinnabar-light">{error}</p>}
         {result ? <><p data-testid="research-answer" className="whitespace-pre-wrap max-h-72 overflow-auto">{result.answer}</p>
-          <p className="text-xs text-slate-400">{result.algorithmVersion} · {result.status}</p>
+          <p className="text-xs text-slate-400">{result.algorithmVersion} · 检索 {result.status}{result.judgment ? ` · 判断 ${result.judgment==='supported'?'支持':result.judgment==='contradicted'?'反驳':'证据不足'}` : ''}</p>
           {result.evidence.map((e,i)=><details key={e.sourceId} className="rounded border border-slate-700 p-2"><summary>[{i+1}] {e.title} · {e.evidenceLevel}</summary><p className="whitespace-pre-wrap mt-2">{e.text}</p><p className="text-xs break-all">证据ID：{e.sourceId} · 关联文物：{e.steleId} · 位置：{e.originalPosition}</p><a className="text-gold underline" href={e.url} target="_blank" rel="noreferrer">查看原始来源</a></details>)}
           <details><summary>检索扩展的证据关系（{result.relations.length}）</summary>{result.relations.map((r,i)=><p key={i}>{names[r.source]||r.source} → {r.relation} → {names[r.target]||r.target} <a href={r.sourceUrl} target="_blank" rel="noreferrer" className="text-gold">关系来源</a></p>)}</details>
           {result.places.map(p=><p key={`${p.coreSampleId}-${p.id}`}>地点：{p.name} · {p.precision} {p.longitude!==null&&p.coreSampleId===steleId&&onLocate&&<button className="text-gold underline" onClick={()=>onLocate(p.id)}>在现有GIS中定位</button>}</p>)}

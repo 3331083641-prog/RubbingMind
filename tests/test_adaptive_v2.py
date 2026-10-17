@@ -5,7 +5,7 @@ import numpy as np
 import pytest
 from fastapi.testclient import TestClient
 from algorithm_engine import algorithm_engine, base64_to_mat
-from degradation_analysis import AdaptiveRubbingRestorer, analyze_degradation
+from degradation_analysis import AdaptiveRubbingRestorer, analyze_degradation, preserve_missing_regions
 from main import app
 
 
@@ -59,6 +59,26 @@ def test_official_identity_cannot_be_overridden():
     response=TestClient(app).post('/api/process',json={'stele_id':'han_01_caoquan','image_base64':'data:image/png;base64,AAAA'})
     assert response.status_code==422
     assert '不能与外部图像混用' in response.json()['detail']
+
+
+def test_effective_notch_stops_before_nlm_and_holes_are_not_repainted():
+    y, x = np.mgrid[:256, :256]
+    clean = np.full((256, 256), 80, np.uint8)
+    clean[70:190, 100:130] = 190
+    periodic = np.clip(clean.astype(float) + 25 * np.sin(2 * np.pi * x / 8), 0, 255).astype(np.uint8)
+    _output, details = AdaptiveRubbingRestorer().restore(periodic)
+    operators = [item['operator'] for item in details['decisions']]
+    assert 'notch' in operators
+    if 'stop_after_notch' in operators:
+        assert 'nlm' not in operators and 'thin_stroke_nlm' not in operators
+    image = np.full((180, 180), 40, np.uint8)
+    image += np.random.default_rng(3).integers(0, 25, image.shape, dtype=np.uint8)
+    image[40:90, 40:90] = 180
+    painted = image.copy()
+    painted[50:70, 50:70] = 20
+    preserved, pixels = preserve_missing_regions(image, painted)
+    assert pixels > 0
+    assert np.array_equal(preserved[40:90, 40:90], image[40:90, 40:90])
 
 
 def test_invalid_image_rejected():

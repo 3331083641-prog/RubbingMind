@@ -14,7 +14,7 @@ from catalog import BASE, load, transcription_text
 from history_graph import CORE_IDS, ALIASES
 
 INDEX=BASE/'data/runtime/evidence-v2.sqlite'
-VERSION='fts5-evidence-graph-v2.1'
+VERSION='fts5-evidence-graph-v2.2'
 
 
 def canonical_id(stele_id):
@@ -104,6 +104,108 @@ def ensure_index():
                 conn.execute('INSERT OR REPLACE INTO metadata VALUES (?,?)',(key,value))
 
 
+FACETS=(
+    ('撰文者','author',('撰文者','撰文','作者')),
+    ('书丹者','calligrapher',('书丹者','书丹')),
+    ('篆额者',None,('篆额者','篆额')),
+    ('墓主',None,('墓主',)),
+    ('刻工',None,('刻工','镌刻')),
+    ('原刻年代','originalYear',('原刻年代','原刻于','原刻纪年')),
+    ('拓本年代','rubbingPeriod',('拓本年代','拓本时代')),
+    ('原石保存地','physicalCollectionInstitution',('原石保存','原石现藏','原碑所在')),
+    ('拓本收藏机构','rubbingCollectionInstitution',('拓本收藏','收藏机构','现藏机构','拓本现藏')),
+)
+PROPOSITION_STOP={'什么','谁','何人','相同','一样','不同','已经','如何','多少','哪位','哪个','哪里'}
+
+
+def _verified_fact(value):
+    if value is None:
+        return None
+    text=str(value).strip()
+    if not text or text.startswith('未核定') or text in ('未确认','待评估'):
+        return None
+    return text
+
+
+def _proposed_value(question):
+    for pattern in (r'是不是([\u3400-\u9fff]{1,8})', r'是否是([\u3400-\u9fff]{1,8})', r'是否为([\u3400-\u9fff]{1,8})', r'是([\u3400-\u9fff]{1,8})吗'):
+        match=re.search(pattern, question)
+        if not match:
+            continue
+        value=match.group(1)
+        if value in PROPOSITION_STOP or any(value.startswith(word) for word in PROPOSITION_STOP):
+            continue
+        return value
+    return None
+
+
+def _matched_facets(question):
+    found=[]
+    for name, field, keys in FACETS:
+        if any(key in question for key in keys):
+            found.append((name, field))
+    return found
+
+
+def judge_claim(question, work_ids):
+    """Decide a catalogue-backed claim. Never fills a missing fact from model memory."""
+    facets=_matched_facets(question)
+    if not facets:
+        return None
+    proposed=_proposed_value(question)
+    asking=any(word in question for word in ('是谁','是什么','何人','哪一','多少')) or proposed is not None
+    if not asking:
+        return None
+    catalog={record['id']: record for record in load('steles28.json')}
+    unique=[]
+    for stele_id in work_ids:
+        canonical=canonical_id(stele_id)
+        if canonical in catalog and canonical not in unique:
+            unique.append(canonical)
+    if len(unique)!=1:
+        return {'judgment':'insufficient_evidence','facet':facets[0][0],'proposed':proposed,'recorded':None,
+                'steleId':None,'sourceId':None,'forceRefusal':True,
+                'answer':'问题没有唯一对应的已著录碑刻，不能合并不同文物作判断。'}
+    stele_id=unique[0]
+    record=catalog[stele_id]
+    source_id='catalog:'+stele_id
+    recorded={}
+    missing=[]
+    for name, field in facets:
+        value=_verified_fact(record.get(field)) if field else None
+        if value is None:
+            missing.append(name)
+        else:
+            recorded[name]=value
+    if proposed is not None:
+        if len(facets)!=1 or facets[0][0] in missing:
+            facet=facets[0][0]
+            return {'judgment':'insufficient_evidence','facet':facet,'proposed':proposed,'recorded':None,
+                    'steleId':stele_id,'sourceId':source_id,'forceRefusal':True,
+                    'answer':f'现有著录没有核定《{record["title"]}》的{facet}，不能判断命题「{proposed}」是否成立。'}
+        facet, value=next(iter(recorded.items()))
+        if proposed==value or proposed in value:
+            return {'judgment':'supported','facet':facet,'proposed':proposed,'recorded':value,
+                    'steleId':stele_id,'sourceId':source_id,'forceRefusal':False,
+                    'answer':f'判断：supported。著录{facet}为「{value}」，与命题一致。依据 {source_id}。'}
+        return {'judgment':'contradicted','facet':facet,'proposed':proposed,'recorded':value,
+                'steleId':stele_id,'sourceId':source_id,'forceRefusal':False,
+                'answer':f'判断：contradicted。著录{facet}为「{value}」，与命题「{proposed}」不一致。依据 {source_id}。未改写著录。'}
+    if missing and not recorded:
+        names='、'.join(missing)
+        return {'judgment':'insufficient_evidence','facet':missing[0],'proposed':None,'recorded':None,
+                'steleId':stele_id,'sourceId':source_id,'forceRefusal':True,
+                'answer':f'《{record["title"]}》的{names}在现有著录中为未核定，不能补写。'}
+    if missing:
+        return {'judgment':'insufficient_evidence','facet':missing[0],'proposed':None,
+                'recorded':recorded,'steleId':stele_id,'sourceId':source_id,'forceRefusal':True,
+                'answer':'判断：insufficient_evidence。'+ '；'.join(f'{name}：{value}' for name,value in recorded.items()) + '。其余问项未核定，不能补写。'}
+    summary='；'.join(f'{name}：{value}' for name,value in recorded.items())
+    return {'judgment':'supported','facet':'、'.join(recorded),'proposed':None,'recorded':recorded,
+            'steleId':stele_id,'sourceId':source_id,'forceRefusal':False,
+            'answer':f'判断：supported。著录{summary}。依据 {source_id}。'}
+
+
 def query(question,stele_id=None,limit=12):
     ensure_index()
     normalized=canonical_id(stele_id)
@@ -134,18 +236,30 @@ def query(question,stele_id=None,limit=12):
         evidence=[dict(all_records[sid],retrievalScore=scores[sid]) for sid in ranked[:limit] if sid in all_records]
         # No model fills unknown facts: unfamiliar questions return evidence only / insufficient.
         specific=bool(matched) or bool(normalized)
-        supported_facets=('撰文','书丹','作者','年代','原刻','拓本','关系','原石','地点','身份','来源','馆藏','收藏','人物','纪年')
+        supported_facets=('撰文','书丹','作者','篆额','墓主','刻工','年代','原刻','拓本','关系','原石','地点','身份','来源','馆藏','收藏','人物','纪年')
         recognized=any(word in question for word in supported_facets)
         status='evidence_found' if specific and evidence and recognized and not scope_mismatch else 'insufficient_evidence'
         if scope_mismatch:evidence=[];expanded=[]
+        excerpts='\n'.join(f"[{i+1}] {r['text']}" for i,r in enumerate(evidence[:4]))
         if status=='evidence_found':
-            answer='以下为现有资料原文/著录摘录，未调用语言模型：\n'+'\n'.join(f"[{i+1}] {r['text']}" for i,r in enumerate(evidence[:4]))
+            answer='以下为现有资料原文/著录摘录，未调用语言模型：\n'+excerpts
         else:answer='现有资料不足以回答该问题。'+('以下为相关检索条目，不构成问题结论。' if evidence else '')
+        work_ids=[n['steleId'] for n in named_works if not normalized or n['steleId']==normalized]
+        if normalized and not work_ids:
+            work_ids=[normalized]
+        claim=None if scope_mismatch else judge_claim(question, work_ids)
+        judgment=claim['judgment'] if claim else ('insufficient_evidence' if status=='insufficient_evidence' else None)
+        if claim and claim.get('forceRefusal'):
+            status='insufficient_evidence'
+            answer=claim['answer']+' 未调用语言模型，不补写未核定史实。'
+        elif claim and status=='evidence_found':
+            answer=claim['answer']+'\n'+answer
         expanded_ids=entity_ids|{n for e in expanded for n in (e['source'],e['target'])}
-        return {'query':question,'scopeSteleId':normalized,'status':status,'answer':answer,'answerMode':'extractive_evidence_only',
+        return {'query':question,'scopeSteleId':normalized,'status':status,'judgment':judgment,'claim':claim,
+            'answer':answer,'answerMode':'extractive_evidence_only',
             'algorithmVersion':VERSION,'indexFingerprint':fingerprint(),'evidence':evidence,
             'entities':[n for n in graph['nodes'] if n['id'] in expanded_ids],'relations':expanded,'places':[p for p in graph['places'] if p['steleId'] in artifact_ids] if not scope_mismatch else [],
-            'generation':None,'limitations':'BM25与实体一跳扩展；摘记可能不完整，未进行语义蕴含或独立史学鉴定。来源可追溯不表示链接实时可用。'}
+            'generation':None,'limitations':'BM25与实体一跳扩展；命题只对照已著录字段，未核定则拒答。摘记可能不完整，来源可追溯不表示链接实时可用。'}
 
 
 def artifact_graph(stele_id):

@@ -122,6 +122,7 @@ class GlyphInferenceRequest(BaseModel):
     characterId: Optional[str] = Field(default=None, max_length=80)
     originalGlyph: Optional[str] = Field(default=None, max_length=1)
     originalStatus: Optional[str] = Field(default=None, max_length=20)
+    imageSource: Literal['original', 'restored'] = 'original'
     runId: Optional[str] = Field(default=None, max_length=40)
 
 
@@ -358,10 +359,14 @@ async def get_uploaded_image(upload_id: str):
 @app.post('/api/steles/{stele_id}/inferences')
 async def create_glyph_inference(stele_id: str, request: GlyphInferenceRequest):
     record = await get_stele(stele_id)
+    if request.imageSource == 'restored' and not request.runId:
+        raise HTTPException(status_code=422, detail='选择修复结果时必须提供本次运行 ID')
     if request.runId and not read_run(stele_id, request.runId):
         raise HTTPException(status_code=404, detail='关联的处理运行不存在')
     try:
-        return await infer_crop(record, request.bbox.model_dump(), request.context, request.characterId, request.originalGlyph, request.originalStatus, request.runId)
+        return await infer_crop(record, request.bbox.model_dump(), request.context, request.characterId, request.originalGlyph, request.originalStatus, request.runId, request.imageSource)
+    except LookupError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc))
 

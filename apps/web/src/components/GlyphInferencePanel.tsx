@@ -9,8 +9,9 @@ export const GlyphInferencePanel: React.FC<{
   stele: SteleItem;
   activeChar?: CharacterItem;
   runId?: string;
+  restoredUrl?: string;
   onDecision: (record: GlyphInferenceRecord) => void;
-}> = ({ stele, activeChar, runId, onDecision }) => {
+}> = ({ stele, activeChar, runId, restoredUrl, onDecision }) => {
   const [open, setOpen] = useState(false);
   const [box, setBox] = useState<Box | null>(null);
   const [context, setContext] = useState('');
@@ -20,9 +21,11 @@ export const GlyphInferencePanel: React.FC<{
   const [referenceGlyph,setReferenceGlyph]=useState('');
   const [annotationBasis,setAnnotationBasis]=useState('');
   const [annotator,setAnnotator]=useState('');
+  const [imageSource, setImageSource] = useState<'original' | 'restored'>('original');
   const image = useRef<HTMLImageElement>(null);
   const start = useRef<{x:number;y:number} | null>(null);
-  const source = stele.imageAssets?.readable || stele.raw_image;
+  const originalSource = stele.imageAssets?.readable || stele.raw_image;
+  const source = imageSource === 'restored' && restoredUrl ? restoredUrl : originalSource;
 
   useEffect(() => {
     let live = true;
@@ -31,6 +34,11 @@ export const GlyphInferencePanel: React.FC<{
       .catch(() => { if (live) setMessage('推演记录暂不可用，请检查后端服务。'); });
     return () => { live = false; };
   }, [stele.id]);
+
+  useEffect(() => {
+    setImageSource(runId && restoredUrl ? 'restored' : 'original');
+    setBox(null);
+  }, [runId, restoredUrl, stele.id]);
 
   const point = (event: React.PointerEvent<HTMLImageElement>) => {
     const element = image.current!;
@@ -51,7 +59,8 @@ export const GlyphInferencePanel: React.FC<{
     try {
       const item = await SteleService.inferGlyph(stele.id, {
         bbox:box, context, characterId:activeChar?.id,
-        originalGlyph:activeChar?.char, originalStatus:activeChar?.status, runId
+        originalGlyph:activeChar?.char, originalStatus:activeChar?.status,
+        imageSource, runId: imageSource === 'restored' ? runId : undefined
       });
       setRecords(items => [item, ...items]);
       setOpen(false);
@@ -72,12 +81,13 @@ export const GlyphInferencePanel: React.FC<{
   const latest = records[0];
   return <section className="glass-panel rounded-2xl border border-gold/30 p-5 space-y-3" aria-label="实际残字推演">
     <h3 className="font-serif text-gold-light font-bold">实际残字推演</h3>
-    <p className="text-xs text-slate-400">框选只读阅读原图并填写相邻文字。可查看实际前景和骨架，检索已人工标注的本地参考；无模型、无参考时仅给有限上下文建议或无候选。预置释文不代表自动检测。</p>
+    <p className="text-xs text-slate-400">框选前先选定原图或某次修复结果。坐标按该图像的实际像素保存，并核对文物、运行和图像 SHA。有效字迹不足时拒识。预置释文不代表自动检测。</p>
     <button onClick={() => { setOpen(true); setBox(null); setMessage(''); }} className="text-xs text-gold border border-gold/40 rounded px-3 py-2">框选残字区域</button>
     {message && <p role="status" className="text-xs text-celadon-light">{message}</p>}
     {latest ? <div className="space-y-2 text-xs text-slate-300">
       <p>最近记录 {latest.inferenceId.slice(0,8)} · {latest.source==='vision_model'?'视觉模型输出（待人工核验）':latest.source==='context_rule'?'仅上下文规则':latest.source==='local_shape_retrieval'?'本地人工参考字形检索（待核验）':'无可靠候选'} · {latest.status}</p>
-      <p>选区 x={latest.bbox.x}, y={latest.bbox.y}, {latest.bbox.w}×{latest.bbox.h} 像素 · 上下文：{latest.context || '未提供'}</p>
+      <p>图像来源：{latest.imageProvenance?.imageSource === 'restored' ? `修复结果 ${latest.runId}` : '身份核验阅读原图'} · 选区 x={latest.bbox.x}, y={latest.bbox.y}, {latest.bbox.w}×{latest.bbox.h} 像素 · 上下文：{latest.context || '未提供'}</p>
+      {latest.imageProvenance?.selectedImageSha256 && <p>裁切图像 SHA {latest.imageProvenance.selectedImageSha256.slice(0, 16)} · 归属 {latest.imageProvenance.runOwnership}</p>}
       <img src={latest.cropUrl} alt="实际提交的残字局部" className="max-w-44 max-h-36 object-contain" />
       {latest.visualAnalysis && <details open className="space-y-2"><summary>真实选区图像分析 · {latest.visualAnalysis.version}</summary>
         <p>前景：{latest.visualAnalysis.foregroundPolarity}；连通区域 {latest.visualAnalysis.componentCount}；骨架像素 {latest.visualAnalysis.skeletonPixels}。</p>
@@ -107,7 +117,12 @@ export const GlyphInferencePanel: React.FC<{
     {open && createPortal(<div role="dialog" aria-modal="true" aria-label="框选残字" className="fixed inset-0 z-[100] bg-black/95 overflow-auto p-6 text-slate-200">
       <div className="max-w-5xl mx-auto space-y-4">
         <div className="flex justify-between"><h2 className="text-gold">{stele.title} · 手动框选残字</h2><button onClick={() => setOpen(false)}>关闭</button></div>
-        <p className="text-xs">拖动选取图像上的实际残字。坐标按原始像素保存；无人工确认前不更改释文。</p>
+        <fieldset className="text-sm space-y-1">
+          <legend>选区图像来源</legend>
+          <label className="block"><input type="radio" name="glyph-image-source" checked={imageSource==='original'} onChange={() => { setImageSource('original'); setBox(null); }} /> 身份核验阅读原图</label>
+          <label className="block"><input type="radio" name="glyph-image-source" checked={imageSource==='restored'} disabled={!runId || !restoredUrl} onChange={() => { setImageSource('restored'); setBox(null); }} /> 当前修复结果 {runId || '（尚未选择运行）'}</label>
+        </fieldset>
+        <p className="text-xs">拖动选取当前来源图像上的实际残字。坐标按该图像像素保存；修复结果只会读取所选运行的输出。</p>
         <div className="overflow-auto"><div className="relative inline-block max-w-full">
           <img ref={image} src={source} alt={stele.title} draggable={false} className="block max-w-full max-h-[58vh] h-auto w-auto touch-none cursor-crosshair"
             onPointerDown={event => { if (!image.current?.naturalWidth) return; event.currentTarget.setPointerCapture(event.pointerId); start.current=point(event); setBox(null); }}

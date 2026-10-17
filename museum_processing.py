@@ -4,6 +4,7 @@ from datetime import datetime,timezone
 from pathlib import Path
 from fastapi import HTTPException
 from catalog import BASE, METRIC_KEYS
+from degradation_analysis import VERSION as ADAPTIVE_VERSION
 
 def process_verified_request(req, manager, engine):
     started_at=datetime.now(timezone.utc).isoformat()
@@ -51,7 +52,7 @@ def process_verified_request(req, manager, engine):
     response['engineDiagnosticMetrics']=result.get('diagnostic_metrics',{})
     response['frequencyDetails']=result.get('frequency_details',{})
     response['runId']=run_id
-    response['algorithmVersion']='adaptive-rubbing-v2.0' if req.filter_type=='adaptive' else 'fixed-frequency-spatial-v2.1'
+    response['algorithmVersion']=ADAPTIVE_VERSION if req.filter_type=='adaptive' else 'fixed-frequency-spatial-v2.2'
     response['adaptiveDiagnostics']=result.get('frequency_details',{}).get('adaptive')
     response['evaluationStatus']='unassessed'
     response['outputImages']=saved

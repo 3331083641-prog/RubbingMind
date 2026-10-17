@@ -242,12 +242,20 @@ class RubbingAlgorithmEngine:
         clahe = cv2.createCLAHE(clipLimit=float(clahe_clip), tileGridSize=(8, 8))
         enhanced = clahe.apply(bilateral)
 
-        # 5. 轻微锐化文字骨架微痕
+        # 5. 轻微锐化文字骨架微痕。系数压低，减少伪轮廓。
         gaussian = cv2.GaussianBlur(enhanced, (0, 0), 2.0)
-        unsharp = cv2.addWeighted(enhanced, 1.25, gaussian, -0.25, 0)
+        unsharp = cv2.addWeighted(enhanced, 1.12, gaussian, -0.12, 0)
         unsharp = np.clip(unsharp, 0, 255).astype(np.uint8)
+        return self.protect_thin_strokes(gray_img, unsharp)
 
-        return unsharp
+    def protect_thin_strokes(self, original, output):
+        """Put attenuated thin bright ridges back; do not bridge gaps."""
+        blur = cv2.GaussianBlur(original, (0, 0), 1.1)
+        ridge = cv2.subtract(original, blur)
+        lost = (ridge > 10) & (output.astype(np.int16) + 15 < original.astype(np.int16))
+        fused = output.copy()
+        fused[lost] = original[lost]
+        return fused
 
     def render_cinnabar_rubbing(self, enhanced_gray, orig_bgr, style="cinnabar", seed=0):
         """
