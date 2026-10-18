@@ -510,6 +510,17 @@ async def get_glyph_analysis(inference_id: str,role: str):
     return FileResponse(path,media_type='image/png')
 
 
+@app.post('/api/inferences/{inference_id}/ocr-baseline')
+async def run_glyph_ocr_baseline(inference_id: str):
+    from glyph_inference import attach_ocr_baseline
+    try:
+        return attach_ocr_baseline(inference_id)
+    except LookupError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc))
+
+
 @app.post('/api/inferences/{inference_id}/template')
 async def save_glyph_template(inference_id: str,request: GlyphTemplateRequest):
     from glyph_inference import register_template

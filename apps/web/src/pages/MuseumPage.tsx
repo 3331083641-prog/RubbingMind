@@ -116,7 +116,7 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0D12] text-slate-100 px-4 lg:px-12 py-8 space-y-8 select-none">
+    <div className="min-h-screen bg-[#0A0D12] text-slate-100 px-4 lg:px-12 py-8 space-y-8 select-none" data-testid="museum-page" data-dynasty={selectedDynasty} data-visible-count={filteredSteles.length}>
       {/* 1. Header Banner */}
       <div className="relative rounded-2xl p-6 lg:p-8 overflow-hidden glass-panel border border-gold/30 bg-gradient-to-r from-[#12181F] via-[#0D1217] to-[#12181F] flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-2xl">
         <div 

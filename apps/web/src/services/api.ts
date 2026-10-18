@@ -24,6 +24,7 @@ export interface GlyphInferenceRecord {
   status: string;
   adoptedGlyph: string | null;
   decisions: {action:string;glyph:string|null;at:string;actor:string}[];
+  ocrBaseline?: {status:string;engine:string;texts?:{text:string;score:number|null}[];limitation:string;countsAsAccuracy:boolean};
   createdAt: string;
 }
 function selected(id: string) { return resolveSelected(FALLBACK_STELES, id); }
@@ -91,6 +92,11 @@ export const SteleService = {
   async saveGlyphAnnotation(payload:{steleId:string;inferenceId?:string;bbox:{x:number;y:number;width:number;height:number};glyph:string;sourceCitation:string;annotator:string;damageLevel:string;variantNote:string;imageSha256:string}):Promise<void> {
     const res=await fetch('/api/glyph-annotations',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
     if(!res.ok) throw new Error(await res.text() || '字符标注保存失败');
+  },
+  async runOcrBaseline(inferenceId:string):Promise<GlyphInferenceRecord> {
+    const res=await fetch(`/api/inferences/${inferenceId}/ocr-baseline`,{method:'POST'});
+    if(!res.ok) throw new Error(await res.text() || '印刷体 OCR 基线没有跑起来');
+    return res.json();
   },
   async saveGlyphTemplate(inferenceId:string,glyph:string,basis:string,annotator:string):Promise<void> {
     const res=await fetch(`/api/inferences/${inferenceId}/template`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({glyph,basis,annotator})});

@@ -345,3 +345,24 @@ def decide(inference_id: str, action: str, glyph: str | None = None):
 
 def crop_path(inference_id: str):
     return INFERENCE_DIR / (inference_id + '.png') if get_inference(inference_id) else None
+
+
+def attach_ocr_baseline(inference_id: str):
+    """Store a printed-OCR probe on the crop. It does not change the human decision."""
+    from glyph_ocr import recognize_png
+    record = get_inference(inference_id)
+    if record is None:
+        raise LookupError('推演记录不存在')
+    path = INFERENCE_DIR / (inference_id + '.png')
+    if not path.is_file():
+        raise LookupError('选区图像不存在')
+    baseline = recognize_png(path.read_bytes())
+    baseline['steleId'] = record['steleId']
+    baseline['imageSha256'] = record.get('cropSha256')
+    baseline['runId'] = record.get('runId')
+    baseline['doesNotChangeHumanStatus'] = True
+    record['ocrBaseline'] = baseline
+    with closing(_connection()) as conn:
+        with conn:
+            conn.execute('UPDATE glyph_inferences SET record_json=? WHERE id=?', (json.dumps(record, ensure_ascii=False), inference_id))
+    return record

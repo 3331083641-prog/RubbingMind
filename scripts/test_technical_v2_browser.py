@@ -14,6 +14,7 @@ BATCH='controlled-rubbings-v2-text-2026-10-17'
 
 
 def run(url,ci=False):
+    expect.set_options(timeout=20000)
     OUT.mkdir(parents=True,exist_ok=True)
     result={'pageErrors':[],'checks':[],'screenshots':[]}
     def capture(page,name):

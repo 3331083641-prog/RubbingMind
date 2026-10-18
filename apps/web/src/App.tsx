@@ -19,19 +19,27 @@ export const App: React.FC = () => {
   const [selectedSteleId, setSelectedSteleId] = useState<string>('tang-duobao');
   const [isUploadOpen, setIsUploadOpen] = useState<boolean>(false);
   const [isBackendConnected, setIsBackendConnected] = useState<boolean>(false);
+  const [catalogueStatus, setCatalogueStatus] = useState<'loading' | 'ready' | 'fallback'>('loading');
 
-  // Fetch steles from FastAPI backend on mount
+  // Fetch steles from FastAPI backend on mount. The status stays "loading" until that request settles.
   useEffect(() => {
     let isMounted = true;
     SteleService.getSteles()
       .then((data) => {
-        if (isMounted && data && data.length > 0) {
+        if (!isMounted) return;
+        if (backendAvailable && data && data.length > 0) {
           setSteles(data);
-          setIsBackendConnected(backendAvailable);
+          setIsBackendConnected(true);
+          setCatalogueStatus('ready');
+        } else {
+          setIsBackendConnected(false);
+          setCatalogueStatus('fallback');
         }
       })
       .catch(() => {
-        if (isMounted) setIsBackendConnected(false);
+        if (!isMounted) return;
+        setIsBackendConnected(false);
+        setCatalogueStatus('fallback');
       });
     return () => { isMounted = false; };
   }, []);
@@ -51,7 +59,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0D12] text-slate-100 flex flex-col font-sans selection:bg-gold/30 selection:text-gold-light">
+    <div className="min-h-screen bg-[#0A0D12] text-slate-100 flex flex-col font-sans selection:bg-gold/30 selection:text-gold-light" data-catalogue-status={catalogueStatus} data-tab={currentTab} data-verified-count={steles.filter(item => item.source_kind === 'verified_review_v3').length}>
       {/* 68px Sticky App Shell Header */}
       <Header
         currentTab={currentTab}
