@@ -20,7 +20,7 @@
 
 - 高程来自 AWS Open Data Terrain Tiles（Mapzen terrarium，无需密钥），仓库内置 z0–z6（334 块、26.8 MB）；全国概览 z5 ≈ 4.4 km、区域 z6 ≈ 2.2 km。更高层级用 `python scripts/fetch_terrain_dem.py --zoom 7 9` 按需下载，不入普通 Git。
 - 地形由 `BufferGeometry` 索引网格构建，顶点携带真实高程、梯度、凹度与边缘属性；法线在片元着色器中由梯度求得，垂直夸张只改一个 uniform，**不修改高程数据**。
-- 通过 MapLibre `CustomLayerInterface` 与地图共用相机与投影；省界、国界、水系逐点采样同一 DEM 后贴地绘制，地点标记按地形高度投影。
+- 通过 MapLibre `CustomLayerInterface` 与地图共用相机与投影；省界、国界、水系逐点采样同一 DEM 后贴地绘制，地点标记按地形高度投影。**国界由 34 个省级面拓扑并集求出**（不是把省界整体加粗），以「暗色衬底 + 金色光晕 + 亮金主线」三层描边，与邻国领土明确区分；省界单独弱化。
 - 二维/三维同一引擎：三维为立体起伏，二维为同一 DEM 的平面晕渲；无 WebGL 时回退到既有 MapLibre 栅格样式。
 - 实测：全国画幅占比 69.9%–70.5%，交互 162 FPS（1920×1080，RTX 4060 Laptop），全国网格 620,964 顶点。
 

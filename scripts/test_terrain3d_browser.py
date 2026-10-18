@@ -138,6 +138,14 @@ def main() -> int:
         page.wait_for_timeout(1400)
         checks.append('三种视口下全国构图均保持 65%–80%，无横向溢出')
 
+        # The highlighted border must come from the dissolved national outline.
+        groups = (stats(page).get('vectorGroups') or '').split(',')
+        for required in ('national', 'national-halo', 'national-casing', 'province', 'rivers'):
+            assert required in groups, f'缺少矢量组 {required}: {groups}'
+        checks.append('国界为并集外轮廓的三层描边（暗色衬底 + 金色光晕 + 亮金主线），省界单独弱化')
+        fly(page, 108.0, 42.0, 5.2, 46)
+        capture(page, OUT / '02b_国界高亮特写.png')
+
         # --- runtime elevation checks -------------------------------------------
         probes = []
         for label, lng, lat, low, high in ELEVATION_PROBES:

@@ -15,16 +15,17 @@
       "stats": {
         "testid": "terrain-hud",
         "ready": "true",
-        "fps": "44",
+        "fps": "35",
         "vertices": "1081676",
-        "frames": "210",
+        "frames": "228",
         "demZoom": "6",
         "maxZoom": "6",
-        "buildMs": "130",
+        "buildMs": "105",
         "tiles": "101",
         "dpr": "1",
         "level": "regional",
-        "exaggeration": "3.7"
+        "exaggeration": "3.7",
+        "vectorGroups": "province,maritime,national-casing,national-halo,national,rivers,regions"
       }
     },
     "himalaya": {
@@ -37,16 +38,17 @@
       "stats": {
         "testid": "terrain-hud",
         "ready": "true",
-        "fps": "28",
+        "fps": "41",
         "vertices": "1081676",
-        "frames": "240",
+        "frames": "270",
         "demZoom": "6",
         "maxZoom": "6",
-        "buildMs": "130",
+        "buildMs": "105",
         "tiles": "101",
         "dpr": "1",
         "level": "regional",
-        "exaggeration": "2.3"
+        "exaggeration": "2.3",
+        "vectorGroups": "province,maritime,national-casing,national-halo,national,rivers,regions"
       }
     },
     "sichuan": {
@@ -59,16 +61,17 @@
       "stats": {
         "testid": "terrain-hud",
         "ready": "true",
-        "fps": "28",
+        "fps": "41",
         "vertices": "1080665",
-        "frames": "259",
+        "frames": "283",
         "demZoom": "6",
         "maxZoom": "6",
-        "buildMs": "167",
+        "buildMs": "131",
         "tiles": "110",
         "dpr": "1",
         "level": "regional",
-        "exaggeration": "2.4"
+        "exaggeration": "2.4",
+        "vectorGroups": "province,maritime,national-casing,national-halo,national,rivers,regions"
       }
     },
     "xinjiang": {
@@ -81,16 +84,17 @@
       "stats": {
         "testid": "terrain-hud",
         "ready": "true",
-        "fps": "45",
+        "fps": "43",
         "vertices": "1080234",
-        "frames": "305",
+        "frames": "327",
         "demZoom": "6",
         "maxZoom": "6",
         "buildMs": "127",
         "tiles": "118",
         "dpr": "1",
         "level": "regional",
-        "exaggeration": "3.7"
+        "exaggeration": "3.7",
+        "vectorGroups": "province,maritime,national-casing,national-halo,national,rivers,regions"
       }
     },
     "east-plain": {
@@ -103,16 +107,17 @@
       "stats": {
         "testid": "terrain-hud",
         "ready": "true",
-        "fps": "51",
+        "fps": "45",
         "vertices": "1080636",
-        "frames": "358",
+        "frames": "374",
         "demZoom": "6",
         "maxZoom": "6",
-        "buildMs": "87",
+        "buildMs": "83",
         "tiles": "129",
         "dpr": "1",
         "level": "regional",
-        "exaggeration": "3.4"
+        "exaggeration": "3.4",
+        "vectorGroups": "province,maritime,national-casing,national-halo,national,rivers,regions"
       }
     },
     "northeast": {
@@ -125,43 +130,45 @@
       "stats": {
         "testid": "terrain-hud",
         "ready": "true",
-        "fps": "49",
+        "fps": "51",
         "vertices": "1081368",
-        "frames": "408",
+        "frames": "427",
         "demZoom": "6",
         "maxZoom": "6",
-        "buildMs": "81",
+        "buildMs": "58",
         "tiles": "146",
         "dpr": "1",
         "level": "regional",
-        "exaggeration": "5.2"
+        "exaggeration": "5.2",
+        "vectorGroups": "province,maritime,national-casing,national-halo,national,rivers,regions"
       }
     }
   },
   "performance": {
-    "terrainReadySeconds": 2.69,
-    "pageLoadSeconds": 6.78,
+    "terrainReadySeconds": 2.29,
+    "pageLoadSeconds": 7.0,
     "renderer": {
       "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Laptop GPU (0x000028E0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
       "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
     },
-    "interactiveFps": 161.6,
-    "framesSampled": 240,
-    "seconds": 1.48,
+    "interactiveFps": 146.4,
+    "framesSampled": 180,
+    "seconds": 1.23,
     "vertices": 1081368,
     "triangles": 2158411,
-    "buildMs": "81",
+    "buildMs": "58",
     "demZoom": "5",
     "tilesLoaded": "146",
-    "exaggeration": "10.4",
+    "exaggeration": "9.7",
     "dpr": "1"
   },
   "checks": [
-    "三维地形引擎从进入页面到就绪 2.7 s（含 DEM 瓦片与网格构建）",
+    "三维地形引擎从进入页面到就绪 2.3 s（含 DEM 瓦片与网格构建）",
     "WebGL 2 上下文：ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Laptop GPU (0x000028E0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
     "单一 WebGL 上下文（页面 canvas 仍为 2：主图 + 南海同源附图），无地图错误",
     "全国构图：中国占地图宽度 69.9%，俯仰 44°",
     "三种视口下全国构图均保持 65%–80%，无横向溢出",
+    "国界为并集外轮廓的三层描边（暗色衬底 + 金色光晕 + 亮金主线），省界单独弱化",
     "运行时高程核验：珠峰 6835 m、拉萨 3687 m、塔里木盆地 1059 m、四川盆地 352 m、华北平原 71 m、黄海 0 m",
     "青藏高原：DEM z6 · 1,081,676 顶点",
     "喜马拉雅山脉：DEM z6 · 1,081,676 顶点",
@@ -176,7 +183,7 @@
     "边界 / 水系 / 等高线开关与垂直夸张倍率（×16 实测生效）",
     "地点检索 → 三维地形定位 → 考据侧栏联动",
     "人物关系图谱与地图联动、返回全国视图",
-    "交互实测 162 FPS（240 帧 / 1.5 s，1920×1080）"
+    "交互实测 146 FPS（180 帧 / 1.2 s，1920×1080）"
   ],
   "browserErrors": [],
   "nationalFrameWidth": 0.699,

@@ -245,6 +245,11 @@ export class DrapedLineLayer {
     return this.records.reduce((total, record) => total + record.vertices, 0);
   }
 
+  /** ids of the drawn vector groups, exposed for the stats HUD and tests */
+  get groupIds(): string[] {
+    return this.records.map((record) => record.spec.id);
+  }
+
   dispose() {
     for (const record of this.records) {
       record.mesh.geometry.dispose();

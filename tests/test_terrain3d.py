@@ -139,6 +139,26 @@ def test_hypsometric_ramp_is_monotonic_and_in_palette():
         assert not (green > red + 60 and green > blue + 60), (red, green, blue)
 
 
+def test_national_boundary_is_a_dissolved_outline():
+    """The highlighted border must be the national outline, not province rings."""
+    path = ROOT / 'apps/web/public/assets/gis/china-national-boundary.geojson'
+    data = json.loads(path.read_text(encoding='utf-8'))
+    assert len(data['features']) == 1
+    feature = data['features'][0]
+    assert feature['geometry']['type'] == 'MultiLineString'
+    lines = feature['geometry']['coordinates']
+    assert len(lines) > 300, len(lines)
+    points = sum(len(line) for line in lines)
+    assert 8000 < points < 60000, points
+    xs = [point[0] for line in lines for point in line]
+    ys = [point[1] for line in lines for point in line]
+    assert 73 < min(xs) < 75 and 134 < max(xs) < 136, (min(xs), max(xs))
+    assert 3 < min(ys) < 5 and 53 < max(ys) < 55, (min(ys), max(ys))
+    # The dissolve must reuse upstream coordinates, not a hand-drawn outline.
+    assert feature['properties']['sourceFeatureCount'] == 34
+    assert feature['properties']['method'].startswith('34 个省级面')
+
+
 def test_terrain_module_has_no_random_terrain():
     """Guard against noise-generated 'mountains' sneaking into the engine."""
     banned = ['Math.random', 'simplex', 'perlin', 'noise(']

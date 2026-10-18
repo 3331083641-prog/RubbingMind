@@ -91,3 +91,5 @@ apps/web/public/assets/gis/terrain/12/
 
 # 10. 三维地貌开发期临时截图
 screenshots/terrain3d-dev/
+# 回归测试截图每次生成都不同，只提交验收代表性的几张
+screenshots/terrain3d-final/regression/

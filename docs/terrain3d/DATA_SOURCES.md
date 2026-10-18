@@ -67,6 +67,21 @@ python scripts/fetch_terrain_dem.py --zoom 7 9 --bbox 73 17 135 54 --workers 12
 | 校验值 | `sha256 = 841622088aff1f8126cbb8f1c0c855c50bc66cbd857d24e7162426d3ff3456da` |
 | 处理 | 未修改几何；仅按要素类型拆分用于三维贴地绘制 |
 
+### 2.1 国界与海岸线（由省级面派生）
+
+| 项目 | 内容 |
+| --- | --- |
+| 数据 | `apps/web/public/assets/gis/china-national-boundary.geojson` |
+| 生成脚本 | `scripts/build_national_boundary.py` |
+| 方法 | 对 34 个省级面做**拓扑并集**（shapely `unary_union`），只保留并集边界。内部省界在并集中消失，剩下的是真实国界 + 海岸线 + 各岛屿外环 |
+| 简化 | `simplify(0.002°, preserve_topology=True)`（约 200 m，远低于 z6 的 2.2 km 采样间距），拓扑保持，不移动国界走向 |
+| 规模 | 437 个环、15,472 个点、约 370 KB |
+| 坐标 | 完全沿用上游 CGCS2000 坐标，未重投影、未手工描边 |
+| 内容 | 含台湾岛、海南岛、南海诸岛各岛环；仅剔除跨度 < 0.02° 的极小礁环 80 个 |
+| 校验 | `tests/test_terrain3d.py::test_national_boundary_is_a_dissolved_outline` 校验要素数、环数、点数与经纬度范围 |
+
+渲染采用三层描边：暗色衬底（在高原亮面保持对比）+ 金色光晕 + 亮金主线；省界单独弱化为低透明度细线。中国版图与邻国领土在深色海面与浅色高原上都能一眼区分。
+
 **合规状态：本应用未单独申请地图审核号。** 项目沿用既有天地图镜像数据，并把上游审图号声明如实展示在页面出处栏；不得把上游审图号当作本应用的审图证明。
 
 ## 3. 水系

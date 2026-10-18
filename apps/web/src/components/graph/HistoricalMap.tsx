@@ -15,7 +15,7 @@ export const NATIONAL_BOUNDS: [[number, number], [number, number]] = [[73, 17], 
 const style = chinaMapStyle;
 
 /** Layers owned by the 2D style. In 3D the same data is draped onto the DEM mesh. */
-const STYLE_LAYERS = ['terrain-color', 'terrain-shade', 'land', 'province-outline', 'national-outline', 'rivers', 'rivers-case', 'region-fill', 'region-outline', 'stone-links', 'person-links'];
+const STYLE_LAYERS = ['terrain-color', 'terrain-shade', 'land', 'province-outline', 'national-line', 'national-outline', 'rivers', 'rivers-case', 'region-fill', 'region-outline', 'stone-links', 'person-links'];
 
 export function resolveMapPlace(data: HistoryDataset, id?: string | null): HistoricalLocation | undefined {
   const p = data.locations.find(l => l.id === id);
@@ -63,7 +63,7 @@ export default function HistoricalMap({ data, command, selectedIds, labels, boun
   const exaggerationRef = useRef(exaggeration); exaggerationRef.current = exaggeration;
   const flags = useRef({ boundaries, rivers, lines, effects, terrainReady: false });
   flags.current = { ...flags.current, boundaries, rivers, lines, effects };
-  const vectorsRef = useRef<{ provinces?: GeoJSON.FeatureCollection; national?: GeoJSON.FeatureCollection; rivers?: GeoJSON.FeatureCollection; regions?: GeoJSON.FeatureCollection }>({});
+  const vectorsRef = useRef<{ provinces?: GeoJSON.FeatureCollection; national?: GeoJSON.FeatureCollection; maritime?: GeoJSON.FeatureCollection; rivers?: GeoJSON.FeatureCollection; regions?: GeoJSON.FeatureCollection }>({});
   const [ready, setReady] = useState(false);
   const [error, setError] = useState('');
   const [terrain, setTerrain] = useState<{ ready: boolean; error: string; pitch: number; bearing: number }>({ ready: false, error: '', pitch: 0, bearing: 0 });
@@ -200,7 +200,7 @@ export default function HistoricalMap({ data, command, selectedIds, labels, boun
       m.setLayoutProperty(id, 'visibility', engineReady ? 'none' : 'visible');
     }
     if (!engineReady) {
-      for (const id of ['province-outline', 'national-outline']) if (m.getLayer(id)) m.setLayoutProperty(id, 'visibility', showBoundaries ? 'visible' : 'none');
+      for (const id of ['province-outline', 'national-outline', 'national-line']) if (m.getLayer(id)) m.setLayoutProperty(id, 'visibility', showBoundaries ? 'visible' : 'none');
       for (const id of ['rivers', 'rivers-case']) if (m.getLayer(id)) m.setLayoutProperty(id, 'visibility', showRivers ? 'visible' : 'none');
       if (m.getLayer('terrain-shade')) m.setLayoutProperty('terrain-shade', 'visibility', showEffects ? 'visible' : 'none');
       if (m.getLayer('terrain-color')) m.setLayoutProperty('terrain-color', 'visibility', showEffects ? 'visible' : 'none');
@@ -239,12 +239,13 @@ export default function HistoricalMap({ data, command, selectedIds, labels, boun
         applyLayerMode();
       });
       m.setMaxPitch(72);
-      const [provinces, riversData, regions] = await Promise.all([
+      const [provinces, riversData, regions, nationalBoundary] = await Promise.all([
         fetch('/assets/gis/china-provinces.cgcs2000.geojson').then(r => r.json()),
         fetch('/assets/gis/rivers.geojson').then(r => r.json()),
         fetch('/assets/gis/coordinate-regions.geojson').then(r => r.json()),
+        fetch('/assets/gis/china-national-boundary.geojson').then(r => r.json()),
       ]);
-      const national: GeoJSON.FeatureCollection = {
+      const maritime: GeoJSON.FeatureCollection = {
         type: 'FeatureCollection',
         features: provinces.features.filter((f: GeoJSON.Feature) => f.geometry?.type === 'MultiLineString' || f.geometry?.type === 'LineString'),
       };
@@ -252,11 +253,10 @@ export default function HistoricalMap({ data, command, selectedIds, labels, boun
         type: 'FeatureCollection',
         features: provinces.features.filter((f: GeoJSON.Feature) => f.geometry?.type === 'MultiPolygon' || f.geometry?.type === 'Polygon'),
       };
-      vectorsRef.current = { provinces: provinceShapes, national, rivers: riversData, regions };
+      vectorsRef.current = { provinces: provinceShapes, national: nationalBoundary, maritime, rivers: riversData, regions };
       engine.setVectors(vectorsRef.current);
       engine.setExaggeration(exaggerationRef.current);
       applyLayerMode();
-      engine.setVectorVisibility({ boundaries: true, rivers: true, regions: false, relations: false });
       flags.current.terrainReady = true;
       setTerrain(t => ({ ...t, ready: true, error: '' }));
       applyLayerMode();

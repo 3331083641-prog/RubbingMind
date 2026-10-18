@@ -47,13 +47,17 @@ export interface TerrainStats {
   verticalScale: number;
   fps: number;
   drapedVertices: number;
+  vectorGroups: string[];
   frames: number;
   dpr: number;
 }
 
 export interface VectorInput {
   provinces?: GeoJSON.FeatureCollection;
+  /** dissolved national boundary: land border + coastline + island rings */
   national?: GeoJSON.FeatureCollection;
+  /** maritime line features carried by the province file */
+  maritime?: GeoJSON.FeatureCollection;
   rivers?: GeoJSON.FeatureCollection;
   regions?: GeoJSON.FeatureCollection;
   relations?: GeoJSON.FeatureCollection;
@@ -263,9 +267,15 @@ export class Terrain3DScene {
     return this.lastStats;
   }
 
+  /** ids of the draped vector groups currently built (for the HUD / tests) */
+  get vectorGroups(): string[] {
+    return this.drape.groupIds;
+  }
+
   private applyVectorVisibility() {
-    this.drape.setGroupVisible('province', this.vectorVisibility.boundaries);
-    this.drape.setGroupVisible('national', this.vectorVisibility.boundaries);
+    for (const id of ['province', 'national', 'national-halo', 'national-casing', 'maritime']) {
+      this.drape.setGroupVisible(id, this.vectorVisibility.boundaries);
+    }
     this.drape.setGroupVisible('rivers', this.vectorVisibility.rivers);
     this.drape.setGroupVisible('regions', this.vectorVisibility.regions);
     this.drape.setGroupVisible('relations', this.vectorVisibility.relations);
@@ -406,8 +416,17 @@ export class Terrain3DScene {
       if (!lines.length) return;
       groups.push({ id, lines, ...style });
     };
-    collect(this.vectors.provinces, 'province', { color: '#d3ad60', widthPx: 1.0, opacity: 0.58, lift: 70 });
-    collect(this.vectors.national, 'national', { color: '#f3ca78', widthPx: 1.7, opacity: 0.95, lift: 90 });
+    collect(this.vectors.provinces, 'province', { color: '#b28d4a', widthPx: 0.9, opacity: 0.42, lift: 70 });
+    collect(this.vectors.maritime, 'maritime', { color: '#e8c07a', widthPx: 1.15, opacity: 0.8, lift: 80 });
+    // The national outline is drawn twice: a soft halo plus a crisp core, so the
+    // Chinese border separates from neighbouring territory on both dark and lit
+    // terrain without inventing any geometry.
+    // The national outline is drawn three times: a dark casing for contrast on
+    // bright high ground, a soft gold halo, then the crisp core. No geometry is
+    // invented to separate China from neighbouring territory.
+    collect(this.vectors.national, 'national-casing', { color: '#170f04', widthPx: 4.6, opacity: 0.55, lift: 92 });
+    collect(this.vectors.national, 'national-halo', { color: '#f3b95c', widthPx: 8.5, opacity: 0.2, lift: 97 });
+    collect(this.vectors.national, 'national', { color: '#ffdc9a', widthPx: 2.7, opacity: 1, lift: 104 });
     collect(this.vectors.rivers, 'rivers', { color: '#8ef0dd', widthPx: 1.15, opacity: 0.85, lift: 60 });
     collect(this.vectors.regions, 'regions', { color: '#74ae96', widthPx: 1.0, opacity: 0.5, lift: 80, dash: [26000, 0.55] });
     collect(this.vectors.relations, 'relations', { color: '#dfb85e', widthPx: 1.15, opacity: 0.7, lift: 120, dash: [40000, 0.5] });
@@ -513,6 +532,7 @@ export class Terrain3DScene {
       verticalScale: Math.round((this.exaggeration * 1000) / 1000),
       fps: this.lastFps,
       drapedVertices: this.drape.vertexCount,
+      vectorGroups: this.drape.groupIds,
       frames: this.frameCount,
       dpr: window.devicePixelRatio || 1,
     };
