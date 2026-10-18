@@ -7,6 +7,7 @@ export interface GlyphInferenceRecord {
   inferenceId: string;
   steleId: string;
   runId?: string | null;
+  imageProvenance?: {imageSource:'original'|'restored';selectedImageSha256?:string;runOwnership?:string;imageWidth?:number;imageHeight?:number};
   characterId: string | null;
   originalGlyph: string | null;
   originalStatus: string | null;
@@ -77,7 +78,7 @@ export const SteleService = {
     if (!res.ok) throw new Error('推演记录不可用');
     return res.json();
   },
-  async inferGlyph(id: string, payload: {bbox:{x:number;y:number;w:number;h:number};context:string;characterId?:string;originalGlyph?:string;originalStatus?:string;runId?:string}): Promise<GlyphInferenceRecord> {
+  async inferGlyph(id: string, payload: {bbox:{x:number;y:number;w:number;h:number};context:string;characterId?:string;originalGlyph?:string;originalStatus?:string;imageSource?:'original'|'restored';runId?:string}): Promise<GlyphInferenceRecord> {
     const res = await fetch(`/api/steles/${encodeURIComponent(id)}/inferences`, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
     if (!res.ok) { const detail=await res.json().catch(()=>({})); throw new Error(typeof detail.detail==='string'?detail.detail:'残字推演失败'); }
     return res.json();

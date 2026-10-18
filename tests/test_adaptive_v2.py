@@ -5,7 +5,7 @@ import numpy as np
 import pytest
 from fastapi.testclient import TestClient
 from algorithm_engine import algorithm_engine, base64_to_mat
-from degradation_analysis import AdaptiveRubbingRestorer, analyze_degradation
+from degradation_analysis import AdaptiveRubbingRestorer, analyze_degradation, preserve_missing_regions
 from main import app
 
 
@@ -59,6 +59,61 @@ def test_official_identity_cannot_be_overridden():
     response=TestClient(app).post('/api/process',json={'stele_id':'han_01_caoquan','image_base64':'data:image/png;base64,AAAA'})
     assert response.status_code==422
     assert '不能与外部图像混用' in response.json()['detail']
+
+
+def test_effective_notch_stops_before_nlm_and_holes_are_not_repainted():
+    y, x = np.mgrid[:256, :256]
+    clean = np.full((256, 256), 80, np.uint8)
+    clean[70:190, 100:130] = 190
+    periodic = np.clip(clean.astype(float) + 25 * np.sin(2 * np.pi * x / 8), 0, 255).astype(np.uint8)
+    _output, details = AdaptiveRubbingRestorer().restore(periodic)
+    operators = [item['operator'] for item in details['decisions']]
+    assert 'notch' in operators
+    if 'stop_after_notch' in operators:
+        assert 'nlm' not in operators and 'thin_stroke_nlm' not in operators
+    image = np.full((180, 180), 40, np.uint8)
+    image += np.random.default_rng(3).integers(0, 25, image.shape, dtype=np.uint8)
+    image[40:90, 40:90] = 180
+    painted = image.copy()
+    painted[50:70, 50:70] = 20
+    preserved, pixels = preserve_missing_regions(image, painted)
+    assert pixels > 0
+    assert np.array_equal(preserved[40:90, 40:90], image[40:90, 40:90])
+
+
+def test_page_colored_whitespace_is_not_treated_as_loss_and_notch_quiets_flats():
+    from degradation_analysis import missing_information_mask
+    page = np.full((180, 180), 230, np.uint8)
+    page[50:130, 50:130] = 30
+    page[70:110, 70:110] = 230
+    assert missing_information_mask(page)[80:100, 80:100].sum() == 0
+    occluded = page.copy()
+    occluded[70:110, 70:110] = 80
+    assert missing_information_mask(occluded)[80:100, 80:100].sum() > 0
+    y, x = np.mgrid[:256, :256]
+    clean = np.full((256, 256), 80, np.uint8)
+    clean[70:190, 100:130] = 190
+    periodic = np.clip(clean.astype(float) + 25 * np.sin(2 * np.pi * x / 8), 0, 255).astype(np.uint8)
+    output, details = AdaptiveRubbingRestorer().restore(periodic)
+    assert 'stop_after_notch' in [item['operator'] for item in details['decisions']]
+    assert output[:40, :40].std() < periodic[:40, :40].std()
+
+
+def test_thin_stroke_uses_weaker_nlm_than_a_thick_stroke():
+    rng = np.random.default_rng(4)
+    thick = np.full((128, 128), 40, np.uint8)
+    thick[30:100, 30:100] = 200
+    thick = np.clip(thick.astype(float) + rng.normal(0, 12, thick.shape), 0, 255).astype(np.uint8)
+    thin = np.full((128, 128), 40, np.uint8)
+    thin[64, 20:110] = 220
+    thin = np.clip(thin.astype(float) + rng.normal(0, 12, thin.shape), 0, 255).astype(np.uint8)
+    _, thick_details = AdaptiveRubbingRestorer().restore(thick, strength=1)
+    _, thin_details = AdaptiveRubbingRestorer().restore(thin, strength=1)
+    thick_h = next(item['h'] for item in thick_details['decisions'] if item['operator'] in ('nlm', 'thin_stroke_nlm'))
+    thin_h = next(item['h'] for item in thin_details['decisions'] if item['operator'] in ('nlm', 'thin_stroke_nlm'))
+    assert thin_details['decisions']
+    assert any(item['operator'] == 'thin_stroke_nlm' for item in thin_details['decisions'])
+    assert thin_h < thick_h
 
 
 def test_invalid_image_rejected():

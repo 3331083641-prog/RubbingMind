@@ -19,6 +19,20 @@ def client(tmp_path,monkeypatch):
     return TestClient(app)
 
 
+def test_structure_rejection_and_cross_topology():
+    blank = np.full((96, 96), 240, np.uint8)
+    rejected, _images = analyze_crop(blank)
+    assert rejected['rejectRecognition'] is True
+    assert rejected['contentBox'] is None
+    cross = np.zeros((96, 96), np.uint8)
+    cross[20:80, 45:50] = 230
+    cross[45:50, 20:80] = 230
+    analysis, _images = analyze_crop(cross)
+    assert analysis['rejectRecognition'] is False
+    assert analysis['branchCount'] >= 1 and analysis['endpointCount'] >= 4
+    assert analysis['version'] == 'glyph-shape-v2.1'
+
+
 def test_visual_features_actual_pixels_and_not_ocr():
     image=np.zeros((96,96),np.uint8);image[20:80,45:50]=230;image[45:50,20:80]=230
     analysis,images=analyze_crop(image)

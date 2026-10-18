@@ -60,7 +60,9 @@ def run(url,ci=False):
             page.get_by_role('button',name='提交实际选区').click()
         assert response.value.ok,response.value.text();inference=response.value.json();result['inferenceId']=inference['inferenceId']
         assert inference['steleId']=='tang_01_duobao' and inference['runId']==run['runId']
-        assert inference['visualAnalysis']['version']=='glyph-shape-v2.0'
+        assert inference['visualAnalysis']['version']=='glyph-shape-v2.1'
+        assert inference['imageProvenance']['imageSource']=='restored'
+        assert inference['imageProvenance']['runOwnership']=='verified'
         expect(page.get_by_role('img',name='残字分析 skeleton',exact=True)).to_be_visible()
         page.get_by_role('button',name='驳回本次候选').click()
         expect(page.get_by_text('本次候选已人工驳回；操作已保存。',exact=True)).to_be_visible()

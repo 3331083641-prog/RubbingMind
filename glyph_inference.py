@@ -18,7 +18,7 @@ from algorithm_engine import safe_read_image
 from catalog import BASE
 from database import get_db_connection
 from upload_storage import image_path as uploaded_image_path
-from glyph_vision import analyze_crop, shape_similarity
+from glyph_vision import VERSION as GLYPH_VERSION, analyze_crop, shape_similarity
 
 INFERENCE_DIR = BASE / 'data' / 'runtime' / 'glyph-inferences'
 RULES = {
@@ -61,6 +61,93 @@ def _source_path(record):
     if not path.is_relative_to(public):
         return None
     return path
+
+
+def resolve_inference_image(record, image_source='original', run_id=None):
+    """Crop either the verified readable image or one owned restoration output."""
+    if image_source not in ('original', 'restored'):
+        raise ValueError('图像来源只能是 original 或 restored')
+    stele_id = record['id']
+    if image_source == 'original':
+        path = _source_path(record)
+        if path is None or not path.is_file():
+            raise ValueError('当前文物原始阅读图不可用')
+        data = path.read_bytes()
+        image = safe_read_image(data)
+        if image is None:
+            raise ValueError('源图像无法解码')
+        height, width = image.shape[:2]
+        digest = hashlib.sha256(data).hexdigest()
+        provenance = {
+            'imageSource': 'original', 'steleId': stele_id, 'runId': None,
+            'sourceRole': 'readable' if record.get('source_kind') != 'user_upload' else 'user_upload',
+            'inputImageSha256': digest, 'selectedImageSha256': digest, 'outputImageSha256': None,
+            'imageWidth': width, 'imageHeight': height, 'scaleFromSource': 1.0,
+            'sourceShape': [height, width], 'workingShape': [height, width], 'interpolation': 'none',
+            'runOwnership': 'not_applicable', 'coordinateSpace': 'selected_image_pixels',
+        }
+        return image, data, provenance
+    if not run_id:
+        raise ValueError('选择修复结果时必须提供本次运行 ID')
+    from museum_processing import BASE as RESULTS_BASE, read_run
+    run = read_run(stele_id, run_id)
+    if run is None or run.get('steleId', run.get('stele_id')) != stele_id or run.get('runId') != run_id:
+        raise LookupError('关联的处理运行不存在或不属于当前文物')
+    relative = (run.get('outputImages') or {}).get('restored') or ''
+    prefix = f'/static/results/{stele_id}/{run_id}/'
+    if not relative.startswith(prefix):
+        raise ValueError('修复图像路径不属于当前文物的本次运行')
+    root = (RESULTS_BASE / 'static' / 'results' / stele_id / run_id).resolve()
+    path = (RESULTS_BASE / relative.lstrip('/')).resolve()
+    if not path.is_relative_to(root) or not path.is_file():
+        raise ValueError('修复图像文件缺失或越界')
+    data = path.read_bytes()
+    actual = hashlib.sha256(data).hexdigest()
+    expected = (run.get('outputSha256') or {}).get('restored')
+    if not expected or actual != expected:
+        raise ValueError('修复图像 SHA 与运行记录不一致，拒绝裁切')
+    image = safe_read_image(data)
+    if image is None:
+        raise ValueError('修复图像无法解码')
+    height, width = image.shape[:2]
+    working = run.get('workingImage') or {}
+    working_shape = working.get('workingShape')
+    if working_shape and [int(working_shape[0]), int(working_shape[1])] != [height, width]:
+        raise ValueError('修复图像尺寸与运行记录的工作副本不一致')
+    provenance = {
+        'imageSource': 'restored', 'steleId': stele_id, 'runId': run_id,
+        'sourceRole': 'algorithm_output', 'inputImageSha256': run.get('inputImageSha256'),
+        'selectedImageSha256': actual, 'outputImageSha256': actual,
+        'imageWidth': width, 'imageHeight': height, 'scaleFromSource': working.get('scale'),
+        'sourceShape': working.get('sourceShape'), 'workingShape': working_shape or [height, width],
+        'interpolation': working.get('interpolation'), 'runOwnership': 'verified',
+        'algorithmVersion': run.get('algorithmVersion'), 'coordinateSpace': 'selected_image_pixels',
+    }
+    return image, data, provenance
+
+
+def _map_roi(bbox, provenance):
+    source_shape = provenance.get('sourceShape') or []
+    working_shape = provenance.get('workingShape') or []
+    mapped = dict(bbox)
+    scale = provenance.get('scaleFromSource') or 1
+    if len(source_shape) == 2 and len(working_shape) == 2:
+        source_h, source_w = int(source_shape[0]), int(source_shape[1])
+        work_h, work_w = int(working_shape[0]), int(working_shape[1])
+        if work_h > 0 and work_w > 0 and (source_h, source_w) != (work_h, work_w):
+            mapped = {
+                'x': int(round(bbox['x'] * source_w / work_w)),
+                'y': int(round(bbox['y'] * source_h / work_h)),
+                'w': max(1, int(round(bbox['w'] * source_w / work_w))),
+                'h': max(1, int(round(bbox['h'] * source_h / work_h))),
+            }
+            scale = source_w / work_w
+    inside = None
+    if len(source_shape) == 2:
+        source_h, source_w = int(source_shape[0]), int(source_shape[1])
+        inside = mapped['x'] >= 0 and mapped['y'] >= 0 and mapped['x'] + mapped['w'] <= source_w and mapped['y'] + mapped['h'] <= source_h
+    return {'imageBBox': dict(bbox), 'mappedSourceBBox': mapped, 'mappedInsideSource': inside,
+            'cropWidth': bbox['w'], 'cropHeight': bbox['h'], 'scaleFromSource': scale}
 
 
 async def _suggest(image_bytes: bytes, context: str):
@@ -111,35 +198,56 @@ async def _suggest(image_bytes: bytes, context: str):
             'note': '仅基于上下文给出待核建议，未运行图像模型。' if candidates else '无可核实候选；请提供更充分的上下文或配置可选视觉模型。'}
 
 
-async def infer(record, bbox: dict, context: str, character_id: str | None = None, original_glyph: str | None = None, original_status: str | None = None, run_id: str | None = None):
-    source_path = _source_path(record)
-    if source_path is None or not source_path.is_file():
-        raise ValueError('当前文物原始图像不可用')
-    source_bytes = source_path.read_bytes()
-    image = safe_read_image(source_bytes)
-    if image is None:
-        raise ValueError('源图像无法解码')
+def _fuse_candidates(suggestion, retrieved, analysis):
+    if analysis.get('rejectRecognition'):
+        return {'source': 'rejected', 'model': None, 'candidates': [],
+                'note': '选区被拒识。上下文和参考字形都不会自动变成识别结论。'}
+    context_glyphs = [item['glyph'] for item in suggestion['candidates']]
+    ranked = []
+    for item in retrieved:
+        boosted = dict(item)
+        if item['glyph'] in context_glyphs:
+            boosted['contextEvidence'] = '上下文规则与人工参考字形一致，仍须人工核验。'
+            boosted['scoreBasis'] = item['scoreBasis'] + '；已按上下文一致提前。'
+        ranked.append(boosted)
+    ranked.sort(key=lambda item: (item['glyph'] not in context_glyphs, -item.get('shapeScore', 0)))
+    if not suggestion['candidates'] and ranked:
+        return {'source': 'local_shape_retrieval', 'model': GLYPH_VERSION, 'candidates': ranked[:3],
+                'note': '仅与用户确认的参考字形比较；相似评分未经识字概率校准，需人工核验。'}
+    if suggestion['candidates'] and ranked:
+        order = {item['glyph']: index for index, item in enumerate(ranked)}
+        suggestion['candidates'] = sorted(suggestion['candidates'], key=lambda item: order.get(item['glyph'], 99))
+        suggestion['note'] = suggestion['note'] + ' 上下文候选已按人工参考字形重合情况重排。'
+    return suggestion
+
+
+async def infer(record, bbox: dict, context: str, character_id: str | None = None, original_glyph: str | None = None, original_status: str | None = None, run_id: str | None = None, image_source: str = 'original'):
+    image, source_bytes, provenance = resolve_inference_image(record, image_source, run_id if image_source == 'restored' else None)
     height, width = image.shape[:2]
     x, y, w, h = (bbox[key] for key in ('x', 'y', 'w', 'h'))
     if w < 16 or h < 16 or x < 0 or y < 0 or x + w > width or y + h > height or w > 1024 or h > 1024:
         raise ValueError('残字选区越界或尺寸不在 16–1024 像素内')
+    if provenance['imageWidth'] != width or provenance['imageHeight'] != height:
+        raise ValueError('选区图像尺寸与来源记录不一致')
     crop = image[y:y+h, x:x+w]
+    if crop.shape[0] != h or crop.shape[1] != w:
+        raise ValueError('裁切结果与选区尺寸不一致')
     ok, encoded = cv2.imencode('.png', crop)
     if not ok:
         raise ValueError('残字选区无法编码')
     crop_bytes = encoded.tobytes()
     analysis, analysis_images = analyze_crop(crop)
-    suggestion = await _suggest(crop_bytes, context[:1000])
-    retrieved = retrieve_templates(analysis_images['foreground'])
-    if not suggestion['candidates'] and retrieved:
-        suggestion.update(source='local_shape_retrieval',model='glyph-shape-v2.0',candidates=retrieved,
-                          note='仅与用户确认的参考字形比较；相似评分未经识字概率校准，需人工核验。')
+    retrieved = [] if analysis.get('rejectRecognition') else retrieve_templates(analysis_images['foreground'])
+    suggestion = {'source': 'rejected', 'model': None, 'candidates': [], 'note': '选区被拒识。'} if analysis.get('rejectRecognition') else await _suggest(crop_bytes, context[:1000])
+    suggestion = _fuse_candidates(suggestion, retrieved, analysis)
+    roi = _map_roi(bbox, provenance)
     inference_id = uuid.uuid4().hex
     now = datetime.now(timezone.utc).isoformat()
     record_json = {
-        'inferenceId': inference_id, 'steleId': record['id'], 'runId': run_id, 'characterId': character_id,
+        'inferenceId': inference_id, 'steleId': record['id'], 'runId': provenance['runId'], 'characterId': character_id,
         'originalGlyph': original_glyph, 'originalStatus': original_status,
-        'bbox': bbox, 'context': context[:1000], 'inputImageSha256': hashlib.sha256(source_bytes).hexdigest(),
+        'bbox': bbox, 'roi': roi, 'context': context[:1000], 'inputImageSha256': provenance['inputImageSha256'],
+        'selectedImageSha256': provenance['selectedImageSha256'], 'imageProvenance': provenance,
         'cropSha256': hashlib.sha256(crop_bytes).hexdigest(), 'cropUrl': f'/api/inferences/{inference_id}/crop',
         'source': suggestion['source'], 'model': suggestion['model'], 'candidates': suggestion['candidates'],
         'note': suggestion['note'], 'sourceUrl': record.get('sourceUrl'),

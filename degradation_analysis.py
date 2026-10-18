@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 from scipy import fft
 
-VERSION = 'adaptive-rubbing-v2.0'
+VERSION = 'adaptive-rubbing-v2.1'
 
 
 def validate_gray(image):
@@ -82,6 +82,54 @@ def analyze_degradation(image):
     }, impulse
 
 
+def missing_information_mask(image):
+    """Interior uniform patches that are smaller than the page background.
+
+    A flat hole is missing information. Later filters must copy the original
+    pixels back instead of painting a stroke into it.
+    """
+    values = image.astype(np.float32)
+    mean = cv2.blur(values, (15, 15))
+    square = cv2.blur(values * values, (15, 15))
+    deviation = np.sqrt(np.maximum(square - mean * mean, 0))
+    flat = cv2.erode((deviation < 2.2).astype(np.uint8), np.ones((5, 5), np.uint8))
+    count, labels, stats, _ = cv2.connectedComponentsWithStats(flat, 8)
+    mask = np.zeros(image.shape, np.uint8)
+    if count <= 1:
+        return mask
+    areas = sorted(((index, int(stats[index, cv2.CC_STAT_AREA])) for index in range(1, count)), key=lambda item: -item[1])
+    border, interior = [], []
+    for index, area in areas:
+        x, y, width, height = (int(stats[index, key]) for key in (
+            cv2.CC_STAT_LEFT, cv2.CC_STAT_TOP, cv2.CC_STAT_WIDTH, cv2.CC_STAT_HEIGHT))
+        touches = x <= 1 or y <= 1 or x + width >= image.shape[1] - 1 or y + height >= image.shape[0] - 1
+        (border if touches else interior).append((index, area))
+    background = {border[0][0]} if border else set()
+    if border:
+        background_pixels = image[labels == border[0][0]]
+        background_mean = float(background_pixels.mean()) if background_pixels.size else float(np.median(image))
+    else:
+        edge = np.concatenate([image[0], image[-1], image[:, 0], image[:, -1]])
+        background_mean = float(np.median(edge))
+    limit = image.size * 0.12
+    for index, area in interior:
+        if index in background or area < 80 or area > limit:
+            continue
+        region_mean = float(image[labels == index].mean())
+        # Page-colored interior blanks are margins or column gaps, not loss.
+        if abs(region_mean - background_mean) < 18:
+            continue
+        mask[labels == index] = 255
+    return mask
+
+
+def preserve_missing_regions(original, processed):
+    mask = missing_information_mask(original)
+    preserved = processed.copy()
+    preserved[mask > 0] = original[mask > 0]
+    return preserved, int(np.count_nonzero(mask))
+
+
 def fidelity_diagnostics(before, after, noise_sigma, periodic=False):
     def gradient(image):
         smooth = cv2.GaussianBlur(image.astype(np.float32),(0,0),3 if periodic else 1)
@@ -123,12 +171,22 @@ class AdaptiveRubbingRestorer:
             decisions.append({'operator':'isolated_impulse_median','pixels':int(impulse.sum()),'reason':'仅替换局部孤立极值；不执行全局开运算'})
         remaining, _ = analyze_degradation(result)
         sigma=remaining['noiseSigmaMAD']
-        if sigma > 4:
+        notch_cleared=bool(features['periodicPeaks']) and not remaining['periodicPeaks']
+        if notch_cleared and sigma <= max(6.0, features['noiseSigmaMAD'] * 0.85):
+            decisions.append({'operator':'stop_after_notch','reason':'陷波后共轭峰消失且残差未升高，不再执行 NLM'})
+        elif sigma > 4:
             h=float(np.clip(sigma*.85*strength,3,25))
+            if features['thinStrokeRisk'] > 0.45:
+                h=float(np.clip(h * 0.45, 1.5, 12))
+                decisions.append({'operator':'thin_stroke_nlm','h':h,'thinStrokeRisk':features['thinStrokeRisk'],'reason':'细笔画占比高，降低 NLM 强度，避免抹断或粘连'})
+            else:
+                decisions.append({'operator':'nlm','h':h,'reason':'高通MAD显示随机残差；保留强边缘'})
             result=cv2.fastNlMeansDenoising(result,None,h=h,templateWindowSize=7,searchWindowSize=21)
-            decisions.append({'operator':'nlm','h':h,'reason':'高通MAD显示随机残差；保留强边缘'})
         else:
             decisions.append({'operator':'identity','reason':'残差证据弱；不锐化、不强制CLAHE/形态学'})
+        result, missing_pixels = preserve_missing_regions(image, result)
+        if missing_pixels:
+            decisions.append({'operator':'preserve_missing','pixels':missing_pixels,'reason':'与页面底色明显不同的内部均匀块保持原像素；相近留白不视为缺损，也不补画笔画'})
         gate=fidelity_diagnostics(image,result,features['noiseSigmaMAD'],periodic=bool(features['periodicPeaks']))
         if not gate['accepted']:
             decisions.append({'operator':'fallback_identity','reason':'; '.join(gate['reasons'])})

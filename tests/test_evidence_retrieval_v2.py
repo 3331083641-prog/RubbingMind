@@ -48,6 +48,30 @@ def test_all_28_have_distinct_stone_rubbing_and_sources():
         assert graph['routes']==[]
 
 
+def test_author_proposition_support_contradiction_and_refusal():
+    supported = er.query('《多宝塔碑》的撰文者是不是岑勋？')
+    assert supported['judgment'] == 'supported' and supported['claim']['recorded'] == '岑勋'
+    assert supported['generation'] is None
+    contradicted = er.query('《多宝塔碑》的撰文者是不是李白？')
+    assert contradicted['judgment'] == 'contradicted'
+    assert contradicted['claim']['recorded'] == '岑勋' and contradicted['claim']['proposed'] == '李白'
+    assert contradicted['claim']['basis'] == 'catalogue_field_mismatch'
+    assert '著录字段不一致' in contradicted['answer']
+    assert '不是独立史料反证' in contradicted['answer']
+    partial = er.query('《多宝塔碑》的书丹者是不是颜？')
+    assert partial['judgment'] == 'contradicted' and partial['claim']['recorded'] == '颜真卿'
+    assert partial['claim']['basis'] == 'catalogue_field_mismatch'
+    exact = er.query('《多宝塔碑》的书丹者是不是颜真卿？')
+    assert exact['judgment'] == 'supported' and exact['claim']['basis'] == 'catalogue_field_match'
+    missing = er.query('《多宝塔碑》的篆额者是谁？')
+    assert missing['judgment'] == 'insufficient_evidence' and missing['status'] == 'insufficient_evidence'
+    assert '未核定' in missing['answer']
+    assert '篆额者为「' not in missing['answer']
+    unknown = er.query('《曹全碑》的撰文者是谁？')
+    assert unknown['judgment'] == 'insufficient_evidence'
+    assert '岑勋' not in unknown['answer']
+
+
 def test_api_search_validation_and_deterministic_rebuild():
     client=TestClient(app)
     request={'question':'《多宝塔碑》的书丹者是谁？','steleId':'tang_01_duobao'}
