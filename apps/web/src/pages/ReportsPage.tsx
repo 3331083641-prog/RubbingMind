@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ProcessingRun, SteleItem, roleText } from '../types/stele';
 import { SteleService } from '../services/api';
 import { ExperimentExplorer } from '../components/ExperimentExplorer';
+import { HeldoutComparison } from '../components/HeldoutComparison';
 
 interface Props { stele: SteleItem; onNavigate: (tab: string) => void }
 type Report = Awaited<ReturnType<typeof SteleService.getReport>>;
@@ -72,6 +73,7 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate }) => {
       <button className="ml-4 text-gold underline" onClick={()=>onNavigate('workbench')}>前往工作台</button>
     </label>
     {error && <p role="alert" className="text-cinnabar">{error}</p>}
+    <HeldoutComparison />
     <ExperimentExplorer />
     <article className="bg-[#eee4d2] text-[#30271d] p-6 md:p-10 rounded-xl max-w-5xl mx-auto space-y-6 print:shadow-none print:p-0">
       <div className="border-b border-[#937d5d] pb-4"><h1 className="text-2xl font-serif font-bold">墨韵智考·金石数字化实验报告</h1>
@@ -80,7 +82,8 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate }) => {
       <section><h3 className="font-bold">馆藏身份与出处</h3>
         <p>拓本年代：{stele.rubbingPeriod || '未核定'}；馆藏：{stele.collectionInstitution || stele.museum}；编号：{stele.collectionNumber || '未提供'}。</p>
         <p>类型：{stele.artifactType || '拓本'}；书体：{stele.script_type || '未核定'}；撰文：{roleText(stele.inscriptionAuthor, stele.authorVerification)}；书丹：{roleText(stele.calligrapher, stele.calligrapherVerification)}；篆额：{roleText(stele.titleCalligrapher, stele.titleCalligrapherVerification)}；刻工：{roleText(stele.engraver, stele.engraverVerification)}；碑主/墓主：{roleText(stele.steleSubject, stele.steleSubjectVerification)}。</p>
-        <p>拓本影像损伤：{stele.imageCondition || '待人工复核'}。原石风化：{stele.stoneWeathering || '无原石影像，不评定'}。</p>
+        <p>拓本影像损伤：{stele.imageCondition || '待人工复核'}（{stele.imageConditionReviewStatus || '自动初筛，待人工复核'}）。原石：{stele.physicalStoneWeathering || stele.stoneWeathering || '无可靠原石证据，不评定'}。</p>
+        {stele.assessmentRunId && <p>归档评估运行：{stele.assessmentRunId}。这是局部处理记录，不是全幅修复质量评分。</p>}
         {stele.sourceUrl && <p>馆藏来源：<a href={stele.sourceUrl} className="underline break-all">{stele.sourceUrl}</a></p>}
         <p>影像许可：{stele.license || '需核查'}。</p>
       </section>
@@ -104,6 +107,7 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate }) => {
           {item.candidates.flatMap(c=>c.sourceUrls).map(url=><p key={url}>候选建议来源（未作为核验引用）：<a href={url} className="underline break-all">{url}</a></p>)}
         </li>)}</ul> : <p>未完成与本运行关联的真实残字推演；没有人工确认结论。</p>}
       </section>
+      <section><h3 className="font-bold">古碑识别</h3><p>古碑 OCR 准确率：未评测。尚无按碑刻隔离的独立人工标注测试集。</p></section>
       <footer className="border-t border-[#937d5d] pt-3 text-xs">实验结果仅描述此次处理与已有资料；任何文物释读结论须由具备领域知识的人员复核。</footer>
     </article>
   </div>;
