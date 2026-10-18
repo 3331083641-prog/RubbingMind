@@ -1,10 +1,11 @@
 import React, { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
-import { Network, MapPin, CalendarDays, BookOpen, ExternalLink, Search, LocateFixed, RotateCcw, Play, Pause, SkipBack, Layers, UserRound } from 'lucide-react';
+import { Network, MapPin, CalendarDays, BookOpen, ExternalLink, Search, LocateFixed, RotateCcw, Play, Pause, SkipBack, Layers, UserRound, Mountain } from 'lucide-react';
 import type { SteleItem } from '../types/stele';
 import type { HistoryDataset, Selection, HistoricalEvent } from '../types/history';
 import { CORE_STELES, resolveCoreId } from '../data/graphSelection';
 import { loadHistory, convertYear } from '../services/history';
 import type { MapCommand } from '../components/graph/HistoricalMap';
+import type { TerrainStats } from '../components/graph/terrain3d/terrainLayer';
 import './GraphPage.css';
 import { EvidenceSearch } from '../components/EvidenceSearch';
 const HistoricalMap = lazy(() => import('../components/graph/HistoricalMap'));
@@ -31,6 +32,11 @@ export const GraphPage:React.FC<Props> = ({stele,onSelectStele}) => {
   const [lines,setLines]=useState(false);
   const [effects,setEffects]=useState(true);
   const [layersOpen,setLayersOpen]=useState(false);
+  const [terrain3d,setTerrain3d]=useState(true);
+  const [exaggeration,setExaggeration]=useState<number|null>(null);
+  const [contours,setContours]=useState(true);
+  const [terrainStats,setTerrainStats]=useState<TerrainStats|null>(null);
+  const [terrainView,setTerrainView]=useState({ready:false,pitch:0,bearing:0,zoom:0});
   const [reset,setReset]=useState(0);
   const [playing,setPlaying]=useState(false);
   const [speed,setSpeed]=useState(1);
@@ -95,11 +101,19 @@ export const GraphPage:React.FC<Props> = ({stele,onSelectStele}) => {
     <div className={`explorer-grid ${!currentData?'is-loading':''}`} aria-busy={!currentData}>
       <section className="explorer-panel" aria-label="地图与知识网络">
         <div className="mode-bar">{['全国视图','碑刻地理','人物关系','历史轨迹','地图与图谱联动'].map(m=><button key={m} aria-pressed={mode===m} onClick={()=>{setMode(m);if(m==='全国视图')issueCommand('national');if(m==='碑刻地理'||m==='历史轨迹')issueCommand('focus');}}>{m}</button>)}</div>
-        <div className="explorer-tools"><div className="place-search"><Search size={15}/><input aria-label="检索历史地名" value={query} onChange={e=>setQuery(e.target.value)} placeholder="检索历史地名 / 现代地名" onKeyDown={e=>{if(e.key==='Enter'&&searchResults[0])selectPlace(searchResults[0].id);}}/></div><button onClick={()=>issueCommand('focus')} title="定位碑刻关联范围"><LocateFixed size={15}/>自动定位</button><button onClick={()=>setLayersOpen(!layersOpen)} aria-expanded={layersOpen}><Layers size={15}/>图层</button><button onClick={restore} title="恢复所有默认状态"><RotateCcw size={15}/><span>重置</span></button></div>
+        <div className="explorer-tools"><div className="place-search"><Search size={15}/><input aria-label="检索历史地名" value={query} onChange={e=>setQuery(e.target.value)} placeholder="检索历史地名 / 现代地名" onKeyDown={e=>{if(e.key==='Enter'&&searchResults[0])selectPlace(searchResults[0].id);}}/></div><button onClick={()=>issueCommand('focus')} title="定位碑刻关联范围"><LocateFixed size={15}/>自动定位</button><button className="terrain-switch" aria-pressed={terrain3d} onClick={()=>setTerrain3d(v=>!v)} title="切换三维地形与二维地图"><Mountain size={15}/>{terrain3d?'二维地图':'三维地形'}</button><button onClick={()=>setLayersOpen(!layersOpen)} aria-expanded={layersOpen}><Layers size={15}/>图层</button><button onClick={restore} title="恢复所有默认状态"><RotateCcw size={15}/><span>重置</span></button></div>
         {query&&<div className="search-results" role="listbox" aria-label="地名检索结果">{searchResults.length?searchResults.map(p=><button key={p.id} role="option" aria-selected={selectedIds.includes(p.id)} onClick={()=>{selectPlace(p.id);setQuery('');}}>{p.name}<small>{PRECISION[p.precision]}</small></button>):<p>未找到此碑刻的关联地名</p>}</div>}
-        {layersOpen&&<div className="layer-controls">{[['地点标签',labels,setLabels],['现代省界与国界',boundaries,setBoundaries],['真实主要水系',rivers,setRivers],['历史关联虚线',lines,setLines],['节点光晕与地形阴影',effects,setEffects]].map(([name,checked,set])=><label key={String(name)}><input type="checkbox" checked={Boolean(checked)} onChange={e=>(set as React.Dispatch<React.SetStateAction<boolean>>)(e.target.checked)}/>{String(name)}</label>)}</div>}
+        {layersOpen&&<div className="layer-controls">{[['地点标签',labels,setLabels],['现代省界与国界',boundaries,setBoundaries],['真实主要水系',rivers,setRivers],['历史关联虚线',lines,setLines],['节点光晕与地形阴影',effects,setEffects]].map(([name,checked,set])=><label key={String(name)}><input type="checkbox" checked={Boolean(checked)} onChange={e=>(set as React.Dispatch<React.SetStateAction<boolean>>)(e.target.checked)}/>{String(name)}</label>)}{terrain3d&&<label className="contour-control"><input type="checkbox" checked={contours} onChange={e=>setContours(e.target.checked)}/>地形等高线（DEM 派生）</label>}{terrain3d&&<label className="exaggeration-control">垂直夸张<select aria-label="地形垂直夸张" value={exaggeration===null?'auto':String(exaggeration)} onChange={e=>setExaggeration(e.target.value==='auto'?null:Number(e.target.value))}><option value="auto">自动（随缩放）</option><option value="1">×1 真实比例</option><option value="8">×8</option><option value="16">×16</option><option value="24">×24</option><option value="32">×32</option></select></label>}</div>}
         <div className={`explorer-stage ${mode==='地图与图谱联动'?'linked':''}`}>
-          <div className="map-region" style={{display:mode==='人物关系'?'none':'block'}}><Suspense fallback={<div className="graph-load">正在载入 GIS 引擎…</div>}><HistoricalMap data={data} command={command} selectedIds={highlightedPlaces} labels={labels} boundaries={boundaries} rivers={rivers} lines={lines} effects={effects} onSelect={selectPlace}/></Suspense></div>
+          <div className="map-region" style={{display:mode==='人物关系'?'none':'block'}}><Suspense fallback={<div className="graph-load">正在载入 GIS 引擎…</div>}><HistoricalMap data={data} command={command} selectedIds={highlightedPlaces} labels={labels} boundaries={boundaries} rivers={rivers} lines={lines} effects={effects} onSelect={selectPlace} terrain3d={terrain3d} exaggeration={exaggeration} contours={contours} onTerrainStats={setTerrainStats} onTerrainState={s=>setTerrainView({ready:s.ready,pitch:s.pitch,bearing:s.bearing,zoom:s.zoom})}/></Suspense>
+            {terrain3d&&<div className="terrain-hud" data-testid="terrain-hud" data-ready={terrainView.ready?'true':'false'} data-fps={terrainStats?.fps??0} data-vertices={terrainStats?.vertices??0} data-frames={terrainStats?.frames??0} data-dem-zoom={terrainStats?.demZoom??0} data-max-zoom={terrainStats?.maxZoom??0} data-build-ms={terrainStats?Math.round(terrainStats.buildMs):0} data-tiles={terrainStats?.tiles??0} data-dpr={terrainStats?.dpr??0} data-level={terrainStats?.level??''} data-exaggeration={terrainStats?.exaggeration??0}>
+              <span className="hud-title">三维地貌引擎</span>
+              <span>{terrainStats?.levelLabel||'载入中'}{terrainStats?` · DEM z${terrainStats.demZoom}`:''}</span>
+              {terrainStats&&<span>{terrainStats.vertices.toLocaleString()} 顶点 / {terrainStats.triangles.toLocaleString()} 面</span>}
+              <span>{terrainStats?`交互 ${terrainStats.fps} FPS · 构建 ${Math.round(terrainStats.buildMs)} ms · 夸张 ×${terrainStats.exaggeration}`:'等待 DEM 瓦片'}</span>
+              <span>倾角 {Math.round(terrainView.pitch)}° · 方位 {Math.round(terrainView.bearing)}°</span>
+            </div>}
+          </div>
           {(mode==='人物关系'||mode==='地图与图谱联动')&&<div className="network-region"><Suspense fallback={<div className="graph-load">正在载入人物关系…</div>}><KnowledgeNetwork data={data} selectedId={selection.id} category={category} reset={reset} onSelect={selectNode}/></Suspense></div>}
           <button className="national-return" onClick={()=>{if(mode==='人物关系')setMode('全国视图');issueCommand('national');}}>返回全国视图</button>
           {mode==='人物关系'||mode==='地图与图谱联动'?<div className="node-filter"><select aria-label="筛选图谱节点" value={category} onChange={e=>setCategory(e.target.value)}><option value="all">全部实体</option><option value="person">金石人物</option><option value="place">历史地望</option><option value="era">金石纪年</option><option value="document">文献载体</option></select><span>{visibleNodes.length} 节点 · {visibleLinks.length} 关系</span></div>:null}
