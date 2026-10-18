@@ -1,0 +1,825 @@
+{
+  "name": "AWS Open Data — Terrain Tiles (Mapzen terrarium)",
+  "officialUrl": "https://registry.opendata.aws/terrain-tiles/",
+  "tileUrl": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
+  "encoding": "terrarium (R*256 + G + B/256 - 32768)",
+  "verticalDatum": "EGM96 geoid (SRTM/GMTED/3DEP source mix)",
+  "crs": "EPSG:3857 tile grid / EPSG:4326 sample positions",
+  "license": "Open data; per-provider attribution required (see ATTRIBUTION.md)",
+  "attribution": "Mapzen / USGS 3DEP / SRTM (NASA-NGA) / GMTED2010 / NOAA ETOPO1",
+  "retrieved": "2026-10-18",
+  "requestedBbox": [
+    58.0,
+    -2.0,
+    152.0,
+    62.0
+  ],
+  "requestedZoom": [
+    4,
+    5
+  ],
+  "levels": [
+    {
+      "z": 0,
+      "tiles": 1,
+      "minX": 0,
+      "maxX": 0,
+      "minY": 0,
+      "maxY": 0
+    },
+    {
+      "z": 1,
+      "tiles": 4,
+      "minX": 0,
+      "maxX": 1,
+      "minY": 0,
+      "maxY": 1
+    },
+    {
+      "z": 2,
+      "tiles": 16,
+      "minX": 0,
+      "maxX": 3,
+      "minY": 0,
+      "maxY": 3
+    },
+    {
+      "z": 3,
+      "tiles": 64,
+      "minX": 0,
+      "maxX": 7,
+      "minY": 0,
+      "maxY": 7
+    },
+    {
+      "z": 4,
+      "tiles": 25,
+      "minX": 10,
+      "maxX": 14,
+      "minY": 4,
+      "maxY": 8
+    },
+    {
+      "z": 5,
+      "tiles": 81,
+      "minX": 21,
+      "maxX": 29,
+      "minY": 8,
+      "maxY": 16
+    },
+    {
+      "z": 6,
+      "tiles": 143,
+      "minX": 44,
+      "maxX": 56,
+      "minY": 19,
+      "maxY": 29
+    }
+  ],
+  "downloads": [
+    {
+      "z": 4,
+      "x": 13,
+      "y": 4,
+      "bytes": 87633,
+      "status": "cached"
+    },
+    {
+      "z": 4,
+      "x": 11,
+      "y": 7,
+      "bytes": 89687,
+      "status": "cached"
+    },
+    {
+      "z": 4,
+      "x": 11,
+      "y": 6,
+      "bytes": 93266,
+      "status": "cached"
+    },
+    {
+      "z": 4,
+      "x": 13,
+      "y": 6,
+      "bytes": 88754,
+      "status": "cached"
+    },
+    {
+      "z": 4,
+      "x": 12,
+      "y": 6,
+      "bytes": 105566,
+      "status": "cached"
+    },
+    {
+      "z": 4,
+      "x": 10,
+      "y": 7,
+      "bytes": 93351,
+      "status": "cached"
+    },
+    {
+      "z": 4,
+      "x": 12,
+      "y": 7,
+      "bytes": 88553,
+      "status": "cached"
+    },
+    {
+      "z": 4,
+      "x": 12,
+      "y": 5,
+      "bytes": 98644,
+      "status": "cached"
+    },
+    {
+      "z": 4,
+      "x": 11,
+      "y": 4,
+      "bytes": 56650,
+      "status": "cached"
+    },
+    {
+      "z": 4,
+      "x": 10,
+      "y": 5,
+      "bytes": 68356,
+      "status": "cached"
+    },
+    {
+      "z": 4,
+      "x": 10,
+      "y": 4,
+      "bytes": 70034,
+      "status": "cached"
+    },
+    {
+      "z": 4,
+      "x": 12,
+      "y": 4,
+      "bytes": 87785,
+      "status": "cached"
+    },
+    {
+      "z": 4,
+      "x": 10,
+      "y": 8,
+      "bytes": 103577,
+      "status": "cached"
+    },
+    {
+      "z": 4,
+      "x": 11,
+      "y": 8,
+      "bytes": 101222,
+      "status": "cached"
+    },
+    {
+      "z": 4,
+      "x": 10,
+      "y": 6,
+      "bytes": 91307,
+      "status": "cached"
+    },
+    {
+      "z": 4,
+      "x": 11,
+      "y": 5,
+      "bytes": 86382,
+      "status": "cached"
+    },
+    {
+      "z": 4,
+      "x": 13,
+      "y": 5,
+      "bytes": 92455,
+      "status": "cached"
+    },
+    {
+      "z": 4,
+      "x": 12,
+      "y": 8,
+      "bytes": 97704,
+      "status": "cached"
+    },
+    {
+      "z": 4,
+      "x": 13,
+      "y": 8,
+      "bytes": 94864,
+      "status": "cached"
+    },
+    {
+      "z": 4,
+      "x": 14,
+      "y": 4,
+      "bytes": 92155,
+      "status": "cached"
+    },
+    {
+      "z": 4,
+      "x": 14,
+      "y": 5,
+      "bytes": 92609,
+      "status": "cached"
+    },
+    {
+      "z": 4,
+      "x": 13,
+      "y": 7,
+      "bytes": 106520,
+      "status": "cached"
+    },
+    {
+      "z": 4,
+      "x": 14,
+      "y": 7,
+      "bytes": 105238,
+      "status": "cached"
+    },
+    {
+      "z": 4,
+      "x": 14,
+      "y": 6,
+      "bytes": 98435,
+      "status": "cached"
+    },
+    {
+      "z": 4,
+      "x": 14,
+      "y": 8,
+      "bytes": 92352,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 21,
+      "y": 11,
+      "bytes": 48071,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 21,
+      "y": 9,
+      "bytes": 57108,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 21,
+      "y": 12,
+      "bytes": 76881,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 21,
+      "y": 13,
+      "bytes": 89253,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 21,
+      "y": 15,
+      "bytes": 99455,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 21,
+      "y": 10,
+      "bytes": 59699,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 21,
+      "y": 14,
+      "bytes": 75966,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 22,
+      "y": 9,
+      "bytes": 37311,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 21,
+      "y": 16,
+      "bytes": 98757,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 22,
+      "y": 15,
+      "bytes": 94099,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 22,
+      "y": 16,
+      "bytes": 98558,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 22,
+      "y": 10,
+      "bytes": 50587,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 22,
+      "y": 11,
+      "bytes": 70446,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 22,
+      "y": 14,
+      "bytes": 81611,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 23,
+      "y": 13,
+      "bytes": 80976,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 22,
+      "y": 12,
+      "bytes": 102253,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 23,
+      "y": 9,
+      "bytes": 42965,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 23,
+      "y": 16,
+      "bytes": 89519,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 23,
+      "y": 15,
+      "bytes": 74998,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 22,
+      "y": 13,
+      "bytes": 60131,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 23,
+      "y": 12,
+      "bytes": 79145,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 24,
+      "y": 9,
+      "bytes": 71607,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 23,
+      "y": 14,
+      "bytes": 73240,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 23,
+      "y": 10,
+      "bytes": 78765,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 24,
+      "y": 10,
+      "bytes": 92261,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 24,
+      "y": 11,
+      "bytes": 88603,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 23,
+      "y": 11,
+      "bytes": 86564,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 24,
+      "y": 12,
+      "bytes": 91912,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 24,
+      "y": 14,
+      "bytes": 83747,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 24,
+      "y": 15,
+      "bytes": 88646,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 24,
+      "y": 16,
+      "bytes": 92141,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 25,
+      "y": 11,
+      "bytes": 78264,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 25,
+      "y": 13,
+      "bytes": 97989,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 24,
+      "y": 13,
+      "bytes": 101442,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 25,
+      "y": 9,
+      "bytes": 71578,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 25,
+      "y": 12,
+      "bytes": 89316,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 25,
+      "y": 10,
+      "bytes": 89374,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 25,
+      "y": 14,
+      "bytes": 82896,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 25,
+      "y": 15,
+      "bytes": 63016,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 26,
+      "y": 9,
+      "bytes": 85449,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 25,
+      "y": 16,
+      "bytes": 77047,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 26,
+      "y": 10,
+      "bytes": 85458,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 26,
+      "y": 11,
+      "bytes": 74175,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 26,
+      "y": 12,
+      "bytes": 58153,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 26,
+      "y": 14,
+      "bytes": 96065,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 26,
+      "y": 15,
+      "bytes": 97356,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 26,
+      "y": 13,
+      "bytes": 82149,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 27,
+      "y": 10,
+      "bytes": 82643,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 26,
+      "y": 16,
+      "bytes": 91329,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 27,
+      "y": 9,
+      "bytes": 80196,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 27,
+      "y": 11,
+      "bytes": 77701,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 27,
+      "y": 12,
+      "bytes": 83443,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 27,
+      "y": 13,
+      "bytes": 92133,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 27,
+      "y": 16,
+      "bytes": 96985,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 27,
+      "y": 14,
+      "bytes": 99265,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 27,
+      "y": 15,
+      "bytes": 102972,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 28,
+      "y": 9,
+      "bytes": 79255,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 28,
+      "y": 10,
+      "bytes": 75907,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 28,
+      "y": 11,
+      "bytes": 86256,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 28,
+      "y": 12,
+      "bytes": 93555,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 28,
+      "y": 13,
+      "bytes": 99898,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 28,
+      "y": 14,
+      "bytes": 102654,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 28,
+      "y": 15,
+      "bytes": 99822,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 28,
+      "y": 16,
+      "bytes": 75865,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 29,
+      "y": 9,
+      "bytes": 67585,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 29,
+      "y": 10,
+      "bytes": 74839,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 29,
+      "y": 11,
+      "bytes": 92339,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 29,
+      "y": 12,
+      "bytes": 80728,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 29,
+      "y": 13,
+      "bytes": 89493,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 29,
+      "y": 14,
+      "bytes": 95949,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 29,
+      "y": 15,
+      "bytes": 94970,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 29,
+      "y": 16,
+      "bytes": 101695,
+      "status": "cached"
+    },
+    {
+      "z": 5,
+      "x": 22,
+      "y": 8,
+      "bytes": 37701,
+      "status": "downloaded"
+    },
+    {
+      "z": 5,
+      "x": 24,
+      "y": 8,
+      "bytes": 80202,
+      "status": "downloaded"
+    },
+    {
+      "z": 5,
+      "x": 27,
+      "y": 8,
+      "bytes": 72770,
+      "status": "downloaded"
+    },
+    {
+      "z": 5,
+      "x": 29,
+      "y": 8,
+      "bytes": 84377,
+      "status": "downloaded"
+    },
+    {
+      "z": 5,
+      "x": 28,
+      "y": 8,
+      "bytes": 90386,
+      "status": "downloaded"
+    },
+    {
+      "z": 5,
+      "x": 21,
+      "y": 8,
+      "bytes": 60771,
+      "status": "downloaded"
+    },
+    {
+      "z": 5,
+      "x": 26,
+      "y": 8,
+      "bytes": 56122,
+      "status": "downloaded"
+    },
+    {
+      "z": 5,
+      "x": 23,
+      "y": 8,
+      "bytes": 50206,
+      "status": "downloaded"
+    },
+    {
+      "z": 5,
+      "x": 25,
+      "y": 8,
+      "bytes": 69859,
+      "status": "downloaded"
+    }
+  ],
+  "processing": "None. Tiles are stored byte-for-byte as served; elevation is decoded at runtime.",
+  "caveat": "SRTM/GMTED mix; vertical datum follows the upstream product (EGM96), not WGS84 ellipsoid."
+}

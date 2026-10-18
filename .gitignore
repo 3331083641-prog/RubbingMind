@@ -79,3 +79,15 @@ data/runtime/
 static/results/
 node_modules.partial-*/
 data/museum-images/*.pdf
+
+# 9. 高分辨率 DEM 瓦片缓存 (通过 scripts/fetch_terrain_dem.py 按需下载)
+#    仅 z0–z6 概览瓦片随仓库分发；更高层级体积大且可复现，不入普通 Git。
+apps/web/public/assets/gis/terrain/7/
+apps/web/public/assets/gis/terrain/8/
+apps/web/public/assets/gis/terrain/9/
+apps/web/public/assets/gis/terrain/10/
+apps/web/public/assets/gis/terrain/11/
+apps/web/public/assets/gis/terrain/12/
+
+# 10. 三维地貌开发期临时截图
+screenshots/terrain3d-dev/

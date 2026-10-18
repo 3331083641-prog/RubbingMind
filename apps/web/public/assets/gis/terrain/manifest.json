@@ -1,0 +1,67 @@
+{
+  "format": "terrarium-png",
+  "levels": [
+    {
+      "z": 0,
+      "tiles": 1,
+      "minX": 0,
+      "maxX": 0,
+      "minY": 0,
+      "maxY": 0
+    },
+    {
+      "z": 1,
+      "tiles": 4,
+      "minX": 0,
+      "maxX": 1,
+      "minY": 0,
+      "maxY": 1
+    },
+    {
+      "z": 2,
+      "tiles": 16,
+      "minX": 0,
+      "maxX": 3,
+      "minY": 0,
+      "maxY": 3
+    },
+    {
+      "z": 3,
+      "tiles": 64,
+      "minX": 0,
+      "maxX": 7,
+      "minY": 0,
+      "maxY": 7
+    },
+    {
+      "z": 4,
+      "tiles": 25,
+      "minX": 10,
+      "maxX": 14,
+      "minY": 4,
+      "maxY": 8
+    },
+    {
+      "z": 5,
+      "tiles": 81,
+      "minX": 21,
+      "maxX": 29,
+      "minY": 8,
+      "maxY": 16
+    },
+    {
+      "z": 6,
+      "tiles": 143,
+      "minX": 44,
+      "maxX": 56,
+      "minY": 19,
+      "maxY": 29
+    }
+  ],
+  "maxZoom": 6,
+  "totalTiles": 334,
+  "totalBytes": 26764011,
+  "sha256": "e892343a55d696e6d0539696cbc0948cef307283d6b6896eed3d5953f2ce8635",
+  "generated": "2026-10-18",
+  "note": "manifest 由 scripts/fetch_terrain_dem.py 扫描真实磁盘文件生成；缺失的层级不会被伪造。"
+}

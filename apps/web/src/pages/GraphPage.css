@@ -86,3 +86,21 @@ body:has(.graph-page)>#root header select{max-width:220px}
 @media(prefers-reduced-motion:reduce){.graph-page *{animation:none!important;transition:none!important}}
 
 .timeline-event{border-radius:6px;background:linear-gradient(#0a141ce0,#0a141cba);padding:5px 6px 8px}.timeline-event.active{background:linear-gradient(#37301de8,#151c20d9)}
+
+/* ===== 三维地貌引擎（Three.js CustomLayer） ===== */
+.marker-overlay{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:2}
+.marker-overlay .historical-marker,.marker-overlay .province-label{position:absolute;left:0;top:0;margin:0;will-change:transform}
+.marker-overlay .historical-marker{pointer-events:auto}
+.marker-overlay .province-label{pointer-events:none}
+.map-view-controls{position:absolute;left:14px;top:92px;z-index:3;display:flex;flex-direction:column;gap:4px}
+.map-view-controls button{display:flex;align-items:center;gap:5px;padding:4px 7px;font-size:10px;line-height:1;color:#e2cf9c;background:#0a141ce6;border:1px solid #7c6844;border-radius:4px;cursor:pointer;font-family:inherit}
+.map-view-controls button:hover{background:#16242be6;border-color:#b9974a}
+.map-view-controls button:focus-visible{outline:2px solid #c8a45a;outline-offset:1px}
+.map-key{top:252px}
+.terrain-hud{position:absolute;left:14px;bottom:96px;z-index:3;display:flex;flex-direction:column;gap:1px;padding:6px 8px;font-size:9px;line-height:1.45;color:#b9c4bd;background:#060f16c9;border:1px solid #5f513855;border-radius:4px;font-variant-numeric:tabular-nums;pointer-events:none}
+.terrain-hud .hud-title{color:#e2c583;font-family:'Noto Serif SC','Songti SC',serif;letter-spacing:.06em;font-size:10px}
+.terrain-switch[aria-pressed=true]{border-color:#b9974a!important;color:#ffe4a3!important;background:#3a2f1570!important}
+.exaggeration-control,.contour-control{display:flex!important;align-items:center;gap:6px;border-top:1px solid #5f513855;margin-top:4px;padding-top:6px;font-size:10px}
+.exaggeration-control select{font-size:10px;padding:2px 4px;background:#0a141c;color:#e2cf9c;border:1px solid #7c6844;border-radius:3px}
+.map-error-terrain{bottom:auto;top:14px}
+@media(max-width:1400px){.terrain-hud{font-size:8px;padding:5px 6px;bottom:88px}.map-view-controls button{padding:3px 6px}.map-key{top:232px}}
