@@ -120,7 +120,7 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
       {/* 1. Header Banner */}
       <div className="relative rounded-2xl p-6 lg:p-8 overflow-hidden glass-panel border border-gold/30 bg-gradient-to-r from-[#12181F] via-[#0D1217] to-[#12181F] flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-2xl">
         <div
-          className="absolute inset-0 pointer-events-none bg-cover bg-no-repeat bg-[position:30%_42%] md:bg-[position:center_28%] opacity-[0.55]"
+          className="absolute inset-0 pointer-events-none bg-cover bg-no-repeat bg-[position:30%_42%] md:bg-[position:center_28%]"
           style={{ backgroundImage: "url('/assets/stele/backgrounds/bg_museum_hall_v2.webp')" }}
           data-testid="museum-banner-art"
           data-banner-src="/assets/stele/backgrounds/bg_museum_hall_v2.webp"
@@ -130,8 +130,8 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
           className="absolute inset-0 pointer-events-none"
           style={{
             background: [
-              'linear-gradient(90deg, rgba(10,13,18,0.72) 0%, rgba(10,13,18,0.42) 24%, rgba(13,18,23,0.12) 50%, rgba(13,18,23,0.22) 70%, rgba(10,13,18,0.68) 100%)',
-              'linear-gradient(180deg, rgba(18,24,31,0.30) 0%, rgba(18,24,31,0) 34%, rgba(10,13,18,0.22) 100%)',
+              'linear-gradient(90deg, rgba(10,13,18,0.42) 0%, rgba(10,13,18,0.16) 30%, rgba(10,13,18,0) 54%, rgba(10,13,18,0.20) 100%)',
+              'linear-gradient(180deg, rgba(18,24,31,0.12) 0%, rgba(18,24,31,0) 42%, rgba(10,13,18,0.10) 100%)',
             ].join(', '),
           }}
           aria-hidden="true"
