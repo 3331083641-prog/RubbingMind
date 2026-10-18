@@ -99,6 +99,12 @@ def run(url=URL):
                     wait_museum(page, 28)
                     ids = page.locator('[data-testid="museum-card"]').evaluate_all("nodes => nodes.map(node => node.dataset.steleId)")
                     assert len(ids) == len(set(ids)) == 28, ids
+                    banner = page.get_by_test_id('museum-banner-art')
+                    expect(banner).to_have_css('background-size', 'cover')
+                    expect(banner).to_have_css('pointer-events', 'none')
+                    art = page.request.get(url.rstrip('/') + banner.get_attribute('data-banner-src'))
+                    assert art.status == 200, art.status
+                    assert art.headers.get('content-type', '').startswith('image/webp'), art.headers.get('content-type')
                     for dynasty in ['东汉', '北魏', '唐代', '宋代', '元代', '明代', '清代']:
                         page.get_by_role('button', name=re.compile('^' + dynasty + r'\s*4$')).click()
                         page.wait_for_function(

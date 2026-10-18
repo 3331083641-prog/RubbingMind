@@ -119,11 +119,24 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
     <div className="min-h-screen bg-[#0A0D12] text-slate-100 px-4 lg:px-12 py-8 space-y-8 select-none" data-testid="museum-page" data-dynasty={selectedDynasty} data-visible-count={filteredSteles.length}>
       {/* 1. Header Banner */}
       <div className="relative rounded-2xl p-6 lg:p-8 overflow-hidden glass-panel border border-gold/30 bg-gradient-to-r from-[#12181F] via-[#0D1217] to-[#12181F] flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-2xl">
-        <div 
-          className="absolute inset-0 opacity-10 pointer-events-none bg-center bg-cover"
-          style={{ backgroundImage: `url('/assets/stele/backgrounds/bg_museum_hall.png')` }}
+        <div
+          className="absolute inset-0 pointer-events-none bg-cover bg-no-repeat bg-[position:30%_42%] md:bg-[position:center_28%] opacity-[0.55]"
+          style={{ backgroundImage: "url('/assets/stele/backgrounds/bg_museum_hall_v2.webp')" }}
+          data-testid="museum-banner-art"
+          data-banner-src="/assets/stele/backgrounds/bg_museum_hall_v2.webp"
+          aria-hidden="true"
         />
-        
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: [
+              'linear-gradient(90deg, rgba(10,13,18,0.72) 0%, rgba(10,13,18,0.42) 24%, rgba(13,18,23,0.12) 50%, rgba(13,18,23,0.22) 70%, rgba(10,13,18,0.68) 100%)',
+              'linear-gradient(180deg, rgba(18,24,31,0.30) 0%, rgba(18,24,31,0) 34%, rgba(10,13,18,0.22) 100%)',
+            ].join(', '),
+          }}
+          aria-hidden="true"
+        />
+
         <div className="relative z-10 space-y-2 max-w-2xl">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gold/15 border border-gold/40 text-gold-light text-xs font-serif">
             <BookOpen className="w-3.5 h-3.5 text-gold" />
