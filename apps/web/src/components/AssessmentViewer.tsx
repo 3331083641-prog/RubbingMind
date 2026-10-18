@@ -1,12 +1,23 @@
 import React, { useEffect, useState } from 'react';
 
 type Review = {
+  version?: number;
   reviewer: string;
   damageTypes: string[];
   note: string;
   suggestedCondition?: string | null;
   savedAt: string;
   basis: string;
+  reviewerQualification?: string;
+  expertReview?: boolean;
+};
+type Overlay = {
+  id: string;
+  kind: string;
+  reason: string;
+  confirmed: boolean;
+  metrics: { contrastStd?: number | null; laplacianVariance?: number | null; inkFraction?: number | null };
+  box: { x: number; y: number; width: number; height: number };
 };
 type Cell = { row: number; col: number; contrastStd?: number; laplacianVariance?: number };
 type AssessmentRecord = {
@@ -31,13 +42,16 @@ type AssessmentRecord = {
   gradeReasons: string[];
   imageConditionReviewStatus: string;
   humanReview: Review | null;
+  reviewHistory?: Review[];
+  expertReview?: boolean;
+  regionOverlays?: Overlay[];
   unchanged: boolean;
   unchangedNote: string | null;
   evaluationStatus: string;
   physicalStoneWeathering: string;
   authorship: {
     roles: Record<string, { name?: string | null; verificationStatus?: string; note?: string } | null>;
-    evidence: { field: string; quote: string; verificationStatus: string; sourceLabel?: string; location: string }[];
+    evidence: { field: string; quote: string; verificationStatus: string; sourceLabel?: string; sourceUrl?: string; location: string }[];
     conflicts: { field: string; detail: string }[];
   } | null;
   regionAnalysis: {
@@ -66,6 +80,7 @@ export const AssessmentViewer: React.FC<{ steleId: string; onClose: () => void }
   const [note, setNote] = useState('');
   const [types, setTypes] = useState<string[]>([]);
   const [suggestion, setSuggestion] = useState('');
+  const [selectedRegion, setSelectedRegion] = useState('');
   useEffect(() => {
     let live = true;
     setRecord(null); setError('');
@@ -78,14 +93,15 @@ export const AssessmentViewer: React.FC<{ steleId: string; onClose: () => void }
   const save = async () => {
     const response = await fetch(`/api/catalog/${encodeURIComponent(steleId)}/assessment/review`, {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ reviewer, damageTypes: types, note, suggestedCondition: suggestion || null }),
+      body: JSON.stringify({ reviewer, damageTypes: types, note, suggestedCondition: suggestion || null, roi: overlay?.box || null }),
     });
     if (!response.ok) { setError(await response.text()); return; }
     const saved = await response.json();
-    setRecord(current => current ? { ...current, humanReview: saved, imageConditionReviewStatus: '已保存复核意见，尚未作为正式鉴定' } : current);
+    setRecord(current => current ? { ...current, humanReview: saved.latest, reviewHistory: saved.history, expertReview: false, imageConditionReviewStatus: '已保存复核意见，尚未作为正式鉴定' } : current);
   };
   const box = record?.cropBox;
   const frame = record?.imageDimensions?.readable;
+  const overlay = record?.regionOverlays?.find(item => item.id === selectedRegion);
   return <div role="dialog" aria-modal="true" aria-label="馆藏评估" className="fixed inset-0 z-[80] bg-black/90 overflow-auto p-4 md:p-8 text-slate-100">
     <div className="max-w-6xl mx-auto space-y-5">
       <div className="flex justify-between gap-3"><h2 className="font-serif text-xl text-gold">{record?.title || steleId} · 馆藏评估</h2><button onClick={onClose}>关闭</button></div>
@@ -113,8 +129,16 @@ export const AssessmentViewer: React.FC<{ steleId: string; onClose: () => void }
             {frame && box && <div className="relative bg-slate-950 border border-slate-700" style={{ aspectRatio: `${frame[0]} / ${frame[1]}`, maxHeight: 360 }}>
               <img src={record.sourcePublicUrl} alt="阅读图上的处理范围" className="w-full h-full object-contain opacity-80" />
               <div className="absolute border-2 border-cinnabar" style={{ left: `${box.x / frame[0] * 100}%`, top: `${box.y / frame[1] * 100}%`, width: `${box.width / frame[0] * 100}%`, height: `${box.height / frame[1] * 100}%` }} />
+              {record.regionOverlays?.map(item => <button key={item.id} type="button" aria-label={item.kind + item.id} onClick={() => setSelectedRegion(item.id)} className="absolute border border-gold/70" style={{ left: `${item.box.x / frame[0] * 100}%`, top: `${item.box.y / frame[1] * 100}%`, width: `${item.box.width / frame[0] * 100}%`, height: `${item.box.height / frame[1] * 100}%`, background: item.id === selectedRegion ? 'rgba(201,162,39,0.28)' : 'transparent' }} />)}
             </div>}
             <p className="text-xs">范围：{record.restorationScope} · x {box?.x}，y {box?.y}，{box?.width}×{box?.height}。这是局部结果，不是全幅。</p>
+            {overlay && <div className="text-xs space-y-1">
+              <p>{overlay.kind} · {overlay.confirmed ? '人工已确认' : '算法疑似，尚未人工确认'}</p>
+              <p>{overlay.reason}</p>
+              <p>对比度 {overlay.metrics.contrastStd ?? '—'} · 清晰度 {overlay.metrics.laplacianVariance ?? '—'} · 前景比例 {overlay.metrics.inkFraction ?? '—'}</p>
+              <p>阅读图坐标 x {overlay.box.x}，y {overlay.box.y}，{overlay.box.width}×{overlay.box.height}</p>
+              <img src={`/api/catalog/${encodeURIComponent(steleId)}/assessment/region-crop?x=${overlay.box.x}&y=${overlay.box.y}&width=${overlay.box.width}&height=${overlay.box.height}`} alt="当前分区的实际图像" className="max-h-40 border border-slate-700" />
+            </div>}
           </div>
         </section>
         <section className="grid md:grid-cols-2 gap-4 text-sm">
@@ -147,7 +171,7 @@ export const AssessmentViewer: React.FC<{ steleId: string; onClose: () => void }
           <h3 className="text-gold font-serif">史料与署名核定</h3>
           {record.authorship ? <div className="text-sm space-y-1">
             {Object.entries(record.authorship.roles).map(([key, role]) => <p key={key}>{ROLE_LABEL[key] || key}：{role?.name || '未核定'} · {role?.verificationStatus || 'unknown'} · {role?.note || ''}</p>)}
-            {record.authorship.evidence.filter(item => item.field === 'otherSignature' || item.field === 'characterCompilation').map(item => <p key={item.quote}>其他署名：{item.quote} · {item.verificationStatus} · {item.sourceLabel}</p>)}
+            {record.authorship.evidence.map(item => <p key={item.field + item.quote}>{item.field}：{item.quote} · {item.verificationStatus} · {item.sourceUrl ? <a className="text-gold underline" href={item.sourceUrl} target="_blank" rel="noreferrer">{item.sourceLabel || item.location || '查看来源'}</a> : (item.sourceLabel || item.location)}</p>)}
             {record.authorship.conflicts.map(item => <p key={item.detail}>争议：{item.detail}</p>)}
           </div> : <p>没有署名核定记录。</p>}
         </section>
@@ -158,8 +182,8 @@ export const AssessmentViewer: React.FC<{ steleId: string; onClose: () => void }
         </section>
         <form className="border border-slate-700 p-3 space-y-2 text-sm" onSubmit={event => { event.preventDefault(); void save(); }}>
           <h3 className="text-gold font-serif">人工复核</h3>
-          <p className="text-xs">提交后只保存为复核意见，不会把自动初筛改成已鉴定。</p>
-          {record.humanReview && <p>已有意见：{record.humanReview.reviewer} · {record.humanReview.damageTypes.join('、')} · {record.humanReview.note}</p>}
+          <p className="text-xs">提交后追加为复核意见。系统没有核验专家身份，也不会把自动初筛改成已鉴定。</p>
+          {record.reviewHistory?.map(item => <p key={item.savedAt}>第 {item.version || 1} 条：{item.reviewer} · {item.damageTypes.join('、')} · {item.note} · {item.reviewerQualification || '身份未核验'}</p>)}
           <input aria-label="复核者" value={reviewer} onChange={event => setReviewer(event.target.value)} placeholder="复核者" className="bg-slate-950 border border-slate-700 p-2" />
           <div className="flex flex-wrap gap-2 text-xs">{DAMAGE.map(item => <label key={item}><input type="checkbox" checked={types.includes(item)} onChange={() => setTypes(current => current.includes(item) ? current.filter(value => value !== item) : [...current, item])} /> {item}</label>)}</div>
           <textarea aria-label="复核依据" value={note} onChange={event => setNote(event.target.value)} placeholder="看到了什么，依据是哪一处图像" className="w-full bg-slate-950 border border-slate-700 p-2" />

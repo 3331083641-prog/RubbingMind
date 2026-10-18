@@ -200,6 +200,43 @@ def _unverified_answer(record, facet, proposed):
     return f'现有著录没有核定《{record["title"]}》的{name}，不能判断命题「{proposed}」是否成立。'
 
 
+def _field_sources(stele_id, field):
+    path = BASE / 'data/catalog/authorship-verification' / f'{stele_id}.json'
+    if not field or not path.is_file():
+        return []
+    data = json.loads(path.read_text(encoding='utf-8'))
+    wanted = {field, {'author': 'inscriptionAuthor'}.get(field, field)}
+    sources = []
+    for item in data.get('evidence') or []:
+        if item.get('field') not in wanted:
+            continue
+        sources.append({
+            'source': item.get('source'),
+            'url': item.get('sourceUrl'),
+            'location': item.get('location'),
+            'quote': item.get('quote'),
+            'status': item.get('verificationStatus'),
+        })
+    return sources
+
+
+def _dispute_claim(record, stele_id, source_id, facet_name, field, proposed):
+    sources = _field_sources(stele_id, field)
+    quotes = '；'.join(
+        f'{item.get("source") or "来源"}：「{item.get("quote")}」' for item in sources if item.get('quote')
+    )
+    answer = f'《{record["title"]}》的{facet_name}存在著录争议。来源排序不能把另一条著录判成错误。'
+    if quotes:
+        answer += quotes + '。'
+    if proposed:
+        answer += f'命题「{proposed}」保持争议，不是已核定。'
+    return {
+        'judgment': 'disputed', 'basis': 'catalogue_conflict', 'facet': facet_name,
+        'proposed': proposed, 'recorded': None, 'steleId': stele_id, 'sourceId': source_id,
+        'sources': sources, 'forceRefusal': True, 'answer': answer,
+    }
+
+
 def judge_claim(question, work_ids):
     """Decide a catalogue-backed claim. Never fills a missing fact from model memory."""
     facets=_matched_facets(question)
@@ -227,11 +264,14 @@ def judge_claim(question, work_ids):
     for name, field in facets:
         value=_catalogue_value(record, field) if field else None
         if value is None:
-            missing.append(name)
+            missing.append((name, field))
         else:
             recorded[name]=value
+    dispute = next(((name, field) for name, field in missing if field and record.get(field + 'Verification') == 'disputed'), None)
+    if dispute and not recorded:
+        return _dispute_claim(record, stele_id, source_id, dispute[0], dispute[1], proposed)
     if proposed is not None:
-        if len(facets)!=1 or facets[0][0] in missing:
+        if len(facets)!=1 or facets[0][0] in {item[0] for item in missing}:
             facet=facets[0][0]
             return {'judgment':'insufficient_evidence','basis':'insufficient_catalogue','facet':facet,'proposed':proposed,'recorded':None,
                     'steleId':stele_id,'sourceId':source_id,'forceRefusal':True,
@@ -245,12 +285,12 @@ def judge_claim(question, work_ids):
                 'steleId':stele_id,'sourceId':source_id,'forceRefusal':False,
                 'answer':f'判断：contradicted。著录字段为「{value}」，与命题「{proposed}」不一致。依据 {source_id}。这是著录字段不一致，不是独立史料反证。'}
     if missing and not recorded:
-        names='、'.join(missing)
-        return {'judgment':'insufficient_evidence','basis':'insufficient_catalogue','facet':missing[0],'proposed':None,'recorded':None,
+        names='、'.join(name for name, _field in missing)
+        return {'judgment':'insufficient_evidence','basis':'insufficient_catalogue','facet':missing[0][0],'proposed':None,'recorded':None,
                 'steleId':stele_id,'sourceId':source_id,'forceRefusal':True,
                 'answer':f'《{record["title"]}》的{names}在现有著录中为未核定，不能补写。'}
     if missing:
-        return {'judgment':'insufficient_evidence','basis':'insufficient_catalogue','facet':missing[0],'proposed':None,
+        return {'judgment':'insufficient_evidence','basis':'insufficient_catalogue','facet':missing[0][0],'proposed':None,
                 'recorded':recorded,'steleId':stele_id,'sourceId':source_id,'forceRefusal':True,
                 'answer':'判断：insufficient_evidence。'+ '；'.join(f'{name}：{value}' for name,value in recorded.items()) + '。其余问项未核定，不能补写。'}
     summary='；'.join(f'{name}：{value}' for name,value in recorded.items())
@@ -302,7 +342,10 @@ def query(question,stele_id=None,limit=12):
             work_ids=[normalized]
         claim=None if scope_mismatch else judge_claim(question, work_ids)
         judgment=claim['judgment'] if claim else ('insufficient_evidence' if status=='insufficient_evidence' else None)
-        if claim and claim.get('forceRefusal'):
+        if claim and claim.get('judgment')=='disputed':
+            status='disputed'
+            answer=claim['answer']+' 未调用语言模型，不把争议字段改写成已核定。'
+        elif claim and claim.get('forceRefusal'):
             status='insufficient_evidence'
             answer=claim['answer']+' 未调用语言模型，不补写未核定史实。'
         elif claim and status=='evidence_found':

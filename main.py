@@ -12,7 +12,7 @@ import threading
 from contextlib import asynccontextmanager
 from typing import Optional, List, Dict, Any, Literal
 
-from fastapi import FastAPI, File, UploadFile, Form, HTTPException
+from fastapi import FastAPI, File, UploadFile, Form, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.middleware.cors import CORSMiddleware
@@ -184,6 +184,14 @@ def get_experiment_asset(experiment_id: str,filename: str):
     return FileResponse(path)
 
 
+@app.get('/api/experiments/{experiment_id}/diagnosis')
+def experiment_diagnosis(experiment_id: str):
+    if experiment_id != 'heldout-v20-v21-2026-10-18':
+        raise HTTPException(status_code=404, detail='没有这份实验的失败诊断')
+    from restoration_diagnosis import diagnose
+    return diagnose()
+
+
 @app.get('/api/experiments/{experiment_id}/export/{kind}')
 def export_experiment(experiment_id: str,kind: str):
     from experiment_registry import export_payload
@@ -193,11 +201,31 @@ def export_experiment(experiment_id: str,kind: str):
     return Response(content=body,media_type=media,headers={'Content-Disposition':f'attachment; filename="{experiment_id}-{kind}"'})
 
 
+class ReviewBox(BaseModel):
+    x: int
+    y: int
+    width: int
+    height: int
+
+
 class ConditionReviewRequest(BaseModel):
     reviewer: str = Field(min_length=1, max_length=80)
     damageTypes: List[str] = Field(min_length=1, max_length=8)
     note: str = Field(min_length=1, max_length=500)
     suggestedCondition: Optional[str] = None
+    roi: Optional[ReviewBox] = None
+
+
+class GlyphAnnotationRequest(BaseModel):
+    steleId: str
+    inferenceId: Optional[str] = None
+    bbox: ReviewBox
+    glyph: str
+    sourceCitation: str
+    annotator: str
+    damageLevel: str = '未分级'
+    variantNote: str = ''
+    imageSha256: str
 
 
 @app.get('/api/catalog/{stele_id}/assessment')
@@ -223,20 +251,52 @@ def get_catalog_assessment_asset(stele_id: str, kind: str):
 
 
 @app.post('/api/catalog/{stele_id}/assessment/review')
-def save_catalog_condition_review(stele_id: str, request: ConditionReviewRequest):
-    from catalog_assessment import save_review
+def save_catalog_condition_review(stele_id: str, body: ConditionReviewRequest, request: Request):
+    from catalog_assessment import review_allowed, save_review
+    host = request.client.host if request.client else ''
+    if not review_allowed(host, request.headers.get('x-rubbingmind-review-token')):
+        raise HTTPException(status_code=403, detail='公网请求不能写入复核意见')
     try:
-        record=save_review(stele_id, request.reviewer, request.damageTypes, request.note, request.suggestedCondition)
+        roi=None if body.roi is None else {'x': body.roi.x, 'y': body.roi.y, 'width': body.roi.width, 'height': body.roi.height}
+        record=save_review(stele_id, body.reviewer, body.damageTypes, body.note, body.suggestedCondition, roi)
     except ValueError as exc:
         raise HTTPException(status_code=400,detail=str(exc))
     if record is None:raise HTTPException(status_code=404,detail='没有这件馆藏的归档评估')
     return record
 
 
+@app.get('/api/catalog/{stele_id}/assessment/region-crop')
+def get_region_crop(stele_id: str, x: int, y: int, width: int, height: int):
+    from catalog_assessment import region_crop
+    try:
+        payload=region_crop(stele_id, x, y, width, height)
+    except ValueError as exc:
+        raise HTTPException(status_code=400,detail=str(exc))
+    if payload is None:raise HTTPException(status_code=404,detail='没有这件馆藏的归档评估')
+    return Response(payload, media_type='image/png')
+
+
 @app.get('/api/glyph-evaluation')
 def glyph_evaluation_status():
-    return {'status':'not_evaluated','top1':None,'top3':None,
-        'reason':'尚无按碑刻隔离、且未参与开发的独立人工标注测试集，不能报告古碑OCR准确率。'}
+    from glyph_annotations import evaluate
+    measured=evaluate()
+    status='not_evaluated' if measured.get('evaluationStatus')!='measured' else 'measured'
+    return {'status':status,'top1':measured.get('top1'),'top3':measured.get('top3'),
+        'verifiedLabels':measured.get('verifiedLabels'),'recordedLabels':measured.get('recordedLabels'),
+        'reason':measured.get('reason')}
+
+
+@app.post('/api/glyph-annotations')
+def save_glyph_annotation(body: GlyphAnnotationRequest, request: Request):
+    from catalog_assessment import review_allowed
+    from glyph_annotations import save_human_annotation
+    host = request.client.host if request.client else ''
+    if not review_allowed(host, request.headers.get('x-rubbingmind-review-token')):
+        raise HTTPException(status_code=403, detail='公网请求不能写入字符标注')
+    try:
+        return save_human_annotation(body.model_dump())
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
 
 
 @app.get("/")

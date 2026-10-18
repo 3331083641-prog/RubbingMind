@@ -31,8 +31,10 @@ export const HeldoutComparison: React.FC = () => {
   const [error, setError] = useState('');
   const [degradation, setDegradation] = useState('all');
   const [metric, setMetric] = useState<'psnrMean' | 'ssimMean' | 'edgeF1Mean' | 'thinStrokeMaeMean' | 'processingMsMean'>('psnrMean');
+  const [diagnosis, setDiagnosis] = useState<{ caveat?: string; negativeLiftCount?: number; causeCounts?: Record<string, number>; notRetuned?: string } | null>(null);
   useEffect(() => {
     let live = true;
+    fetch('/api/experiments/heldout-v20-v21-2026-10-18/diagnosis').then(response => response.ok ? response.json() : null).then(value => { if (live) setDiagnosis(value); }).catch(() => undefined);
     fetch('/api/experiments/heldout-v20-v21-2026-10-18').then(async response => {
       if (!response.ok) throw new Error('留出实验不可用');
       return response.json();
@@ -53,6 +55,7 @@ export const HeldoutComparison: React.FC = () => {
     {data && <>
       <p className="text-xs text-slate-400">{data.samplingRule} {data.notThePreviousBatch} {data.registry?.metricsOnly ? '本批次已保留真实数值，部分图像对比不可用。' : ''}</p>
       <p className="text-sm">样本 {data.registry?.sampleCount ?? '—'} 件 · 记录 {data.registry?.rowCount ?? data.summary.length} 条。v2.0 负提升 {v20?.negativeLiftCount}/{v20?.n}，v2.1 负提升 {v21?.negativeLiftCount}/{v21?.n}。遮挡场景 v2.0 {occlusion('adaptive_v20')?.negativeLiftCount}/{occlusion('adaptive_v20')?.n}，v2.1 {occlusion('adaptive_v21')?.negativeLiftCount}/{occlusion('adaptive_v21')?.n}。</p>
+      {diagnosis && <p className="text-xs">{diagnosis.caveat} 负提升 {diagnosis.negativeLiftCount} 条仍保留。{Object.entries(diagnosis.causeCounts || {}).map(([cause, count]) => `${cause} ${count}`).join('；')}。{diagnosis.notRetuned}</p>}
       <div className="flex flex-wrap gap-2 text-xs">{DEGRADATIONS.map(item => <button key={item} aria-pressed={degradation === item} onClick={() => setDegradation(item)} className={degradation === item ? 'text-slate-950 bg-gold px-2 py-1 rounded' : 'border border-slate-700 px-2 py-1 rounded'}>{LABELS[item]}</button>)}</div>
       <label className="text-xs">对比指标<select aria-label="留出实验指标" value={metric} onChange={event => setMetric(event.target.value as typeof metric)} className="ml-2 bg-slate-950 p-1">{[['psnrMean', 'PSNR'], ['ssimMean', 'SSIM'], ['edgeF1Mean', '边缘F1'], ['thinStrokeMaeMean', '细笔画误差'], ['processingMsMean', '耗时']].map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
       <table className="w-full text-xs text-left"><thead><tr>{['方法', 'n', '失败', 'PSNR', 'SSIM', '边缘F1', '细笔画误差', '耗时', '负提升'].map(item => <th key={item} className="p-2">{item}</th>)}</tr></thead>

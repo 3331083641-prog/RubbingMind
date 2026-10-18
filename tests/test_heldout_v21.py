@@ -28,3 +28,12 @@ def test_metrics_only_batch_stays_visible_without_hiding_image_batches():
     assert heldout['metricsOnly'] is True and heldout['imageComparisonAvailable'] is False
     body, media = export_payload(heldout['id'], 'summary.csv')
     assert media == 'text/csv' and b'adaptive_v21' in body and b'occlusion' in body
+
+
+def test_failure_diagnosis_keeps_negative_cases():
+    from restoration_diagnosis import diagnose
+    report = diagnose()
+    assert report['negativeLiftCount'] > 0
+    assert any(case['cause'] == '本身信息不可恢复' and case['negativeLift'] for case in report['cases'])
+    assert '历史碑刻' in report['caveat']
+    assert '没有删除负提升' in report['notRetuned']

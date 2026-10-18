@@ -88,6 +88,10 @@ export const SteleService = {
     if (!res.ok) throw new Error('人工确认记录保存失败');
     return res.json();
   },
+  async saveGlyphAnnotation(payload:{steleId:string;inferenceId?:string;bbox:{x:number;y:number;width:number;height:number};glyph:string;sourceCitation:string;annotator:string;damageLevel:string;variantNote:string;imageSha256:string}):Promise<void> {
+    const res=await fetch('/api/glyph-annotations',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    if(!res.ok) throw new Error(await res.text() || '字符标注保存失败');
+  },
   async saveGlyphTemplate(inferenceId:string,glyph:string,basis:string,annotator:string):Promise<void> {
     const res=await fetch(`/api/inferences/${inferenceId}/template`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({glyph,basis,annotator})});
     if(!res.ok) throw new Error('参考字形保存失败，请检查标注内容');
