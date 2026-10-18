@@ -34,6 +34,8 @@
   "processingTimeMs": 162.74595260620117,
   "outputImage": "static/results/tang_03_yanjiamiao/assess28-20261018-tang_03_yanjiamiao/restored.png",
   "archivedOutput": "data/catalog/assessments/outputs/tang_03_yanjiamiao.png",
+  "archivedInput": "data/catalog/assessments/inputs/tang_03_yanjiamiao.png",
+  "inputImageSha256": "ac699fadd4f6c2d9d47fd42ba051d761604e2f00416aca0f936017b812da3d63",
   "outputImageSha256": "ac699fadd4f6c2d9d47fd42ba051d761604e2f00416aca0f936017b812da3d63",
   "adaptiveDecisions": [
     {

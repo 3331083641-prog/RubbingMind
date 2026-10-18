@@ -34,6 +34,8 @@
   "processingTimeMs": 453.9937973022461,
   "outputImage": "static/results/yuan_01_yufu/assess28-20261018-yuan_01_yufu/restored.png",
   "archivedOutput": "data/catalog/assessments/outputs/yuan_01_yufu.png",
+  "archivedInput": "data/catalog/assessments/inputs/yuan_01_yufu.png",
+  "inputImageSha256": "84ece56499dd5d764da5cade074c4af8cfe212688b2490727e7ec6137c31b1c4",
   "outputImageSha256": "ea8baa2452380ce192dd88a7848727824f02fa0f14557563b8a49d9a4c955990",
   "adaptiveDecisions": [
     {

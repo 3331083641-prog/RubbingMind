@@ -34,6 +34,8 @@
   "processingTimeMs": 441.9105052947998,
   "outputImage": "static/results/yuan_02_sundeyu/assess28-20261018-yuan_02_sundeyu/restored.png",
   "archivedOutput": "data/catalog/assessments/outputs/yuan_02_sundeyu.png",
+  "archivedInput": "data/catalog/assessments/inputs/yuan_02_sundeyu.png",
+  "inputImageSha256": "00bb58e55cd848465363e00a7434057c79af5e1ef2b397429cdfbb12db04753a",
   "outputImageSha256": "f6279768c0340bd8048d5ed03631793e4a501b04fee53ca60e7d8a9cd6827ea5",
   "adaptiveDecisions": [
     {

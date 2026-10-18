@@ -1,0 +1,48 @@
+{
+  "steleId": "qing_02_wushi_reerection",
+  "rule": "region-condition-v1",
+  "publishedImageCondition": "中度影像损伤",
+  "publishedGradeUnchanged": true,
+  "reviewStatus": "自动初筛，待人工复核",
+  "capture": {
+    "readablePixels": [
+      3976,
+      1626
+    ],
+    "analysisLongSide": 900,
+    "analysisScale": 0.2264,
+    "note": "拉普拉斯方差随分辨率、缩放和压缩变化，不能把绝对数值直接当成字迹残损程度。"
+  },
+  "polarity": "lightGround",
+  "mountingAndScan": {
+    "borderFraction": 0.08,
+    "borderContrastStd": 30.81,
+    "note": "外缘 8% 单独观察裱边、纸边和扫描背景，不并入正文初筛等级。"
+  },
+  "textCells": [
+    {
+      "row": 0,
+      "col": 1,
+      "contrastStd": 37.52,
+      "laplacianVariance": 11062.9,
+      "inkFraction": 0.324
+    },
+    {
+      "row": 1,
+      "col": 1,
+      "contrastStd": 35.78,
+      "laplacianVariance": 9536.9,
+      "inkFraction": 0.3357
+    }
+  ],
+  "suspectedLocalFading": [],
+  "suspectedNonTextTexture": [],
+  "physicalStoneWeathering": "无可靠原石证据，不评定",
+  "coverage": "阅读图和档案图各一幅。册页若有多开，其余开页不在本次评级内。",
+  "limitations": [
+    "3×3 分区是自动抽样，不是逐字释读。",
+    "疑似局部变淡和疑似非文字纹理都需要人工看图确认。",
+    "黑底白字与白底黑字已分开估计墨迹比例，但仍可能受拓纸底色影响。",
+    "原石剥蚀、裂隙和石面磨损没有原石照片时不评定。"
+  ]
+}

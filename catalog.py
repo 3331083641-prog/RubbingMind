@@ -10,6 +10,15 @@ def load(name):
 def adapt(record):
     r = dict(record)
     r.update(script_type=r['scriptType'],year=r['originalYear'],ganzhi='未核定',location=r.get('originalLocation') or '原碑所在地未核定',museum=r['rubbingCollectionInstitution'],dimensions=r.get('dimensions','未核定'),summary=r['description'],historical_context=r['description'],badges=[r['dynasty'],r['artifactType'],'真实馆藏'],raw_image=r['imageAssets']['readable'],clean_image=r['imageAssets']['readable'],damaged_image='',restored_image='',metrics={k:None for k in METRIC_KEYS},translation=r.get('transcription',''),inscriptionAuthor=r['author'],collectionInstitution=r['rubbingCollectionInstitution'],currentLocation=r.get('physicalCollectionInstitution') or '原石现藏机构未核定',weathering_level=r['weatheringLevel'],imageUrl=r['imageAssets']['cover'],localImagePath=r['imageAssets']['readable'].split('?')[0],gis_coords=[],isDemo=False,source_kind='verified_review_v3',catalogVersion=3)
+    r['imageConditionReviewStatus'] = '自动初筛，待人工复核'
+    r['physicalStoneWeathering'] = '无可靠原石证据，不评定'
+    r['physicalWeatheringEvidence'] = None
+    if r.get('assessmentRunId'):
+        r['assessmentAssetUrls'] = {
+            'record': f"/api/catalog/{r['id']}/assessment",
+            'inputRoi': f"/api/catalog/{r['id']}/assessment/assets/input-roi",
+            'output': f"/api/catalog/{r['id']}/assessment/assets/output",
+        }
     return r
 def museum_records():return [adapt(r) for r in load('steles28.json')]
 

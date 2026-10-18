@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { SteleItem, DYNASTY_OPTIONS, roleText } from '../types/stele';
 import { RubbingArchiveViewer } from '../components/RubbingArchiveViewer';
+import { AssessmentViewer } from '../components/AssessmentViewer';
 import { SteleFullscreenViewer } from '../components/stele3d/SteleFullscreenViewer';
 import { 
   Search, 
@@ -36,6 +37,7 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [viewing3DStele, setViewing3DStele] = useState<SteleItem | null>(null);
   const [viewingArchive, setViewingArchive] = useState<{stele:SteleItem;mode:'readable'|'archive'} | null>(null);
+  const [viewingAssessment, setViewingAssessment] = useState<string | null>(null);
   const [failedImages, setFailedImages] = useState<Record<string,boolean>>({});
   const [pendingNoticeStele, setPendingNoticeStele] = useState<SteleItem | null>(null);
 
@@ -349,7 +351,8 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
 
                     <p className="text-xs text-slate-400">拓本：{stele.rubbingPeriod}</p><p className="text-xs text-slate-400">类型：{stele.artifactType}</p>
                     <p className="text-xs text-slate-400">篆额：{roleText(stele.titleCalligrapher, stele.titleCalligrapherVerification)} · 刻工：{roleText(stele.engraver, stele.engraverVerification)} · 碑主/墓主：{roleText(stele.steleSubject, stele.steleSubjectVerification)}</p>
-                    <p className="text-xs text-slate-400">原石风化：{stele.stoneWeathering || '无原石影像，不评定'}</p>
+                    <p className="text-xs text-slate-400">影像初筛：{stele.imageConditionReviewStatus || '自动初筛，待人工复核'}</p>
+                    <p className="text-xs text-slate-400">原石风化：{stele.physicalStoneWeathering || stele.stoneWeathering || '无可靠原石证据，不评定'}</p>
                     {stele.assessmentRunId && <p className="text-[10px] text-slate-500 font-mono truncate">处理 {stele.assessmentRunId} · {stele.assessmentScope === 'partial_center_roi' ? '中心局部' : '全幅'}</p>}
                     {/* Academic Summary */}
                     <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed pt-0.5 font-sans">
@@ -363,6 +366,7 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
                   </div>
 
                   <div className="flex flex-wrap gap-2 text-xs text-gold">
+                    <button onClick={() => setViewingAssessment(stele.id)}>查看本件评估</button>
                     <button onClick={() => setViewingArchive({stele,mode:'readable'})}>查看高清拓本</button>
                     <button onClick={() => setViewingArchive({stele,mode:'archive'})}>查看完整档案</button>
                     <a href={stele.sourceUrl} target="_blank" rel="noreferrer">查看馆藏来源</a>
@@ -421,6 +425,7 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
       )}
 
       {viewingArchive && <RubbingArchiveViewer stele={viewingArchive.stele} mode={viewingArchive.mode} onClose={() => setViewingArchive(null)} />}
+      {viewingAssessment && <AssessmentViewer steleId={viewingAssessment} onClose={() => setViewingAssessment(null)} />}
       {/* 3D Stele Viewer Modal */}
       {viewing3DStele && (
         <SteleFullscreenViewer

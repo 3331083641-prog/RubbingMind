@@ -34,6 +34,8 @@
   "processingTimeMs": 457.57007598876953,
   "outputImage": "static/results/wei_03_kouyan/assess28-20261018-wei_03_kouyan/restored.png",
   "archivedOutput": "data/catalog/assessments/outputs/wei_03_kouyan.png",
+  "archivedInput": "data/catalog/assessments/inputs/wei_03_kouyan.png",
+  "inputImageSha256": "ace155bc9fdcc8a764caf292b397c1338d16efa6b1548c2b83cf699a9e9c8961",
   "outputImageSha256": "2f4b79df3e2e695f8b3f09046045fd90aac1e0d93fd01c16e56ed6ac919d8c0b",
   "adaptiveDecisions": [
     {

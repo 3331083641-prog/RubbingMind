@@ -34,6 +34,8 @@
   "processingTimeMs": 436.509370803833,
   "outputImage": "static/results/qing_01_qianlong_heart_sutra/assess28-20261018-qing_01_qianlong_heart_sutra/restored.png",
   "archivedOutput": "data/catalog/assessments/outputs/qing_01_qianlong_heart_sutra.png",
+  "archivedInput": "data/catalog/assessments/inputs/qing_01_qianlong_heart_sutra.png",
+  "inputImageSha256": "d4d92f367960caba688f4f5d7b93ebcca26826930dca1e925c8e91163158bb39",
   "outputImageSha256": "3c9ee7a8136833f99f020dbe71bc388511c228b84a3f78ebb6c9577a8a32c57f",
   "adaptiveDecisions": [
     {

@@ -64,6 +64,10 @@ export interface SteleItem {
   engraverVerification?: string;
   steleSubjectVerification?: string;
   imageCondition?: string;
+  imageConditionReviewStatus?: string;
+  physicalStoneWeathering?: string;
+  physicalWeatheringEvidence?: string | null;
+  assessmentAssetUrls?: { record: string; inputRoi: string; output: string } | null;
   stoneWeathering?: string;
   assessmentRunId?: string;
   assessmentScope?: string;
