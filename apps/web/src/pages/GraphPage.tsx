@@ -104,7 +104,7 @@ export const GraphPage:React.FC<Props> = ({stele,onSelectStele}) => {
           <button className="national-return" onClick={()=>{if(mode==='人物关系')setMode('全国视图');issueCommand('national');}}>返回全国视图</button>
           {mode==='人物关系'||mode==='地图与图谱联动'?<div className="node-filter"><select aria-label="筛选图谱节点" value={category} onChange={e=>setCategory(e.target.value)}><option value="all">全部实体</option><option value="person">金石人物</option><option value="place">历史地望</option><option value="era">金石纪年</option><option value="document">文献载体</option></select><span>{visibleNodes.length} 节点 · {visibleLinks.length} 关系</span></div>:null}
         </div>
-        <div className="map-provenance"><SourceLink url="https://github.com/MisterChangRay/geodeparse">天地图行政区划镜像 · 上游声明 GS(2024)0650 · MIT</SourceLink><SourceLink url="https://www.naturalearthdata.com/about/terms-of-use/">水系 Natural Earth · 公有领域</SourceLink><SourceLink url="/assets/gis/terrain/ATTRIBUTION.md">地形 Mapzen · USGS / NOAA 等</SourceLink><span>现代省界；古址精度另注。应用未单独审图。</span></div>
+        <div className="map-provenance"><SourceLink url="https://github.com/MisterChangRay/geodeparse">天地图行政区划镜像 · 上游声明 GS(2024)0650 · MIT</SourceLink><SourceLink url="https://www.naturalearthdata.com/about/terms-of-use/">水系 Natural Earth · 公有领域</SourceLink><SourceLink url="/assets/gis/terrain/ATTRIBUTION.md">地形 Mapzen · USGS / NOAA 等</SourceLink><span>山川设色来自同一 DEM，不改坐标。现代省界；古址精度另注。应用未单独审图。</span></div>
         {lines&&<p className="association-note">泥金虚线：原石起讫关联；青绿点线：人物关联地。均不代表已考证的行进路线。</p>}
       </section>
       <aside className="research-sidebar">

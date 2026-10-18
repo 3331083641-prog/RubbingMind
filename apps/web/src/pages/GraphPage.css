@@ -37,12 +37,12 @@ body:has(.graph-page)>#root header select{max-width:220px}
 .search-results button{display:flex;justify-content:space-between;padding:9px 5px;width:100%;text-align:left}.search-results small{color:var(--celadon)}
 .layer-controls{position:absolute;top:105px;right:14px;z-index:10;background:#111c24;border:1px solid #82734e;padding:14px;border-radius:8px;display:flex;flex-direction:column;gap:10px}
 .layer-controls label{display:flex;align-items:center;gap:8px;font-size:12px}.graph-page input[type=checkbox]{accent-color:var(--gold)}
-.explorer-stage{position:relative;display:flex;min-height:460px;height:clamp(460px,48vh,590px);flex:1;overflow:hidden;background:#071019}
+.explorer-stage{position:relative;display:flex;min-height:520px;height:clamp(520px,58vh,760px);flex:1;overflow:hidden;background:#061018}
 .map-region,.network-region{height:100%;width:100%;position:relative;min-width:0}.linked .map-region{width:50%;border-right:1px solid #715c36}.linked .network-region{width:50%}
 .historical-map,.map-canvas{width:100%;height:100%;position:relative}.map-canvas{position:absolute;inset:0}
 .map-compass{position:absolute;top:22px;left:24px;color:#cbb275;pointer-events:none;opacity:.8;display:flex;align-items:center;flex-direction:column;font-size:10px}
 .map-compass svg{margin-top:5px}.map-coordinate{position:absolute;bottom:49px;left:18px;color:#c9b989;font-size:10px;font-variant-numeric:tabular-nums;pointer-events:none}.map-coordinate span{margin-left:12px;color:#92aaa9}
-.province-label{font-family:serif;color:#baa878;font-size:10px;pointer-events:none;text-shadow:0 1px 3px #081016,1px 0 2px #081016;letter-spacing:.1em}
+.province-label{font-family:'Noto Serif SC','Songti SC','SimSun',serif;color:#E6BB61;font-size:11px;pointer-events:none;text-shadow:0 1px 2px #061018,0 0 4px #061018;letter-spacing:.08em}
 .region-legend{position:absolute;bottom:72px;left:18px;font-size:10px;color:#b5d1c0;pointer-events:none}
 .map-key{position:absolute;left:17px;top:95px;display:flex;flex-direction:column;gap:5px;pointer-events:none;color:#c1c4b3;font-size:10px}.map-key span{display:flex;gap:6px;align-items:center}
 .map-key i{width:6px;height:6px;border-radius:50%}.map-key .red{background:#d25943}.map-key .gold{background:#ebc46f}.map-key .green{background:#70c5b3}
@@ -55,7 +55,7 @@ body:has(.graph-page)>#root header select{max-width:220px}
 .map-provenance{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;padding:10px 14px;color:#b7bab0;font-size:9px;border-top:1px solid #68573355;background:#0c151c}.map-provenance>a{color:#c5b88e}.map-provenance>span{width:100%}
 .association-note{padding:5px 14px 10px;color:#c4b687;font-size:10px;margin:0}
 .historical-marker{width:29px;height:29px;display:flex;align-items:center;justify-content:center;position:relative;background:#162f2de8;border:1px solid #87d8c2;border-radius:50%;color:#bfe7d8;font-family:serif!important;font-size:15px!important;text-align:center;padding:0}
-.historical-marker.original{background:#802e24e8;border-color:#ef9871;color:#ffe6ce}.historical-marker.collection{background:#5b451ee8;border-color:#e6bc63;color:#ffe4a3}.historical-marker.selected{border-width:2px;width:37px;height:37px;z-index:5}.historical-marker.with-effects.selected{box-shadow:0 0 0 6px #cfb77415,0 0 18px #ce9b4450}
+.historical-marker.original{background:#802e24e8;border-color:#ef9871;color:#ffe6ce}.historical-marker.collection{background:#5b451ee8;border-color:#e6bc63;color:#ffe4a3}.historical-marker.selected{border-width:2px;width:37px;height:37px;z-index:5}.historical-marker.with-effects{box-shadow:0 0 0 4px #c8a45a22}.historical-marker.with-effects.selected{box-shadow:0 0 0 6px #e6bb6130,0 0 16px #d45b4240;animation:marker-breathe 2.4s ease-in-out infinite}@keyframes marker-breathe{50%{box-shadow:0 0 0 8px #e6bb6120,0 0 18px #d45b4233}}
 .marker-label{position:absolute;top:34px;left:50%;transform:translateX(-50%);white-space:nowrap;color:#f0e6cc;background:#081016d9;padding:3px 7px;border-radius:3px;font-size:11px;border-bottom:1px solid #806b3c;pointer-events:none}.historical-marker.selected .marker-label{top:41px;color:#ffe0a1}
 .graph-page .maplibregl-ctrl-group{background:#b8c6bc}.graph-page .maplibregl-ctrl-scale{background:#0b151de8;border-color:#c3b88d;color:#d9ca9e;font-size:9px;margin-bottom:41px}
 .knowledge-network{height:100%;width:100%;position:relative;background:radial-gradient(ellipse at 40% 45%,#17373566,transparent 70%),#0a131a}.knowledge-network>div{width:100%;height:100%}.knowledge-network>p{position:absolute;bottom:13px;left:17px;font-size:10px;color:#b9bba8;pointer-events:none;margin:0}
