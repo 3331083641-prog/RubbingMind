@@ -89,7 +89,7 @@ export default function HistoricalMap({ data, command, selectedIds, labels, boun
   useEffect(()=>{
     const m=map.current; if(!ready||!m)return;
     for(const layer of ['province-outline','national-outline']) m.setLayoutProperty(layer,'visibility',boundaries?'visible':'none');
-    m.setLayoutProperty('rivers','visibility',rivers?'visible':'none');
+    for (const layer of ['rivers', 'rivers-case']) if (m.getLayer(layer)) m.setLayoutProperty(layer, 'visibility', rivers ? 'visible' : 'none');
   },[ready,boundaries,rivers]);
   useEffect(()=>{provinceMarkers.current.forEach(marker=>marker.getElement().style.display=labels?'block':'none');},[labels]);
   useEffect(()=>{
