@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ProcessingRun, SteleItem } from '../types/stele';
+import { ProcessingRun, SteleItem, roleText } from '../types/stele';
 import { SteleService } from '../services/api';
 import { ExperimentExplorer } from '../components/ExperimentExplorer';
 
@@ -79,7 +79,8 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate }) => {
         <p className="text-xs mt-2">编号：{reportId} · 生成：{new Date().toLocaleString('zh-CN')}</p></div>
       <section><h3 className="font-bold">馆藏身份与出处</h3>
         <p>拓本年代：{stele.rubbingPeriod || '未核定'}；馆藏：{stele.collectionInstitution || stele.museum}；编号：{stele.collectionNumber || '未提供'}。</p>
-        <p>类型：{stele.artifactType || '拓本'}；书体：{stele.script_type || '未核定'}；相关作者：{stele.author || '未核定'}。</p>
+        <p>类型：{stele.artifactType || '拓本'}；书体：{stele.script_type || '未核定'}；撰文：{roleText(stele.inscriptionAuthor, stele.authorVerification)}；书丹：{roleText(stele.calligrapher, stele.calligrapherVerification)}；篆额：{roleText(stele.titleCalligrapher, stele.titleCalligrapherVerification)}；刻工：{roleText(stele.engraver, stele.engraverVerification)}；碑主/墓主：{roleText(stele.steleSubject, stele.steleSubjectVerification)}。</p>
+        <p>拓本影像损伤：{stele.imageCondition || '待人工复核'}。原石风化：{stele.stoneWeathering || '无原石影像，不评定'}。</p>
         {stele.sourceUrl && <p>馆藏来源：<a href={stele.sourceUrl} className="underline break-all">{stele.sourceUrl}</a></p>}
         <p>影像许可：{stele.license || '需核查'}。</p>
       </section>

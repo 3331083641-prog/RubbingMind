@@ -255,9 +255,9 @@ export const HomePage: React.FC<HomePageProps> = ({ steles, onSelectStele, onNav
                     {stele.dynasty}
                   </span>
                   <span className={`px-2 py-0.5 rounded text-[10px] font-serif ${
-                    stele.weathering_level === '严重漫漶' ? 'bg-cinnabar text-white' : 'bg-slate-800/80 text-slate-300'
+                    stele.imageCondition === '严重漫漶' ? 'bg-cinnabar text-white' : 'bg-slate-800/80 text-slate-300'
                   }`}>
-                    {stele.weathering_level}
+                    {stele.imageCondition || '待人工复核'}
                   </span>
                 </div>
 

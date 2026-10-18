@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SteleItem } from '../types/stele';
+import { SteleItem, roleText } from '../types/stele';
 import { RubbingArchiveViewer } from './RubbingArchiveViewer';
 import { EvidenceSearch } from './EvidenceSearch';
 export const VerifiedMuseumGraph: React.FC<{stele: SteleItem; onNavigate: (tab: string) => void}> = ({stele, onNavigate}) => {
@@ -24,7 +24,10 @@ export const VerifiedMuseumGraph: React.FC<{stele: SteleItem; onNavigate: (tab: 
   </section>
   <div className="glass-panel rounded-xl p-6 grid md:grid-cols-2 gap-4">
     <p>原刻朝代：{stele.dynasty}</p><p>原刻年代：{stele.originalYear}</p>
-    <p>撰文：{stele.inscriptionAuthor}</p><p>书丹：{stele.calligrapher}</p>
+    <p>撰文：{roleText(stele.inscriptionAuthor, stele.authorVerification)}</p><p>书丹：{roleText(stele.calligrapher, stele.calligrapherVerification)}</p>
+    <p>篆额：{roleText(stele.titleCalligrapher, stele.titleCalligrapherVerification)}</p><p>刻工：{roleText(stele.engraver, stele.engraverVerification)}</p>
+    <p>碑主/墓主：{roleText(stele.steleSubject, stele.steleSubjectVerification)}</p><p>拓本影像损伤：{stele.imageCondition || '待人工复核'}</p>
+    <p>原石风化：{stele.stoneWeathering || '无原石影像，不评定'}</p><p>处理运行：{stele.assessmentRunId || '未记录'}</p>
     <p>拓本现藏：{stele.collectionInstitution}</p><p>馆藏编号：{stele.collectionNumber}</p>
     <p>原碑所在地：{stele.originalLocation || '未核定'}</p><p>原石现藏机构：{stele.physicalCollectionInstitution || '未核定'}</p>
   </div>
