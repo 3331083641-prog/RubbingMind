@@ -33,6 +33,7 @@
   "partialResultIsNotFullFrame": true,
   "processingTimeMs": 402.3420810699463,
   "outputImage": "static/results/ming_01_xianfu/assess28-20261018-ming_01_xianfu/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/ming_01_xianfu.png",
   "outputImageSha256": "fd1dd0df348505ad7aef3d3df1db552ca9404dae267eeee1a6ee282376a7e58b",
   "adaptiveDecisions": [
     {

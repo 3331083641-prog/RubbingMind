@@ -33,6 +33,7 @@
   "partialResultIsNotFullFrame": true,
   "processingTimeMs": 457.57007598876953,
   "outputImage": "static/results/wei_03_kouyan/assess28-20261018-wei_03_kouyan/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/wei_03_kouyan.png",
   "outputImageSha256": "2f4b79df3e2e695f8b3f09046045fd90aac1e0d93fd01c16e56ed6ac919d8c0b",
   "adaptiveDecisions": [
     {

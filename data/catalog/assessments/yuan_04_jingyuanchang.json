@@ -33,6 +33,7 @@
   "partialResultIsNotFullFrame": true,
   "processingTimeMs": 478.3327579498291,
   "outputImage": "static/results/yuan_04_jingyuanchang/assess28-20261018-yuan_04_jingyuanchang/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/yuan_04_jingyuanchang.png",
   "outputImageSha256": "6fc602dff081364d523d3a7738168515669870e5c0b1fc5b5380732779ec5afc",
   "adaptiveDecisions": [
     {

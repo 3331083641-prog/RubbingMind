@@ -33,6 +33,7 @@
   "partialResultIsNotFullFrame": true,
   "processingTimeMs": 507.21144676208496,
   "outputImage": "static/results/song_02_wenxuan/assess28-20261018-song_02_wenxuan/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/song_02_wenxuan.png",
   "outputImageSha256": "9e19d9674aa5c2be662adc64cb49b7a83dce44b6e9ecc511fda7ad0abe2b3b3c",
   "adaptiveDecisions": [
     {

@@ -33,6 +33,7 @@
   "partialResultIsNotFullFrame": true,
   "processingTimeMs": 460.0872993469238,
   "outputImage": "static/results/wei_04_wangsong/assess28-20261018-wei_04_wangsong/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/wei_04_wangsong.png",
   "outputImageSha256": "233eb4eefea6460f5650d73b3a027c79adfc4920e5721d3b6bd39585ed426e17",
   "adaptiveDecisions": [
     {

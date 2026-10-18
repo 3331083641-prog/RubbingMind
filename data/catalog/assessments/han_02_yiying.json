@@ -33,6 +33,7 @@
   "partialResultIsNotFullFrame": true,
   "processingTimeMs": 180.29117584228516,
   "outputImage": "static/results/han_02_yiying/assess28-20261018-han_02_yiying/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/han_02_yiying.png",
   "outputImageSha256": "bc0bc23ee66d57c5d75849244c8f6a036c79a9bd547fa4b627cc9dbac8e0ae5d",
   "adaptiveDecisions": [
     {

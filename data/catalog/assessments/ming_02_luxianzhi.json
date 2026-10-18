@@ -33,6 +33,7 @@
   "partialResultIsNotFullFrame": true,
   "processingTimeMs": 141.2510871887207,
   "outputImage": "static/results/ming_02_luxianzhi/assess28-20261018-ming_02_luxianzhi/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/ming_02_luxianzhi.png",
   "outputImageSha256": "53a6a895f2406af099373e5bcca1e79ca48f1f44cbd655887e4fe90636eb665c",
   "adaptiveDecisions": [
     {

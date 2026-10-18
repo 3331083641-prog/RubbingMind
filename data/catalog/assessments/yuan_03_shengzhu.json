@@ -33,6 +33,7 @@
   "partialResultIsNotFullFrame": true,
   "processingTimeMs": 425.15087127685547,
   "outputImage": "static/results/yuan_03_shengzhu/assess28-20261018-yuan_03_shengzhu/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/yuan_03_shengzhu.png",
   "outputImageSha256": "3717c8f071d71b54e51561128ca3000b1487aec3b6c272b02b64d9f5f4aa67c6",
   "adaptiveDecisions": [
     {

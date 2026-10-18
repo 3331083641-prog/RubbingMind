@@ -33,6 +33,7 @@
   "partialResultIsNotFullFrame": true,
   "processingTimeMs": 436.509370803833,
   "outputImage": "static/results/qing_01_qianlong_heart_sutra/assess28-20261018-qing_01_qianlong_heart_sutra/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/qing_01_qianlong_heart_sutra.png",
   "outputImageSha256": "3c9ee7a8136833f99f020dbe71bc388511c228b84a3f78ebb6c9577a8a32c57f",
   "adaptiveDecisions": [
     {

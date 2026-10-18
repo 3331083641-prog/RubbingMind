@@ -8,6 +8,7 @@ from __future__ import annotations
 import csv
 import hashlib
 import json
+import shutil
 import time
 from pathlib import Path
 
@@ -202,6 +203,9 @@ def main():
             elapsed_ms = (time.time() - started) * 1000
             output_sha = write_png(out_dir / 'restored.png', output)
             write_png(out_dir / 'input-crop.png', crop)
+            archived = ASSESS_DIR / 'outputs' / f'{item["id"]}.png'
+            archived.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(out_dir / 'restored.png', archived)
         except Exception as exc:
             elapsed_ms = (time.time() - started) * 1000
             error = f'{type(exc).__name__}: {exc}'
@@ -223,6 +227,7 @@ def main():
             'partialResultIsNotFullFrame': scope != 'full_readable_frame',
             'processingTimeMs': elapsed_ms,
             'outputImage': None if output_sha is None else (out_dir / 'restored.png').relative_to(ROOT).as_posix(),
+            'archivedOutput': None if output_sha is None else f'data/catalog/assessments/outputs/{item["id"]}.png',
             'outputImageSha256': output_sha,
             'adaptiveDecisions': None if not diagnostics else diagnostics['decisions'],
             'fidelityGate': gate,

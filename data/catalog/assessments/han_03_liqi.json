@@ -33,6 +33,7 @@
   "partialResultIsNotFullFrame": true,
   "processingTimeMs": 176.0401725769043,
   "outputImage": "static/results/han_03_liqi/assess28-20261018-han_03_liqi/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/han_03_liqi.png",
   "outputImageSha256": "12c41524f9287dcf0f013e21d82bb184964f1f898ca2dfe4a81303f9cb7d8ee2",
   "adaptiveDecisions": [
     {

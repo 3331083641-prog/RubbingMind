@@ -33,6 +33,7 @@
   "partialResultIsNotFullFrame": true,
   "processingTimeMs": 415.9507751464844,
   "outputImage": "static/results/song_03_daguan/assess28-20261018-song_03_daguan/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/song_03_daguan.png",
   "outputImageSha256": "38a3deb6f9a36585dea29b9f012488379e27f3e983e9694805a919da3c1fff1b",
   "adaptiveDecisions": [
     {

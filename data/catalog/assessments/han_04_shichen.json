@@ -33,6 +33,7 @@
   "partialResultIsNotFullFrame": true,
   "processingTimeMs": 65.29498100280762,
   "outputImage": "static/results/han_04_shichen/assess28-20261018-han_04_shichen/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/han_04_shichen.png",
   "outputImageSha256": "5cc55f985fdd828ae718ef51cf28308afecfee336b826aa4fc99b29ba6a5a33a",
   "adaptiveDecisions": [
     {

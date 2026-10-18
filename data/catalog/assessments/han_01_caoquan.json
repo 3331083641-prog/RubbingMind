@@ -33,6 +33,7 @@
   "partialResultIsNotFullFrame": true,
   "processingTimeMs": 67.38567352294922,
   "outputImage": "static/results/han_01_caoquan/assess28-20261018-han_01_caoquan/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/han_01_caoquan.png",
   "outputImageSha256": "dc6b3f809061a9c59ee48912fcdbdf762d19ae597a5e1d262bdb9ef1f46a24ba",
   "adaptiveDecisions": [
     {

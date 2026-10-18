@@ -33,6 +33,7 @@
   "partialResultIsNotFullFrame": true,
   "processingTimeMs": 426.6014099121094,
   "outputImage": "static/results/tang_04_xuanmita/assess28-20261018-tang_04_xuanmita/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/tang_04_xuanmita.png",
   "outputImageSha256": "8901e1cb8cf9348c7304d857991d5a57ce24a2f7d6905c2c7fbeae2732767f30",
   "adaptiveDecisions": [
     {

@@ -33,6 +33,7 @@
   "partialResultIsNotFullFrame": true,
   "processingTimeMs": 475.8000373840332,
   "outputImage": "static/results/song_04_mengying/assess28-20261018-song_04_mengying/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/song_04_mengying.png",
   "outputImageSha256": "23fb496668e7050e129e30fc93eae57055b8784a41590f0771bdd9f9b2f33926",
   "adaptiveDecisions": [
     {

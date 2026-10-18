@@ -33,6 +33,7 @@
   "partialResultIsNotFullFrame": true,
   "processingTimeMs": 155.78842163085938,
   "outputImage": "static/results/tang_01_duobao/assess28-20261018-tang_01_duobao/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/tang_01_duobao.png",
   "outputImageSha256": "4458f3fb3e682b9a7b7156a706d4e67812702dc54afe47619ffe6c57c61ff151",
   "adaptiveDecisions": [
     {

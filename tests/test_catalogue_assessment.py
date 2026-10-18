@@ -1,4 +1,5 @@
 """The 28-work authorship and image-assessment records stay traceable."""
+import hashlib
 import json
 from pathlib import Path
 
@@ -50,9 +51,12 @@ def test_assessments_have_real_runs_and_no_fake_similarity():
         assert row['imageCondition'] == assessment['imageCondition']
         assert row['weatheringLevel'] == '待评估'
         if assessment['assessmentStatus'] == 'processed':
-            output = ROOT / assessment['outputImage']
-            assert output.is_file()
-            import hashlib
-            assert hashlib.sha256(output.read_bytes()).hexdigest() == assessment['outputImageSha256']
+            archive = ROOT / assessment['archivedOutput']
+            assert archive.is_file()
+            digest = hashlib.sha256(archive.read_bytes()).hexdigest()
+            assert digest == assessment['outputImageSha256']
+            runtime = ROOT / assessment['outputImage']
+            if runtime.is_file():
+                assert hashlib.sha256(runtime.read_bytes()).hexdigest() == digest
         else:
             assert assessment['error']

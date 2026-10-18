@@ -33,6 +33,7 @@
   "partialResultIsNotFullFrame": true,
   "processingTimeMs": 435.85920333862305,
   "outputImage": "static/results/song_01_yuanyou/assess28-20261018-song_01_yuanyou/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/song_01_yuanyou.png",
   "outputImageSha256": "ef77b18f2037f059df1b165eed019eca9dd9ab4bf987cf40b5fed229edb67e48",
   "adaptiveDecisions": [
     {

@@ -33,6 +33,7 @@
   "partialResultIsNotFullFrame": true,
   "processingTimeMs": 186.66505813598633,
   "outputImage": "static/results/wei_01_zhangmenglong/assess28-20261018-wei_01_zhangmenglong/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/wei_01_zhangmenglong.png",
   "outputImageSha256": "95299e4fb47ad24fc9fd3791e52fda01eeead9c0e553cdd38b2adad770ba9250",
   "adaptiveDecisions": [
     {

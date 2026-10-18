@@ -33,6 +33,7 @@
   "partialResultIsNotFullFrame": true,
   "processingTimeMs": 461.7919921875,
   "outputImage": "static/results/qing_04_ayuwang_reliquary/assess28-20261018-qing_04_ayuwang_reliquary/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/qing_04_ayuwang_reliquary.png",
   "outputImageSha256": "df1af519250e866dbb4b28ea24a181a2035f6dfa724e0e7e30e5c89cc7b1bb9a",
   "adaptiveDecisions": [
     {

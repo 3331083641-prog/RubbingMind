@@ -33,6 +33,7 @@
   "partialResultIsNotFullFrame": true,
   "processingTimeMs": 465.986967086792,
   "outputImage": "static/results/ming_03_wugou/assess28-20261018-ming_03_wugou/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/ming_03_wugou.png",
   "outputImageSha256": "3baaac04251f92e9fc14b0b2e52da6548781f50667f620edd2666c640988c80c",
   "adaptiveDecisions": [
     {
