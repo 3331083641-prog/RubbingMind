@@ -1,0 +1,104 @@
+{
+  "steleId": "wei_01_zhangmenglong",
+  "title": "张猛龙碑",
+  "runId": "assess28-20261018-wei_01_zhangmenglong",
+  "sourceImage": "apps/web/public/assets/stele/museum-rubbings/wei_01_zhangmenglong_readable.jpg",
+  "sourceImageSha256": "2e884fdf44d1e9b3b1e57dfc325e6202fcef0ae42fc8f9f02a5311a8c0fefa79",
+  "archiveImageSha256": "d737b734ae97ba3314c13a973bcc9d5e411875a98596135c0d39f04d966d61a7",
+  "algorithmVersion": "adaptive-rubbing-v2.1",
+  "parameters": {
+    "strength": 1.0,
+    "notchWidth": 0.8
+  },
+  "imageDimensions": {
+    "readable": [
+      1654,
+      2827
+    ],
+    "archive": [
+      2263,
+      3094
+    ]
+  },
+  "coverage": "阅读图和档案图各一幅。册页若有多开，其余开页不在本次评级内。",
+  "analysisScope": "阅读图全幅经等比例缩小后计算诊断；缩小只用于指标，不代替原图。",
+  "restorationScope": "partial_center_roi",
+  "cropBox": {
+    "x": 571,
+    "y": 1157,
+    "width": 512,
+    "height": 512,
+    "space": "readable native pixels, right/bottom exclusive"
+  },
+  "partialResultIsNotFullFrame": true,
+  "processingTimeMs": 186.66505813598633,
+  "outputImage": "static/results/wei_01_zhangmenglong/assess28-20261018-wei_01_zhangmenglong/restored.png",
+  "outputImageSha256": "95299e4fb47ad24fc9fd3791e52fda01eeead9c0e553cdd38b2adad770ba9250",
+  "adaptiveDecisions": [
+    {
+      "operator": "skip_notch",
+      "reason": "未检出符合阈值的周期峰；不强行陷波"
+    },
+    {
+      "operator": "thin_stroke_nlm",
+      "h": 7.0886919307708744,
+      "thinStrokeRisk": 0.616092393671841,
+      "reason": "细笔画占比高，降低 NLM 强度，避免抹断或粘连"
+    }
+  ],
+  "fidelityGate": {
+    "accepted": true,
+    "strongEdgeRetention": 0.9999906420707703,
+    "meanAbsoluteChange": 0.18065643310546875,
+    "contrastRatio": 0.9998628342958157,
+    "reasons": [],
+    "basis": "输入输出启发式保真门控，非质量真值"
+  },
+  "assessmentStatus": "processed",
+  "error": null,
+  "imageCondition": "轻度影像损伤",
+  "readableGrade": "轻度影像损伤",
+  "archiveGrade": "轻度影像损伤",
+  "gradeRule": "rubbing-image-condition-v1",
+  "gradeReasons": [
+    "全幅对比度标准差 62.3，拉普拉斯方差 6061，疑似均匀缺损 0.1%。这是扫描影像指标，不是逐字残泐判读"
+  ],
+  "readableMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.4952246197382384,
+    "mean": 119.12414355485784,
+    "contrastStd": 62.3264974972849,
+    "laplacianVariance": 6061.165337480774,
+    "suspectedUniformLossFraction": 0.0007744636316064888,
+    "darkGround": false,
+    "componentCount": 550,
+    "smallComponentFraction": 0.9472727272727273
+  },
+  "archiveMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.45248868778280543,
+    "mean": 94.53154506138392,
+    "contrastStd": 64.40254758756424,
+    "laplacianVariance": 3607.4408168209225,
+    "suspectedUniformLossFraction": 0.003851841517857143,
+    "darkGround": true,
+    "componentCount": 2029,
+    "smallComponentFraction": 0.7816658452439625
+  },
+  "stoneWeathering": "无原石影像，不评定",
+  "stoneWeatheringEvidence": [],
+  "pairedGroundTruth": false,
+  "psnr": null,
+  "ssim": null,
+  "evaluationStatus": "未评测",
+  "humanReview": true,
+  "humanReviewReason": "自动评级只使用全幅对比度、清晰度和均匀缺损比例。逐字残泐未人工判读。修复记录是中心 512 局部，不是全幅。",
+  "observedIssues": [
+    "对比度标准差 62.3",
+    "拉普拉斯方差 6061.2",
+    "细碎连通域占比 94.7%",
+    "原石风化无照片，不评定",
+    "轻度影像损伤"
+  ],
+  "limit": "诊断指标不能称为原石风化程度。无配对真值，不计算 PSNR 或 SSIM。"
+}

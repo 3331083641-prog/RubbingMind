@@ -1,0 +1,109 @@
+{
+  "steleId": "yuan_03_shengzhu",
+  "title": "圣主本命长生之碑",
+  "runId": "assess28-20261018-yuan_03_shengzhu",
+  "sourceImage": "apps/web/public/assets/stele/museum-rubbings/yuan_03_shengzhu_readable.jpg",
+  "sourceImageSha256": "7062c2d1b5bcdb2574c422da4c07a2042f78812666065447d15f8befaaad9e62",
+  "archiveImageSha256": "c59d95488c1d641b8a5d438d1dc04e3920aed3061265f372203385adec303c98",
+  "algorithmVersion": "adaptive-rubbing-v2.1",
+  "parameters": {
+    "strength": 1.0,
+    "notchWidth": 0.8
+  },
+  "imageDimensions": {
+    "readable": [
+      1423,
+      2978
+    ],
+    "archive": [
+      2233,
+      3134
+    ]
+  },
+  "coverage": "阅读图和档案图各一幅。册页若有多开，其余开页不在本次评级内。",
+  "analysisScope": "阅读图全幅经等比例缩小后计算诊断；缩小只用于指标，不代替原图。",
+  "restorationScope": "partial_center_roi",
+  "cropBox": {
+    "x": 455,
+    "y": 1233,
+    "width": 512,
+    "height": 512,
+    "space": "readable native pixels, right/bottom exclusive"
+  },
+  "partialResultIsNotFullFrame": true,
+  "processingTimeMs": 425.15087127685547,
+  "outputImage": "static/results/yuan_03_shengzhu/assess28-20261018-yuan_03_shengzhu/restored.png",
+  "outputImageSha256": "3717c8f071d71b54e51561128ca3000b1487aec3b6c272b02b64d9f5f4aa67c6",
+  "adaptiveDecisions": [
+    {
+      "operator": "skip_notch",
+      "reason": "未检出符合阈值的周期峰；不强行陷波"
+    },
+    {
+      "operator": "isolated_impulse_median",
+      "pixels": 336,
+      "reason": "仅替换局部孤立极值；不执行全局开运算"
+    },
+    {
+      "operator": "thin_stroke_nlm",
+      "h": 10.20771632194519,
+      "thinStrokeRisk": 0.8600618647812638,
+      "reason": "细笔画占比高，降低 NLM 强度，避免抹断或粘连"
+    }
+  ],
+  "fidelityGate": {
+    "accepted": true,
+    "strongEdgeRetention": 0.9959760308265686,
+    "meanAbsoluteChange": 0.31629180908203125,
+    "contrastRatio": 0.9964351491374149,
+    "reasons": [],
+    "basis": "输入输出启发式保真门控，非质量真值"
+  },
+  "assessmentStatus": "processed",
+  "error": null,
+  "imageCondition": "中度影像损伤",
+  "readableGrade": "中度影像损伤",
+  "archiveGrade": "中度影像损伤",
+  "gradeRule": "rubbing-image-condition-v1",
+  "gradeReasons": [
+    "全幅对比度标准差 41.5，拉普拉斯方差 7126，疑似均匀缺损 0.0%"
+  ],
+  "readableMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.47011417058428473,
+    "mean": 82.78384368994234,
+    "contrastStd": 41.52251213768927,
+    "laplacianVariance": 7125.930143107524,
+    "suspectedUniformLossFraction": 0.0,
+    "darkGround": true,
+    "componentCount": 2367,
+    "smallComponentFraction": 0.866497676383608
+  },
+  "archiveMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.4467134652201659,
+    "mean": 65.94385771543087,
+    "contrastStd": 44.106007785388535,
+    "laplacianVariance": 3832.9888642746128,
+    "suspectedUniformLossFraction": 0.005316346979673633,
+    "darkGround": true,
+    "componentCount": 1595,
+    "smallComponentFraction": 0.8815047021943574
+  },
+  "stoneWeathering": "无原石影像，不评定",
+  "stoneWeatheringEvidence": [],
+  "pairedGroundTruth": false,
+  "psnr": null,
+  "ssim": null,
+  "evaluationStatus": "未评测",
+  "humanReview": true,
+  "humanReviewReason": "自动评级只使用全幅对比度、清晰度和均匀缺损比例。逐字残泐未人工判读。修复记录是中心 512 局部，不是全幅。",
+  "observedIssues": [
+    "对比度标准差 41.5",
+    "拉普拉斯方差 7125.9",
+    "细碎连通域占比 86.6%",
+    "原石风化无照片，不评定",
+    "中度影像损伤"
+  ],
+  "limit": "诊断指标不能称为原石风化程度。无配对真值，不计算 PSNR 或 SSIM。"
+}

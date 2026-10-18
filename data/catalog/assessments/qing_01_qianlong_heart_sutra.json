@@ -1,0 +1,104 @@
+{
+  "steleId": "qing_01_qianlong_heart_sutra",
+  "title": "乾隆御书般若波罗蜜多心经",
+  "runId": "assess28-20261018-qing_01_qianlong_heart_sutra",
+  "sourceImage": "apps/web/public/assets/stele/museum-rubbings/qing_01_qianlong_heart_sutra_readable.jpg",
+  "sourceImageSha256": "72cc05f5ad38039f298ff2c0c05f4fb9def0d55912bd3a111f5f35f739f734b9",
+  "archiveImageSha256": "504851fefe45202105241d4590793e32df14ee552d9c4e42a6bcb846b6259dec",
+  "algorithmVersion": "adaptive-rubbing-v2.1",
+  "parameters": {
+    "strength": 1.0,
+    "notchWidth": 0.8
+  },
+  "imageDimensions": {
+    "readable": [
+      734,
+      1992
+    ],
+    "archive": [
+      752,
+      2000
+    ]
+  },
+  "coverage": "阅读图和档案图各一幅。册页若有多开，其余开页不在本次评级内。",
+  "analysisScope": "阅读图全幅经等比例缩小后计算诊断；缩小只用于指标，不代替原图。",
+  "restorationScope": "partial_center_roi",
+  "cropBox": {
+    "x": 111,
+    "y": 740,
+    "width": 512,
+    "height": 512,
+    "space": "readable native pixels, right/bottom exclusive"
+  },
+  "partialResultIsNotFullFrame": true,
+  "processingTimeMs": 436.509370803833,
+  "outputImage": "static/results/qing_01_qianlong_heart_sutra/assess28-20261018-qing_01_qianlong_heart_sutra/restored.png",
+  "outputImageSha256": "3c9ee7a8136833f99f020dbe71bc388511c228b84a3f78ebb6c9577a8a32c57f",
+  "adaptiveDecisions": [
+    {
+      "operator": "skip_notch",
+      "reason": "未检出符合阈值的周期峰；不强行陷波"
+    },
+    {
+      "operator": "thin_stroke_nlm",
+      "h": 6.521596984863281,
+      "thinStrokeRisk": 0.934256141975695,
+      "reason": "细笔画占比高，降低 NLM 强度，避免抹断或粘连"
+    }
+  ],
+  "fidelityGate": {
+    "accepted": true,
+    "strongEdgeRetention": 0.9999998211860657,
+    "meanAbsoluteChange": 0.002368927001953125,
+    "contrastRatio": 0.999980799163061,
+    "reasons": [],
+    "basis": "输入输出启发式保真门控，非质量真值"
+  },
+  "assessmentStatus": "processed",
+  "error": null,
+  "imageCondition": "中度影像损伤",
+  "readableGrade": "中度影像损伤",
+  "archiveGrade": "中度影像损伤",
+  "gradeRule": "rubbing-image-condition-v1",
+  "gradeReasons": [
+    "全幅对比度标准差 35.6，拉普拉斯方差 5946，疑似均匀缺损 0.0%"
+  ],
+  "readableMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.7028112449799196,
+    "mean": 127.69596207087486,
+    "contrastStd": 35.641251223677024,
+    "laplacianVariance": 5946.471389249887,
+    "suspectedUniformLossFraction": 0.0,
+    "darkGround": false,
+    "componentCount": 950,
+    "smallComponentFraction": 0.9357894736842105
+  },
+  "archiveMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.7,
+    "mean": 132.62357278652905,
+    "contrastStd": 36.948809204486516,
+    "laplacianVariance": 4673.7424930737825,
+    "suspectedUniformLossFraction": 0.0,
+    "darkGround": false,
+    "componentCount": 488,
+    "smallComponentFraction": 0.9426229508196722
+  },
+  "stoneWeathering": "无原石影像，不评定",
+  "stoneWeatheringEvidence": [],
+  "pairedGroundTruth": false,
+  "psnr": null,
+  "ssim": null,
+  "evaluationStatus": "未评测",
+  "humanReview": true,
+  "humanReviewReason": "自动评级只使用全幅对比度、清晰度和均匀缺损比例。逐字残泐未人工判读。修复记录是中心 512 局部，不是全幅。",
+  "observedIssues": [
+    "对比度标准差 35.6",
+    "拉普拉斯方差 5946.5",
+    "细碎连通域占比 93.6%",
+    "原石风化无照片，不评定",
+    "中度影像损伤"
+  ],
+  "limit": "诊断指标不能称为原石风化程度。无配对真值，不计算 PSNR 或 SSIM。"
+}

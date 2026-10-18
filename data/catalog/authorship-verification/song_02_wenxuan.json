@@ -1,0 +1,69 @@
+{
+  "steleId": "song_02_wenxuan",
+  "title": "宋太宗御制至圣文宣王赞碑",
+  "dynasty": "宋代",
+  "originalYear": "宋代；释文含1008/1012年诏令，实际刊刻年未独立核定",
+  "rubbingPeriod": "未核定；不据拓印年改变朝代",
+  "artifactType": "碑刻拓本",
+  "rubbingCollectionInstitution": "台北故宫博物院",
+  "collectionNumber": "購拓000260",
+  "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full",
+  "inscriptionAuthor": {
+    "name": "宋太宗",
+    "verificationStatus": "verified",
+    "note": "碑文自题御制，未署书丹人。"
+  },
+  "calligrapher": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的书丹署名。"
+  },
+  "titleCalligrapher": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的篆额或题额署名。"
+  },
+  "engraver": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的刻工署名。"
+  },
+  "steleSubject": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "不把碑名中的通称自动写成墓主。"
+  },
+  "verificationStatus": "partial",
+  "evidence": [
+    {
+      "field": "inscriptionAuthor",
+      "quote": "宋太宗御製至聖文宣王贊碑",
+      "verificationStatus": "verified",
+      "sourceLabel": "台北故宫博物院购拓000260题名与释文",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full",
+      "accessionNumber": "購拓000260",
+      "location": "data/catalog/steles28.json#song_02_wenxuan.transcription",
+      "note": "馆方题名写明御制。御制是撰作，不是书丹。"
+    },
+    {
+      "field": "inscriptionAuthor",
+      "quote": "玄聖文宣王贊并序。御製",
+      "verificationStatus": "verified",
+      "sourceLabel": "台北故宫博物院购拓000260释文",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full",
+      "accessionNumber": "購拓000260",
+      "location": "data/catalog/steles28.json#song_02_wenxuan.transcription",
+      "note": "碑文自题御制，未署书丹人。"
+    }
+  ],
+  "conflicts": [
+    {
+      "field": "calligrapher",
+      "status": "unknown",
+      "detail": "御制说明诏文撰作来源。释文未署书丹人。"
+    }
+  ],
+  "notes": [],
+  "reviewedAt": "2026-10-18",
+  "method": "只采用本地馆藏释文、馆方题名或证据包中的连续引文。未重开网页时不把目录旧值升为已核定。"
+}

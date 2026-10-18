@@ -1,0 +1,104 @@
+{
+  "steleId": "song_03_daguan",
+  "title": "大观圣作碑",
+  "runId": "assess28-20261018-song_03_daguan",
+  "sourceImage": "apps/web/public/assets/stele/museum-rubbings/song_03_daguan_readable.jpg",
+  "sourceImageSha256": "2630a62ec73a363fdeaddb0f35afa0c693df879c9beddca581f523f964955a45",
+  "archiveImageSha256": "c84b847543c96af9b40643c1b48a0f3d78b3a4cd0dc4706b7c7e8b5da6cac9d7",
+  "algorithmVersion": "adaptive-rubbing-v2.1",
+  "parameters": {
+    "strength": 1.0,
+    "notchWidth": 0.8
+  },
+  "imageDimensions": {
+    "readable": [
+      1250,
+      2912
+    ],
+    "archive": [
+      2291,
+      3055
+    ]
+  },
+  "coverage": "阅读图和档案图各一幅。册页若有多开，其余开页不在本次评级内。",
+  "analysisScope": "阅读图全幅经等比例缩小后计算诊断；缩小只用于指标，不代替原图。",
+  "restorationScope": "partial_center_roi",
+  "cropBox": {
+    "x": 369,
+    "y": 1200,
+    "width": 512,
+    "height": 512,
+    "space": "readable native pixels, right/bottom exclusive"
+  },
+  "partialResultIsNotFullFrame": true,
+  "processingTimeMs": 415.9507751464844,
+  "outputImage": "static/results/song_03_daguan/assess28-20261018-song_03_daguan/restored.png",
+  "outputImageSha256": "38a3deb6f9a36585dea29b9f012488379e27f3e983e9694805a919da3c1fff1b",
+  "adaptiveDecisions": [
+    {
+      "operator": "skip_notch",
+      "reason": "未检出符合阈值的周期峰；不强行陷波"
+    },
+    {
+      "operator": "thin_stroke_nlm",
+      "h": 10.491264524459838,
+      "thinStrokeRisk": 0.9295531719937477,
+      "reason": "细笔画占比高，降低 NLM 强度，避免抹断或粘连"
+    }
+  ],
+  "fidelityGate": {
+    "accepted": true,
+    "strongEdgeRetention": 0.9999993443489075,
+    "meanAbsoluteChange": 0.0036773681640625,
+    "contrastRatio": 0.9999637394099199,
+    "reasons": [],
+    "basis": "输入输出启发式保真门控，非质量真值"
+  },
+  "assessmentStatus": "processed",
+  "error": null,
+  "imageCondition": "中度影像损伤",
+  "readableGrade": "中度影像损伤",
+  "archiveGrade": "轻度影像损伤",
+  "gradeRule": "rubbing-image-condition-v1",
+  "gradeReasons": [
+    "全幅对比度标准差 37.8，拉普拉斯方差 7518，疑似均匀缺损 0.0%"
+  ],
+  "readableMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.4807692307692308,
+    "mean": 137.10760280484905,
+    "contrastStd": 37.84763190722893,
+    "laplacianVariance": 7518.042406452758,
+    "suspectedUniformLossFraction": 0.0,
+    "darkGround": false,
+    "componentCount": 887,
+    "smallComponentFraction": 0.9470124013528749
+  },
+  "archiveMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.4582651391162029,
+    "mean": 112.00342517006803,
+    "contrastStd": 60.14267867722797,
+    "laplacianVariance": 3147.755646229116,
+    "suspectedUniformLossFraction": 0.0,
+    "darkGround": true,
+    "componentCount": 303,
+    "smallComponentFraction": 0.9636963696369637
+  },
+  "stoneWeathering": "无原石影像，不评定",
+  "stoneWeatheringEvidence": [],
+  "pairedGroundTruth": false,
+  "psnr": null,
+  "ssim": null,
+  "evaluationStatus": "未评测",
+  "humanReview": true,
+  "humanReviewReason": "自动评级只使用全幅对比度、清晰度和均匀缺损比例。逐字残泐未人工判读。修复记录是中心 512 局部，不是全幅。",
+  "observedIssues": [
+    "对比度标准差 37.8",
+    "拉普拉斯方差 7518.0",
+    "细碎连通域占比 94.7%",
+    "原石风化无照片，不评定",
+    "中度影像损伤"
+  ],
+  "limit": "诊断指标不能称为原石风化程度。无配对真值，不计算 PSNR 或 SSIM。"
+}

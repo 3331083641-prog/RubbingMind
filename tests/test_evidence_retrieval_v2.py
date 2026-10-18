@@ -63,10 +63,16 @@ def test_author_proposition_support_contradiction_and_refusal():
     assert partial['claim']['basis'] == 'catalogue_field_mismatch'
     exact = er.query('《多宝塔碑》的书丹者是不是颜真卿？')
     assert exact['judgment'] == 'supported' and exact['claim']['basis'] == 'catalogue_field_match'
-    missing = er.query('《多宝塔碑》的篆额者是谁？')
-    assert missing['judgment'] == 'insufficient_evidence' and missing['status'] == 'insufficient_evidence'
-    assert '未核定' in missing['answer']
-    assert '篆额者为「' not in missing['answer']
+    title_hand = er.query('《多宝塔碑》的篆额者是谁？')
+    assert title_hand['judgment'] == 'supported' and title_hand['claim']['recorded']['篆额者'] == '徐浩'
+    assert title_hand['claim']['basis'] == 'catalogue_field_match'
+    disputed = er.query('书丹者是不是王羲之？', 'ming_04_tongdian')
+    assert disputed['judgment'] == 'insufficient_evidence' and disputed['claim']['basis'] == 'insufficient_catalogue'
+    assert '争议' in disputed['answer'] and disputed['claim']['recorded'] is None
+    pending = er.query('撰文者是不是翁方纲？', 'qing_02_wushi_reerection')
+    assert pending['judgment'] == 'insufficient_evidence' and '待复核' in pending['answer']
+    not_author = er.query('撰文者是不是赵孟頫？', 'yuan_04_jingyuanchang')
+    assert not_author['judgment'] == 'insufficient_evidence' and not_author['claim']['recorded'] is None
     unknown = er.query('《曹全碑》的撰文者是谁？')
     assert unknown['judgment'] == 'insufficient_evidence'
     assert '岑勋' not in unknown['answer']

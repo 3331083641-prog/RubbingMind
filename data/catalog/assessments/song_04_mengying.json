@@ -1,0 +1,109 @@
+{
+  "steleId": "song_04_mengying",
+  "title": "释梦英十八体书碑",
+  "runId": "assess28-20261018-song_04_mengying",
+  "sourceImage": "apps/web/public/assets/stele/museum-rubbings/song_04_mengying_readable.jpg",
+  "sourceImageSha256": "2fa87d2293ef3b99ce74392408466264f32e7bdf057d04b3b82c69e806aac424",
+  "archiveImageSha256": "fe0bbfb58960f5bf8d6c5e2becc1d4e99847b7258053e118385d9422228ea8fd",
+  "algorithmVersion": "adaptive-rubbing-v2.1",
+  "parameters": {
+    "strength": 1.0,
+    "notchWidth": 0.8
+  },
+  "imageDimensions": {
+    "readable": [
+      1988,
+      3212
+    ],
+    "archive": [
+      2090,
+      3349
+    ]
+  },
+  "coverage": "阅读图和档案图各一幅。册页若有多开，其余开页不在本次评级内。",
+  "analysisScope": "阅读图全幅经等比例缩小后计算诊断；缩小只用于指标，不代替原图。",
+  "restorationScope": "partial_center_roi",
+  "cropBox": {
+    "x": 738,
+    "y": 1350,
+    "width": 512,
+    "height": 512,
+    "space": "readable native pixels, right/bottom exclusive"
+  },
+  "partialResultIsNotFullFrame": true,
+  "processingTimeMs": 475.8000373840332,
+  "outputImage": "static/results/song_04_mengying/assess28-20261018-song_04_mengying/restored.png",
+  "outputImageSha256": "23fb496668e7050e129e30fc93eae57055b8784a41590f0771bdd9f9b2f33926",
+  "adaptiveDecisions": [
+    {
+      "operator": "skip_notch",
+      "reason": "未检出符合阈值的周期峰；不强行陷波"
+    },
+    {
+      "operator": "isolated_impulse_median",
+      "pixels": 675,
+      "reason": "仅替换局部孤立极值；不执行全局开运算"
+    },
+    {
+      "operator": "thin_stroke_nlm",
+      "h": 4.820310688018799,
+      "thinStrokeRisk": 0.7889670182487862,
+      "reason": "细笔画占比高，降低 NLM 强度，避免抹断或粘连"
+    }
+  ],
+  "fidelityGate": {
+    "accepted": true,
+    "strongEdgeRetention": 0.9936786890029907,
+    "meanAbsoluteChange": 0.5242576599121094,
+    "contrastRatio": 0.9954902374337715,
+    "reasons": [],
+    "basis": "输入输出启发式保真门控，非质量真值"
+  },
+  "assessmentStatus": "processed",
+  "error": null,
+  "imageCondition": "轻度影像损伤",
+  "readableGrade": "轻度影像损伤",
+  "archiveGrade": "轻度影像损伤",
+  "gradeRule": "rubbing-image-condition-v1",
+  "gradeReasons": [
+    "全幅对比度标准差 50.8，拉普拉斯方差 11298，疑似均匀缺损 0.0%。这是扫描影像指标，不是逐字残泐判读"
+  ],
+  "readableMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.43586550435865506,
+    "mean": 80.42321469764376,
+    "contrastStd": 50.80711929230855,
+    "laplacianVariance": 11298.208333552055,
+    "suspectedUniformLossFraction": 0.0,
+    "darkGround": true,
+    "componentCount": 4069,
+    "smallComponentFraction": 0.8486114524453182
+  },
+  "archiveMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.41803523439832785,
+    "mean": 84.16627901274927,
+    "contrastStd": 51.63246324016602,
+    "laplacianVariance": 9210.429691878342,
+    "suspectedUniformLossFraction": 0.0,
+    "darkGround": false,
+    "componentCount": 236,
+    "smallComponentFraction": 0.9110169491525424
+  },
+  "stoneWeathering": "无原石影像，不评定",
+  "stoneWeatheringEvidence": [],
+  "pairedGroundTruth": false,
+  "psnr": null,
+  "ssim": null,
+  "evaluationStatus": "未评测",
+  "humanReview": true,
+  "humanReviewReason": "自动评级只使用全幅对比度、清晰度和均匀缺损比例。逐字残泐未人工判读。修复记录是中心 512 局部，不是全幅。",
+  "observedIssues": [
+    "对比度标准差 50.8",
+    "拉普拉斯方差 11298.2",
+    "细碎连通域占比 84.9%",
+    "原石风化无照片，不评定",
+    "轻度影像损伤"
+  ],
+  "limit": "诊断指标不能称为原石风化程度。无配对真值，不计算 PSNR 或 SSIM。"
+}

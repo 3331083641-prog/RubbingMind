@@ -1,0 +1,103 @@
+{
+  "steleId": "tang_01_duobao",
+  "title": "多宝塔感应碑",
+  "runId": "assess28-20261018-tang_01_duobao",
+  "sourceImage": "apps/web/public/assets/stele/museum-rubbings/tang_01_duobao_readable.jpg",
+  "sourceImageSha256": "e59f12e90d4804a08e9db63523725223478986c9148b4a62c6012db0610971c2",
+  "archiveImageSha256": "989671354f3e716d030aedd20179766a989f15b640b2b44397bf030ae5da98f0",
+  "algorithmVersion": "adaptive-rubbing-v2.1",
+  "parameters": {
+    "strength": 1.0,
+    "notchWidth": 0.8
+  },
+  "imageDimensions": {
+    "readable": [
+      1874,
+      1646
+    ],
+    "archive": [
+      3058,
+      2289
+    ]
+  },
+  "coverage": "阅读图和档案图各一幅。册页若有多开，其余开页不在本次评级内。",
+  "analysisScope": "阅读图全幅经等比例缩小后计算诊断；缩小只用于指标，不代替原图。",
+  "restorationScope": "partial_center_roi",
+  "cropBox": {
+    "x": 681,
+    "y": 567,
+    "width": 512,
+    "height": 512,
+    "space": "readable native pixels, right/bottom exclusive"
+  },
+  "partialResultIsNotFullFrame": true,
+  "processingTimeMs": 155.78842163085938,
+  "outputImage": "static/results/tang_01_duobao/assess28-20261018-tang_01_duobao/restored.png",
+  "outputImageSha256": "4458f3fb3e682b9a7b7156a706d4e67812702dc54afe47619ffe6c57c61ff151",
+  "adaptiveDecisions": [
+    {
+      "operator": "skip_notch",
+      "reason": "未检出符合阈值的周期峰；不强行陷波"
+    },
+    {
+      "operator": "identity",
+      "reason": "残差证据弱；不锐化、不强制CLAHE/形态学"
+    }
+  ],
+  "fidelityGate": {
+    "accepted": true,
+    "strongEdgeRetention": 1.0,
+    "meanAbsoluteChange": 0.0,
+    "contrastRatio": 1.0,
+    "reasons": [],
+    "basis": "输入输出启发式保真门控，非质量真值"
+  },
+  "assessmentStatus": "processed",
+  "error": null,
+  "imageCondition": "轻度影像损伤",
+  "readableGrade": "轻度影像损伤",
+  "archiveGrade": "重度影像损伤",
+  "gradeRule": "rubbing-image-condition-v1",
+  "gradeReasons": [
+    "全幅对比度标准差 61.6，拉普拉斯方差 593，疑似均匀缺损 0.0%。这是扫描影像指标，不是逐字残泐判读",
+    "档案图疑似均匀区域占比 15.6%，可能来自裱边或扫描背景，不升为阅读图缺损"
+  ],
+  "readableMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.7470651013874067,
+    "mean": 91.61841521486643,
+    "contrastStd": 61.57805086503069,
+    "laplacianVariance": 592.9582905724967,
+    "suspectedUniformLossFraction": 0.0,
+    "darkGround": false,
+    "componentCount": 61,
+    "smallComponentFraction": 0.5409836065573771
+  },
+  "archiveMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.4578155657292348,
+    "mean": 148.31145242639042,
+    "contrastStd": 73.5036033544134,
+    "laplacianVariance": 626.8143711178717,
+    "suspectedUniformLossFraction": 0.15611368593238822,
+    "darkGround": false,
+    "componentCount": 216,
+    "smallComponentFraction": 0.6944444444444444
+  },
+  "stoneWeathering": "无原石影像，不评定",
+  "stoneWeatheringEvidence": [],
+  "pairedGroundTruth": false,
+  "psnr": null,
+  "ssim": null,
+  "evaluationStatus": "未评测",
+  "humanReview": true,
+  "humanReviewReason": "自动评级只使用全幅对比度、清晰度和均匀缺损比例。逐字残泐未人工判读。修复记录是中心 512 局部，不是全幅。",
+  "observedIssues": [
+    "对比度标准差 61.6",
+    "拉普拉斯方差 593.0",
+    "细碎连通域占比 54.1%",
+    "原石风化无照片，不评定",
+    "轻度影像损伤"
+  ],
+  "limit": "诊断指标不能称为原石风化程度。无配对真值，不计算 PSNR 或 SSIM。"
+}

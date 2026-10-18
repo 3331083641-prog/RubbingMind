@@ -1,0 +1,104 @@
+{
+  "steleId": "han_02_yiying",
+  "title": "乙瑛碑",
+  "runId": "assess28-20261018-han_02_yiying",
+  "sourceImage": "apps/web/public/assets/stele/museum-rubbings/han_02_yiying_readable.jpg",
+  "sourceImageSha256": "5aec3d3a705eda460c90da28c5bb0d63f24b386b4421fa02607e4964d6a527c7",
+  "archiveImageSha256": "95f3357e4c9b0a04eff52ad1c93a615b1542b929b968ec647fc171801b139014",
+  "algorithmVersion": "adaptive-rubbing-v2.1",
+  "parameters": {
+    "strength": 1.0,
+    "notchWidth": 0.8
+  },
+  "imageDimensions": {
+    "readable": [
+      1365,
+      2852
+    ],
+    "archive": [
+      2283,
+      3066
+    ]
+  },
+  "coverage": "阅读图和档案图各一幅。册页若有多开，其余开页不在本次评级内。",
+  "analysisScope": "阅读图全幅经等比例缩小后计算诊断；缩小只用于指标，不代替原图。",
+  "restorationScope": "partial_center_roi",
+  "cropBox": {
+    "x": 426,
+    "y": 1170,
+    "width": 512,
+    "height": 512,
+    "space": "readable native pixels, right/bottom exclusive"
+  },
+  "partialResultIsNotFullFrame": true,
+  "processingTimeMs": 180.29117584228516,
+  "outputImage": "static/results/han_02_yiying/assess28-20261018-han_02_yiying/restored.png",
+  "outputImageSha256": "bc0bc23ee66d57c5d75849244c8f6a036c79a9bd547fa4b627cc9dbac8e0ae5d",
+  "adaptiveDecisions": [
+    {
+      "operator": "skip_notch",
+      "reason": "未检出符合阈值的周期峰；不强行陷波"
+    },
+    {
+      "operator": "thin_stroke_nlm",
+      "h": 7.939335079193114,
+      "thinStrokeRisk": 0.7379916989430516,
+      "reason": "细笔画占比高，降低 NLM 强度，避免抹断或粘连"
+    }
+  ],
+  "fidelityGate": {
+    "accepted": true,
+    "strongEdgeRetention": 1.0000038146972656,
+    "meanAbsoluteChange": 0.06131744384765625,
+    "contrastRatio": 0.9999882551019208,
+    "reasons": [],
+    "basis": "输入输出启发式保真门控，非质量真值"
+  },
+  "assessmentStatus": "processed",
+  "error": null,
+  "imageCondition": "轻度影像损伤",
+  "readableGrade": "轻度影像损伤",
+  "archiveGrade": "轻度影像损伤",
+  "gradeRule": "rubbing-image-condition-v1",
+  "gradeReasons": [
+    "全幅对比度标准差 51.6，拉普拉斯方差 7235，疑似均匀缺损 0.0%。这是扫描影像指标，不是逐字残泐判读"
+  ],
+  "readableMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.4908835904628331,
+    "mean": 122.0021791044776,
+    "contrastStd": 51.593486324073886,
+    "laplacianVariance": 7235.3566197639575,
+    "suspectedUniformLossFraction": 0.0,
+    "darkGround": true,
+    "componentCount": 2692,
+    "smallComponentFraction": 0.8246656760772659
+  },
+  "archiveMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.45662100456621,
+    "mean": 99.6306717850288,
+    "contrastStd": 56.72140306520331,
+    "laplacianVariance": 4054.3475883196757,
+    "suspectedUniformLossFraction": 0.003123800383877159,
+    "darkGround": true,
+    "componentCount": 1865,
+    "smallComponentFraction": 0.850402144772118
+  },
+  "stoneWeathering": "无原石影像，不评定",
+  "stoneWeatheringEvidence": [],
+  "pairedGroundTruth": false,
+  "psnr": null,
+  "ssim": null,
+  "evaluationStatus": "未评测",
+  "humanReview": true,
+  "humanReviewReason": "自动评级只使用全幅对比度、清晰度和均匀缺损比例。逐字残泐未人工判读。修复记录是中心 512 局部，不是全幅。",
+  "observedIssues": [
+    "对比度标准差 51.6",
+    "拉普拉斯方差 7235.4",
+    "细碎连通域占比 82.5%",
+    "原石风化无照片，不评定",
+    "轻度影像损伤"
+  ],
+  "limit": "诊断指标不能称为原石风化程度。无配对真值，不计算 PSNR 或 SSIM。"
+}

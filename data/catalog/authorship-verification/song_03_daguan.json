@@ -1,0 +1,79 @@
+{
+  "steleId": "song_03_daguan",
+  "title": "大观圣作碑",
+  "dynasty": "宋代",
+  "originalYear": "1108年",
+  "rubbingPeriod": "未核定；不据拓印年改变朝代",
+  "artifactType": "碑刻拓本",
+  "rubbingCollectionInstitution": "台北故宫博物院",
+  "collectionNumber": "購拓000421",
+  "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32018&dep=P&mode=full",
+  "inscriptionAuthor": {
+    "name": null,
+    "verificationStatus": "pending_review",
+    "note": "释文称为御笔，摘录未写出皇帝姓名，不补作宋徽宗。"
+  },
+  "calligrapher": {
+    "name": "李时雍",
+    "verificationStatus": "verified",
+    "note": "奉敕摹写御笔，是上石书写者，不是诏旨的原始执笔皇帝。"
+  },
+  "titleCalligrapher": {
+    "name": "蔡京",
+    "verificationStatus": "verified",
+    "note": "奉敕题额。"
+  },
+  "engraver": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的刻工署名。"
+  },
+  "steleSubject": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "不把碑名中的通称自动写成墓主。"
+  },
+  "verificationStatus": "pending_review",
+  "evidence": [
+    {
+      "field": "calligrapher",
+      "quote": "李時雍奉勑摹寫",
+      "verificationStatus": "verified",
+      "sourceLabel": "台北故宫博物院释文",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32018&dep=P&mode=full",
+      "accessionNumber": "購拓000421",
+      "location": "data/catalog/steles28.json#song_03_daguan.transcription",
+      "note": "奉敕摹写御笔，是上石书写者，不是诏旨的原始执笔皇帝。"
+    },
+    {
+      "field": "titleCalligrapher",
+      "quote": "蔡京奉勑題額",
+      "verificationStatus": "verified",
+      "sourceLabel": "台北故宫博物院释文",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32018&dep=P&mode=full",
+      "accessionNumber": "購拓000421",
+      "location": "data/catalog/steles28.json#song_03_daguan.transcription",
+      "note": "奉敕题额。"
+    },
+    {
+      "field": "inscriptionAuthor",
+      "quote": "御筆八行詔旨",
+      "verificationStatus": "pending_review",
+      "sourceLabel": "台北故宫博物院释文",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32018&dep=P&mode=full",
+      "accessionNumber": "購拓000421",
+      "location": "data/catalog/steles28.json#song_03_daguan.transcription",
+      "note": "释文称为御笔，摘录未写出皇帝姓名，不补作宋徽宗。"
+    }
+  ],
+  "conflicts": [
+    {
+      "field": "inscriptionAuthor",
+      "status": "pending_review",
+      "detail": "正文称为御笔八行诏旨。摘录没有皇帝姓名，不补宋徽宗。李时雍是奉敕摹写者。"
+    }
+  ],
+  "notes": [],
+  "reviewedAt": "2026-10-18",
+  "method": "只采用本地馆藏释文、馆方题名或证据包中的连续引文。未重开网页时不把目录旧值升为已核定。"
+}

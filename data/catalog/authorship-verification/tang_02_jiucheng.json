@@ -1,0 +1,63 @@
+{
+  "steleId": "tang_02_jiucheng",
+  "title": "九成宫醴泉铭",
+  "dynasty": "唐代",
+  "originalYear": "632年",
+  "rubbingPeriod": "未核定；不据拓印年改变朝代",
+  "artifactType": "碑刻拓本",
+  "rubbingCollectionInstitution": "台北故宫博物院",
+  "collectionNumber": "贈拓000362",
+  "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=24521&dep=P&mode=full",
+  "inscriptionAuthor": {
+    "name": "魏徵",
+    "verificationStatus": "verified",
+    "note": "释文署奉撰；中间有空字符，不把空字符写入引文。"
+  },
+  "calligrapher": {
+    "name": "欧阳询",
+    "verificationStatus": "verified",
+    "note": "释文署奉书。"
+  },
+  "titleCalligrapher": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的篆额或题额署名。"
+  },
+  "engraver": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的刻工署名。"
+  },
+  "steleSubject": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "不把碑名中的通称自动写成墓主。"
+  },
+  "verificationStatus": "verified",
+  "evidence": [
+    {
+      "field": "inscriptionAuthor",
+      "quote": "臣魏徵奉",
+      "verificationStatus": "verified",
+      "sourceLabel": "台北故宫博物院释文",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=24521&dep=P&mode=full",
+      "accessionNumber": "贈拓000362",
+      "location": "data/catalog/steles28.json#tang_02_jiucheng.transcription",
+      "note": "释文署奉撰；中间有空字符，不把空字符写入引文。"
+    },
+    {
+      "field": "calligrapher",
+      "quote": "歐陽詢奉",
+      "verificationStatus": "verified",
+      "sourceLabel": "台北故宫博物院释文",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=24521&dep=P&mode=full",
+      "accessionNumber": "贈拓000362",
+      "location": "data/catalog/steles28.json#tang_02_jiucheng.transcription",
+      "note": "释文署奉书。"
+    }
+  ],
+  "conflicts": [],
+  "notes": [],
+  "reviewedAt": "2026-10-18",
+  "method": "只采用本地馆藏释文、馆方题名或证据包中的连续引文。未重开网页时不把目录旧值升为已核定。"
+}

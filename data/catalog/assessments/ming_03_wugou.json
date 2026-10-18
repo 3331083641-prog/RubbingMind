@@ -1,0 +1,104 @@
+{
+  "steleId": "ming_03_wugou",
+  "title": "无垢子何君墓志铭",
+  "runId": "assess28-20261018-ming_03_wugou",
+  "sourceImage": "apps/web/public/assets/stele/museum-rubbings/ming_03_wugou_readable.jpg",
+  "sourceImageSha256": "f9dde51133ab9938b86aef5ce52b63a3b26b5ab8cbd313dd82b817418eaceaf9",
+  "archiveImageSha256": "641a4eb90426d8a1f86e8fb265c50f13e95409976d5d4fbcbc8cef22d862fd6f",
+  "algorithmVersion": "adaptive-rubbing-v2.1",
+  "parameters": {
+    "strength": 1.0,
+    "notchWidth": 0.8
+  },
+  "imageDimensions": {
+    "readable": [
+      1097,
+      2820
+    ],
+    "archive": [
+      2291,
+      3055
+    ]
+  },
+  "coverage": "阅读图和档案图各一幅。册页若有多开，其余开页不在本次评级内。",
+  "analysisScope": "阅读图全幅经等比例缩小后计算诊断；缩小只用于指标，不代替原图。",
+  "restorationScope": "partial_center_roi",
+  "cropBox": {
+    "x": 292,
+    "y": 1154,
+    "width": 512,
+    "height": 512,
+    "space": "readable native pixels, right/bottom exclusive"
+  },
+  "partialResultIsNotFullFrame": true,
+  "processingTimeMs": 465.986967086792,
+  "outputImage": "static/results/ming_03_wugou/assess28-20261018-ming_03_wugou/restored.png",
+  "outputImageSha256": "3baaac04251f92e9fc14b0b2e52da6548781f50667f620edd2666c640988c80c",
+  "adaptiveDecisions": [
+    {
+      "operator": "skip_notch",
+      "reason": "未检出符合阈值的周期峰；不强行陷波"
+    },
+    {
+      "operator": "thin_stroke_nlm",
+      "h": 7.655787606239318,
+      "thinStrokeRisk": 0.7863304205220552,
+      "reason": "细笔画占比高，降低 NLM 强度，避免抹断或粘连"
+    }
+  ],
+  "fidelityGate": {
+    "accepted": true,
+    "strongEdgeRetention": 1.0000041723251343,
+    "meanAbsoluteChange": 0.08905792236328125,
+    "contrastRatio": 1.0000002247177782,
+    "reasons": [],
+    "basis": "输入输出启发式保真门控，非质量真值"
+  },
+  "assessmentStatus": "processed",
+  "error": null,
+  "imageCondition": "中度影像损伤",
+  "readableGrade": "中度影像损伤",
+  "archiveGrade": "轻度影像损伤",
+  "gradeRule": "rubbing-image-condition-v1",
+  "gradeReasons": [
+    "全幅对比度标准差 39.6，拉普拉斯方差 5150，疑似均匀缺损 0.1%"
+  ],
+  "readableMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.49645390070921985,
+    "mean": 159.70959764089122,
+    "contrastStd": 39.63872493456833,
+    "laplacianVariance": 5150.219868181068,
+    "suspectedUniformLossFraction": 0.001127129750982962,
+    "darkGround": false,
+    "componentCount": 1326,
+    "smallComponentFraction": 0.8491704374057315
+  },
+  "archiveMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.4582651391162029,
+    "mean": 119.00648299319728,
+    "contrastStd": 66.50124908149749,
+    "laplacianVariance": 2287.264448969455,
+    "suspectedUniformLossFraction": 0.005161224489795918,
+    "darkGround": true,
+    "componentCount": 106,
+    "smallComponentFraction": 0.9433962264150944
+  },
+  "stoneWeathering": "无原石影像，不评定",
+  "stoneWeatheringEvidence": [],
+  "pairedGroundTruth": false,
+  "psnr": null,
+  "ssim": null,
+  "evaluationStatus": "未评测",
+  "humanReview": true,
+  "humanReviewReason": "自动评级只使用全幅对比度、清晰度和均匀缺损比例。逐字残泐未人工判读。修复记录是中心 512 局部，不是全幅。",
+  "observedIssues": [
+    "对比度标准差 39.6",
+    "拉普拉斯方差 5150.2",
+    "细碎连通域占比 84.9%",
+    "原石风化无照片，不评定",
+    "中度影像损伤"
+  ],
+  "limit": "诊断指标不能称为原石风化程度。无配对真值，不计算 PSNR 或 SSIM。"
+}

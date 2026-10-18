@@ -14,10 +14,25 @@
         "query": "《多宝塔碑》的撰文者与书丹者是谁？",
         "scopeSteleId": null,
         "status": "evidence_found",
-        "answer": "以下为现有资料原文/著录摘录，未调用语言模型：\n[1] 多宝塔碑 → 书丹 → 颜真卿。书丹者；不额外推断行旅路线。\n[2] 唐·多宝塔感应碑。文物身份已核；图像为拓本，与原石分开记录。原刻/样本标签：唐天宝十一载；拓本年代：明拓（现馆方著录；旧摄影标签为时代不明）；原石现藏：西安碑林博物馆；数字拓本：台北故宫博物院（拓本）；编号：赠拓000365（拓本）。相关作者：岑勋 · 撰文；颜真卿 · 书丹；徐浩 · 题额；楚金 · 建塔活动。752年立；1103年移存碑林；作者及千福寺地望。\n[3] 多宝塔碑 → 撰文 → 岑勋。碑文撰者。\n[4] 多宝塔碑 → 题额 → 徐浩。题额者。",
+        "judgment": "supported",
+        "claim": {
+          "judgment": "supported",
+          "basis": "catalogue_field_match",
+          "facet": "撰文者、书丹者",
+          "proposed": null,
+          "recorded": {
+            "撰文者": "岑勋",
+            "书丹者": "颜真卿"
+          },
+          "steleId": "tang_01_duobao",
+          "sourceId": "catalog:tang_01_duobao",
+          "forceRefusal": false,
+          "answer": "判断：supported。著录撰文者：岑勋；书丹者：颜真卿。依据 catalog:tang_01_duobao。"
+        },
+        "answer": "判断：supported。著录撰文者：岑勋；书丹者：颜真卿。依据 catalog:tang_01_duobao。\n以下为现有资料原文/著录摘录，未调用语言模型：\n[1] 多宝塔碑 → 书丹 → 颜真卿。书丹者；不额外推断行旅路线。\n[2] 唐·多宝塔感应碑。文物身份已核；图像为拓本，与原石分开记录。原刻/样本标签：唐天宝十一载；拓本年代：明拓（现馆方著录；旧摄影标签为时代不明）；原石现藏：西安碑林博物馆；数字拓本：台北故宫博物院（拓本）；编号：赠拓000365（拓本）。相关作者：岑勋 · 撰文；颜真卿 · 书丹；徐浩 · 题额；楚金 · 建塔活动。752年立；1103年移存碑林；作者及千福寺地望。\n[3] 多宝塔碑 → 撰文 → 岑勋。碑文撰者。\n[4] 多宝塔碑 → 题额 → 徐浩。题额者。",
         "answerMode": "extractive_evidence_only",
-        "algorithmVersion": "fts5-evidence-graph-v2.1",
-        "indexFingerprint": "ec04cba9493931a6300a647a634f0511ef6ac0b17369f1707bac46e1da60158d",
+        "algorithmVersion": "fts5-evidence-graph-v2.3",
+        "indexFingerprint": "40626879dd9e386b64f7c7e8e31560466cba5a70df54bd5edff7cf9008b692b6",
         "evidence": [
           {
             "sourceId": "history:tang-duobao:relation:0",
@@ -31,7 +46,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "3e747f000a23879acff153e975bdb73d4a11bc82a98ab94da5a16c5ba416e5a3",
-            "retrievalScore": 40.46176322056744
+            "retrievalScore": 40.49633507045762
           },
           {
             "sourceId": "history:tang-duobao:beilin-duobao",
@@ -45,7 +60,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "ed815d6aa02195e96014c54fc037c73edabc7e5ce99c3c58da27d35b7ae44f0f",
-            "retrievalScore": 32.97160570573418
+            "retrievalScore": 33.05130061468572
           },
           {
             "sourceId": "history:tang-duobao:relation:1",
@@ -59,7 +74,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "f833abb77a57af320848173e7dfa6e3e835ec016586fa869bd82866a8031f919",
-            "retrievalScore": 32.80760826895482
+            "retrievalScore": 32.82356093558221
           },
           {
             "sourceId": "history:tang-duobao:relation:2",
@@ -73,7 +88,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "68ef5ca36cddedc3e97226990adc5260634451d1027b439ae6218759635a5224",
-            "retrievalScore": 29.41991827545936
+            "retrievalScore": 29.432984698780032
           },
           {
             "sourceId": "history:tang-duobao:relation:6",
@@ -87,7 +102,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "56523182704efd37a13dba14147fa9fda926a87dc79d8e6e4275c5516da10a78",
-            "retrievalScore": 28.03233397399255
+            "retrievalScore": 28.04936735535503
           },
           {
             "sourceId": "history:tang-duobao:relation:3",
@@ -101,7 +116,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "4f5ee6072f3288b4b862ffd7f4b42e344b5d89862baac3163aec9cedc1740822",
-            "retrievalScore": 27.98873844411066
+            "retrievalScore": 28.006332225214578
           },
           {
             "sourceId": "history:tang-duobao:relation:5",
@@ -115,7 +130,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "ead7cc8c6671ea2f288159ee8af458e590a37b03f19118f4a0d650a88d216638",
-            "retrievalScore": 27.648257384023378
+            "retrievalScore": 27.670118447211593
           },
           {
             "sourceId": "history:tang-duobao:relation:7",
@@ -129,7 +144,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "08ef9e2904969ae54421f6b545ba4dcc901a62f4b2b4e042ec8cdd5505d9dbe5",
-            "retrievalScore": 27.648257384023378
+            "retrievalScore": 27.670118447211593
           },
           {
             "sourceId": "history:tang-duobao:relation:4",
@@ -143,7 +158,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "41828667782a374b36024ea30c49600d0e5d54030e95a0c04690fd8b49e39442",
-            "retrievalScore": 27.4833414700723
+            "retrievalScore": 27.507199942426816
           },
           {
             "sourceId": "history:tang-duobao:dpm-duobao",
@@ -157,7 +172,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "7a39fdf83f426190f722ba109a45013575e354bad1fb462bed4e7d9182b2fdf7",
-            "retrievalScore": 25.51457796318605
+            "retrievalScore": 25.60320653613028
           },
           {
             "sourceId": "history:tang-duobao:npm-duobao",
@@ -171,21 +186,21 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "3f5a067e72d4fe2436720ec7a9f360284b20ffd78130ed70e3591ca8f95d7550",
-            "retrievalScore": 22.90270850022483
+            "retrievalScore": 22.98286574116714
           },
           {
             "sourceId": "catalog:tang_01_duobao",
             "steleId": "tang_01_duobao",
             "title": "多宝塔感应碑 · 馆藏著录",
-            "text": "多宝塔感应碑。原刻朝代：唐代；原刻年代：752年；拓本年代：未核定；不据拓印年改变朝代；文物类型：碑刻拓本；撰文：岑勋；书丹：颜真卿；拓本现藏机构：台北故宫博物院；拓本馆藏编号：贈拓000365；原石现藏机构：未核定；原碑所在地：未核定。",
+            "text": "多宝塔感应碑。原刻朝代：唐代；原刻年代：752年；拓本年代：未核定；不据拓印年改变朝代；文物类型：碑刻拓本；撰文：岑勋；书丹：颜真卿；篆额：徐浩；刻工：史华；碑主或墓主：未核定；拓本现藏机构：台北故宫博物院；拓本馆藏编号：贈拓000365；原石现藏机构：未核定；原碑所在地：未核定。",
             "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
             "institution": "台北故宫博物院",
             "evidenceLevel": "catalogue_record",
             "originalPosition": "data/catalog/steles28.json#tang_01_duobao",
             "license": "CC BY 4.0",
             "origin": "reviewed_local_record",
-            "textSha256": "b29bf46a9778dc819f19860417ace2dda563d1536bc423a62825cff372449bcc",
-            "retrievalScore": 21.595282393234758
+            "textSha256": "c7224cac500579f986167433261822e5b20a09fc743971f7c91e2082ed054213",
+            "retrievalScore": 21.118724041410253
           }
         ],
         "entities": [
@@ -422,7 +437,7 @@
           }
         ],
         "generation": null,
-        "limitations": "BM25与实体一跳扩展；摘记可能不完整，未进行语义蕴含或独立史学鉴定。来源可追溯不表示链接实时可用。"
+        "limitations": "BM25与实体一跳扩展；命题只对照已著录字段，未核定则拒答。摘记可能不完整，来源可追溯不表示链接实时可用。"
       }
     },
     {
@@ -436,24 +451,26 @@
         "query": "《曹全碑》原刻于什么年代？",
         "scopeSteleId": null,
         "status": "evidence_found",
-        "answer": "以下为现有资料原文/著录摘录，未调用语言模型：\n[1] 曹全碑。原刻朝代：东汉；原刻年代：185年；拓本年代：未核定；不据拓印年改变朝代；文物类型：碑刻拓本；撰文：未核定；书丹：未核定；拓本现藏机构：台北故宫博物院；拓本馆藏编号：購拓000033；原石现藏机构：未核定；原碑所在地：未核定。\n[2] 东汉·郃阳令曹全碑。原石与购拓000033分别建档。原刻/样本标签：东汉中平二年；拓本年代：年代待考；原石现藏：西安碑林博物馆；数字拓本：台北故宫博物院（拓本）；编号：购拓000033（拓本）。相关作者：曹全 · 碑主，字景完；王敞等 · 门生故吏刊石纪功。185年立、万历年间莘里出土、1956年移藏；169年举孝廉及酒泉任职。\n[3] 曹全碑 → 原石现存 → 西安碑林博物馆。原石保存馆区，非拓本馆藏；摄影点并非展位。\n[4] 曹全碑 → 碑主 → 曹全 · 景完。敦煌效谷人，任郃阳令；生平地点不等于石碑流转。",
+        "judgment": null,
+        "claim": null,
+        "answer": "以下为现有资料原文/著录摘录，未调用语言模型：\n[1] 曹全碑。原刻朝代：东汉；原刻年代：185年；拓本年代：未核定；不据拓印年改变朝代；文物类型：碑刻拓本；撰文：未核定；书丹：未核定；篆额：未核定；刻工：未核定；碑主或墓主：曹全；拓本现藏机构：台北故宫博物院；拓本馆藏编号：購拓000033；原石现藏机构：未核定；原碑所在地：未核定。\n[2] 东汉·郃阳令曹全碑。原石与购拓000033分别建档。原刻/样本标签：东汉中平二年；拓本年代：年代待考；原石现藏：西安碑林博物馆；数字拓本：台北故宫博物院（拓本）；编号：购拓000033（拓本）。相关作者：曹全 · 碑主，字景完；王敞等 · 门生故吏刊石纪功。185年立、万历年间莘里出土、1956年移藏；169年举孝廉及酒泉任职。\n[3] 曹全碑 → 原石现存 → 西安碑林博物馆。原石保存馆区，非拓本馆藏；摄影点并非展位。\n[4] 曹全碑 → 碑主 → 曹全 · 景完。敦煌效谷人，任郃阳令；生平地点不等于石碑流转。",
         "answerMode": "extractive_evidence_only",
-        "algorithmVersion": "fts5-evidence-graph-v2.1",
-        "indexFingerprint": "ec04cba9493931a6300a647a634f0511ef6ac0b17369f1707bac46e1da60158d",
+        "algorithmVersion": "fts5-evidence-graph-v2.3",
+        "indexFingerprint": "40626879dd9e386b64f7c7e8e31560466cba5a70df54bd5edff7cf9008b692b6",
         "evidence": [
           {
             "sourceId": "catalog:han_01_caoquan",
             "steleId": "han_01_caoquan",
             "title": "曹全碑 · 馆藏著录",
-            "text": "曹全碑。原刻朝代：东汉；原刻年代：185年；拓本年代：未核定；不据拓印年改变朝代；文物类型：碑刻拓本；撰文：未核定；书丹：未核定；拓本现藏机构：台北故宫博物院；拓本馆藏编号：購拓000033；原石现藏机构：未核定；原碑所在地：未核定。",
+            "text": "曹全碑。原刻朝代：东汉；原刻年代：185年；拓本年代：未核定；不据拓印年改变朝代；文物类型：碑刻拓本；撰文：未核定；书丹：未核定；篆额：未核定；刻工：未核定；碑主或墓主：曹全；拓本现藏机构：台北故宫博物院；拓本馆藏编号：購拓000033；原石现藏机构：未核定；原碑所在地：未核定。",
             "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34589&dep=P&mode=full",
             "institution": "台北故宫博物院",
             "evidenceLevel": "catalogue_record",
             "originalPosition": "data/catalog/steles28.json#han_01_caoquan",
             "license": "CC BY 4.0",
             "origin": "reviewed_local_record",
-            "textSha256": "2609cb3514bc011bb523672738a635e4c694927983550a7d8c0ffef32f3c23a2",
-            "retrievalScore": 54.24849354023127
+            "textSha256": "75947a935e1cd2e63860b03904aa54c50db04448297cdb2d740a6bd6a01333d4",
+            "retrievalScore": 71.9064525630147
           },
           {
             "sourceId": "history:han-caoquan:beilin-cao",
@@ -467,7 +484,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "f3faf647d2552542f5bf323aa473d215590edd746cf6964afb2a84d7cc3a6f9f",
-            "retrievalScore": 28.837796903280747
+            "retrievalScore": 28.89206184293441
           },
           {
             "sourceId": "history:han-caoquan:relation:4",
@@ -481,7 +498,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "6895c55eb8d6f1664dd521fe368cf4db85df97f72dceda31e9acd7dc04520265",
-            "retrievalScore": 25.916091515209608
+            "retrievalScore": 25.93547263535853
           },
           {
             "sourceId": "history:han-caoquan:relation:0",
@@ -495,7 +512,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "d71d5b3611c52f08421b1e6fb0469021d782e4714a2f7d0eb10fde0d40244286",
-            "retrievalScore": 25.00805187126086
+            "retrievalScore": 25.02617800549963
           },
           {
             "sourceId": "history:han-caoquan:relation:2",
@@ -509,7 +526,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "bcda21fbd4857aa6717259290a67507ffa72b1ce017fe7c77a58d7ebcf3ce7a4",
-            "retrievalScore": 24.19485880520746
+            "retrievalScore": 24.20933648561496
           },
           {
             "sourceId": "history:han-caoquan:relation:8",
@@ -523,7 +540,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "e48256f19b667f53e829f4208774b50c64ce37012e9e9c7fd2229d18d39de5e5",
-            "retrievalScore": 24.189632204565925
+            "retrievalScore": 24.201392577339792
           },
           {
             "sourceId": "history:han-caoquan:relation:9",
@@ -537,7 +554,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "eb4ae9ed9fc479965260a32e655e5a87c0be85420eb1d1852bee39f5d9d7d380",
-            "retrievalScore": 23.36457766318042
+            "retrievalScore": 23.379475434469352
           },
           {
             "sourceId": "history:han-caoquan:relation:1",
@@ -551,7 +568,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "c273116613cf6742e169343d3b4c741012d9073314df3dfdd69e80bb59d7c14f",
-            "retrievalScore": 23.09390477995827
+            "retrievalScore": 23.105658721288723
           },
           {
             "sourceId": "history:han-caoquan:relation:3",
@@ -565,7 +582,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "dde47de0c48728c29c58db2806ba2c123612eb704da397b6ce6c48ef535a8d6e",
-            "retrievalScore": 22.759407677629532
+            "retrievalScore": 22.77540063143917
           },
           {
             "sourceId": "history:han-caoquan:relation:7",
@@ -579,7 +596,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "c3f045f8e02f7c37bba93d052bd39e363b4473dfe471fabe31a76101d38b81c5",
-            "retrievalScore": 22.021635743223822
+            "retrievalScore": 22.063522905061525
           },
           {
             "sourceId": "history:han-caoquan:npm-cao",
@@ -593,7 +610,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "87ca7b98bb56c20a06a5a97e2d9caf18d9fe321c79de66067275adb76f4a0565",
-            "retrievalScore": 18.764446182138308
+            "retrievalScore": 18.819286020552667
           },
           {
             "sourceId": "history:han-caoquan:relation:5",
@@ -607,7 +624,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "ef54e624d536ee28ce400b1bec72b1f22e906590a9f4f897c02e86f7d59c29dd",
-            "retrievalScore": 17.084824370360572
+            "retrievalScore": 17.106727379048323
           }
         ],
         "entities": [
@@ -642,6 +659,15 @@
             "id": "han_01_caoquan:year",
             "name": "185年",
             "category": "date",
+            "steleId": "han_01_caoquan",
+            "sourceIds": [
+              "catalog:han_01_caoquan"
+            ]
+          },
+          {
+            "id": "han_01_caoquan:steleSubject",
+            "name": "曹全",
+            "category": "person",
             "steleId": "han_01_caoquan",
             "sourceIds": [
               "catalog:han_01_caoquan"
@@ -743,6 +769,15 @@
             "source": "han_01_caoquan",
             "target": "han_01_caoquan:year",
             "relation": "原刻纪年",
+            "sourceIds": [
+              "catalog:han_01_caoquan"
+            ],
+            "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34589&dep=P&mode=full"
+          },
+          {
+            "source": "han_01_caoquan",
+            "target": "han_01_caoquan:steleSubject",
+            "relation": "碑主或墓主",
             "sourceIds": [
               "catalog:han_01_caoquan"
             ],
@@ -976,7 +1011,7 @@
           }
         ],
         "generation": null,
-        "limitations": "BM25与实体一跳扩展；摘记可能不完整，未进行语义蕴含或独立史学鉴定。来源可追溯不表示链接实时可用。"
+        "limitations": "BM25与实体一跳扩展；命题只对照已著录字段，未核定则拒答。摘记可能不完整，来源可追溯不表示链接实时可用。"
       }
     },
     {
@@ -991,10 +1026,12 @@
         "query": "《多宝塔碑》原石与台北故宫藏拓本是什么关系？",
         "scopeSteleId": null,
         "status": "evidence_found",
+        "judgment": null,
+        "claim": null,
         "answer": "以下为现有资料原文/著录摘录，未调用语言模型：\n[1] 唐·多宝塔感应碑。文物身份已核；图像为拓本，与原石分开记录。原刻/样本标签：唐天宝十一载；拓本年代：明拓（现馆方著录；旧摄影标签为时代不明）；原石现藏：西安碑林博物馆；数字拓本：台北故宫博物院（拓本）；编号：赠拓000365（拓本）。相关作者：岑勋 · 撰文；颜真卿 · 书丹；徐浩 · 题额；楚金 · 建塔活动。752年立；1103年移存碑林；作者及千福寺地望。\n[2] 唐·多宝塔感应碑。文物身份已核；图像为拓本，与原石分开记录。原刻/样本标签：唐天宝十一载；拓本年代：明拓（现馆方著录；旧摄影标签为时代不明）；原石现藏：西安碑林博物馆；数字拓本：台北故宫博物院（拓本）；编号：赠拓000365（拓本）。相关作者：岑勋 · 撰文；颜真卿 · 书丹；徐浩 · 题额；楚金 · 建塔活动。原石与馆藏宋拓分属不同实体。\n[3] 多宝塔碑 → 原石保存 → 西安碑林。原石保存馆区，非拓本馆藏；摄影点并非展位。\n[4] 多宝塔碑 → 记述建塔 → 楚金禅师。创建多宝塔相关活动。",
         "answerMode": "extractive_evidence_only",
-        "algorithmVersion": "fts5-evidence-graph-v2.1",
-        "indexFingerprint": "ec04cba9493931a6300a647a634f0511ef6ac0b17369f1707bac46e1da60158d",
+        "algorithmVersion": "fts5-evidence-graph-v2.3",
+        "indexFingerprint": "40626879dd9e386b64f7c7e8e31560466cba5a70df54bd5edff7cf9008b692b6",
         "evidence": [
           {
             "sourceId": "history:tang-duobao:beilin-duobao",
@@ -1008,7 +1045,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "ed815d6aa02195e96014c54fc037c73edabc7e5ce99c3c58da27d35b7ae44f0f",
-            "retrievalScore": 39.35595612325855
+            "retrievalScore": 39.4674604722731
           },
           {
             "sourceId": "history:tang-duobao:dpm-duobao",
@@ -1022,7 +1059,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "7a39fdf83f426190f722ba109a45013575e354bad1fb462bed4e7d9182b2fdf7",
-            "retrievalScore": 36.9225270032524
+            "retrievalScore": 37.0602912856518
           },
           {
             "sourceId": "history:tang-duobao:relation:5",
@@ -1036,7 +1073,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "ead7cc8c6671ea2f288159ee8af458e590a37b03f19118f4a0d650a88d216638",
-            "retrievalScore": 34.56349914625259
+            "retrievalScore": 34.5955379706474
           },
           {
             "sourceId": "history:tang-duobao:relation:3",
@@ -1050,7 +1087,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "4f5ee6072f3288b4b862ffd7f4b42e344b5d89862baac3163aec9cedc1740822",
-            "retrievalScore": 31.624127272265483
+            "retrievalScore": 31.647397665470276
           },
           {
             "sourceId": "history:tang-duobao:relation:4",
@@ -1064,7 +1101,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "41828667782a374b36024ea30c49600d0e5d54030e95a0c04690fd8b49e39442",
-            "retrievalScore": 30.587753268109847
+            "retrievalScore": 30.615645435179317
           },
           {
             "sourceId": "history:tang-duobao:relation:7",
@@ -1078,7 +1115,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "08ef9e2904969ae54421f6b545ba4dcc901a62f4b2b4e042ec8cdd5505d9dbe5",
-            "retrievalScore": 30.155187733342085
+            "retrievalScore": 30.18113273187489
           },
           {
             "sourceId": "history:tang-duobao:npm-duobao",
@@ -1092,21 +1129,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "3f5a067e72d4fe2436720ec7a9f360284b20ffd78130ed70e3591ca8f95d7550",
-            "retrievalScore": 29.801612630723017
-          },
-          {
-            "sourceId": "catalog:tang_01_duobao",
-            "steleId": "tang_01_duobao",
-            "title": "多宝塔感应碑 · 馆藏著录",
-            "text": "多宝塔感应碑。原刻朝代：唐代；原刻年代：752年；拓本年代：未核定；不据拓印年改变朝代；文物类型：碑刻拓本；撰文：岑勋；书丹：颜真卿；拓本现藏机构：台北故宫博物院；拓本馆藏编号：贈拓000365；原石现藏机构：未核定；原碑所在地：未核定。",
-            "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
-            "institution": "台北故宫博物院",
-            "evidenceLevel": "catalogue_record",
-            "originalPosition": "data/catalog/steles28.json#tang_01_duobao",
-            "license": "CC BY 4.0",
-            "origin": "reviewed_local_record",
-            "textSha256": "b29bf46a9778dc819f19860417ace2dda563d1536bc423a62825cff372449bcc",
-            "retrievalScore": 28.593685760388567
+            "retrievalScore": 29.91264643299406
           },
           {
             "sourceId": "history:tang-duobao:relation:2",
@@ -1120,7 +1143,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "68ef5ca36cddedc3e97226990adc5260634451d1027b439ae6218759635a5224",
-            "retrievalScore": 28.412667021337608
+            "retrievalScore": 28.424675798350698
           },
           {
             "sourceId": "history:tang-duobao:relation:1",
@@ -1134,7 +1157,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "f833abb77a57af320848173e7dfa6e3e835ec016586fa869bd82866a8031f919",
-            "retrievalScore": 28.366991584632935
+            "retrievalScore": 28.379616671602765
           },
           {
             "sourceId": "history:tang-duobao:relation:6",
@@ -1148,7 +1171,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "56523182704efd37a13dba14147fa9fda926a87dc79d8e6e4275c5516da10a78",
-            "retrievalScore": 28.03233397399255
+            "retrievalScore": 28.04936735535503
           },
           {
             "sourceId": "history:tang-duobao:relation:0",
@@ -1162,7 +1185,21 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "3e747f000a23879acff153e975bdb73d4a11bc82a98ab94da5a16c5ba416e5a3",
-            "retrievalScore": 27.96702881890122
+            "retrievalScore": 27.98490047800677
+          },
+          {
+            "sourceId": "catalog:tang_01_duobao",
+            "steleId": "tang_01_duobao",
+            "title": "多宝塔感应碑 · 馆藏著录",
+            "text": "多宝塔感应碑。原刻朝代：唐代；原刻年代：752年；拓本年代：未核定；不据拓印年改变朝代；文物类型：碑刻拓本；撰文：岑勋；书丹：颜真卿；篆额：徐浩；刻工：史华；碑主或墓主：未核定；拓本现藏机构：台北故宫博物院；拓本馆藏编号：贈拓000365；原石现藏机构：未核定；原碑所在地：未核定。",
+            "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+            "institution": "台北故宫博物院",
+            "evidenceLevel": "catalogue_record",
+            "originalPosition": "data/catalog/steles28.json#tang_01_duobao",
+            "license": "CC BY 4.0",
+            "origin": "reviewed_local_record",
+            "textSha256": "c7224cac500579f986167433261822e5b20a09fc743971f7c91e2082ed054213",
+            "retrievalScore": 27.88444215985628
           }
         ],
         "entities": [
@@ -1399,7 +1436,7 @@
           }
         ],
         "generation": null,
-        "limitations": "BM25与实体一跳扩展；摘记可能不完整，未进行语义蕴含或独立史学鉴定。来源可追溯不表示链接实时可用。"
+        "limitations": "BM25与实体一跳扩展；命题只对照已著录字段，未核定则拒答。摘记可能不完整，来源可追溯不表示链接实时可用。"
       }
     },
     {
@@ -1414,10 +1451,12 @@
         "query": "多宝塔碑拓本年代与原刻年代是否相同？",
         "scopeSteleId": null,
         "status": "evidence_found",
+        "judgment": null,
+        "claim": null,
         "answer": "以下为现有资料原文/著录摘录，未调用语言模型：\n[1] 唐·多宝塔感应碑。文物身份已核；图像为拓本，与原石分开记录。原刻/样本标签：唐天宝十一载；拓本年代：明拓（现馆方著录；旧摄影标签为时代不明）；原石现藏：西安碑林博物馆；数字拓本：台北故宫博物院（拓本）；编号：赠拓000365（拓本）。相关作者：岑勋 · 撰文；颜真卿 · 书丹；徐浩 · 题额；楚金 · 建塔活动。752年立；1103年移存碑林；作者及千福寺地望。\n[2] 唐·多宝塔感应碑。文物身份已核；图像为拓本，与原石分开记录。原刻/样本标签：唐天宝十一载；拓本年代：明拓（现馆方著录；旧摄影标签为时代不明）；原石现藏：西安碑林博物馆；数字拓本：台北故宫博物院（拓本）；编号：赠拓000365（拓本）。相关作者：岑勋 · 撰文；颜真卿 · 书丹；徐浩 · 题额；楚金 · 建塔活动。原石与馆藏宋拓分属不同实体。\n[3] 多宝塔碑 → 原石保存 → 西安碑林。原石保存馆区，非拓本馆藏；摄影点并非展位。\n[4] 多宝塔碑 → 记述建塔 → 楚金禅师。创建多宝塔相关活动。",
         "answerMode": "extractive_evidence_only",
-        "algorithmVersion": "fts5-evidence-graph-v2.1",
-        "indexFingerprint": "ec04cba9493931a6300a647a634f0511ef6ac0b17369f1707bac46e1da60158d",
+        "algorithmVersion": "fts5-evidence-graph-v2.3",
+        "indexFingerprint": "40626879dd9e386b64f7c7e8e31560466cba5a70df54bd5edff7cf9008b692b6",
         "evidence": [
           {
             "sourceId": "history:tang-duobao:beilin-duobao",
@@ -1431,7 +1470,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "ed815d6aa02195e96014c54fc037c73edabc7e5ce99c3c58da27d35b7ae44f0f",
-            "retrievalScore": 38.27405240966789
+            "retrievalScore": 38.380166272715854
           },
           {
             "sourceId": "history:tang-duobao:dpm-duobao",
@@ -1445,7 +1484,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "7a39fdf83f426190f722ba109a45013575e354bad1fb462bed4e7d9182b2fdf7",
-            "retrievalScore": 32.326898639021515
+            "retrievalScore": 32.44825791390309
           },
           {
             "sourceId": "history:tang-duobao:relation:5",
@@ -1459,7 +1498,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "ead7cc8c6671ea2f288159ee8af458e590a37b03f19118f4a0d650a88d216638",
-            "retrievalScore": 30.377142638888635
+            "retrievalScore": 30.403942042635915
           },
           {
             "sourceId": "history:tang-duobao:relation:3",
@@ -1473,7 +1512,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "4f5ee6072f3288b4b862ffd7f4b42e344b5d89862baac3163aec9cedc1740822",
-            "retrievalScore": 29.40750733959006
+            "retrievalScore": 29.427316509765447
           },
           {
             "sourceId": "history:tang-duobao:relation:7",
@@ -1487,7 +1526,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "08ef9e2904969ae54421f6b545ba4dcc901a62f4b2b4e042ec8cdd5505d9dbe5",
-            "retrievalScore": 29.161962845180405
+            "retrievalScore": 29.185956799751565
           },
           {
             "sourceId": "history:tang-duobao:npm-duobao",
@@ -1501,7 +1540,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "3f5a067e72d4fe2436720ec7a9f360284b20ffd78130ed70e3591ca8f95d7550",
-            "retrievalScore": 28.724361966982578
+            "retrievalScore": 28.82998160883941
           },
           {
             "sourceId": "history:tang-duobao:relation:2",
@@ -1515,7 +1554,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "68ef5ca36cddedc3e97226990adc5260634451d1027b439ae6218759635a5224",
-            "retrievalScore": 28.412667021337608
+            "retrievalScore": 28.424675798350698
           },
           {
             "sourceId": "history:tang-duobao:relation:1",
@@ -1529,7 +1568,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "f833abb77a57af320848173e7dfa6e3e835ec016586fa869bd82866a8031f919",
-            "retrievalScore": 28.366991584632935
+            "retrievalScore": 28.379616671602765
           },
           {
             "sourceId": "history:tang-duobao:relation:6",
@@ -1543,7 +1582,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "56523182704efd37a13dba14147fa9fda926a87dc79d8e6e4275c5516da10a78",
-            "retrievalScore": 28.032335773201805
+            "retrievalScore": 28.04936915616853
           },
           {
             "sourceId": "history:tang-duobao:relation:4",
@@ -1557,7 +1596,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "41828667782a374b36024ea30c49600d0e5d54030e95a0c04690fd8b49e39442",
-            "retrievalScore": 28.014330449504577
+            "retrievalScore": 28.03887885746728
           },
           {
             "sourceId": "history:tang-duobao:relation:0",
@@ -1571,21 +1610,21 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "3e747f000a23879acff153e975bdb73d4a11bc82a98ab94da5a16c5ba416e5a3",
-            "retrievalScore": 27.96702881890122
+            "retrievalScore": 27.98490047800677
           },
           {
             "sourceId": "catalog:tang_01_duobao",
             "steleId": "tang_01_duobao",
             "title": "多宝塔感应碑 · 馆藏著录",
-            "text": "多宝塔感应碑。原刻朝代：唐代；原刻年代：752年；拓本年代：未核定；不据拓印年改变朝代；文物类型：碑刻拓本；撰文：岑勋；书丹：颜真卿；拓本现藏机构：台北故宫博物院；拓本馆藏编号：贈拓000365；原石现藏机构：未核定；原碑所在地：未核定。",
+            "text": "多宝塔感应碑。原刻朝代：唐代；原刻年代：752年；拓本年代：未核定；不据拓印年改变朝代；文物类型：碑刻拓本；撰文：岑勋；书丹：颜真卿；篆额：徐浩；刻工：史华；碑主或墓主：未核定；拓本现藏机构：台北故宫博物院；拓本馆藏编号：贈拓000365；原石现藏机构：未核定；原碑所在地：未核定。",
             "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
             "institution": "台北故宫博物院",
             "evidenceLevel": "catalogue_record",
             "originalPosition": "data/catalog/steles28.json#tang_01_duobao",
             "license": "CC BY 4.0",
             "origin": "reviewed_local_record",
-            "textSha256": "b29bf46a9778dc819f19860417ace2dda563d1536bc423a62825cff372449bcc",
-            "retrievalScore": 24.25651275599471
+            "textSha256": "c7224cac500579f986167433261822e5b20a09fc743971f7c91e2082ed054213",
+            "retrievalScore": 23.68940769183705
           }
         ],
         "entities": [
@@ -1822,7 +1861,7 @@
           }
         ],
         "generation": null,
-        "limitations": "BM25与实体一跳扩展；摘记可能不完整，未进行语义蕴含或独立史学鉴定。来源可追溯不表示链接实时可用。"
+        "limitations": "BM25与实体一跳扩展；命题只对照已著录字段，未核定则拒答。摘记可能不完整，来源可追溯不表示链接实时可用。"
       }
     },
     {
@@ -1837,10 +1876,12 @@
         "query": "北魏建义元年演示样本是否已经确认真实文物身份？",
         "scopeSteleId": null,
         "status": "evidence_found",
+        "judgment": null,
+        "claim": null,
         "answer": "以下为现有资料原文/著录摘录，未调用语言模型：\n[1] 北魏碑拓数字化退化测试样本。未确认与王诵墓志同一；528是测试标签，非本图已核实纪年。原刻/样本标签：北魏建义元年；拓本年代：年代待考；原石现藏：待考；数字拓本：待考；编号：未核实。相关作者：。sample_generator.py 的 sample_4 使用昌黎夫人合成文字；knowledge_agent.py 配韩夫人；馆藏另为王诵。元怀误映射吴高黎。\n[2] 北魏碑拓数字化退化测试样本。未确认与王诵墓志同一；528是测试标签，非本图已核实纪年。原刻/样本标签：北魏建义元年；拓本年代：年代待考；原石现藏：待考；数字拓本：待考；编号：未核实。相关作者：。真实王诵拓本存在；不能据此认定核心风化样本同一性。CC BY 4.0。\n[3] 建义退化测试样本 → 本地素材审计 → 来源链待核。没有已确认馆藏号、人物或出土地；不借用王诵或韩夫人资料。\n[4] 建义退化测试样本 → 测试标签（待核） → 建义元年 · 528。年号映射可核；测试图像的文物纪年未核。",
         "answerMode": "extractive_evidence_only",
-        "algorithmVersion": "fts5-evidence-graph-v2.1",
-        "indexFingerprint": "ec04cba9493931a6300a647a634f0511ef6ac0b17369f1707bac46e1da60158d",
+        "algorithmVersion": "fts5-evidence-graph-v2.3",
+        "indexFingerprint": "40626879dd9e386b64f7c7e8e31560466cba5a70df54bd5edff7cf9008b692b6",
         "evidence": [
           {
             "sourceId": "history:wei-jianyi:local-audit",
@@ -1854,7 +1895,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "d3e2d1d0229fd8fdc4a6625e71cba19d1764aba054c9134d056c7fa0ec0b22a5",
-            "retrievalScore": 88.14705906167924
+            "retrievalScore": 87.78012575938128
           },
           {
             "sourceId": "history:wei-jianyi:npm-wangsong",
@@ -1868,7 +1909,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "5cc518a69a240f8dc33c4c469522a4907d2280af7a571909d974dbd50190a72b",
-            "retrievalScore": 62.07159943007941
+            "retrievalScore": 61.649215994238226
           },
           {
             "sourceId": "history:wei-jianyi:relation:1",
@@ -1882,7 +1923,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "a0923f8b6a31e283a835a70ec9c49e952cda6e64845e215355b61f077dba07b9",
-            "retrievalScore": 47.761967464480605
+            "retrievalScore": 47.44885662124677
           },
           {
             "sourceId": "history:wei-jianyi:relation:0",
@@ -1896,7 +1937,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "903e23a06bc3a5f67784c0a8e0e92d6176fc7a07188cd1f8453aeb3c0b2fbe8f",
-            "retrievalScore": 41.72000203380597
+            "retrievalScore": 41.728968934703005
           }
         ],
         "entities": [
@@ -1952,7 +1993,7 @@
         ],
         "places": [],
         "generation": null,
-        "limitations": "BM25与实体一跳扩展；摘记可能不完整，未进行语义蕴含或独立史学鉴定。来源可追溯不表示链接实时可用。"
+        "limitations": "BM25与实体一跳扩展；命题只对照已著录字段，未核定则拒答。摘记可能不完整，来源可追溯不表示链接实时可用。"
       }
     },
     {
@@ -1965,24 +2006,26 @@
         "query": "请解释暗物质粒子",
         "scopeSteleId": null,
         "status": "insufficient_evidence",
+        "judgment": "insufficient_evidence",
+        "claim": null,
         "answer": "现有资料不足以回答该问题。以下为相关检索条目，不构成问题结论。",
         "answerMode": "extractive_evidence_only",
-        "algorithmVersion": "fts5-evidence-graph-v2.1",
-        "indexFingerprint": "ec04cba9493931a6300a647a634f0511ef6ac0b17369f1707bac46e1da60158d",
+        "algorithmVersion": "fts5-evidence-graph-v2.3",
+        "indexFingerprint": "40626879dd9e386b64f7c7e8e31560466cba5a70df54bd5edff7cf9008b692b6",
         "evidence": [
           {
             "sourceId": "catalog:ming_02_luxianzhi",
             "steleId": "ming_02_luxianzhi",
             "title": "文徵明书陆献之墓志铭 · 馆藏著录",
-            "text": "文徵明书陆献之墓志铭。原刻朝代：明代；原刻年代：明代，确切原刻年份未核定；拓本年代：未核定；不据拓印年改变朝代；文物类型：馆方著录拓片（册页；草稿／手迹性质待考）；撰文：未核定；书丹：文徵明；拓本现藏机构：台北故宫博物院；拓本馆藏编号：贈拓000385；原石现藏机构：未核定；原碑所在地：未核定。",
+            "text": "文徵明书陆献之墓志铭。原刻朝代：明代；原刻年代：明代，确切原刻年份未核定；拓本年代：未核定；不据拓印年改变朝代；文物类型：馆方著录拓片（册页；草稿／手迹性质待考）；撰文：文徵明；书丹：文徵明；篆额：未核定；刻工：未核定；碑主或墓主：陆献之；拓本现藏机构：台北故宫博物院；拓本馆藏编号：贈拓000385；原石现藏机构：未核定；原碑所在地：未核定。",
             "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30367&dep=P&mode=full",
             "institution": "台北故宫博物院",
             "evidenceLevel": "catalogue_record",
             "originalPosition": "data/catalog/steles28.json#ming_02_luxianzhi",
             "license": "CC BY 4.0",
             "origin": "reviewed_local_record",
-            "textSha256": "aa34ec8891bf19ec4563067944071eda7b2f3515444b9a331451b341df9075ec",
-            "retrievalScore": 6.038720133405306
+            "textSha256": "558e33e510c016a708f89ef44db7c93db4d8db47194376ca8884ffb62fae66d2",
+            "retrievalScore": 5.920314627011713
           },
           {
             "sourceId": "catalog:ming_01_xianfu:transcript:0",
@@ -1996,7 +2039,7 @@
             "license": "CC BY 4.0",
             "origin": "reviewed_local_record",
             "textSha256": "94c3613c7f5c44c8815b26e76872004b22ec806bcc7152464f676c73d1dc8d9f",
-            "retrievalScore": 3.2973299307402253
+            "retrievalScore": 3.325160894568959
           },
           {
             "sourceId": "catalog:tang_04_xuanmita:transcript:1000",
@@ -2010,7 +2053,7 @@
             "license": "CC BY 4.0",
             "origin": "reviewed_local_record",
             "textSha256": "0a9391e04ce57496a80b2daf86728a5494a609ed0e364f7576c7c397735a7cdc",
-            "retrievalScore": 3.200716373252265
+            "retrievalScore": 3.229697308228804
           },
           {
             "sourceId": "catalog:wei_04_wangsong:transcript:0",
@@ -2024,7 +2067,7 @@
             "license": "CC BY 4.0",
             "origin": "reviewed_local_record",
             "textSha256": "dd3a187b62918d3a6b003ad4a8e610950be0f6ae6faf76f7066398ef9e6d2b89",
-            "retrievalScore": 3.110886059017605
+            "retrievalScore": 3.1394546299661497
           },
           {
             "sourceId": "catalog:han_03_liqi:transcript:0",
@@ -2038,7 +2081,7 @@
             "license": "CC BY 4.0",
             "origin": "reviewed_local_record",
             "textSha256": "41f479b0c9dde2ecd5985722c8801024af34b5d81292f62617049ca0b56007be",
-            "retrievalScore": 2.924823678549354
+            "retrievalScore": 2.9504512686926287
           },
           {
             "sourceId": "catalog:ming_04_tongdian:transcript:500",
@@ -2052,7 +2095,7 @@
             "license": "CC BY 4.0",
             "origin": "reviewed_local_record",
             "textSha256": "1fce6eba8fd688f6dca5db8cbf6ee42b29122e113b22bca3b481522ccafd7feb",
-            "retrievalScore": 2.840123916097487
+            "retrievalScore": 2.865535483778386
           },
           {
             "sourceId": "catalog:tang_01_duobao:transcript:1000",
@@ -2066,7 +2109,7 @@
             "license": "CC BY 4.0",
             "origin": "reviewed_local_record",
             "textSha256": "a5de796162c02c9471d174780ef94f12ae07840821943a2a4120772a1a77b8b8",
-            "retrievalScore": 2.7239767235609715
+            "retrievalScore": 2.7481385968966823
           },
           {
             "sourceId": "catalog:tang_01_duobao:transcript:2000",
@@ -2080,21 +2123,21 @@
             "license": "CC BY 4.0",
             "origin": "reviewed_local_record",
             "textSha256": "d37ecc909ebaf3df7e366aaf948ecb1ea02f3d425128f70a2462ede99945b60d",
-            "retrievalScore": 2.2877967002356
+            "retrievalScore": 2.3081785582861523
           },
           {
             "sourceId": "catalog:ming_03_wugou",
             "steleId": "ming_03_wugou",
             "title": "无垢子何君墓志铭 · 馆藏著录",
-            "text": "无垢子何君墓志铭。原刻朝代：明代；原刻年代：明代，确切原刻年份未核定；拓本年代：未核定；不据拓印年改变朝代；文物类型：墓志拓本；撰文：未核定；书丹：未核定；拓本现藏机构：台北故宫博物院；拓本馆藏编号：購拓000430；原石现藏机构：未核定；原碑所在地：未核定。",
+            "text": "无垢子何君墓志铭。原刻朝代：明代；原刻年代：明代，确切原刻年份未核定；拓本年代：未核定；不据拓印年改变朝代；文物类型：墓志拓本；撰文：未核定；书丹：未核定；篆额：未核定；刻工：未核定；碑主或墓主：未核定；拓本现藏机构：台北故宫博物院；拓本馆藏编号：購拓000430；原石现藏机构：未核定；原碑所在地：未核定。",
             "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full",
             "institution": "台北故宫博物院",
             "evidenceLevel": "catalogue_record",
             "originalPosition": "data/catalog/steles28.json#ming_03_wugou",
             "license": "CC BY 4.0",
             "origin": "reviewed_local_record",
-            "textSha256": "652e4bdf0c1a90c013f810bcc892be3342c3422233ab2ee1d91637fa2beadfe1",
-            "retrievalScore": 2.0554863977910034
+            "textSha256": "a0a3e2210f261b7b6b52d8d9ba0b02d7f2b36bddb2e27515a6c69279ad004298",
+            "retrievalScore": 2.0192690951862637
           },
           {
             "sourceId": "catalog:ming_03_wugou:transcript:1000",
@@ -2108,7 +2151,7 @@
             "license": "CC BY 4.0",
             "origin": "reviewed_local_record",
             "textSha256": "132c657c1e8ec079a1bde718021e6a1cc051bc51924758e8afcfea495788f157",
-            "retrievalScore": 1.6220320513815065
+            "retrievalScore": 1.630673741812435
           },
           {
             "sourceId": "history:wei-yuanhuai:relation:1",
@@ -2122,7 +2165,7 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "360bab47fe7710d8f168a6824d7dfad071b96374b3cede75072112480e9cb6a0",
-            "retrievalScore": 1.4924866481178862
+            "retrievalScore": 1.4935983701016993
           },
           {
             "sourceId": "history:wei-yuanhuai:relation:3",
@@ -2136,14 +2179,14 @@
             "license": null,
             "origin": "reviewed_local_record",
             "textSha256": "d4c3d390d89398d8eb641522ee45269257b7be88a7e17a9ef02cf126e07145a3",
-            "retrievalScore": 1.4890433240010819
+            "retrievalScore": 1.4902014299058146
           }
         ],
         "entities": [],
         "relations": [],
         "places": [],
         "generation": null,
-        "limitations": "BM25与实体一跳扩展；摘记可能不完整，未进行语义蕴含或独立史学鉴定。来源可追溯不表示链接实时可用。"
+        "limitations": "BM25与实体一跳扩展；命题只对照已著录字段，未核定则拒答。摘记可能不完整，来源可追溯不表示链接实时可用。"
       }
     }
   ]

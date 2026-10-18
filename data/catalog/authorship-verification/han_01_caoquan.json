@@ -1,0 +1,65 @@
+{
+  "steleId": "han_01_caoquan",
+  "title": "曹全碑",
+  "dynasty": "东汉",
+  "originalYear": "185年",
+  "rubbingPeriod": "未核定；不据拓印年改变朝代",
+  "artifactType": "碑刻拓本",
+  "rubbingCollectionInstitution": "台北故宫博物院",
+  "collectionNumber": "購拓000033",
+  "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34589&dep=P&mode=full",
+  "inscriptionAuthor": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的撰文署名。"
+  },
+  "calligrapher": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的书丹署名。"
+  },
+  "titleCalligrapher": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的篆额或题额署名。"
+  },
+  "engraver": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的刻工署名。"
+  },
+  "steleSubject": {
+    "name": "曹全",
+    "verificationStatus": "verified",
+    "note": "碑主，不是撰文或书丹。"
+  },
+  "verificationStatus": "unknown",
+  "evidence": [
+    {
+      "field": "steleSubject",
+      "quote": "君諱全",
+      "verificationStatus": "verified",
+      "sourceLabel": "台北故宫博物院购拓000033释文",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34589&dep=P&mode=full",
+      "accessionNumber": "購拓000033",
+      "location": "data/catalog/steles28.json#han_01_caoquan.transcription",
+      "note": "碑主，不是撰文或书丹。"
+    },
+    {
+      "field": "otherSignature",
+      "quote": "乃共刊石紀功",
+      "verificationStatus": "verified",
+      "sourceLabel": "台北故宫博物院购拓000033释文",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34589&dep=P&mode=full",
+      "accessionNumber": "購拓000033",
+      "location": "data/catalog/steles28.json#han_01_caoquan.transcription",
+      "note": "门下掾等刊石纪功，释文未给出书丹者姓名。"
+    }
+  ],
+  "conflicts": [],
+  "notes": [
+    "门下掾等刊石纪功，释文未给出书丹者姓名。"
+  ],
+  "reviewedAt": "2026-10-18",
+  "method": "只采用本地馆藏释文、馆方题名或证据包中的连续引文。未重开网页时不把目录旧值升为已核定。"
+}

@@ -1,0 +1,89 @@
+{
+  "steleId": "tang_03_yanjiamiao",
+  "title": "颜氏家庙碑",
+  "dynasty": "唐代",
+  "originalYear": "780年",
+  "rubbingPeriod": "未核定；不据拓印年改变朝代",
+  "artifactType": "碑刻拓本",
+  "rubbingCollectionInstitution": "台北故宫博物院",
+  "collectionNumber": "贈拓000305",
+  "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+  "inscriptionAuthor": {
+    "name": null,
+    "verificationStatus": "pending_review",
+    "note": "此句在题跋中，紧接按语，不是碑面独立署款。"
+  },
+  "calligrapher": {
+    "name": "颜真卿",
+    "verificationStatus": "verified",
+    "note": "馆方作品名称。"
+  },
+  "titleCalligrapher": {
+    "name": null,
+    "verificationStatus": "pending_review",
+    "note": "与自撰句同在题跋，不升为已核定篆额。"
+  },
+  "engraver": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的刻工署名。"
+  },
+  "steleSubject": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "不把碑名中的通称自动写成墓主。"
+  },
+  "verificationStatus": "pending_review",
+  "evidence": [
+    {
+      "field": "calligrapher",
+      "quote": "顏真卿,Yan Zhenqing",
+      "verificationStatus": "verified",
+      "sourceLabel": "台北故宫博物院赠拓000305作者栏",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+      "accessionNumber": "贈拓000305",
+      "location": "data/catalog/evidence/tang_03_yanjiamiao.json#officialExtractedText",
+      "note": "馆方作者栏。"
+    },
+    {
+      "field": "calligrapher",
+      "quote": "唐顏真卿書顏氏家廟碑",
+      "verificationStatus": "verified",
+      "sourceLabel": "台北故宫博物院赠拓000305作品名称",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+      "accessionNumber": "贈拓000305",
+      "location": "data/catalog/evidence/tang_03_yanjiamiao.json#officialExtractedText",
+      "note": "馆方作品名称。"
+    },
+    {
+      "field": "inscriptionAuthor",
+      "quote": "真卿自撰正書",
+      "verificationStatus": "pending_review",
+      "sourceLabel": "台北故宫博物院赠拓000305题跋",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+      "accessionNumber": "贈拓000305",
+      "location": "data/catalog/evidence/tang_03_yanjiamiao.json#officialExtractedText",
+      "note": "此句在题跋中，紧接按语，不是碑面独立署款。"
+    },
+    {
+      "field": "titleCalligrapher",
+      "quote": "李陽冰篆額",
+      "verificationStatus": "pending_review",
+      "sourceLabel": "台北故宫博物院赠拓000305题跋",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+      "accessionNumber": "贈拓000305",
+      "location": "data/catalog/evidence/tang_03_yanjiamiao.json#officialExtractedText",
+      "note": "与自撰句同在题跋，不升为已核定篆额。"
+    }
+  ],
+  "conflicts": [
+    {
+      "field": "inscriptionAuthor",
+      "status": "pending_review",
+      "detail": "「真卿自撰正书。李阳冰篆额。」位于题跋，后面是「按真卿生于唐中宗景龙三年」。这不是碑面独立署款。"
+    }
+  ],
+  "notes": [],
+  "reviewedAt": "2026-10-18",
+  "method": "只采用本地馆藏释文、馆方题名或证据包中的连续引文。未重开网页时不把目录旧值升为已核定。"
+}
