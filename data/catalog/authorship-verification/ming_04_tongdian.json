@@ -1,0 +1,91 @@
+{
+  "steleId": "ming_04_tongdian",
+  "title": "大峨山永明华藏寺新建铜殿记碑",
+  "dynasty": "明代",
+  "originalYear": "1603年",
+  "rubbingPeriod": "未核定；不据拓印年改变朝代",
+  "artifactType": "碑刻拓本",
+  "rubbingCollectionInstitution": "台北故宫博物院",
+  "collectionNumber": "購拓000276",
+  "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34907&dep=P&mode=full",
+  "inscriptionAuthor": {
+    "name": "王毓宗",
+    "verificationStatus": "verified",
+    "note": "碑文末署。"
+  },
+  "calligrapher": {
+    "name": null,
+    "verificationStatus": "disputed",
+    "note": "署款在换行后作王羲之书，碑年为1603，不能核定晋人王羲之为这块明碑的书丹者。"
+  },
+  "titleCalligrapher": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的篆额或题额署名。"
+  },
+  "engraver": {
+    "name": null,
+    "verificationStatus": "pending_review",
+    "note": "刻工名下一字为缺字方框，不补全姓名。"
+  },
+  "steleSubject": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "不把碑名中的通称自动写成墓主。"
+  },
+  "verificationStatus": "disputed",
+  "evidence": [
+    {
+      "field": "inscriptionAuthor",
+      "quote": "王毓宗頓首撰",
+      "verificationStatus": "verified",
+      "sourceLabel": "台北故宫博物院释文",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34907&dep=P&mode=full",
+      "accessionNumber": "購拓000276",
+      "location": "data/catalog/steles28.json#ming_04_tongdian.transcription",
+      "note": "碑文末署。"
+    },
+    {
+      "field": "calligrapher",
+      "quote": "王羲之書",
+      "verificationStatus": "disputed",
+      "sourceLabel": "台北故宫博物院释文",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34907&dep=P&mode=full",
+      "accessionNumber": "購拓000276",
+      "location": "data/catalog/steles28.json#ming_04_tongdian.transcription",
+      "note": "署款在换行后作王羲之书，碑年为1603，不能核定晋人王羲之为这块明碑的书丹者。"
+    },
+    {
+      "field": "otherSignature",
+      "quote": "吳郡吳士瑞集",
+      "verificationStatus": "pending_review",
+      "sourceLabel": "台北故宫博物院释文",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34907&dep=P&mode=full",
+      "accessionNumber": "購拓000276",
+      "location": "data/catalog/steles28.json#ming_04_tongdian.transcription",
+      "note": "集字者，不是原书丹者。"
+    },
+    {
+      "field": "engraver",
+      "quote": "雲中朱廷",
+      "verificationStatus": "pending_review",
+      "sourceLabel": "台北故宫博物院释文",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34907&dep=P&mode=full",
+      "accessionNumber": "購拓000276",
+      "location": "data/catalog/steles28.json#ming_04_tongdian.transcription",
+      "note": "刻工名下一字为缺字方框，不补全姓名。"
+    }
+  ],
+  "conflicts": [
+    {
+      "field": "calligrapher",
+      "status": "disputed",
+      "detail": "释文同时出现王毓宗撰、朱廷某镌、晋右军将军王羲之书、吴郡吴士瑞集。王羲之不能核定为1603年这块碑的书丹者。"
+    }
+  ],
+  "notes": [
+    "集字者，不是原书丹者。"
+  ],
+  "reviewedAt": "2026-10-18",
+  "method": "只采用本地馆藏释文、馆方题名或证据包中的连续引文。未重开网页时不把目录旧值升为已核定。"
+}

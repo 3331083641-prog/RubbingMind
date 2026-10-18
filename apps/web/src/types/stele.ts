@@ -10,6 +10,14 @@ export const DYNASTY_OPTIONS = [
 ] as const;
 
 export type DynastyValue = typeof DYNASTY_OPTIONS[number]['value'];
+
+export function roleText(name?: string | null, status?: string) {
+  const value = name && !name.startsWith('未核定') ? name : '';
+  if (status === 'verified' && value) return value;
+  if (status === 'pending_review') return value ? `${value}（待复核）` : '待复核';
+  if (status === 'disputed') return '存在争议';
+  return '未核定';
+}
 export interface RubbingAssets { cover: string; readable: string; archive: string; }
 
 export interface SteleItem {
@@ -47,6 +55,18 @@ export interface SteleItem {
   calligraphyStyle?: string;
   inscriptionAuthor?: string;
   calligrapher?: string;
+  titleCalligrapher?: string;
+  engraver?: string;
+  steleSubject?: string;
+  authorVerification?: string;
+  calligrapherVerification?: string;
+  titleCalligrapherVerification?: string;
+  engraverVerification?: string;
+  steleSubjectVerification?: string;
+  imageCondition?: string;
+  stoneWeathering?: string;
+  assessmentRunId?: string;
+  assessmentScope?: string;
   collectionInstitution?: string;
   collectionNumber?: string;
   originalLocation?: string;

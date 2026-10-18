@@ -1,0 +1,105 @@
+{
+  "steleId": "song_02_wenxuan",
+  "title": "宋太宗御制至圣文宣王赞碑",
+  "runId": "assess28-20261018-song_02_wenxuan",
+  "sourceImage": "apps/web/public/assets/stele/museum-rubbings/song_02_wenxuan_readable.jpg",
+  "sourceImageSha256": "3564d46727fa2f9157d77a43df4a4b988de875eb2166a5d5ab98bd540af9d2da",
+  "archiveImageSha256": "15803083f5d0c32a77dedd8f88bce233c5943df1c64de9c34afd338e1783362c",
+  "algorithmVersion": "adaptive-rubbing-v2.1",
+  "parameters": {
+    "strength": 1.0,
+    "notchWidth": 0.8
+  },
+  "imageDimensions": {
+    "readable": [
+      1254,
+      2918
+    ],
+    "archive": [
+      2296,
+      3049
+    ]
+  },
+  "coverage": "阅读图和档案图各一幅。册页若有多开，其余开页不在本次评级内。",
+  "analysisScope": "阅读图全幅经等比例缩小后计算诊断；缩小只用于指标，不代替原图。",
+  "restorationScope": "partial_center_roi",
+  "cropBox": {
+    "x": 371,
+    "y": 1203,
+    "width": 512,
+    "height": 512,
+    "space": "readable native pixels, right/bottom exclusive"
+  },
+  "partialResultIsNotFullFrame": true,
+  "processingTimeMs": 507.21144676208496,
+  "outputImage": "static/results/song_02_wenxuan/assess28-20261018-song_02_wenxuan/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/song_02_wenxuan.png",
+  "outputImageSha256": "9e19d9674aa5c2be662adc64cb49b7a83dce44b6e9ecc511fda7ad0abe2b3b3c",
+  "adaptiveDecisions": [
+    {
+      "operator": "skip_notch",
+      "reason": "未检出符合阈值的周期峰；不强行陷波"
+    },
+    {
+      "operator": "thin_stroke_nlm",
+      "h": 7.655787606239318,
+      "thinStrokeRisk": 0.9451535066831762,
+      "reason": "细笔画占比高，降低 NLM 强度，避免抹断或粘连"
+    }
+  ],
+  "fidelityGate": {
+    "accepted": true,
+    "strongEdgeRetention": 1.0000011920928955,
+    "meanAbsoluteChange": 0.0250396728515625,
+    "contrastRatio": 0.9996912235889348,
+    "reasons": [],
+    "basis": "输入输出启发式保真门控，非质量真值"
+  },
+  "assessmentStatus": "processed",
+  "error": null,
+  "imageCondition": "中度影像损伤",
+  "readableGrade": "中度影像损伤",
+  "archiveGrade": "轻度影像损伤",
+  "gradeRule": "rubbing-image-condition-v1",
+  "gradeReasons": [
+    "全幅对比度标准差 44.7，拉普拉斯方差 3763，疑似均匀缺损 0.0%"
+  ],
+  "readableMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.47978067169294036,
+    "mean": 136.79600379686758,
+    "contrastStd": 44.70548939807918,
+    "laplacianVariance": 3762.564253791405,
+    "suspectedUniformLossFraction": 0.0,
+    "darkGround": true,
+    "componentCount": 1348,
+    "smallComponentFraction": 0.8078635014836796
+  },
+  "archiveMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.45916693998032143,
+    "mean": 104.57648481973435,
+    "contrastStd": 55.81446241907765,
+    "laplacianVariance": 1741.383271178673,
+    "suspectedUniformLossFraction": 0.0008884521550555706,
+    "darkGround": true,
+    "componentCount": 63,
+    "smallComponentFraction": 0.6507936507936508
+  },
+  "stoneWeathering": "无原石影像，不评定",
+  "stoneWeatheringEvidence": [],
+  "pairedGroundTruth": false,
+  "psnr": null,
+  "ssim": null,
+  "evaluationStatus": "未评测",
+  "humanReview": true,
+  "humanReviewReason": "自动评级只使用全幅对比度、清晰度和均匀缺损比例。逐字残泐未人工判读。修复记录是中心 512 局部，不是全幅。",
+  "observedIssues": [
+    "对比度标准差 44.7",
+    "拉普拉斯方差 3762.6",
+    "细碎连通域占比 80.8%",
+    "原石风化无照片，不评定",
+    "中度影像损伤"
+  ],
+  "limit": "诊断指标不能称为原石风化程度。无配对真值，不计算 PSNR 或 SSIM。"
+}

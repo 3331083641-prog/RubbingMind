@@ -1,0 +1,79 @@
+{
+  "steleId": "yuan_03_shengzhu",
+  "title": "圣主本命长生之碑",
+  "dynasty": "元代",
+  "originalYear": "1317年",
+  "rubbingPeriod": "未核定；不据拓印年改变朝代",
+  "artifactType": "碑刻拓本",
+  "rubbingCollectionInstitution": "台北故宫博物院",
+  "collectionNumber": "贈拓000410",
+  "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34561&dep=P&mode=full",
+  "inscriptionAuthor": {
+    "name": "王思廉",
+    "verificationStatus": "verified",
+    "note": "释文署撰。"
+  },
+  "calligrapher": {
+    "name": "赵孟頫",
+    "verificationStatus": "verified",
+    "note": "释文署书。"
+  },
+  "titleCalligrapher": {
+    "name": null,
+    "verificationStatus": "pending_review",
+    "note": "篆题二字在释文括号补字内，不升为已核定。"
+  },
+  "engraver": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的刻工署名。"
+  },
+  "steleSubject": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "不把碑名中的通称自动写成墓主。"
+  },
+  "verificationStatus": "verified",
+  "evidence": [
+    {
+      "field": "inscriptionAuthor",
+      "quote": "王思廉撰",
+      "verificationStatus": "verified",
+      "sourceLabel": "台北故宫博物院释文",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34561&dep=P&mode=full",
+      "accessionNumber": "贈拓000410",
+      "location": "data/catalog/steles28.json#yuan_03_shengzhu.transcription",
+      "note": "释文署撰。"
+    },
+    {
+      "field": "calligrapher",
+      "quote": "趙孟頫書",
+      "verificationStatus": "verified",
+      "sourceLabel": "台北故宫博物院释文",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34561&dep=P&mode=full",
+      "accessionNumber": "贈拓000410",
+      "location": "data/catalog/steles28.json#yuan_03_shengzhu.transcription",
+      "note": "释文署书。"
+    },
+    {
+      "field": "titleCalligrapher",
+      "quote": "（篆題）",
+      "verificationStatus": "pending_review",
+      "sourceLabel": "台北故宫博物院释文",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34561&dep=P&mode=full",
+      "accessionNumber": "贈拓000410",
+      "location": "data/catalog/steles28.json#yuan_03_shengzhu.transcription",
+      "note": "篆题二字在释文括号补字内，不升为已核定。"
+    }
+  ],
+  "conflicts": [
+    {
+      "field": "titleCalligrapher",
+      "status": "pending_review",
+      "detail": "书丹「赵孟頫书」为释文原文。同句后的篆题在括号补字中。"
+    }
+  ],
+  "notes": [],
+  "reviewedAt": "2026-10-18",
+  "method": "只采用本地馆藏释文、馆方题名或证据包中的连续引文。未重开网页时不把目录旧值升为已核定。"
+}

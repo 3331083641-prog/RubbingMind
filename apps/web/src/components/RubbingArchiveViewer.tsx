@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { SteleItem } from '../types/stele';
+import { SteleItem, roleText } from '../types/stele';
 
 export const RubbingArchiveViewer: React.FC<{ stele: SteleItem; mode: 'readable' | 'archive'; onClose: () => void }> = ({ stele, mode, onClose }) => {
   const [zoom, setZoom] = useState(1);
@@ -36,7 +36,8 @@ export const RubbingArchiveViewer: React.FC<{ stele: SteleItem; mode: 'readable'
     </div>
     <div className="text-xs space-y-1 mt-3">
       <details><summary className="text-gold cursor-pointer">馆藏资料与年代说明</summary>
-        <p>文物类型：{stele.artifactType} · 书体：{stele.script_type} · 撰文：{stele.inscriptionAuthor} · 书丹：{stele.calligrapher}</p>
+        <p>文物类型：{stele.artifactType} · 书体：{stele.script_type} · 撰文：{roleText(stele.inscriptionAuthor, stele.authorVerification)} · 书丹：{roleText(stele.calligrapher, stele.calligrapherVerification)} · 篆额：{roleText(stele.titleCalligrapher, stele.titleCalligrapherVerification)} · 刻工：{roleText(stele.engraver, stele.engraverVerification)} · 碑主/墓主：{roleText(stele.steleSubject, stele.steleSubjectVerification)}</p>
+        <p>拓本影像损伤：{stele.imageCondition || '待人工复核'} · 原石风化：{stele.stoneWeathering || '无原石影像，不评定'} · 处理运行：{stele.assessmentRunId || '未记录'}</p>
         <p>原刻：{stele.originalYear} · 拓本：{stele.rubbingPeriod} · 原碑所在地：{stele.originalLocation || '未核定'} · 原石现藏机构：{stele.physicalCollectionInstitution || '未核定'}</p>
         <p>{stele.description}</p>
       </details>

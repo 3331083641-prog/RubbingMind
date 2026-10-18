@@ -1,0 +1,44 @@
+{
+  "steleId": "ming_01_xianfu",
+  "title": "明弘治八年西安府学题名碑",
+  "dynasty": "明代",
+  "originalYear": "1495年",
+  "rubbingPeriod": "未核定；不据拓印年改变朝代",
+  "artifactType": "碑刻拓本",
+  "rubbingCollectionInstitution": "台北故宫博物院",
+  "collectionNumber": "購拓000274",
+  "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full",
+  "inscriptionAuthor": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的撰文署名。"
+  },
+  "calligrapher": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的书丹署名。"
+  },
+  "titleCalligrapher": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的篆额或题额署名。"
+  },
+  "engraver": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的刻工署名。"
+  },
+  "steleSubject": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "不把碑名中的通称自动写成墓主。"
+  },
+  "verificationStatus": "unknown",
+  "evidence": [],
+  "conflicts": [],
+  "notes": [
+    "本轮未在馆方释文或题名中找到可升级的署名；原目录中的未核定或既有姓名保持原状。"
+  ],
+  "reviewedAt": "2026-10-18",
+  "method": "只采用本地馆藏释文、馆方题名或证据包中的连续引文。未重开网页时不把目录旧值升为已核定。"
+}

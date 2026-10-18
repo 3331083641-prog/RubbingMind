@@ -1,0 +1,79 @@
+{
+  "steleId": "yuan_02_sundeyu",
+  "title": "元重阳宫孙德彧道行碑",
+  "dynasty": "元代",
+  "originalYear": "1335年",
+  "rubbingPeriod": "未核定；不据拓印年改变朝代",
+  "artifactType": "碑刻拓本",
+  "rubbingCollectionInstitution": "台北故宫博物院",
+  "collectionNumber": "贈拓000411",
+  "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34667&dep=P&mode=full",
+  "inscriptionAuthor": {
+    "name": null,
+    "verificationStatus": "disputed",
+    "note": "馆方释文作赵文原。通行著录常作邓文原。未对照原石，两种写法都不升为已核定。"
+  },
+  "calligrapher": {
+    "name": "赵孟頫",
+    "verificationStatus": "verified",
+    "note": "释文署书。"
+  },
+  "titleCalligrapher": {
+    "name": "赵世延",
+    "verificationStatus": "verified",
+    "note": "释文署篆额。"
+  },
+  "engraver": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的刻工署名。"
+  },
+  "steleSubject": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "不把碑名中的通称自动写成墓主。"
+  },
+  "verificationStatus": "disputed",
+  "evidence": [
+    {
+      "field": "inscriptionAuthor",
+      "quote": "趙文原譔",
+      "verificationStatus": "disputed",
+      "sourceLabel": "台北故宫博物院释文",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34667&dep=P&mode=full",
+      "accessionNumber": "贈拓000411",
+      "location": "data/catalog/steles28.json#yuan_02_sundeyu.transcription",
+      "note": "馆方释文作赵文原。通行著录常作邓文原。未对照原石，两种写法都不升为已核定。"
+    },
+    {
+      "field": "calligrapher",
+      "quote": "趙孟頫書",
+      "verificationStatus": "verified",
+      "sourceLabel": "台北故宫博物院释文",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34667&dep=P&mode=full",
+      "accessionNumber": "贈拓000411",
+      "location": "data/catalog/steles28.json#yuan_02_sundeyu.transcription",
+      "note": "释文署书。"
+    },
+    {
+      "field": "titleCalligrapher",
+      "quote": "趙世延篆額",
+      "verificationStatus": "verified",
+      "sourceLabel": "台北故宫博物院释文",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34667&dep=P&mode=full",
+      "accessionNumber": "贈拓000411",
+      "location": "data/catalog/steles28.json#yuan_02_sundeyu.transcription",
+      "note": "释文署篆额。"
+    }
+  ],
+  "conflicts": [
+    {
+      "field": "inscriptionAuthor",
+      "status": "disputed",
+      "detail": "本馆释文连续文字是「赵文原譔」。孙德彧道行碑通常著录为邓文原撰、赵孟頫书、赵世延篆额。本轮不改字，也不把赵文原或邓文原写成已核定撰文者。"
+    }
+  ],
+  "notes": [],
+  "reviewedAt": "2026-10-18",
+  "method": "只采用本地馆藏释文、馆方题名或证据包中的连续引文。未重开网页时不把目录旧值升为已核定。"
+}

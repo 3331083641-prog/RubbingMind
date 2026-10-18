@@ -1,0 +1,105 @@
+{
+  "steleId": "han_03_liqi",
+  "title": "礼器碑",
+  "runId": "assess28-20261018-han_03_liqi",
+  "sourceImage": "apps/web/public/assets/stele/museum-rubbings/han_03_liqi_readable.jpg",
+  "sourceImageSha256": "bf5787e578fc2203c2955e13ee3c83ed5b325f2e5d32ca6779777e2d65666bfe",
+  "archiveImageSha256": "7b5f373e3b3ce452c43140a2ca950ce755dfd1f5b3379232f769eb6ae0d168da",
+  "algorithmVersion": "adaptive-rubbing-v2.1",
+  "parameters": {
+    "strength": 1.0,
+    "notchWidth": 0.8
+  },
+  "imageDimensions": {
+    "readable": [
+      1601,
+      2809
+    ],
+    "archive": [
+      2283,
+      3066
+    ]
+  },
+  "coverage": "阅读图和档案图各一幅。册页若有多开，其余开页不在本次评级内。",
+  "analysisScope": "阅读图全幅经等比例缩小后计算诊断；缩小只用于指标，不代替原图。",
+  "restorationScope": "partial_center_roi",
+  "cropBox": {
+    "x": 544,
+    "y": 1148,
+    "width": 512,
+    "height": 512,
+    "space": "readable native pixels, right/bottom exclusive"
+  },
+  "partialResultIsNotFullFrame": true,
+  "processingTimeMs": 176.0401725769043,
+  "outputImage": "static/results/han_03_liqi/assess28-20261018-han_03_liqi/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/han_03_liqi.png",
+  "outputImageSha256": "12c41524f9287dcf0f013e21d82bb184964f1f898ca2dfe4a81303f9cb7d8ee2",
+  "adaptiveDecisions": [
+    {
+      "operator": "skip_notch",
+      "reason": "未检出符合阈值的周期峰；不强行陷波"
+    },
+    {
+      "operator": "thin_stroke_nlm",
+      "h": 7.0886919307708744,
+      "thinStrokeRisk": 0.824031149705562,
+      "reason": "细笔画占比高，降低 NLM 强度，避免抹断或粘连"
+    }
+  ],
+  "fidelityGate": {
+    "accepted": true,
+    "strongEdgeRetention": 0.9999977350234985,
+    "meanAbsoluteChange": 0.027736663818359375,
+    "contrastRatio": 0.9999431949846374,
+    "reasons": [],
+    "basis": "输入输出启发式保真门控，非质量真值"
+  },
+  "assessmentStatus": "processed",
+  "error": null,
+  "imageCondition": "中度影像损伤",
+  "readableGrade": "中度影像损伤",
+  "archiveGrade": "轻度影像损伤",
+  "gradeRule": "rubbing-image-condition-v1",
+  "gradeReasons": [
+    "全幅对比度标准差 43.8，拉普拉斯方差 5516，疑似均匀缺损 0.0%"
+  ],
+  "readableMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.4983980064079744,
+    "mean": 114.1187253848908,
+    "contrastStd": 43.804865840131086,
+    "laplacianVariance": 5516.381274849037,
+    "suspectedUniformLossFraction": 0.0,
+    "darkGround": false,
+    "componentCount": 781,
+    "smallComponentFraction": 0.9282970550576184
+  },
+  "archiveMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.45662100456621,
+    "mean": 104.48942761173568,
+    "contrastStd": 52.033972135502815,
+    "laplacianVariance": 3508.8493857938306,
+    "suspectedUniformLossFraction": 0.00660063065533315,
+    "darkGround": true,
+    "componentCount": 2598,
+    "smallComponentFraction": 0.8787528868360277
+  },
+  "stoneWeathering": "无原石影像，不评定",
+  "stoneWeatheringEvidence": [],
+  "pairedGroundTruth": false,
+  "psnr": null,
+  "ssim": null,
+  "evaluationStatus": "未评测",
+  "humanReview": true,
+  "humanReviewReason": "自动评级只使用全幅对比度、清晰度和均匀缺损比例。逐字残泐未人工判读。修复记录是中心 512 局部，不是全幅。",
+  "observedIssues": [
+    "对比度标准差 43.8",
+    "拉普拉斯方差 5516.4",
+    "细碎连通域占比 92.8%",
+    "原石风化无照片，不评定",
+    "中度影像损伤"
+  ],
+  "limit": "诊断指标不能称为原石风化程度。无配对真值，不计算 PSNR 或 SSIM。"
+}

@@ -1,0 +1,103 @@
+{
+  "steleId": "han_01_caoquan",
+  "title": "曹全碑",
+  "runId": "assess28-20261018-han_01_caoquan",
+  "sourceImage": "apps/web/public/assets/stele/museum-rubbings/han_01_caoquan_readable.jpg",
+  "sourceImageSha256": "e585c3231ba491e2b8ce0494da52fb8e375e7525673344acc2650d73b8c0dbd2",
+  "archiveImageSha256": "8cc91f116d1de99a32bd55e7512ae02707cf91c87b6f59ef00d7c4d471b38a8d",
+  "algorithmVersion": "adaptive-rubbing-v2.1",
+  "parameters": {
+    "strength": 1.0,
+    "notchWidth": 0.8
+  },
+  "imageDimensions": {
+    "readable": [
+      1229,
+      2821
+    ],
+    "archive": [
+      2283,
+      3066
+    ]
+  },
+  "coverage": "阅读图和档案图各一幅。册页若有多开，其余开页不在本次评级内。",
+  "analysisScope": "阅读图全幅经等比例缩小后计算诊断；缩小只用于指标，不代替原图。",
+  "restorationScope": "partial_center_roi",
+  "cropBox": {
+    "x": 358,
+    "y": 1154,
+    "width": 512,
+    "height": 512,
+    "space": "readable native pixels, right/bottom exclusive"
+  },
+  "partialResultIsNotFullFrame": true,
+  "processingTimeMs": 67.38567352294922,
+  "outputImage": "static/results/han_01_caoquan/assess28-20261018-han_01_caoquan/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/han_01_caoquan.png",
+  "outputImageSha256": "dc6b3f809061a9c59ee48912fcdbdf762d19ae597a5e1d262bdb9ef1f46a24ba",
+  "adaptiveDecisions": [
+    {
+      "operator": "skip_notch",
+      "reason": "未检出符合阈值的周期峰；不强行陷波"
+    },
+    {
+      "operator": "identity",
+      "reason": "残差证据弱；不锐化、不强制CLAHE/形态学"
+    }
+  ],
+  "fidelityGate": {
+    "accepted": true,
+    "strongEdgeRetention": 1.0,
+    "meanAbsoluteChange": 0.0,
+    "contrastRatio": 1.0,
+    "reasons": [],
+    "basis": "输入输出启发式保真门控，非质量真值"
+  },
+  "assessmentStatus": "processed",
+  "error": null,
+  "imageCondition": "轻度影像损伤",
+  "readableGrade": "轻度影像损伤",
+  "archiveGrade": "轻度影像损伤",
+  "gradeRule": "rubbing-image-condition-v1",
+  "gradeReasons": [
+    "全幅对比度标准差 47.8，拉普拉斯方差 3989，疑似均匀缺损 0.0%。这是扫描影像指标，不是逐字残泐判读"
+  ],
+  "readableMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.49627791563275436,
+    "mean": 88.73913700234192,
+    "contrastStd": 47.824860084118804,
+    "laplacianVariance": 3989.2338869459045,
+    "suspectedUniformLossFraction": 0.0,
+    "darkGround": false,
+    "componentCount": 136,
+    "smallComponentFraction": 0.9852941176470589
+  },
+  "archiveMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.45662100456621,
+    "mean": 80.30282218261586,
+    "contrastStd": 48.71229727632564,
+    "laplacianVariance": 1808.8810919803143,
+    "suspectedUniformLossFraction": 0.0035117905127502055,
+    "darkGround": true,
+    "componentCount": 1935,
+    "smallComponentFraction": 0.8888888888888888
+  },
+  "stoneWeathering": "无原石影像，不评定",
+  "stoneWeatheringEvidence": [],
+  "pairedGroundTruth": false,
+  "psnr": null,
+  "ssim": null,
+  "evaluationStatus": "未评测",
+  "humanReview": true,
+  "humanReviewReason": "自动评级只使用全幅对比度、清晰度和均匀缺损比例。逐字残泐未人工判读。修复记录是中心 512 局部，不是全幅。",
+  "observedIssues": [
+    "对比度标准差 47.8",
+    "拉普拉斯方差 3989.2",
+    "细碎连通域占比 98.5%",
+    "原石风化无照片，不评定",
+    "轻度影像损伤"
+  ],
+  "limit": "诊断指标不能称为原石风化程度。无配对真值，不计算 PSNR 或 SSIM。"
+}

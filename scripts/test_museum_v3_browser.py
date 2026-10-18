@@ -42,7 +42,8 @@ def run(url,output):
             page.get_by_role('button',name=re.compile(r'^元代\s*4$')).click()
             search=page.get_by_placeholder('搜索碑名、书家、撰文者、馆藏号、地望...')
             search.fill('贈拓000412');expect(page.get_by_test_id('museum-card')).to_have_count(1)
-            page.get_by_role('button',name='待评估',exact=True).click();expect(page.get_by_test_id('museum-card')).to_have_count(1)
+            grade=page.locator('[data-stele-id="yuan_04_jingyuanchang"]').get_attribute('data-image-condition')
+            page.get_by_role('button',name=grade,exact=True).click();expect(page.get_by_test_id('museum-card')).to_have_count(1)
             page.get_by_role('button',name='严重漫漶',exact=True).click();expect(page.get_by_test_id('museum-card')).to_have_count(0)
             page.get_by_role('button',name='重置所有筛选条件').click();expect(page.get_by_test_id('museum-card')).to_have_count(28)
             results[mode]['searchWeatheringCombined']=True

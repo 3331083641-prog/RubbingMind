@@ -1,0 +1,110 @@
+{
+  "steleId": "yuan_04_jingyuanchang",
+  "title": "赵孟頫书敬元长墓碣铭",
+  "runId": "assess28-20261018-yuan_04_jingyuanchang",
+  "sourceImage": "apps/web/public/assets/stele/museum-rubbings/yuan_04_jingyuanchang_readable.jpg",
+  "sourceImageSha256": "fcd557011d464cdf2224f2dadebc8f1e6d6f8cc8fbfffd3f917584023a5b0fa2",
+  "archiveImageSha256": "bc98a3330757bceab3c05a270e8d6759eb2c4e36a206adf23e3b0691c6ee8ca9",
+  "algorithmVersion": "adaptive-rubbing-v2.1",
+  "parameters": {
+    "strength": 1.0,
+    "notchWidth": 0.8
+  },
+  "imageDimensions": {
+    "readable": [
+      1714,
+      2818
+    ],
+    "archive": [
+      2268,
+      3087
+    ]
+  },
+  "coverage": "阅读图和档案图各一幅。册页若有多开，其余开页不在本次评级内。",
+  "analysisScope": "阅读图全幅经等比例缩小后计算诊断；缩小只用于指标，不代替原图。",
+  "restorationScope": "partial_center_roi",
+  "cropBox": {
+    "x": 601,
+    "y": 1153,
+    "width": 512,
+    "height": 512,
+    "space": "readable native pixels, right/bottom exclusive"
+  },
+  "partialResultIsNotFullFrame": true,
+  "processingTimeMs": 478.3327579498291,
+  "outputImage": "static/results/yuan_04_jingyuanchang/assess28-20261018-yuan_04_jingyuanchang/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/yuan_04_jingyuanchang.png",
+  "outputImageSha256": "6fc602dff081364d523d3a7738168515669870e5c0b1fc5b5380732779ec5afc",
+  "adaptiveDecisions": [
+    {
+      "operator": "skip_notch",
+      "reason": "未检出符合阈值的周期峰；不强行陷波"
+    },
+    {
+      "operator": "isolated_impulse_median",
+      "pixels": 372,
+      "reason": "仅替换局部孤立极值；不执行全局开运算"
+    },
+    {
+      "operator": "thin_stroke_nlm",
+      "h": 7.655787606239318,
+      "thinStrokeRisk": 0.9540859073898229,
+      "reason": "细笔画占比高，降低 NLM 强度，避免抹断或粘连"
+    }
+  ],
+  "fidelityGate": {
+    "accepted": true,
+    "strongEdgeRetention": 0.9935391545295715,
+    "meanAbsoluteChange": 0.4873237609863281,
+    "contrastRatio": 0.9937240742810838,
+    "reasons": [],
+    "basis": "输入输出启发式保真门控，非质量真值"
+  },
+  "assessmentStatus": "processed",
+  "error": null,
+  "imageCondition": "中度影像损伤",
+  "readableGrade": "中度影像损伤",
+  "archiveGrade": "中度影像损伤",
+  "gradeRule": "rubbing-image-condition-v1",
+  "gradeReasons": [
+    "全幅对比度标准差 38.4，拉普拉斯方差 7266，疑似均匀缺损 0.0%"
+  ],
+  "readableMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.49680624556423,
+    "mean": 75.76030181086519,
+    "contrastStd": 38.431111308520656,
+    "laplacianVariance": 7265.575354615707,
+    "suspectedUniformLossFraction": 0.0,
+    "darkGround": true,
+    "componentCount": 2554,
+    "smallComponentFraction": 0.7419733750978856
+  },
+  "archiveMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.45351473922902497,
+    "mean": 64.56060669165626,
+    "contrastStd": 38.26271024691309,
+    "laplacianVariance": 4427.425420452615,
+    "suspectedUniformLossFraction": 0.0,
+    "darkGround": true,
+    "componentCount": 2021,
+    "smallComponentFraction": 0.6976744186046512
+  },
+  "stoneWeathering": "无原石影像，不评定",
+  "stoneWeatheringEvidence": [],
+  "pairedGroundTruth": false,
+  "psnr": null,
+  "ssim": null,
+  "evaluationStatus": "未评测",
+  "humanReview": true,
+  "humanReviewReason": "自动评级只使用全幅对比度、清晰度和均匀缺损比例。逐字残泐未人工判读。修复记录是中心 512 局部，不是全幅。",
+  "observedIssues": [
+    "对比度标准差 38.4",
+    "拉普拉斯方差 7265.6",
+    "细碎连通域占比 74.2%",
+    "原石风化无照片，不评定",
+    "中度影像损伤"
+  ],
+  "limit": "诊断指标不能称为原石风化程度。无配对真值，不计算 PSNR 或 SSIM。"
+}

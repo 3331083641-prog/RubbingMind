@@ -1,0 +1,59 @@
+{
+  "steleId": "qing_01_qianlong_heart_sutra",
+  "title": "乾隆御书般若波罗蜜多心经",
+  "dynasty": "清代",
+  "originalYear": "1744年",
+  "rubbingPeriod": "late 19th to first half of 20th century",
+  "artifactType": "碑刻拓本",
+  "rubbingCollectionInstitution": "普林斯顿大学艺术博物馆",
+  "collectionNumber": "y1958-220",
+  "sourceUrl": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+  "inscriptionAuthor": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的撰文署名。"
+  },
+  "calligrapher": {
+    "name": null,
+    "verificationStatus": "pending_review",
+    "note": "证据包题名作乾隆御书。心经正文不是乾隆所撰。本轮未重开普林斯顿页面。"
+  },
+  "titleCalligrapher": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的篆额或题额署名。"
+  },
+  "engraver": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的刻工署名。"
+  },
+  "steleSubject": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "不把碑名中的通称自动写成墓主。"
+  },
+  "verificationStatus": "pending_review",
+  "evidence": [
+    {
+      "field": "calligrapher",
+      "quote": "乾隆御书般若波罗蜜多心经",
+      "verificationStatus": "pending_review",
+      "sourceLabel": "证据包 item_title，普林斯顿大学艺术博物馆 y1958-220",
+      "sourceUrl": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+      "accessionNumber": "y1958-220",
+      "location": "data/catalog/evidence/qing_01_qianlong_heart_sutra.json",
+      "note": "证据包题名作乾隆御书。心经正文不是乾隆所撰。本轮未重开普林斯顿页面。"
+    }
+  ],
+  "conflicts": [
+    {
+      "field": "inscriptionAuthor",
+      "status": "unknown",
+      "detail": "般若心经有独立的译经文本。乾隆御书只可能说明书写，不能把弘历登记为经文撰者。"
+    }
+  ],
+  "notes": [],
+  "reviewedAt": "2026-10-18",
+  "method": "只采用本地馆藏释文、馆方题名或证据包中的连续引文。未重开网页时不把目录旧值升为已核定。"
+}

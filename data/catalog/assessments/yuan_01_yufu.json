@@ -1,0 +1,105 @@
+{
+  "steleId": "yuan_01_yufu",
+  "title": "大元敕藏御服之碑",
+  "runId": "assess28-20261018-yuan_01_yufu",
+  "sourceImage": "apps/web/public/assets/stele/museum-rubbings/yuan_01_yufu_readable.jpg",
+  "sourceImageSha256": "1b1beea0dd67cf7186b5f58314d64a0090e60cf174631b44175625510e6077b0",
+  "archiveImageSha256": "1f4654d528ae5add18de271effc6154de5f89a424f4a3d312b6480692659b595",
+  "algorithmVersion": "adaptive-rubbing-v2.1",
+  "parameters": {
+    "strength": 1.0,
+    "notchWidth": 0.8
+  },
+  "imageDimensions": {
+    "readable": [
+      1719,
+      1618
+    ],
+    "archive": [
+      3058,
+      2289
+    ]
+  },
+  "coverage": "阅读图和档案图各一幅。册页若有多开，其余开页不在本次评级内。",
+  "analysisScope": "阅读图全幅经等比例缩小后计算诊断；缩小只用于指标，不代替原图。",
+  "restorationScope": "partial_center_roi",
+  "cropBox": {
+    "x": 603,
+    "y": 553,
+    "width": 512,
+    "height": 512,
+    "space": "readable native pixels, right/bottom exclusive"
+  },
+  "partialResultIsNotFullFrame": true,
+  "processingTimeMs": 453.9937973022461,
+  "outputImage": "static/results/yuan_01_yufu/assess28-20261018-yuan_01_yufu/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/yuan_01_yufu.png",
+  "outputImageSha256": "ea8baa2452380ce192dd88a7848727824f02fa0f14557563b8a49d9a4c955990",
+  "adaptiveDecisions": [
+    {
+      "operator": "skip_notch",
+      "reason": "未检出符合阈值的周期峰；不强行陷波"
+    },
+    {
+      "operator": "nlm",
+      "h": 5.040847611427307,
+      "reason": "高通MAD显示随机残差；保留强边缘"
+    }
+  ],
+  "fidelityGate": {
+    "accepted": true,
+    "strongEdgeRetention": 0.9999707341194153,
+    "meanAbsoluteChange": 1.30908203125,
+    "contrastRatio": 0.9989370899270306,
+    "reasons": [],
+    "basis": "输入输出启发式保真门控，非质量真值"
+  },
+  "assessmentStatus": "processed",
+  "error": null,
+  "imageCondition": "轻度影像损伤",
+  "readableGrade": "轻度影像损伤",
+  "archiveGrade": "重度影像损伤",
+  "gradeRule": "rubbing-image-condition-v1",
+  "gradeReasons": [
+    "全幅对比度标准差 53.9，拉普拉斯方差 1583，疑似均匀缺损 0.0%。这是扫描影像指标，不是逐字残泐判读",
+    "档案图疑似均匀区域占比 8.2%，可能来自裱边或扫描背景，不升为阅读图缺损"
+  ],
+  "readableMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.8144269924374636,
+    "mean": 94.59209083026231,
+    "contrastStd": 53.94315143059025,
+    "laplacianVariance": 1582.5148414580112,
+    "suspectedUniformLossFraction": 0.0,
+    "darkGround": false,
+    "componentCount": 22,
+    "smallComponentFraction": 0.6363636363636364
+  },
+  "archiveMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.4578155657292348,
+    "mean": 149.44534555616139,
+    "contrastStd": 62.152268898644856,
+    "laplacianVariance": 1017.758880313643,
+    "suspectedUniformLossFraction": 0.08194929116684842,
+    "darkGround": false,
+    "componentCount": 121,
+    "smallComponentFraction": 0.5619834710743802
+  },
+  "stoneWeathering": "无原石影像，不评定",
+  "stoneWeatheringEvidence": [],
+  "pairedGroundTruth": false,
+  "psnr": null,
+  "ssim": null,
+  "evaluationStatus": "未评测",
+  "humanReview": true,
+  "humanReviewReason": "自动评级只使用全幅对比度、清晰度和均匀缺损比例。逐字残泐未人工判读。修复记录是中心 512 局部，不是全幅。",
+  "observedIssues": [
+    "对比度标准差 53.9",
+    "拉普拉斯方差 1582.5",
+    "细碎连通域占比 63.6%",
+    "原石风化无照片，不评定",
+    "轻度影像损伤"
+  ],
+  "limit": "诊断指标不能称为原石风化程度。无配对真值，不计算 PSNR 或 SSIM。"
+}

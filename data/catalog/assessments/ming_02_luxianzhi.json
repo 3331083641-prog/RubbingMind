@@ -1,0 +1,103 @@
+{
+  "steleId": "ming_02_luxianzhi",
+  "title": "文徵明书陆献之墓志铭",
+  "runId": "assess28-20261018-ming_02_luxianzhi",
+  "sourceImage": "apps/web/public/assets/stele/museum-rubbings/ming_02_luxianzhi_readable.jpg",
+  "sourceImageSha256": "ccdb8b6adbb28f69ee074cb21d088c60cfe89770169873fd2d2f978a8d408b53",
+  "archiveImageSha256": "316f3e564460127a1255850cda82bb2bee7e3c72b4b5d1f8790f99c9fe175799",
+  "algorithmVersion": "adaptive-rubbing-v2.1",
+  "parameters": {
+    "strength": 1.0,
+    "notchWidth": 0.8
+  },
+  "imageDimensions": {
+    "readable": [
+      2376,
+      1247
+    ],
+    "archive": [
+      3058,
+      2289
+    ]
+  },
+  "coverage": "阅读图和档案图各一幅。册页若有多开，其余开页不在本次评级内。",
+  "analysisScope": "阅读图全幅经等比例缩小后计算诊断；缩小只用于指标，不代替原图。",
+  "restorationScope": "partial_center_roi",
+  "cropBox": {
+    "x": 932,
+    "y": 367,
+    "width": 512,
+    "height": 512,
+    "space": "readable native pixels, right/bottom exclusive"
+  },
+  "partialResultIsNotFullFrame": true,
+  "processingTimeMs": 141.2510871887207,
+  "outputImage": "static/results/ming_02_luxianzhi/assess28-20261018-ming_02_luxianzhi/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/ming_02_luxianzhi.png",
+  "outputImageSha256": "53a6a895f2406af099373e5bcca1e79ca48f1f44cbd655887e4fe90636eb665c",
+  "adaptiveDecisions": [
+    {
+      "operator": "skip_notch",
+      "reason": "未检出符合阈值的周期峰；不强行陷波"
+    },
+    {
+      "operator": "identity",
+      "reason": "残差证据弱；不锐化、不强制CLAHE/形态学"
+    }
+  ],
+  "fidelityGate": {
+    "accepted": true,
+    "strongEdgeRetention": 1.0,
+    "meanAbsoluteChange": 0.0,
+    "contrastRatio": 1.0,
+    "reasons": [],
+    "basis": "输入输出启发式保真门控，非质量真值"
+  },
+  "assessmentStatus": "processed",
+  "error": null,
+  "imageCondition": "中度影像损伤",
+  "readableGrade": "中度影像损伤",
+  "archiveGrade": "中度影像损伤",
+  "gradeRule": "rubbing-image-condition-v1",
+  "gradeReasons": [
+    "全幅对比度标准差 34.5，拉普拉斯方差 1105，疑似均匀缺损 0.0%"
+  ],
+  "readableMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.5892255892255892,
+    "mean": 195.93680369290573,
+    "contrastStd": 34.51449615040572,
+    "laplacianVariance": 1104.5027928199077,
+    "suspectedUniformLossFraction": 0.0,
+    "darkGround": false,
+    "componentCount": 525,
+    "smallComponentFraction": 0.49523809523809526
+  },
+  "archiveMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.4578155657292348,
+    "mean": 197.47742570883315,
+    "contrastStd": 36.26892012091422,
+    "laplacianVariance": 818.5415728085056,
+    "suspectedUniformLossFraction": 0.011055070883315157,
+    "darkGround": false,
+    "componentCount": 596,
+    "smallComponentFraction": 0.5989932885906041
+  },
+  "stoneWeathering": "无原石影像，不评定",
+  "stoneWeatheringEvidence": [],
+  "pairedGroundTruth": false,
+  "psnr": null,
+  "ssim": null,
+  "evaluationStatus": "未评测",
+  "humanReview": true,
+  "humanReviewReason": "自动评级只使用全幅对比度、清晰度和均匀缺损比例。逐字残泐未人工判读。修复记录是中心 512 局部，不是全幅。",
+  "observedIssues": [
+    "对比度标准差 34.5",
+    "拉普拉斯方差 1104.5",
+    "细碎连通域占比 49.5%",
+    "原石风化无照片，不评定",
+    "中度影像损伤"
+  ],
+  "limit": "诊断指标不能称为原石风化程度。无配对真值，不计算 PSNR 或 SSIM。"
+}

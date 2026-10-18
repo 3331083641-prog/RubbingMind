@@ -1,0 +1,73 @@
+{
+  "steleId": "ming_02_luxianzhi",
+  "title": "文徵明书陆献之墓志铭",
+  "dynasty": "明代",
+  "originalYear": "明代，确切原刻年份未核定",
+  "rubbingPeriod": "未核定；不据拓印年改变朝代",
+  "artifactType": "馆方著录拓片（册页；草稿／手迹性质待考）",
+  "rubbingCollectionInstitution": "台北故宫博物院",
+  "collectionNumber": "贈拓000385",
+  "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30367&dep=P&mode=full",
+  "inscriptionAuthor": {
+    "name": "文徵明",
+    "verificationStatus": "verified",
+    "note": "志文末署文徵明著。"
+  },
+  "calligrapher": {
+    "name": "文徵明",
+    "verificationStatus": "verified",
+    "note": "馆方题名写明书。"
+  },
+  "titleCalligrapher": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的篆额或题额署名。"
+  },
+  "engraver": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的刻工署名。"
+  },
+  "steleSubject": {
+    "name": "陆献之",
+    "verificationStatus": "verified",
+    "note": "题名与志题中的墓主，不是撰文者。"
+  },
+  "verificationStatus": "verified",
+  "evidence": [
+    {
+      "field": "inscriptionAuthor",
+      "quote": "文徵明著",
+      "verificationStatus": "verified",
+      "sourceLabel": "台北故宫博物院释文",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30367&dep=P&mode=full",
+      "accessionNumber": "贈拓000385",
+      "location": "data/catalog/steles28.json#ming_02_luxianzhi.transcription",
+      "note": "志文末署文徵明著。"
+    },
+    {
+      "field": "calligrapher",
+      "quote": "明文徵明書陸獻之墓誌銘",
+      "verificationStatus": "verified",
+      "sourceLabel": "台北故宫博物院题名",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30367&dep=P&mode=full",
+      "accessionNumber": "贈拓000385",
+      "location": "data/catalog/steles28.json#ming_02_luxianzhi.transcription",
+      "note": "馆方题名写明书。"
+    },
+    {
+      "field": "steleSubject",
+      "quote": "陸獻之墓誌銘",
+      "verificationStatus": "verified",
+      "sourceLabel": "台北故宫博物院题名",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30367&dep=P&mode=full",
+      "accessionNumber": "贈拓000385",
+      "location": "data/catalog/steles28.json#ming_02_luxianzhi.transcription",
+      "note": "题名与志题中的墓主，不是撰文者。"
+    }
+  ],
+  "conflicts": [],
+  "notes": [],
+  "reviewedAt": "2026-10-18",
+  "method": "只采用本地馆藏释文、馆方题名或证据包中的连续引文。未重开网页时不把目录旧值升为已核定。"
+}

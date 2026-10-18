@@ -1,0 +1,105 @@
+{
+  "steleId": "qing_02_wushi_reerection",
+  "title": "重立武氏祠石记",
+  "runId": "assess28-20261018-qing_02_wushi_reerection",
+  "sourceImage": "apps/web/public/assets/stele/museum-rubbings/qing_02_wushi_reerection_readable.jpg",
+  "sourceImageSha256": "551b3c7a4a8c83f989a1d44b3c9c941b34f6c4eeb55c677c2940a29a7fb246e6",
+  "archiveImageSha256": "948ac3c851bcb84bdb6dafa4856db3c79f0ea4342a31527bcbbf5972295e3ded",
+  "algorithmVersion": "adaptive-rubbing-v2.1",
+  "parameters": {
+    "strength": 1.0,
+    "notchWidth": 0.8
+  },
+  "imageDimensions": {
+    "readable": [
+      3976,
+      1626
+    ],
+    "archive": [
+      4016,
+      1649
+    ]
+  },
+  "coverage": "阅读图和档案图各一幅。册页若有多开，其余开页不在本次评级内。",
+  "analysisScope": "阅读图全幅经等比例缩小后计算诊断；缩小只用于指标，不代替原图。",
+  "restorationScope": "partial_center_roi",
+  "cropBox": {
+    "x": 1732,
+    "y": 557,
+    "width": 512,
+    "height": 512,
+    "space": "readable native pixels, right/bottom exclusive"
+  },
+  "partialResultIsNotFullFrame": true,
+  "processingTimeMs": 452.7742862701416,
+  "outputImage": "static/results/qing_02_wushi_reerection/assess28-20261018-qing_02_wushi_reerection/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/qing_02_wushi_reerection.png",
+  "outputImageSha256": "cf49705109021e7f2cdf6aa766c75ca7a5d812222a824b8aac5b71d1a4738a76",
+  "adaptiveDecisions": [
+    {
+      "operator": "skip_notch",
+      "reason": "未检出符合阈值的周期峰；不强行陷波"
+    },
+    {
+      "operator": "thin_stroke_nlm",
+      "h": 4.5367628502845765,
+      "thinStrokeRisk": 0.7301690086123163,
+      "reason": "细笔画占比高，降低 NLM 强度，避免抹断或粘连"
+    }
+  ],
+  "fidelityGate": {
+    "accepted": true,
+    "strongEdgeRetention": 0.999998927116394,
+    "meanAbsoluteChange": 0.021099090576171875,
+    "contrastRatio": 1.0000111346237939,
+    "reasons": [],
+    "basis": "输入输出启发式保真门控，非质量真值"
+  },
+  "assessmentStatus": "processed",
+  "error": null,
+  "imageCondition": "中度影像损伤",
+  "readableGrade": "中度影像损伤",
+  "archiveGrade": "中度影像损伤",
+  "gradeRule": "rubbing-image-condition-v1",
+  "gradeReasons": [
+    "全幅对比度标准差 42.5，拉普拉斯方差 7282，疑似均匀缺损 0.0%"
+  ],
+  "readableMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.352112676056338,
+    "mean": 116.75208177511843,
+    "contrastStd": 42.53639672271707,
+    "laplacianVariance": 7281.812565215889,
+    "suspectedUniformLossFraction": 0.0001807529294440289,
+    "darkGround": false,
+    "componentCount": 1029,
+    "smallComponentFraction": 0.9659863945578231
+  },
+  "archiveMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.34860557768924305,
+    "mean": 118.65727950310558,
+    "contrastStd": 41.18065844079633,
+    "laplacianVariance": 6321.177677011498,
+    "suspectedUniformLossFraction": 0.00017391304347826088,
+    "darkGround": false,
+    "componentCount": 967,
+    "smallComponentFraction": 0.9669079627714581
+  },
+  "stoneWeathering": "无原石影像，不评定",
+  "stoneWeatheringEvidence": [],
+  "pairedGroundTruth": false,
+  "psnr": null,
+  "ssim": null,
+  "evaluationStatus": "未评测",
+  "humanReview": true,
+  "humanReviewReason": "自动评级只使用全幅对比度、清晰度和均匀缺损比例。逐字残泐未人工判读。修复记录是中心 512 局部，不是全幅。",
+  "observedIssues": [
+    "对比度标准差 42.5",
+    "拉普拉斯方差 7281.8",
+    "细碎连通域占比 96.6%",
+    "原石风化无照片，不评定",
+    "中度影像损伤"
+  ],
+  "limit": "诊断指标不能称为原石风化程度。无配对真值，不计算 PSNR 或 SSIM。"
+}

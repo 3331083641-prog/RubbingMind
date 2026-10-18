@@ -1,0 +1,69 @@
+{
+  "steleId": "yuan_04_jingyuanchang",
+  "title": "赵孟頫书敬元长墓碣铭",
+  "dynasty": "元代",
+  "originalYear": "元代，具体原刻年份未核定",
+  "rubbingPeriod": "未核定",
+  "artifactType": "墓碣铭拓本",
+  "rubbingCollectionInstitution": "台北故宫博物院",
+  "collectionNumber": "贈拓000412",
+  "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34668?dep=P",
+  "inscriptionAuthor": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的撰文署名。"
+  },
+  "calligrapher": {
+    "name": null,
+    "verificationStatus": "pending_review",
+    "note": "证据包所存馆方题名写赵孟頫书。题名不是撰文署名。本轮未重开馆方页面。"
+  },
+  "titleCalligrapher": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的篆额或题额署名。"
+  },
+  "engraver": {
+    "name": null,
+    "verificationStatus": "unknown",
+    "note": "未见可核定的刻工署名。"
+  },
+  "steleSubject": {
+    "name": "敬元长",
+    "verificationStatus": "pending_review",
+    "note": "题名中的墓主。书写者不因此成为撰文者。"
+  },
+  "verificationStatus": "pending_review",
+  "evidence": [
+    {
+      "field": "calligrapher",
+      "quote": "元赵孟頫书元故太常博士敬元长墓碣铭",
+      "verificationStatus": "pending_review",
+      "sourceLabel": "证据包 item_title，对应故宫赠拓000412",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34668?dep=P",
+      "accessionNumber": "贈拓000412",
+      "location": "data/catalog/evidence/yuan_04_jingyuanchang.json",
+      "note": "证据包所存馆方题名写赵孟頫书。题名不是撰文署名。本轮未重开馆方页面。"
+    },
+    {
+      "field": "steleSubject",
+      "quote": "敬元长墓碣铭",
+      "verificationStatus": "pending_review",
+      "sourceLabel": "证据包 item_title，对应故宫赠拓000412",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34668?dep=P",
+      "accessionNumber": "贈拓000412",
+      "location": "data/catalog/evidence/yuan_04_jingyuanchang.json",
+      "note": "题名中的墓主。书写者不因此成为撰文者。"
+    }
+  ],
+  "conflicts": [
+    {
+      "field": "inscriptionAuthor",
+      "status": "unknown",
+      "detail": "赵孟頫书写墓碣铭，不因此成为撰文者。敬元长是墓主。"
+    }
+  ],
+  "notes": [],
+  "reviewedAt": "2026-10-18",
+  "method": "只采用本地馆藏释文、馆方题名或证据包中的连续引文。未重开网页时不把目录旧值升为已核定。"
+}

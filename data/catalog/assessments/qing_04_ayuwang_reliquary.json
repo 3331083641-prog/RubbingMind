@@ -1,0 +1,110 @@
+{
+  "steleId": "qing_04_ayuwang_reliquary",
+  "title": "阿育王寺舍利塔碑",
+  "runId": "assess28-20261018-qing_04_ayuwang_reliquary",
+  "sourceImage": "apps/web/public/assets/stele/museum-rubbings/qing_04_ayuwang_reliquary_readable.jpg",
+  "sourceImageSha256": "87cca76e152c4c9b4125e24859c30664f4606711f6aaac4f95eb088d58eb03ad",
+  "archiveImageSha256": "336b48bb4babbd1c6c10b193df45791f6ff349bc68cd846af268a75f82a565ed",
+  "algorithmVersion": "adaptive-rubbing-v2.1",
+  "parameters": {
+    "strength": 1.0,
+    "notchWidth": 0.8
+  },
+  "imageDimensions": {
+    "readable": [
+      1040,
+      1994
+    ],
+    "archive": [
+      1069,
+      2000
+    ]
+  },
+  "coverage": "阅读图和档案图各一幅。册页若有多开，其余开页不在本次评级内。",
+  "analysisScope": "阅读图全幅经等比例缩小后计算诊断；缩小只用于指标，不代替原图。",
+  "restorationScope": "partial_center_roi",
+  "cropBox": {
+    "x": 264,
+    "y": 741,
+    "width": 512,
+    "height": 512,
+    "space": "readable native pixels, right/bottom exclusive"
+  },
+  "partialResultIsNotFullFrame": true,
+  "processingTimeMs": 461.7919921875,
+  "outputImage": "static/results/qing_04_ayuwang_reliquary/assess28-20261018-qing_04_ayuwang_reliquary/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/qing_04_ayuwang_reliquary.png",
+  "outputImageSha256": "df1af519250e866dbb4b28ea24a181a2035f6dfa724e0e7e30e5c89cc7b1bb9a",
+  "adaptiveDecisions": [
+    {
+      "operator": "skip_notch",
+      "reason": "未检出符合阈值的周期峰；不强行陷波"
+    },
+    {
+      "operator": "isolated_impulse_median",
+      "pixels": 683,
+      "reason": "仅替换局部孤立极值；不执行全局开运算"
+    },
+    {
+      "operator": "thin_stroke_nlm",
+      "h": 4.5367628502845765,
+      "thinStrokeRisk": 0.8962514199166982,
+      "reason": "细笔画占比高，降低 NLM 强度，避免抹断或粘连"
+    }
+  ],
+  "fidelityGate": {
+    "accepted": true,
+    "strongEdgeRetention": 0.9921077489852905,
+    "meanAbsoluteChange": 1.0141563415527344,
+    "contrastRatio": 0.9980423149267271,
+    "reasons": [],
+    "basis": "输入输出启发式保真门控，非质量真值"
+  },
+  "assessmentStatus": "processed",
+  "error": null,
+  "imageCondition": "轻度影像损伤",
+  "readableGrade": "轻度影像损伤",
+  "archiveGrade": "轻度影像损伤",
+  "gradeRule": "rubbing-image-condition-v1",
+  "gradeReasons": [
+    "全幅对比度标准差 55.8，拉普拉斯方差 8106，疑似均匀缺损 0.9%。这是扫描影像指标，不是逐字残泐判读"
+  ],
+  "readableMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.7021063189568706,
+    "mean": 60.71409784735812,
+    "contrastStd": 55.82399905530443,
+    "laplacianVariance": 8105.775497746714,
+    "suspectedUniformLossFraction": 0.009074363992172211,
+    "darkGround": true,
+    "componentCount": 1819,
+    "smallComponentFraction": 0.9483232545354591
+  },
+  "archiveMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.7,
+    "mean": 65.2695731474408,
+    "contrastStd": 59.637272471717935,
+    "laplacianVariance": 6702.481606469994,
+    "suspectedUniformLossFraction": 0.01167494270435447,
+    "darkGround": false,
+    "componentCount": 604,
+    "smallComponentFraction": 0.8708609271523179
+  },
+  "stoneWeathering": "无原石影像，不评定",
+  "stoneWeatheringEvidence": [],
+  "pairedGroundTruth": false,
+  "psnr": null,
+  "ssim": null,
+  "evaluationStatus": "未评测",
+  "humanReview": true,
+  "humanReviewReason": "自动评级只使用全幅对比度、清晰度和均匀缺损比例。逐字残泐未人工判读。修复记录是中心 512 局部，不是全幅。",
+  "observedIssues": [
+    "对比度标准差 55.8",
+    "拉普拉斯方差 8105.8",
+    "细碎连通域占比 94.8%",
+    "原石风化无照片，不评定",
+    "轻度影像损伤"
+  ],
+  "limit": "诊断指标不能称为原石风化程度。无配对真值，不计算 PSNR 或 SSIM。"
+}

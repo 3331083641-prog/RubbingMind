@@ -29,8 +29,8 @@ def report(record):
     return {'ablation':[],'evaluation_summary':'未评测：未建立配对真值或消融实验记录。实际处理输出与评测结论分别保存。','scholarly_analysis':record.get('description') or record.get('summary',''),'rubbing_dimensions':record.get('dimensions','未核定'),'epigraphic_conclusion':f"《{record['title']}》以所列馆藏记录为依据；未形成新增残字定论。",'stele_id':record['id'],'title':record['title'],'sourceUrl':record.get('sourceUrl'),'metrics':{k:None for k in METRIC_KEYS}}
 def graph(record):
     nodes=[dict(id='stele',name=record['title'],category='stele',value=100,symbolSize=64,desc=record.get('description',''))];links=[]
-    for key,field,category,relation in [('calligrapher','calligrapher','person','书丹'),('author','inscriptionAuthor','person','撰文'),('museum','collectionInstitution','place','拓本现藏'),('era','originalYear','office','原刻纪年')]:
+    for key,field,category,relation in [('calligrapher','calligrapher','person','书丹'),('author','inscriptionAuthor','person','撰文'),('titleCalligrapher','titleCalligrapher','person','篆额'),('engraver','engraver','person','刻工'),('steleSubject','steleSubject','person','碑主或墓主'),('museum','collectionInstitution','place','拓本现藏'),('era','originalYear','office','原刻纪年')]:
         value=record.get(field)
-        if value and value!='未核定':
+        if value and not str(value).startswith('未核定') and record.get(key+'Verification','verified')=='verified':
             nodes.append(dict(id=key,name=value,category=category,value=75,symbolSize=48,desc=relation));links.append(dict(source='stele',target=key,relation=relation))
     return {'nodes':nodes,'links':links,'gis_route':[],'verification':'馆藏资料关联；尚无核验地理坐标，不推造历史轨迹。'}

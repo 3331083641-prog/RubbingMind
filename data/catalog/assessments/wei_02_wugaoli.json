@@ -1,0 +1,106 @@
+{
+  "steleId": "wei_02_wugaoli",
+  "title": "吴高黎墓志",
+  "runId": "assess28-20261018-wei_02_wugaoli",
+  "sourceImage": "apps/web/public/assets/stele/museum-rubbings/wei_02_wugaoli_readable.jpg",
+  "sourceImageSha256": "12a8bfe268ddc8ba308e250922afa861cef6eda6ac748174d1a99724f63dd6f6",
+  "archiveImageSha256": "06a31b7c673b08a748c3f48a98d19ca85bdaaad90a458b75d3882f0f00cec9d2",
+  "algorithmVersion": "adaptive-rubbing-v2.1",
+  "parameters": {
+    "strength": 1.0,
+    "notchWidth": 0.8
+  },
+  "imageDimensions": {
+    "readable": [
+      1172,
+      1156
+    ],
+    "archive": [
+      2858,
+      2449
+    ]
+  },
+  "coverage": "阅读图和档案图各一幅。册页若有多开，其余开页不在本次评级内。",
+  "analysisScope": "阅读图全幅经等比例缩小后计算诊断；缩小只用于指标，不代替原图。",
+  "restorationScope": "partial_center_roi",
+  "cropBox": {
+    "x": 330,
+    "y": 322,
+    "width": 512,
+    "height": 512,
+    "space": "readable native pixels, right/bottom exclusive"
+  },
+  "partialResultIsNotFullFrame": true,
+  "processingTimeMs": 177.31523513793945,
+  "outputImage": "static/results/wei_02_wugaoli/assess28-20261018-wei_02_wugaoli/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/wei_02_wugaoli.png",
+  "outputImageSha256": "8489400946c450dcea0f04ce289fa472ad632de686407ac3fbe09cc82cf37b5a",
+  "adaptiveDecisions": [
+    {
+      "operator": "skip_notch",
+      "reason": "未检出符合阈值的周期峰；不强行陷波"
+    },
+    {
+      "operator": "thin_stroke_nlm",
+      "h": 7.939335079193114,
+      "thinStrokeRisk": 0.6802261805265357,
+      "reason": "细笔画占比高，降低 NLM 强度，避免抹断或粘连"
+    }
+  ],
+  "fidelityGate": {
+    "accepted": true,
+    "strongEdgeRetention": 0.9999999403953552,
+    "meanAbsoluteChange": 0.048297882080078125,
+    "contrastRatio": 0.9999607465577893,
+    "reasons": [],
+    "basis": "输入输出启发式保真门控，非质量真值"
+  },
+  "assessmentStatus": "processed",
+  "error": null,
+  "imageCondition": "轻度影像损伤",
+  "readableGrade": "轻度影像损伤",
+  "archiveGrade": "重度影像损伤",
+  "gradeRule": "rubbing-image-condition-v1",
+  "gradeReasons": [
+    "全幅对比度标准差 72.5，拉普拉斯方差 12660，疑似均匀缺损 0.0%。这是扫描影像指标，不是逐字残泐判读",
+    "档案图疑似均匀区域占比 18.7%，可能来自裱边或扫描背景，不升为阅读图缺损"
+  ],
+  "readableMetrics": {
+    "analysisLongSide": 1172,
+    "analysisScale": 1.0,
+    "mean": 121.05387014773787,
+    "contrastStd": 72.467592930306,
+    "laplacianVariance": 12659.602017729754,
+    "suspectedUniformLossFraction": 0.0,
+    "darkGround": false,
+    "componentCount": 296,
+    "smallComponentFraction": 0.7635135135135135
+  },
+  "archiveMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.489853044086774,
+    "mean": 129.65226964285714,
+    "contrastStd": 86.26250176284267,
+    "laplacianVariance": 1716.736685116723,
+    "suspectedUniformLossFraction": 0.18702202380952382,
+    "darkGround": true,
+    "componentCount": 781,
+    "smallComponentFraction": 0.8104993597951344
+  },
+  "stoneWeathering": "无原石影像，不评定",
+  "stoneWeatheringEvidence": [],
+  "pairedGroundTruth": false,
+  "psnr": null,
+  "ssim": null,
+  "evaluationStatus": "未评测",
+  "humanReview": true,
+  "humanReviewReason": "自动评级只使用全幅对比度、清晰度和均匀缺损比例。逐字残泐未人工判读。修复记录是中心 512 局部，不是全幅。",
+  "observedIssues": [
+    "对比度标准差 72.5",
+    "拉普拉斯方差 12659.6",
+    "细碎连通域占比 76.4%",
+    "原石风化无照片，不评定",
+    "轻度影像损伤"
+  ],
+  "limit": "诊断指标不能称为原石风化程度。无配对真值，不计算 PSNR 或 SSIM。"
+}

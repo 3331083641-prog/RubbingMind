@@ -31,13 +31,25 @@ def get_history_graph(stele_id, records):
     record = next((s for s in records if s['id'] == stele_id), None)
     if record is None:
         return None
-    return dict(steleId=stele_id, formalName=record['title'], yearCE=None, eraName='待考',
-                image=record.get('raw_image', ''), imageStatus='馆藏目录图像', identity='尚未建立专项史料图谱',
-                script=record.get('script_type','待考'), rubbingPeriod='待考', collectionNumber=record.get('collectionNumber','待考'),
-                originalStoneCollection='待考', digitalRubbingCollection=record.get('collectionInstitution','待考'),
-                authors=[], sourceIds=[], sources=[], locations=[], events=[], routes=[],
-                nodes=[dict(id=stele_id,name=record['title'],category='stele',desc='该记录尚未建立专项史料关系；请选择四件核心样本。',
-                            value=100,symbolSize=72,locationIds=[],sourceIds=[],verification='unverified')],links=[],gis_route=[])
+    roles=(('author','authorVerification','撰文'),('calligrapher','calligrapherVerification','书丹'),
+           ('titleCalligrapher','titleCalligrapherVerification','篆额'),('engraver','engraverVerification','刻工'),
+           ('steleSubject','steleSubjectVerification','碑主或墓主'))
+    authors=[];nodes=[dict(id=stele_id,name=record['title'],category='stele',desc='已核定身份来自馆藏著录。待复核和未核定不生成人物节点，也不生成坐标。',
+                            value=100,symbolSize=72,locationIds=[],sourceIds=[],verification='confirmed')];links=[]
+    for field,status_field,relation in roles:
+        value=record.get(field)
+        if record.get(status_field)=='verified' and value and not str(value).startswith('未核定'):
+            person=stele_id+':'+field
+            authors.append(f'{value} · {relation}')
+            nodes.append(dict(id=person,name=value,category='person',desc=relation,value=70,symbolSize=46,locationIds=[],sourceIds=[],verification='confirmed'))
+            links.append(dict(source=stele_id,target=person,relation=relation,sourceUrl=record.get('sourceUrl'),verification='confirmed'))
+    return dict(steleId=stele_id, formalName=record['title'], yearCE=record.get('originalYearCE'), eraName=record.get('originalYear') or record.get('year') or '未核定',
+                image=record.get('raw_image', ''), imageStatus=record.get('imageStatus') or '馆藏目录图像', identity='馆藏著录中的已核定关系；没有坐标证据时不画迁移路线。',
+                script=record.get('script_type','未核定'), rubbingPeriod=record.get('rubbingPeriod') or '未核定', collectionNumber=record.get('collectionNumber','未核定'),
+                originalStoneCollection=record.get('physicalCollectionInstitution') or record.get('currentLocation') or '未核定',
+                digitalRubbingCollection=record.get('collectionInstitution') or '未核定',
+                authors=authors, sourceIds=[], sources=[], locations=[], events=[], routes=[],
+                nodes=nodes,links=links,gis_route=[])
 
 ERAS = {'天宝': (742,756), '中平': (184,189), '熙平': (516,518), '建义': (528,528)}
 ERA_DYNASTIES = {'天宝':'唐', '中平':'东汉', '熙平':'北魏', '建义':'北魏'}

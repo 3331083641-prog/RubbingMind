@@ -14,7 +14,7 @@ PATTERNS = [
     (re.compile(r"-----BEGIN (RSA|EC|DSA|OPENSSH|PRIVATE) KEY-----"), "Private Key Block"),
     (re.compile(r"(?:api[_-]?key|secret_key|access_token|password)\s*[:=]\s*['\"][a-zA-Z0-9_\-]{16,}['\"]", re.IGNORECASE), "Generic Hardcoded Secret"),
     # Provenance SHA-256 values are not standalone telephone numbers.
-    (re.compile(r"(?<![A-Za-z0-9])[1-9]\d{10}(?![A-Za-z0-9])"), "Phone Number (Possible 11-digit mobile)"),
+    (re.compile(r"(?<![A-Za-z0-9.])[1-9]\d{10}(?![A-Za-z0-9.])"), "Phone Number (Possible 11-digit mobile)"),
 ]
 
 IGNORED_DIRS = {

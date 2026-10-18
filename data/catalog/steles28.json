@@ -49,7 +49,19 @@
       "damaged": null,
       "restored": null
     },
-    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "steleSubject": "曹全",
+    "titleCalligrapher": "未核定",
+    "engraver": "未核定",
+    "authorVerification": "unknown",
+    "calligrapherVerification": "unknown",
+    "titleCalligrapherVerification": "unknown",
+    "engraverVerification": "unknown",
+    "steleSubjectVerification": "verified",
+    "imageCondition": "轻度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-han_01_caoquan",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "han_02_yiying",
@@ -101,7 +113,19 @@
       "damaged": null,
       "restored": null
     },
-    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "titleCalligrapher": "未核定",
+    "engraver": "未核定",
+    "steleSubject": "未核定",
+    "authorVerification": "unknown",
+    "calligrapherVerification": "unknown",
+    "titleCalligrapherVerification": "unknown",
+    "engraverVerification": "unknown",
+    "steleSubjectVerification": "pending_review",
+    "imageCondition": "轻度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-han_02_yiying",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "han_03_liqi",
@@ -153,7 +177,19 @@
       "damaged": null,
       "restored": null
     },
-    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "titleCalligrapher": "未核定",
+    "engraver": "未核定",
+    "steleSubject": "未核定",
+    "authorVerification": "unknown",
+    "calligrapherVerification": "unknown",
+    "titleCalligrapherVerification": "unknown",
+    "engraverVerification": "unknown",
+    "steleSubjectVerification": "unknown",
+    "imageCondition": "中度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-han_03_liqi",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "han_04_shichen",
@@ -205,7 +241,19 @@
       "damaged": null,
       "restored": null
     },
-    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "titleCalligrapher": "未核定",
+    "engraver": "未核定",
+    "steleSubject": "未核定",
+    "authorVerification": "unknown",
+    "calligrapherVerification": "unknown",
+    "titleCalligrapherVerification": "unknown",
+    "engraverVerification": "unknown",
+    "steleSubjectVerification": "unknown",
+    "imageCondition": "轻度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-han_04_shichen",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "wei_01_zhangmenglong",
@@ -257,7 +305,19 @@
       "damaged": null,
       "restored": null
     },
-    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "titleCalligrapher": "未核定",
+    "engraver": "未核定",
+    "steleSubject": "未核定",
+    "authorVerification": "unknown",
+    "calligrapherVerification": "unknown",
+    "titleCalligrapherVerification": "unknown",
+    "engraverVerification": "unknown",
+    "steleSubjectVerification": "unknown",
+    "imageCondition": "轻度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-wei_01_zhangmenglong",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "wei_02_wugaoli",
@@ -309,7 +369,19 @@
       "damaged": null,
       "restored": null
     },
-    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "titleCalligrapher": "未核定",
+    "engraver": "未核定",
+    "steleSubject": "未核定",
+    "authorVerification": "unknown",
+    "calligrapherVerification": "unknown",
+    "titleCalligrapherVerification": "unknown",
+    "engraverVerification": "unknown",
+    "steleSubjectVerification": "unknown",
+    "imageCondition": "轻度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-wei_02_wugaoli",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "wei_03_kouyan",
@@ -361,7 +433,19 @@
       "damaged": null,
       "restored": null
     },
-    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "titleCalligrapher": "未核定",
+    "engraver": "未核定",
+    "steleSubject": "未核定",
+    "authorVerification": "unknown",
+    "calligrapherVerification": "unknown",
+    "titleCalligrapherVerification": "unknown",
+    "engraverVerification": "unknown",
+    "steleSubjectVerification": "unknown",
+    "imageCondition": "轻度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-wei_03_kouyan",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "wei_04_wangsong",
@@ -413,7 +497,19 @@
       "damaged": null,
       "restored": null
     },
-    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "titleCalligrapher": "未核定",
+    "engraver": "未核定",
+    "steleSubject": "未核定",
+    "authorVerification": "pending_review",
+    "calligrapherVerification": "unknown",
+    "titleCalligrapherVerification": "unknown",
+    "engraverVerification": "unknown",
+    "steleSubjectVerification": "unknown",
+    "imageCondition": "轻度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-wei_04_wangsong",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "tang_01_duobao",
@@ -465,7 +561,19 @@
       "damaged": null,
       "restored": null
     },
-    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "titleCalligrapher": "徐浩",
+    "engraver": "史华",
+    "steleSubject": "未核定",
+    "authorVerification": "verified",
+    "calligrapherVerification": "verified",
+    "titleCalligrapherVerification": "verified",
+    "engraverVerification": "verified",
+    "steleSubjectVerification": "unknown",
+    "imageCondition": "轻度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-tang_01_duobao",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "tang_02_jiucheng",
@@ -517,7 +625,19 @@
       "damaged": null,
       "restored": null
     },
-    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "titleCalligrapher": "未核定",
+    "engraver": "未核定",
+    "steleSubject": "未核定",
+    "authorVerification": "verified",
+    "calligrapherVerification": "verified",
+    "titleCalligrapherVerification": "unknown",
+    "engraverVerification": "unknown",
+    "steleSubjectVerification": "unknown",
+    "imageCondition": "轻度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-tang_02_jiucheng",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "tang_03_yanjiamiao",
@@ -569,7 +689,19 @@
       "damaged": null,
       "restored": null
     },
-    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "titleCalligrapher": "未核定",
+    "engraver": "未核定",
+    "steleSubject": "未核定",
+    "authorVerification": "pending_review",
+    "calligrapherVerification": "verified",
+    "titleCalligrapherVerification": "pending_review",
+    "engraverVerification": "unknown",
+    "steleSubjectVerification": "unknown",
+    "imageCondition": "轻度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-tang_03_yanjiamiao",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "tang_04_xuanmita",
@@ -621,7 +753,19 @@
       "damaged": null,
       "restored": null
     },
-    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "titleCalligrapher": "柳公权",
+    "engraver": "邵建和、邵建初",
+    "steleSubject": "未核定",
+    "authorVerification": "verified",
+    "calligrapherVerification": "verified",
+    "titleCalligrapherVerification": "verified",
+    "engraverVerification": "verified",
+    "steleSubjectVerification": "unknown",
+    "imageCondition": "轻度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-tang_04_xuanmita",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "song_01_yuanyou",
@@ -673,7 +817,19 @@
       "damaged": null,
       "restored": null
     },
-    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "titleCalligrapher": "未核定",
+    "engraver": "未核定",
+    "steleSubject": "未核定",
+    "authorVerification": "unknown",
+    "calligrapherVerification": "unknown",
+    "titleCalligrapherVerification": "unknown",
+    "engraverVerification": "unknown",
+    "steleSubjectVerification": "unknown",
+    "imageCondition": "中度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-song_01_yuanyou",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "song_02_wenxuan",
@@ -686,7 +842,7 @@
     "rubbingPeriod": "未核定；不据拓印年改变朝代",
     "artifactType": "碑刻拓本",
     "scriptType": "行楷书",
-    "author": "未核定",
+    "author": "宋太宗",
     "calligrapher": "未核定",
     "originalLocation": null,
     "physicalCollectionInstitution": null,
@@ -725,7 +881,19 @@
       "damaged": null,
       "restored": null
     },
-    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "titleCalligrapher": "未核定",
+    "engraver": "未核定",
+    "steleSubject": "未核定",
+    "authorVerification": "verified",
+    "calligrapherVerification": "unknown",
+    "titleCalligrapherVerification": "unknown",
+    "engraverVerification": "unknown",
+    "steleSubjectVerification": "unknown",
+    "imageCondition": "中度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-song_02_wenxuan",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "song_03_daguan",
@@ -739,7 +907,7 @@
     "artifactType": "碑刻拓本",
     "scriptType": "楷书",
     "author": "未核定",
-    "calligrapher": "未核定",
+    "calligrapher": "李时雍",
     "originalLocation": null,
     "physicalCollectionInstitution": null,
     "rubbingCollectionInstitution": "台北故宫博物院",
@@ -777,7 +945,19 @@
       "damaged": null,
       "restored": null
     },
-    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "titleCalligrapher": "蔡京",
+    "engraver": "未核定",
+    "steleSubject": "未核定",
+    "authorVerification": "pending_review",
+    "calligrapherVerification": "verified",
+    "titleCalligrapherVerification": "verified",
+    "engraverVerification": "unknown",
+    "steleSubjectVerification": "unknown",
+    "imageCondition": "中度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-song_03_daguan",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "song_04_mengying",
@@ -829,7 +1009,19 @@
       "damaged": null,
       "restored": null
     },
-    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "titleCalligrapher": "未核定",
+    "engraver": "未核定",
+    "steleSubject": "未核定",
+    "authorVerification": "unknown",
+    "calligrapherVerification": "verified",
+    "titleCalligrapherVerification": "unknown",
+    "engraverVerification": "unknown",
+    "steleSubjectVerification": "unknown",
+    "imageCondition": "轻度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-song_04_mengying",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "yuan_01_yufu",
@@ -842,7 +1034,7 @@
     "rubbingPeriod": "未核定；不据拓印年改变朝代",
     "artifactType": "碑刻拓本",
     "scriptType": "行楷书",
-    "author": "未核定",
+    "author": "赵世延",
     "calligrapher": "赵孟頫",
     "originalLocation": null,
     "physicalCollectionInstitution": null,
@@ -881,7 +1073,19 @@
       "damaged": null,
       "restored": null
     },
-    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "titleCalligrapher": "李孟",
+    "engraver": "未核定",
+    "steleSubject": "未核定",
+    "authorVerification": "verified",
+    "calligrapherVerification": "verified",
+    "titleCalligrapherVerification": "verified",
+    "engraverVerification": "unknown",
+    "steleSubjectVerification": "unknown",
+    "imageCondition": "轻度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-yuan_01_yufu",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "yuan_02_sundeyu",
@@ -933,7 +1137,19 @@
       "damaged": null,
       "restored": null
     },
-    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "titleCalligrapher": "赵世延",
+    "engraver": "未核定",
+    "steleSubject": "未核定",
+    "authorVerification": "disputed",
+    "calligrapherVerification": "verified",
+    "titleCalligrapherVerification": "verified",
+    "engraverVerification": "unknown",
+    "steleSubjectVerification": "unknown",
+    "imageCondition": "中度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-yuan_02_sundeyu",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "yuan_03_shengzhu",
@@ -946,7 +1162,7 @@
     "rubbingPeriod": "未核定；不据拓印年改变朝代",
     "artifactType": "碑刻拓本",
     "scriptType": "楷书",
-    "author": "未核定",
+    "author": "王思廉",
     "calligrapher": "赵孟頫",
     "originalLocation": null,
     "physicalCollectionInstitution": null,
@@ -985,7 +1201,19 @@
       "damaged": null,
       "restored": null
     },
-    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "titleCalligrapher": "未核定",
+    "engraver": "未核定",
+    "steleSubject": "未核定",
+    "authorVerification": "verified",
+    "calligrapherVerification": "verified",
+    "titleCalligrapherVerification": "pending_review",
+    "engraverVerification": "unknown",
+    "steleSubjectVerification": "unknown",
+    "imageCondition": "中度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-yuan_03_shengzhu",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "yuan_04_jingyuanchang",
@@ -1037,7 +1265,19 @@
       "damaged": null,
       "restored": null
     },
-    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "titleCalligrapher": "未核定",
+    "engraver": "未核定",
+    "steleSubject": "敬元长",
+    "authorVerification": "unknown",
+    "calligrapherVerification": "pending_review",
+    "titleCalligrapherVerification": "unknown",
+    "engraverVerification": "unknown",
+    "steleSubjectVerification": "pending_review",
+    "imageCondition": "中度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-yuan_04_jingyuanchang",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "ming_01_xianfu",
@@ -1089,7 +1329,19 @@
       "damaged": null,
       "restored": null
     },
-    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "titleCalligrapher": "未核定",
+    "engraver": "未核定",
+    "steleSubject": "未核定",
+    "authorVerification": "unknown",
+    "calligrapherVerification": "unknown",
+    "titleCalligrapherVerification": "unknown",
+    "engraverVerification": "unknown",
+    "steleSubjectVerification": "unknown",
+    "imageCondition": "轻度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-ming_01_xianfu",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "ming_02_luxianzhi",
@@ -1102,7 +1354,7 @@
     "rubbingPeriod": "未核定；不据拓印年改变朝代",
     "artifactType": "馆方著录拓片（册页；草稿／手迹性质待考）",
     "scriptType": "行书",
-    "author": "未核定",
+    "author": "文徵明",
     "calligrapher": "文徵明",
     "originalLocation": null,
     "physicalCollectionInstitution": null,
@@ -1141,7 +1393,19 @@
       "damaged": null,
       "restored": null
     },
-    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "titleCalligrapher": "未核定",
+    "engraver": "未核定",
+    "steleSubject": "陆献之",
+    "authorVerification": "verified",
+    "calligrapherVerification": "verified",
+    "titleCalligrapherVerification": "unknown",
+    "engraverVerification": "unknown",
+    "steleSubjectVerification": "verified",
+    "imageCondition": "中度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-ming_02_luxianzhi",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "ming_03_wugou",
@@ -1193,7 +1457,19 @@
       "damaged": null,
       "restored": null
     },
-    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "titleCalligrapher": "未核定",
+    "engraver": "未核定",
+    "steleSubject": "未核定",
+    "authorVerification": "unknown",
+    "calligrapherVerification": "unknown",
+    "titleCalligrapherVerification": "unknown",
+    "engraverVerification": "unknown",
+    "steleSubjectVerification": "pending_review",
+    "imageCondition": "中度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-ming_03_wugou",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "ming_04_tongdian",
@@ -1206,7 +1482,7 @@
     "rubbingPeriod": "未核定；不据拓印年改变朝代",
     "artifactType": "碑刻拓本",
     "scriptType": "行书",
-    "author": "未核定",
+    "author": "王毓宗",
     "calligrapher": "未核定",
     "originalLocation": null,
     "physicalCollectionInstitution": null,
@@ -1245,7 +1521,19 @@
       "damaged": null,
       "restored": null
     },
-    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+    "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+    "titleCalligrapher": "未核定",
+    "engraver": "未核定",
+    "steleSubject": "未核定",
+    "authorVerification": "verified",
+    "calligrapherVerification": "disputed",
+    "titleCalligrapherVerification": "unknown",
+    "engraverVerification": "pending_review",
+    "steleSubjectVerification": "unknown",
+    "imageCondition": "中度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-ming_04_tongdian",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "qing_01_qianlong_heart_sutra",
@@ -1314,7 +1602,19 @@
       "restored": null
     },
     "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
-    "dimensions": "image: 147.8 x 54.5 cm. (58 3/16 x 21 7/16 in.)\r\n168 x 58.8 cm. (66 1/8 x 23 1/8 in.)"
+    "dimensions": "image: 147.8 x 54.5 cm. (58 3/16 x 21 7/16 in.)\r\n168 x 58.8 cm. (66 1/8 x 23 1/8 in.)",
+    "titleCalligrapher": "未核定",
+    "engraver": "未核定",
+    "steleSubject": "未核定",
+    "authorVerification": "unknown",
+    "calligrapherVerification": "pending_review",
+    "titleCalligrapherVerification": "unknown",
+    "engraverVerification": "unknown",
+    "steleSubjectVerification": "unknown",
+    "imageCondition": "中度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-qing_01_qianlong_heart_sutra",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "qing_02_wushi_reerection",
@@ -1395,7 +1695,19 @@
     },
     "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
     "dimensions": "31.5 x 85 cm. (12 3/8 x 33 7/16 in.)",
-    "carver": "Zheng Zhizong（馆方著录）"
+    "carver": "Zheng Zhizong（馆方著录）",
+    "titleCalligrapher": "未核定",
+    "engraver": "未核定",
+    "steleSubject": "未核定",
+    "authorVerification": "pending_review",
+    "calligrapherVerification": "pending_review",
+    "titleCalligrapherVerification": "unknown",
+    "engraverVerification": "unknown",
+    "steleSubjectVerification": "unknown",
+    "imageCondition": "中度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-qing_02_wushi_reerection",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "qing_03_sanxitang_preface",
@@ -1449,7 +1761,19 @@
       "restored": null
     },
     "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
-    "writingYear": 1747
+    "writingYear": 1747,
+    "titleCalligrapher": "未核定",
+    "engraver": "未核定",
+    "steleSubject": "未核定",
+    "authorVerification": "pending_review",
+    "calligrapherVerification": "pending_review",
+    "titleCalligrapherVerification": "unknown",
+    "engraverVerification": "unknown",
+    "steleSubjectVerification": "unknown",
+    "imageCondition": "中度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-qing_03_sanxitang_preface",
+    "assessmentScope": "partial_center_roi"
   },
   {
     "id": "qing_04_ayuwang_reliquary",
@@ -1553,6 +1877,18 @@
       "restored": null
     },
     "modifications": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
-    "dimensions": "image: 105.1 x 54.7 cm. (41 3/8 x 21 9/16 in.)\r\n125 x 58.2 cm. (49 3/16 x 22 15/16 in.)"
+    "dimensions": "image: 105.1 x 54.7 cm. (41 3/8 x 21 9/16 in.)\r\n125 x 58.2 cm. (49 3/16 x 22 15/16 in.)",
+    "titleCalligrapher": "未核定",
+    "engraver": "未核定",
+    "steleSubject": "未核定",
+    "authorVerification": "unknown",
+    "calligrapherVerification": "unknown",
+    "titleCalligrapherVerification": "unknown",
+    "engraverVerification": "unknown",
+    "steleSubjectVerification": "unknown",
+    "imageCondition": "轻度影像损伤",
+    "stoneWeathering": "无原石影像，不评定",
+    "assessmentRunId": "assess28-20261018-qing_04_ayuwang_reliquary",
+    "assessmentScope": "partial_center_roi"
   }
 ]

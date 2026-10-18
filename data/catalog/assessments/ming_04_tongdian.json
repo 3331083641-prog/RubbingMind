@@ -1,0 +1,105 @@
+{
+  "steleId": "ming_04_tongdian",
+  "title": "大峨山永明华藏寺新建铜殿记碑",
+  "runId": "assess28-20261018-ming_04_tongdian",
+  "sourceImage": "apps/web/public/assets/stele/museum-rubbings/ming_04_tongdian_readable.jpg",
+  "sourceImageSha256": "a7c277dcfab319521377fa3a9277827ab3d2ffe1799a07a9f60d99e870693b7c",
+  "archiveImageSha256": "73d02b4d540c17899c258080b5f3489d92b00e8edd04d77288574cc589b933c5",
+  "algorithmVersion": "adaptive-rubbing-v2.1",
+  "parameters": {
+    "strength": 1.0,
+    "notchWidth": 0.8
+  },
+  "imageDimensions": {
+    "readable": [
+      1552,
+      2767
+    ],
+    "archive": [
+      2269,
+      3085
+    ]
+  },
+  "coverage": "阅读图和档案图各一幅。册页若有多开，其余开页不在本次评级内。",
+  "analysisScope": "阅读图全幅经等比例缩小后计算诊断；缩小只用于指标，不代替原图。",
+  "restorationScope": "partial_center_roi",
+  "cropBox": {
+    "x": 520,
+    "y": 1127,
+    "width": 512,
+    "height": 512,
+    "space": "readable native pixels, right/bottom exclusive"
+  },
+  "partialResultIsNotFullFrame": true,
+  "processingTimeMs": 468.8591957092285,
+  "outputImage": "static/results/ming_04_tongdian/assess28-20261018-ming_04_tongdian/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/ming_04_tongdian.png",
+  "outputImageSha256": "dd754d3cd4dcdc6cbc6f87adb056ee771cba96c4e5168c4a6a1e04a1675fa9f3",
+  "adaptiveDecisions": [
+    {
+      "operator": "skip_notch",
+      "reason": "未检出符合阈值的周期峰；不强行陷波"
+    },
+    {
+      "operator": "thin_stroke_nlm",
+      "h": 3.1190243911743165,
+      "thinStrokeRisk": 0.9826071679550246,
+      "reason": "细笔画占比高，降低 NLM 强度，避免抹断或粘连"
+    }
+  ],
+  "fidelityGate": {
+    "accepted": true,
+    "strongEdgeRetention": 1.000000238418579,
+    "meanAbsoluteChange": 0.07422637939453125,
+    "contrastRatio": 0.9993625312484155,
+    "reasons": [],
+    "basis": "输入输出启发式保真门控，非质量真值"
+  },
+  "assessmentStatus": "processed",
+  "error": null,
+  "imageCondition": "中度影像损伤",
+  "readableGrade": "中度影像损伤",
+  "archiveGrade": "轻度影像损伤",
+  "gradeRule": "rubbing-image-condition-v1",
+  "gradeReasons": [
+    "全幅对比度标准差 38.3，拉普拉斯方差 2291，疑似均匀缺损 0.0%"
+  ],
+  "readableMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.5059631369714492,
+    "mean": 84.03432393084623,
+    "contrastStd": 38.27390072894072,
+    "laplacianVariance": 2291.4623318810927,
+    "suspectedUniformLossFraction": 0.0,
+    "darkGround": false,
+    "componentCount": 52,
+    "smallComponentFraction": 0.8653846153846154
+  },
+  "archiveMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.4538087520259319,
+    "mean": 104.25340499306519,
+    "contrastStd": 59.412539498911904,
+    "laplacianVariance": 1234.2431774624915,
+    "suspectedUniformLossFraction": 0.004908460471567268,
+    "darkGround": true,
+    "componentCount": 432,
+    "smallComponentFraction": 0.9490740740740741
+  },
+  "stoneWeathering": "无原石影像，不评定",
+  "stoneWeatheringEvidence": [],
+  "pairedGroundTruth": false,
+  "psnr": null,
+  "ssim": null,
+  "evaluationStatus": "未评测",
+  "humanReview": true,
+  "humanReviewReason": "自动评级只使用全幅对比度、清晰度和均匀缺损比例。逐字残泐未人工判读。修复记录是中心 512 局部，不是全幅。",
+  "observedIssues": [
+    "对比度标准差 38.3",
+    "拉普拉斯方差 2291.5",
+    "细碎连通域占比 86.5%",
+    "原石风化无照片，不评定",
+    "中度影像损伤"
+  ],
+  "limit": "诊断指标不能称为原石风化程度。无配对真值，不计算 PSNR 或 SSIM。"
+}

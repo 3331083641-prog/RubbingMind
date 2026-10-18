@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { SteleItem, CharacterItem, ProcessingResult, ProcessingRun } from '../types/stele';
+import { SteleItem, CharacterItem, ProcessingResult, ProcessingRun, roleText } from '../types/stele';
 import { SteleService } from '../services/api';
 import type { GlyphInferenceRecord } from '../services/api';
 import { GlyphInferencePanel } from '../components/GlyphInferencePanel';
@@ -206,11 +206,11 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
                 {stele.title} · 频空域微痕修复与释读工作台
               </h2>
               <span className="text-[11px] font-serif px-2 py-0.5 rounded bg-gold/15 text-gold border border-gold/30">
-                {stele.weathering_level}
+                {stele.imageCondition || '待人工复核'}
               </span>
             </div>
             <p className="text-xs text-slate-400 font-sans mt-0.5">
-              {stele.dynasty} · {stele.author} · {stele.dimensions} · 馆藏于 {stele.museum}
+              {stele.dynasty} · 撰文 {roleText(stele.inscriptionAuthor, stele.authorVerification)} · 书丹 {roleText(stele.calligrapher, stele.calligrapherVerification)} · 馆藏于 {stele.museum}
             </p>
           </div>
         </div>

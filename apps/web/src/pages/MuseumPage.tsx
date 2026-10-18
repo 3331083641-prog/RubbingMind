@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { SteleItem, DYNASTY_OPTIONS } from '../types/stele';
+import { SteleItem, DYNASTY_OPTIONS, roleText } from '../types/stele';
 import { RubbingArchiveViewer } from '../components/RubbingArchiveViewer';
 import { SteleFullscreenViewer } from '../components/stele3d/SteleFullscreenViewer';
 import { 
@@ -39,7 +39,7 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
   const [failedImages, setFailedImages] = useState<Record<string,boolean>>({});
   const [pendingNoticeStele, setPendingNoticeStele] = useState<SteleItem | null>(null);
 
-  const weatheringLevels = ['全部', '轻度风化', '中度风化', '重度风化', '严重漫漶', '待评估'];
+  const conditionLevels = ['全部', '轻度影像损伤', '中度影像损伤', '重度影像损伤', '严重漫漶', '待人工复核'];
 
   // 动态统计各朝代实际馆藏数量
   const dynastyCounts = useMemo(() => {
@@ -80,10 +80,10 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
       }
 
       // 2. 风化等级筛选
+      const condition = s.imageCondition || '待人工复核';
       const matchWeathering = 
         selectedWeathering === '全部' || 
-        s.weathering_level === selectedWeathering ||
-        (selectedWeathering === '待评估' && (s.weathering_level === '待评估' || !s.weathering_level));
+        condition === selectedWeathering;
 
       // 3. 关键词检索 (支持碑名、书家、撰文者、馆藏地、馆藏号、书体)
       const q = searchQuery.toLowerCase().trim();
@@ -192,9 +192,9 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
           {/* Weathering Level Filters */}
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-serif text-slate-400 mr-1 flex items-center gap-1">
-              <ShieldAlert className="w-3.5 h-3.5 text-cinnabar" /> 风化状况:
+              <ShieldAlert className="w-3.5 h-3.5 text-cinnabar" /> 拓本影像损伤状况:
             </span>
-            {weatheringLevels.map((lvl) => {
+            {conditionLevels.map((lvl) => {
               const isLvlActive = selectedWeathering === lvl;
               return (
                 <button
@@ -259,7 +259,7 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
             return (
               <div
                 key={stele.id}
-                data-testid="museum-card" data-stele-id={stele.id}
+                data-testid="museum-card" data-stele-id={stele.id} data-image-condition={stele.imageCondition || '待人工复核'}
                 className="glass-panel rounded-2xl overflow-hidden border border-gold/20 hover:border-gold/60 transition-all duration-300 flex flex-col group hover:-translate-y-1 shadow-lg bg-[#0E1319]/90"
               >
                 {/* Image or Pending Placeholder Box */}
@@ -288,16 +288,16 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
                     <span className="px-2 py-0.5 rounded text-[10px] font-serif bg-gold/90 text-slate-950 font-bold shadow-md">
                       {stele.dynasty} · {stele.script_type}
                     </span>
-                    <span className={`px-2 py-0.5 rounded text-[10px] font-serif ${
-                      stele.weathering_level === '严重漫漶'
+                    <span data-testid="image-condition" className={`px-2 py-0.5 rounded text-[10px] font-serif ${
+                      (stele.imageCondition || '').startsWith('严重')
                         ? 'bg-cinnabar text-white font-bold'
-                        : stele.weathering_level === '重度风化'
+                        : (stele.imageCondition || '').startsWith('重度')
                         ? 'bg-amber-700/80 text-amber-100'
-                        : stele.weathering_level === '待评估'
+                        : stele.imageCondition === '待人工复核' || !stele.imageCondition
                         ? 'bg-slate-700 text-slate-200'
                         : 'bg-celadon text-white'
                     }`}>
-                      {stele.weathering_level || '待评估'}
+                      {stele.imageCondition || '待人工复核'}
                     </span>
                   </div>
 
@@ -330,8 +330,12 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
                     {/* Metadata Items */}
                     <div className="space-y-1 text-xs text-slate-400 font-sans">
                       <p className="flex items-center gap-1.5">
-                        <span className="text-gold/80 font-serif">撰文 / 书丹:</span>
-                        <span className="text-slate-300 truncate">{stele.inscriptionAuthor} / {stele.calligrapher}</span>
+                        <span className="text-gold/80 font-serif">撰文:</span>
+                        <span className="text-slate-300 truncate">{roleText(stele.inscriptionAuthor, stele.authorVerification)}</span>
+                      </p>
+                      <p className="flex items-center gap-1.5">
+                        <span className="text-gold/80 font-serif">书丹:</span>
+                        <span className="text-slate-300 truncate">{roleText(stele.calligrapher, stele.calligrapherVerification)}</span>
                       </p>
                       <p className="flex items-center gap-1.5">
                         <Calendar className="w-3.5 h-3.5 text-slate-500" />
@@ -344,6 +348,9 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
                     </div>
 
                     <p className="text-xs text-slate-400">拓本：{stele.rubbingPeriod}</p><p className="text-xs text-slate-400">类型：{stele.artifactType}</p>
+                    <p className="text-xs text-slate-400">篆额：{roleText(stele.titleCalligrapher, stele.titleCalligrapherVerification)} · 刻工：{roleText(stele.engraver, stele.engraverVerification)} · 碑主/墓主：{roleText(stele.steleSubject, stele.steleSubjectVerification)}</p>
+                    <p className="text-xs text-slate-400">原石风化：{stele.stoneWeathering || '无原石影像，不评定'}</p>
+                    {stele.assessmentRunId && <p className="text-[10px] text-slate-500 font-mono truncate">处理 {stele.assessmentRunId} · {stele.assessmentScope === 'partial_center_roi' ? '中心局部' : '全幅'}</p>}
                     {/* Academic Summary */}
                     <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed pt-0.5 font-sans">
                       {stele.summary}

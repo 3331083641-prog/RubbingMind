@@ -1,0 +1,102 @@
+{
+  "steleId": "qing_03_sanxitang_preface",
+  "title": "御刻三希堂石渠宝笈法帖·乾隆御序",
+  "runId": "assess28-20261018-qing_03_sanxitang_preface",
+  "sourceImage": "apps/web/public/assets/stele/museum-rubbings/qing_03_sanxitang_preface_readable.jpg",
+  "sourceImageSha256": "5d59ef8ebd9407c17bf14f53222aa7539bf6e917a9c07d3531723f61706f1ac3",
+  "archiveImageSha256": "3d007db7a35d1a74c7562584cf9ad391f39e38fe89ecec969dbe3ceee97ed7dd",
+  "algorithmVersion": "adaptive-rubbing-v2.1",
+  "parameters": {
+    "strength": 1.0,
+    "notchWidth": 0.8
+  },
+  "imageDimensions": {
+    "readable": [
+      3176,
+      2569
+    ],
+    "archive": [
+      4000,
+      2998
+    ]
+  },
+  "coverage": "阅读图和档案图各一幅。册页若有多开，其余开页不在本次评级内。",
+  "analysisScope": "阅读图全幅经等比例缩小后计算诊断；缩小只用于指标，不代替原图。",
+  "restorationScope": "partial_center_roi",
+  "cropBox": {
+    "x": 1332,
+    "y": 1028,
+    "width": 512,
+    "height": 512,
+    "space": "readable native pixels, right/bottom exclusive"
+  },
+  "partialResultIsNotFullFrame": true,
+  "processingTimeMs": 162.02282905578613,
+  "outputImage": "static/results/qing_03_sanxitang_preface/assess28-20261018-qing_03_sanxitang_preface/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/qing_03_sanxitang_preface.png",
+  "outputImageSha256": "f96e5090439d25e1c274c319da702999fc17574270a71817234d4e98e1970ee5",
+  "adaptiveDecisions": [
+    {
+      "operator": "skip_notch",
+      "reason": "未检出符合阈值的周期峰；不强行陷波"
+    },
+    {
+      "operator": "identity",
+      "reason": "残差证据弱；不锐化、不强制CLAHE/形态学"
+    }
+  ],
+  "fidelityGate": {
+    "accepted": true,
+    "strongEdgeRetention": 1.0,
+    "meanAbsoluteChange": 0.0,
+    "contrastRatio": 1.0,
+    "reasons": [],
+    "basis": "输入输出启发式保真门控，非质量真值"
+  },
+  "assessmentStatus": "processed",
+  "error": null,
+  "imageCondition": "中度影像损伤",
+  "readableGrade": "中度影像损伤",
+  "archiveGrade": "中度影像损伤",
+  "gradeRule": "rubbing-image-condition-v1",
+  "gradeReasons": [
+    "全幅对比度标准差 44.2，拉普拉斯方差 1321，疑似均匀缺损 0.2%"
+  ],
+  "readableMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.44080604534005036,
+    "mean": 50.68108594144371,
+    "contrastStd": 44.168195467097384,
+    "laplacianVariance": 1321.3874201616513,
+    "suspectedUniformLossFraction": 0.002337834427057042,
+    "darkGround": true,
+    "componentCount": 714,
+    "smallComponentFraction": 0.4173669467787115
+  },
+  "archiveMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.35,
+    "mean": 88.40948318126107,
+    "contrastStd": 63.90976907505912,
+    "laplacianVariance": 1106.1530593532195,
+    "suspectedUniformLossFraction": 0.015412637886422444,
+    "darkGround": false,
+    "componentCount": 71,
+    "smallComponentFraction": 0.8873239436619719
+  },
+  "stoneWeathering": "无原石影像，不评定",
+  "stoneWeatheringEvidence": [],
+  "pairedGroundTruth": false,
+  "psnr": null,
+  "ssim": null,
+  "evaluationStatus": "未评测",
+  "humanReview": true,
+  "humanReviewReason": "自动评级只使用全幅对比度、清晰度和均匀缺损比例。逐字残泐未人工判读。修复记录是中心 512 局部，不是全幅。",
+  "observedIssues": [
+    "对比度标准差 44.2",
+    "拉普拉斯方差 1321.4",
+    "原石风化无照片，不评定",
+    "中度影像损伤"
+  ],
+  "limit": "诊断指标不能称为原石风化程度。无配对真值，不计算 PSNR 或 SSIM。"
+}

@@ -1,0 +1,105 @@
+{
+  "steleId": "song_01_yuanyou",
+  "title": "元祐党籍碑",
+  "runId": "assess28-20261018-song_01_yuanyou",
+  "sourceImage": "apps/web/public/assets/stele/museum-rubbings/song_01_yuanyou_readable.jpg",
+  "sourceImageSha256": "20e25ab7b522971efd135fbc0a73387d5899ed4f044afbef2b90aa5cc0ec2975",
+  "archiveImageSha256": "d5f83e8d84bfa59ee8c5958fdd1fffced857d45be49709ef3a9a73931684893b",
+  "algorithmVersion": "adaptive-rubbing-v2.1",
+  "parameters": {
+    "strength": 1.0,
+    "notchWidth": 0.8
+  },
+  "imageDimensions": {
+    "readable": [
+      1964,
+      2645
+    ],
+    "archive": [
+      2292,
+      3054
+    ]
+  },
+  "coverage": "阅读图和档案图各一幅。册页若有多开，其余开页不在本次评级内。",
+  "analysisScope": "阅读图全幅经等比例缩小后计算诊断；缩小只用于指标，不代替原图。",
+  "restorationScope": "partial_center_roi",
+  "cropBox": {
+    "x": 726,
+    "y": 1066,
+    "width": 512,
+    "height": 512,
+    "space": "readable native pixels, right/bottom exclusive"
+  },
+  "partialResultIsNotFullFrame": true,
+  "processingTimeMs": 435.85920333862305,
+  "outputImage": "static/results/song_01_yuanyou/assess28-20261018-song_01_yuanyou/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/song_01_yuanyou.png",
+  "outputImageSha256": "ef77b18f2037f059df1b165eed019eca9dd9ab4bf987cf40b5fed229edb67e48",
+  "adaptiveDecisions": [
+    {
+      "operator": "skip_notch",
+      "reason": "未检出符合阈值的周期峰；不强行陷波"
+    },
+    {
+      "operator": "thin_stroke_nlm",
+      "h": 9.073525700569153,
+      "thinStrokeRisk": 0.8787447753681861,
+      "reason": "细笔画占比高，降低 NLM 强度，避免抹断或粘连"
+    }
+  ],
+  "fidelityGate": {
+    "accepted": true,
+    "strongEdgeRetention": 1.0000005960464478,
+    "meanAbsoluteChange": 0.015735626220703125,
+    "contrastRatio": 0.9998993289435766,
+    "reasons": [],
+    "basis": "输入输出启发式保真门控，非质量真值"
+  },
+  "assessmentStatus": "processed",
+  "error": null,
+  "imageCondition": "中度影像损伤",
+  "readableGrade": "中度影像损伤",
+  "archiveGrade": "轻度影像损伤",
+  "gradeRule": "rubbing-image-condition-v1",
+  "gradeReasons": [
+    "全幅对比度标准差 43.3，拉普拉斯方差 6075，疑似均匀缺损 0.0%"
+  ],
+  "readableMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.5293005671077504,
+    "mean": 108.58343063186813,
+    "contrastStd": 43.279378966492466,
+    "laplacianVariance": 6075.32660146909,
+    "suspectedUniformLossFraction": 0.0,
+    "darkGround": false,
+    "componentCount": 571,
+    "smallComponentFraction": 0.9387040280210157
+  },
+  "archiveMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.45841519318926,
+    "mean": 113.55150536903629,
+    "contrastStd": 52.945707177892,
+    "laplacianVariance": 4402.921637865611,
+    "suspectedUniformLossFraction": 0.002129264645915455,
+    "darkGround": true,
+    "componentCount": 4085,
+    "smallComponentFraction": 0.9140758873929009
+  },
+  "stoneWeathering": "无原石影像，不评定",
+  "stoneWeatheringEvidence": [],
+  "pairedGroundTruth": false,
+  "psnr": null,
+  "ssim": null,
+  "evaluationStatus": "未评测",
+  "humanReview": true,
+  "humanReviewReason": "自动评级只使用全幅对比度、清晰度和均匀缺损比例。逐字残泐未人工判读。修复记录是中心 512 局部，不是全幅。",
+  "observedIssues": [
+    "对比度标准差 43.3",
+    "拉普拉斯方差 6075.3",
+    "细碎连通域占比 93.9%",
+    "原石风化无照片，不评定",
+    "中度影像损伤"
+  ],
+  "limit": "诊断指标不能称为原石风化程度。无配对真值，不计算 PSNR 或 SSIM。"
+}

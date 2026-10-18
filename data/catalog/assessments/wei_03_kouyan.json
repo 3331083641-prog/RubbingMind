@@ -1,0 +1,105 @@
+{
+  "steleId": "wei_03_kouyan",
+  "title": "寇演墓志",
+  "runId": "assess28-20261018-wei_03_kouyan",
+  "sourceImage": "apps/web/public/assets/stele/museum-rubbings/wei_03_kouyan_readable.jpg",
+  "sourceImageSha256": "9c26464baff318f32e90c4242c96c3f570d778e887e278a118f43875cf069210",
+  "archiveImageSha256": "6da605988e6baef47baad6fecbf15ff08187693f103a57f7e8c2b73b7a822fdd",
+  "algorithmVersion": "adaptive-rubbing-v2.1",
+  "parameters": {
+    "strength": 1.0,
+    "notchWidth": 0.8
+  },
+  "imageDimensions": {
+    "readable": [
+      2187,
+      2269
+    ],
+    "archive": [
+      2616,
+      2676
+    ]
+  },
+  "coverage": "阅读图和档案图各一幅。册页若有多开，其余开页不在本次评级内。",
+  "analysisScope": "阅读图全幅经等比例缩小后计算诊断；缩小只用于指标，不代替原图。",
+  "restorationScope": "partial_center_roi",
+  "cropBox": {
+    "x": 837,
+    "y": 878,
+    "width": 512,
+    "height": 512,
+    "space": "readable native pixels, right/bottom exclusive"
+  },
+  "partialResultIsNotFullFrame": true,
+  "processingTimeMs": 457.57007598876953,
+  "outputImage": "static/results/wei_03_kouyan/assess28-20261018-wei_03_kouyan/restored.png",
+  "archivedOutput": "data/catalog/assessments/outputs/wei_03_kouyan.png",
+  "outputImageSha256": "2f4b79df3e2e695f8b3f09046045fd90aac1e0d93fd01c16e56ed6ac919d8c0b",
+  "adaptiveDecisions": [
+    {
+      "operator": "skip_notch",
+      "reason": "未检出符合阈值的周期峰；不强行陷波"
+    },
+    {
+      "operator": "thin_stroke_nlm",
+      "h": 3.402572228908539,
+      "thinStrokeRisk": 0.5349475190839694,
+      "reason": "细笔画占比高，降低 NLM 强度，避免抹断或粘连"
+    }
+  ],
+  "fidelityGate": {
+    "accepted": true,
+    "strongEdgeRetention": 1.0000019073486328,
+    "meanAbsoluteChange": 0.3013114929199219,
+    "contrastRatio": 0.9997233814373465,
+    "reasons": [],
+    "basis": "输入输出启发式保真门控，非质量真值"
+  },
+  "assessmentStatus": "processed",
+  "error": null,
+  "imageCondition": "轻度影像损伤",
+  "readableGrade": "轻度影像损伤",
+  "archiveGrade": "轻度影像损伤",
+  "gradeRule": "rubbing-image-condition-v1",
+  "gradeReasons": [
+    "全幅对比度标准差 58.9，拉普拉斯方差 4846，疑似均匀缺损 0.0%。这是扫描影像指标，不是逐字残泐判读"
+  ],
+  "readableMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.617011899515205,
+    "mean": 86.68217886264958,
+    "contrastStd": 58.90346879898493,
+    "laplacianVariance": 4845.909555426249,
+    "suspectedUniformLossFraction": 7.30699989410145e-05,
+    "darkGround": false,
+    "componentCount": 359,
+    "smallComponentFraction": 0.9415041782729805
+  },
+  "archiveMetrics": {
+    "analysisLongSide": 1400,
+    "analysisScale": 0.523168908819133,
+    "mean": 130.78452624439112,
+    "contrastStd": 79.3414731264212,
+    "laplacianVariance": 3270.2629404891,
+    "suspectedUniformLossFraction": 0.013378900135656893,
+    "darkGround": false,
+    "componentCount": 287,
+    "smallComponentFraction": 0.975609756097561
+  },
+  "stoneWeathering": "无原石影像，不评定",
+  "stoneWeatheringEvidence": [],
+  "pairedGroundTruth": false,
+  "psnr": null,
+  "ssim": null,
+  "evaluationStatus": "未评测",
+  "humanReview": true,
+  "humanReviewReason": "自动评级只使用全幅对比度、清晰度和均匀缺损比例。逐字残泐未人工判读。修复记录是中心 512 局部，不是全幅。",
+  "observedIssues": [
+    "对比度标准差 58.9",
+    "拉普拉斯方差 4845.9",
+    "细碎连通域占比 94.2%",
+    "原石风化无照片，不评定",
+    "轻度影像损伤"
+  ],
+  "limit": "诊断指标不能称为原石风化程度。无配对真值，不计算 PSNR 或 SSIM。"
+}

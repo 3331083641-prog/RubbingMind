@@ -14,7 +14,7 @@ from catalog import BASE, load, transcription_text
 from history_graph import CORE_IDS, ALIASES
 
 INDEX=BASE/'data/runtime/evidence-v2.sqlite'
-VERSION='fts5-evidence-graph-v2.2'
+VERSION='fts5-evidence-graph-v2.3'
 
 
 def canonical_id(stele_id):
@@ -34,7 +34,7 @@ def corpus():
             'origin':'reviewed_local_record','textSha256':hashlib.sha256(text.encode()).hexdigest()})
     for r in load('steles28.json'):
         sid=r['id'];eid='catalog:'+sid
-        facts=f"{r['title']}。原刻朝代：{r['dynasty']}；原刻年代：{r['originalYear']}；拓本年代：{r['rubbingPeriod']}；文物类型：{r['artifactType']}；撰文：{r['author']}；书丹：{r['calligrapher']}；拓本现藏机构：{r['rubbingCollectionInstitution']}；拓本馆藏编号：{r['collectionNumber']}；原石现藏机构：{r.get('physicalCollectionInstitution') or '未核定'}；原碑所在地：{r.get('originalLocation') or '未核定'}。"
+        facts=f"{r['title']}。原刻朝代：{r['dynasty']}；原刻年代：{r['originalYear']}；拓本年代：{r['rubbingPeriod']}；文物类型：{r['artifactType']}；{_role_fact(r,'author','撰文')}；{_role_fact(r,'calligrapher','书丹')}；{_role_fact(r,'titleCalligrapher','篆额')}；{_role_fact(r,'engraver','刻工')}；{_role_fact(r,'steleSubject','碑主或墓主')}；拓本现藏机构：{r['rubbingCollectionInstitution']}；拓本馆藏编号：{r['collectionNumber']}；原石现藏机构：{r.get('physicalCollectionInstitution') or '未核定'}；原碑所在地：{r.get('originalLocation') or '未核定'}。"
         add(eid,sid,r['title']+' · 馆藏著录',facts,r['sourceUrl'],r['rubbingCollectionInstitution'],'data/catalog/steles28.json#'+sid,license=r['license'])
         nodes.append({'id':sid,'name':r['title'],'category':'work','steleId':sid,'sourceIds':[eid]})
         # A work, its physical stone, and a particular collected rubbing are distinct.
@@ -42,8 +42,8 @@ def corpus():
             ('year',r['originalYear'],'date','原刻纪年'),('collection',r['rubbingCollectionInstitution'],'institution','拓本现藏')]:
             target=sid+':'+key;nodes.append({'id':target,'name':name,'category':category,'steleId':sid,'sourceIds':[eid]})
             edges.append({'source':sid+':rubbing' if key=='collection' else sid,'target':target,'relation':relation,'sourceIds':[eid],'sourceUrl':r['sourceUrl']})
-        for key,relation in [('author','撰文'),('calligrapher','书丹')]:
-            if r[key] and r[key]!='未核定':
+        for key,relation in [('author','撰文'),('calligrapher','书丹'),('titleCalligrapher','篆额'),('engraver','刻工'),('steleSubject','碑主或墓主')]:
+            if r.get(key+'Verification')=='verified' and r.get(key) and not str(r.get(key)).startswith('未核定'):
                 target=sid+':'+key;nodes.append({'id':target,'name':r[key],'category':'person','steleId':sid,'sourceIds':[eid]})
                 edges.append({'source':sid,'target':target,'relation':relation,'sourceIds':[eid],'sourceUrl':r['sourceUrl']})
         text=transcription_text(r)
@@ -107,15 +107,27 @@ def ensure_index():
 FACETS=(
     ('撰文者','author',('撰文者','撰文','作者')),
     ('书丹者','calligrapher',('书丹者','书丹')),
-    ('篆额者',None,('篆额者','篆额')),
-    ('墓主',None,('墓主',)),
-    ('刻工',None,('刻工','镌刻')),
+    ('篆额者','titleCalligrapher',('篆额者','篆额','题额')),
+    ('碑主或墓主','steleSubject',('墓主','碑主')),
+    ('刻工','engraver',('刻工','镌刻')),
     ('原刻年代','originalYear',('原刻年代','原刻于','原刻纪年')),
     ('拓本年代','rubbingPeriod',('拓本年代','拓本时代')),
     ('原石保存地','physicalCollectionInstitution',('原石保存','原石现藏','原碑所在')),
     ('拓本收藏机构','rubbingCollectionInstitution',('拓本收藏','收藏机构','现藏机构','拓本现藏')),
 )
 PROPOSITION_STOP={'什么','谁','何人','相同','一样','不同','已经','如何','多少','哪位','哪个','哪里'}
+
+
+def _role_fact(record, field, label):
+    value=str(record.get(field) or '未核定').strip()
+    status=record.get(field+'Verification','unknown')
+    if status=='verified' and value and not value.startswith('未核定'):
+        return f'{label}：{value}'
+    if status=='pending_review' and value and not value.startswith('未核定'):
+        return f'{label}：{value}（待复核，不是已核定）'
+    if status=='disputed':
+        return f'{label}：存在争议，未核定'
+    return f'{label}：未核定'
 
 
 def _verified_fact(value):
@@ -125,6 +137,15 @@ def _verified_fact(value):
     if not text or text.startswith('未核定') or text in ('未确认','待评估'):
         return None
     return text
+
+
+def _catalogue_value(record, field):
+    if not field:
+        return None
+    status_field=field+'Verification'
+    if status_field in record and record.get(status_field)!='verified':
+        return None
+    return _verified_fact(record.get(field))
 
 
 def _entity_tokens(value):
@@ -169,6 +190,16 @@ def _matched_facets(question):
     return found
 
 
+def _unverified_answer(record, facet, proposed):
+    name, field = facet
+    status = record.get(field + 'Verification') if field else None
+    if status == 'pending_review':
+        return f'《{record["title"]}》的{name}有待复核记录，本轮未升为已核定，不能判断命题「{proposed}」成立。'
+    if status == 'disputed':
+        return f'《{record["title"]}》的{name}存在著录争议，不能把命题「{proposed}」判成已核定。'
+    return f'现有著录没有核定《{record["title"]}》的{name}，不能判断命题「{proposed}」是否成立。'
+
+
 def judge_claim(question, work_ids):
     """Decide a catalogue-backed claim. Never fills a missing fact from model memory."""
     facets=_matched_facets(question)
@@ -194,7 +225,7 @@ def judge_claim(question, work_ids):
     recorded={}
     missing=[]
     for name, field in facets:
-        value=_verified_fact(record.get(field)) if field else None
+        value=_catalogue_value(record, field) if field else None
         if value is None:
             missing.append(name)
         else:
@@ -204,7 +235,7 @@ def judge_claim(question, work_ids):
             facet=facets[0][0]
             return {'judgment':'insufficient_evidence','basis':'insufficient_catalogue','facet':facet,'proposed':proposed,'recorded':None,
                     'steleId':stele_id,'sourceId':source_id,'forceRefusal':True,
-                    'answer':f'现有著录没有核定《{record["title"]}》的{facet}，不能判断命题「{proposed}」是否成立。'}
+                    'answer':_unverified_answer(record, facets[0], proposed)}
         facet, value=next(iter(recorded.items()))
         if _same_recorded_value(proposed, value):
             return {'judgment':'supported','basis':'catalogue_field_match','facet':facet,'proposed':proposed,'recorded':value,
