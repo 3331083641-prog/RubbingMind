@@ -27,7 +27,8 @@ def run(url):
         page.goto(url, wait_until='domcontentloaded')
         expect(page.get_by_role('button', name='首页门户')).to_be_visible()
         home = OUT / '01-home.png'; page.screenshot(path=str(home), full_page=True); result['screenshots'].append(str(home))
-        page.get_by_role('button', name='上传拓片').click()
+        page.locator('header').first.get_by_role('button', name='贞石典藏馆').click()
+        page.get_by_role('button', name='上传新碑拓样本入馆').click()
         page.locator('input[type=file]').set_input_files(str(test_image))
         page.get_by_placeholder('例如：唐·多宝塔感应碑').fill('浏览器验收私有样本')
         with page.expect_response(lambda r: r.url.endswith('/api/upload') and r.request.method == 'POST') as response_info:

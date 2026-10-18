@@ -67,8 +67,6 @@ export const App: React.FC = () => {
         steles={currentTab === 'graph' ? [...CORE_SAMPLES, ...graphHeaderItems.filter(s => !CORE_SAMPLES.some(c => c.id === s.id))] : [...CORE_SAMPLES, ...steles]}
         selectedSteleId={selectedSteleId}
         onSelectStele={handleSelectStele}
-        onOpenUpload={() => setIsUploadOpen(true)}
-        isBackendConnected={isBackendConnected}
       />
 
       {/* Main Dynamic View with 300ms Fade Transition */}
