@@ -27,6 +27,8 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const choose = (id: string) => { onTabChange(id); setMenuOpen(false); };
+  const selected = steles.find((item) => item.id === selectedSteleId);
+  const selectedLabel = selected ? `[${selected.dynasty}] ${selected.title}` : '';
 
   return (
     <header className="sticky top-0 z-50 w-full bg-[#0C1113]/92 backdrop-blur-md border-b border-gold/20 shadow-card" data-testid="app-header">
@@ -62,9 +64,10 @@ export const Header: React.FC<HeaderProps> = ({
         </nav>
 
         <div className="flex items-center justify-end gap-2">
-          <label className="hidden xl:flex items-center shrink-0 bg-xuan-panel/90 border border-gold/25 rounded-lg px-2 py-1.5 text-xs text-slate-300">
+          <label className="relative hidden xl:flex items-center shrink-0 bg-xuan-panel/90 border border-gold/25 rounded-lg px-2 py-1.5 text-xs text-slate-300">
             <span className="hidden 2xl:inline text-slate-400 mr-2 text-[11px] shrink-0">当前碑刻</span>
-            <select aria-label="当前碑刻" value={selectedSteleId} onChange={(e) => onSelectStele(e.target.value)} className="bg-transparent text-gold-light font-serif text-xs outline-none cursor-pointer w-max max-w-none">
+            <span className="whitespace-nowrap font-serif text-xs text-gold-light pr-4">{selectedLabel}</span>
+            <select aria-label="当前碑刻" value={selectedSteleId} onChange={(e) => onSelectStele(e.target.value)} className="absolute inset-0 cursor-pointer opacity-0">
               {steles.map((s) => <option key={s.id} value={s.id} className="bg-[#151C20] text-slate-200">[{s.dynasty}] {s.title}</option>)}
             </select>
           </label>

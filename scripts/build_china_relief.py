@@ -4,6 +4,7 @@ The output keeps each source tile's z/x/y address. Elevation is decoded, not
 redrawn, and no coastline or province boundary is edited.
 """
 from pathlib import Path
+import cv2
 import numpy as np
 from PIL import Image
 
@@ -11,15 +12,16 @@ ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / 'apps/web/public/assets/gis/terrain'
 DST = ROOT / 'apps/web/public/assets/gis/relief'
 STOPS = (
-    (-8000, (6, 16, 24)),
-    (-200, (8, 24, 34)),
-    (0, (11, 34, 40)),
-    (120, (18, 58, 50)),
-    (500, (26, 74, 64)),
-    (1400, (48, 84, 74)),
-    (2600, (74, 82, 70)),
-    (4000, (118, 124, 118)),
-    (5600, (168, 176, 172)),
+    (-8000, (4, 14, 24)),
+    (-80, (7, 28, 40)),
+    (0, (12, 62, 56)),
+    (80, (24, 108, 90)),
+    (450, (36, 124, 102)),
+    (1200, (52, 112, 94)),
+    (2200, (86, 108, 92)),
+    (3500, (132, 140, 128)),
+    (4800, (198, 206, 200)),
+    (6000, (232, 236, 232)),
 )
 
 
@@ -31,9 +33,13 @@ def paint(height):
     colors = np.empty(height.shape + (3,), np.float32)
     for channel in range(3):
         colors[:, :, channel] = np.interp(height, [s[0] for s in STOPS], [s[1][channel] for s in STOPS])
+    broad = cv2.GaussianBlur(height, (0, 0), 4)
     gy, gx = np.gradient(height)
-    relief = np.clip(0.78 + 0.34 * np.tanh((-gx - gy) / 90.0), 0.46, 1.22)
-    relief = np.where(height < 0, 0.94 + 0.06 * np.tanh(height / 2500.0), relief)
+    by, bx = np.gradient(broad)
+    fine = np.tanh((-gx - gy) / 28.0)
+    mass = np.tanh((-bx - by) / 45.0)
+    relief = np.clip(0.66 + 0.40 * mass + 0.30 * fine, 0.34, 1.58)
+    relief = np.where(height < 0, 0.97, relief)
     return np.clip(colors * relief[:, :, None], 0, 255).astype(np.uint8)
 
 
