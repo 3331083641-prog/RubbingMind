@@ -14,7 +14,7 @@ from typing import Optional, List, Dict, Any, Literal
 
 from fastapi import FastAPI, File, UploadFile, Form, HTTPException
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from PIL import Image, UnidentifiedImageError
@@ -186,10 +186,57 @@ def get_experiment_asset(experiment_id: str,filename: str):
 
 @app.get('/api/experiments/{experiment_id}/export/{kind}')
 def export_experiment(experiment_id: str,kind: str):
-    from experiment_registry import export_file
-    path=export_file(experiment_id,kind)
-    if path is None or not path.is_file():raise HTTPException(status_code=404,detail='实验导出不存在')
-    return FileResponse(path,filename=experiment_id+'-'+kind)
+    from experiment_registry import export_payload
+    payload=export_payload(experiment_id,kind)
+    if payload is None:raise HTTPException(status_code=404,detail='实验导出不存在')
+    body,media=payload
+    return Response(content=body,media_type=media,headers={'Content-Disposition':f'attachment; filename="{experiment_id}-{kind}"'})
+
+
+class ConditionReviewRequest(BaseModel):
+    reviewer: str = Field(min_length=1, max_length=80)
+    damageTypes: List[str] = Field(min_length=1, max_length=8)
+    note: str = Field(min_length=1, max_length=500)
+    suggestedCondition: Optional[str] = None
+
+
+@app.get('/api/catalog/{stele_id}/assessment')
+def get_catalog_assessment(stele_id: str):
+    from catalog_assessment import public_record
+    try:
+        record=public_record(stele_id)
+    except ValueError as exc:
+        raise HTTPException(status_code=409,detail=str(exc))
+    if record is None:raise HTTPException(status_code=404,detail='没有这件馆藏的归档评估')
+    return record
+
+
+@app.get('/api/catalog/{stele_id}/assessment/assets/{kind}')
+def get_catalog_assessment_asset(stele_id: str, kind: str):
+    from catalog_assessment import asset_path
+    try:
+        path=asset_path(stele_id, kind)
+    except ValueError as exc:
+        raise HTTPException(status_code=409,detail=str(exc))
+    if path is None:raise HTTPException(status_code=404,detail='未登记的评估影像')
+    return FileResponse(path)
+
+
+@app.post('/api/catalog/{stele_id}/assessment/review')
+def save_catalog_condition_review(stele_id: str, request: ConditionReviewRequest):
+    from catalog_assessment import save_review
+    try:
+        record=save_review(stele_id, request.reviewer, request.damageTypes, request.note, request.suggestedCondition)
+    except ValueError as exc:
+        raise HTTPException(status_code=400,detail=str(exc))
+    if record is None:raise HTTPException(status_code=404,detail='没有这件馆藏的归档评估')
+    return record
+
+
+@app.get('/api/glyph-evaluation')
+def glyph_evaluation_status():
+    return {'status':'not_evaluated','top1':None,'top3':None,
+        'reason':'尚无按碑刻隔离、且未参与开发的独立人工标注测试集，不能报告古碑OCR准确率。'}
 
 
 @app.get("/")

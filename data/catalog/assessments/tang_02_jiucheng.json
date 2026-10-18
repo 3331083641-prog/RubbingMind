@@ -34,6 +34,8 @@
   "processingTimeMs": 156.17799758911133,
   "outputImage": "static/results/tang_02_jiucheng/assess28-20261018-tang_02_jiucheng/restored.png",
   "archivedOutput": "data/catalog/assessments/outputs/tang_02_jiucheng.png",
+  "archivedInput": "data/catalog/assessments/inputs/tang_02_jiucheng.png",
+  "inputImageSha256": "accafcc9bc5bfcbb479ff229028fce8098327a642f38223274038f4a3b5b231a",
   "outputImageSha256": "accafcc9bc5bfcbb479ff229028fce8098327a642f38223274038f4a3b5b231a",
   "adaptiveDecisions": [
     {

@@ -34,6 +34,8 @@
   "processingTimeMs": 465.986967086792,
   "outputImage": "static/results/ming_03_wugou/assess28-20261018-ming_03_wugou/restored.png",
   "archivedOutput": "data/catalog/assessments/outputs/ming_03_wugou.png",
+  "archivedInput": "data/catalog/assessments/inputs/ming_03_wugou.png",
+  "inputImageSha256": "b0ac6bbad23959c49f2273e8138b7ee298ad3228722a4514bf18cf5ac52ac1d2",
   "outputImageSha256": "3baaac04251f92e9fc14b0b2e52da6548781f50667f620edd2666c640988c80c",
   "adaptiveDecisions": [
     {

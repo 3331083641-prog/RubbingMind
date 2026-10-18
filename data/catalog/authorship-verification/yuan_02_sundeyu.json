@@ -64,9 +64,34 @@
       "accessionNumber": "贈拓000411",
       "location": "data/catalog/steles28.json#yuan_02_sundeyu.transcription",
       "note": "释文署篆额。"
+    },
+    {
+      "field": "inscriptionAuthor",
+      "quote": "銘刻撰文者:集賢侍講學士中奉大夫 鄧文原",
+      "verificationStatus": "disputed",
+      "sourceLabel": "中央研究院历史语言研究所拓片目录",
+      "sourceUrl": "https://catalog.digitalarchives.tw/item/00/1b/f7/cd.html",
+      "accessionNumber": "fsnrb16547-1",
+      "location": "docs/audit/authorship-followup-2026-10-18.md",
+      "note": "与故宫本件释文的赵文原不同，保留为对照，不覆盖馆藏字段。"
+    },
+    {
+      "field": "inscriptionAuthor",
+      "quote": "孙真人德彧碑，邓集贤文原撰",
+      "verificationStatus": "disputed",
+      "sourceLabel": "御定佩文斋书画谱",
+      "sourceUrl": "https://www.shidianguji.com/book/SK1679/chapter/1l9lev0ra90d7",
+      "accessionNumber": null,
+      "location": "docs/audit/authorship-followup-2026-10-18.md",
+      "note": "后世书画谱作邓文原。与本件释文不一致。"
     }
   ],
   "conflicts": [
+    {
+      "field": "inscriptionAuthor",
+      "status": "disputed",
+      "detail": "故宫本件释文作赵文原撰；中研院史语所拓片目录作邓文原撰，《御定佩文斋书画谱》亦作邓文原撰。两读并存，不择一为已核定。"
+    },
     {
       "field": "inscriptionAuthor",
       "status": "disputed",

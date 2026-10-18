@@ -34,6 +34,8 @@
   "processingTimeMs": 177.31523513793945,
   "outputImage": "static/results/wei_02_wugaoli/assess28-20261018-wei_02_wugaoli/restored.png",
   "archivedOutput": "data/catalog/assessments/outputs/wei_02_wugaoli.png",
+  "archivedInput": "data/catalog/assessments/inputs/wei_02_wugaoli.png",
+  "inputImageSha256": "1878c26fec662d8d87b4258b1191e7bf1cd5f65d7f3cb17c6220811cc54db507",
   "outputImageSha256": "8489400946c450dcea0f04ce289fa472ad632de686407ac3fbe09cc82cf37b5a",
   "adaptiveDecisions": [
     {

@@ -1,0 +1,55 @@
+{
+  "steleId": "qing_01_qianlong_heart_sutra",
+  "rule": "region-condition-v1",
+  "publishedImageCondition": "中度影像损伤",
+  "publishedGradeUnchanged": true,
+  "reviewStatus": "自动初筛，待人工复核",
+  "capture": {
+    "readablePixels": [
+      734,
+      1992
+    ],
+    "analysisLongSide": 900,
+    "analysisScale": 0.4518,
+    "note": "拉普拉斯方差随分辨率、缩放和压缩变化，不能把绝对数值直接当成字迹残损程度。"
+  },
+  "polarity": "lightGround",
+  "mountingAndScan": {
+    "borderFraction": 0.08,
+    "borderContrastStd": 42.87,
+    "note": "外缘 8% 单独观察裱边、纸边和扫描背景，不并入正文初筛等级。"
+  },
+  "textCells": [
+    {
+      "row": 0,
+      "col": 2,
+      "contrastStd": 30.19,
+      "laplacianVariance": 6331.9,
+      "inkFraction": 0.4018
+    },
+    {
+      "row": 2,
+      "col": 1,
+      "contrastStd": 24.82,
+      "laplacianVariance": 4994.7,
+      "inkFraction": 0.4861
+    },
+    {
+      "row": 2,
+      "col": 2,
+      "contrastStd": 23.78,
+      "laplacianVariance": 4245.2,
+      "inkFraction": 0.497
+    }
+  ],
+  "suspectedLocalFading": [],
+  "suspectedNonTextTexture": [],
+  "physicalStoneWeathering": "无可靠原石证据，不评定",
+  "coverage": "阅读图和档案图各一幅。册页若有多开，其余开页不在本次评级内。",
+  "limitations": [
+    "3×3 分区是自动抽样，不是逐字释读。",
+    "疑似局部变淡和疑似非文字纹理都需要人工看图确认。",
+    "黑底白字与白底黑字已分开估计墨迹比例，但仍可能受拓纸底色影响。",
+    "原石剥蚀、裂隙和石面磨损没有原石照片时不评定。"
+  ]
+}

@@ -66,6 +66,16 @@
       "note": "集字者，不是原书丹者。"
     },
     {
+      "field": "characterCompilation",
+      "quote": "王文集王右军书，傅文集褚河南书",
+      "verificationStatus": "pending_review",
+      "sourceLabel": "峨眉山金顶铜殿与铜碑记述",
+      "sourceUrl": "http://www.nanhuaijin.cn/Item/1037.aspx",
+      "accessionNumber": "購拓000276",
+      "location": "docs/audit/authorship-followup-2026-10-18.md",
+      "note": "后世记述把署款读成集王羲之、集褚遂良，不是明代书丹者本人。"
+    },
+    {
       "field": "engraver",
       "quote": "雲中朱廷",
       "verificationStatus": "pending_review",

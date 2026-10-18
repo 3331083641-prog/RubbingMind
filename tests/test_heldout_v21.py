@@ -20,8 +20,11 @@ def test_heldout_comparison_retains_occlusion_failures():
     assert all(row['psnrMean'] is not None for row in result['summary'] if row['failed'] == 0 and row['n'])
 
 
-def test_metrics_only_batch_does_not_blank_the_registry():
-    from experiment_registry import batches
-    ids = [item['id'] for item in batches()]
-    assert 'controlled-rubbings-v2-text-2026-10-17' in ids
-    assert 'heldout-v20-v21-2026-10-18' not in ids
+def test_metrics_only_batch_stays_visible_without_hiding_image_batches():
+    from experiment_registry import batches, export_payload
+    listed = {item['id']: item for item in batches()}
+    assert 'controlled-rubbings-v2-text-2026-10-17' in listed
+    heldout = listed['heldout-v20-v21-2026-10-18']
+    assert heldout['metricsOnly'] is True and heldout['imageComparisonAvailable'] is False
+    body, media = export_payload(heldout['id'], 'summary.csv')
+    assert media == 'text/csv' and b'adaptive_v21' in body and b'occlusion' in body

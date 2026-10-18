@@ -34,6 +34,8 @@
   "processingTimeMs": 452.7742862701416,
   "outputImage": "static/results/qing_02_wushi_reerection/assess28-20261018-qing_02_wushi_reerection/restored.png",
   "archivedOutput": "data/catalog/assessments/outputs/qing_02_wushi_reerection.png",
+  "archivedInput": "data/catalog/assessments/inputs/qing_02_wushi_reerection.png",
+  "inputImageSha256": "36bc1ba52251b26687fa9e3e6aff04f7f75ecb0ea0c10c4a039eebcdade1f9a9",
   "outputImageSha256": "cf49705109021e7f2cdf6aa766c75ca7a5d812222a824b8aac5b71d1a4738a76",
   "adaptiveDecisions": [
     {

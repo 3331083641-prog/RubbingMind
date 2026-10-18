@@ -96,7 +96,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/han_01_caoquan/assessment",
+      "inputRoi": "/api/catalog/han_01_caoquan/assessment/assets/input-roi",
+      "output": "/api/catalog/han_01_caoquan/assessment/assets/output"
+    }
   },
   {
     "id": "han_02_yiying",
@@ -195,7 +203,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/han_02_yiying/assessment",
+      "inputRoi": "/api/catalog/han_02_yiying/assessment/assets/input-roi",
+      "output": "/api/catalog/han_02_yiying/assessment/assets/output"
+    }
   },
   {
     "id": "han_03_liqi",
@@ -294,7 +310,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/han_03_liqi/assessment",
+      "inputRoi": "/api/catalog/han_03_liqi/assessment/assets/input-roi",
+      "output": "/api/catalog/han_03_liqi/assessment/assets/output"
+    }
   },
   {
     "id": "han_04_shichen",
@@ -393,7 +417,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/han_04_shichen/assessment",
+      "inputRoi": "/api/catalog/han_04_shichen/assessment/assets/input-roi",
+      "output": "/api/catalog/han_04_shichen/assessment/assets/output"
+    }
   },
   {
     "id": "wei_01_zhangmenglong",
@@ -492,7 +524,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/wei_01_zhangmenglong/assessment",
+      "inputRoi": "/api/catalog/wei_01_zhangmenglong/assessment/assets/input-roi",
+      "output": "/api/catalog/wei_01_zhangmenglong/assessment/assets/output"
+    }
   },
   {
     "id": "wei_02_wugaoli",
@@ -591,7 +631,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/wei_02_wugaoli/assessment",
+      "inputRoi": "/api/catalog/wei_02_wugaoli/assessment/assets/input-roi",
+      "output": "/api/catalog/wei_02_wugaoli/assessment/assets/output"
+    }
   },
   {
     "id": "wei_03_kouyan",
@@ -690,7 +738,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/wei_03_kouyan/assessment",
+      "inputRoi": "/api/catalog/wei_03_kouyan/assessment/assets/input-roi",
+      "output": "/api/catalog/wei_03_kouyan/assessment/assets/output"
+    }
   },
   {
     "id": "wei_04_wangsong",
@@ -789,7 +845,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/wei_04_wangsong/assessment",
+      "inputRoi": "/api/catalog/wei_04_wangsong/assessment/assets/input-roi",
+      "output": "/api/catalog/wei_04_wangsong/assessment/assets/output"
+    }
   },
   {
     "id": "tang_01_duobao",
@@ -888,7 +952,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/tang_01_duobao/assessment",
+      "inputRoi": "/api/catalog/tang_01_duobao/assessment/assets/input-roi",
+      "output": "/api/catalog/tang_01_duobao/assessment/assets/output"
+    }
   },
   {
     "id": "tang_02_jiucheng",
@@ -987,7 +1059,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/tang_02_jiucheng/assessment",
+      "inputRoi": "/api/catalog/tang_02_jiucheng/assessment/assets/input-roi",
+      "output": "/api/catalog/tang_02_jiucheng/assessment/assets/output"
+    }
   },
   {
     "id": "tang_03_yanjiamiao",
@@ -1086,7 +1166,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/tang_03_yanjiamiao/assessment",
+      "inputRoi": "/api/catalog/tang_03_yanjiamiao/assessment/assets/input-roi",
+      "output": "/api/catalog/tang_03_yanjiamiao/assessment/assets/output"
+    }
   },
   {
     "id": "tang_04_xuanmita",
@@ -1185,7 +1273,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/tang_04_xuanmita/assessment",
+      "inputRoi": "/api/catalog/tang_04_xuanmita/assessment/assets/input-roi",
+      "output": "/api/catalog/tang_04_xuanmita/assessment/assets/output"
+    }
   },
   {
     "id": "song_01_yuanyou",
@@ -1284,7 +1380,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/song_01_yuanyou/assessment",
+      "inputRoi": "/api/catalog/song_01_yuanyou/assessment/assets/input-roi",
+      "output": "/api/catalog/song_01_yuanyou/assessment/assets/output"
+    }
   },
   {
     "id": "song_02_wenxuan",
@@ -1383,7 +1487,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/song_02_wenxuan/assessment",
+      "inputRoi": "/api/catalog/song_02_wenxuan/assessment/assets/input-roi",
+      "output": "/api/catalog/song_02_wenxuan/assessment/assets/output"
+    }
   },
   {
     "id": "song_03_daguan",
@@ -1482,7 +1594,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/song_03_daguan/assessment",
+      "inputRoi": "/api/catalog/song_03_daguan/assessment/assets/input-roi",
+      "output": "/api/catalog/song_03_daguan/assessment/assets/output"
+    }
   },
   {
     "id": "song_04_mengying",
@@ -1581,7 +1701,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/song_04_mengying/assessment",
+      "inputRoi": "/api/catalog/song_04_mengying/assessment/assets/input-roi",
+      "output": "/api/catalog/song_04_mengying/assessment/assets/output"
+    }
   },
   {
     "id": "yuan_01_yufu",
@@ -1680,7 +1808,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/yuan_01_yufu/assessment",
+      "inputRoi": "/api/catalog/yuan_01_yufu/assessment/assets/input-roi",
+      "output": "/api/catalog/yuan_01_yufu/assessment/assets/output"
+    }
   },
   {
     "id": "yuan_02_sundeyu",
@@ -1779,7 +1915,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/yuan_02_sundeyu/assessment",
+      "inputRoi": "/api/catalog/yuan_02_sundeyu/assessment/assets/input-roi",
+      "output": "/api/catalog/yuan_02_sundeyu/assessment/assets/output"
+    }
   },
   {
     "id": "yuan_03_shengzhu",
@@ -1878,7 +2022,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/yuan_03_shengzhu/assessment",
+      "inputRoi": "/api/catalog/yuan_03_shengzhu/assessment/assets/input-roi",
+      "output": "/api/catalog/yuan_03_shengzhu/assessment/assets/output"
+    }
   },
   {
     "id": "yuan_04_jingyuanchang",
@@ -1977,7 +2129,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/yuan_04_jingyuanchang/assessment",
+      "inputRoi": "/api/catalog/yuan_04_jingyuanchang/assessment/assets/input-roi",
+      "output": "/api/catalog/yuan_04_jingyuanchang/assessment/assets/output"
+    }
   },
   {
     "id": "ming_01_xianfu",
@@ -2076,7 +2236,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/ming_01_xianfu/assessment",
+      "inputRoi": "/api/catalog/ming_01_xianfu/assessment/assets/input-roi",
+      "output": "/api/catalog/ming_01_xianfu/assessment/assets/output"
+    }
   },
   {
     "id": "ming_02_luxianzhi",
@@ -2175,7 +2343,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/ming_02_luxianzhi/assessment",
+      "inputRoi": "/api/catalog/ming_02_luxianzhi/assessment/assets/input-roi",
+      "output": "/api/catalog/ming_02_luxianzhi/assessment/assets/output"
+    }
   },
   {
     "id": "ming_03_wugou",
@@ -2274,7 +2450,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/ming_03_wugou/assessment",
+      "inputRoi": "/api/catalog/ming_03_wugou/assessment/assets/input-roi",
+      "output": "/api/catalog/ming_03_wugou/assessment/assets/output"
+    }
   },
   {
     "id": "ming_04_tongdian",
@@ -2373,7 +2557,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/ming_04_tongdian/assessment",
+      "inputRoi": "/api/catalog/ming_04_tongdian/assessment/assets/input-roi",
+      "output": "/api/catalog/ming_04_tongdian/assessment/assets/output"
+    }
   },
   {
     "id": "qing_01_qianlong_heart_sutra",
@@ -2488,7 +2680,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/qing_01_qianlong_heart_sutra/assessment",
+      "inputRoi": "/api/catalog/qing_01_qianlong_heart_sutra/assessment/assets/input-roi",
+      "output": "/api/catalog/qing_01_qianlong_heart_sutra/assessment/assets/output"
+    }
   },
   {
     "id": "qing_02_wushi_reerection",
@@ -2615,7 +2815,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/qing_02_wushi_reerection/assessment",
+      "inputRoi": "/api/catalog/qing_02_wushi_reerection/assessment/assets/input-roi",
+      "output": "/api/catalog/qing_02_wushi_reerection/assessment/assets/output"
+    }
   },
   {
     "id": "qing_03_sanxitang_preface",
@@ -2716,7 +2924,15 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/qing_03_sanxitang_preface/assessment",
+      "inputRoi": "/api/catalog/qing_03_sanxitang_preface/assessment/assets/input-roi",
+      "output": "/api/catalog/qing_03_sanxitang_preface/assessment/assets/output"
+    }
   },
   {
     "id": "qing_04_ayuwang_reliquary",
@@ -2866,6 +3082,14 @@
     "gis_coords": [],
     "isDemo": false,
     "source_kind": "verified_review_v3",
-    "catalogVersion": 3
+    "catalogVersion": 3,
+    "imageConditionReviewStatus": "自动初筛，待人工复核",
+    "physicalStoneWeathering": "无可靠原石证据，不评定",
+    "physicalWeatheringEvidence": null,
+    "assessmentAssetUrls": {
+      "record": "/api/catalog/qing_04_ayuwang_reliquary/assessment",
+      "inputRoi": "/api/catalog/qing_04_ayuwang_reliquary/assessment/assets/input-roi",
+      "output": "/api/catalog/qing_04_ayuwang_reliquary/assessment/assets/output"
+    }
   }
 ]

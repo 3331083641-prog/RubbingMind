@@ -34,6 +34,8 @@
   "processingTimeMs": 468.8591957092285,
   "outputImage": "static/results/ming_04_tongdian/assess28-20261018-ming_04_tongdian/restored.png",
   "archivedOutput": "data/catalog/assessments/outputs/ming_04_tongdian.png",
+  "archivedInput": "data/catalog/assessments/inputs/ming_04_tongdian.png",
+  "inputImageSha256": "643a9b978df30bbce39435df9561e0bdb2c19d6c63e668a3c8259328e2968f46",
   "outputImageSha256": "dd754d3cd4dcdc6cbc6f87adb056ee771cba96c4e5168c4a6a1e04a1675fa9f3",
   "adaptiveDecisions": [
     {

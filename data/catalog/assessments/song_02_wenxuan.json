@@ -34,6 +34,8 @@
   "processingTimeMs": 507.21144676208496,
   "outputImage": "static/results/song_02_wenxuan/assess28-20261018-song_02_wenxuan/restored.png",
   "archivedOutput": "data/catalog/assessments/outputs/song_02_wenxuan.png",
+  "archivedInput": "data/catalog/assessments/inputs/song_02_wenxuan.png",
+  "inputImageSha256": "906ea22955664a4d8f889224c85d7e523481a5697ab66a03d96844225120379f",
   "outputImageSha256": "9e19d9674aa5c2be662adc64cb49b7a83dce44b6e9ecc511fda7ad0abe2b3b3c",
   "adaptiveDecisions": [
     {

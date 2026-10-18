@@ -34,6 +34,8 @@
   "processingTimeMs": 162.02282905578613,
   "outputImage": "static/results/qing_03_sanxitang_preface/assess28-20261018-qing_03_sanxitang_preface/restored.png",
   "archivedOutput": "data/catalog/assessments/outputs/qing_03_sanxitang_preface.png",
+  "archivedInput": "data/catalog/assessments/inputs/qing_03_sanxitang_preface.png",
+  "inputImageSha256": "f96e5090439d25e1c274c319da702999fc17574270a71817234d4e98e1970ee5",
   "outputImageSha256": "f96e5090439d25e1c274c319da702999fc17574270a71817234d4e98e1970ee5",
   "adaptiveDecisions": [
     {

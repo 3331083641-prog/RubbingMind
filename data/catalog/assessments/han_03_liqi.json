@@ -34,6 +34,8 @@
   "processingTimeMs": 176.0401725769043,
   "outputImage": "static/results/han_03_liqi/assess28-20261018-han_03_liqi/restored.png",
   "archivedOutput": "data/catalog/assessments/outputs/han_03_liqi.png",
+  "archivedInput": "data/catalog/assessments/inputs/han_03_liqi.png",
+  "inputImageSha256": "9c64c30cde955c50a5ea69fd40309727237b2617f73929c8358ed61ba177964b",
   "outputImageSha256": "12c41524f9287dcf0f013e21d82bb184964f1f898ca2dfe4a81303f9cb7d8ee2",
   "adaptiveDecisions": [
     {

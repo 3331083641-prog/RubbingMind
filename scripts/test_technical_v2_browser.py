@@ -41,6 +41,19 @@ def run(url,ci=False):
                 expect(img).to_be_visible();expect(img).to_have_js_property('complete',True)
                 assert img.evaluate('(i)=>i.naturalWidth')==1100
         result['checks'].append('28 covers native width and seven dynasty filters')
+        card=page.get_by_test_id('museum-card').first
+        assessed=card.get_attribute('data-stele-id')
+        card.get_by_role('button',name='查看本件评估').click()
+        assessment=page.get_by_role('dialog',name='馆藏评估')
+        expect(assessment.get_by_text('自动初筛，待人工复核')).to_be_visible()
+        for label in ['处理前局部','处理后局部']:
+            image=assessment.get_by_role('img',name=label)
+            image.scroll_into_view_if_needed();image.evaluate('(i)=>i.decode()')
+            assert image.evaluate('(i)=>i.naturalWidth')==512
+        asset=page.request.get(url.rstrip('/')+f'/api/catalog/{assessed}/assessment/assets/output')
+        assert asset.status==200
+        assessment.get_by_role('button',name='关闭').click()
+        result['checks'].append('archived assessment comparison is served without a local results directory')
         capture(page,'02-museum.png')
         nav(page,'智考工作台');page.locator('header select').first.select_option('tang_01_duobao')
         expect(page.get_by_label('频域处理方式')).to_have_value('adaptive')
@@ -103,7 +116,13 @@ def run(url,ci=False):
         assert report['runId']==run['runId'] and report['stele']['id']=='tang_01_duobao' and report['adaptiveDiagnostics']
         assert any(i['inferenceId']==inference['inferenceId'] and i['status']=='human_rejected' for i in report['inferenceRecords'])
         page.pdf(path=str(OUT/'actual-run-report.pdf'),format='A4',print_background=True)
+        heldout=page.get_by_role('region',name='v2.0与v2.1留出对比')
+        expect(heldout).to_contain_text('受控退化实验')
+        expect(heldout).to_contain_text('负提升')
+        heldout.get_by_role('button',name='遮挡').click()
+        expect(heldout).to_contain_text('adaptive_v21')
         experiment=page.get_by_role('region',name='算法实验与消融分析')
+        experiment.get_by_label('实验批次').select_option(BATCH)
         expect(experiment.get_by_label('实验批次')).to_have_value(BATCH)
         experiment.get_by_label('实验样本',exact=True).select_option('han_04_shichen')
         experiment.get_by_label('退化类型').select_option('gaussian')

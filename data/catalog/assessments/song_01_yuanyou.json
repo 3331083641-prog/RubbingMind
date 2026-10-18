@@ -34,6 +34,8 @@
   "processingTimeMs": 435.85920333862305,
   "outputImage": "static/results/song_01_yuanyou/assess28-20261018-song_01_yuanyou/restored.png",
   "archivedOutput": "data/catalog/assessments/outputs/song_01_yuanyou.png",
+  "archivedInput": "data/catalog/assessments/inputs/song_01_yuanyou.png",
+  "inputImageSha256": "2d753e93638cb5c0714a8992eae0f071923a310de7bacb3074a2c5f52bd61b29",
   "outputImageSha256": "ef77b18f2037f059df1b165eed019eca9dd9ab4bf987cf40b5fed229edb67e48",
   "adaptiveDecisions": [
     {

@@ -1,0 +1,83 @@
+{
+  "steleId": "wei_02_wugaoli",
+  "rule": "region-condition-v1",
+  "publishedImageCondition": "轻度影像损伤",
+  "publishedGradeUnchanged": true,
+  "reviewStatus": "自动初筛，待人工复核",
+  "capture": {
+    "readablePixels": [
+      1172,
+      1156
+    ],
+    "analysisLongSide": 900,
+    "analysisScale": 0.7679,
+    "note": "拉普拉斯方差随分辨率、缩放和压缩变化，不能把绝对数值直接当成字迹残损程度。"
+  },
+  "polarity": "lightGround",
+  "mountingAndScan": {
+    "borderFraction": 0.08,
+    "borderContrastStd": 70.84,
+    "note": "外缘 8% 单独观察裱边、纸边和扫描背景，不并入正文初筛等级。"
+  },
+  "textCells": [
+    {
+      "row": 0,
+      "col": 0,
+      "contrastStd": 57.03,
+      "laplacianVariance": 7851.2,
+      "inkFraction": 0.2553
+    },
+    {
+      "row": 0,
+      "col": 1,
+      "contrastStd": 58.03,
+      "laplacianVariance": 9000.5,
+      "inkFraction": 0.2746
+    },
+    {
+      "row": 1,
+      "col": 1,
+      "contrastStd": 57.47,
+      "laplacianVariance": 8486.3,
+      "inkFraction": 0.2784
+    },
+    {
+      "row": 1,
+      "col": 2,
+      "contrastStd": 57.23,
+      "laplacianVariance": 8007.6,
+      "inkFraction": 0.2477
+    },
+    {
+      "row": 2,
+      "col": 0,
+      "contrastStd": 56.25,
+      "laplacianVariance": 7633.7,
+      "inkFraction": 0.254
+    },
+    {
+      "row": 2,
+      "col": 1,
+      "contrastStd": 60.42,
+      "laplacianVariance": 7800.4,
+      "inkFraction": 0.2981
+    },
+    {
+      "row": 2,
+      "col": 2,
+      "contrastStd": 61.84,
+      "laplacianVariance": 7881.7,
+      "inkFraction": 0.2794
+    }
+  ],
+  "suspectedLocalFading": [],
+  "suspectedNonTextTexture": [],
+  "physicalStoneWeathering": "无可靠原石证据，不评定",
+  "coverage": "阅读图和档案图各一幅。册页若有多开，其余开页不在本次评级内。",
+  "limitations": [
+    "3×3 分区是自动抽样，不是逐字释读。",
+    "疑似局部变淡和疑似非文字纹理都需要人工看图确认。",
+    "黑底白字与白底黑字已分开估计墨迹比例，但仍可能受拓纸底色影响。",
+    "原石剥蚀、裂隙和石面磨损没有原石照片时不评定。"
+  ]
+}

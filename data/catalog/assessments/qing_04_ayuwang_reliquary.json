@@ -34,6 +34,8 @@
   "processingTimeMs": 461.7919921875,
   "outputImage": "static/results/qing_04_ayuwang_reliquary/assess28-20261018-qing_04_ayuwang_reliquary/restored.png",
   "archivedOutput": "data/catalog/assessments/outputs/qing_04_ayuwang_reliquary.png",
+  "archivedInput": "data/catalog/assessments/inputs/qing_04_ayuwang_reliquary.png",
+  "inputImageSha256": "c74b7c0f4ae8a51045f639f0a4d3071bf2e01c3a125805cfabca946416073145",
   "outputImageSha256": "df1af519250e866dbb4b28ea24a181a2035f6dfa724e0e7e30e5c89cc7b1bb9a",
   "adaptiveDecisions": [
     {
