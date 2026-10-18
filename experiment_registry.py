@@ -19,8 +19,13 @@ def batches():
     result=[]
     for path in sorted(RESULTS.glob('*/results.json')):
         data=_read(str(path),path.stat().st_mtime_ns)
-        result.append({'id':data['config']['experimentId'],'directory':path.parent.name,'rowCount':len(data['rows']),
-            'sampleCount':len(data['sources']),'summary':data['summary'],'limitations':data['config'].get('limitations',[]),
+        config=data.get('config')
+        sources=data.get('sources')
+        # Metrics-only comparisons have no image manifest. Skip them instead of failing the catalogue.
+        if not isinstance(config, dict) or 'experimentId' not in config or not isinstance(sources, list):
+            continue
+        result.append({'id':config['experimentId'],'directory':path.parent.name,'rowCount':len(data['rows']),
+            'sampleCount':len(sources),'summary':data['summary'],'limitations':config.get('limitations',[]),
             'historicalWarning':'历史joint根据生成器退化标签选陷波，有先验泄漏；仅作历史记录。' if path.parent.name=='2026-10-15' else None})
     return result
 

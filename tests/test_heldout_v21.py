@@ -18,3 +18,10 @@ def test_heldout_comparison_retains_occlusion_failures():
     assert occlusion['n'] == 14 and occlusion['failed'] == 0
     assert occlusion['negativeLiftCount'] >= 1
     assert all(row['psnrMean'] is not None for row in result['summary'] if row['failed'] == 0 and row['n'])
+
+
+def test_metrics_only_batch_does_not_blank_the_registry():
+    from experiment_registry import batches
+    ids = [item['id'] for item in batches()]
+    assert 'controlled-rubbings-v2-text-2026-10-17' in ids
+    assert 'heldout-v20-v21-2026-10-18' not in ids
