@@ -3,6 +3,7 @@ import { CORE_SAMPLES } from '../data/catalogSelection';
 import { SteleItem } from '../types/stele';
 import { SteleViewer } from '../components/stele3d/SteleViewer';
 import { SteleFullscreenViewer } from '../components/stele3d/SteleFullscreenViewer';
+import { HomeAmbientBackground } from '../components/HomeAmbientBackground';
 import { ArrowRight, Layers, Network, ShieldCheck, Compass, Sparkles, BookOpen, Award, BarChart3, ScanLine } from 'lucide-react';
 
 interface HomePageProps {
@@ -20,19 +21,22 @@ export const HomePage: React.FC<HomePageProps> = ({ steles, onSelectStele, onNav
   return (
     <div className="min-h-screen bg-[#0A0D12] text-slate-100 flex flex-col space-y-12 pb-16">
       {/* 1. Hero Section */}
-      <section className="relative w-full pt-8 pb-12 px-4 lg:px-12 overflow-hidden bg-gradient-to-b from-[#0F1419] via-[#0A0D12] to-[#0A0D12] border-b border-gold/15">
-        {/* Subtle Background Ink Mountains Texture */}
+      <section className="home-ambient-hero relative w-full min-h-[calc(100vh-68px)] flex flex-col justify-center pt-8 pb-12 px-4 lg:px-12 overflow-hidden bg-gradient-to-b from-[#0F1419] via-[#0A0D12] to-[#0A0D12] border-b border-gold/15">
+        {/* Ambient looping stone-rubbing video + dark ink overlay (video/poster opacity only; content stays opaque) */}
+        <HomeAmbientBackground />
+
+        {/* Subtle Background Ink Mountains Texture (almost off so it does not mute the video) */}
         <div 
-          className="absolute inset-0 opacity-15 pointer-events-none bg-center bg-cover mix-blend-screen"
+          className="absolute inset-0 opacity-[0.03] pointer-events-none bg-center bg-cover mix-blend-screen"
           style={{ backgroundImage: `url('/assets/stele/backgrounds/bg_home_ink_landscape.png')` }}
         />
         
         {/* Ambient Top Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[720px] h-[300px] bg-gradient-to-b from-gold/15 to-transparent blur-3xl pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[720px] h-[300px] bg-gradient-to-b from-gold/[0.04] to-transparent blur-3xl pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+        <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
           {/* Left Text / Info (Col 7) */}
-          <div className="lg:col-span-7 flex flex-col space-y-6">
+          <div className="home-hero-copy lg:col-span-7 flex flex-col space-y-6">
             <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gold/10 border border-gold/30 text-gold-light text-xs font-serif w-fit">
               <span className="w-1.5 h-1.5 rounded-full bg-cinnabar animate-pulse" />
               <span>全球校园人工智能算法精英大赛 · 智能文化赛道</span>
