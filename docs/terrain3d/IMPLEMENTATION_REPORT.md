@@ -158,4 +158,15 @@ MapLibre GL 6.14  ── 相机 / 投影 / 交互 / 控制 ──┐
 
 ## 7. 保存与同步
 
-见本文件末尾的 Git 提交记录，以及 `PROGRESS.md` 的“下一步”一节。
+| 项目 | 结果 |
+| --- | --- |
+| 本地目录 | `D:\RubbingMind`（所有源码、数据、测试、文档、截图都在此） |
+| 功能分支 | `feature/threejs-real-terrain` |
+| 提交 | `f774951`（主体）、`4791e98`（渲染失败保护） |
+| main 合并提交 | `2312638de83ef061c7a2b5322ca80a00f40c66d2` |
+| 远程 | https://github.com/3331083641-prog/RubbingMind （Private） |
+| 推送方式 | 普通 `git push`，未使用 force push，未重写任何他人历史 |
+| GitHub Actions | run `39140085182`：Backend / Frontend / Repository Validation / Browser smoke **全部 success** |
+| 生产构建 | `npm run build` 成功（HistoricalMap chunk 1.09 MB → gzip 303 kB），并用 `vite preview` 实际打开验证三维地形可渲染 |
+
+提交内容仅限本次相关路径：三维引擎、`HistoricalMap` / `GraphPage` / CSS / `main.tsx`、DEM 瓦片与 manifest、脚本、测试、`docs/terrain3d/`、README 与 `.gitignore`，以及 5 张验收截图。工作区中此前既有的未跟踪文件（其他截图目录、设计文件等）未被纳入提交。

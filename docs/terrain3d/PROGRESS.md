@@ -99,9 +99,23 @@ tests/test_terrain3d.py                            新增：DEM 与色带的数�
 5. **南海诸岛附图**仍为独立二维 MapLibre 实例（小尺寸定位图，不参与三维渲染）。
 6. **海拔垂直基准**为上游 EGM96 大地水准面，非 WGS84 椭球高。
 
-## 5. 下一步
+## 5. 交付状态（2026-10-18 完成）
 
-1. 清理开发期临时脚本（`scripts/_*.py`、`apps/web/spike.html`）。
-2. 更新 README 与文档索引。
-3. `npm run build` 产物核验。
-4. Git 分支 `feature/threejs-real-terrain` → 提交 → 推送 → 核对 Actions。
+| 项目 | 结果 |
+| --- | --- |
+| 本地目录 | `D:\RubbingMind`（正式成果，未迁移） |
+| 功能分支 | `feature/threejs-real-terrain`（已推送） |
+| 分支提交 | `f774951` feat(terrain3d) 主体；`4791e98` fix(terrain3d) 渲染失败保护 |
+| 合并到 main | `2312638` Merge branch 'feature/threejs-real-terrain' |
+| 远程 main | `2312638de83ef061c7a2b5322ca80a00f40c66d2`（与本地一致） |
+| GitHub Actions | run 39140085182：4/4 成功（Backend / Frontend / Repository Validation / Browser smoke） |
+| 仓库可见性 | Private |
+| 浏览器验收 | `test_terrain3d_browser.py` 通过（20 项）；`test_graph_browser.py` 通过（26 项） |
+| 未入库内容 | `screenshots/terrain3d-dev/`（开发期临时图，已写入 .gitignore）、z7–z9 DEM |
+
+### 后续可做（非本次范围）
+
+1. 申请地图审图号并替换为官方标准版图。
+2. 取得 Copernicus GLO-30 或同等级 30 m DEM 后，把近景层级提升到 z10–z12。
+3. 低端 GPU 的降级策略与实测。
+4. 地形遮挡标记（当前 DOM 标记始终在最上层）。
