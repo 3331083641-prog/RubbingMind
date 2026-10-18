@@ -7,11 +7,11 @@ import * as THREE from 'three';
  */
 export const TERRAIN_RAMP: Array<[number, string]> = [
   [-400, '#0a1c26'],
-  [0, '#1a3b45'],
-  [90, '#1e3f42'],
-  [300, '#24433f'],
-  [650, '#2b4a3f'],
-  [1100, '#375444'],
+  [0, '#1d3e48'],
+  [90, '#224244'],
+  [300, '#284640'],
+  [650, '#2f4b40'],
+  [1100, '#3a5546'],
   [1700, '#454d3e'],
   [2400, '#545545'],
   [3100, '#66604b'],
@@ -143,7 +143,7 @@ void main() {
     slope = 0.0;
   } else {
     // Exposed rock on steep faces, independent of altitude.
-    base = mix(base, u_rockColor, smoothstep(0.30, 0.78, slope) * 0.5);
+    base = mix(base, u_rockColor, smoothstep(0.34, 0.82, slope) * 0.42);
     // Aerial snow only where the DEM really is high.
     float snow = smoothstep(u_snowLine, u_snowLine + 700.0, elevation) * (1.0 - smoothstep(0.30, 0.62, slope));
     base = mix(base, vec3(0.86, 0.87, 0.85), snow * 0.55);
@@ -221,8 +221,8 @@ export function createTerrainUniforms(): TerrainUniforms {
     u_heightFactor: { value: 1 },
     u_light: { value: new THREE.Vector3(-0.55, -0.45, 0.7).normalize() },
     u_sunColor: { value: new THREE.Color('#fff0d0') },
-    u_skyColor: { value: new THREE.Color('#44606c') },
-    u_groundColor: { value: new THREE.Color('#0b1416') },
+    u_skyColor: { value: new THREE.Color('#4a6673') },
+    u_groundColor: { value: new THREE.Color('#121c1e') },
     u_rockColor: { value: new THREE.Color('#4a463a') },
     u_contourColor: { value: new THREE.Color('#d9c58c') },
     u_fogColor: { value: new THREE.Color('#061018') },

@@ -46,17 +46,12 @@ def main() -> int:
     else:
         lines = [list(boundary.coords)]
 
-    # Drop sub-pixel reef outlines that would only add noise at map scale,
-    # but keep every ring larger than ~1 km across.
-    kept = []
+    # Keep every ring, including the smallest islets and reefs: the official map
+    # expression of the South China Sea islands depends on them, and 517 rings is
+    # a trivial rendering cost. Performance is handled by LOD, not by deleting
+    # geographic features.
+    kept = lines
     dropped = 0
-    for line in lines:
-        xs = [point[0] for point in line]
-        ys = [point[1] for point in line]
-        if (max(xs) - min(xs)) + (max(ys) - min(ys)) < 0.02:
-            dropped += 1
-            continue
-        kept.append(line)
 
     feature = {
         'type': 'Feature',

@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import type * as maplibregl from 'maplibre-gl';
 import { DemStore } from './dem';
-import { buildTerrainPatch, disposeBuild, type TerrainBuild, type TerrainSpec } from './terrainMesh';
+import { buildCovers, buildTerrainPatch, disposeBuild, sampleBuildSurface, type TerrainBuild, type TerrainSpec } from './terrainMesh';
 import { createTerrainMaterial, createTerrainUniforms, type TerrainUniforms } from './terrainMaterial';
 import { DrapedLineLayer, geometriesToPolylines, type DrapeGroupSpec } from './drapedLines';
 import { EARTH_CIRCUMFERENCE, mercatorToClip, mercatorX, mercatorY } from './projection';
@@ -20,6 +20,8 @@ export interface TerrainLevel {
   id: string;
   label: string;
   minZoom: number;
+  /** top zoom this level is expected to serve; drives vector decimation */
+  maxZoom: number;
   /** longitude half-window in degrees; null means the fixed national frame */
   halfLon: number | null;
   demZoom: number;
@@ -27,10 +29,10 @@ export interface TerrainLevel {
 }
 
 export const TERRAIN_LEVELS: TerrainLevel[] = [
-  { id: 'national', label: '全国地貌', minZoom: 0, halfLon: null, demZoom: 5, budget: 620000 },
-  { id: 'regional', label: '区域地貌', minZoom: 5.4, halfLon: 11, demZoom: 6, budget: 460000 },
-  { id: 'local', label: '局地地貌', minZoom: 7.6, halfLon: 4.2, demZoom: 8, budget: 360000 },
-  { id: 'close', label: '近景地貌', minZoom: 10, halfLon: 1.5, demZoom: 10, budget: 300000 },
+  { id: 'national', label: '全国地貌', minZoom: 0, maxZoom: 5.4, halfLon: null, demZoom: 5, budget: 620000 },
+  { id: 'regional', label: '区域地貌', minZoom: 5.4, maxZoom: 7.6, halfLon: 11, demZoom: 6, budget: 460000 },
+  { id: 'local', label: '局地地貌', minZoom: 7.6, maxZoom: 10, halfLon: 4.2, demZoom: 8, budget: 360000 },
+  { id: 'close', label: '近景地貌', minZoom: 10, maxZoom: 13, halfLon: 1.5, demZoom: 10, budget: 300000 },
 ];
 
 export interface TerrainStats {
@@ -54,6 +56,8 @@ export interface TerrainStats {
 
 export interface VectorInput {
   provinces?: GeoJSON.FeatureCollection;
+  /** province-to-province borders only (shared edges deduplicated) */
+  provinceInternal?: GeoJSON.FeatureCollection;
   /** dissolved national boundary: land border + coastline + island rings */
   national?: GeoJSON.FeatureCollection;
   /** maritime line features carried by the province file */
@@ -64,7 +68,8 @@ export interface VectorInput {
 }
 
 export interface VectorVisibility {
-  boundaries: boolean;
+  national: boolean;
+  provinces: boolean;
   rivers: boolean;
   regions: boolean;
   relations: boolean;
@@ -103,7 +108,7 @@ export class Terrain3DScene {
   private exaggerationOverride: number | null = null;
   private level: TerrainLevel = TERRAIN_LEVELS[0];
   private vectors: VectorInput = {};
-  private vectorVisibility: VectorVisibility = { boundaries: true, rivers: true, regions: false, relations: false };
+  private vectorVisibility: VectorVisibility = { national: true, provinces: true, rivers: true, regions: false, relations: false };
   private demZoom = 5;
   private frameCount = 0;
   private lastStats: TerrainStats | null = null;
@@ -235,16 +240,28 @@ export class Terrain3DScene {
     this.map.triggerRepaint();
   }
 
-  /** Terrain surface height in metres at a geographic position. */
+  /** DEM height in metres at a geographic position (data value, not the mesh). */
   heightAt(lng: number, lat: number): number {
     return Math.max(0, this.store.sample(mercatorX(lng), mercatorY(lat), this.demZoom));
+  }
+
+  /**
+   * Height of the surface actually drawn at a mercator position. Falls back to
+   * the national patch, then to a raw DEM sample outside every patch.
+   */
+  surfaceHeight(x: number, y: number): number {
+    const detail = this.detailBuild;
+    if (detail && buildCovers(detail, x, y)) return Math.max(0, sampleBuildSurface(detail, x, y));
+    const national = this.nationalBuild;
+    if (national && buildCovers(national, x, y)) return Math.max(0, sampleBuildSurface(national, x, y));
+    return Math.max(0, this.store.sample(x, y, this.demZoom));
   }
 
   /** Project a geographic position onto the current viewport, honouring terrain height. */
   screenPosition(lng: number, lat: number, width: number, height: number, exaggerated = true) {
     const x = mercatorX(lng);
     const y = mercatorY(lat);
-    const metres = this.heightAt(lng, lat);
+    const metres = this.surfaceHeight(x, y);
     const z = exaggerated && !this.flat ? (metres * this.exaggeration) / EARTH_CIRCUMFERENCE : 0;
     const vector = new THREE.Vector4(x, y, z, 1).applyMatrix4(this.mvp);
     const w = vector.w;
@@ -273,8 +290,11 @@ export class Terrain3DScene {
   }
 
   private applyVectorVisibility() {
-    for (const id of ['province', 'national', 'national-halo', 'national-casing', 'maritime']) {
-      this.drape.setGroupVisible(id, this.vectorVisibility.boundaries);
+    for (const id of ['national', 'national-halo', 'national-casing', 'maritime']) {
+      this.drape.setGroupVisible(id, this.vectorVisibility.national);
+    }
+    for (const id of ['province']) {
+      this.drape.setGroupVisible(id, this.vectorVisibility.provinces);
     }
     this.drape.setGroupVisible('rivers', this.vectorVisibility.rivers);
     this.drape.setGroupVisible('regions', this.vectorVisibility.regions);
@@ -395,8 +415,11 @@ export class Terrain3DScene {
     // The detail patch is drawn with a depth bias so it wins over the coarse plate.
     const material = this.detailMesh.material as THREE.ShaderMaterial;
     material.polygonOffset = true;
-    material.polygonOffsetFactor = -2;
-    material.polygonOffsetUnits = -4;
+    // The detail patch covers the viewport once it exists, so the coarse plate is
+    // hidden instead of being depth-biased: a polygon offset large enough to beat
+    // z-fighting also pushed the terrain in front of the draped borders.
+    material.polygonOffsetFactor = 0;
+    material.polygonOffsetUnits = 0;
     material.needsUpdate = true;
     this.detailMesh.visible = true;
   }
@@ -416,21 +439,28 @@ export class Terrain3DScene {
       if (!lines.length) return;
       groups.push({ id, lines, ...style });
     };
-    collect(this.vectors.provinces, 'province', { color: '#b28d4a', widthPx: 0.9, opacity: 0.42, lift: 70 });
-    collect(this.vectors.maritime, 'maritime', { color: '#e8c07a', widthPx: 1.15, opacity: 0.8, lift: 80 });
-    // The national outline is drawn twice: a soft halo plus a crisp core, so the
-    // Chinese border separates from neighbouring territory on both dark and lit
-    // terrain without inventing any geometry.
+    // `lift` is a relative depth rank, not metres: the per-frame lift below is
+    // computed so every line stays ~0.8 screen px above the rendered surface at
+    // any zoom or exaggeration.
+    // Province borders carry no dark casing: with dense sub-pixel geometry the
+    // many overlapping translucent quads accumulate, so even a 0.22-alpha casing
+    // became an opaque band that hid the thin bronze core.
+    collect(this.vectors.provinceInternal, 'province', { color: '#d4b177', widthPx: 1.3, opacity: 0.85, lift: 1.0 });
+    collect(this.vectors.maritime, 'maritime', { color: '#e8c07a', widthPx: 1.15, opacity: 0.8, lift: 1.2 });
     // The national outline is drawn three times: a dark casing for contrast on
     // bright high ground, a soft gold halo, then the crisp core. No geometry is
     // invented to separate China from neighbouring territory.
-    collect(this.vectors.national, 'national-casing', { color: '#170f04', widthPx: 4.6, opacity: 0.55, lift: 92 });
-    collect(this.vectors.national, 'national-halo', { color: '#f3b95c', widthPx: 8.5, opacity: 0.2, lift: 97 });
-    collect(this.vectors.national, 'national', { color: '#ffdc9a', widthPx: 2.7, opacity: 1, lift: 104 });
-    collect(this.vectors.rivers, 'rivers', { color: '#8ef0dd', widthPx: 1.15, opacity: 0.85, lift: 60 });
-    collect(this.vectors.regions, 'regions', { color: '#74ae96', widthPx: 1.0, opacity: 0.5, lift: 80, dash: [26000, 0.55] });
-    collect(this.vectors.relations, 'relations', { color: '#dfb85e', widthPx: 1.15, opacity: 0.7, lift: 120, dash: [40000, 0.5] });
-    this.drape.build(groups, this.store, this.demZoom, SCENE_ORIGIN.x, SCENE_ORIGIN.y);
+    collect(this.vectors.national, 'national-casing', { color: '#170f04', widthPx: 4.6, opacity: 0.55, lift: 1.35 });
+    collect(this.vectors.national, 'national-halo', { color: '#f3b95c', widthPx: 8.5, opacity: 0.2, lift: 1.5 });
+    collect(this.vectors.national, 'national', { color: '#ffdc9a', widthPx: 2.7, opacity: 1, lift: 1.65 });
+    collect(this.vectors.rivers, 'rivers', { color: '#8ef0dd', widthPx: 1.15, opacity: 0.85, lift: 0.7 });
+    collect(this.vectors.regions, 'regions', { color: '#74ae96', widthPx: 1.0, opacity: 0.5, lift: 1.1, dash: [26000, 0.55] });
+    collect(this.vectors.relations, 'relations', { color: '#dfb85e', widthPx: 1.15, opacity: 0.7, lift: 1.4, dash: [40000, 0.5] });
+    // ~1.6 px at the top zoom of this LOD: enough to keep the ribbon continuous
+    // without visibly cutting corners of the administrative boundary.
+    const degreesPerPixel = 360 / (512 * Math.pow(2, this.level.maxZoom));
+    const minSpacing = degreesPerPixel * 1.6;
+    this.drape.build(groups, (x, y) => this.surfaceHeight(x, y), SCENE_ORIGIN.x, SCENE_ORIGIN.y, minSpacing);
     this.applyVectorVisibility();
   }
 
@@ -451,8 +481,17 @@ export class Terrain3DScene {
     this.heightScale = this.exaggeration / EARTH_CIRCUMFERENCE;
     this.uniforms.u_heightScale.value = this.heightScale;
     this.screenSize.set(canvas.clientWidth || 1, canvas.clientHeight || 1);
-    const widthScale = clampNumber(1 + (zoom - 4) * 0.22, 1, 3.2);
-    this.drape.update(this.mvp, SCENE_ORIGIN, this.flat ? 0 : this.heightScale, this.screenSize, widthScale);
+    // Line widths are authored in CSS pixels; the ribbon shader expands in CSS px
+    // too, so device pixel ratio does not change the apparent weight. The gentle
+    // ramp keeps province lines at 1.25-1.67 px from national to local zoom.
+    const widthScale = clampNumber(1 + (zoom - 4.6) * 0.085, 1, 1.34);
+    // Depth separation is solved in screen space: ~0.8 px converted to metres at
+    // the current zoom, then divided by the exaggeration because the shader
+    // multiplies it back. This keeps the border glued to the surface without
+    // z-fighting at any zoom level.
+    const metresPerPixel = (EARTH_CIRCUMFERENCE * Math.cos((center.lat * Math.PI) / 180)) / this.worldSize;
+    const liftMetres = this.flat ? 0 : (1.2 * metresPerPixel) / Math.max(this.exaggeration, 0.35);
+    this.drape.update(this.mvp, SCENE_ORIGIN, this.flat ? 0 : this.heightScale, this.screenSize, widthScale, liftMetres);
   }
 
   private renderFrame(options: maplibregl.CustomRenderMethodInput) {
@@ -479,7 +518,10 @@ export class Terrain3DScene {
       while (this.frameStamps.length && now - this.frameStamps[0] > 1000) this.frameStamps.shift();
 
       // The coarse plate is off-screen once the detail patch owns the viewport.
-      if (this.nationalMesh) this.nationalMesh.visible = this.map.getZoom() < 7.4;
+      // Once a detail patch exists it covers the viewport, so the coarse plate can be
+    // hidden entirely — that removes the overlapping-surface z-fight which used to
+    // require a depth bias big enough to occlude the draped borders.
+    if (this.nationalMesh) this.nationalMesh.visible = !this.detailBuild || this.map.getZoom() < 5.5;
 
       this.renderer.render(this.scene, this.camera);
       this.renderer.resetState();

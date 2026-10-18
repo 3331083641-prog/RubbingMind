@@ -27,6 +27,10 @@ export interface TerrainBuild {
   maxElevation: number;
   meanElevation: number;
   buildMs: number;
+  /** padded elevation grid the mesh was triangulated from, kept for surface queries */
+  grid: Float32Array;
+  gridWidth: number;
+  gridHeight: number;
 }
 
 /**
@@ -147,7 +151,45 @@ export function buildTerrainPatch(store: DemStore, spec: TerrainSpec): TerrainBu
     maxElevation,
     meanElevation: sum / count,
     buildMs: performance.now() - started,
+    grid,
+    gridWidth: gx,
+    gridHeight: gy,
   };
+}
+
+/**
+ * Height of the *rendered* surface at a mercator position, bilinearly
+ * interpolated on the same grid the triangle mesh was built from.
+ *
+ * Draped borders and markers use this instead of sampling the DEM directly: the
+ * mesh only carries one elevation per cell, so a raw DEM sample can differ by
+ * tens of metres from the surface actually drawn and would make lines dive under
+ * ridges or float above valleys.
+ */
+export function sampleBuildSurface(build: TerrainBuild, x: number, y: number): number {
+  const { x0, y0, x1, y1, nx, ny } = build.spec;
+  const stepX = (x1 - x0) / (nx - 1);
+  const stepY = (y1 - y0) / (ny - 1);
+  const gx = build.gridWidth;
+  const gy = build.gridHeight;
+  const fx = (x - x0) / stepX + 1;
+  const fy = (y - y0) / stepY + 1;
+  const ix = Math.min(gx - 2, Math.max(0, Math.floor(fx)));
+  const iy = Math.min(gy - 2, Math.max(0, Math.floor(fy)));
+  const tx = Math.min(1, Math.max(0, fx - ix));
+  const ty = Math.min(1, Math.max(0, fy - iy));
+  const grid = build.grid;
+  const a = grid[iy * gx + ix];
+  const b = grid[iy * gx + ix + 1];
+  const c = grid[(iy + 1) * gx + ix];
+  const d = grid[(iy + 1) * gx + ix + 1];
+  return (a * (1 - tx) + b * tx) * (1 - ty) + (c * (1 - tx) + d * tx) * ty;
+}
+
+/** True when a mercator position falls inside the patch footprint. */
+export function buildCovers(build: TerrainBuild, x: number, y: number): boolean {
+  const { x0, y0, x1, y1 } = build.spec;
+  return x >= x0 && x <= x1 && y >= y0 && y <= y1;
 }
 
 /** Separable binomial (1-4-6-4-1) blur used only for shading derivatives. */

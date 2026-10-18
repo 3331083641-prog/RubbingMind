@@ -22,15 +22,19 @@ export function resolveMapPlace(data: HistoryDataset, id?: string | null): Histo
   return p && p.longitude !== null && p.latitude !== null ? p : data.locations.find(l => l.id === p?.regionLocationId);
 }
 
-interface MarkerRecord { id: string; el: HTMLButtonElement; lng: number; lat: number }
-interface LabelRecord { el: HTMLSpanElement; lng: number; lat: number }
+interface MarkerRecord { id: string; el: HTMLButtonElement; lng: number; lat: number; priority: number; labelEl: HTMLElement | null; labelW: number; labelH: number }
+interface LabelRecord { el: HTMLSpanElement; lng: number; lat: number; w: number; h: number }
+interface ScreenBox { x0: number; y0: number; x1: number; y1: number }
 
 interface Props {
   data: HistoryDataset;
   command: MapCommand;
   selectedIds: string[];
   labels: boolean;
-  boundaries: boolean;
+  /** 中国国界（含海岸线）图层 */
+  nationalBorder: boolean;
+  /** 省级行政边界图层（省际共享边界去重后） */
+  provinceBorder: boolean;
   rivers: boolean;
   lines: boolean;
   effects: boolean;
@@ -45,7 +49,7 @@ interface Props {
   onTerrainState?: (state: { ready: boolean; error: string; pitch: number; bearing: number; zoom: number }) => void;
 }
 
-export default function HistoricalMap({ data, command, selectedIds, labels, boundaries, rivers, lines, effects, onSelect, terrain3d, exaggeration, contours = true, onTerrainStats, onTerrainState }: Props) {
+export default function HistoricalMap({ data, command, selectedIds, labels, nationalBorder, provinceBorder, rivers, lines, effects, onSelect, terrain3d, exaggeration, contours = true, onTerrainStats, onTerrainState }: Props) {
   const container = useRef<HTMLDivElement>(null);
   const insetContainer = useRef<HTMLDivElement>(null);
   const overlay = useRef<HTMLDivElement>(null);
@@ -54,6 +58,7 @@ export default function HistoricalMap({ data, command, selectedIds, labels, boun
   const scene = useRef<Terrain3DScene | null>(null);
   const store = useRef<DemStore | null>(null);
   const terrainLoading = useRef(false);
+  const lastLayoutAt = useRef(0);
   const markers = useRef<MarkerRecord[]>([]);
   const provinceLabels = useRef<LabelRecord[]>([]);
   const select = useRef(onSelect); select.current = onSelect;
@@ -61,9 +66,9 @@ export default function HistoricalMap({ data, command, selectedIds, labels, boun
   const stateHandler = useRef(onTerrainState); stateHandler.current = onTerrainState;
   const mode3d = useRef(terrain3d); mode3d.current = terrain3d;
   const exaggerationRef = useRef(exaggeration); exaggerationRef.current = exaggeration;
-  const flags = useRef({ boundaries, rivers, lines, effects, terrainReady: false });
-  flags.current = { ...flags.current, boundaries, rivers, lines, effects };
-  const vectorsRef = useRef<{ provinces?: GeoJSON.FeatureCollection; national?: GeoJSON.FeatureCollection; maritime?: GeoJSON.FeatureCollection; rivers?: GeoJSON.FeatureCollection; regions?: GeoJSON.FeatureCollection }>({});
+  const flags = useRef({ nationalBorder, provinceBorder, rivers, lines, effects, labels, terrainReady: false });
+  flags.current = { ...flags.current, nationalBorder, provinceBorder, rivers, lines, effects, labels };
+  const vectorsRef = useRef<{ provinces?: GeoJSON.FeatureCollection; provinceInternal?: GeoJSON.FeatureCollection; national?: GeoJSON.FeatureCollection; maritime?: GeoJSON.FeatureCollection; rivers?: GeoJSON.FeatureCollection; regions?: GeoJSON.FeatureCollection }>({});
   const [ready, setReady] = useState(false);
   const [error, setError] = useState('');
   const [terrain, setTerrain] = useState<{ ready: boolean; error: string; pitch: number; bearing: number }>({ ready: false, error: '', pitch: 0, bearing: 0 });
@@ -151,6 +156,9 @@ export default function HistoricalMap({ data, command, selectedIds, labels, boun
     const width = layer.clientWidth;
     const height = layer.clientHeight;
     const active = mode3d.current && scene.current && flags.current.terrainReady;
+    const zoom = m.getZoom();
+
+    const markerScreen: Array<{ record: MarkerRecord; x: number; y: number; onScreen: boolean }> = [];
     for (const marker of markers.current) {
       let x = 0; let y = 0; let visible = true;
       if (active && scene.current) {
@@ -163,7 +171,10 @@ export default function HistoricalMap({ data, command, selectedIds, labels, boun
       }
       marker.el.style.transform = `translate(-50%,-50%) translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
       marker.el.style.visibility = visible ? 'visible' : 'hidden';
+      markerScreen.push({ record: marker, x, y, onScreen: visible });
     }
+
+    const labelScreen: Array<{ record: LabelRecord; x: number; y: number; onScreen: boolean }> = [];
     for (const label of provinceLabels.current) {
       let x = 0; let y = 0; let visible = true;
       if (active && scene.current) {
@@ -175,6 +186,99 @@ export default function HistoricalMap({ data, command, selectedIds, labels, boun
       }
       label.el.style.transform = `translate(-50%,-50%) translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
       label.el.style.visibility = visible ? 'visible' : 'hidden';
+      labelScreen.push({ record: label, x, y, onScreen: visible });
+    }
+
+    // Label layout runs every frame with cached sizes, so the last frame always
+    // matches the final camera; collisions are resolved deterministically, which
+    // keeps labels from flickering while panning.
+    layoutLabels(markerScreen, labelScreen, width, height, zoom);
+  };
+
+  /**
+   * Greedy screen-space collision layout. Markers always keep their dot; their
+   * text and the province names compete for space with national border priority:
+   * selected marker > stele marker > province name > secondary place label.
+   */
+  const layoutLabels = (
+    markerScreen: Array<{ record: MarkerRecord; x: number; y: number; onScreen: boolean }>,
+    labelScreen: Array<{ record: LabelRecord; x: number; y: number; onScreen: boolean }>,
+    width: number,
+    height: number,
+    zoom: number,
+  ) => {
+    const placed: ScreenBox[] = [];
+    const margin = 2;
+    const fits = (box: ScreenBox) => {
+      if (box.x1 < -40 || box.x0 > width + 40 || box.y1 < -40 || box.y0 > height + 40) return false;
+      for (const other of placed) {
+        if (box.x0 < other.x1 + margin && box.x1 > other.x0 - margin && box.y0 < other.y1 + margin && box.y1 > other.y0 - margin) return false;
+      }
+      return true;
+    };
+    const add = (box: ScreenBox) => placed.push(box);
+
+    const labelsOn = flags.current.labels;
+    // Dots first: they are the geographic anchor and must never be hidden.
+    const ordered = [...markerScreen].sort((a, b) => a.record.priority - b.record.priority);
+    for (const item of ordered) {
+      if (!item.onScreen) continue;
+      const size = item.record.el.offsetWidth || 29;
+      add({ x0: item.x - size / 2, y0: item.y - size / 2, x1: item.x + size / 2, y1: item.y + size / 2 });
+    }
+
+    // Marker text: the selected marker wins, then stele markers.
+    for (const item of ordered) {
+      const label = item.record.labelEl;
+      if (!label) continue;
+      if (!item.onScreen || !labelsOn) { label.style.visibility = 'hidden'; continue; }
+      const showAtThisZoom = item.record.priority <= 1 || zoom >= 4.6;
+      if (!showAtThisZoom) { label.style.visibility = 'hidden'; continue; }
+      const w = item.record.labelW || 90;
+      const h = item.record.labelH || 18;
+      const box = { x0: item.x - w / 2, y0: item.y + 15, x1: item.x + w / 2, y1: item.y + 15 + h };
+      if (fits(box)) { label.style.visibility = 'visible'; add(box); } else { label.style.visibility = 'hidden'; }
+    }
+
+    // Province names fill the remaining space. The anchor stays at the true
+    // coordinate; only the text is nudged (right/left/above/below) until it fits,
+    // which keeps dense eastern provinces labelled without moving any geography.
+    for (const item of labelScreen) {
+      const el = item.record.el;
+      if (!item.onScreen || !labelsOn) { el.style.visibility = 'hidden'; el.style.marginLeft = '0px'; el.style.marginTop = '0px'; continue; }
+      const w = item.record.w || 40;
+      const h = item.record.h || 17;
+      const candidates: Array<[number, number]> = [
+        [0, 0],
+        [w * 0.62, 0],
+        [-w * 0.62, 0],
+        [0, -h - 3],
+        [0, h + 3],
+        [w * 0.55, -h - 2],
+        [-w * 0.55, -h - 2],
+        [w * 0.7, h * 0.9],
+        [-w * 0.7, h * 0.9],
+        [w * 0.7, -h * 0.9],
+        [-w * 0.7, -h * 0.9],
+        [w * 0.95, 0],
+        [-w * 0.95, 0],
+      ];
+      let placedBox: ScreenBox | null = null;
+      let chosen: [number, number] = [0, 0];
+      for (const [dx, dy] of candidates) {
+        const cx = item.x + dx;
+        const cy = item.y + dy;
+        const box = { x0: cx - w / 2, y0: cy - h / 2, x1: cx + w / 2, y1: cy + h / 2 };
+        if (fits(box)) { placedBox = box; chosen = [dx, dy]; break; }
+      }
+      if (placedBox) {
+        el.style.marginLeft = `${chosen[0].toFixed(1)}px`;
+        el.style.marginTop = `${chosen[1].toFixed(1)}px`;
+        el.style.visibility = 'visible';
+        add(placedBox);
+      } else {
+        el.style.visibility = 'hidden';
+      }
     }
   };
 
@@ -190,7 +294,7 @@ export default function HistoricalMap({ data, command, selectedIds, labels, boun
     const m = map.current;
     if (!m) return;
     const is3d = mode3d.current;
-    const { boundaries: showBoundaries, rivers: showRivers, lines: showLines, effects: showEffects } = flags.current;
+    const { nationalBorder: showNational, provinceBorder: showProvinces, rivers: showRivers, lines: showLines, effects: showEffects } = flags.current;
     const engine = scene.current;
     const engineReady = Boolean(engine && flags.current.terrainReady);
     // The terrain engine draws the surface plus the draped vectors in both modes;
@@ -200,7 +304,8 @@ export default function HistoricalMap({ data, command, selectedIds, labels, boun
       m.setLayoutProperty(id, 'visibility', engineReady ? 'none' : 'visible');
     }
     if (!engineReady) {
-      for (const id of ['province-outline', 'national-outline', 'national-line']) if (m.getLayer(id)) m.setLayoutProperty(id, 'visibility', showBoundaries ? 'visible' : 'none');
+      for (const id of ['national-outline', 'national-line']) if (m.getLayer(id)) m.setLayoutProperty(id, 'visibility', showNational ? 'visible' : 'none');
+      for (const id of ['province-outline', 'province-casing']) if (m.getLayer(id)) m.setLayoutProperty(id, 'visibility', showProvinces ? 'visible' : 'none');
       for (const id of ['rivers', 'rivers-case']) if (m.getLayer(id)) m.setLayoutProperty(id, 'visibility', showRivers ? 'visible' : 'none');
       if (m.getLayer('terrain-shade')) m.setLayoutProperty('terrain-shade', 'visibility', showEffects ? 'visible' : 'none');
       if (m.getLayer('terrain-color')) m.setLayoutProperty('terrain-color', 'visibility', showEffects ? 'visible' : 'none');
@@ -210,7 +315,8 @@ export default function HistoricalMap({ data, command, selectedIds, labels, boun
       engine.setVisible(engineReady);
       engine.setFlat(!is3d);
       engine.setVectorVisibility({
-        boundaries: showBoundaries,
+        national: showNational,
+        provinces: showProvinces,
         rivers: showRivers,
         regions: m.getZoom() >= 4.2,
         relations: showLines,
@@ -239,11 +345,12 @@ export default function HistoricalMap({ data, command, selectedIds, labels, boun
         applyLayerMode();
       });
       m.setMaxPitch(72);
-      const [provinces, riversData, regions, nationalBoundary] = await Promise.all([
+      const [provinces, riversData, regions, nationalBoundary, provinceInternal] = await Promise.all([
         fetch('/assets/gis/china-provinces.cgcs2000.geojson').then(r => r.json()),
         fetch('/assets/gis/rivers.geojson').then(r => r.json()),
         fetch('/assets/gis/coordinate-regions.geojson').then(r => r.json()),
         fetch('/assets/gis/china-national-boundary.geojson').then(r => r.json()),
+        fetch('/assets/gis/china-province-internal-boundaries.geojson').then(r => r.json()),
       ]);
       const maritime: GeoJSON.FeatureCollection = {
         type: 'FeatureCollection',
@@ -253,7 +360,7 @@ export default function HistoricalMap({ data, command, selectedIds, labels, boun
         type: 'FeatureCollection',
         features: provinces.features.filter((f: GeoJSON.Feature) => f.geometry?.type === 'MultiPolygon' || f.geometry?.type === 'Polygon'),
       };
-      vectorsRef.current = { provinces: provinceShapes, national: nationalBoundary, maritime, rivers: riversData, regions };
+      vectorsRef.current = { provinces: provinceShapes, provinceInternal, national: nationalBoundary, maritime, rivers: riversData, regions };
       engine.setVectors(vectorsRef.current);
       engine.setExaggeration(exaggerationRef.current);
       applyLayerMode();
@@ -289,13 +396,23 @@ export default function HistoricalMap({ data, command, selectedIds, labels, boun
             el.className = 'province-label';
             el.textContent = prefix(p.name);
             overlay.current?.appendChild(el);
-            provinceLabels.current.push({ el, lng: p.coordinates[0], lat: p.coordinates[1] });
+            // Measure once: the text never changes, so collision tests can stay cheap.
+            provinceLabels.current.push({ el, lng: p.coordinates[0], lat: p.coordinates[1], w: el.offsetWidth || 40, h: el.offsetHeight || 16 });
           });
           syncOverlay();
         }).catch(() => setError('现代地名标注未加载，可重开页面恢复。'));
       });
       m.on('error', e => setError(`地图资源加载失败：${e.error.message}`));
-      m.on('moveend', () => { const p = m.getCenter(); setCamera({ zoom: m.getZoom(), longitude: p.lng, latitude: p.lat, bearing: m.getBearing() }); updateFrameMetric(m); reportState(); });
+      m.on('moveend', () => {
+        const p = m.getCenter();
+        setCamera({ zoom: m.getZoom(), longitude: p.lng, latitude: p.lat, bearing: m.getBearing() });
+        updateFrameMetric(m);
+        reportState();
+        // Final label layout must run after the camera stops, otherwise the last
+        // throttled pass can leave labels overlapping.
+        lastLayoutAt.current = 0;
+        syncOverlay();
+      });
       m.on('pitch', () => setPitch(m.getPitch()));
       m.on('render', syncOverlay);
       m.on('resize', syncOverlay);
@@ -360,7 +477,7 @@ export default function HistoricalMap({ data, command, selectedIds, labels, boun
   useEffect(() => {
     applyLayerMode();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [boundaries, rivers, lines, effects, ready]);
+  }, [nationalBorder, provinceBorder, rivers, lines, effects, ready]);
 
   useEffect(() => {
     const m = map.current;
@@ -370,18 +487,25 @@ export default function HistoricalMap({ data, command, selectedIds, labels, boun
     if (!host) return;
     data.locations.filter(p => p.longitude !== null && p.latitude !== null).forEach(p => {
       const button = document.createElement('button');
-      button.className = `historical-marker ${p.type === 'current_collection' ? 'collection' : p.type === 'historical_activity' || p.type === 'ancestral_origin' ? 'activity' : 'original'} ${selectedIds.includes(p.id) ? 'selected' : ''} ${effects ? 'with-effects' : ''}`;
+      const selected = selectedIds.includes(p.id);
+      button.className = `historical-marker ${p.type === 'current_collection' ? 'collection' : p.type === 'historical_activity' || p.type === 'ancestral_origin' ? 'activity' : 'original'} ${selected ? 'selected' : ''} ${effects ? 'with-effects' : ''}`;
       button.setAttribute('aria-label', `地图地点：${p.name}`);
       button.setAttribute('data-place-id', p.id);
       const glyph = document.createElement('span');
       glyph.className = 'marker-symbol';
       glyph.textContent = p.type === 'current_collection' ? '藏' : p.type === 'ancestral_origin' ? '籍' : p.type === 'historical_activity' ? '地' : '碑';
       button.append(glyph);
-      if (labels) { const name = document.createElement('span'); name.className = 'marker-label'; name.textContent = p.name; button.append(name); }
+      let labelEl: HTMLElement | null = null;
+      if (labels) { const name = document.createElement('span'); name.className = 'marker-label'; name.textContent = p.name; button.append(name); labelEl = name; }
       button.addEventListener('click', e => { e.stopPropagation(); select.current(p.id); });
       button.addEventListener('dblclick', e => { e.preventDefault(); e.stopPropagation(); select.current(p.id, 11); });
       host.appendChild(button);
-      markers.current.push({ id: p.id, el: button, lng: p.longitude!, lat: p.latitude! });
+      // Priority drives the label layout: selected first, then stele markers,
+      // then secondary historical activity.
+      const priority = selected ? 0 : (p.type === 'current_collection' || p.type === 'original_site') ? 1 : 2;
+      const labelW = labelEl ? (labelEl.offsetWidth || 90) : 0;
+      const labelH = labelEl ? (labelEl.offsetHeight || 18) : 0;
+      markers.current.push({ id: p.id, el: button, lng: p.longitude!, lat: p.latitude!, priority, labelEl, labelW, labelH });
     });
     syncOverlay();
     // eslint-disable-next-line react-hooks/exhaustive-deps
