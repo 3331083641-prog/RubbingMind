@@ -108,6 +108,8 @@ export class Terrain3DScene {
   private building = false;
   private dirty = true;
   private disposed = false;
+  private failed = false;
+  private errorListeners = new Set<(message: string) => void>();
   private frameTimes: number[] = [];
   private frameStamps: number[] = [];
   private lastFps = 0;
@@ -168,6 +170,12 @@ export class Terrain3DScene {
     this.statsListeners.add(listener);
     if (this.lastStats) listener(this.lastStats);
     return () => this.statsListeners.delete(listener);
+  }
+
+  /** Notified when a WebGL failure forces the scene to stop drawing. */
+  onError(listener: (message: string) => void) {
+    this.errorListeners.add(listener);
+    return () => this.errorListeners.delete(listener);
   }
 
   setVisible(visible: boolean) {
@@ -429,35 +437,42 @@ export class Terrain3DScene {
   }
 
   private renderFrame(options: maplibregl.CustomRenderMethodInput) {
-    if (!this.visible || this.disposed || !this.renderer) return;
-    const canvas = this.map.getCanvas();
-    if (!this.nationalBuild && !this.building) this.scheduleBuild(0);
+    if (!this.visible || this.disposed || !this.renderer || this.failed) return;
+    try {
+      const canvas = this.map.getCanvas();
+      if (!this.nationalBuild && !this.building) this.scheduleBuild(0);
 
-    if (canvas.width !== this.canvasSize.width || canvas.height !== this.canvasSize.height) {
-      this.canvasSize = { width: canvas.width, height: canvas.height };
-      this.renderer.setSize(canvas.width, canvas.height, false);
+      if (canvas.width !== this.canvasSize.width || canvas.height !== this.canvasSize.height) {
+        this.canvasSize = { width: canvas.width, height: canvas.height };
+        this.renderer.setSize(canvas.width, canvas.height, false);
+      }
+
+      this.updateMatrices(options);
+      this.frameCount++;
+
+      const now = performance.now();
+      if (this.lastFrameAt) {
+        this.frameTimes.push(now - this.lastFrameAt);
+        if (this.frameTimes.length > 90) this.frameTimes.shift();
+      }
+      this.lastFrameAt = now;
+      this.frameStamps.push(now);
+      while (this.frameStamps.length && now - this.frameStamps[0] > 1000) this.frameStamps.shift();
+
+      // The coarse plate is off-screen once the detail patch owns the viewport.
+      if (this.nationalMesh) this.nationalMesh.visible = this.map.getZoom() < 7.4;
+
+      this.renderer.render(this.scene, this.camera);
+      this.renderer.resetState();
+
+      if (this.frameCount % 30 === 0) this.emitStats();
+      this.maybeRebuildForView();
+    } catch (error) {
+      // A driver/context failure must not break MapLibre's render loop or the page.
+      this.failed = true;
+      console.warn('[terrain3d] render failed; disabling the 3D layer', error);
+      this.errorListeners.forEach((listener) => listener(error instanceof Error ? error.message : String(error)));
     }
-
-    this.updateMatrices(options);
-    this.frameCount++;
-
-    const now = performance.now();
-    if (this.lastFrameAt) {
-      this.frameTimes.push(now - this.lastFrameAt);
-      if (this.frameTimes.length > 90) this.frameTimes.shift();
-    }
-    this.lastFrameAt = now;
-    this.frameStamps.push(now);
-    while (this.frameStamps.length && now - this.frameStamps[0] > 1000) this.frameStamps.shift();
-
-    // The coarse plate is off-screen once the detail patch owns the viewport.
-    if (this.nationalMesh) this.nationalMesh.visible = this.map.getZoom() < 7.4;
-
-    this.renderer.render(this.scene, this.camera);
-    this.renderer.resetState();
-
-    if (this.frameCount % 30 === 0) this.emitStats();
-    this.maybeRebuildForView();
   }
 
   private maybeRebuildForView() {

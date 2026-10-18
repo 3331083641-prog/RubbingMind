@@ -233,6 +233,11 @@ export default function HistoricalMap({ data, command, selectedIds, labels, boun
       scene.current = engine;
       if ((import.meta as unknown as { env?: { DEV?: boolean } }).env?.DEV) (window as unknown as { __terrain3d?: unknown }).__terrain3d = engine;
       engine.onStats(stats => statsHandler.current?.(stats));
+      engine.onError(message => {
+        flags.current.terrainReady = false;
+        setTerrain(t => ({ ...t, ready: false, error: `三维地形中断：${message}；已回退到二维底图。` }));
+        applyLayerMode();
+      });
       m.setMaxPitch(72);
       const [provinces, riversData, regions] = await Promise.all([
         fetch('/assets/gis/china-provinces.cgcs2000.geojson').then(r => r.json()),
