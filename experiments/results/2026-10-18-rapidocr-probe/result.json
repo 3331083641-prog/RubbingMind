@@ -1,0 +1,60 @@
+{
+  "engine": "rapidocr_onnxruntime",
+  "license": "Apache-2.0",
+  "countsAsAccuracy": false,
+  "verifiedLabels": 0,
+  "evaluationStatus": "not_evaluated",
+  "rubbingCrop": {
+    "steleId": "han_01_caoquan",
+    "file": "data/catalog/assessments/inputs/han_01_caoquan.png",
+    "status": "completed",
+    "texts": [
+      {
+        "text": "雨親民廣振王未",
+        "score": 0.8331331780978611
+      },
+      {
+        "text": "時王故七旅和",
+        "score": 0.7458308736483256
+      },
+      {
+        "text": "剪離老丰德不",
+        "score": 0.7880458037058512
+      },
+      {
+        "text": "民亭商大#国我",
+        "score": 0.50864177942276
+      },
+      {
+        "text": "部裹禮",
+        "score": 0.7654220362504324
+      },
+      {
+        "text": "一文傷不险遗喜界",
+        "score": 0.5580306686460972
+      },
+      {
+        "text": "年王文女郎且位",
+        "score": 0.7667941280773708
+      },
+      {
+        "text": "唐星王三电",
+        "score": 0.50393146276474
+      }
+    ],
+    "elapsedMs": 6060.0,
+    "limitation": "RapidOCR 面向现代印刷体和自然场景文字，不是古碑残字识别模型。输出不能当作释文，也不能计算识别准确率。",
+    "readingStatus": "未与曹全碑释文核对。这些字符串只是模型输出，不能当作碑文释文。"
+  },
+  "printedTen": {
+    "status": "completed",
+    "texts": [
+      {
+        "text": "十",
+        "score": 0.8291065096855164
+      }
+    ],
+    "elapsedMs": 2202.6,
+    "readAsTen": true
+  }
+}

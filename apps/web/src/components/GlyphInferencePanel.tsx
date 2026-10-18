@@ -89,6 +89,8 @@ export const GlyphInferencePanel: React.FC<{
       <p>图像来源：{latest.imageProvenance?.imageSource === 'restored' ? `修复结果 ${latest.runId}` : '身份核验阅读原图'} · 选区 x={latest.bbox.x}, y={latest.bbox.y}, {latest.bbox.w}×{latest.bbox.h} 像素 · 上下文：{latest.context || '未提供'}</p>
       {latest.imageProvenance?.selectedImageSha256 && <p>裁切图像 SHA {latest.imageProvenance.selectedImageSha256.slice(0, 16)} · 归属 {latest.imageProvenance.runOwnership}</p>}
       <img src={latest.cropUrl} alt="实际提交的残字局部" className="max-w-44 max-h-36 object-contain" />
+      <button disabled={busy} className="text-gold disabled:opacity-40" onClick={async()=>{setBusy(true);try{const saved=await SteleService.runOcrBaseline(latest.inferenceId);setRecords(items=>items.map(item=>item.inferenceId===saved.inferenceId?saved:item));setMessage(saved.ocrBaseline?.limitation || '印刷体 OCR 已返回');}catch(e){setMessage(String(e));}finally{setBusy(false);}}}>运行印刷体 OCR 基线</button>
+      {latest.ocrBaseline && <p>印刷体 OCR · {latest.ocrBaseline.engine} · {latest.ocrBaseline.status} · {latest.ocrBaseline.texts?.map(item=>item.text).join('、') || '无文本'}。{latest.ocrBaseline.limitation}</p>}
       {latest.visualAnalysis && <details open className="space-y-2"><summary>真实选区图像分析 · {latest.visualAnalysis.version}</summary>
         <p>前景：{latest.visualAnalysis.foregroundPolarity}；连通区域 {latest.visualAnalysis.componentCount}；骨架像素 {latest.visualAnalysis.skeletonPixels}。</p>
         <p>{latest.visualAnalysis.identityStatus}</p>
