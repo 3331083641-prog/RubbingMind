@@ -31,6 +31,7 @@ BG = '[data-testid="home-ambient-bg"]'
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--screenshots', default='')
+parser.add_argument('--ci', action='store_true', help='Check assets, poster fallback, and playback only when this browser can decode H.264.')
 args = parser.parse_args()
 shots = Path(args.screenshots) if args.screenshots else None
 if shots:
@@ -133,6 +134,53 @@ def nav(page, label):
     page.locator('header').first.get_by_role('button', name=label).click()
     page.wait_for_timeout(1500)
 
+
+def run_ci():
+    """Short check for CI. Poster fallback is recorded separately from real playback."""
+    with sync_playwright() as playwright:
+        browser = playwright.chromium.launch(channel=CHANNEL, headless=True, args=['--enable-unsafe-swiftshader', '--autoplay-policy=no-user-gesture-required'])
+        context = new_context(browser)
+        for path, mime in ((VIDEO, 'video/mp4'), (POSTER, 'image/webp')):
+            response = context.request.get(URL + path)
+            assert response.status == 200, (path, response.status)
+            assert response.headers.get('content-type', '').startswith(mime), (path, response.headers.get('content-type'))
+            results[path] = {'status': response.status, 'type': response.headers.get('content-type'), 'bytes': len(response.body())}
+        page = context.new_page()
+        problems = watch(page)
+        page.goto(URL + '/?steleQA=1', wait_until='domcontentloaded')
+        expect(page.locator(BG)).to_have_count(1, timeout=20000)
+        page.wait_for_function("() => { const canvas = document.querySelector('section canvas'); return canvas && canvas.width > 40; }", timeout=20000)
+        codec = page.evaluate("""() => document.createElement('video').canPlayType('video/mp4; codecs="avc1.4D401F"')""")
+        results['codec'] = codec
+        if not codec:
+            expect(page.locator(BG)).to_have_attribute('data-ambient-mode', 'poster')
+            expect(page.locator(BG)).to_have_attribute('data-ambient-reason', 'unsupported')
+            results['playbackVerified'] = False
+            results['mode'] = 'poster'
+        else:
+            played = assert_really_playing(page, 'ci')
+            results['playbackVerified'] = True
+            results['mode'] = 'video'
+            results['playback'] = {'readyState': played['readyState'], 'time': played['t']}
+        expect(page.get_by_role('heading', name='墨韵智考')).to_be_visible()
+        assert state(page)['pointer'] == 'none'
+        assert not problems, problems
+        context.close()
+        reduced = new_context(browser, viewport={'width': 1440, 'height': 900}, reduced_motion='reduce')
+        reduced_page = reduced.new_page()
+        reduced_page.goto(URL + '/', wait_until='domcontentloaded')
+        expect(reduced_page.locator(BG)).to_have_attribute('data-ambient-reason', 'reduced-motion', timeout=20000)
+        assert reduced_page.locator(BG + ' video').count() == 0
+        results['reducedMotion'] = 'poster only'
+        reduced.close()
+        browser.close()
+    print(json.dumps(results, ensure_ascii=False, indent=2))
+    print('Home ambient CI media check passed. playbackVerified is false when this browser only shows the poster.')
+
+
+if args.ci:
+    run_ci()
+    raise SystemExit(0)
 
 with sync_playwright() as p:
     browser = p.chromium.launch(channel=CHANNEL, headless=True, args=['--enable-unsafe-swiftshader', '--autoplay-policy=no-user-gesture-required'])
