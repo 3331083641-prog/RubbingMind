@@ -127,9 +127,21 @@ def resolve_inference_image(record, image_source='original', run_id=None):
 
 
 def _map_roi(bbox, provenance):
-    scale = provenance.get('scaleFromSource') or 1
-    mapped = {key: int(round(bbox[key] / scale)) for key in ('x', 'y', 'w', 'h')} if scale not in (0, 1, 1.0) else dict(bbox)
     source_shape = provenance.get('sourceShape') or []
+    working_shape = provenance.get('workingShape') or []
+    mapped = dict(bbox)
+    scale = provenance.get('scaleFromSource') or 1
+    if len(source_shape) == 2 and len(working_shape) == 2:
+        source_h, source_w = int(source_shape[0]), int(source_shape[1])
+        work_h, work_w = int(working_shape[0]), int(working_shape[1])
+        if work_h > 0 and work_w > 0 and (source_h, source_w) != (work_h, work_w):
+            mapped = {
+                'x': int(round(bbox['x'] * source_w / work_w)),
+                'y': int(round(bbox['y'] * source_h / work_h)),
+                'w': max(1, int(round(bbox['w'] * source_w / work_w))),
+                'h': max(1, int(round(bbox['h'] * source_h / work_h))),
+            }
+            scale = source_w / work_w
     inside = None
     if len(source_shape) == 2:
         source_h, source_w = int(source_shape[0]), int(source_shape[1])

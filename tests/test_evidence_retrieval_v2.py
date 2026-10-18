@@ -55,8 +55,14 @@ def test_author_proposition_support_contradiction_and_refusal():
     contradicted = er.query('《多宝塔碑》的撰文者是不是李白？')
     assert contradicted['judgment'] == 'contradicted'
     assert contradicted['claim']['recorded'] == '岑勋' and contradicted['claim']['proposed'] == '李白'
-    assert '不一致' in contradicted['answer']
-    assert '撰文者为「李白」' not in contradicted['answer']
+    assert contradicted['claim']['basis'] == 'catalogue_field_mismatch'
+    assert '著录字段不一致' in contradicted['answer']
+    assert '不是独立史料反证' in contradicted['answer']
+    partial = er.query('《多宝塔碑》的书丹者是不是颜？')
+    assert partial['judgment'] == 'contradicted' and partial['claim']['recorded'] == '颜真卿'
+    assert partial['claim']['basis'] == 'catalogue_field_mismatch'
+    exact = er.query('《多宝塔碑》的书丹者是不是颜真卿？')
+    assert exact['judgment'] == 'supported' and exact['claim']['basis'] == 'catalogue_field_match'
     missing = er.query('《多宝塔碑》的篆额者是谁？')
     assert missing['judgment'] == 'insufficient_evidence' and missing['status'] == 'insufficient_evidence'
     assert '未核定' in missing['answer']

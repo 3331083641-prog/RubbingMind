@@ -119,12 +119,12 @@ export const GlyphInferencePanel: React.FC<{
         <div className="flex justify-between"><h2 className="text-gold">{stele.title} · 手动框选残字</h2><button onClick={() => setOpen(false)}>关闭</button></div>
         <fieldset className="text-sm space-y-1">
           <legend>选区图像来源</legend>
-          <label className="block"><input type="radio" name="glyph-image-source" checked={imageSource==='original'} onChange={() => { setImageSource('original'); setBox(null); }} /> 身份核验阅读原图</label>
-          <label className="block"><input type="radio" name="glyph-image-source" checked={imageSource==='restored'} disabled={!runId || !restoredUrl} onChange={() => { setImageSource('restored'); setBox(null); }} /> 当前修复结果 {runId || '（尚未选择运行）'}</label>
+          <label className="block"><input type="radio" name="glyph-image-source" checked={imageSource==='original'} onChange={() => { start.current = null; setBox(null); setImageSource('original'); }} /> 身份核验阅读原图</label>
+          <label className="block"><input type="radio" name="glyph-image-source" checked={imageSource==='restored'} disabled={!runId || !restoredUrl} onChange={() => { start.current = null; setBox(null); setImageSource('restored'); }} /> 当前修复结果 {runId || '（尚未选择运行）'}</label>
         </fieldset>
         <p className="text-xs">拖动选取当前来源图像上的实际残字。坐标按该图像像素保存；修复结果只会读取所选运行的输出。</p>
         <div className="overflow-auto"><div className="relative inline-block max-w-full">
-          <img ref={image} src={source} alt={stele.title} draggable={false} className="block max-w-full max-h-[58vh] h-auto w-auto touch-none cursor-crosshair"
+          <img key={source} ref={image} src={source} alt={stele.title} draggable={false} className="block max-w-full max-h-[58vh] h-auto w-auto touch-none cursor-crosshair"
             onPointerDown={event => { if (!image.current?.naturalWidth) return; event.currentTarget.setPointerCapture(event.pointerId); start.current=point(event); setBox(null); }}
             onPointerMove={event => { if (start.current) updateBox(point(event)); }}
             onPointerUp={event => { updateBox(point(event)); start.current=null; }} />

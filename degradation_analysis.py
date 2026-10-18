@@ -105,9 +105,19 @@ def missing_information_mask(image):
         touches = x <= 1 or y <= 1 or x + width >= image.shape[1] - 1 or y + height >= image.shape[0] - 1
         (border if touches else interior).append((index, area))
     background = {border[0][0]} if border else set()
+    if border:
+        background_pixels = image[labels == border[0][0]]
+        background_mean = float(background_pixels.mean()) if background_pixels.size else float(np.median(image))
+    else:
+        edge = np.concatenate([image[0], image[-1], image[:, 0], image[:, -1]])
+        background_mean = float(np.median(edge))
     limit = image.size * 0.12
     for index, area in interior:
         if index in background or area < 80 or area > limit:
+            continue
+        region_mean = float(image[labels == index].mean())
+        # Page-colored interior blanks are margins or column gaps, not loss.
+        if abs(region_mean - background_mean) < 18:
             continue
         mask[labels == index] = 255
     return mask
@@ -176,7 +186,7 @@ class AdaptiveRubbingRestorer:
             decisions.append({'operator':'identity','reason':'残差证据弱；不锐化、不强制CLAHE/形态学'})
         result, missing_pixels = preserve_missing_regions(image, result)
         if missing_pixels:
-            decisions.append({'operator':'preserve_missing','pixels':missing_pixels,'reason':'均匀缺损区域保持原像素，不补画笔画'})
+            decisions.append({'operator':'preserve_missing','pixels':missing_pixels,'reason':'与页面底色明显不同的内部均匀块保持原像素；相近留白不视为缺损，也不补画笔画'})
         gate=fidelity_diagnostics(image,result,features['noiseSigmaMAD'],periodic=bool(features['periodicPeaks']))
         if not gate['accepted']:
             decisions.append({'operator':'fallback_identity','reason':'; '.join(gate['reasons'])})

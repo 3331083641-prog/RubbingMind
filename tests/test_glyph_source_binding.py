@@ -100,5 +100,12 @@ def test_restored_sha_and_shape_must_match_the_run(client):
     assert '尺寸' in mismatch.json()['detail']
 
 
+def test_scaled_roi_uses_actual_shape_ratio():
+    provenance = {'sourceShape': [200, 100], 'workingShape': [100, 50], 'scaleFromSource': 0.5}
+    mapped = glyph_inference._map_roi({'x': 10, 'y': 20, 'w': 16, 'h': 16}, provenance)
+    assert mapped['mappedSourceBBox'] == {'x': 20, 'y': 40, 'w': 32, 'h': 32}
+    assert mapped['mappedInsideSource'] is True
+
+
 def np_image():
     return np.full((160, 160, 3), 30, np.uint8)

@@ -127,6 +127,28 @@ def _verified_fact(value):
     return text
 
 
+def _entity_tokens(value):
+    return [part for part in re.split(r'[、，,；;／/\s]+', value) if part]
+
+
+def _year_digits(text):
+    match=re.fullmatch(r'(\d{3,4})年?', text.strip())
+    return match.group(1) if match else None
+
+
+def _same_recorded_value(proposed, value):
+    """Exact catalogue token match. A shorter name inside a longer name is not the same person."""
+    if proposed == value:
+        return True
+    tokens=_entity_tokens(value)
+    if proposed in tokens:
+        return True
+    proposed_year=_year_digits(proposed)
+    if proposed_year and any(_year_digits(token)==proposed_year for token in [value, *tokens]):
+        return True
+    return False
+
+
 def _proposed_value(question):
     for pattern in (r'是不是([\u3400-\u9fff]{1,8})', r'是否是([\u3400-\u9fff]{1,8})', r'是否为([\u3400-\u9fff]{1,8})', r'是([\u3400-\u9fff]{1,8})吗'):
         match=re.search(pattern, question)
@@ -163,7 +185,7 @@ def judge_claim(question, work_ids):
         if canonical in catalog and canonical not in unique:
             unique.append(canonical)
     if len(unique)!=1:
-        return {'judgment':'insufficient_evidence','facet':facets[0][0],'proposed':proposed,'recorded':None,
+        return {'judgment':'insufficient_evidence','basis':'insufficient_catalogue','facet':facets[0][0],'proposed':proposed,'recorded':None,
                 'steleId':None,'sourceId':None,'forceRefusal':True,
                 'answer':'问题没有唯一对应的已著录碑刻，不能合并不同文物作判断。'}
     stele_id=unique[0]
@@ -180,28 +202,28 @@ def judge_claim(question, work_ids):
     if proposed is not None:
         if len(facets)!=1 or facets[0][0] in missing:
             facet=facets[0][0]
-            return {'judgment':'insufficient_evidence','facet':facet,'proposed':proposed,'recorded':None,
+            return {'judgment':'insufficient_evidence','basis':'insufficient_catalogue','facet':facet,'proposed':proposed,'recorded':None,
                     'steleId':stele_id,'sourceId':source_id,'forceRefusal':True,
                     'answer':f'现有著录没有核定《{record["title"]}》的{facet}，不能判断命题「{proposed}」是否成立。'}
         facet, value=next(iter(recorded.items()))
-        if proposed==value or proposed in value:
-            return {'judgment':'supported','facet':facet,'proposed':proposed,'recorded':value,
+        if _same_recorded_value(proposed, value):
+            return {'judgment':'supported','basis':'catalogue_field_match','facet':facet,'proposed':proposed,'recorded':value,
                     'steleId':stele_id,'sourceId':source_id,'forceRefusal':False,
-                    'answer':f'判断：supported。著录{facet}为「{value}」，与命题一致。依据 {source_id}。'}
-        return {'judgment':'contradicted','facet':facet,'proposed':proposed,'recorded':value,
+                    'answer':f'判断：supported。著录{facet}为「{value}」，与命题的字段完全一致。依据 {source_id}。这只表示著录字段相符，不是独立史学鉴定。'}
+        return {'judgment':'contradicted','basis':'catalogue_field_mismatch','facet':facet,'proposed':proposed,'recorded':value,
                 'steleId':stele_id,'sourceId':source_id,'forceRefusal':False,
-                'answer':f'判断：contradicted。著录{facet}为「{value}」，与命题「{proposed}」不一致。依据 {source_id}。未改写著录。'}
+                'answer':f'判断：contradicted。著录字段为「{value}」，与命题「{proposed}」不一致。依据 {source_id}。这是著录字段不一致，不是独立史料反证。'}
     if missing and not recorded:
         names='、'.join(missing)
-        return {'judgment':'insufficient_evidence','facet':missing[0],'proposed':None,'recorded':None,
+        return {'judgment':'insufficient_evidence','basis':'insufficient_catalogue','facet':missing[0],'proposed':None,'recorded':None,
                 'steleId':stele_id,'sourceId':source_id,'forceRefusal':True,
                 'answer':f'《{record["title"]}》的{names}在现有著录中为未核定，不能补写。'}
     if missing:
-        return {'judgment':'insufficient_evidence','facet':missing[0],'proposed':None,
+        return {'judgment':'insufficient_evidence','basis':'insufficient_catalogue','facet':missing[0],'proposed':None,
                 'recorded':recorded,'steleId':stele_id,'sourceId':source_id,'forceRefusal':True,
                 'answer':'判断：insufficient_evidence。'+ '；'.join(f'{name}：{value}' for name,value in recorded.items()) + '。其余问项未核定，不能补写。'}
     summary='；'.join(f'{name}：{value}' for name,value in recorded.items())
-    return {'judgment':'supported','facet':'、'.join(recorded),'proposed':None,'recorded':recorded,
+    return {'judgment':'supported','basis':'catalogue_field_match','facet':'、'.join(recorded),'proposed':None,'recorded':recorded,
             'steleId':stele_id,'sourceId':source_id,'forceRefusal':False,
             'answer':f'判断：supported。著录{summary}。依据 {source_id}。'}
 
