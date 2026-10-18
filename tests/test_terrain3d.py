@@ -87,7 +87,7 @@ def test_elevation_is_real_geography():
     north_plain = sample(116.4, 36.0, 5)
     shanghai_offshore = sample(123.0, 31.0, 5)
 
-    assert 6000 < everest < 9200, everest
+    assert 5000 < everest < 7600, everest
     assert 3000 < lhasa < 4800, lhasa
     assert 700 < tarim < 1600, tarim
     assert -20 < north_plain < 200, north_plain
@@ -95,6 +95,30 @@ def test_elevation_is_real_geography():
 
     # 西高东低: the plateau must sit far above the eastern plain.
     assert lhasa - north_plain > 3000
+
+
+def test_everest_sample_is_grid_scale_not_summit_height():
+    """A z5/z6 sample near Everest must never be reported as the summit height.
+
+    The published snow-surface height of Qomolangma is 8848.86 m (2020 joint
+    survey). A ~4.4 km (z5) or ~2.2 km (z6) DEM cell averages the massif with its
+    neighbours, so the sampled value is structurally lower. This test pins that
+    relationship so nobody can quote a grid sample as the peak elevation.
+    """
+    z5 = sample(86.925, 27.988, 5)
+    z6 = sample(86.925, 27.988, 6)
+    summit = 8848.86
+
+    assert z5 < summit - 800, z5
+    assert z6 < summit - 300, z6
+    assert z6 > z5, 'coarser grid must average the massif down further'
+
+    # Sanity: we are on the right side of the ridge, not in the Tibetan interior.
+    assert 6000 < z5 < 7600
+    assert 7600 < z6 < 8600
+
+    # Decoding must not silently add the visual exaggeration.
+    assert z5 < 9000 and z6 < 9000
 
 
 def test_vertical_resolution_beats_national_view_needs():

@@ -8,6 +8,7 @@ export function chinaMapStyle(): StyleSpecification {
     sources: {
       china: { type: 'geojson', data: '/assets/gis/china-provinces.cgcs2000.geojson', attribution: '天地图行政区划 · CGCS2000 · geodeparse 镜像（MIT）' },
       nationalBorder: { type: 'geojson', data: '/assets/gis/china-national-boundary.geojson', attribution: '由省级面拓扑并集派生的国界与海岸线，未改坐标' },
+      provinceInternal: { type: 'geojson', data: '/assets/gis/china-province-internal-boundaries.geojson', attribution: '省际共享边界去重后的内部界线，未改坐标' },
       terrain: { type: 'raster-dem', tiles: [`${origin}/assets/gis/terrain/{z}/{x}/{y}.png`], tileSize: 256, encoding: 'terrarium', minzoom: 0, maxzoom: 3, attribution: 'Mapzen Terrain Tiles · USGS / NOAA 等' },
       relief: { type: 'raster', tiles: [`${origin}/assets/gis/relief/{z}/{x}/{y}.png`], tileSize: 256, minzoom: 0, maxzoom: 3, attribution: '由上述 DEM 离线分层设色，未改坐标' },
       rivers: { type: 'geojson', data: '/assets/gis/rivers.geojson' },
@@ -19,7 +20,10 @@ export function chinaMapStyle(): StyleSpecification {
       { id: 'terrain-color', type: 'raster', source: 'relief', paint: { 'raster-opacity': 1, 'raster-fade-duration': 0, 'raster-resampling': 'linear' } },
       { id: 'terrain-shade', type: 'hillshade', source: 'terrain', paint: { 'hillshade-exaggeration': 0.48, 'hillshade-illumination-direction': 315, 'hillshade-illumination-anchor': 'map', 'hillshade-shadow-color': '#021018', 'hillshade-highlight-color': '#f4f7f2', 'hillshade-accent-color': '#d7b56a' } },
       { id: 'land', type: 'fill', source: 'china', filter: ['in', ['geometry-type'], ['literal', ['Polygon', 'MultiPolygon']]], paint: { 'fill-color': '#13252a', 'fill-opacity': 0 } },
-      { id: 'province-outline', type: 'line', source: 'china', filter: ['in', ['geometry-type'], ['literal', ['Polygon', 'MultiPolygon']]], paint: { 'line-color': '#a98a4e', 'line-opacity': 0.62, 'line-width': ['interpolate', ['linear'], ['zoom'], 2, 0.45, 5, 0.85, 8, 1.2] } },
+      // Province-to-province borders only: shared edges appear once, and the
+      // national outline / coastline is never re-drawn as a province line.
+      { id: 'province-casing', type: 'line', source: 'provinceInternal', paint: { 'line-color': '#1d1305', 'line-opacity': 0.34, 'line-width': ['interpolate', ['linear'], ['zoom'], 2, 2.1, 5, 2.5, 8, 3.0] } },
+      { id: 'province-outline', type: 'line', source: 'provinceInternal', paint: { 'line-color': '#c7a66e', 'line-opacity': 0.75, 'line-width': ['interpolate', ['linear'], ['zoom'], 2, 1.15, 5, 1.3, 8, 1.6] } },
       { id: 'national-line', type: 'line', source: 'nationalBorder', paint: { 'line-color': '#ffd98f', 'line-opacity': 1, 'line-width': ['interpolate', ['linear'], ['zoom'], 2, 1.8, 5, 2.4, 8, 3] } },
       { id: 'national-outline', type: 'line', source: 'china', filter: ['in', ['geometry-type'], ['literal', ['LineString', 'MultiLineString']]], paint: { 'line-color': '#E6BB61', 'line-opacity': 0.9, 'line-width': ['interpolate', ['linear'], ['zoom'], 2, 1, 5, 1.5, 8, 2] } },
       { id: 'rivers-case', type: 'line', source: 'rivers', paint: { 'line-color': '#08332e', 'line-opacity': 0.85, 'line-width': ['interpolate', ['linear'], ['zoom'], 2, 2.4, 5, 4.2, 8, 6] } },
