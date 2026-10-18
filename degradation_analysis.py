@@ -194,3 +194,47 @@ class AdaptiveRubbingRestorer:
         return result, {'version':self.version,'features':features,'decisions':decisions,'fidelityGate':gate,
                         'selectedOutput':'candidate' if gate['accepted'] else 'original',
                         'limitations':'不补全遮挡/剥落，不识别或重绘缺失笔画；无真值不计算修复准确率。'}
+
+
+def interior_constant_block(image, window=9, min_pixels=180):
+    """True when an interior area is exactly flat. Scanned paper noise does not match this."""
+    if image.ndim != 2 or min(image.shape) < window + 4:
+        return False
+    values = image.astype(np.float32)
+    mean = cv2.blur(values, (window, window))
+    square = cv2.blur(values * values, (window, window))
+    variance = square - mean * mean
+    margin = max(2, int(round(min(image.shape) * 0.08)))
+    interior = np.zeros(image.shape, dtype=bool)
+    interior[margin:-margin, margin:-margin] = variance[margin:-margin, margin:-margin] < 1e-6
+    return int(np.count_nonzero(interior)) >= min_pixels
+
+
+class AdaptiveRubbingRestorerV22(AdaptiveRubbingRestorer):
+    """Candidate only. The production default remains adaptive-rubbing-v2.1.
+
+    An exactly constant interior block is the occlusion used by the synthetic
+    benchmark. Historical scans are not exact constants, so this gate does not
+    claim to detect stone loss on the 28 museum images.
+    """
+
+    version = 'adaptive-rubbing-v2.2-candidate'
+
+    def restore(self, image, strength=1., notch_width=.8):
+        if interior_constant_block(image):
+            features, _impulse = analyze_degradation(image)
+            return image.copy(), {
+                'version': self.version,
+                'features': features,
+                'decisions': [{
+                    'operator': 'skip_flat_interior',
+                    'reason': '内部存在近似常数的区域。拒绝把平坦缺损或空白增强成笔画。',
+                }],
+                'fidelityGate': {'accepted': False, 'reasons': ['平坦区域拒绝修改'], 'basis': '常数块检测，不是历史真值'},
+                'selectedOutput': 'original',
+                'limitations': '只拒绝模拟器式的精确平坦块。没有把它评成博物馆拓片上的通用遮挡检测，也不替换 v2.1 默认算法。',
+            }
+        result, meta = super().restore(image, strength=strength, notch_width=notch_width)
+        meta = dict(meta)
+        meta['version'] = self.version
+        return result, meta

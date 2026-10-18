@@ -1,0 +1,142 @@
+{
+  "experimentId": "synthetic-v22-candidate-2026-10-18",
+  "seed": 20261018,
+  "source": "procedural stroke image, not one of the 28 museum rubbings",
+  "productionVersion": "adaptive-rubbing-v2.1",
+  "notHistoricalRestoration": "这些 PSNR 和 SSIM 的参照是生成图，不是历史原碑。",
+  "resultNote": "这张生成图上，v2.1 对遮挡和模糊已经退回原图，v2.2 没有额外提高 PSNR。默认算法仍是 v2.1。",
+  "rows": [
+    {
+      "degradation": "gaussian",
+      "method": "adaptive_v21",
+      "version": "adaptive-rubbing-v2.1",
+      "selectedOutput": "candidate",
+      "operators": [
+        "skip_notch",
+        "thin_stroke_nlm"
+      ],
+      "inputPsnr": 23.11374452653351,
+      "psnr": 23.116398796319167,
+      "ssim": 0.27054313316390877,
+      "negativeLift": false,
+      "unchanged": false,
+      "parameters": {
+        "strength": 1.0,
+        "seed": 20261018,
+        "sigma": 18.0
+      }
+    },
+    {
+      "degradation": "gaussian",
+      "method": "adaptive_v22_candidate",
+      "version": "adaptive-rubbing-v2.2-candidate",
+      "selectedOutput": "candidate",
+      "operators": [
+        "skip_notch",
+        "thin_stroke_nlm"
+      ],
+      "inputPsnr": 23.11374452653351,
+      "psnr": 23.116398796319167,
+      "ssim": 0.27054313316390877,
+      "negativeLift": false,
+      "unchanged": false,
+      "parameters": {
+        "strength": 1.0,
+        "seed": 20261018,
+        "sigma": 18.0
+      }
+    },
+    {
+      "degradation": "occlusion",
+      "method": "adaptive_v21",
+      "version": "adaptive-rubbing-v2.1",
+      "selectedOutput": "candidate",
+      "operators": [
+        "skip_notch",
+        "identity"
+      ],
+      "inputPsnr": 24.415417147132786,
+      "psnr": 24.415417147132786,
+      "ssim": 0.9788723304041933,
+      "negativeLift": false,
+      "unchanged": true,
+      "parameters": {
+        "strength": 1.0,
+        "seed": 20261018,
+        "rectangle": [
+          42,
+          42,
+          45,
+          28
+        ],
+        "fill": 211.0
+      }
+    },
+    {
+      "degradation": "occlusion",
+      "method": "adaptive_v22_candidate",
+      "version": "adaptive-rubbing-v2.2-candidate",
+      "selectedOutput": "original",
+      "operators": [
+        "skip_flat_interior"
+      ],
+      "inputPsnr": 24.415417147132786,
+      "psnr": 24.415417147132786,
+      "ssim": 0.9788723304041933,
+      "negativeLift": false,
+      "unchanged": true,
+      "parameters": {
+        "strength": 1.0,
+        "seed": 20261018,
+        "rectangle": [
+          42,
+          42,
+          45,
+          28
+        ],
+        "fill": 211.0
+      }
+    },
+    {
+      "degradation": "blur",
+      "method": "adaptive_v21",
+      "version": "adaptive-rubbing-v2.1",
+      "selectedOutput": "candidate",
+      "operators": [
+        "skip_notch",
+        "identity"
+      ],
+      "inputPsnr": 23.8120981898086,
+      "psnr": 23.8120981898086,
+      "ssim": 0.9002427024644788,
+      "negativeLift": false,
+      "unchanged": true,
+      "parameters": {
+        "strength": 1.0,
+        "seed": 20261018,
+        "sigma": 1.5
+      }
+    },
+    {
+      "degradation": "blur",
+      "method": "adaptive_v22_candidate",
+      "version": "adaptive-rubbing-v2.2-candidate",
+      "selectedOutput": "candidate",
+      "operators": [
+        "skip_notch",
+        "identity"
+      ],
+      "inputPsnr": 23.8120981898086,
+      "psnr": 23.8120981898086,
+      "ssim": 0.9002427024644788,
+      "negativeLift": false,
+      "unchanged": true,
+      "parameters": {
+        "strength": 1.0,
+        "seed": 20261018,
+        "sigma": 1.5
+      }
+    }
+  ],
+  "seenOcclusionGate": "在已经用过的 14 件留出裁切上，模拟遮挡的精确平坦块有 14/14 会触发 v2.2 拒绝。这不是新的未见测试成绩，也没有重算那份 PSNR。"
+}
