@@ -19,6 +19,19 @@ export default defineConfig({
       }
     }
   },
+  preview: {
+    port: 4173,
+    proxy: {
+      '/api': {
+        target: process.env.RUBBINGMIND_API_TARGET || 'http://127.0.0.1:8000',
+        changeOrigin: true,
+      },
+      '/static': {
+        target: process.env.RUBBINGMIND_API_TARGET || 'http://127.0.0.1:8000',
+        changeOrigin: true,
+      }
+    }
+  },
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

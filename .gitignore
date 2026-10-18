@@ -26,6 +26,9 @@ __pycache__/
 .coverage
 htmlcov/
 
+# Local browser-failure dumps. CI uploads the same directory as an artifact.
+screenshots/ci-smoke/
+
 # 3. 前端 Node.js 与构建输出
 node_modules/
 apps/web/node_modules/

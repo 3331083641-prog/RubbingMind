@@ -1,51 +1,128 @@
-"""Small Chromium browser regression for the five-page shell and 28-card fallback."""
+"""Chromium regression for the five-page shell, 28 cards, and offline fallback.
+
+The catalogue status attribute must leave "loading" before any card count is
+trusted. CI should point this script at a built preview, not the Vite dev
+server, so dependency optimization cannot reload the page mid-assertion.
+A failure writes a screenshot, console log, network log, and Playwright trace.
+"""
+import json
 import os
 import re
-from playwright.sync_api import sync_playwright, expect
+import traceback
+from pathlib import Path
+
+from playwright.sync_api import expect, sync_playwright
 
 URL = os.environ.get('RUBBINGMIND_FRONTEND_URL', 'http://127.0.0.1:5173')
+OUT = Path(__file__).resolve().parents[1] / 'screenshots' / 'ci-smoke'
+PAGES = (
+    ('贞石典藏馆', 'museum'),
+    ('智考工作台', 'workbench'),
+    ('时空图谱中心', 'graph'),
+    ('算法评测报告', 'reports'),
+)
 
-def enter_page(page, label, marker, count=None):
-    """Retry a navigation if Vite's first dependency optimization reloads dev mode."""
-    for attempt in range(3):
-        page.locator('header').first.get_by_role('button', name=label).click()
-        try:
-            if count is None:
-                expect(marker).to_be_visible(timeout=12000)
-            else:
-                expect(marker).to_have_count(count, timeout=12000)
-            page.wait_for_timeout(700)
-            if count is None:
-                expect(marker).to_be_visible(timeout=3000)
-            else:
-                expect(marker).to_have_count(count, timeout=3000)
-            return
-        except AssertionError:
-            if attempt == 2:
-                raise
-            page.wait_for_load_state('domcontentloaded')
-            page.wait_for_timeout(500)
 
-with sync_playwright() as p:
+def _status(page):
+    return page.locator('[data-catalogue-status]').first
+
+
+def wait_catalogue(page, expected):
+    page.wait_for_function(
+        """(expected) => document.querySelector('[data-catalogue-status]')?.dataset.catalogueStatus === expected""",
+        arg=expected,
+        timeout=20000,
+    )
+
+
+def open_page(page, label, tab):
+    page.locator('header').first.get_by_role('button', name=label).click()
+    page.wait_for_function(
+        """(tab) => document.querySelector('[data-catalogue-status]')?.dataset.tab === tab""",
+        arg=tab,
+        timeout=20000,
+    )
+
+
+def wait_museum(page, count):
+    page.wait_for_function(
+        """(count) => {
+          const root = document.querySelector('[data-catalogue-status]');
+          const museum = document.querySelector('[data-testid="museum-page"]');
+          const cards = document.querySelectorAll('[data-testid="museum-card"]');
+          return root && museum && root.dataset.catalogueStatus !== 'loading'
+            && root.dataset.tab === 'museum'
+            && cards.length === count
+            && museum.dataset.visibleCount === String(count);
+        }""",
+        arg=count,
+        timeout=20000,
+    )
+
+
+def dump_failure(context, page, console, network, exc):
+    OUT.mkdir(parents=True, exist_ok=True)
+    try:
+        page.screenshot(path=str(OUT / 'failure.png'), full_page=True)
+    except Exception as shot_error:
+        (OUT / 'screenshot-error.txt').write_text(str(shot_error), encoding='utf-8')
+    (OUT / 'console.json').write_text(json.dumps(console, ensure_ascii=False, indent=2), encoding='utf-8')
+    (OUT / 'network.json').write_text(json.dumps(network[-80:], ensure_ascii=False, indent=2), encoding='utf-8')
+    (OUT / 'error.txt').write_text(''.join(traceback.format_exception(exc)), encoding='utf-8')
+    try:
+        context.tracing.stop(path=str(OUT / 'trace.zip'))
+    except Exception:
+        pass
+
+
+def run(url=URL):
     channel = os.environ.get('RUBBINGMIND_BROWSER_CHANNEL')
-    browser = p.chromium.launch(channel=channel, headless=True, args=['--enable-unsafe-swiftshader'])
-    for offline in (False, True):
-        context = browser.new_context(viewport={'width': 1440, 'height': 900})
-        if offline:
-            context.route('**/api/**', lambda route: route.abort())
-        page = context.new_page()
-        errors = []
-        page.on('pageerror', lambda error: errors.append(str(error)))
-        page.goto(URL)
-        expect(page.get_by_role('button', name='首页门户')).to_be_visible()
-        enter_page(page, '贞石典藏馆', page.get_by_test_id('museum-card'), 28)
-        for dynasty in ['东汉', '北魏', '唐代', '宋代', '元代', '明代', '清代']:
-            page.get_by_role('button', name=re.compile('^' + dynasty + r'\s*4$')).click()
-            expect(page.get_by_test_id('museum-card')).to_have_count(4)
-        enter_page(page, '智考工作台', page.get_by_role('heading', name='真实处理历史'))
-        enter_page(page, '时空图谱中心', page.get_by_test_id('stele-tang-duobao'))
-        enter_page(page, '算法评测报告', page.get_by_role('heading', name='墨韵智考·金石数字化实验报告').last)
-        assert not errors, errors
-        context.close()
-    browser.close()
-print('Browser smoke passed: online + fallback, five-page shell, 28 items, seven filters.')
+    with sync_playwright() as playwright:
+        browser = playwright.chromium.launch(channel=channel, headless=True, args=['--enable-unsafe-swiftshader'])
+        try:
+            for offline in (False, True):
+                context = browser.new_context(viewport={'width': 1440, 'height': 900})
+                context.tracing.start(screenshots=True, snapshots=True, sources=True)
+                if offline:
+                    context.route('**/api/**', lambda route: route.abort())
+                page = context.new_page()
+                console, network, page_errors = [], [], []
+                page.on('console', lambda message: console.append({'type': message.type, 'text': message.text}))
+                page.on('pageerror', lambda error: page_errors.append(str(error)))
+                page.on('response', lambda response: network.append({'url': response.url, 'status': response.status}))
+                page.on('requestfailed', lambda request: network.append({'url': request.url, 'status': 'failed', 'error': request.failure}))
+                try:
+                    page.goto(url, wait_until='domcontentloaded')
+                    expect(page.get_by_role('button', name='首页门户')).to_be_visible()
+                    wait_catalogue(page, 'fallback' if offline else 'ready')
+                    open_page(page, '贞石典藏馆', 'museum')
+                    wait_museum(page, 28)
+                    ids = page.locator('[data-testid="museum-card"]').evaluate_all("nodes => nodes.map(node => node.dataset.steleId)")
+                    assert len(ids) == len(set(ids)) == 28, ids
+                    for dynasty in ['东汉', '北魏', '唐代', '宋代', '元代', '明代', '清代']:
+                        page.get_by_role('button', name=re.compile('^' + dynasty + r'\s*4$')).click()
+                        page.wait_for_function(
+                            """() => document.querySelector('[data-testid="museum-page"]')?.dataset.visibleCount === '4'
+                              && document.querySelectorAll('[data-testid="museum-card"]').length === 4""",
+                            timeout=10000,
+                        )
+                    open_page(page, '智考工作台', 'workbench')
+                    expect(page.get_by_role('heading', name='真实处理历史')).to_be_visible(timeout=20000)
+                    open_page(page, '时空图谱中心', 'graph')
+                    expect(page.get_by_test_id('stele-tang-duobao')).to_be_visible(timeout=20000)
+                    open_page(page, '算法评测报告', 'reports')
+                    expect(page.get_by_role('heading', name='墨韵智考·金石数字化实验报告').last).to_be_visible(timeout=20000)
+                    assert not page_errors, page_errors
+                    context.tracing.stop()
+                except Exception as exc:
+                    dump_failure(context, page, console, network, exc)
+                    raise
+                finally:
+                    context.close()
+        finally:
+            browser.close()
+    print('Browser smoke passed: online + fallback, five-page shell, 28 items, seven filters.')
+
+
+if __name__ == '__main__':
+    run()
