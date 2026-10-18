@@ -1,33 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as maplibregl from 'maplibre-gl';
-import type { StyleSpecification } from 'maplibre-gl';
 import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { Compass, MapPin } from 'lucide-react';
 import type { HistoryDataset, HistoricalLocation } from '../../types/history';
+import { chinaMapStyle } from './chinaMapStyle';
 // Vite may inject helpers into MapLibre's inline worker serialization. Use the untransformed CSP worker.
 maplibregl.setWorkerUrl(workerUrl);
 
 export interface MapCommand { kind: 'national' | 'focus' | 'place'; placeId?: string; locationIds?:string[]; zoom?:number; serial: number }
 export const NATIONAL_BOUNDS: [[number,number],[number,number]] = [[73,17],[135,54]];
-const style = (): StyleSpecification => ({ version: 8, sources: {
-  china: { type: 'geojson', data: '/assets/gis/china-provinces.cgcs2000.geojson', attribution: '天地图行政区划 · CGCS2000 · geodeparse 镜像（MIT）' },
-  terrain: { type: 'raster-dem', tiles: [location.origin+'/assets/gis/terrain/{z}/{x}/{y}.png'], tileSize:256, encoding:'terrarium',minzoom:0,maxzoom:3,attribution:'Mapzen Terrain Tiles · USGS / NOAA 等；详见数据署名' },
-  rivers: { type: 'geojson', data: '/assets/gis/rivers.geojson' },
-  regions: { type:'geojson', data:'/assets/gis/coordinate-regions.geojson' },
-  relations: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
-}, layers: [
-  {id:'ink',type:'background',paint:{'background-color':'#08141c'}},
-  {id:'land',type:'fill',source:'china',filter:['in',['geometry-type'],['literal',['Polygon','MultiPolygon']]],paint:{'fill-color':'#13252a','fill-opacity':.95}},
-  {id:'terrain-shade',type:'hillshade',source:'terrain',paint:{'hillshade-exaggeration':.35,'hillshade-shadow-color':'#040b12','hillshade-highlight-color':'#547571','hillshade-accent-color':'#826c40'}},
-  {id:'province-outline',type:'line',source:'china',filter:['==',['geometry-type'],'Polygon'],paint:{'line-color':'#a5894c','line-width':.7,'line-opacity':.8}},
-  {id:'national-outline',type:'line',source:'china',filter:['==',['geometry-type'],'LineString'],paint:{'line-color':'#d6b56b','line-width':1.2}},
-  {id:'rivers',type:'line',source:'rivers',paint:{'line-color':'#65a99b','line-opacity':.6,'line-width':1.3}},
-  {id:'region-fill',type:'fill',source:'regions',minzoom:4,paint:{'fill-color':'#2b6150','fill-opacity':.22}},
-  {id:'region-outline',type:'line',source:'regions',minzoom:4,paint:{'line-color':'#74ae96','line-width':1.2,'line-dasharray':[3,3]}},
-  {id:'stone-links',type:'line',source:'relations',filter:['==',['get','kind'],'stone_transfer'],paint:{'line-color':'#dfb85e','line-width':1.5,'line-dasharray':[3,3]}},
-  {id:'person-links',type:'line',source:'relations',filter:['==',['get','kind'],'person_activity'],paint:{'line-color':'#71bead','line-width':1.2,'line-dasharray':[1,4]}},
-] });
+const style = chinaMapStyle;
 
 export function resolveMapPlace(data: HistoryDataset, id?: string | null): HistoricalLocation | undefined {
   const p = data.locations.find(l => l.id === id);
@@ -109,7 +92,13 @@ export default function HistoricalMap({ data, command, selectedIds, labels, boun
     m.setLayoutProperty('rivers','visibility',rivers?'visible':'none');
   },[ready,boundaries,rivers]);
   useEffect(()=>{provinceMarkers.current.forEach(marker=>marker.getElement().style.display=labels?'block':'none');},[labels]);
-  useEffect(()=>{if(ready)map.current?.setLayoutProperty('terrain-shade','visibility',effects?'visible':'none');},[ready,effects]);
+  useEffect(()=>{
+    const m = map.current; if(!ready || !m) return;
+    const visible = effects ? 'visible' : 'none';
+    m.setLayoutProperty('terrain-shade','visibility', visible);
+    if (m.getLayer('terrain-color')) m.setLayoutProperty('terrain-color','visibility', visible);
+    m.setPaintProperty('land','fill-opacity', effects ? 0 : 0.94);
+  },[ready,effects]);
   useEffect(()=>{
     const m=map.current; if(!ready||!m)return;
     if(command.kind==='national'){m.fitBounds(NATIONAL_BOUNDS,{padding:45,duration:650});return;}
