@@ -13,6 +13,7 @@ def _label(annotation_id, stele_id, split, origin='human_fixture'):
 
 def test_unverified_or_overlapping_labels_stay_unassessed(tmp_path, monkeypatch):
     monkeypatch.setattr(glyph_annotations, 'ANNOTATION_DIR', tmp_path)
+    monkeypatch.setattr(glyph_annotations, 'RUNTIME_DIR', tmp_path / 'runtime')
     assert glyph_annotations.evaluate()['evaluationStatus'] == 'unassessed'
     assert glyph_annotations.evaluate()['top1'] is None
     (tmp_path / 'labels.json').write_text(json.dumps([
@@ -26,8 +27,35 @@ def test_unverified_or_overlapping_labels_stay_unassessed(tmp_path, monkeypatch)
     assert refused['excludedBecauseSteleOverlap'] == 1
 
 
+def test_recorded_annotation_cannot_become_accuracy(tmp_path, monkeypatch):
+    monkeypatch.setattr(glyph_annotations, 'ANNOTATION_DIR', tmp_path / 'catalog')
+    monkeypatch.setattr(glyph_annotations, 'RUNTIME_DIR', tmp_path / 'runtime')
+    saved = glyph_annotations.save_human_annotation({
+        'steleId': 'han_01_caoquan', 'bbox': {'x': 1, 'y': 2, 'width': 8, 'height': 9},
+        'glyph': '曹', 'sourceCitation': '测试出处，不是评测真值', 'annotator': '测试',
+        'imageSha256': 'a' * 64, 'reviewStatus': 'human_verified', 'labelOrigin': 'human',
+    })
+    assert saved['reviewStatus'] == 'human_recorded'
+    assert saved['countsAsAccuracy'] is False
+    measured = glyph_annotations.evaluate()
+    assert measured['evaluationStatus'] == 'unassessed'
+    assert measured['top1'] is None
+    assert measured['recordedLabels'] == 1
+    try:
+        glyph_annotations.save_human_annotation({
+            'labelOrigin': 'model_prediction', 'reviewStatus': 'human_recorded', 'glyph': '曹',
+            'steleId': 'han_01_caoquan', 'sourceCitation': 'x', 'annotator': 'x', 'imageSha256': 'b' * 64,
+            'bbox': {'x': 0, 'y': 0, 'width': 1, 'height': 1},
+        })
+    except ValueError as exc:
+        assert '模型预测' in str(exc)
+    else:
+        raise AssertionError('model prediction was stored')
+
+
 def test_independent_stele_split_can_be_scored(tmp_path, monkeypatch):
     monkeypatch.setattr(glyph_annotations, 'ANNOTATION_DIR', tmp_path)
+    monkeypatch.setattr(glyph_annotations, 'RUNTIME_DIR', tmp_path / 'runtime')
     (tmp_path / 'labels.json').write_text(json.dumps([
         _label('train', 'stele-a', 'train'),
         _label('test', 'stele-b', 'test'),

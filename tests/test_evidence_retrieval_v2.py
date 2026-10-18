@@ -67,8 +67,14 @@ def test_author_proposition_support_contradiction_and_refusal():
     assert title_hand['judgment'] == 'supported' and title_hand['claim']['recorded']['篆额者'] == '徐浩'
     assert title_hand['claim']['basis'] == 'catalogue_field_match'
     disputed = er.query('书丹者是不是王羲之？', 'ming_04_tongdian')
-    assert disputed['judgment'] == 'insufficient_evidence' and disputed['claim']['basis'] == 'insufficient_catalogue'
+    assert disputed['status'] == 'disputed' and disputed['judgment'] == 'disputed'
+    assert disputed['claim']['basis'] == 'catalogue_conflict'
     assert '争议' in disputed['answer'] and disputed['claim']['recorded'] is None
+    assert any('王羲之' in (item.get('quote') or '') for item in disputed['claim']['sources'])
+    conflict = er.query('撰文者是不是邓文原？', 'yuan_02_sundeyu')
+    assert conflict['judgment'] == 'disputed'
+    quotes = ''.join(item.get('quote') or '' for item in conflict['claim']['sources'])
+    assert '趙文原' in quotes and '鄧文原' in quotes
     pending = er.query('撰文者是不是翁方纲？', 'qing_02_wushi_reerection')
     assert pending['judgment'] == 'insufficient_evidence' and '待复核' in pending['answer']
     not_author = er.query('撰文者是不是赵孟頫？', 'yuan_04_jingyuanchang')

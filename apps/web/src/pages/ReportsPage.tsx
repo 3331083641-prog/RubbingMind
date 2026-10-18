@@ -107,7 +107,7 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate }) => {
           {item.candidates.flatMap(c=>c.sourceUrls).map(url=><p key={url}>候选建议来源（未作为核验引用）：<a href={url} className="underline break-all">{url}</a></p>)}
         </li>)}</ul> : <p>未完成与本运行关联的真实残字推演；没有人工确认结论。</p>}
       </section>
-      <section><h3 className="font-bold">古碑识别</h3><p>古碑 OCR 准确率：未评测。尚无按碑刻隔离的独立人工标注测试集。</p></section>
+      <section><h3 className="font-bold">古碑识别</h3><p>古碑 OCR 准确率：未评测。尚无按碑刻隔离的独立人工标注测试集。人工登记的标注不会自动变成真值。</p><p>图像处理指标和历史释文是两项不同能力。没有配对真值时，不把 PSNR 或候选分数写成识别准确率。</p></section>
       <footer className="border-t border-[#937d5d] pt-3 text-xs">实验结果仅描述此次处理与已有资料；任何文物释读结论须由具备领域知识的人员复核。</footer>
     </article>
   </div>;

@@ -2,15 +2,22 @@
 from __future__ import annotations
 
 import hashlib
+import io
 import json
+import os
 import re
+import threading
 from datetime import datetime, timezone
 from pathlib import Path
+
+from PIL import Image
 
 from catalog import BASE, load
 
 ASSESS = BASE / 'data/catalog/assessments'
 REVIEWS = BASE / 'data/runtime/condition-reviews'
+_REVIEW_LOCK = threading.Lock()
+_LOCAL_HOSTS = {'127.0.0.1', '::1', 'localhost', 'testclient'}
 ID_RE = re.compile(r'^[a-z][a-z0-9_]*$')
 DAMAGE_TYPES = {
     '拓纸破损', '扫描模糊', '墨色不均', '字迹漫漶', '残笔', '缺字',
@@ -80,12 +87,35 @@ def _source_public_url(data):
     return '/' + path.relative_to(public).as_posix()
 
 
+def review_allowed(host: str | None, token: str | None) -> bool:
+    """Local single-user writes are allowed. Any other host needs an explicit token."""
+    if (host or '') in _LOCAL_HOSTS:
+        return True
+    expected = os.environ.get('RUBBINGMIND_REVIEW_TOKEN')
+    return bool(expected) and token == expected
+
+
+def review_history(stele_id: str):
+    items = []
+    legacy = REVIEWS / f'{stele_id}.json'
+    if legacy.is_file():
+        data = _read_json(legacy)
+        if data.get('steleId') == stele_id:
+            items.append(data)
+    path = REVIEWS / f'{stele_id}.jsonl'
+    if path.is_file():
+        for line in path.read_text(encoding='utf-8').splitlines():
+            if not line.strip():
+                continue
+            data = json.loads(line)
+            if data.get('steleId') == stele_id:
+                items.append(data)
+    return items
+
+
 def _review(stele_id: str):
-    path = REVIEWS / f'{stele_id}.json'
-    if not path.is_file():
-        return None
-    data = _read_json(path)
-    return data if data.get('steleId') == stele_id else None
+    history = review_history(stele_id)
+    return history[-1] if history else None
 
 
 def _region(stele_id: str):
@@ -124,7 +154,9 @@ def public_record(stele_id: str):
     gate = data.get('fidelityGate') or {}
     unchanged = gate.get('meanAbsoluteChange') == 0
     review = _review(stele_id)
+    history = review_history(stele_id)
     source_url = _source_public_url(data)
+    region = _region(stele_id)
     return {
         'steleId': data['steleId'],
         'title': data.get('title'),
@@ -153,7 +185,10 @@ def public_record(stele_id: str):
         'gradeReasons': data.get('gradeReasons'),
         'imageConditionReviewStatus': '已保存复核意见，尚未作为正式鉴定' if review else '自动初筛，待人工复核',
         'humanReview': review,
-        'regionAnalysis': _region(stele_id),
+        'reviewHistory': history,
+        'expertReview': False,
+        'regionAnalysis': region,
+        'regionOverlays': _overlays(region, (data.get('imageDimensions') or {}).get('readable')),
         'unchanged': unchanged,
         'unchangedNote': '算法判定无需增强' if unchanged else None,
         'psnr': None,
@@ -171,8 +206,101 @@ def public_record(stele_id: str):
     }
 
 
-def save_review(stele_id: str, reviewer: str, damage_types: list, note: str, suggested_condition: str | None):
-    if load_assessment(stele_id) is None:
+def _analysis_geometry(width: int, height: int, long_side: int = 900):
+    longest = max(width, height)
+    if longest <= long_side:
+        return width, height, 1.0
+    ratio = long_side / longest
+    return max(1, int(round(width * ratio))), max(1, int(round(height * ratio))), ratio
+
+
+def _overlays(region, readable):
+    """Map the stored 3×3 sample back onto the readable image. Metrics stay measurements."""
+    if not region or not readable or len(readable) != 2:
+        return []
+    width, height = int(readable[0]), int(readable[1])
+    view_w, view_h, ratio = _analysis_geometry(width, height, int(region.get('capture', {}).get('analysisLongSide') or 900))
+    margin = max(4, int(round(min(view_w, view_h) * float((region.get('mountingAndScan') or {}).get('borderFraction') or 0.08))))
+    inner_w = max(3, view_w - 2 * margin)
+    inner_h = max(3, view_h - 2 * margin)
+    cell_w = inner_w // 3
+    cell_h = inner_h // 3
+    fading = {(item.get('row'), item.get('col')) for item in region.get('suspectedLocalFading') or []}
+    texture = {(item.get('row'), item.get('col')) for item in region.get('suspectedNonTextTexture') or []}
+    metrics = {(item.get('row'), item.get('col')): item for item in region.get('textCells') or []}
+    overlays = []
+    for row in range(3):
+        for col in range(3):
+            x = margin + col * cell_w
+            y = margin + row * cell_h
+            box_w = cell_w if col < 2 else inner_w - 2 * cell_w
+            box_h = cell_h if row < 2 else inner_h - 2 * cell_h
+            kind = '正文抽样'
+            reason = '3×3 正文网格的自动抽样。颜色只准备表达测量值，这里先给出分区，不表示已确认的风化。'
+            if (row, col) in fading:
+                kind = '算法疑似局部变淡'
+                reason = '该格对比度低于正文格中位数的 55%。这是算法疑似，不是缺字或风化鉴定。'
+            elif (row, col) in texture:
+                kind = '算法疑似非文字纹理'
+                reason = '墨迹比例低且局部高频较强，可能是纸纹或石花。不能当成原石风化。'
+            cell = metrics.get((row, col), {})
+            origin_x = min(width - 1, max(0, int(round(x / ratio))))
+            origin_y = min(height - 1, max(0, int(round(y / ratio))))
+            overlays.append({
+                'id': f'cell-{row}-{col}',
+                'kind': kind,
+                'reason': reason,
+                'confirmed': False,
+                'row': row,
+                'col': col,
+                'metrics': {
+                    'contrastStd': cell.get('contrastStd'),
+                    'laplacianVariance': cell.get('laplacianVariance'),
+                    'inkFraction': cell.get('inkFraction'),
+                },
+                'box': {
+                    'x': origin_x,
+                    'y': origin_y,
+                    'width': min(width - origin_x, max(1, int(round(box_w / ratio)))),
+                    'height': min(height - origin_y, max(1, int(round(box_h / ratio)))),
+                    'space': 'readable native pixels',
+                },
+            })
+    return overlays
+
+
+def _checked_source(data: dict) -> Path:
+    source = str(data.get('sourceImage') or '')
+    path = (BASE / source).resolve()
+    root = BASE.resolve()
+    if root not in path.parents or not path.is_file():
+        raise ValueError('阅读图路径无效')
+    if data.get('sourceImageSha256') and _sha(path) != data['sourceImageSha256']:
+        raise ValueError('阅读图SHA-256不匹配')
+    return path
+
+
+def region_crop(stele_id: str, x: int, y: int, width: int, height: int):
+    data = load_assessment(stele_id)
+    if data is None:
+        return None
+    readable = (data.get('imageDimensions') or {}).get('readable') or [0, 0]
+    frame_w, frame_h = int(readable[0]), int(readable[1])
+    if min(x, y, width, height) < 0 or x + width > frame_w or y + height > frame_h:
+        raise ValueError('分区超出阅读图')
+    with Image.open(_checked_source(data)) as image:
+        image = image.convert('RGB')
+        if image.size != (frame_w, frame_h):
+            raise ValueError('阅读图像素尺寸与评估记录不一致，拒绝按错误比例裁切')
+        crop = image.crop((x, y, x + width, y + height))
+        buffer = io.BytesIO()
+        crop.save(buffer, format='PNG')
+        return buffer.getvalue()
+
+
+def save_review(stele_id: str, reviewer: str, damage_types: list, note: str, suggested_condition: str | None, roi: dict | None = None):
+    data = load_assessment(stele_id)
+    if data is None:
         return None
     reviewer = reviewer.strip()
     note = note.strip()
@@ -182,16 +310,32 @@ def save_review(stele_id: str, reviewer: str, damage_types: list, note: str, sug
         raise ValueError('损伤类型不在允许列表中')
     if suggested_condition is not None and suggested_condition not in SUGGESTED_CONDITIONS:
         raise ValueError('建议等级不在允许列表中')
+    linked = None
+    if roi is not None:
+        readable = (data.get('imageDimensions') or {}).get('readable') or [0, 0]
+        frame_w, frame_h = int(readable[0]), int(readable[1])
+        x, y, width, height = int(roi['x']), int(roi['y']), int(roi['width']), int(roi['height'])
+        if min(x, y, width, height) < 0 or x + width > frame_w or y + height > frame_h:
+            raise ValueError('复核区域超出阅读图')
+        linked = {'x': x, 'y': y, 'width': width, 'height': height, 'space': 'readable native pixels'}
     REVIEWS.mkdir(parents=True, exist_ok=True)
-    record = {
-        'steleId': stele_id,
-        'reviewer': reviewer,
-        'damageTypes': list(dict.fromkeys(damage_types)),
-        'note': note,
-        'suggestedCondition': suggested_condition,
-        'savedAt': datetime.now(timezone.utc).isoformat(),
-        'basis': '界面提交的复核意见，不是自动生成的专家鉴定，也不覆盖自动初筛等级。',
-    }
-    path = REVIEWS / f'{stele_id}.json'
-    path.write_text(json.dumps(record, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    return record
+    with _REVIEW_LOCK:
+        history = review_history(stele_id)
+        record = {
+            'version': len(history) + 1,
+            'steleId': stele_id,
+            'reviewer': reviewer,
+            'reviewerQualification': '界面填写的姓名，系统没有核验专家身份',
+            'damageTypes': list(dict.fromkeys(damage_types)),
+            'note': note,
+            'suggestedCondition': suggested_condition,
+            'roi': linked,
+            'savedAt': datetime.now(timezone.utc).isoformat(),
+            'expertReview': False,
+            'basis': '界面提交的复核意见，追加保存，不覆盖先前意见，也不覆盖自动初筛等级。',
+        }
+        path = REVIEWS / f'{stele_id}.jsonl'
+        with path.open('a', encoding='utf-8') as handle:
+            handle.write(json.dumps(record, ensure_ascii=False) + '\n')
+        history.append(record)
+    return {'latest': record, 'history': history, 'expertReview': False}
