@@ -85,6 +85,22 @@ export interface ExperimentDiagnosis {
 }
 
 function selected(id: string) { return resolveSelected(FALLBACK_STELES, id); }
+export type ReportStatus = 'ok' | 'stele_not_found' | 'stele_retired' | 'run_not_found' | 'backend_unavailable' | 'error';
+export interface ReportPayload {
+  ablation: AblationMetric[]; evaluation_summary: string; scholarly_analysis: string; rubbing_dimensions: string; epigraphic_conclusion: string;
+  run: ProcessingRun | null; inferenceRecords: GlyphInferenceRecord[]; sourceRecords: {title: string | null; url: string | null; license: string | null}[];
+  reportId: string | null; runSelection?: RunSelection | null;
+  /** explicit state; anything but 'ok' means the report below is empty or offline for this same id */
+  reportStatus: ReportStatus; reportStatusDetail: string | null;
+}
+function reportFallback(id: string, status: ReportStatus, message: string, useCatalogue = true): ReportPayload {
+  let record: SteleItem | null = null;
+  if (useCatalogue) { try { record = selected(id); } catch { record = null; } }
+  return { ablation: [], evaluation_summary: message, scholarly_analysis: record ? (record.description || record.summary || '') : '',
+    rubbing_dimensions: record?.dimensions || '', epigraphic_conclusion: record ? `《${record.title}》以馆藏记录为依据；未形成新增残字定论。` : '',
+    run: null, inferenceRecords: [], sourceRecords: record ? [{ title: record.title, url: record.sourceUrl || null, license: record.license || null }] : [],
+    reportId: null, runSelection: null, reportStatus: status, reportStatusDetail: message };
+}
 function transcriptionText(text:string):string {
   return text.replace(/\u0000/g,'').split('授權與引用')[0].split('License and attribution')[0].split(/\r?\n/)
     .filter(line=>!['（各記錄）Transcriptions','文物統一編號','釋文'].includes(line.trim())&&!/^(?:[贈購赠购]拓[0-9]+[A-Z0-9]*|[ivxlcdm]{1,7})$/.test(line.trim())).join('\n').trim();
@@ -111,9 +127,22 @@ export const SteleService = {
     const { loadHistory } = await import('./history');
     return loadHistory(stele_id);
   },
-  async getReport(id: string, runId?: string): Promise<{ablation:AblationMetric[];evaluation_summary:string;scholarly_analysis:string;rubbing_dimensions:string;epigraphic_conclusion:string;run:ProcessingRun|null;inferenceRecords:GlyphInferenceRecord[];sourceRecords:{title:string|null;url:string|null;license:string|null}[];reportId:string|null}> {
-    try { const res=await fetch(`/api/steles/${id}/report${runId?`?run_id=${encodeURIComponent(runId)}`:''}`);if(!res.ok) throw new Error(); return await res.json(); }
-    catch { const r=selected(id);return {ablation:[],evaluation_summary:'尚未执行处理或后端不可用；无配对真值评测。',scholarly_analysis:r.description || r.summary,rubbing_dimensions:r.dimensions,epigraphic_conclusion:`《${r.title}》以馆藏记录为依据；未形成新增残字定论。`,run:null,inferenceRecords:[],sourceRecords:[{title:r.title,url:r.sourceUrl||null,license:r.license||null}],reportId:null}; }
+  /**
+   * P1 (7): never a silent fallback. Unknown artifact / unknown run / retired artifact / backend down
+   * each return an explicit reportStatus with an empty report for THIS id; never another artifact,
+   * run or batch. Only `backend_unavailable` keeps the bundled catalogue text of the same id.
+   */
+  async getReport(id: string, runId?: string): Promise<ReportPayload> {
+    let res: Response;
+    try { res = await fetch(`/api/steles/${encodeURIComponent(id)}/report${runId ? `?run_id=${encodeURIComponent(runId)}` : ''}`); }
+    catch { return reportFallback(id, 'backend_unavailable', '后端不可用；仅显示本件的离线目录信息，未执行处理，无配对真值评测。'); }
+    if (res.ok) return { ...(await res.json()), reportStatus: 'ok', reportStatusDetail: null };
+    const body = await res.json().catch(() => ({}));
+    const detail = typeof body.detail === 'string' ? body.detail : null;
+    if (res.status === 410) return reportFallback(id, 'stele_retired', detail || `文物 ${id} 已下架`, false);
+    if (res.status === 404 && runId && (detail || '').includes('处理记录')) return reportFallback(id, 'run_not_found', `本件没有运行 ${runId}；未替换为其他运行。`, false);
+    if (res.status === 404) return reportFallback(id, 'stele_not_found', detail || `没有找到文物 ${id}；未替换为其他文物。`, false);
+    return reportFallback(id, 'error', detail || `报告接口返回 HTTP ${res.status}`, false);
   },
   async uploadRubbing(formData: FormData): Promise<{success:boolean;stele:SteleItem}> {
     let res: Response;
