@@ -14,7 +14,10 @@ from catalog import BASE, load, transcription_text
 from history_graph import CORE_IDS, ALIASES, resolve_id
 
 INDEX=BASE/'data/runtime/evidence-v2.sqlite'
-VERSION='fts5-evidence-graph-v2.6'
+# Calibrated 2026-10-19: max BM25 over 15 unrelated queries = 9.647; see CONTENT_CHANGELOG (relevance threshold).
+WEAK_BM25_THRESHOLD=10.0
+WEAK_LABEL='弱相关，仅供参考'
+VERSION='fts5-evidence-graph-v2.7'
 
 # Traditional/variant -> simplified folding for matching only (C-15). Stored text is never rewritten.
 # 徵→征 follows the simplified form used for personal names (魏征/文征明); 宫商角徵羽 is not in scope.
@@ -462,15 +465,28 @@ def query(question,stele_id=None,limit=12,include_demo=False):
         expression=' OR '.join('"'+t.replace('"','')+'"' for t in terms)
         hits=conn.execute('SELECT source_id,bm25(evidence_fts) AS rank FROM evidence_fts WHERE evidence_fts MATCH ? ORDER BY rank LIMIT 150',(expression,)).fetchall() if terms else []
         scores={r['source_id']:-float(r['rank']) for r in hits}
+        bm25_only=dict(scores);boosted=set()
         expanded=[e for e in graph['edges'] if (e['source'] in entity_ids or e['target'] in entity_ids)]
         for n in matched:
-            for sid in n['sourceIds']:scores[sid]=scores.get(sid,0)+10
+            for sid in n['sourceIds']:scores[sid]=scores.get(sid,0)+10;boosted.add(sid)
         for edge in expanded:
-            for sid in edge['sourceIds']:scores[sid]=scores.get(sid,0)+8
+            for sid in edge['sourceIds']:scores[sid]=scores.get(sid,0)+8;boosted.add(sid)
         if artifact_ids:
             scores={sid:score+3 for sid,score in scores.items() if sid in all_records and all_records[sid]['steleId'] in artifact_ids}
+            boosted|=set(scores)
         ranked=sorted(scores,key=lambda sid:-scores[sid])
-        evidence=[dict(all_records[sid],retrievalScore=scores[sid]) for sid in ranked[:limit] if sid in all_records]
+        candidates=[dict(all_records[sid],retrievalScore=scores[sid],bm25Score=bm25_only.get(sid,0.0),entityMatched=sid in boosted) for sid in ranked if sid in all_records]
+        # Relevance threshold (calibrated on the 25 audit probes + 15 unrelated queries, see CONTENT_CHANGELOG):
+        # entries with no entity/graph/scope match and BM25 below the threshold are not returned;
+        # keyword-only entries at or above it are labelled weak.
+        weak_dropped=[c for c in candidates if not c['entityMatched'] and c['bm25Score']<WEAK_BM25_THRESHOLD]
+        evidence=[]
+        for c in candidates:
+            if c in weak_dropped:continue
+            c['relevance']='entity_matched' if c['entityMatched'] else 'weak_keyword'
+            if not c['entityMatched']:c['relevanceLabel']=WEAK_LABEL
+            evidence.append(c)
+        evidence=evidence[:limit]
         # No model fills unknown facts: unfamiliar questions return evidence only / insufficient.
         specific=bool(matched) or bool(normalized)
         supported_facets=tuple(dict.fromkeys([key for _name,_field,keys in FACETS for key in keys]+
@@ -481,7 +497,7 @@ def query(question,stele_id=None,limit=12,include_demo=False):
         excerpts='\n'.join(f"[{i+1}] {r['text']}" for i,r in enumerate(evidence[:4]))
         if status=='evidence_found':
             answer='以下为现有资料原文/著录摘录，未调用语言模型：\n'+excerpts
-        else:answer='现有资料不足以回答该问题。'+('以下为相关检索条目，不构成问题结论。' if evidence else '')
+        else:answer='现有资料不足以回答该问题。'+(('以下为相关检索条目，不构成问题结论。' if any(e['entityMatched'] for e in evidence) else '以下条目仅关键词命中，'+WEAK_LABEL+'。') if evidence else '')
         work_ids=[n['steleId'] for n in named_works if not normalized or n['steleId']==normalized]
         if normalized and not work_ids:
             work_ids=[normalized]
@@ -499,7 +515,7 @@ def query(question,stele_id=None,limit=12,include_demo=False):
         elif claim:
             # A catalogue-backed judgment decides the status (C-04): never "insufficient" + "supported".
             if claim['sourceId'] in all_records and not any(r['sourceId']==claim['sourceId'] for r in evidence):
-                evidence=[dict(all_records[claim['sourceId']],retrievalScore=scores.get(claim['sourceId'],0))]+evidence[:limit-1]
+                evidence=[dict(all_records[claim['sourceId']],retrievalScore=scores.get(claim['sourceId'],0),bm25Score=bm25_only.get(claim['sourceId'],0.0),entityMatched=True,relevance='catalogue_claim')]+evidence[:limit-1]
             status='evidence_found'
             excerpts='\n'.join(f"[{i+1}] {r['text']}" for i,r in enumerate(evidence[:4]))
             answer=claim['answer']+'\n以下为现有资料原文/著录摘录，未调用语言模型：\n'+excerpts
@@ -514,6 +530,8 @@ def query(question,stele_id=None,limit=12,include_demo=False):
             'algorithmVersion':VERSION,'indexFingerprint':fingerprint(),'evidence':evidence,
             'entities':[n for n in graph['nodes'] if n['id'] in expanded_ids],'relations':expanded,'places':[p for p in graph['places'] if p['steleId'] in artifact_ids] if not scope_mismatch else [],
             'contentWarnings':sorted(set(synthetic)),'generation':None,
+            'relevanceFilter':{'weakBm25Threshold':WEAK_BM25_THRESHOLD,'droppedBelowThreshold':len(weak_dropped),'weakLabel':WEAK_LABEL,
+                               'rule':'未匹配实体/图谱/范围且 BM25 低于阈值的条目不返回；仅关键词命中且达到阈值的条目标“'+WEAK_LABEL+'”'},
             'demoScope':{'included':bool(opt_in),'optIn':opt_in,'syntheticSamples':synthetic_ids,
                          'note':'合成测试样本默认不参加检索；需 include_demo=true、演示样本 ID（如 rm:demo:wei-jianyi）作为范围，或在问题中写 rm:demo: ID'},'limitations':'BM25与实体一跳扩展；命题只对照已著录字段，未核定则拒答。摘记可能不完整，来源可追溯不表示链接实时可用。'}
 
