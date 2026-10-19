@@ -29,6 +29,20 @@ def _catalog_ids():
     return museum, core, retired, aliases
 
 
+# Green 2026-10-19: retired records never expose precise coordinates (not even region level here).
+LOCATION_KEYS = {'gis_coords', 'coordinates', 'coords', 'lat', 'lng', 'lon', 'latitude', 'longitude', 'gis_lat', 'gis_lng',
+                 'geometry', 'location', 'originalLocation', 'currentLocation'}
+
+
+def sanitize_entry(entry: dict) -> dict:
+    if entry.get('kind') != 'retired':
+        return entry
+    clean = {k: v for k, v in entry.items() if k not in LOCATION_KEYS}
+    if len(clean) != len(entry):
+        clean['locationWithheld'] = '已下架记录不输出坐标或地点'
+    return clean
+
+
 def load_mapping() -> dict:
     """Read on every call (small file) so tests and a newly merged file need no restart."""
     path = MAPPING_PATH
@@ -37,7 +51,7 @@ def load_mapping() -> dict:
                 'entries': [], 'mappingError': None}
     try:
         data = json.loads(path.read_text(encoding='utf-8'))
-        entries = [e for e in data.get('entries') or [] if isinstance(e, dict) and e.get('legacyId')]
+        entries = [sanitize_entry(e) for e in data.get('entries') or [] if isinstance(e, dict) and e.get('legacyId')]
         return {'available': True, 'source': 'data/catalog/id_mapping.json', 'version': data.get('version'),
                 'status': data.get('status'), 'namespaces': data.get('namespaces') or {}, 'entries': entries,
                 'mappingError': None}
