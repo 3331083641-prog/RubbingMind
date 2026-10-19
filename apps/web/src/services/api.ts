@@ -37,20 +37,46 @@ export interface RunChangeStatus {
   changedPixelRatio?: number | null;
   maxAbsDiff?: number | null;
   meanAbsDiff?: number | null;
+  /** 'pixel-equal-v1' (runs recorded on agent/eval-sci between f21ceaa and SPEC v3 may say 'working-gray-pixel-equal-v1'); null only when undeterminable. */
   passthroughCriterion?: string | null;
+  passthroughSource?: 'recorded' | 'computed-on-read' | null;
   passthroughUndeterminedReason?: string | null;
-  comparedImages?: unknown;
+  /** [before, after]; currently always ['original', 'restored'] */
+  comparedImages?: string[];
   outputMode?: 'processed' | 'passthrough' | 'undetermined';
+  /** Green 2026-10-19 (a): working-gray reference only; never decides isPassthrough. null = undeterminable. */
+  grayChangedPixelCount?: number | null;
+  grayChangedPixelRatio?: number | null;
+  grayCriterion?: 'working-gray-pixel-equal-v1' | null;
+  grayCriterionRule?: string | null;
+  graySource?: 'recorded' | 'computed-on-read' | null;
   effectiveParameters?: Record<string, unknown> | null;
+  effectiveParametersSource?: 'recorded' | 'derived-on-read' | null;
+  /** set when effectiveParameters is null (not defined by REPORT_DATA_SPEC v3; added by the backend) */
+  effectiveParametersUnavailableReason?: string | null;
 }
 export interface RunKindFields { legacy?: boolean; runKind?: 'processing' | 'legacy_unverified'; sortTimestamp?: string | null; sourceSteleId?: string }
 export type ProcessingRunR1 = ProcessingRun & RunChangeStatus & RunKindFields;
 export interface ExperimentBatchMeta {
-  id: string; directory: string; rowCount: number; sampleCount: number; displayName?: string; heldOut?: boolean | null;
+  /** authoritative experimentId; `batch` is its readable one-to-one alias (results directory) */
+  id: string; directory: string; batch?: string; rowCount: number; sampleCount: number; displayName?: string; heldOut?: boolean | null;
   imageComparisonAvailable: boolean; metricsOnly: boolean; limitations: string[];
   splitAvailable?: boolean; splits?: Record<string, number>; rowsWithoutSplit?: number;
   status?: 'valid' | 'historical-leakage' | 'metrics-only'; statusReasons?: string[];
   defaultForReport?: boolean; defaultForReportBasis?: string | null;
+}
+export interface ExperimentBatchIndex { items: {experimentId: string; batch: string}[]; basis: string }
+/** Derived files are served read-only; available=false comes with status missing | stale and a reason. */
+export interface DerivedFileState { experimentId: string; batch: string; file: string; servedBy: string; fileSha256: string | null;
+  available: boolean; status: 'ok' | 'missing' | 'stale'; reason?: string }
+export interface AppliedStatusResponse extends DerivedFileState {
+  criterion?: string; imagesAvailable?: boolean; note?: string; sourceResultsSha256?: string;
+  summaryByMethod?: Record<string, unknown>[]; summaryBySplitMethod?: Record<string, unknown>[]; summaryByMethodDegradation?: Record<string, unknown>[];
+  rowCount?: number; rows?: Record<string, unknown>[];
+}
+export interface CiByArtifactResponse extends DerivedFileState {
+  seed?: number; bootstrap?: number; percentiles?: number[]; minReliableArtifacts?: number; rngRule?: string; gainDefinition?: string;
+  scopeSource?: string; groupCount?: number; filters?: Record<string, string>; groups?: Record<string, unknown>[];
 }
 export interface ExperimentDiagnosis {
   experimentId: string; diagnosisVersion?: 'heldout-legacy-heuristic' | 'baseline-delta-v1' | string;
@@ -107,6 +133,25 @@ export const SteleService = {
   async listExperiments(): Promise<ExperimentBatchMeta[]> {
     const res = await fetch('/api/experiments');
     if (!res.ok) throw new Error('实验服务不可用');
+    return res.json();
+  },
+  /** R2-8: one-to-one experimentId <-> batch mapping from the backend. */
+  async getExperimentBatchIndex(): Promise<ExperimentBatchIndex> {
+    const res = await fetch('/api/experiments/batch-index');
+    if (!res.ok) throw new Error('实验登记不可用');
+    return res.json();
+  },
+  /** applied_status (eval-sci derived file), served as written; 404 only for unknown experimentId. */
+  async getAppliedStatus(experimentId: string, rows = false): Promise<AppliedStatusResponse> {
+    const res = await fetch(`/api/experiments/${encodeURIComponent(experimentId)}/applied-status${rows ? '?rows=true' : ''}`);
+    if (!res.ok) throw new Error(res.status === 404 ? '没有这个实验批次' : '派生状态不可用');
+    return res.json();
+  },
+  /** Artifact-clustered CI (eval-sci ci_by_artifact.json), served as written; filters are exact matches. */
+  async getCiByArtifact(experimentId: string, filters: {split?: string; method?: string; degradation?: string; scope?: string} = {}): Promise<CiByArtifactResponse> {
+    const query = new URLSearchParams(Object.entries(filters).filter(([, v]) => v) as [string, string][]).toString();
+    const res = await fetch(`/api/experiments/${encodeURIComponent(experimentId)}/ci-by-artifact${query ? `?${query}` : ''}`);
+    if (!res.ok) throw new Error(res.status === 404 ? '没有这个实验批次' : 'CI 不可用');
     return res.json();
   },
   /** R1-4: available for every registered batch; 404 only for unknown ids. */

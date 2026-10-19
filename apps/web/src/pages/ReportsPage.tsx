@@ -13,6 +13,8 @@ interface Props {
   experimentId?: string | null;
   batch?: string | null;
   onExperimentChange?: (experimentId: string | null, batch?: string | null) => void;
+  /** App-level resolution of the URL experimentId (R2-8): 'unknown' must render an empty state, not a fallback. */
+  experimentStatus?: 'none' | 'resolving' | 'ok' | 'unknown' | 'unavailable';
 }
 type Report = Awaited<ReturnType<typeof SteleService.getReport>>;
 
