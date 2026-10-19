@@ -39,5 +39,7 @@
 
 ## 4. 不在本规格内
 
+- 归档 JSON 保留原值：`data/catalog/replacement_mapping.json`、`retired_steles.json`、`retired_database_records.json`、`data/museum_database_backup.json` 记录下架和迁移的历史，其中有 5 条下架记录的原坐标数值。它们不是输出路径：没有 API 读取并返回坐标，`/static` 和 `/assets` 也不挂载 `data/`，`tests/test_retired_coordinates.py` 会检查这一点。同步时不要改这几个文件；以后若有代码要读取它们并对外输出，必须先屏蔽坐标。
+
 - 用户上传记录、`data/runtime/**`、证据文件、`approved_by_user` 都不动。
 - 活跃 28 件的坐标：目录没有坐标来源，不补写。

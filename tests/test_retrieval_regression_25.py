@@ -42,9 +42,15 @@ AUDIT_25 = [
 ]
 
 
+# C-16: probes about the synthetic sample select the demo explicitly; everything else uses default retrieval.
+EXPLICIT_DEMO = {'建义样本和王诵墓志是同一件吗？身份'}
+
+
 @pytest.mark.parametrize('question,scope,status,judgment,phrases', AUDIT_25)
 def test_audit_probe_queries(question, scope, status, judgment, phrases):
-    result = er.query(question, scope)
+    result = er.query(question, scope, include_demo=question in EXPLICIT_DEMO)
+    if question not in EXPLICIT_DEMO:
+        assert not result['contentWarnings'] and all(e['steleId'] != 'wei-jianyi' for e in result['evidence'])
     assert result['status'] == status, result['answer']
     assert result['judgment'] == judgment, result['answer']
     for phrase in phrases:

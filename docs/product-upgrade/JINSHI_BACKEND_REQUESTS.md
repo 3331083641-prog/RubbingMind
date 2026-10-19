@@ -15,3 +15,11 @@
 |---|---|---|---|---|
 | BR-05 | C-08 | 新的后端同步脚本（例如 `scripts/sync_sqlite_from_catalog.py`），由架构后端负责，可能涉及 `database.py` | 按 `docs/product-upgrade/C08_SYNC_SPEC.md` 执行 `data/catalog/c08_sync_diff.json`：默认只预览；校验 basis SHA；先备份 `.bak`；用户确认后在单个事务里写入；不执行 `hold`；不删行；不改 schema | 规格第 3 节的 7 条；写后 `check_catalog_governance.py --summary` 中 `C08_fieldDiffs=0`、`C08_extraWithCoordinates=0` |
 | BR-06 | C-06 | `main.py` `/api/steles`、`/api/steles/{id}`（可选） | 目前前端从静态复本 `apps/web/src/data/reviewLedger.json` 读取台账，不需要后端改动。如果希望 API 用户也能看到，可在记录里附只读字段 `reviewLedger`（取 `data/catalog/review_ledger.json` 对应条目），不要合并成单一状态 | API 响应里同时出现 `catalogueApproval` 和 `evidenceReview` |
+
+## 2026-10-19 · 任务 0 / C-16
+
+| 编号 | 来源 | 涉及 | 需求 | 验收 |
+|---|---|---|---|---|
+| BR-07 | 任务 0 | `database.py:157-165` `query_steles(include_retired=True)` | 返回下架行（`museum_catalog_status.status='retired'`）时，把 `gis_lng/gis_lat` 置为 None 再返回，不改库。目前只有 `scripts/init_db.py` 调用它，且用的是默认值 False；这一条是防御性需求 | 用含下架行的库调用 `query_steles(include_retired=True)`，5 条下架记录的坐标都是 None |
+| BR-08 | C-16 | `main.py:144-154`（`EvidenceQueryRequest`、`/api/research/query`）、`apps/web/src/services/api.ts` | 请求体增加 `includeDemo: bool = False`，透传为 `evidence_retrieval.query(..., include_demo=...)`；`steleId` 允许 `rm:demo:<id>`（与 BR-02 一致，目前 `museum_manager` 会对它返回 404）。api.ts 的检索函数增加同名可选参数 | 默认请求的 `demoScope.included=false`；`includeDemo=true` 或 `steleId=rm:demo:wei-jianyi` 时为 true，证据带合成文本标签 |
+| BR-09 | C-16 | 前端 `EvidenceSearch.tsx`（依赖 BR-08 的 api.ts 参数） | BR-08 完成后加一个“包含演示样本（含合成测试文本）”开关，默认关闭；打开时显示 `demoScope.note` | 截图显示开关关闭时没有合成文本，打开时出现标签 |

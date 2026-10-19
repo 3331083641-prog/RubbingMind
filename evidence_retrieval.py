@@ -14,7 +14,7 @@ from catalog import BASE, load, transcription_text
 from history_graph import CORE_IDS, ALIASES, resolve_id
 
 INDEX=BASE/'data/runtime/evidence-v2.sqlite'
-VERSION='fts5-evidence-graph-v2.5'
+VERSION='fts5-evidence-graph-v2.6'
 
 # Traditional/variant -> simplified folding for matching only (C-15). Stored text is never rewritten.
 # 徵→征 follows the simplified form used for personal names (魏征/文征明); 宫商角徵羽 is not in scope.
@@ -411,13 +411,38 @@ def judge_claim(question, work_ids):
             'answer':f'判断：supported。著录{summary}。依据 {source_id}。'}
 
 
-def query(question,stele_id=None,limit=12):
+def demo_opt_in(question,stele_id=None,include_demo=False):
+    """C-16: synthetic demo samples join retrieval only on explicit selection.
+
+    Explicit means include_demo=True, a demo-sample scope id (legacy id or rm:demo:<id>),
+    or an rm:demo: id written in the question. Words such as 样本/演示 alone do not opt in.
+    """
+    if include_demo:
+        return 'include_demo'
+    if stele_id and resolve_id(stele_id)['kind']=='demo_sample':
+        return 'demo_scope_id'
+    if 'rm:demo:' in (question or ''):
+        return 'rm_demo_id_in_question'
+    return None
+
+
+def query(question,stele_id=None,limit=12,include_demo=False):
     ensure_index()
     normalized=canonical_id(stele_id)
+    opt_in=demo_opt_in(question,stele_id,include_demo)
     with closing(sqlite3.connect(INDEX)) as conn:
         conn.row_factory=sqlite3.Row
         graph=json.loads(conn.execute("SELECT value FROM metadata WHERE key='graph'").fetchone()[0])
         all_records={r['source_id']:json.loads(r['record_json']) for r in conn.execute('SELECT * FROM evidence')}
+        synthetic_ids=sorted({r['steleId'] for r in all_records.values() if (r.get('textProvenance') or {}).get('kind')=='synthetic_test_text'})
+        if not opt_in:
+            # Default retrieval never sees synthetic samples: drop their records, nodes, edges and places up front.
+            hidden=set(synthetic_ids)
+            all_records={k:v for k,v in all_records.items() if v['steleId'] not in hidden}
+            hidden_nodes={n['id'] for n in graph['nodes'] if n['steleId'] in hidden}
+            graph={'nodes':[n for n in graph['nodes'] if n['steleId'] not in hidden],
+                   'edges':[e for e in graph['edges'] if e['source'] not in hidden_nodes and e['target'] not in hidden_nodes],
+                   'places':[p for p in graph['places'] if p['steleId'] not in hidden]}
         # Resolve named entities before one-hop graph expansion; never merge identities by year.
         folded=fold(question)
         named_works=[n for n in graph['nodes'] if n['category'] in ('work','stele') and len(n['name'])>=2 and fold(n['name']) in folded]
@@ -429,7 +454,7 @@ def query(question,stele_id=None,limit=12):
         scope_mismatch=bool(normalized and named_works and not any(n['steleId']==normalized for n in named_works))
         matched=[n for n in graph['nodes'] if len(n['name'])>=2 and fold(n['name']) in folded and (not normalized or n['steleId']==normalized)]
         matched.extend(n for n in named_works if n not in matched and (not normalized or n['steleId']==normalized))
-        if '建义' in question and ('样本' in question or '演示' in question) and (not normalized or normalized=='wei-jianyi'):
+        if opt_in and '建义' in question and ('样本' in question or '演示' in question) and (not normalized or normalized=='wei-jianyi'):
             matched.extend(n for n in graph['nodes'] if n['steleId']=='wei-jianyi')
         entity_ids={n['id'] for n in matched};artifact_ids={n['steleId'] for n in matched}
         if normalized:artifact_ids.add(normalized)
@@ -488,7 +513,9 @@ def query(question,stele_id=None,limit=12):
             'answer':answer,'answerMode':'extractive_evidence_only',
             'algorithmVersion':VERSION,'indexFingerprint':fingerprint(),'evidence':evidence,
             'entities':[n for n in graph['nodes'] if n['id'] in expanded_ids],'relations':expanded,'places':[p for p in graph['places'] if p['steleId'] in artifact_ids] if not scope_mismatch else [],
-            'contentWarnings':sorted(set(synthetic)),'generation':None,'limitations':'BM25与实体一跳扩展；命题只对照已著录字段，未核定则拒答。摘记可能不完整，来源可追溯不表示链接实时可用。'}
+            'contentWarnings':sorted(set(synthetic)),'generation':None,
+            'demoScope':{'included':bool(opt_in),'optIn':opt_in,'syntheticSamples':synthetic_ids,
+                         'note':'合成测试样本默认不参加检索；需 include_demo=true、演示样本 ID（如 rm:demo:wei-jianyi）作为范围，或在问题中写 rm:demo: ID'},'limitations':'BM25与实体一跳扩展；命题只对照已著录字段，未核定则拒答。摘记可能不完整，来源可追溯不表示链接实时可用。'}
 
 
 def artifact_graph(stele_id):

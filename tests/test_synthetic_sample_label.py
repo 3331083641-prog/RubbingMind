@@ -52,7 +52,8 @@ def test_history_graph_carries_label():
 
 
 def test_retrieval_results_carry_label():
-    result = er.query('北魏建义元年演示样本是否已经确认真实文物身份？')
+    # C-16: explicit demo selection is required for the synthetic sample to appear at all.
+    result = er.query('北魏建义元年演示样本是否已经确认真实文物身份？', include_demo=True)
     assert result['evidence'] and all(e['steleId'] == 'wei-jianyi' for e in result['evidence'])
     assert all(e['text'].startswith('【' + LABEL + '】') for e in result['evidence'])
     assert all(e['textProvenance']['kind'] == 'synthetic_test_text' for e in result['evidence'])

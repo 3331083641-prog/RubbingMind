@@ -102,3 +102,15 @@
 | `scripts/check_catalog_governance.py` 输出 | 列出 5 条下架行的无来源坐标数值 | 只写“已屏蔽：无来源坐标，不输出数值” | 铁律：不展示没有来源的坐标 |
 
 - 没有修改任何史实字段，原 28 份证据文件和用户 SQLite 均未改动。
+
+## 2026-10-19 · 任务 0：5 条下架记录的无来源坐标不再输出 · C-16：合成样本默认不参加检索
+
+| 位置 | 修改前 | 修改后 | 依据 |
+|---|---|---|---|
+| `evidence_retrieval.query`（版本 `fts5-evidence-graph-v2.6`） | wei-jianyi 的合成文本参加所有检索，无关问题（如“今天天气”）也会召回它 | 默认在查询时剔除合成样本的记录、节点、关系和地点。只有三种情况才纳入：`include_demo=True`；范围 ID 是演示样本（`wei-jianyi` 或 `rm:demo:wei-jianyi`）；问题里写了 `rm:demo:` ID。只出现“样本/演示”字样不算选择演示。响应新增 `demoScope` | 审计 C-16；用户/Green 指定“显式选择演示才出现” |
+| `history_graph.resolve_id` | `rm:demo:` / `rm:rubbing:` / `rm:retired:` 形式的 ID 解析为 unknown | 按 `id_mapping.json` 的 `newId` 反查原 ID，不跨类别合并 | C-01 命名空间的补充 |
+| 测试 | 建义相关的检索测试不需要选择演示 | 改为显式 `include_demo=True`。新增 `tests/test_demo_scope.py`（7 条无关查询、5 条只含样本字样的查询、3 种显式选择方式、API）和 `tests/test_retired_coordinates.py` | — |
+| 下架坐标 | API 410 响应本来只返回 ID；`database.query_steles(include_retired=True)` 会带出坐标 | API 路径用测试固定下来：`/api/steles/<下架ID>`、`/graph`、`/infer` 只返回 message/oldId/recommendedId，检索与列表都不含坐标；`database.py` 写成需求 BR-07 | 铁律：不展示没有来源的坐标 |
+
+- 4 个归档 JSON（`replacement_mapping.json`、`retired_steles.json`、`retired_database_records.json`、`museum_database_backup.json`）**保留原值不改**。它们是下架和迁移的历史记录，API 和静态目录都不提供；测试确认这些文件不会被 `/api`、`/static`、`/assets` 或前端数据带出。
+- 没有修改任何史实字段。

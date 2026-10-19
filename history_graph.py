@@ -33,6 +33,11 @@ def resolve_id(stele_id):
     rubbing id that evidence should be filed under. Without id_mapping.json the
     legacy ALIASES behaviour is kept (rollback path).
     """
+    if isinstance(stele_id, str) and stele_id.startswith('rm:'):
+        # Namespaced ids (rm:demo:/rm:rubbing:/rm:retired:) resolve to their legacy entry, never across kinds.
+        legacy = next((e['legacyId'] for e in _mapping().values() if e['newId'] == stele_id), None)
+        if legacy is not None:
+            return {**resolve_id(legacy), 'requestedId': stele_id}
     entry = _mapping().get(stele_id)
     if entry is None:
         history = ALIASES.get(stele_id, stele_id if stele_id in CORE_IDS else None)
