@@ -1,7 +1,8 @@
 /**
  * ECharts 横向比较（小多图）：每个量纲一个独立网格和坐标轴，绝不把两种单位画在同一根轴上。
  * - 坐标轴范围总是包含 0 和全部数据（含负值与 CI 端点），不做 scale 截断。
- * - 柱 = 按文物聚类的均值；黑须 = 按文物 bootstrap 95% CI；小点 = 每件文物的均值（真实数据点）。
+ * - 柱 = 主口径（可判定时为“实际处理”）的文物均值；须 = 按文物聚类 bootstrap 95% CI（文物数 < 3 或空组不画）；小点 = 每件文物的均值。
+ * - 全部原图返回、没有实际处理行的方法不画柱，在零线处写“未处理 N 条”，不显示成“提升 0”。
  * - 负值用朱砂色画在零线左侧；标题注明指标方向。点击柱 → 选中方法；点击点 → 选中该文物（筛选联动）。
  */
 import React, { useEffect, useRef, useState } from 'react';
@@ -9,7 +10,7 @@ import * as echarts from 'echarts/core';
 import { BarChart, ScatterChart, CustomChart } from 'echarts/charts';
 import { GridComponent, TooltipComponent, TitleComponent, MarkLineComponent } from 'echarts/components';
 import { CanvasRenderer } from 'echarts/renderers';
-import type { MethodAggregate } from './data/reportData';
+import { GAIN_SIGN_TEXT, SCOPE_LABELS, type MethodAggregate, type Scope } from './data/reportData';
 import { MetricDef, directionText, methodLabel } from './data/labels';
 
 echarts.use([BarChart, ScatterChart, CustomChart, GridComponent, TooltipComponent, TitleComponent, MarkLineComponent, CanvasRenderer]);
@@ -40,7 +41,7 @@ function niceStep(range: number) {
 /** 轴范围：总是包含 0 与全部数据（均值、CI 端点、每件文物点），取整到“好看”的刻度，不做 scale 截断。 */
 export function extent(items: MethodAggregate[]) {
   const vals: number[] = [0];
-  items.forEach(i => { if (i.value != null) vals.push(i.value); if (i.ci) vals.push(i.ci[0], i.ci[1]); i.artifactPoints.forEach(p => vals.push(p.value)); });
+  items.forEach(i => { const p = i.scopes[i.primaryScope]; if (p.value != null) vals.push(p.value); if (p.ci && p.ciReliable) vals.push(p.ci[0], p.ci[1]); p.points.forEach(pt => vals.push(pt.value)); });
   const lo = Math.min(...vals), hi = Math.max(...vals);
   const step = niceStep((hi - lo) || Math.abs(hi) || 1);
   const min = lo < 0 ? Math.floor(lo / step) * step : 0;
@@ -82,12 +83,14 @@ export function buildOption(panels: ChartPanel[], methods: string[], selected: s
       const fmt = (v: number | null | undefined) => v == null ? '无数据' : `${p.metric.delta && v > 0 ? '+' : ''}${v.toFixed(p.metric.digits)}${unit}`;
       return [
         { type: 'bar', xAxisIndex: i, yAxisIndex: i, barMaxWidth: 14, name: p.metric.title,
-          data: methods.map(m => { const it = byMethod.get(m); const v = it?.value ?? null;
+          data: methods.map(m => { const it = byMethod.get(m); const v = it ? it.scopes[it.primaryScope].value : null;
             const color = !p.metric.delta ? col.neutral : v == null || v >= 0 ? col.pos : col.neg;
             return { value: v, method: m, itemStyle: { color, borderColor: m === selected ? col.sel : 'transparent', borderWidth: m === selected ? 2 : 0 } }; }),
           tooltip: { formatter: (q: { data: { method: string } }) => { const it = byMethod.get(q.data.method); if (!it) return '';
-            const scope = it.scope === 'processed' ? `实际处理记录（排除原图返回 ${it.passthroughN} 条）` : p.metric.delta ? '全部记录（无法判定原图返回）' : '全部记录';
-            return `<b>${methodLabel(it.method)}</b> · ${p.metric.title}<br/>按文物聚类均值：${fmt(it.value)}<br/>95% CI（文物 bootstrap）：${it.ci ? `${fmt(it.ci[0])} ~ ${fmt(it.ci[1])}` : '无（n_文物<2）'}<br/>口径：${scope}<br/>n_文物 ${it.nArtifacts} · 记录 ${it.nRecords}/${it.n}${p.metric.delta ? ` · 负提升 ${it.negativeN}` : ''}${it.failedN ? ` · 失败 ${it.failedN}` : ''}${p.metric.delta && it.meanAll != null && it.scope === 'processed' ? `<br/>对照：含原图返回的全部记录均值 ${fmt(it.meanAll)}` : ''}`; } },
+            const line = (sc: Scope) => { const st = it.scopes[sc]; const ci = st.ci && st.ciReliable ? `［${fmt(st.ci[0])}, ${fmt(st.ci[1])}］` : st.ciNote ? `（${st.ciNote}）` : st.ci ? '' : '（无数据）';
+              return `${sc === it.primaryScope ? '<b>' : ''}${SCOPE_LABELS[sc]}：${fmt(st.value)} ${ci} · 文物 ${st.nArtifacts} / 行 ${st.nRecords}${p.metric.delta && st.sign ? ` · ${GAIN_SIGN_TEXT[st.sign]}` : ''}${sc === it.primaryScope ? '</b>' : ''}`; };
+            const src = it.scopes[it.primaryScope].ciSource === 'ci_by_artifact' ? 'CI 来源：derived/ci_by_artifact.json' : 'CI：临时口径，前端计算，待替换为 derived/ci_by_artifact';
+            return `<b>${methodLabel(it.method)}</b> · ${p.metric.title}（主口径：${SCOPE_LABELS[it.primaryScope]}）<br/>${p.metric.delta ? (['processed', 'all', 'passthrough'] as Scope[]).map(line).join('<br/>') : line('all')}<br/>n ${it.n} · 实际处理 ${it.processedN} · 原图返回 ${it.passthroughN} · 无法判定 ${it.undeterminedN}${it.failedN ? ` · 失败 ${it.failedN}` : ''}${p.metric.delta ? ` · 实际处理中负提升 ${it.negativeProcessedN}` : ''}<br/><span style="color:#94a3b8">${src}</span>`; } },
           markLine: { silent: true, symbol: 'none', lineStyle: { color: col.zero, width: 1.2, type: 'solid' }, label: { show: false }, data: [{ xAxis: 0 }] },
         },
         { type: 'custom', xAxisIndex: i, yAxisIndex: i, name: 'CI', silent: true, z: 5,
@@ -102,11 +105,20 @@ export function buildOption(panels: ChartPanel[], methods: string[], selected: s
             ] };
           },
           encode: { x: [0, 1], y: 2 },
-          data: methods.map((m, idx) => { const it = byMethod.get(m); return it?.ci ? [it.ci[0], it.ci[1], idx] : [NaN, NaN, idx]; }),
+          data: methods.map((m, idx) => { const st = byMethod.get(m)?.scopes[byMethod.get(m)!.primaryScope]; return st?.ci && st.ciReliable ? [st.ci[0], st.ci[1], idx] : [NaN, NaN, idx]; }),
+        },
+        { type: 'custom', xAxisIndex: i, yAxisIndex: i, name: '未处理', silent: true, z: 7,
+          renderItem: (_params: unknown, api: { value: (d: number) => number; coord: (v: [number, number]) => number[] }) => {
+            const n = api.value(1); if (!Number.isFinite(n) || n <= 0) return null;
+            const a = api.coord([0, api.value(0)]);
+            return { type: 'text', style: { x: a[0] + 4, y: a[1], text: `未处理 ${n} 条`, fill: col.sub, fontSize: 10, verticalAlign: 'middle' } };
+          },
+          encode: { y: 0 },
+          data: methods.map((m, idx) => { const it = byMethod.get(m); const empty = it && p.metric.delta && it.scopes[it.primaryScope].value == null && it.passthroughN > 0; return [idx, empty ? it!.passthroughN : NaN]; }),
         },
         { type: 'scatter', xAxisIndex: i, yAxisIndex: i, name: '每件文物均值', symbolSize: 5, z: 6,
           itemStyle: { color: col.point },
-          data: methods.flatMap(m => (byMethod.get(m)?.artifactPoints || []).map(pt => ({ value: [pt.value, m], sampleId: pt.sampleId, method: m }))),
+          data: methods.flatMap(m => { const it = byMethod.get(m); return (it ? it.scopes[it.primaryScope].points : []).map(pt => ({ value: [pt.value, m], sampleId: pt.sampleId, method: m })); }),
           tooltip: { formatter: (q: { data: { sampleId: string; method: string; value: [number, string] } }) => `${q.data.sampleId} · ${methodLabel(q.data.method)}<br/>该文物均值 ${fmt(q.data.value[0])}<br/><span style="color:#94a3b8">点击查看该文物的对照图</span>` },
         },
       ];

@@ -19,6 +19,8 @@ interface Props {
   onDiffStats?: (stats: DiffStats | null) => void;
   testId?: string;
   compact?: boolean;
+  /** 记录已判定为原图返回（DER / 运行字段 isPassthrough=true）：不画热图（SPEC §3）。 */
+  knownPassthrough?: boolean;
 }
 type Loaded = { status: 'loading' } | { status: 'ok'; url: string; bitmap: ImageBitmap | HTMLCanvasElement; w: number; h: number; verified: boolean | null } | { status: 'error'; message: string } | { status: 'empty'; message: string };
 type View = { s: number; x: number; y: number };
@@ -102,7 +104,7 @@ function containRect(boxW: number, boxH: number, w: number, h: number) {
 const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));
 const TONE: Record<string, string> = { ref: 'border-celadon/50', input: 'border-slate-600', output: 'border-gold/50', passthrough: 'border-cinnabar/70', warn: 'border-cinnabar/70' };
 
-export const SyncedTriptych: React.FC<Props> = ({ panes, diffPair, height = 300, title, meta, onDiffStats, testId, compact }) => {
+export const SyncedTriptych: React.FC<Props> = ({ panes, diffPair, height = 300, title, meta, onDiffStats, testId, compact, knownPassthrough }) => {
   const loaded = useLoadedImages(panes);
   const [view, setView] = useState<View>({ s: 1, x: 0, y: 0 });
   const [mode, setMode] = useState<'side' | 'slider'>('side');
@@ -117,13 +119,13 @@ export const SyncedTriptych: React.FC<Props> = ({ panes, diffPair, height = 300,
   const a = diffPair ? loaded[diffPair[0]] : undefined;
   const b = diffPair ? loaded[diffPair[1]] : undefined;
   const diff = useMemo(() => (a?.status === 'ok' && b?.status === 'ok' ? computeDiff(a, b) : null), [a, b]);
-  const diffUrl = useMemo(() => diff?.canvas?.toDataURL('image/png') || null, [diff]);
+  const diffUrl = useMemo(() => (knownPassthrough ? null : diff?.canvas?.toDataURL('image/png')) || null, [diff, knownPassthrough]);
   useEffect(() => { onDiffStats?.(diff?.stats || null); }, [diff, onDiffStats]);
   useEffect(() => { setView({ s: 1, x: 0, y: 0 }); setRoi(null); }, [panes.map(p => p.src).join('|')]);
 
   const shown: (TriptychPane & { computed?: boolean })[] = useMemo(() => {
     const list: (TriptychPane & { computed?: boolean })[] = [...panes];
-    if (diffPair && showDiff && mode === 'side') list.push({ key: '__diff', label: '差分 |输出 − 输入|', src: diffUrl, computed: true, emptyReason: !diff ? '等待两幅图像载入' : !diff.stats.sameSize ? '两幅图尺寸不同，无法逐像素比较' : diff.stats.changed === 0 ? '本次未改动原图（0 像素），不画热图' : '' });
+    if (diffPair && showDiff && mode === 'side') list.push({ key: '__diff', label: '差分 |输出 − 输入|', src: diffUrl, computed: true, emptyReason: knownPassthrough ? '本次未改动原图（0 像素），不画热图' : !diff ? '等待两幅图像载入' : !diff.stats.sameSize ? '两幅图尺寸不同，无法逐像素比较' : diff.stats.changed === 0 ? '本次未改动原图（0 像素），不画热图' : '' });
     return list;
   }, [panes, diffPair, showDiff, mode, diffUrl, diff]);
 
@@ -236,7 +238,7 @@ export const SyncedTriptych: React.FC<Props> = ({ panes, diffPair, height = 300,
     {diff && diffPair && <p className="text-[11px] text-slate-300" data-testid="diff-stats">
       {!diff.stats.sameSize ? '两幅图尺寸不同，无法逐像素比较。' : diff.stats.changed === 0
         ? <span className="text-cinnabar-light">浏览器逐像素比较：输出与输入 0 像素不同（{diff.stats.width}×{diff.stats.height}）——未修改输入。</span>
-        : <>浏览器逐像素比较：改动 {percent(diff.stats.ratio)} 像素（{diff.stats.changed.toLocaleString()}/{diff.stats.total.toLocaleString()}），最大灰度差 {diff.stats.max}，平均 {diff.stats.mean.toFixed(2)}；热图按 P99={diff.stats.p99} 归一化（单色：深 = 无变化，亮 = 变化大）。</>}
+        : <><b className="text-slate-100">改动 {percent(diff.stats.ratio)} 像素，最大差 {diff.stats.max}</b>（浏览器逐像素比较 {diff.stats.changed.toLocaleString()}/{diff.stats.total.toLocaleString()}，平均 {diff.stats.mean.toFixed(2)}）；热图 H = |输出 − 输入|，按 P99 = {diff.stats.p99} 归一化（clip(H / max(1, P99))，单色：深 = 无变化，亮 = 变化大）。{knownPassthrough && <span className="text-cinnabar-light"> 注意：记录判定为原图返回，但浏览器比较有差异，请复核。</span>}</>}
     </p>}
     {roi && <RoiStrip roi={roi} sources={[...panes.map(p => ({ label: p.label, L: loaded[p.key] })), ...(diff?.canvas ? [{ label: '差分', L: { status: 'ok', url: '', bitmap: diff.canvas, w: diff.stats.width, h: diff.stats.height, verified: null } as Loaded }] : [])]} />}
   </section>;
