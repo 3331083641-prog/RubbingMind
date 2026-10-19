@@ -185,6 +185,8 @@ def annotate_run(record):
     if record is None:return None
     legacy=record.get('algorithmVersion')==LEGACY_VERSION
     record.update(legacy=legacy,runKind='legacy_unverified' if legacy else 'processing',sortTimestamp=run_timestamp(record.get('runId')))
+    # R1-5: no cross-id aggregation; each run states the id it is stored under.
+    record['sourceSteleId']=record.get('steleId',record.get('stele_id'))
     # REPORT_DATA_SPEC §8 lists these for every run; runs saved before the criterion lack them.
     for key in ('totalPixelCount','meanAbsDiff'):
         record.setdefault(key,None)

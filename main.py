@@ -78,6 +78,10 @@ app.add_middleware(
 # 挂载静态资源目录
 from runtime_guard import RuntimeGuard
 app.add_middleware(RuntimeGuard)
+# R1-5: rm:rubbing:/rm:demo:/rm:retired: ids are accepted everywhere under /api/steles/
+# (outermost, so the guard and every route see the legacy id).
+from id_mapping import NamespacedSteleIdMiddleware
+app.add_middleware(NamespacedSteleIdMiddleware)
 PROCESS_LOCK=threading.Lock()
 os.makedirs(STATIC_DIR, exist_ok=True)
 # R1-7: when RUBBINGMIND_RESULTS_DIR relocates run storage, serve it under the
@@ -365,13 +369,31 @@ async def get_stele_inference(stele_id: str):
 @app.get("/api/steles/{stele_id}/graph")
 async def get_stele_graph(stele_id: str):
     verified = await get_stele(stele_id)
+    from id_mapping import resolve as resolve_entity
     if verified.get("source_kind") == "verified_review_v3":
-        return catalog_graph(verified)
+        # R1-5 / BR-03: collection graphs now carry their steleId and entity classification.
+        return {**catalog_graph(verified), 'steleId': verified['id'], 'entity': resolve_entity(stele_id)}
     from history_graph import get_history_graph
     graph = get_history_graph(stele_id, museum_manager.get_all_steles())
     if graph is None:
         raise HTTPException(status_code=404, detail="Historical record not found")
+    graph.setdefault('entity', resolve_entity(stele_id))
     return graph
+
+
+@app.get('/api/id-mapping')
+def get_id_mapping():
+    from id_mapping import mapping_overview
+    return mapping_overview()
+
+
+@app.get('/api/id-mapping/{raw_id}')
+def get_id_mapping_entry(raw_id: str):
+    from id_mapping import namespace_mismatch, resolve
+    error = namespace_mismatch(raw_id)
+    if error:
+        raise HTTPException(status_code=404, detail=error)
+    return resolve(raw_id)
 
 
 @app.get("/generate")
@@ -391,7 +413,7 @@ async def get_stele_report(stele_id: str, run_id: Optional[str] = None):
         raise HTTPException(status_code=404,detail='处理记录不存在')
     result['run']=selected
     result['runSelection']=run_selection
-    result['inferenceRecords']=[item for item in list_inferences(stele_id) if not selected or item.get('runId')==selected['runId']]
+    result['inferenceRecords']=[{**item,'sourceSteleId':item.get('steleId',stele_id)} for item in list_inferences(stele_id) if not selected or item.get('runId')==selected['runId']]
     result['sourceRecords']=[{'title':record['title'],'url':record.get('sourceUrl'),'license':record.get('license')}]
     mode=(selected or {}).get('outputMode')
     if selected and mode=='passthrough':
@@ -507,7 +529,7 @@ async def create_glyph_inference(stele_id: str, request: GlyphInferenceRequest):
 @app.get('/api/steles/{stele_id}/inferences')
 async def get_glyph_inferences(stele_id: str):
     await get_stele(stele_id)
-    return list_inferences(stele_id)
+    return [{**item, 'sourceSteleId': item.get('steleId', stele_id)} for item in list_inferences(stele_id)]
 
 
 @app.get('/api/inferences/{inference_id}/crop')
