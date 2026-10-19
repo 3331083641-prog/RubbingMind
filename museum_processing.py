@@ -12,8 +12,14 @@ from runtime_paths import results_override
 # equal shape and every value equal. No gray conversion, no resizing.
 RUN_PASSTHROUGH_CRITERION='pixel-equal-v1'
 COMPARED_IMAGES=['original','restored']
+# Green 2026-10-19 (a): a working-gray count is reported next to pixel-equal-v1 for reference only.
+# It never decides isPassthrough / outputMode / the "本次未改动原图" wording.
+GRAY_CRITERION='working-gray-pixel-equal-v1'
+GRAY_CRITERION_RULE=('两张图各自按处理管线同一灰度化（algorithm_engine.process_rubbing 的 cv2.cvtColor(BGR→GRAY)；'
+                     '单通道图不转换，四通道先去掉 alpha）后，形状相同则逐像素比较；仅供参考，不决定 isPassthrough。')
+GRAY_FIELDS=('grayChangedPixelCount','grayChangedPixelRatio','grayCriterion','grayCriterionRule','graySource')
 CHANGE_FIELDS=('isPassthrough','changedPixelCount','totalPixelCount','changedPixelRatio','maxAbsDiff','meanAbsDiff',
-               'passthroughCriterion','passthroughSource','passthroughUndeterminedReason')
+               'passthroughCriterion','passthroughSource','passthroughUndeterminedReason')+GRAY_FIELDS
 
 
 def _decode_full(raw):
@@ -22,10 +28,34 @@ def _decode_full(raw):
     return cv2.imdecode(np.frombuffer(raw,np.uint8),cv2.IMREAD_UNCHANGED)
 
 
+def _gray_undetermined():
+    return {key:None for key in GRAY_FIELDS}
+
+
 def _undetermined(reason):
     return {'isPassthrough':None,'changedPixelCount':None,'totalPixelCount':None,'changedPixelRatio':None,
             'maxAbsDiff':None,'meanAbsDiff':None,'passthroughCriterion':None,'passthroughSource':None,
-            'passthroughUndeterminedReason':reason}
+            'passthroughUndeterminedReason':reason,**_gray_undetermined()}
+
+
+def _working_gray(image):
+    import cv2
+    if image.ndim==2:return image
+    if image.shape[2]==1:return image[:,:,0]
+    return cv2.cvtColor(image[:,:,:3],cv2.COLOR_BGR2GRAY)
+
+
+def gray_change_status(before,after,source='recorded'):
+    """Reference count on the pipeline's working gray image; None when it cannot be determined."""
+    if before is None or after is None:return _gray_undetermined()
+    try:
+        a=_working_gray(before);b=_working_gray(after)
+    except Exception:
+        return _gray_undetermined()
+    if a.shape!=b.shape or a.dtype!=b.dtype:return _gray_undetermined()
+    stats=change_stats(a,b)
+    return {'grayChangedPixelCount':stats['changedPixelCount'],'grayChangedPixelRatio':stats['changedPixelRatio'],
+            'grayCriterion':GRAY_CRITERION,'grayCriterionRule':GRAY_CRITERION_RULE,'graySource':source}
 
 
 def run_change_status(original_png, restored_png, source='recorded'):
@@ -40,11 +70,13 @@ def run_change_status(original_png, restored_png, source='recorded'):
     if before is None or after is None:
         return _undetermined('输入或输出图像无法解码')
     if before.shape!=after.shape or before.dtype!=after.dtype:
-        return _undetermined(f'输入与输出的数组形状或位深不同（{before.shape}/{before.dtype} vs {after.shape}/{after.dtype}），按 pixel-equal-v1 无法逐像素比较')
+        return {**_undetermined(f'输入与输出的数组形状或位深不同（{before.shape}/{before.dtype} vs {after.shape}/{after.dtype}），按 pixel-equal-v1 无法逐像素比较'),
+                **gray_change_status(before,after,source)}
     stats=change_stats(before,after)
     stats['passthroughCriterion']=RUN_PASSTHROUGH_CRITERION
     stats['passthroughSource']=source
     stats['passthroughUndeterminedReason']=None
+    stats.update(gray_change_status(before,after,source))
     return stats
 
 
@@ -71,8 +103,8 @@ _READ_CACHE={}
 
 
 def computed_on_read_status(stele_id,run_id,data):
-    """Old runs only: compute pixel-equal-v1 from the stored PNGs if BOTH SHA-256 match the
-    run record. Read-only: nothing is written back."""
+    """Old runs only: compute pixel-equal-v1 (and the gray reference) from the stored PNGs if BOTH
+    SHA-256 match the run record. Read-only: nothing is written back."""
     images=data.get('outputImages') or {};hashes=data.get('outputSha256') or {}
     if not isinstance(hashes,dict) or not hashes.get('original') or not hashes.get('restored'):
         return _undetermined('该运行保存于判据引入前，且未记录输入/输出 SHA-256，无法校验后读取计算')
@@ -196,6 +228,10 @@ def read_run(stele_id, run_id):
         # Runs saved before the criterion: computed on read when both SHA-256 verify; never written back.
         status=computed_on_read_status(stele_id,run_id,data)
         data.update(status,comparedImages=list(COMPARED_IMAGES),outputMode=output_mode(status))
+    elif 'grayCriterion' not in data:
+        # Runs recorded before the gray reference existed: only the gray fields are computed on read.
+        status=computed_on_read_status(stele_id,run_id,data)
+        data.update({key:status.get(key) for key in GRAY_FIELDS})
     return data if data.get('runId')==run_id else None
 
 
