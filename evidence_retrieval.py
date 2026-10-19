@@ -11,14 +11,17 @@ import sqlite3
 from contextlib import closing
 from pathlib import Path
 from catalog import BASE, load, transcription_text
-from history_graph import CORE_IDS, ALIASES
+from history_graph import CORE_IDS, ALIASES, resolve_id
 
 INDEX=BASE/'data/runtime/evidence-v2.sqlite'
 VERSION='fts5-evidence-graph-v2.4'
 
 
 def canonical_id(stele_id):
-    return {v:k for k,v in ALIASES.items()}.get(stele_id,stele_id)
+    """Collection id that evidence is filed under (demo -> same-work rubbing, review alias -> target)."""
+    if not stele_id:
+        return stele_id
+    return resolve_id(stele_id)['evidenceId']
 
 
 def tokens(text):
@@ -360,7 +363,8 @@ def query(question,stele_id=None,limit=12):
         if synthetic:
             answer='注意：检索结果含'+synthetic[0]+'，不能作为史料证据。\n'+answer
         expanded_ids=entity_ids|{n for e in expanded for n in (e['source'],e['target'])}
-        return {'query':question,'scopeSteleId':normalized,'status':status,'judgment':judgment,'claim':claim,
+        resolution=resolve_id(stele_id) if stele_id else None
+        return {'query':question,'scopeSteleId':normalized,'scopeResolution':resolution,'status':status,'judgment':judgment,'claim':claim,
             'answer':answer,'answerMode':'extractive_evidence_only',
             'algorithmVersion':VERSION,'indexFingerprint':fingerprint(),'evidence':evidence,
             'entities':[n for n in graph['nodes'] if n['id'] in expanded_ids],'relations':expanded,'places':[p for p in graph['places'] if p['steleId'] in artifact_ids] if not scope_mismatch else [],

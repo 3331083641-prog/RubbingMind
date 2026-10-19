@@ -34,3 +34,13 @@
 | wei-jianyi · author/location/year | 北朝民间刻工／洛阳古墓博物馆石刻馆／公元 528 年 | 无（合成测试样本，不对应真实文物）；年份改为“测试标签：528，非已核实文物纪年” | 合成测试样本，见 C-03 |
 | `data/history/sources.json` | — | 新增 `baike-yuanhuai`、`sohu-yuanhuai`（status=`limited_support`） | 同上两个 URL |
 | `data/history/wei-yuanhuai.json` | originalStoneCollection=待考；yuan-tomb 的 note 不列异文 | originalStoneCollection 两说并列；yuan-tomb 的 note 列出张阳村和张羊村两种写法，坐标仍为空；sourceIds 加入两个新来源 | 同上 |
+
+## 2026-10-19 · C-01 `rm:demo:` 命名空间与 `id_mapping.json` 草案
+
+- 新增 `data/catalog/id_mapping.json`，由 `scripts/build_id_mapping.py` 生成，`--check` 可校验是否过期。共 38 条：28 个 `rm:rubbing:`、4 个 `rm:demo:`、1 个审核别名、5 个 `rm:retired:`。现有 id 一个都不改。
+- `history_graph.resolve_id()`：按映射给 id 分类，结果为 demo_sample、rubbing、review_alias、retired 或 unknown。
+  - `get_history_graph('tang-duobao')` 仍返回 steleId=`tang-duobao`，identity 开头标明“演示样本 rm:demo:tang-duobao（概念演示图）：本图谱史料描述对应作品及馆藏拓本 tang_01_duobao，不描述演示图本身；同作品关系待人工复核”。
+  - `get_history_graph('tang_01_duobao')` 以前返回 steleId=`tang-duobao`，即演示 id；现在返回 `tang_01_duobao`，并附 `demoSamples`。
+- “同作品”关系的证据等级定为**待人工复核**。依据是 `core_sample_links.json` 的原注：“同一碑刻题名；不同图像及实验身份，不证明为同一馆藏拓本。”
+- 回滚：删除 `id_mapping.json` 即恢复旧的 ALIASES 行为，测试 `test_rollback_without_mapping_restores_legacy_behaviour` 覆盖这一点。
+- 本节不改任何史实。

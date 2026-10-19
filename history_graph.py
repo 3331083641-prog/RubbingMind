@@ -6,17 +6,75 @@ from functools import lru_cache
 from pathlib import Path
 
 HISTORY = Path(__file__).parent / 'data' / 'history'
+ID_MAPPING = Path(__file__).parent / 'data' / 'catalog' / 'id_mapping.json'
 CORE_IDS = ('tang-duobao', 'han-caoquan', 'wei-yuanhuai', 'wei-jianyi')
+# Legacy compatibility export: collection rubbing id -> history file key.
+# History files are named after demo ids, but tang/han files describe the work and
+# its collection rubbing, not the demo image. resolve_id() makes that explicit (C-01).
 ALIASES = {'tang_01_duobao': 'tang-duobao', 'han_01_caoquan': 'han-caoquan'}
 
 @lru_cache(maxsize=4)
 def _read(stele_id):
     return json.loads((HISTORY / f'{stele_id}.json').read_text(encoding='utf-8'))
 
+
+@lru_cache(maxsize=1)
+def _mapping():
+    if not ID_MAPPING.is_file():
+        return {}
+    return {e['legacyId']: e for e in json.loads(ID_MAPPING.read_text(encoding='utf-8'))['entries']}
+
+
+def resolve_id(stele_id):
+    """Classify a legacy id without merging identities.
+
+    Returns kind (rubbing / demo_sample / review_alias / retired / unknown), the
+    namespaced id, which history file (if any) documents it, and the collection
+    rubbing id that evidence should be filed under. Without id_mapping.json the
+    legacy ALIASES behaviour is kept (rollback path).
+    """
+    entry = _mapping().get(stele_id)
+    if entry is None:
+        history = ALIASES.get(stele_id, stele_id if stele_id in CORE_IDS else None)
+        rubbing = {v: k for k, v in ALIASES.items()}.get(stele_id, stele_id)
+        return {'requestedId': stele_id, 'kind': 'unknown', 'newId': None, 'historyKey': history,
+                'evidenceId': rubbing, 'depictsSameWorkAs': None}
+    kind = entry['kind']
+    if kind == 'review_alias':
+        target = resolve_id(entry['aliasOf'])
+        return {**target, 'requestedId': stele_id, 'kind': 'review_alias', 'aliasOf': entry['aliasOf']}
+    link = entry.get('depictsSameWorkAs')
+    if kind == 'demo_sample':
+        history = stele_id
+        evidence = link['rubbingId'] if link else stele_id
+    else:
+        history = ALIASES.get(stele_id)
+        evidence = stele_id
+    return {'requestedId': stele_id, 'kind': kind, 'newId': entry['newId'], 'historyKey': history,
+            'evidenceId': evidence, 'depictsSameWorkAs': link}
+
+
+def _demo_ids_for(rubbing_id):
+    return [e['newId'] for e in _mapping().values()
+            if e['kind'] == 'demo_sample' and (e.get('depictsSameWorkAs') or {}).get('rubbingId') == rubbing_id]
+
+
 def get_history_graph(stele_id, records):
-    canonical = ALIASES.get(stele_id, stele_id)
+    resolution = resolve_id(stele_id)
+    canonical = resolution['historyKey']
     if canonical in CORE_IDS:
         data = deepcopy(_read(canonical))
+        data['entity'] = resolution
+        if resolution['kind'] == 'demo_sample' and resolution['depictsSameWorkAs']:
+            link = resolution['depictsSameWorkAs']
+            data['identity'] = (f"演示样本 {resolution['newId']}（概念演示图）：本图谱史料描述对应作品及馆藏拓本 "
+                                f"{link['rubbingId']}，不描述演示图本身；同作品关系{link['evidenceGrade']}。" + data['identity'])
+        elif resolution['kind'] in ('rubbing', 'review_alias'):
+            # Same history document, filed under the collection rubbing's own id.
+            data['steleId'] = stele_id
+            for event in data.get('events', []):
+                event['steleId'] = stele_id
+            data['demoSamples'] = _demo_ids_for(resolution['evidenceId'])
         all_sources = json.loads((HISTORY / 'sources.json').read_text(encoding='utf-8'))
         used = set(data['sourceIds']) | {p['sourceId'] for p in data['locations']}
         data['sources'] = [s for s in all_sources if s['id'] in used or s['id'] in ('tdt', 'beilin-coordinate')]
