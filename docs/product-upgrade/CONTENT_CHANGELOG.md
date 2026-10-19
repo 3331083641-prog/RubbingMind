@@ -5,7 +5,7 @@
 - 规则：每条史实修改都附来源 URL（真实打开过的页面）；查不到的写“未核实”，不补写。时间为 Asia/Shanghai。
 - 对应审计：`docs/product-upgrade/AUDIT_CONTENT.md`（C-xx 编号）
 
-## 2026-10-19 12:40 · C-03 合成测试文本标记（wei-jianyi）
+## 2026-10-19 · C-03 合成测试文本标记（wei-jianyi）
 
 | 位置 | 修改前 | 修改后 | 依据 |
 |---|---|---|---|
@@ -85,3 +85,9 @@
   - 别名命中多件文物时仍按“没有唯一对应”拒答。
 - 合成测试文本的标签只加在显示文本上，不进入 FTS 索引，不影响排序。
 - 回归测试：`tests/test_retrieval_regression_25.py`，含审计的 25 条查询，外加注入、冲突、碑主、繁简、别名，以及 28 件 × 9 个 facet 的不变量检查。
+
+## 2026-10-19 · C-06 / C-08 核验状态链与 SQLite 一致性（只读，不改数据）
+
+- 没有修改任何史实或状态：`approved_by_user`、证据文件、`steles28.json` 和用户 SQLite 都未改动。
+- 新增 `scripts/check_catalog_governance.py`（SQLite 只用 `mode=ro` 打开）和 `tests/test_governance_check.py`。方案与选项写在 `docs/product-upgrade/JINSHI_GOVERNANCE_PLAN.md`，由 Green 决定。
+- 修正：本文件 C-03 一节原标“12:40”，记错了时间（实际约 12:13）；现统一只标日期。

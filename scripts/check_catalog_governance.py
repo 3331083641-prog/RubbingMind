@@ -120,6 +120,8 @@ def main():
                'C08_extraWithCoordinates': sum(e['coordinatesUnsourced'] for e in sql.get('extraInSqlite', [])),
                'C08_fieldDiffs': len(sql.get('fieldDiffs', [])), 'C05_crossSourceDiffs': len(report['C05_crossSource'])}
     report['summary'] = summary
+    if hasattr(sys.stdout, 'reconfigure'):
+        sys.stdout.reconfigure(encoding='utf-8')  # stable UTF-8 JSON on Windows consoles (cp936) too
     print(json.dumps(summary if args.summary else report, ensure_ascii=False, indent=2))
     differences = summary['C06_inconsistentRecords'] + summary['C08_missingInSqlite'] + summary['C08_extraInSqlite'] + summary['C08_fieldDiffs'] + summary['C05_crossSourceDiffs']
     return 1 if args.strict and differences else 0
