@@ -4,10 +4,19 @@ import { SteleService } from '../services/api';
 import { ExperimentExplorer } from '../components/ExperimentExplorer';
 import { HeldoutComparison } from '../components/HeldoutComparison';
 
-interface Props { stele: SteleItem; onNavigate: (tab: string) => void }
+interface Props {
+  stele: SteleItem;
+  onNavigate: (tab: string) => void;
+  /** R1-6 shared selection from App / URL. All optional: omitted = previous behaviour. */
+  runId?: string | null;
+  onRunChange?: (runId: string | null) => void;
+  experimentId?: string | null;
+  batch?: string | null;
+  onExperimentChange?: (experimentId: string | null, batch?: string | null) => void;
+}
 type Report = Awaited<ReturnType<typeof SteleService.getReport>>;
 
-export const ReportsPage: React.FC<Props> = ({ stele, onNavigate }) => {
+export const ReportsPage: React.FC<Props> = ({ stele, onNavigate, runId: sharedRunId, onRunChange }) => {
   useEffect(() => { document.body.classList.add('printing-report'); return () => document.body.classList.remove('printing-report'); }, []);
   const [runs, setRuns] = useState<ProcessingRun[]>([]);
   const [runId, setRunId] = useState('');
@@ -17,7 +26,8 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate }) => {
     let active = true;
     setRunId(''); setRuns([]); setReport(null);
     SteleService.listRuns(stele.id).then(items => {
-      if (active) { setRuns(items); setRunId(items[0]?.runId || ''); }
+      // Prefer the run handed over by the workbench / URL when it belongs to this artifact.
+      if (active) { setRuns(items); setRunId((sharedRunId && items.some(item => item.runId === sharedRunId) ? sharedRunId : items[0]?.runId) || ''); }
     }).catch(e => { if (active) setError(String(e)); });
     return () => { active = false; };
   }, [stele.id]);
@@ -66,7 +76,7 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate }) => {
       </div>
     </header>
     <label className="block print:hidden text-sm">选择本件处理运行：
-      <select aria-label="选择报告运行记录" value={runId} onChange={e=>setRunId(e.target.value)} className="ml-2 bg-slate-900 border border-gold/30 rounded p-2">
+      <select aria-label="选择报告运行记录" value={runId} onChange={e=>{setRunId(e.target.value);onRunChange?.(e.target.value||null);}} className="ml-2 bg-slate-900 border border-gold/30 rounded p-2">
         <option value="">尚未执行 / 仅查看馆藏资料</option>
         {runs.map(item=><option key={item.runId} value={item.runId}>{item.runId} · {item.finishedAt}</option>)}
       </select>

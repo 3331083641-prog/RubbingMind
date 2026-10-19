@@ -12,11 +12,18 @@ const ReportsPage = lazy(() => import('./pages/ReportsPage').then(module => ({de
 import { graphSelectionItems, resolveCoreId } from './data/graphSelection';
 import { CORE_SAMPLES, resolveSelected } from './data/catalogSelection';
 import { VerifiedMuseumGraph } from './components/VerifiedMuseumGraph';
+import { readUrlState, writeUrlState } from './state/urlState';
 
 export const App: React.FC = () => {
-  const [currentTab, setCurrentTab] = useState<string>('home');
+  // R1-6: initial state may come from the URL; without parameters the defaults are unchanged.
+  const [initialUrl] = useState(() => readUrlState());
+  const [currentTab, setCurrentTab] = useState<string>(initialUrl.tab || 'home');
   const [steles, setSteles] = useState<SteleItem[]>(FALLBACK_STELES);
-  const [selectedSteleId, setSelectedSteleId] = useState<string>('tang-duobao');
+  const [selectedSteleId, setSelectedSteleId] = useState<string>(initialUrl.steleId || 'tang-duobao');
+  // Shared run / experiment selection: the workbench writes it, the report page reads it.
+  const [activeRunId, setActiveRunId] = useState<string | null>(initialUrl.runId || null);
+  const [activeExperimentId, setActiveExperimentId] = useState<string | null>(initialUrl.experimentId || null);
+  const [activeBatch, setActiveBatch] = useState<string | null>(initialUrl.batch || null);
   const [isUploadOpen, setIsUploadOpen] = useState<boolean>(false);
   const [isBackendConnected, setIsBackendConnected] = useState<boolean>(false);
   const [catalogueStatus, setCatalogueStatus] = useState<'loading' | 'ready' | 'fallback'>('loading');
@@ -49,11 +56,24 @@ export const App: React.FC = () => {
   const graphHeaderItems = [...coreItems, ...steles.filter(s => !coreItems.some(c => c.id === s.id))];
 
   const handleSelectStele = (id: string) => {
+    // A runId belongs to one artifact; never carry it over to another one.
+    if (id !== selectedSteleId) setActiveRunId(null);
     setSelectedSteleId(id);
   };
 
+  useEffect(() => {
+    writeUrlState({
+      tab: currentTab === 'home' ? undefined : currentTab,
+      steleId: selectedSteleId,
+      runId: activeRunId || undefined,
+      experimentId: activeExperimentId || undefined,
+      batch: activeBatch || undefined,
+    });
+  }, [currentTab, selectedSteleId, activeRunId, activeExperimentId, activeBatch]);
+
   const handleUploaded = (newStele: SteleItem) => {
     setSteles((prev) => [newStele, ...prev]);
+    setActiveRunId(null);
     setSelectedSteleId(newStele.id);
     setCurrentTab('workbench');
   };
@@ -94,6 +114,7 @@ export const App: React.FC = () => {
             key={currentStele.id}
             stele={currentStele}
             onNavigate={setCurrentTab}
+            onRunChange={setActiveRunId}
           />
         )}
 
@@ -111,6 +132,11 @@ export const App: React.FC = () => {
             key={currentStele.id}
             stele={currentStele}
             onNavigate={setCurrentTab}
+            runId={activeRunId}
+            onRunChange={setActiveRunId}
+            experimentId={activeExperimentId}
+            batch={activeBatch}
+            onExperimentChange={(experimentId, batch) => { setActiveExperimentId(experimentId); setActiveBatch(batch ?? null); }}
           />
         )}
         </Suspense>
