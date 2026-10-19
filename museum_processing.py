@@ -103,8 +103,44 @@ def list_runs(stele_id):
     records=[]
     for path in folder.glob('*/processing.json'):
         record=read_run(stele_id,path.parent.name)
-        if record:records.append(record)
-    return sorted(records,key=lambda row:row.get('finishedAt',row.get('runId','')),reverse=True)
+        if record:records.append(annotate_run(record))
+    # R1-1: verified runs newest first, then legacy runs newest first, then undatable ones.
+    # (Sorting the legacy placeholder finishedAt='未记录' as a string put it first.)
+    return sorted(records,key=lambda row:(row['legacy'],row['sortTimestamp'] is None,_neg_ts(row['sortTimestamp'])))
+
+
+LEGACY_VERSION='legacy-unverified'
+
+
+def run_timestamp(run_id):
+    """UTC ISO time encoded in the runId prefix (runs are named with UTC strftime)."""
+    try:
+        return datetime.strptime(str(run_id)[:15],'%Y%m%dT%H%M%S').replace(tzinfo=timezone.utc).isoformat()
+    except ValueError:
+        return None
+
+
+def _neg_ts(value):
+    return -datetime.fromisoformat(value).timestamp() if value else 0
+
+
+def annotate_run(record):
+    """Additive run-kind fields (R1-1); never rewrites the stored processing.json."""
+    if record is None:return None
+    legacy=record.get('algorithmVersion')==LEGACY_VERSION
+    record.update(legacy=legacy,runKind='legacy_unverified' if legacy else 'processing',sortTimestamp=run_timestamp(record.get('runId')))
+    return record
+
+
+def select_report_run(stele_id,run_id=None):
+    """Return (run, runSelection). Explicit ids may open legacy runs; the default never does."""
+    runs=list_runs(stele_id)
+    legacy_count=sum(1 for row in runs if row['legacy'])
+    if run_id:
+        run=annotate_run(read_run(stele_id,run_id))
+        return run,{'rule':'explicit','runId':run['runId'] if run else None,'legacyRunCount':legacy_count}
+    run=next((row for row in runs if not row['legacy']),None)
+    return run,{'rule':'latest_non_legacy' if run else 'none','runId':run['runId'] if run else None,'legacyRunCount':legacy_count}
 
 
 def delete_run(stele_id,run_id):

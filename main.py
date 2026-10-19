@@ -380,14 +380,20 @@ async def generate_historical_graph(stele_id: str = "tang-duobao"):
 async def get_stele_report(stele_id: str, run_id: Optional[str] = None):
     record=await get_stele(stele_id)
     result=catalog_report(record)
-    runs=list_runs(stele_id)
-    selected=read_run(stele_id,run_id) if run_id else (runs[0] if runs else None)
+    from museum_processing import select_report_run
+    selected,run_selection=select_report_run(stele_id,run_id)
     if run_id and not selected:
         raise HTTPException(status_code=404,detail='处理记录不存在')
     result['run']=selected
+    result['runSelection']=run_selection
     result['inferenceRecords']=[item for item in list_inferences(stele_id) if not selected or item.get('runId')==selected['runId']]
     result['sourceRecords']=[{'title':record['title'],'url':record.get('sourceUrl'),'license':record.get('license')}]
-    result['evaluation_summary']='实际处理已执行，但没有配对真值；配对质量未评测。' if selected else '尚未执行处理；配对质量未评测。'
+    if selected:
+        result['evaluation_summary']='实际处理已执行，但没有配对真值；配对质量未评测。'
+    elif run_selection['legacyRunCount']:
+        result['evaluation_summary']='只有旧版未核验运行，默认不选用（可在运行历史中显式打开）；配对质量未评测。'
+    else:
+        result['evaluation_summary']='尚未执行处理；配对质量未评测。'
     result['reportId']=f"RM-{stele_id}-{selected['runId']}" if selected else None
     return result
 
