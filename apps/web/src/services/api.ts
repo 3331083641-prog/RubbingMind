@@ -55,7 +55,7 @@ export interface ExperimentBatchMeta {
 export interface ExperimentDiagnosis {
   experimentId: string; diagnosisVersion?: 'heldout-legacy-heuristic' | 'baseline-delta-v1' | string;
   negativeLiftCount: number; cases: Record<string, unknown>[]; causeCounts: Record<string, number> | null; caveat: string;
-  baselineMethod?: string; byMethod?: Record<string, {n:number;negativeLift:number;byteIdenticalToInput:number;byteIdentityUnknown:number;unmatched:number}>;
+  baselineMethod?: string; byMethod?: Record<string, {n:number;negativeLift:number;byteIdentical:number;/** @deprecated alias of byteIdentical, removed next version */byteIdenticalToInput?:number;byteIdentityUnknown:number;unmatched:number}>;
 }
 
 function selected(id: string) { return resolveSelected(FALLBACK_STELES, id); }
