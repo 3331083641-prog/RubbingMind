@@ -281,7 +281,8 @@ AUTHENTIC_RUBBING_DATABASE: Dict[str, Dict[str, Any]] = {
     },
     "sample_4.png": {
         "id": "sample_4",
-        "title": "北魏·建义元年重度风化墓志",
+        "title": "北魏·建义元年重度风化墓志（合成测试样本）",
+        "text_provenance": "合成测试文本（sample_generator 生成，非真实释文）",
         "dynasty": "北魏·建义/永安元年（公元528年）",
         "script_style": "洛阳魏碑体（漫漶风化重灾区）",
         "author_calligraphy": "北朝民间刻工",

@@ -901,10 +901,11 @@
     "location": "洛阳古墓博物馆石刻馆",
     "museum": "核心算法演示样本，非第三轮馆藏影像",
     "dimensions": "实验图像尺寸见文件",
-    "summary": "保留既有核心实验样本；影像来源未完成本轮馆藏核验，不计入28件真实馆藏。",
+    "summary": "合成测试文本（sample_generator 生成，非真实释文）；保留既有核心实验样本；影像来源未完成本轮馆藏核验，不计入28件真实馆藏。",
     "historical_context": "实验样本身份与真实馆藏身份分离。",
     "badges": [
-      "核心实验样本"
+      "核心实验样本",
+      "合成测试文本"
     ],
     "raw_image": "/assets/stele/rubbings/stele_wei_jianyi_fragment.png",
     "clean_image": "/assets/stele/rubbings/stele_wei_jianyi_fragment.png",
@@ -917,41 +918,45 @@
       "glyph_completeness": null,
       "character_accuracy": null
     },
-    "translation": "夫人諱某，昌黎人也……春秋五十有一，以建義元年九月廿一日終于第，粵永安元年歲次戊申十一月申寅朔廿日癸酉葬於西陵。恐岸谷更遷，勒玄石以傳之。其詞曰：綿邈悠代，奕葉留光，後季承慶，官列周行……",
+    "translation": "【合成测试文本（sample_generator 生成，非真实释文）】夫人諱某，昌黎人也……春秋五十有一，以建義元年九月廿一日終于第，粵永安元年歲次戊申十一月申寅朔廿日癸酉葬於西陵。恐岸谷更遷，勒玄石以傳之。其詞曰：綿邈悠代，奕葉留光，後季承慶，官列周行……",
     "isDemo": true,
     "source_kind": "core_demo",
     "evaluationStatus": "未评测",
     "coreSampleNumber": 4,
     "inferenceDemo": {
-      "transcript": "夫人諱某，昌黎人也……春秋五十有一，以建義元年九月廿一日終于第，粵永安元年歲次戊申十一月申寅朔廿日癸酉葬於西陵。恐岸谷更遷，勒玄石以傳之。其詞曰：綿邈悠代，奕葉留光，後季承慶，官列周行……",
+      "transcript": "【合成测试文本（sample_generator 生成，非真实释文）】夫人諱某，昌黎人也……春秋五十有一，以建義元年九月廿一日終于第，粵永安元年歲次戊申十一月申寅朔廿日癸酉葬於西陵。恐岸谷更遷，勒玄石以傳之。其詞曰：綿邈悠代，奕葉留光，後季承慶，官列周行……",
       "characters": [
         {
           "id": "c1",
           "char": "夫",
           "status": "clear",
           "col": 1,
-          "row": 1
+          "row": 1,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c2",
           "char": "人",
           "status": "clear",
           "col": 1,
-          "row": 2
+          "row": 2,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c3",
           "char": "諱",
           "status": "clear",
           "col": 1,
-          "row": 3
+          "row": 3,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c4",
           "char": "某",
           "status": "clear",
           "col": 1,
-          "row": 4
+          "row": 4,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c5",
@@ -982,221 +987,266 @@
               "font_style": "洛阳魏碑体（漫漶风化重灾区）",
               "source": "原核心实验资料，未用于28件馆藏自动判定"
             }
-          ]
+          ],
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c6",
           "char": "黎",
           "status": "clear",
           "col": 1,
-          "row": 6
+          "row": 6,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c7",
           "char": "人",
           "status": "clear",
           "col": 1,
-          "row": 7
+          "row": 7,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c8",
           "char": "也",
           "status": "clear",
           "col": 2,
-          "row": 1
+          "row": 1,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c9",
           "char": "春",
           "status": "clear",
           "col": 2,
-          "row": 2
+          "row": 2,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c10",
           "char": "秋",
           "status": "clear",
           "col": 2,
-          "row": 3
+          "row": 3,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c11",
           "char": "五",
           "status": "clear",
           "col": 2,
-          "row": 4
+          "row": 4,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c12",
           "char": "十",
           "status": "clear",
           "col": 2,
-          "row": 5
+          "row": 5,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c13",
           "char": "有",
           "status": "clear",
           "col": 2,
-          "row": 6
+          "row": 6,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c14",
           "char": "一",
           "status": "clear",
           "col": 2,
-          "row": 7
+          "row": 7,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c15",
           "char": "以",
           "status": "clear",
           "col": 3,
-          "row": 1
+          "row": 1,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c16",
           "char": "建",
           "status": "clear",
           "col": 3,
-          "row": 2
+          "row": 2,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c17",
           "char": "義",
           "status": "clear",
           "col": 3,
-          "row": 3
+          "row": 3,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c18",
           "char": "元",
           "status": "clear",
           "col": 3,
-          "row": 4
+          "row": 4,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c19",
           "char": "年",
           "status": "clear",
           "col": 3,
-          "row": 5
+          "row": 5,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c20",
           "char": "九",
           "status": "clear",
           "col": 3,
-          "row": 6
+          "row": 6,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c21",
           "char": "月",
           "status": "clear",
           "col": 3,
-          "row": 7
+          "row": 7,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c22",
           "char": "廿",
           "status": "clear",
           "col": 4,
-          "row": 1
+          "row": 1,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c23",
           "char": "一",
           "status": "clear",
           "col": 4,
-          "row": 2
+          "row": 2,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c24",
           "char": "日",
           "status": "clear",
           "col": 4,
-          "row": 3
+          "row": 3,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c25",
           "char": "終",
           "status": "clear",
           "col": 4,
-          "row": 4
+          "row": 4,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c26",
           "char": "于",
           "status": "clear",
           "col": 4,
-          "row": 5
+          "row": 5,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c27",
           "char": "第",
           "status": "clear",
           "col": 4,
-          "row": 6
+          "row": 6,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c28",
           "char": "粵",
           "status": "clear",
           "col": 4,
-          "row": 7
+          "row": 7,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c29",
           "char": "永",
           "status": "clear",
           "col": 5,
-          "row": 1
+          "row": 1,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c30",
           "char": "安",
           "status": "clear",
           "col": 5,
-          "row": 2
+          "row": 2,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c31",
           "char": "元",
           "status": "clear",
           "col": 5,
-          "row": 3
+          "row": 3,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c32",
           "char": "年",
           "status": "clear",
           "col": 5,
-          "row": 4
+          "row": 4,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c33",
           "char": "歲",
           "status": "clear",
           "col": 5,
-          "row": 5
+          "row": 5,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c34",
           "char": "次",
           "status": "clear",
           "col": 5,
-          "row": 6
+          "row": 6,
+          "textKind": "synthetic_test_text"
         },
         {
           "id": "c35",
           "char": "戊",
           "status": "clear",
           "col": 5,
-          "row": 7
+          "row": 7,
+          "textKind": "synthetic_test_text"
         }
       ],
-      "damaged_summary": "核心样本预置推演案例；非本次图像检测或实测置信度。",
-      "demoMode": true
+      "damaged_summary": "合成测试文本（sample_generator 生成，非真实释文）；核心样本预置推演案例；非本次图像检测或实测置信度。",
+      "demoMode": true,
+      "textProvenance": {
+        "kind": "synthetic_test_text",
+        "label": "合成测试文本（sample_generator 生成，非真实释文）",
+        "isAuthenticInscription": false,
+        "generator": "sample_generator.py · SAMPLE_SOURCES[\"sample_4.png\"].lines",
+        "note": "该段文字由项目样本生成器写入，用于退化与修复算法测试；不对应任何已核实的真实墓志释文，不得作为史料引用。"
+      }
+    },
+    "textProvenance": {
+      "kind": "synthetic_test_text",
+      "label": "合成测试文本（sample_generator 生成，非真实释文）",
+      "isAuthenticInscription": false,
+      "generator": "sample_generator.py · SAMPLE_SOURCES[\"sample_4.png\"].lines",
+      "note": "该段文字由项目样本生成器写入，用于退化与修复算法测试；不对应任何已核实的真实墓志释文，不得作为史料引用。"
     }
   }
 ]

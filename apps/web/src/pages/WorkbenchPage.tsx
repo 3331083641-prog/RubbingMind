@@ -193,6 +193,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
   return (
     <div className="min-h-[calc(100vh-68px)] bg-[#0A0D12] text-slate-100 p-4 lg:p-6 flex flex-col space-y-4">
       {/* Top Breadcrumb & Quick Stele Info Banner */}
+      {stele.textProvenance?.kind === 'synthetic_test_text' && <p className="text-xs text-cinnabar-light border border-cinnabar/40 rounded px-2 py-1" role="note" data-testid="synthetic-text-notice">{stele.textProvenance.label}：{stele.textProvenance.note}</p>}
       <p className="text-xs text-slate-400" role="status">{stele.isDemo ? '核心实验样本：预置释文仅作演示；实际推演须提交图像选区。' : '真实馆藏：释文依据馆方资料，残字检测与配对评测需独立进行。'}</p>
       {adoptionSuccessMsg && <p role="alert" className="text-xs text-gold">{adoptionSuccessMsg}</p>}
       <div className="flex flex-wrap items-center justify-between gap-3 px-2">
@@ -678,6 +679,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
               </span>
             </div>
 
+            {stele.textProvenance?.kind === 'synthetic_test_text' && <p className="text-[11px] text-cinnabar-light" data-testid="synthetic-text-label">以下字符为{stele.textProvenance.label}</p>}
             {/* Xuan Paper Vertical Container */}
             <div className="relative w-full h-[270px] rounded-xl overflow-x-auto overflow-y-hidden p-4 bg-xuan-grid border border-[#D3C3A8]/40 shadow-inner">
               <div className="h-full flex flex-row-reverse items-start justify-start gap-4 writing-vertical-rl select-none">

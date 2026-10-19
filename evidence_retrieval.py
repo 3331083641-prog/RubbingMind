@@ -14,7 +14,7 @@ from catalog import BASE, load, transcription_text
 from history_graph import CORE_IDS, ALIASES
 
 INDEX=BASE/'data/runtime/evidence-v2.sqlite'
-VERSION='fts5-evidence-graph-v2.3'
+VERSION='fts5-evidence-graph-v2.4'
 
 
 def canonical_id(stele_id):
@@ -28,10 +28,16 @@ def tokens(text):
 
 def corpus():
     records=[];nodes=[];edges=[];places=[]
-    def add(source_id,stele_id,title,text,url,institution,location,level='catalogue_record',license=None):
-        records.append({'sourceId':source_id,'steleId':stele_id,'title':title,'text':text,'url':url,
+    def add(source_id,stele_id,title,text,url,institution,location,level='catalogue_record',license=None,provenance=None):
+        if provenance and provenance.get('kind')=='synthetic_test_text':
+            # Synthetic generator text must carry its label wherever it is retrieved.
+            text='【'+provenance['label']+'】'+text
+        record={'sourceId':source_id,'steleId':stele_id,'title':title,'text':text,'url':url,
             'institution':institution,'evidenceLevel':level,'originalPosition':location,'license':license,
-            'origin':'reviewed_local_record','textSha256':hashlib.sha256(text.encode()).hexdigest()})
+            'origin':'reviewed_local_record','textSha256':hashlib.sha256(text.encode()).hexdigest()}
+        if provenance:
+            record['textProvenance']=provenance
+        records.append(record)
     for r in load('steles28.json'):
         sid=r['id'];eid='catalog:'+sid
         facts=f"{r['title']}。原刻朝代：{r['dynasty']}；原刻年代：{r['originalYear']}；拓本年代：{r['rubbingPeriod']}；文物类型：{r['artifactType']}；{_role_fact(r,'author','撰文')}；{_role_fact(r,'calligrapher','书丹')}；{_role_fact(r,'titleCalligrapher','篆额')}；{_role_fact(r,'engraver','刻工')}；{_role_fact(r,'steleSubject','碑主或墓主')}；拓本现藏机构：{r['rubbingCollectionInstitution']}；拓本馆藏编号：{r['collectionNumber']}；原石现藏机构：{r.get('physicalCollectionInstitution') or '未核定'}；原碑所在地：{r.get('originalLocation') or '未核定'}。"
@@ -59,7 +65,7 @@ def corpus():
         for source_id in h['sourceIds']:
             s=sources[source_id];eid=f'history:{core_id}:{source_id}'
             add(eid,sid,s['title'],f"{h['formalName']}。{h['identity']}。原刻/样本标签：{h['eraName']}；拓本年代：{h['rubbingPeriod']}；原石现藏：{h['originalStoneCollection']}；数字拓本：{h['digitalRubbingCollection']}；编号：{h['collectionNumber']}。相关作者：{'；'.join(h['authors'])}。{s.get('notes','')}",s['url'],s['institution'],f'data/history/{core_id}.json',
-                'identity_unverified' if core_id=='wei-jianyi' else 'curated_source_summary')
+                'identity_unverified' if core_id=='wei-jianyi' else 'curated_source_summary',provenance=h.get('textProvenance'))
             source_ids.append(eid)
         for node in h['nodes']:
             nodes.append({'id':core_id+':'+node['id'],'name':node['name'],'category':node['category'],'steleId':sid,
@@ -71,7 +77,7 @@ def corpus():
             node_map={n['id']:n for n in h['nodes']}
             text=f"{node_map[edge['source']]['name']} → {edge['relation']} → {node_map[edge['target']]['name']}。{node_map[edge['target']]['desc']}"
             add(eid,sid,h['formalName']+' · '+edge['relation'],text,edge['sourceUrl'],'项目已核史料摘记',f'data/history/{core_id}.json#links/{i}',
-                'identity_unverified' if core_id=='wei-jianyi' else 'sourced_relationship')
+                'identity_unverified' if core_id=='wei-jianyi' else 'sourced_relationship',provenance=h.get('textProvenance'))
             edges.append({'source':core_id+':'+edge['source'],'target':core_id+':'+edge['target'],'relation':edge['relation'],'sourceIds':[eid],
                           'sourceUrl':edge['sourceUrl'],'verification':edge['verification']})
         for place in h['locations']:
@@ -350,12 +356,15 @@ def query(question,stele_id=None,limit=12):
             answer=claim['answer']+' 未调用语言模型，不补写未核定史实。'
         elif claim and status=='evidence_found':
             answer=claim['answer']+'\n'+answer
+        synthetic=[r['textProvenance']['label'] for r in evidence if (r.get('textProvenance') or {}).get('kind')=='synthetic_test_text']
+        if synthetic:
+            answer='注意：检索结果含'+synthetic[0]+'，不能作为史料证据。\n'+answer
         expanded_ids=entity_ids|{n for e in expanded for n in (e['source'],e['target'])}
         return {'query':question,'scopeSteleId':normalized,'status':status,'judgment':judgment,'claim':claim,
             'answer':answer,'answerMode':'extractive_evidence_only',
             'algorithmVersion':VERSION,'indexFingerprint':fingerprint(),'evidence':evidence,
             'entities':[n for n in graph['nodes'] if n['id'] in expanded_ids],'relations':expanded,'places':[p for p in graph['places'] if p['steleId'] in artifact_ids] if not scope_mismatch else [],
-            'generation':None,'limitations':'BM25与实体一跳扩展；命题只对照已著录字段，未核定则拒答。摘记可能不完整，来源可追溯不表示链接实时可用。'}
+            'contentWarnings':sorted(set(synthetic)),'generation':None,'limitations':'BM25与实体一跳扩展；命题只对照已著录字段，未核定则拒答。摘记可能不完整，来源可追溯不表示链接实时可用。'}
 
 
 def artifact_graph(stele_id):
