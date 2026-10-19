@@ -1,6 +1,6 @@
 # REPORT_DATA_SPEC — 评测报告六层数据契约
 
-- 版本：v3.1 定稿（2026-10-19，RM-评测科学家。Green 指令中的“v2 定稿”即本版；分支上 v2、v3 是本日的中间稿。v3 → v3.1：按 Green 判据裁定 F 写明彩色转灰度算改动、无法判定时判据和来源都为 null、新增灰度口径三个字段；按架构后端审查 D-2、D-3 写明 selectedOutput 新含义和两层 outputMode 的区别。更早的变更：v1 → v2：填入聚类 CI、B15 退化参数核对、E-04 测量原因、E-05 修复状态、机制层文件；v2 → v3：判据统一为 `pixel-equal-v1`，新增 `passthroughSource`，`comparedImages` 定为数组，旧运行改为读取时计算（§8）；notch“不适用却改了像素”按原因逐行核实（§1(b)）；禁止报告同批复测 v2.1 的处理率 / 原图返回率（§1(a)）；原图返回按方法拆分（§1(b)）；CI 与前端对账规则（§0.3））
+- 版本：v3.2 定稿（2026-10-19，RM-评测科学家。v3.1 → v3.2：灰度口径与 `agent/arch-backend` @ `9ba3a57`/`49fca00` 逐字段对齐——判据名改为 `working-gray-pixel-equal-v1`，补 `grayCriterionRule` / `graySource`；旧运行 `effectiveParameters` 改为读取时推导或 null+reason；写明 `museum_processing` 的 run_change_status / effective_parameters / 灰度字段由架构后端实现。更早：v3 → v3.1 见下；v1 → v2：填入聚类 CI、B15 退化参数核对、E-04 测量原因、E-05 修复状态、机制层文件；v2 → v3：判据统一为 `pixel-equal-v1`，新增 `passthroughSource`，`comparedImages` 定为数组，旧运行改为读取时计算（§8）；notch“不适用却改了像素”按原因逐行核实（§1(b)）；禁止报告同批复测 v2.1 的处理率 / 原图返回率（§1(a)）；原图返回按方法拆分（§1(b)）；CI 与前端对账规则（§0.3））
 - 基线：`feature/product-grade-upgrade` @ `f0c5886`。配套实现：分支 `agent/eval-sci`（未合并），代码在 `f21ceaa`、`7623a52` 和其后的提交（`git log f0c5886..agent/eval-sci`），派生数据见同分支
 - 依据：`docs/product-upgrade/AUDIT_EVALUATION.md`（E-01 … E-12）
 - 适用对象：报告前端（ReportsPage / ExperimentExplorer 的继任页面）和架构后端（main.py / API）
@@ -245,7 +245,7 @@
 
 ## 8. 后端字段需求（交架构后端实现）
 
-范围：`POST /api/process`（main.py）的响应、`processing.json`、`GET` 运行详情。参考实现在 `agent/eval-sci` 的 `museum_processing.py`（已在 `process_verified_request`、`read_run` 和 `_change_on_read` 中实现。main.py 本身不改，由后端评审后接入）。E-03 实测：本地 12 次 adaptive 运行中有 10 次改动 0 像素，界面仍显示“本次算法输出”，`main.py:382` 写的是“实际处理已执行”。
+范围：`POST /api/process`（main.py）的响应、`processing.json`、`GET` 运行详情。参考实现在 `agent/arch-backend` 的 `museum_processing.py`（`4379827` 起的 pixel-equal-v1 与读取时计算；`9ba3a57` 灰度参考字段；`49fca00` comparedImages 规范化与 effectiveParameters 读取时推导）。**评测科学家分支不再维护该文件的并行实现**；合并时 `museum_processing.py` 冲突一律取后端版本。main.py 由后端接入。E-03 实测：本地 12 次 adaptive 运行中有 10 次改动 0 像素，界面仍显示“本次算法输出”，`main.py:382` 写的是“实际处理已执行”。
 
 | 字段 | 类型 | 含义 | null 规则 | 前端文案 |
 |---|---|---|---|---|
@@ -258,12 +258,16 @@
 | `passthroughCriterion` | `string \| null` | 判据版本，统一为 `pixel-equal-v1`（与实验侧相同） | 无法判定时（`isPassthrough=null`）为 null | 详情：“判据：pixel-equal-v1”；null 时显示“无法判定” |
 | `passthroughSource` | `"recorded" \| "computed-on-read" \| null` | `recorded`：处理时计算并写入 `processing.json`；`computed-on-read`：旧运行没有该字段，后端读取时按 `pixel-equal-v1` 当场计算，不回写 | 无法判定时为 null | 详情：“来源：运行时记录 / 读取时计算”；null 时显示“无法判定” |
 | `passthroughUndeterminedReason` | `string \| null` | 为什么是 null | 只有 `isPassthrough=null` 时非空 | 原样显示 |
-| `grayChangedPixelCount` | `int \| null` | **灰度口径**，只用于并列显示，**不参与** passthrough 判定：两张图分别灰度化后，值不同的像素数（H·W 范围内计数） | 两张图任一缺失、无法解码、H·W 不同或位深不同时为 null；与 `isPassthrough` 是否为 null 无关 | 与 `changedPixelCount` 并列：“灰度口径：改动 N 像素” |
+| `grayChangedPixelCount` | `int \| null` | **灰度口径**，只用于并列显示，**不参与** passthrough 判定：两张图按处理管线同一方式灰度化后，值不同的像素数（H·W） | 两张图任一缺失、无法解码或灰度化后形状/位深不同时为 null。**可以**在 `isPassthrough=null`（例如全通道形状不同）时仍有值 | 与 `changedPixelCount` 并列：“灰度口径：改动 N 像素” |
 | `grayChangedPixelRatio` | `float \| null`，范围 [0, 1] | `grayChangedPixelCount / (H·W)` | 同上 | 百分比 |
-| `grayCriterion` | `string \| null` | 当前为 `gray-bt601-pixel-equal-v1`。灰度化公式：OpenCV `cv2.cvtColor(img, COLOR_BGR2GRAY)`（4 通道用 `COLOR_BGRA2GRAY`，忽略 alpha；单通道原样使用），即 Y = 0.299·R + 0.587·G + 0.114·B，按 OpenCV 定点运算四舍五入到整数。注意：`cv2.imdecode(..., IMREAD_GRAYSCALE)` 走解码器自己的灰度转换，结果与此不同，不得混用（见 AUDIT 勘误：644816 的来源） | 同上 | 详情：“灰度口径：gray-bt601-pixel-equal-v1” |
+| `grayCriterion` | `string \| null` | 当前为 `working-gray-pixel-equal-v1`（科学口径 2026-10-19：命名对齐处理管线的工作灰度，不再用 `gray-bt601-pixel-equal-v1`） | 同上 | 详情：“灰度口径：working-gray-pixel-equal-v1” |
+| `grayCriterionRule` | `string \| null` | 人读规则，与实现一致：两张图各自按 `algorithm_engine.process_rubbing` 的灰度化——`cv2.cvtColor(BGR→GRAY)`（单通道不转换；四通道先去掉 alpha）；形状相同则逐像素比较。OpenCV 该转换的权重即 BT.601（Y≈0.299R+0.587G+0.114B，定点四舍五入）。**禁止**用 `IMREAD_GRAYSCALE` 代替（解码器灰度与 cvtColor 不同，见 AUDIT 勘误 644816） | 与 `grayCriterion` 同生同灭 | 详情展示规则原文 |
+| `graySource` | `"recorded" \| "computed-on-read" \| null` | 与 `passthroughSource` 同语义，但只描述灰度字段的来源 | 灰度字段无法计算时为 null | 详情：“灰度来源：运行时记录 / 读取时计算” |
 | `comparedImages` | `string[]`（数组，当前固定为 `["original", "restored"]`） | 参与比较的图像角色，顺序为 [比较前, 比较后]；`original` 是工作输入（有风化掩码时为合成退化图），`restored` 是算法输出 | 不为 null。旧版本写成对象 `{before, after}` 的记录，读取时规范为数组 | 详情 |
 | `outputMode` | `"processed" \| "passthrough" \| "undetermined"` | 由 `isPassthrough` 导出，便于前端分支 | — | 同 isPassthrough |
-| `effectiveParameters` | `object` | E-10：实际生效的参数。adaptive 路径给 `strength = max(0.1, h_nlm / 10)`、`notchWidth = max(0.5, d0 / 60)`、`derivedFrom`（公式）、`ignoredRequestParameters = ["filter_order", "clahe_clip", "morph_kernel"]`；固定路径给 `d0`、`filterOrder`、`nlmH`、`claheClip`、`morphKernel` | 不为 null | 参数面板显示“实际生效参数”，被忽略的参数灰显，并注明“自适应路径未使用” |
+| `effectiveParameters` | `object \| null` | E-10：实际生效的参数。adaptive：`strength = max(0.1, h_nlm / 10)`、`notchWidth = max(0.5, d0 / 60)`、`derivedFrom`、`ignoredRequestParameters = ["filter_order", "clahe_clip", "morph_kernel"]`；固定路径：`d0`、`filterOrder`、`nlmH`、`claheClip`、`morphKernel` | 新运行不为 null。旧运行见下：推导不出时为 null | 有值：参数面板显示“实际生效参数”；null：显示“无法确定实际生效参数”和 reason |
+| `effectiveParametersSource` | `"recorded" \| "derived-on-read" \| null` | `recorded`：处理时写入；`derived-on-read`：旧运行缺失该字段时，后端按已核实的版本映射从 `algorithmParameters` 推导，**不回写** | `effectiveParameters=null` 时为 null | 详情 |
+| `effectiveParametersUnavailableReason` | `string \| null` | 为什么无法给出 `effectiveParameters` | 仅 `effectiveParameters=null` 时非空 | 原样显示 |
 
 实现约定：
 
@@ -271,7 +275,9 @@
 - 旧运行（`processing.json` 没有 `isPassthrough`）：后端读取时当场计算，**不回写**任何文件。条件：运行目录里 `original.png` 和 `restored.png` 都存在，并且两者的 SHA-256 与 `processing.json.outputSha256` 中的记录一致。满足时按 `pixel-equal-v1` 计算全部改动量字段，`passthroughSource='computed-on-read'`。任一图缺失、未记录 SHA 或 SHA 不符时，所有改动量字段为 null，`passthroughSource=null`，`passthroughUndeterminedReason` 写明哪张图、哪种原因；前端显示“无法判定”。
 - 本地实测（只读，`D:\RubbingMind\static\results`，24 个 `processing.json`，读取前后哈希不变）：22 个按读取时计算判定（10 个原图返回、12 个实际处理），2 个缺少 `original.png` 判为 null。10 个原图返回均为 `tang_01_duobao` 的 adaptive 运行，与审计 E-03“12 次 adaptive 中 10 次改动 0 像素”一致。
 - 彩色输入（裁定 F）：源图是彩色时，`original.png` 是彩色，`restored.png` 是灰度复制成三通道，二者在全部通道上不会相等，所以按裁定判为“已改动”，`changedPixelCount` 通常等于全图。灰度口径字段同时给出灰度化之后的改动量，供并列显示。本地实测 `tang-duobao/20261018T072201_13772747`：全通道 1,507,328 / 1,507,328 px（比例 1.0）；灰度口径 2,719 px（0.18%）。本地 22 个可判定运行里，全通道与灰度口径的真假结论没有分歧。前端规则：`isPassthrough=false` 且 `grayChangedPixelCount` 远小于 `changedPixelCount` 时，在改动比例旁注明“含彩色转灰度，灰度口径改动 N 像素”。
-- 无法判定时：`isPassthrough`、`passthroughCriterion`、`passthroughSource` 和全部改动量字段都为 null，`outputMode='undetermined'`，界面显示“无法判定”和原因。
+- 无法判定时：`isPassthrough`、`passthroughCriterion`、`passthroughSource` 和全通道改动量字段都为 null，`outputMode='undetermined'`，界面显示“无法判定”和原因。灰度字段按上面的独立 null 规则，不强制与 `isPassthrough` 同为 null。
+- 旧运行的 `effectiveParameters`：若记录里没有该字段，后端读取时按 `algorithmVersion` + `algorithmParameters.filter_type` 推导。仅当版本落在已核实映射（adaptive：`adaptive-rubbing-v2.0` / `v2.1`；固定路径：`frequency-spatial-v2.1` / `fixed-frequency-spatial-v2.2`）且所需请求参数齐全时给出对象，`effectiveParametersSource='derived-on-read'`；否则 `effectiveParameters=null`，`effectiveParametersSource=null`，`effectiveParametersUnavailableReason` 写明原因（缺 filter_type、版本未核实、缺请求参数、legacy-unverified 等）。**不回写**。
+- 实现归属：`run_change_status`、`effective_parameters` / `effective_parameters_on_read`、`gray_change_status` / 灰度字段、`computed_on_read_status`、`change_stats`（`degradation_analysis`，与后端共用）由**架构后端**在 `agent/arch-backend` 维护。本 SPEC 只定口径；评测科学家分支的实验脚本只消费这些字段，不并行实现。
 - ReportsPage 的修改归前端负责；本 SPEC 只规定文案。
 
 ## 9. 实验侧新运行的字段（已在 agent/eval-sci 实现）
