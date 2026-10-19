@@ -4,35 +4,35 @@ from datetime import datetime,timezone
 from pathlib import Path
 from fastapi import HTTPException
 from catalog import BASE, METRIC_KEYS
-from degradation_analysis import VERSION as ADAPTIVE_VERSION, change_stats
+from degradation_analysis import VERSION as ADAPTIVE_VERSION, PASSTHROUGH_CRITERION, change_stats
 
-RUN_PASSTHROUGH_CRITERION='working-gray-pixel-equal-v1'
+# pixel-equal-v1: decoded arrays have the same shape and every channel of every
+# pixel is equal. Same criterion as the experiment layer.
+RUN_PASSTHROUGH_CRITERION=PASSTHROUGH_CRITERION
+COMPARED_IMAGES=['original','restored']
 
 
-def _decode_gray(raw):
+def _decode(raw):
     import cv2, numpy as np
-    image=cv2.imdecode(np.frombuffer(raw,np.uint8),cv2.IMREAD_UNCHANGED)
-    if image is None:return None
-    if image.ndim==3:
-        image=cv2.cvtColor(image[:,:,:3],cv2.COLOR_BGR2GRAY)
-    return image
+    return cv2.imdecode(np.frombuffer(raw,np.uint8),cv2.IMREAD_UNCHANGED)
 
 
 def run_change_status(original_png, restored_png):
-    """Compare the working input (after any synthetic damage mask) with the saved output.
+    """Compare original.png (working input, after any synthetic damage mask) with restored.png.
 
-    Both are reduced to the engine's working grayscale: the engine itself derives
-    its gray input with COLOR_BGR2GRAY, and the restored PNG is gray replicated
-    into three equal channels. isPassthrough is None when either image cannot
-    be decoded or the shapes differ; it is never guessed.
+    pixel-equal-v1 on the decoded arrays (IMREAD_UNCHANGED, no gray conversion):
+    same shape and all channels equal. isPassthrough is None when either image
+    is missing, cannot be decoded or the array shapes differ; it is never guessed.
     """
     empty={'isPassthrough':None,'changedPixelCount':None,'changedPixelRatio':None,'maxAbsDiff':None,
            'meanAbsDiff':None,'totalPixelCount':None,'passthroughCriterion':RUN_PASSTHROUGH_CRITERION}
     if not original_png or not restored_png:
         return {**empty,'passthroughUndeterminedReason':'缺少输入或输出图像'}
-    before=_decode_gray(original_png);after=_decode_gray(restored_png)
-    if before is None or after is None or before.shape!=after.shape:
-        return {**empty,'passthroughUndeterminedReason':'输入输出无法解码或尺寸不同'}
+    before=_decode(original_png);after=_decode(restored_png)
+    if before is None or after is None:
+        return {**empty,'passthroughUndeterminedReason':'输入或输出图像无法解码'}
+    if before.shape!=after.shape:
+        return {**empty,'passthroughUndeterminedReason':'输入输出解码后数组形状不同'}
     stats=change_stats(before,after)
     stats['passthroughCriterion']=RUN_PASSTHROUGH_CRITERION
     stats['passthroughUndeterminedReason']=None
@@ -105,7 +105,7 @@ def process_verified_request(req, manager, engine):
         changedPixelRatio=change['changedPixelRatio'],maxAbsDiff=change['maxAbsDiff'],meanAbsDiff=change['meanAbsDiff'],
         totalPixelCount=change['totalPixelCount'],passthroughCriterion=change['passthroughCriterion'],
         passthroughUndeterminedReason=change['passthroughUndeterminedReason'],
-        comparedImages={'before':'original（工作输入；有风化掩码时为合成退化图）','after':'restored'},
+        comparedImages=list(COMPARED_IMAGES),passthroughSource='recorded',
         outputMode=('passthrough' if change['isPassthrough'] else 'processed' if change['isPassthrough'] is False else 'undetermined'))
     response['effectiveParameters']=effective_parameters(req)
     input_sha=hashlib.sha256(Path(image).read_bytes()).hexdigest() if not req.image_base64 else hashlib.sha256(base64.b64decode(req.image_base64.split(',',1)[-1])).hexdigest()
@@ -136,11 +136,43 @@ def read_run(stele_id, run_id):
             diagnosticMetrics={},inputImageSha256='未记录',startedAt='未记录',
             finishedAt='未记录',algorithmParameters=data.get('parameters',{}),
             outputImages={'restored':data.get('restored_image','')},inferenceRecords=[],sourceRecords=[])
-    if 'isPassthrough' not in data:
-        # Runs saved before this field existed are not re-measured on read.
-        data.update(isPassthrough=None,changedPixelCount=None,changedPixelRatio=None,maxAbsDiff=None,
-            outputMode='undetermined',passthroughCriterion=None,passthroughUndeterminedReason='该运行保存于判据引入前，未记录改动量')
+    if 'isPassthrough' in data:
+        data.setdefault('passthroughSource','recorded')
+        if isinstance(data.get('comparedImages'),dict):data['comparedImages']=list(COMPARED_IMAGES)
+    else:
+        data.update(_change_on_read(path.parent,data))
     return data if data.get('runId')==run_id else None
+
+
+def _change_on_read(folder, data):
+    """Runs saved before the field existed: compute pixel-equal-v1 on read, never write back.
+
+    Both PNGs must exist in the run folder and match the SHA-256 recorded in
+    processing.json (outputSha256); otherwise every field is None.
+    """
+    hashes=data.get('outputSha256') if isinstance(data.get('outputSha256'),dict) else {}
+    raws={};reason=None
+    for role in COMPARED_IMAGES:
+        path=folder/f'{role}.png'
+        if not path.is_file():
+            reason=f'旧运行缺少 {role}.png，无法判定';break
+        if not hashes.get(role):
+            reason=f'旧运行未记录 {role}.png 的 SHA-256，无法校验，不判定';break
+        raw=path.read_bytes()
+        if hashlib.sha256(raw).hexdigest()!=hashes[role]:
+            reason=f'{role}.png 的 SHA-256 与运行记录不符，不判定';break
+        raws[role]=raw
+    fields=('isPassthrough','changedPixelCount','changedPixelRatio','maxAbsDiff','meanAbsDiff','totalPixelCount')
+    if reason is None:
+        change=run_change_status(raws['original'],raws['restored'])
+        reason=change['passthroughUndeterminedReason']
+    else:
+        change={k:None for k in fields}
+    value=change['isPassthrough']
+    return dict({k:change[k] for k in fields},passthroughCriterion=RUN_PASSTHROUGH_CRITERION,
+        passthroughUndeterminedReason=reason,comparedImages=list(COMPARED_IMAGES),
+        passthroughSource='computed-on-read' if value is not None else None,
+        outputMode='passthrough' if value else 'processed' if value is False else 'undetermined')
 
 
 def list_runs(stele_id):

@@ -111,7 +111,9 @@ def test_museum_processing_marks_unchanged_run_as_passthrough(tmp_path, monkeypa
         assert record['isPassthrough'] is True
         assert record['changedPixelCount'] == 0 and record['changedPixelRatio'] == 0
         assert record['outputMode'] == 'passthrough'
-        assert record['passthroughCriterion'] == 'working-gray-pixel-equal-v1'
+        assert record['passthroughCriterion'] == 'pixel-equal-v1'
+        assert record['passthroughSource'] == 'recorded'
+        assert record['comparedImages'] == ['original', 'restored']
     assert stored['effectiveParameters']['strength'] == 1.0
     assert 'clahe_clip' in stored['effectiveParameters']['ignoredRequestParameters']
 
