@@ -1,9 +1,12 @@
-"""Held-out comparison of adaptive v2.0 and v2.1. The sample list is fixed before scoring.
+"""Same-batch retest of adaptive v2.0 and v2.1 (not a held-out evaluation).
 
-The 2026-10-17 batch used the first two works of each dynasty. This batch uses the
-last two. It is not retuned after the scores are known, and center crops can still
-contain margins. Synthetic damage has a paired crop reference; that PSNR is not a
-historical restoration accuracy.
+The 2026-10-18 batch used the last two works of each dynasty. Those 14 works had
+already been scored in 2026-10-17-v2-text (same source SHA, two overlapping crops),
+and v2.1 was changed after that batch's error analysis. The exclusion list is
+therefore derived from every earlier results batch, and a run whose samples were
+seen before refuses to start unless it is explicitly declared a retest.
+Synthetic damage has a paired crop reference; that PSNR is not a historical
+restoration accuracy.
 """
 from __future__ import annotations
 
@@ -22,7 +25,8 @@ import skimage
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from algorithm_engine import compute_metrics
-from degradation_analysis import AdaptiveRubbingRestorer, VERSION
+from degradation_analysis import AdaptiveRubbingRestorer, VERSION, change_stats
+from experiments.applied_status import split_means
 from experiments.run_ablation import apply_method
 from experiments.run_v2 import degrade, sha
 
@@ -43,12 +47,35 @@ def load_v20():
     return module.AdaptiveRubbingRestorer()
 
 
-def samples():
+def previous_sample_ids(results_root=None, exclude=None):
+    """Map sample id -> earlier batch directories, read from every results.json.
+
+    Nothing is hard-coded: v2, v2-text and any later batch are all included.
+    """
+    root = Path(results_root) if results_root else ROOT / 'experiments/results'
+    exclude = Path(exclude).resolve() if exclude else OUT.resolve()
+    seen = {}
+    for path in sorted(root.glob('*/results.json')):
+        if path.parent.resolve() == exclude:
+            continue
+        data = json.loads(path.read_text(encoding='utf-8'))
+        config = data.get('config') if isinstance(data.get('config'), dict) else {}
+        entries = []
+        for key in ('sources', 'samples'):
+            if isinstance(data.get(key), list):
+                entries.extend(data[key])
+        if isinstance(config.get('samples'), list):
+            entries.extend(config['samples'])
+        for entry in entries:
+            if isinstance(entry, dict) and entry.get('id'):
+                seen.setdefault(entry['id'], set()).add(path.parent.name)
+    return {key: sorted(value) for key, value in seen.items()}
+
+
+def samples(allow_seen=False, results_root=None):
     catalogue = json.loads((ROOT / 'data/catalog/steles28.json').read_text(encoding='utf-8'))
+    previous = previous_sample_ids(results_root)
     selected = []
-    previous = {'han_01_caoquan', 'han_02_yiying', 'wei_01_zhangmenglong', 'wei_02_wugaoli', 'tang_01_duobao', 'tang_02_jiucheng',
-                'song_01_yuanyou', 'song_02_wenxuan', 'yuan_01_yufu', 'yuan_02_sundeyu', 'ming_01_xianfu', 'ming_02_luxianzhi',
-                'qing_01_qianlong_heart_sutra', 'qing_02_wushi_reerection'}
     for dynasty in dict.fromkeys(row['dynasty'] for row in catalogue):
         group = [row for row in catalogue if row['dynasty'] == dynasty]
         for row in group[-2:]:
@@ -58,9 +85,13 @@ def samples():
             x, y = max(0, width // 2 - 128), max(0, height // 2 - 128)
             selected.append({'id': row['id'], 'dynasty': dynasty, 'file': path.relative_to(ROOT).as_posix(),
                              'crop': [x, y, x + 256, y + 256], 'sourceSha256': sha(path),
-                             'excludedFromPreviousBatch': row['id'] not in previous})
-    if len(selected) != 14 or not all(row['excludedFromPreviousBatch'] for row in selected):
-        raise SystemExit('held-out list changed or overlaps the 2026-10-17 batch')
+                             'excludedFromPreviousBatch': row['id'] not in previous,
+                             'seenInBatches': previous.get(row['id'], [])})
+    if len(selected) != 14:
+        raise SystemExit('sample list changed')
+    if not allow_seen and not all(row['excludedFromPreviousBatch'] for row in selected):
+        raise SystemExit('samples were already scored in an earlier batch; this would be a same-batch retest, not held-out. '
+                         'Pass --allow-seen to run it as a declared retest.')
     return selected
 
 
@@ -82,13 +113,13 @@ def mean(rows, key):
     return None if not values else float(np.mean(values))
 
 
-def main():
+def main(allow_seen=False):
     if OUT.exists():
         raise SystemExit(f'{OUT} already exists')
     OUT.mkdir(parents=True)
     old = load_v20()
     new = AdaptiveRubbingRestorer()
-    chosen = samples()
+    chosen = samples(allow_seen=allow_seen)
     rows = []
     for index, sample in enumerate(chosen):
         source = ROOT / sample['file']
@@ -116,7 +147,13 @@ def main():
                     else:
                         output, applicability = apply_method(damaged, method)
                     measured = compute_metrics(reference, output)
+                    change = change_stats(damaged, output)
+                    if method in ('adaptive_v20', 'adaptive_v21') and change['isPassthrough']:
+                        applicability = 'passthrough'
                     record = {
+                        'isPassthrough': change['isPassthrough'], 'changedPixelCount': change['changedPixelCount'],
+                        'changedPixelRatio': change['changedPixelRatio'], 'maxAbsDiff': change['maxAbsDiff'],
+                        'passthroughCriterion': change['passthroughCriterion'],
                         'psnr': None if not np.isfinite(measured['psnr']) else measured['psnr'],
                         'ssim': measured['ssim'],
                         'edgeF1': edge_f1(reference, output),
@@ -126,7 +163,8 @@ def main():
                     error = f'{type(exc).__name__}: {exc}'
                     applicability = 'failed'
                     output = None
-                    record = {'psnr': None, 'ssim': None, 'edgeF1': None, 'thinStrokeMae': None}
+                    record = {'psnr': None, 'ssim': None, 'edgeF1': None, 'thinStrokeMae': None, 'isPassthrough': None,
+                              'changedPixelCount': None, 'changedPixelRatio': None, 'maxAbsDiff': None, 'passthroughCriterion': None}
                 elapsed = (time.perf_counter() - started) * 1000
                 gate = diagnostics.get('fidelityGate') if diagnostics else None
                 rows.append({
@@ -155,6 +193,11 @@ def main():
                 'negativeLiftCount': sum(bool(row['negativeLift']) for row in subset),
                 'negativeLiftRate': None if not subset else sum(bool(row['negativeLift']) for row in subset) / len(subset),
                 'fidelityRejected': sum(row['fidelityAccepted'] is False for row in subset),
+                **{key: value for key, value in split_means(subset, ('psnr', 'ssim', 'edgeF1')).items()
+                   if key in ('processedN', 'passthroughN', 'undeterminedN', 'passthroughCriterion', 'psnrMeanProcessed', 'psnrMeanPassthrough',
+                              'ssimMeanProcessed', 'ssimMeanPassthrough', 'edgeF1MeanProcessed', 'edgeF1MeanPassthrough')},
+                # Negative lift is also reported on processed rows only; a passthrough cannot lower PSNR.
+                'negativeLiftCountProcessed': sum(bool(row['negativeLift']) for row in subset if row.get('isPassthrough') is False),
             })
     result = {
         'experimentId': 'heldout-v20-v21-2026-10-18',
@@ -162,7 +205,8 @@ def main():
         'candidateVersion': VERSION,
         'candidateCommit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
         'samplingRule': '每个朝代按馆藏清单取最后两件，中心 256 裁切，强度 1.0。清单在计分前确定，不按分数替换。',
-        'notThePreviousBatch': '2026-10-17 v2 使用每朝代前两件。本批使用后两件，但仍是同一批 28 件阅读图，不是新的外部隐藏集。',
+        'notThePreviousBatch': '同批复测，不是留出：样本是否在此前批次出现过见 samples[*].seenInBatches。',
+        'heldOut': all(row['excludedFromPreviousBatch'] for row in chosen),
         'pairedReference': '配对对象是受控退化前的阅读图局部，不是原石真值。',
         'samples': chosen,
         'rows': rows,
@@ -174,4 +218,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    main(allow_seen='--allow-seen' in sys.argv)
