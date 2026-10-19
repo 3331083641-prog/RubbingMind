@@ -141,3 +141,13 @@
 | `c08_sync_diff.json` | 无摘要字段 | 新增 `diffDigestSha256` 和 `confirmation`（规则、公式、绑定项）。操作本身未变（仍是 15 项） | 同上 |
 | `scripts/check_catalog_governance.py` | — | 新增 `diff_digest()`、`confirmation_token()` 参考实现；测试覆盖“任一位变化即失效” | 同上 |
 | `C08_BACKEND_REVIEW_8a97a12.md`（新增） | — | 只读比对后端 8a97a12：15 项操作逐项相同；需调整 3 处（BR-10） | `git show` 只读查看；只在库副本上调用了只读函数 |
+
+## 2026-10-19 13:06（Asia/Shanghai）· 跨作品比较分组数据（RM-金石史料）
+
+| 位置 | 修改前 | 修改后 | 依据 |
+|---|---|---|---|
+| `data/catalog/comparison_dimensions.json`（新增） | — | 定义 4 个分组维度：同书家、同朝代、同书体、同收藏机构（拓本）。字段、核定规则、归并规则都写在数据里，界面不写死 | 目录 `steles28.json` |
+| `scripts/build_comparison_groups.py`（新增，支持 `--check`） | — | 生成 `data/catalog/comparison_groups.json`。28 件作品每个维度都覆盖到：要么进组，要么列入 excluded 并写明原因 | 同上 |
+| 书家分组 | — | 只用 `calligrapherVerification=verified` 的 10 件，分 7 组，其中可比较的（2 件及以上）有 2 组：赵孟頫 3 件、颜真卿 2 件。其余 18 件排除（unknown、pending_review、disputed 或“未核定”） | 不把未核定写成已核定 |
+| 书体分组 | — | 三条带括注的原值归入“楷书”，原值保留在 rawValue；“行楷书”单独成组 | 归并规则写在 normalizeBasis |
+| 机构分组 | — | 比较的是拓本收藏机构，不是原石现藏地 | 作品 ≠ 原石 ≠ 拓本 |
