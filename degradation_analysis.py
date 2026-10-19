@@ -22,7 +22,8 @@ def change_stats(before, after):
     b = np.asarray(after)
     if a.shape != b.shape:
         raise ValueError('输入与输出尺寸不同，无法逐像素比较')
-    diff = np.abs(a.astype(np.int16) - b.astype(np.int16))
+    # int32: int16 overflows for 16-bit PNGs (values up to 65535).
+    diff = np.abs(a.astype(np.int32) - b.astype(np.int32))
     if diff.ndim == 3:
         changed_mask = np.any(diff > 0, axis=2)
     else:

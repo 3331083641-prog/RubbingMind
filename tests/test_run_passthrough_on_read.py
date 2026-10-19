@@ -15,6 +15,9 @@ def _png(image):
 def _old_run(tmp_path, monkeypatch, restored_changed=False, record_sha=True, tamper=False, drop=None):
     import museum_processing
     monkeypatch.setattr(museum_processing, 'BASE', tmp_path)
+    # Merge note (arch-backend M-6): keep results in tmp_path even if a results-dir override exists.
+    monkeypatch.delenv('RUBBINGMIND_RESULTS_DIR', raising=False)
+    monkeypatch.setattr(museum_processing, 'RESULTS_DIR', None, raising=False)
     folder = tmp_path / 'static/results/stele_x' / RUN_ID
     folder.mkdir(parents=True)
     gray = np.full((16, 16), 120, np.uint8); gray[4:12, 7:9] = 30
@@ -44,6 +47,7 @@ def test_old_run_unchanged_is_computed_on_read_as_passthrough(tmp_path, monkeypa
     assert data['passthroughCriterion'] == 'pixel-equal-v1'
     assert data['comparedImages'] == ['original', 'restored']
     assert data['outputMode'] == 'passthrough' and data['passthroughUndeterminedReason'] is None
+    assert data['grayChangedPixelCount'] == 0 and data['grayCriterion'] == 'gray-bt601-pixel-equal-v1'
 
 
 def test_old_run_changed_is_computed_on_read_as_processed(tmp_path, monkeypatch):
@@ -54,7 +58,7 @@ def test_old_run_changed_is_computed_on_read_as_processed(tmp_path, monkeypatch)
 
 def test_old_run_sha_mismatch_is_null(tmp_path, monkeypatch):
     data = _old_run(tmp_path, monkeypatch, tamper=True)
-    assert data['isPassthrough'] is None and data['passthroughSource'] is None
+    assert data['isPassthrough'] is None and data['passthroughSource'] is None and data['passthroughCriterion'] is None
     assert data['outputMode'] == 'undetermined' and 'SHA-256' in data['passthroughUndeterminedReason']
 
 
@@ -74,6 +78,25 @@ def test_pixel_equal_v1_compares_all_channels():
     color = np.full((8, 8, 3), 100, np.uint8); color[..., 2] = 110
     gray = cv2.cvtColor(cv2.cvtColor(color, cv2.COLOR_BGR2GRAY), cv2.COLOR_GRAY2BGR)
     stats = run_change_status(_png(color), _png(gray))
+    # Color input, gray output: changed under pixel-equal-v1, unchanged in the gray view.
     assert stats['isPassthrough'] is False and stats['changedPixelCount'] == 64
+    assert stats['grayChangedPixelCount'] == 0 and stats['grayChangedPixelRatio'] == 0
+    assert stats['passthroughCriterion'] == 'pixel-equal-v1' and stats['passthroughSource'] == 'recorded'
     assert run_change_status(_png(color), _png(color))['isPassthrough'] is True
-    assert run_change_status(_png(color), _png(color[:4]))['isPassthrough'] is None
+
+
+def test_undeterminable_has_null_criterion_and_source():
+    from museum_processing import run_change_status
+    color = np.full((8, 8, 3), 100, np.uint8)
+    for stats in (run_change_status(_png(color), _png(color[:4])), run_change_status(b'', _png(color)),
+                  run_change_status(b'not a png', _png(color))):
+        assert stats['isPassthrough'] is None
+        assert stats['passthroughCriterion'] is None and stats['passthroughSource'] is None
+        assert stats['passthroughUndeterminedReason']
+
+
+def test_change_stats_does_not_overflow_on_16_bit():
+    from degradation_analysis import change_stats
+    a = np.zeros((2, 2), np.uint16); b = a.copy(); b[0, 0] = 40000
+    stats = change_stats(a, b)
+    assert stats['changedPixelCount'] == 1 and stats['maxAbsDiff'] == 40000

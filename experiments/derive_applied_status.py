@@ -5,7 +5,8 @@ for reading only and never rewritten. Output goes to
 <output-root>/experiments/results/<batch>/derived/applied_status.{csv,json}.
 
 Criteria (recorded per row):
-  pixel-equal-v1          output PNG decoded pixels equal the input PNG pixels.
+  pixel-equal-v1          output PNG decoded array (all channels, no gray conversion)
+                          has the input's shape and dtype and equal values.
                           byteIdentical (file SHA-256 equal) is also reported.
   input-from-degraded-v1  2026-10-15 rows have no input field; the method
                           'degraded' returns image.copy(), so its PNG for the
@@ -52,11 +53,9 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def read_gray(path: Path):
-    image = cv2.imdecode(np.frombuffer(path.read_bytes(), np.uint8), cv2.IMREAD_UNCHANGED)
-    if image is not None and image.ndim == 3:
-        image = cv2.cvtColor(image[:, :, :3], cv2.COLOR_BGR2GRAY)
-    return image
+def read_image(path: Path):
+    # pixel-equal-v1 compares the decoded arrays as stored: every channel, no gray conversion.
+    return cv2.imdecode(np.frombuffer(path.read_bytes(), np.uint8), cv2.IMREAD_UNCHANGED)
 
 
 def _status(method, applicability, passthrough):
@@ -83,7 +82,7 @@ def derive_batch(batch_dir: Path):
     def file_info(name):
         if name not in cache:
             path = batch_dir / name
-            cache[name] = (sha256(path), read_gray(path)) if path.is_file() else (None, None)
+            cache[name] = (sha256(path), read_image(path)) if path.is_file() else (None, None)
         return cache[name]
 
     for index, r in enumerate(rows):
@@ -110,8 +109,8 @@ def derive_batch(batch_dir: Path):
                 recorded = [r.get('outputSha256')] + ([r.get('inputSha256')] if r.get('inputSha256') else [])
                 actual = [out_sha] + ([in_sha] if r.get('inputSha256') else [])
                 item['shaMatchesRecord'] = all(a == b for a, b in zip(actual, recorded) if b)
-                if in_px is None or out_px is None or in_px.shape != out_px.shape:
-                    item['undeterminedReason'] = '输入或输出文件缺失、无法解码或尺寸不同'
+                if in_px is None or out_px is None or in_px.shape != out_px.shape or in_px.dtype != out_px.dtype:
+                    item['undeterminedReason'] = '输入或输出文件缺失、无法解码，或数组形状 / 位深不同'
                 else:
                     stats = change_stats(in_px, out_px)
                     item.update(isPassthrough=stats['isPassthrough'], byteIdentical=in_sha == out_sha,

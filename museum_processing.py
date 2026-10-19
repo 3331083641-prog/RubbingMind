@@ -10,6 +10,11 @@ from degradation_analysis import VERSION as ADAPTIVE_VERSION, PASSTHROUGH_CRITER
 # pixel is equal. Same criterion as the experiment layer.
 RUN_PASSTHROUGH_CRITERION=PASSTHROUGH_CRITERION
 COMPARED_IMAGES=['original','restored']
+# Gray view, reported next to pixel-equal-v1 but never used to decide passthrough:
+# each image -> cv2.cvtColor(..., COLOR_BGR2GRAY) (BGRA2GRAY for 4 channels; 1 channel
+# kept), i.e. Y = 0.299 R + 0.587 G + 0.114 B with OpenCV fixed-point rounding.
+GRAY_CRITERION='gray-bt601-pixel-equal-v1'
+GRAY_FIELDS=('grayChangedPixelCount','grayChangedPixelRatio','grayCriterion')
 
 
 def _decode(raw):
@@ -17,25 +22,44 @@ def _decode(raw):
     return cv2.imdecode(np.frombuffer(raw,np.uint8),cv2.IMREAD_UNCHANGED)
 
 
+def _gray(image):
+    import cv2
+    if image.ndim==2:return image
+    return cv2.cvtColor(image,cv2.COLOR_BGRA2GRAY if image.shape[2]==4 else cv2.COLOR_BGR2GRAY)
+
+
+def gray_change(before, after):
+    """Gray-view change count; None when the two images cannot be compared in gray."""
+    import numpy as np
+    empty={k:None for k in GRAY_FIELDS}
+    if before is None or after is None or before.shape[:2]!=after.shape[:2] or before.dtype!=after.dtype:
+        return empty
+    changed=int(np.count_nonzero(_gray(before)!=_gray(after)));total=int(before.shape[0]*before.shape[1])
+    return {'grayChangedPixelCount':changed,'grayChangedPixelRatio':changed/total if total else None,'grayCriterion':GRAY_CRITERION}
+
+
 def run_change_status(original_png, restored_png):
     """Compare original.png (working input, after any synthetic damage mask) with restored.png.
 
     pixel-equal-v1 on the decoded arrays (IMREAD_UNCHANGED, no gray conversion):
-    same shape and all channels equal. isPassthrough is None when either image
-    is missing, cannot be decoded or the array shapes differ; it is never guessed.
+    same shape and dtype, all channels equal. A color input whose output is gray
+    therefore counts as changed. When it cannot be decided (missing, undecodable,
+    different shape or dtype) every field is None, including passthroughCriterion
+    and passthroughSource; it is never guessed. The gray-view fields are added
+    whenever both images can be compared in gray and do not affect isPassthrough.
     """
     empty={'isPassthrough':None,'changedPixelCount':None,'changedPixelRatio':None,'maxAbsDiff':None,
-           'meanAbsDiff':None,'totalPixelCount':None,'passthroughCriterion':RUN_PASSTHROUGH_CRITERION}
+           'meanAbsDiff':None,'totalPixelCount':None,'passthroughCriterion':None,'passthroughSource':None}
     if not original_png or not restored_png:
-        return {**empty,'passthroughUndeterminedReason':'缺少输入或输出图像'}
+        return {**empty,**gray_change(None,None),'passthroughUndeterminedReason':'缺少输入或输出图像'}
     before=_decode(original_png);after=_decode(restored_png)
+    gray=gray_change(before,after)
     if before is None or after is None:
-        return {**empty,'passthroughUndeterminedReason':'输入或输出图像无法解码'}
-    if before.shape!=after.shape:
-        return {**empty,'passthroughUndeterminedReason':'输入输出解码后数组形状不同'}
+        return {**empty,**gray,'passthroughUndeterminedReason':'输入或输出图像无法解码'}
+    if before.shape!=after.shape or before.dtype!=after.dtype:
+        return {**empty,**gray,'passthroughUndeterminedReason':f'输入输出解码后数组形状或位深不同（{before.shape}/{before.dtype} vs {after.shape}/{after.dtype}）'}
     stats=change_stats(before,after)
-    stats['passthroughCriterion']=RUN_PASSTHROUGH_CRITERION
-    stats['passthroughUndeterminedReason']=None
+    stats.update(gray,passthroughCriterion=RUN_PASSTHROUGH_CRITERION,passthroughSource='recorded',passthroughUndeterminedReason=None)
     return stats
 
 
@@ -105,7 +129,8 @@ def process_verified_request(req, manager, engine):
         changedPixelRatio=change['changedPixelRatio'],maxAbsDiff=change['maxAbsDiff'],meanAbsDiff=change['meanAbsDiff'],
         totalPixelCount=change['totalPixelCount'],passthroughCriterion=change['passthroughCriterion'],
         passthroughUndeterminedReason=change['passthroughUndeterminedReason'],
-        comparedImages=list(COMPARED_IMAGES),passthroughSource='recorded',
+        passthroughSource=change['passthroughSource'],**{k:change[k] for k in GRAY_FIELDS},
+        comparedImages=list(COMPARED_IMAGES),
         outputMode=('passthrough' if change['isPassthrough'] else 'processed' if change['isPassthrough'] is False else 'undetermined'))
     response['effectiveParameters']=effective_parameters(req)
     input_sha=hashlib.sha256(Path(image).read_bytes()).hexdigest() if not req.image_base64 else hashlib.sha256(base64.b64decode(req.image_base64.split(',',1)[-1])).hexdigest()
@@ -137,7 +162,9 @@ def read_run(stele_id, run_id):
             finishedAt='未记录',algorithmParameters=data.get('parameters',{}),
             outputImages={'restored':data.get('restored_image','')},inferenceRecords=[],sourceRecords=[])
     if 'isPassthrough' in data:
-        data.setdefault('passthroughSource','recorded')
+        data.setdefault('passthroughSource','recorded' if data['isPassthrough'] is not None else None)
+        if data['isPassthrough'] is None:data.update(passthroughCriterion=None,passthroughSource=None)
+        for key in GRAY_FIELDS:data.setdefault(key,None)
         if isinstance(data.get('comparedImages'),dict):data['comparedImages']=list(COMPARED_IMAGES)
     else:
         data.update(_change_on_read(path.parent,data))
@@ -162,14 +189,15 @@ def _change_on_read(folder, data):
         if hashlib.sha256(raw).hexdigest()!=hashes[role]:
             reason=f'{role}.png 的 SHA-256 与运行记录不符，不判定';break
         raws[role]=raw
-    fields=('isPassthrough','changedPixelCount','changedPixelRatio','maxAbsDiff','meanAbsDiff','totalPixelCount')
+    fields=('isPassthrough','changedPixelCount','changedPixelRatio','maxAbsDiff','meanAbsDiff','totalPixelCount',
+            'passthroughCriterion')+GRAY_FIELDS
     if reason is None:
         change=run_change_status(raws['original'],raws['restored'])
         reason=change['passthroughUndeterminedReason']
     else:
         change={k:None for k in fields}
     value=change['isPassthrough']
-    return dict({k:change[k] for k in fields},passthroughCriterion=RUN_PASSTHROUGH_CRITERION,
+    return dict({k:change[k] for k in fields},
         passthroughUndeterminedReason=reason,comparedImages=list(COMPARED_IMAGES),
         passthroughSource='computed-on-read' if value is not None else None,
         outputMode='passthrough' if value else 'processed' if value is False else 'undetermined')

@@ -85,6 +85,9 @@ def _png(image):
 def _run_processing(tmp_path, monkeypatch, change):
     import museum_processing
     monkeypatch.setattr(museum_processing, 'BASE', tmp_path)
+    # Merge note (arch-backend M-6): keep results in tmp_path even if a results-dir override exists.
+    monkeypatch.delenv('RUBBINGMIND_RESULTS_DIR', raising=False)
+    monkeypatch.setattr(museum_processing, 'RESULTS_DIR', None, raising=False)
     (tmp_path / 'static/samples').mkdir(parents=True)
     gray = np.full((32, 32), 120, np.uint8); gray[8:24, 14:18] = 30
     (tmp_path / 'static/samples/sample_1.png').write_bytes(cv2.imencode('.png', gray)[1].tobytes())
@@ -114,6 +117,7 @@ def test_museum_processing_marks_unchanged_run_as_passthrough(tmp_path, monkeypa
         assert record['passthroughCriterion'] == 'pixel-equal-v1'
         assert record['passthroughSource'] == 'recorded'
         assert record['comparedImages'] == ['original', 'restored']
+        assert record['grayChangedPixelCount'] == 0 and record['grayCriterion'] == 'gray-bt601-pixel-equal-v1'
     assert stored['effectiveParameters']['strength'] == 1.0
     assert 'clahe_clip' in stored['effectiveParameters']['ignoredRequestParameters']
 
