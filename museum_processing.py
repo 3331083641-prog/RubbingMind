@@ -122,7 +122,7 @@ def process_verified_request(req, manager, engine):
         image=str(image)
     elif req.sample_id in ('sample_1.png','sample_2.png','sample_3.png','sample_4.png'):
         image=str(BASE/'static/samples'/req.sample_id)
-    else:raise HTTPException(status_code=400,detail='需要文物ID或用户图像')
+    else:raise HTTPException(status_code=422,detail='缺少 stele_id：请明确指定要处理的文物（或内置样本 sample_id）；不会默认处理任何文物')
     result=engine.process_rubbing(image_input=image,d0=req.d0,filter_order=req.filter_order,filter_type=req.filter_type,nlm_h=req.h_nlm,clahe_clip=req.clahe_clip,morph_kernel=req.morph_kernel,damage_mask=req.damage_mask,cinnabar_style=req.cinnabar_style,random_seed=req.random_seed)
     if result.get('error'):raise HTTPException(status_code=422,detail=result['error'])
     run_id=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')+'_'+uuid.uuid4().hex[:8]

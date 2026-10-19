@@ -99,7 +99,9 @@ app.mount("/assets", StaticFiles(directory=DIST_ASSETS_DIR if os.path.exists(DIS
 
 # Pydantic 请求数据模型
 class ProcessRequest(BaseModel):
-    stele_id: Optional[str] = "tang-duobao"
+    # RT-014: no silent default artifact. Callers must name stele_id (or a built-in sample_id);
+    # a missing id is a 422, never a run filed under tang-duobao.
+    stele_id: Optional[str] = None
     sample_id: Optional[str] = None
     image_base64: Optional[str] = Field(default=None,max_length=17_000_000)
     d0: float = Field(default=45.0, ge=1, le=500)
