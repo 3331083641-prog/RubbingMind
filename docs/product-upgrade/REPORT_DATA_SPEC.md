@@ -1,7 +1,7 @@
 # REPORT_DATA_SPEC — 评测报告六层数据契约
 
-- 版本：v2（2026-10-19，RM-评测科学家；v1 → v2：填入聚类 CI、B15 退化参数核对、E-04 测量原因、E-05 修复状态、机制层文件）
-- 基线：`feature/product-grade-upgrade` @ `f0c5886`。配套实现：分支 `agent/eval-sci`（未合并），代码在 `f21ceaa` 和 `7623a52`，派生数据见同分支后续提交
+- 版本：v3 定稿（2026-10-19，RM-评测科学家；v1 → v2：填入聚类 CI、B15 退化参数核对、E-04 测量原因、E-05 修复状态、机制层文件；v2 → v3：判据统一为 `pixel-equal-v1`，新增 `passthroughSource`，`comparedImages` 定为数组，旧运行改为读取时计算（§8）；notch“不适用却改了像素”按原因逐行核实（§1(b)）；禁止报告同批复测 v2.1 的处理率 / 原图返回率（§1(a)）；原图返回按方法拆分（§1(b)）；CI 与前端对账规则（§0.3））
+- 基线：`feature/product-grade-upgrade` @ `f0c5886`。配套实现：分支 `agent/eval-sci`（未合并），代码在 `f21ceaa`、`7623a52` 和其后的提交（`git log f0c5886..agent/eval-sci`），派生数据见同分支
 - 依据：`docs/product-upgrade/AUDIT_EVALUATION.md`（E-01 … E-12）
 - 适用对象：报告前端（ReportsPage / ExperimentExplorer 的继任页面）和架构后端（main.py / API）
 - 本文件只定义数据与口径，不改 UI 和后端代码。凡是写“必须 / 禁止”的条目，前端验收按字面执行。
@@ -16,7 +16,7 @@
 | BV2 | `experiments/results/2026-10-17-v2/…` | v2 受控退化，1260 行，带 development/test 划分 | 有。`reference/input/output` 和对应 `*Sha256` |
 | BVT | `experiments/results/2026-10-17-v2-text/…` | v2-text，1260 行，划分同上 | 有 |
 | BRT | `experiments/results/2026-10-18-v21-heldout/…` | v2.0/v2.1 同批复测，490 行 | **没有图像**，只有数值和 `diagnosticsOperators` |
-| DER | `experiments/results/<批次>/derived/applied_status.{csv,json}` | 派生标注（由 `experiments/derive_applied_status.py` 生成） | 不适用 |
+| DER | `experiments/results/<批次>/derived/applied_status.{csv,json}` | 派生标注（由 `experiments/derive_applied_status.py` 生成；E-05 细分标签由 `experiments/notch_na_changes.py` 写入同一文件） | 不适用 |
 | CI | `experiments/results/{2026-10-17-v2,2026-10-17-v2-text}/derived/ci_by_artifact.{csv,json}` | 按文物聚类 bootstrap CI（`experiments/ci_by_artifact.py`） | 不适用 |
 | NLC | `experiments/results/{2026-10-15,2026-10-17-v2,2026-10-17-v2-text}/derived/negative_lift_causes.{csv,json}` | 负提升的测量原因（E-04，`experiments/derive_negative_lift_causes.py`） | 不适用 |
 | MEC | `experiments/results/{2026-10-17-v2,2026-10-17-v2-text}/derived/mechanism/` | 机制层代表样本（E-18，`experiments/mechanism_cases.py`；说明见 `REPRESENTATIVE_CASES.md`） | 派生 PNG |
@@ -50,7 +50,7 @@
 | 增益 | `ΔPSNR = PSNR(out, ref) − PSNR(in, ref)`，SSIM、edgeF1 同理（输出减输入，越大越好）。thinStrokeMae 越小越好，统一写成“输出减输入”，负值表示改善；CI 文件中 v2 系列没有 thinStrokeMae | CI 文件中的 `*Gain*` 字段 |
 | 差分热图 | `H = |out − in|`（不是 `out − ref`），显示时 `clip(H / max(1, P99(H)), 0, 1)` 映射到单色色带。另提供带符号图 `S = out − in`，用发散色带，0 为中性色。图上必须标注 `maxAbsDiff`、`changedPixelRatio` 和 P99 归一化常数 | 前端计算，或后端以后按需生成 |
 | 误差图 | `E_x = |x − ref|`，x ∈ {in, out}；`ΔE = E_in − E_out`（正值表示更接近参考） | 前端 |
-| 按文物聚类 CI | 对方法 m、退化 d、划分 s 和口径（全部 / 实际处理 / 原图返回）：先算每件文物的均值 `ā_k`；再对 K 件文物做 1000 次有放回重采样，取重采样均值的第 2.5 和 97.5 百分位。**已计算**：seed=20261019，每个 CI 都用新的 `numpy.random.default_rng(20261019)`，K<3 的组标 `ciReliable=false`，空组输出 null | `experiments/ci_by_artifact.py` → CI 文件 |
+| 按文物聚类 CI | 对方法 m、退化 d、划分 s 和口径（全部 / 实际处理 / 原图返回）：先算每件文物的均值 `ā_k`；再对 K 件文物做 1000 次有放回重采样，取重采样均值的第 2.5 和 97.5 百分位。**已计算**：seed=20261019，每个 CI 都用新的 `numpy.random.default_rng(20261019)`，K<3 的组标 `ciReliable=false`，空组输出 null。**前后端对账**：前端临时实现用同样的参数（按文物聚类、seed=20261019、B=1000、分位 2.5% / 97.5%）。参数一致不保证端点逐位相同：只有用同一随机流（numpy `default_rng` 的 PCG64、文物按 `sampleId` 排序、`rng.choice(ā, (1000, K), replace=True)`、`np.percentile` 线性插值）才能逐位复现。前端应直接读 CI 文件显示；如果自己重算，对账时均值必须相等，端点允许有蒙特卡洛误差（参考量级：同参数不同随机流时，端点差最大约为 CI 宽度的 10%，见 §4） | `experiments/ci_by_artifact.py` → CI 文件 |
 | 配对增益 CI | 与上相同，但对象换成每件文物的 `mean(输出 − 同 caseId 的 degraded 行)`。`*GainSign` 取值为 positive（下界 > 0）、negative（上界 < 0）、spans_zero、zero（上下界都正好是 0，即原图返回）。只有 positive 才能写“提升” | 已计算，同上 |
 | 负提升计数 | `ΔPSNR < 0` 的行数；同时按处理/原图返回分开计数（`negativeLiftCountProcessed`） | `compare_v21` 新运行 |
 | 分离均值 | 每个指标都给三种：`MeanAll`、`MeanProcessed`（isPassthrough=false）、`MeanPassthrough`（isPassthrough=true），并带 `processedN / passthroughN / undeterminedN` | `experiments/applied_status.split_means` |
@@ -70,12 +70,33 @@
 - 前端规则：
   - 任何标题、图例、tooltip、导出文件名都不得出现“留出 / held-out / heldout”字样（目录名原样出现在“数据来源路径”里除外，需用等宽字体标为路径）。
   - BRT 的所有结论最高为“有限支持”，原因写“样本参与过 v2.1 的误差分析”。
+  - **禁止**为 BRT（同批复测 v2.0 / v2.1）给出“有效处理率”“实际处理率”“原图返回率”或任何以 `processedN`、`passthroughN` 为分子的比例。原因：该批没有图像，DER 中除 baseline 外 420/420 行都是 `undetermined`，分子不存在。BRT 的这一栏只能显示“无法判定（本批次未保存图像）”和 `undeterminedN = 70`（每个方法）。两个指示量（见 §1(b)）不得改名、换算或合并成比例，也不得写进标题或结论卡。审计 E-02 验收标准里的“21（v2.1）”是指示量 `indicatorPsnrDeltaZeroN`，不是像素判定的原图返回数，同样不得按原图返回数显示。
   - 默认选中批次禁止是 BRT（E-07：`items.at(-1)` 会默认选中它）。默认应选最新的有图像批次（BVT）。
 - 代码侧：`experiments/compare_v21.py` 的排除表现在扫描 `experiments/results/*/results.json`，包括 v2-text 和更早的批次。再遇到重叠时直接 `SystemExit`，除非显式传 `--allow-seen`；此时结果标记 `heldOut:false`。
 
 ### (b) “原图返回”与“实际处理”分开计数、分开求均值
 
-- 判据：输出与输入逐像素相同（`pixel-equal-v1`）。字节相同另列 `byteIdentical`。实测 BV2 的 65 行、BVT 的 47 行原图返回全部字节相同。
+- 判据 `pixel-equal-v1`（实验层和馆藏运行共用，`degradation_analysis.change_stats`）：两张图解码后的数组形状相同，并且全部通道逐像素相等。形状不同或任一张无法解码时不判定（null），不做缩放、裁切或灰度转换。字节相同另列 `byteIdentical`。
+  - 实验批次的 PNG 全部是单通道灰度（PNG color type 0：B15 82 个、BV2 1414 个、BVT 1414 个），所以 DER 里已有的判定就是按全部通道计算的，不需要重算。
+  - 实测 BV2 的 65 行、BVT 的 47 行原图返回全部字节相同。
+- **原图返回按方法拆分**（DER `appliedStatus ∈ {passthrough, passthrough_not_applicable}`，分母 = 该方法该划分的行数，每格 70 行；baseline 不计）：
+
+| 批次 | 方法 | development | test | 合计 | 其中 `passthrough_not_applicable` |
+|---|---|---|---|---|---|
+| BV2 | adaptive_joint | 24 / 70 | 31 / 70 | 55 / 140 | 0 |
+| BV2 | fast_nlm | 3 / 70 | 1 / 70 | 4 / 140 | 0 |
+| BV2 | notch | 0 / 70 | 6 / 70 | 6 / 140 | 6 |
+| BV2 | gaussian_lowpass、butterworth_lowpass、morphology、nlm_clahe、joint | 0 | 0 | 0 / 700 | 0 |
+| BV2 | **8 个方法合计** | 27 / 560 | 38 / 560 | **65 / 1120** | 6 |
+| BVT | adaptive_joint | 22 / 70 | 23 / 70 | 45 / 140 | 0 |
+| BVT | fast_nlm | 2 / 70 | 0 / 70 | 2 / 140 | 0 |
+| BVT | notch | 0 / 70 | 0 / 70 | 0 / 140 | 0 |
+| BVT | gaussian_lowpass、butterworth_lowpass、morphology、nlm_clahe、joint | 0 | 0 | 0 / 700 | 0 |
+| BVT | **8 个方法合计** | 24 / 560 | 23 / 560 | **47 / 1120** | 0 |
+
+  - 口径：本节旧版写的“65 / 47”是 8 个方法的合计；审计 E-02 的“55 / 45”只算 adaptive_joint。两者都对，口径不同，差额 10 / 2 来自 fast_nlm 和 notch。前端显示原图返回数时必须写明方法；不写方法时只允许按方法逐行列出，禁止只给一个合计数。
+  - notch 另有 BV2 98 行、BVT 95 行“标为不适用却改了像素”，**不**计入原图返回，单独计数，见下文 E-05。
+  - `experiments/results/<批次>/derived/applied_status.json` 的 `summaryBySplitMethod` 就是这张表的数据源，前端按 `method` 取，不要自己加总。
 - 每个方法 × 划分（× 退化）都必须同时显示：`n`、`processedN`、`passthroughN`、`undeterminedN`，以及三种均值。主数字用 `MeanProcessed`，并且必须旁注“另有 passthroughN 行原样返回，均值 x”。`MeanAll` 只放在“与历史 summary 对照”一栏。
 - `appliedStatus` 枚举（DER 每行一个）：
 
@@ -85,13 +106,25 @@
 | `processed` | 改动 ≥1 像素 | 实际处理 |
 | `passthrough` | 0 像素改动，且记录里标为 applicable | 原图返回（未处理） |
 | `passthrough_not_applicable` | 0 像素改动，记录标 not_applicable | 原图返回（判定不适用） |
-| `processed_not_applicable_label` | 记录标 not_applicable，但像素被改动了（E-05：历史代码中 notch 走 NA 分支时，astype(uint8) 截断改了像素；`7623a52` 起的新代码已改为原样返回，新运行不再出现此状态） | 标为不适用但有改动（E-05，历史数据） |
+| `processed_not_applicable_label` | 记录标 not_applicable，但像素被改动了（E-05：历史代码中 notch 走 NA 分支时，astype(uint8) 截断改了像素；`7623a52` 起的新代码已改为原样返回，新运行不再出现此状态）。细分见 `appliedStatusDetail` | 标为不适用但有改动（E-05，历史数据） |
 | `failed` | 运行出错 | 失败 |
 | `undetermined` | 无图像或无法解码 | 无法判定 |
 
 - E-05：历史数据中，notch 的 NA 分支平均绝对差为 0.084（BV2）/ 0.161（BVT），符号为负；`ExperimentExplorer.tsx:37` 的“以原图计入”说法对历史批次不成立。
+  - **逐行核实（已计算）**：对每一行 `processed_not_applicable_label` 做五项只读检查：(1) 输出 − 输入的非零差值只有 −1；(2) 该批次的历史引擎（`source_snapshot/algorithm_engine.py`；B15 没有快照，用 `git 10a63f4:algorithm_engine.py`）按 notch d0=48 重算，与存档输出逐像素相同；(3) 历史引擎没有检出峰对；(4) 修复后的引擎原样返回输入；(5) 改动像素恰好就是 `astype(uint8)` 截断后低于输入的像素（全 1 掩码 FFT 往返的最大浮点误差 4.6e-5）。五项都成立记 `not-applicable-but-modified-rounding`，否则记 `not-applicable-but-modified-other` 并列出不成立的检查项。
+  - 结果：
+
+| 批次 | 行数 | rounding | other | 差值取值 | 每行改动像素（最少 / 最多 / 合计，每张 65536） |
+|---|---|---|---|---|---|
+| BV2 | 98（dev 56 / test 42） | 98 | 0 | 只有 −1 | 8 / 11516 / 573508 |
+| BVT | 95（dev 49 / test 46） | 95 | 0 | 只有 −1 | 34 / 17662 / 1001122 |
+| B15 | 8 | 8 | 0 | 只有 −1 | 2708 / 13187 / 73816 |
+
+  - 结论：三个批次的这类行全部是 E-05 浮点截断（最大绝对差 = 1，方向全部为 −1），没有其他原因。
+  - DER 字段：`appliedStatusDetail`（上面两个取值之一；其他行为 null）和 `naChangeEvidence`（逐项检查值和 `failedChecks`）。`appliedStatus` 本身不变；汇总增加 `notApplicableModifiedRoundingN`、`notApplicableModifiedOtherN`。
+  - 前端：rounding 行显示“不适用分支的 1 级截断（E-05），非算法处理”，不计入实际处理率，也不计入原图返回；other 行（目前 0 行）显示“标为不适用但有改动，原因未定，待人工复核”。
   - **新代码已修**（`agent/eval-sci` @ `7623a52`）：`algorithm_engine.apply_frequency_domain_filter` 在 notch 没有检出峰对时直接返回输入副本，`details.passthrough=true`。
-  - 历史批次不重跑，只靠 DER 的 `processed_not_applicable_label` 标注。前端 notch 卡片上，历史批次显示“历史批次：不适用分支仍有轻微像素改动（E-05，已在新代码修复）”。
+  - 历史批次不重跑，只靠 DER 的 `processed_not_applicable_label` 和 `appliedStatusDetail` 标注。前端 notch 卡片上，历史批次显示“历史批次：不适用分支仍有轻微像素改动（E-05，已在新代码修复）”。
   - 对单次处理的影响见 §11。
 - BRT 没有图像，因此 `isPassthrough = null`，`undeterminedN = 70`（每个方法），不猜测。允许另列两个**指示量**，必须标“未经像素验证”：
   - `indicatorPsnrDeltaZeroN`：`psnrDeltaFromInput == 0` 的行数；
@@ -122,7 +155,7 @@
 | 规模 | 各批 `rows` 数、`sampleId` 去重数、方法数、退化数 | `n_artifact = |{sampleId}|` | — |
 | 协议卡 | `config`（划分、退化、强度、种子） | — | 写“配置未记录”，并降为有限支持 |
 | 参考图性质 | 固定文案：参考 = 可读 JPG 的 256×256 裁切，不是碑石真值 | — | 必显，不可隐藏 |
-| 原图返回比例 | DER `summaryBySplitMethod` | `passthroughN / (n − baseline)` | DER 不存在：显示“未做改动量判定”，等级“未评测” |
+| 原图返回比例 | DER `summaryBySplitMethod` | **按方法**给 `passthroughN / n`（n 为该方法该划分的行数），口径见 §1(b) 按方法拆分表；不给跨方法的单一比例 | DER 不存在：显示“未做改动量判定”，等级“未评测”；BRT：禁止给比例（§1(a)） |
 
 ## 3. 第 2 层：修复效果视觉对照
 
@@ -132,7 +165,7 @@
 | 差分热图 | 见 §0.3 `H = |out − in|` | 若 `isPassthrough=true`：不画热图，显示“本次未改动原图（0 像素）” | — |
 | 改动量徽标 | DER `changedPixelRatio`、`maxAbsDiff` | 格式 `改动 12.3% 像素，最大差 37` | null 时显示“无法判定” |
 | 标签 | DER `appliedStatus` | 原图返回的输出图标题必须是“原图返回（未处理）”，不得叫“算法输出” | — |
-| 馆藏运行 | RUN `processing.json` 的新字段（§8） | 同上；见 §8 的文案规则 | 旧运行没有字段：显示“该运行保存于判据引入前，未记录改动量” |
+| 馆藏运行 | RUN `processing.json` 的字段，或读取时计算（§8） | 同上；见 §8 的文案规则。`passthroughSource='computed-on-read'` 时详情注明“读取时按 pixel-equal-v1 计算” | `isPassthrough=null`：显示“无法判定”和 `passthroughUndeterminedReason` |
 
 ## 4. 第 3 层：算法横向比较
 
@@ -187,7 +220,7 @@
 | 决策链分布 | BV2/BVT `diagnostics.decisions`、`selectedOutput`、`fidelityGate`；BRT `diagnosticsOperators`、`fidelityAccepted` | 按算子组合计数。v2.1 新运行有 `outputMode`（`processed` / `identity_no_evidence` / `gate_fallback_original`）；历史行由 DER 的 `isPassthrough` 覆盖 `selectedOutput`（E-02：历史上 identity 分支即使输出等于输入也记为 `candidate`） | — |
 | v2.0 → v2.1 | BRT | 只能写“同批复测下的差异”，等级 ≤ 有限支持 | — |
 | 门控说明 | 固定文案：fidelity gate 是启发式规则，不是统计检验 | — | — |
-| 机制样本（E-18） | MEC：`derived/mechanism/index.json` 和 `<caseId>/mechanism.json` + PNG，字段见 `REPRESENTATIVE_CASES.md` | 每批每个划分 5 类（提升 / 负提升 / 原图返回 / 门控拒绝 / 陷波），按中位位次选取。机制图属于 v2.1（head 重算），已存指标属于 v2.0，必须分别标注 | 目录或 PNG 不存在：显示“该样本未生成机制图”。当前 PNG 还没有 API 路由，需要后端补 |
+| 机制样本（E-18） | MEC：`derived/mechanism/index.json` 和 `<caseId>/mechanism.json` + PNG，字段见 `REPRESENTATIVE_CASES.md` | 每批每个划分 5 类（提升 / 负提升 / 原图返回 / 门控拒绝 / 陷波），按中位位次选取。与前端临时规则（同批次、划分、方法、退化下取实际处理的 ΔPSNR 中位数和最小值各一条，再取一条原图返回）的差异和对照文件 `derived/representative_temp_rule.json` 见 `REPRESENTATIVE_CASES.md`。机制图属于 v2.1（head 重算），已存指标属于 v2.0，必须分别标注 | 目录或 PNG 不存在：显示“该样本未生成机制图”。当前 PNG 还没有 API 路由，需要后端补 |
 | 参数机制 | §8 `effectiveParameters`（E-10） | 必须显示**实际生效**的参数；`ignoredRequestParameters` 里的参数要标“本路径未使用” | 旧运行：“未记录实际生效参数” |
 
 ## 6. 第 5 层：失败案例与不确定性
@@ -212,26 +245,29 @@
 
 ## 8. 后端字段需求（交架构后端实现）
 
-范围：`POST /api/process`（main.py）的响应、`processing.json`、`GET` 运行详情。参考实现在 `agent/eval-sci` 的 `museum_processing.py`（已在 `process_verified_request` 和 `read_run` 中实现。main.py 本身不改，由后端评审后接入）。E-03 实测：本地 12 次 adaptive 运行中有 10 次改动 0 像素，界面仍显示“本次算法输出”，`main.py:382` 写的是“实际处理已执行”。
+范围：`POST /api/process`（main.py）的响应、`processing.json`、`GET` 运行详情。参考实现在 `agent/eval-sci` 的 `museum_processing.py`（已在 `process_verified_request`、`read_run` 和 `_change_on_read` 中实现。main.py 本身不改，由后端评审后接入）。E-03 实测：本地 12 次 adaptive 运行中有 10 次改动 0 像素，界面仍显示“本次算法输出”，`main.py:382` 写的是“实际处理已执行”。
 
 | 字段 | 类型 | 含义 | null 规则 | 前端文案 |
 |---|---|---|---|---|
-| `isPassthrough` | `bool \| null` | 工作灰度图上，restored 与 original 逐像素相等 | 图像缺失、解码失败、尺寸不同，或旧运行：null | true → 标题“本次未改动原图”，副标“算法判断无需处理，输出与输入逐像素相同”，**不得**显示“算法输出”或“实际处理已执行”；false → “算法输出”；null → “未能判定是否改动” |
+| `isPassthrough` | `bool \| null` | 按 `pixel-equal-v1`：`original.png` 与 `restored.png` 解码后形状相同且全部通道逐像素相等 | 图像缺失、解码失败、形状不同；旧运行另有 SHA 规则（见下）：null | true → 标题“本次未改动原图”，副标“算法判断无需处理，输出与输入逐像素相同”，**不得**显示“算法输出”或“实际处理已执行”；false → “算法输出”；null → “未能判定是否改动” |
 | `changedPixelCount` | `int \| null` | 改动像素数（任一通道） | 同上 | “改动 N 像素” |
 | `totalPixelCount` | `int \| null` | H·W | 同上 | — |
 | `changedPixelRatio` | `float \| null`，范围 [0, 1] | 改动像素比例 | 同上 | 百分比，保留 2 位；如果 > 0 但 < 0.01%，显示“<0.01%” |
 | `maxAbsDiff` | `int \| null`，范围 0–255 | 最大绝对差 | 同上 | “最大灰度差 x” |
 | `meanAbsDiff` | `float \| null` | 平均绝对差 | 同上 | 仅放在详情里 |
-| `passthroughCriterion` | `string` | 判据版本，当前为 `working-gray-pixel-equal-v1`（实验侧为 `pixel-equal-v1`） | 不为 null | 详情：“判据：working-gray-pixel-equal-v1” |
+| `passthroughCriterion` | `string` | 判据版本，统一为 `pixel-equal-v1`（与实验侧相同）。`f21ceaa` 到本版之间在分支上保存的运行可能记为 `working-gray-pixel-equal-v1`（工作灰度图比较），按记录原样显示，不改写 | 不为 null | 详情：“判据：pixel-equal-v1” |
+| `passthroughSource` | `"recorded" \| "computed-on-read" \| null` | `recorded`：处理时计算并写入 `processing.json`；`computed-on-read`：旧运行没有该字段，后端读取时按 `pixel-equal-v1` 当场计算，不回写 | 只有 `isPassthrough=null` 且没有记录值时为 null | 详情：“来源：运行时记录 / 读取时计算” |
 | `passthroughUndeterminedReason` | `string \| null` | 为什么是 null | 只有 `isPassthrough=null` 时非空 | 原样显示 |
-| `comparedImages` | `[string, string]` | 比较的两张图的角色，例如 `["original", "restored"]` | — | 详情 |
+| `comparedImages` | `string[]`（数组，当前固定为 `["original", "restored"]`） | 参与比较的图像角色，顺序为 [比较前, 比较后]；`original` 是工作输入（有风化掩码时为合成退化图），`restored` 是算法输出 | 不为 null。旧版本写成对象 `{before, after}` 的记录，读取时规范为数组 | 详情 |
 | `outputMode` | `"processed" \| "passthrough" \| "undetermined"` | 由 `isPassthrough` 导出，便于前端分支 | — | 同 isPassthrough |
 | `effectiveParameters` | `object` | E-10：实际生效的参数。adaptive 路径给 `strength = max(0.1, h_nlm / 10)`、`notchWidth = max(0.5, d0 / 60)`、`derivedFrom`（公式）、`ignoredRequestParameters = ["filter_order", "clahe_clip", "morph_kernel"]`；固定路径给 `d0`、`filterOrder`、`nlmH`、`claheClip`、`morphKernel` | 不为 null | 参数面板显示“实际生效参数”，被忽略的参数灰显，并注明“自适应路径未使用” |
 
 实现约定：
 
 - 计算位置在 PNG 落盘之后，用落盘字节解码比较，避免内存图与文件不一致。
-- 旧运行读取时补 `null` 和原因“该运行保存于判据引入前，未记录改动量”，不回写旧文件。
+- 旧运行（`processing.json` 没有 `isPassthrough`）：后端读取时当场计算，**不回写**任何文件。条件：运行目录里 `original.png` 和 `restored.png` 都存在，并且两者的 SHA-256 与 `processing.json.outputSha256` 中的记录一致。满足时按 `pixel-equal-v1` 计算全部改动量字段，`passthroughSource='computed-on-read'`。任一图缺失、未记录 SHA 或 SHA 不符时，所有改动量字段为 null，`passthroughSource=null`，`passthroughUndeterminedReason` 写明哪张图、哪种原因；前端显示“无法判定”。
+- 本地实测（只读，`D:\RubbingMind\static\results`，24 个 `processing.json`，读取前后哈希不变）：22 个按读取时计算判定（10 个原图返回、12 个实际处理），2 个缺少 `original.png` 判为 null。10 个原图返回均为 `tang_01_duobao` 的 adaptive 运行，与审计 E-03“12 次 adaptive 中 10 次改动 0 像素”一致。
+- 全部通道比较的后果：源图是彩色时，`original.png` 是彩色，而 `restored.png` 是灰度复制成三通道，二者在全部通道上不会相等，所以彩色源图的运行即使在工作灰度图上没有改动，也会判为“实际处理”，`changedPixelCount` 接近全图。本地 22 个可判定运行里，两种比较方式的真假结论没有出现分歧，但改动像素数不同（例如 `tang-duobao/20261018T072201_13772747`：全部通道 1507328 px，工作灰度 2719 px）。这是本判据的已知性质，前端在彩色源图上显示改动比例时应注明“含彩色转灰度”。
 - ReportsPage 的修改归前端负责；本 SPEC 只规定文案。
 
 ## 9. 实验侧新运行的字段（已在 agent/eval-sci 实现）
@@ -301,4 +337,4 @@
 - `gaussian`、`butterworth`：4/4 相同。
 - `notch` 且未检出峰（sample_1、2、4）：restored 改变，改动 65869 / 84412 / 69501 px（共约 10 万 px），最大差 37 / 31 / 96。原因是旧代码的 1 级截断经过后续空域增强（含 CLAHE）后被放大。
 - `notch` 且检出峰（sample_3）：相同。
-- 因此，`museum_processing.process_verified_request` 只在用户选择 `filter_type='notch'` 且图像没有周期峰时，输出会变。这时新输出更接近“陷波不适用、直接做空域增强”的本意。旧运行记录不会被重算。
+- 因此，`museum_processing.process_verified_request` 只在用户选择 `filter_type='notch'` 且图像没有周期峰时，输出会变。这时新输出更接近“陷波不适用、直接做空域增强”的本意。旧运行的输出图不会被重算；只有改动量字段在读取时计算（§8）。
