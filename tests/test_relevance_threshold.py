@@ -45,3 +45,9 @@ def test_keyword_only_refusal_is_labelled_weak():
     assert result['status'] == 'insufficient_evidence'
     assert result['evidence'] and all(e['relevanceLabel'] == '弱相关，仅供参考' for e in result['evidence'])
     assert result['relevanceFilter']['droppedBelowThreshold'] > 0  # 4 entries below 10.0 were dropped
+
+
+def test_evidence_search_shows_weak_label_from_response():
+    from pathlib import Path
+    source = (Path(__file__).resolve().parents[1] / 'apps/web/src/components/EvidenceSearch.tsx').read_text(encoding='utf-8')
+    assert 'relevanceLabel' in source and 'data-testid="weak-relevance"' in source and '弱相关' not in source

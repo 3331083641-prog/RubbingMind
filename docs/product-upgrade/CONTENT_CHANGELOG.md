@@ -200,3 +200,9 @@
 | `review_ledger.json` 及前端副本 | — | 每条记录新增 `contentFlags`，从 claims 原样传入；目前只有 ming_02 一条 | — |
 | `ReviewStatusBadges.tsx`（博物馆卡片和查看器共用） | 两枚徽章 | 有 contentFlags 时，再加一枚红色徽章（`data-testid="content-flag"`），文字来自数据 | — |
 | `tests/test_carrier_flag.py` | — | 3 条测试 | — |
+
+## 2026-10-19 13:13（Asia/Shanghai）· A 补充：界面显示弱相关标签（RM-金石史料）
+
+| 位置 | 修改前 | 修改后 | 依据 |
+|---|---|---|---|
+| `EvidenceSearch.tsx` 证据条目标题 | 不显示相关性 | 后端返回 `relevanceLabel` 时，在条目标题后显示“· 弱相关，仅供参考”（`data-testid="weak-relevance"`），文字来自接口 | 阈值规则见上一节；本文件不在共享文件清单内 |

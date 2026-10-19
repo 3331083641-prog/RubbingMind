@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react';
 
-type Evidence={sourceId:string;steleId:string;title:string;text:string;url:string;originalPosition:string;evidenceLevel:string;textProvenance?:{kind:string;label:string}};
+type Evidence={sourceId:string;steleId:string;title:string;text:string;url:string;originalPosition:string;evidenceLevel:string;textProvenance?:{kind:string;label:string};relevance?:string;relevanceLabel?:string};
 type Relation={source:string;target:string;relation:string;sourceIds:string[];sourceUrl:string};
 type Place={id:string;name:string;longitude:number|null;latitude:number|null;coreSampleId:string;precision:string};
 type ClaimSource={source?:string;url?:string;quote?:string;location?:string;status?:string};
@@ -37,7 +37,7 @@ export const EvidenceSearch:React.FC<{steleId:string;onLocate?:(id:string)=>void
           {result.judgment==='conflict' && <p data-testid="research-conflict">状态：来源冲突。馆藏目录与史料图谱取值不同，以下原样并列，待人工复核。</p>}
           {result.claim?.sources?.map(item => <p key={(item.source || '') + (item.quote || '')} className="text-xs">{item.status} · {item.quote} {item.url && <a className="text-gold underline" href={item.url} target="_blank" rel="noreferrer">{item.source || '查看来源'}</a>}</p>)}
           <p className="text-xs text-slate-400">{result.algorithmVersion} · 检索 {result.status}{result.judgment ? ` · 判断 ${result.judgment==='supported'?'支持':result.judgment==='contradicted'?'反驳':result.judgment==='conflict'?'来源冲突':result.judgment==='disputed'?'存在争议':'证据不足'}` : ''}</p>
-          {result.evidence.map((e,i)=><details key={e.sourceId} className="rounded border border-slate-700 p-2"><summary>[{i+1}] {e.title} · {e.evidenceLevel}{e.textProvenance?.kind==='synthetic_test_text'?` · ${e.textProvenance.label}`:''}</summary><p className="whitespace-pre-wrap mt-2">{e.text}</p><p className="text-xs break-all">证据ID：{e.sourceId} · 关联文物：{e.steleId} · 位置：{e.originalPosition}</p><a className="text-gold underline" href={e.url} target="_blank" rel="noreferrer">查看原始来源</a></details>)}
+          {result.evidence.map((e,i)=><details key={e.sourceId} className="rounded border border-slate-700 p-2"><summary>[{i+1}] {e.title} · {e.evidenceLevel}{e.textProvenance?.kind==='synthetic_test_text'?` · ${e.textProvenance.label}`:''}{e.relevanceLabel&&<span data-testid="weak-relevance" className="ml-1 text-xs text-slate-400">· {e.relevanceLabel}</span>}</summary><p className="whitespace-pre-wrap mt-2">{e.text}</p><p className="text-xs break-all">证据ID：{e.sourceId} · 关联文物：{e.steleId} · 位置：{e.originalPosition}</p><a className="text-gold underline" href={e.url} target="_blank" rel="noreferrer">查看原始来源</a></details>)}
           <details><summary>检索扩展的证据关系（{result.relations.length}）</summary>{result.relations.map((r,i)=><p key={i}>{names[r.source]||r.source} → {r.relation} → {names[r.target]||r.target} <a href={r.sourceUrl} target="_blank" rel="noreferrer" className="text-gold">关系来源</a></p>)}</details>
           {result.places.map(p=><p key={`${p.coreSampleId}-${p.id}`}>地点：{p.name} · {p.precision} {p.longitude!==null&&p.coreSampleId===steleId&&onLocate&&<button className="text-gold underline" onClick={()=>onLocate(p.id)}>在现有GIS中定位</button>}</p>)}
           <p className="text-xs text-slate-500">{result.limitations}</p>
