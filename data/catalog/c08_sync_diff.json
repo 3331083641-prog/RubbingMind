@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "item": "C-08",
+  "option": "A",
+  "decidedBy": "用户（经 Green 传达）",
+  "spec": "docs/product-upgrade/C08_SYNC_SPEC.md",
+  "generator": "scripts/check_catalog_governance.py --emit-sync-diff（SQLite mode=ro）",
+  "basis": {
+    "sqliteSha256": "8408dbc36819efda512d392df69fd2b96d7b1469460fcba0bbee5aaad270323d",
+    "catalogueFile": "data/catalog/steles28.json",
+    "catalogueSha256": "0bc28fe95fad15d8df42c89ec5f897d8f9f63fb97b3c71c3b16d48acd63ab1b2",
+    "sqliteRows": 33,
+    "catalogueRecords": 28
+  },
+  "precondition": "执行前必须重新计算 basis 中两个 SHA-256；任一不一致则中止，并重新生成本文件",
+  "operations": [
+    {
+      "op": "update",
+      "table": "steles",
+      "id": "ming_02_luxianzhi",
+      "column": "author",
+      "from": "未核定",
+      "to": "文徵明",
+      "catalogueVerification": "verified",
+      "rule": "R1"
+    },
+    {
+      "op": "update",
+      "table": "steles",
+      "id": "ming_04_tongdian",
+      "column": "author",
+      "from": "未核定",
+      "to": "王毓宗",
+      "catalogueVerification": "verified",
+      "rule": "R1"
+    },
+    {
+      "op": "update",
+      "table": "steles",
+      "id": "song_02_wenxuan",
+      "column": "author",
+      "from": "未核定",
+      "to": "宋太宗",
+      "catalogueVerification": "verified",
+      "rule": "R1"
+    },
+    {
+      "op": "update",
+      "table": "steles",
+      "id": "yuan_01_yufu",
+      "column": "author",
+      "from": "未核定",
+      "to": "赵世延",
+      "catalogueVerification": "verified",
+      "rule": "R1"
+    },
+    {
+      "op": "update",
+      "table": "steles",
+      "id": "yuan_03_shengzhu",
+      "column": "author",
+      "from": "未核定",
+      "to": "王思廉",
+      "catalogueVerification": "verified",
+      "rule": "R1"
+    },
+    {
+      "op": "keep_row",
+      "table": "steles",
+      "id": "qing_01_shilang",
+      "reason": "museum_catalog_status=retired；保留历史行，不删除",
+      "rule": "R3"
+    },
+    {
+      "op": "set_null",
+      "table": "steles",
+      "id": "qing_01_shilang",
+      "columns": [
+        "gis_lng",
+        "gis_lat"
+      ],
+      "from": "已屏蔽：无来源坐标，不输出数值",
+      "to": null,
+      "rule": "R3"
+    },
+    {
+      "op": "keep_row",
+      "table": "steles",
+      "id": "qing_02_gaocheng",
+      "reason": "museum_catalog_status=retired；保留历史行，不删除",
+      "rule": "R3"
+    },
+    {
+      "op": "set_null",
+      "table": "steles",
+      "id": "qing_02_gaocheng",
+      "columns": [
+        "gis_lng",
+        "gis_lat"
+      ],
+      "from": "已屏蔽：无来源坐标，不输出数值",
+      "to": null,
+      "rule": "R3"
+    },
+    {
+      "op": "keep_row",
+      "table": "steles",
+      "id": "qing_03_yanjin",
+      "reason": "museum_catalog_status=retired；保留历史行，不删除",
+      "rule": "R3"
+    },
+    {
+      "op": "set_null",
+      "table": "steles",
+      "id": "qing_03_yanjin",
+      "columns": [
+        "gis_lng",
+        "gis_lat"
+      ],
+      "from": "已屏蔽：无来源坐标，不输出数值",
+      "to": null,
+      "rule": "R3"
+    },
+    {
+      "op": "keep_row",
+      "table": "steles",
+      "id": "qing_04_gongchen",
+      "reason": "museum_catalog_status=retired；保留历史行，不删除",
+      "rule": "R3"
+    },
+    {
+      "op": "set_null",
+      "table": "steles",
+      "id": "qing_04_gongchen",
+      "columns": [
+        "gis_lng",
+        "gis_lat"
+      ],
+      "from": "已屏蔽：无来源坐标，不输出数值",
+      "to": null,
+      "rule": "R3"
+    },
+    {
+      "op": "keep_row",
+      "table": "steles",
+      "id": "yuan_04_jiulao",
+      "reason": "museum_catalog_status=retired；保留历史行，不删除",
+      "rule": "R3"
+    },
+    {
+      "op": "set_null",
+      "table": "steles",
+      "id": "yuan_04_jiulao",
+      "columns": [
+        "gis_lng",
+        "gis_lat"
+      ],
+      "from": "已屏蔽：无来源坐标，不输出数值",
+      "to": null,
+      "rule": "R3"
+    }
+  ],
+  "counts": {
+    "update": 5,
+    "hold": 0,
+    "set_null": 5,
+    "keep_row": 5,
+    "insert_from_catalogue": 0
+  }
+}

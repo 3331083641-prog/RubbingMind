@@ -91,3 +91,14 @@
 - 没有修改任何史实或状态：`approved_by_user`、证据文件、`steles28.json` 和用户 SQLite 都未改动。
 - 新增 `scripts/check_catalog_governance.py`（SQLite 只用 `mode=ro` 打开）和 `tests/test_governance_check.py`。方案与选项写在 `docs/product-upgrade/JINSHI_GOVERNANCE_PLAN.md`，由 Green 决定。
 - 修正：本文件 C-03 一节原标“12:40”，记错了时间（实际约 12:13）；现统一只标日期。
+
+## 2026-10-19 12:35 · C-06 / C-08 用户决定：均选方案 A（用户经 Green 传达）
+
+| 位置 | 修改前 | 修改后 | 依据 |
+|---|---|---|---|
+| `data/catalog/review_ledger.json`（新增）与 `apps/web/src/data/reviewLedger.json`（逐字节相同） | 无台账；目录写 `approved_by_user`，证据文件写 `pending_third_round_user_ChatGPT_review`，两者互相矛盾，界面上也看不到 | 28 件逐件并列记录两个状态：目录批准状态（原值）和证据复核状态（原值）；`userApproval` 中批准人、日期、范围全部为 null，状态“待用户填写” | `steles28.json` sourceVerification、`data/catalog/evidence/*.json` processing、`review_manifest.json` approval 原句；用户决定 C-06 方案 A |
+| 典藏馆卡片、拓本查看器 | 只显示著录字段 | 并列显示“已批准（用户确认可用于项目）”和“证据待第三轮复核” | 同上 |
+| `data/catalog/c08_sync_diff.json`（新增）、`docs/product-upgrade/C08_SYNC_SPEC.md`（新增） | 无 | 15 项操作（5 update / 5 keep_row / 5 set_null），规则 R1–R6；不写 SQLite | 由 `check_catalog_governance.py --emit-sync-diff` 只读生成；用户决定 C-08 方案 A |
+| `scripts/check_catalog_governance.py` 输出 | 列出 5 条下架行的无来源坐标数值 | 只写“已屏蔽：无来源坐标，不输出数值” | 铁律：不展示没有来源的坐标 |
+
+- 没有修改任何史实字段，原 28 份证据文件和用户 SQLite 均未改动。

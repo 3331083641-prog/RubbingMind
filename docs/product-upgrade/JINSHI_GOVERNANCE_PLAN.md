@@ -1,4 +1,10 @@
-# 核对与同步方案（C-06 核验状态链 · C-08 SQLite 与目录）· 待 Green 决定
+# 核对与同步方案（C-06 核验状态链 · C-08 SQLite 与目录）
+
+> **决定（2026-10-19 12:35 Asia/Shanghai，用户经 Green 传达）**
+> - **C-06 选方案 A**：已新增复核台账 `data/catalog/review_ledger.json`（由 `scripts/build_review_ledger.py` 生成，可 `--check`），原 28 份证据文件和 `approved_by_user` 都不改。批准人、日期、范围留空，标“待用户填写”。典藏馆卡片和拓本查看器同时显示“已批准（用户确认可用于项目）”和“证据待第三轮复核”。
+> - **C-08 选方案 A**：同步脚本由架构后端实现（默认只预览、执行前备份、用户确认后写入）。本分支只交付差异清单 `data/catalog/c08_sync_diff.json` 和映射规则 `docs/product-upgrade/C08_SYNC_SPEC.md`；需求见 `JINSHI_BACKEND_REQUESTS.md` 的 BR-05。
+> - 下架行坐标：只读校验脚本和差异清单都不再输出数值（任务 0 的一部分）；其余输出路径另行提交。
+
 
 - 作者：RM-金石史料（Agent 03/06/07）· 2026-10-19（Asia/Shanghai）
 - 本方案**不改** `approved_by_user`，**不改**用户 SQLite（`data/rubbingmind.sqlite`），也不改 `steles28.json` 的任何字段。

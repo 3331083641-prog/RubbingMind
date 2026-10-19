@@ -40,7 +40,10 @@ def test_reports_differences_and_never_writes(tmp_path):
     assert sql['missingInSqlite'] == ['han_01_caoquan']
     assert sql['extraInSqlite'][0]['id'] == 'qing_01_shilang' and sql['extraInSqlite'][0]['retired'] is True
     assert sql['extraInSqlite'][0]['coordinatesUnsourced'] is True
-    assert {'id': 'tang_02_jiucheng', 'column': 'author', 'sqlite': '未核定', 'catalogue': '魏徵'} in sql['fieldDiffs']
+    assert {'id': 'tang_02_jiucheng', 'column': 'author', 'sqlite': '未核定', 'catalogue': '魏徵',
+            'catalogueVerification': 'verified'} in sql['fieldDiffs']
+    # Task 0: unsourced coordinates of retired rows are reported as present but never printed.
+    assert sql['extraInSqlite'][0]['coordinates'] == '已屏蔽：无来源坐标，不输出数值'
     chain = report['C06_statusChain']
     assert len(chain['records']) == 28 and all(r['sha256Match'] for r in chain['records'])
 
@@ -56,3 +59,45 @@ def test_cross_source_differences_match_retrieval_conflicts():
     pairs = {(d['id'], d['field']) for d in report['C05_crossSource']}
     assert pairs == {('tang_01_duobao', 'physicalCollectionInstitution'), ('tang_01_duobao', 'rubbingPeriod'),
                      ('han_01_caoquan', 'physicalCollectionInstitution')}
+
+
+def test_report_never_prints_unsourced_coordinates(tmp_path):
+    db = tmp_path / 'fixture.sqlite'
+    make_db(db)
+    result = subprocess.run([sys.executable, str(SCRIPT), '--db', str(db)], cwd=ROOT, capture_output=True, text=True, encoding='utf-8')
+    assert '120.2' not in result.stdout and '23.0' not in result.stdout
+
+
+def test_sync_diff_operations_follow_spec_rules(tmp_path):
+    db = tmp_path / 'fixture.sqlite'
+    make_db(db)
+    before = hashlib.sha256(db.read_bytes()).hexdigest()
+    out = tmp_path / 'diff.json'
+    code, written = run('--db', str(db), '--emit-sync-diff', str(out))
+    assert code == 0 and hashlib.sha256(db.read_bytes()).hexdigest() == before
+    diff = json.loads(out.read_text(encoding='utf-8'))
+    assert diff['basis']['sqliteSha256'] == before
+    ops = {(o['op'], o['id'], o.get('column')) for o in diff['operations']}
+    assert ('update', 'tang_02_jiucheng', 'author') in ops
+    assert ('set_null', 'qing_01_shilang', None) in ops and ('keep_row', 'qing_01_shilang', None) in ops
+    assert ('insert_from_catalogue', 'han_01_caoquan', None) in ops
+    assert not any(o['op'] == 'delete' for o in diff['operations'])
+    assert '120.2' not in out.read_text(encoding='utf-8')
+    code, check = run('--db', str(db), '--check-sync-diff', str(out))
+    assert code == 0 and check['syncDiffUpToDate'] is True
+
+
+def test_committed_sync_diff_is_well_formed_and_has_no_coordinates():
+    path = ROOT / 'data/catalog/c08_sync_diff.json'
+    text = path.read_text(encoding='utf-8')
+    diff = json.loads(text)
+    assert diff['item'] == 'C-08' and diff['option'] == 'A'
+    assert {'sqliteSha256', 'catalogueSha256'} <= set(diff['basis'])
+    assert diff['basis']['catalogueSha256'] == hashlib.sha256((ROOT / 'data/catalog/steles28.json').read_bytes()).hexdigest()
+    rules = {'R1', 'R2', 'R3', 'R4', 'R5', 'R6'}
+    for op in diff['operations']:
+        assert op['rule'] in rules and op['op'] in ('update', 'hold', 'set_null', 'keep_row', 'insert_from_catalogue')
+        if op['op'] == 'update':
+            assert op['catalogueVerification'] in (None, 'verified')
+    for value in ('120.202', '22.997', '117.939', '40.978', '120.161', '23.001', '120.203', '22.987', '112.241', '30.335'):
+        assert value not in text
