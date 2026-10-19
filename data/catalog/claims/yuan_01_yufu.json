@@ -1,0 +1,618 @@
+{
+  "schemaVersion": 1,
+  "steleId": "yuan_01_yufu",
+  "title": "大元敕藏御服之碑",
+  "curatedBy": "RM-金石史料",
+  "curatedAt": "2026-10-19（Asia/Shanghai）",
+  "selectionBasis": "目录撰文/书丹/篆额 3 项均为 verified；馆方释文 1502 字含撰书篆三人署名与纪年；馆方品名和书体栏之间有可列出的书体差异",
+  "layers": "作品（work）≠原刻载体（stone）≠拓本（rubbing）≠影像（image）；人物、纪年、地点、书体风格、著录分列",
+  "claims": [
+    {
+      "claimId": "yuan_01_yufu:work:title",
+      "entity": "work",
+      "property": "title",
+      "value": "大元敕藏御服之碑（碑文作“大元勅藏御服之碑”）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "title",
+          "value": "大元敕藏御服之碑"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "transcription",
+          "quote": "大元勅藏御服之碑"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_01_yufu:work:dynasty",
+      "entity": "work",
+      "property": "dynasty",
+      "value": "元",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "dynasty",
+          "value": "元代"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_01_yufu:work:content",
+      "entity": "work",
+      "property": "content",
+      "value": "记元廷授御服，藏于终南重阳万寿宫事",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "transcription",
+          "quote": "則爲終南重陽萬壽宮"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "transcription",
+          "quote": "爰授御服。蔵諸名山"
+        }
+      ],
+      "note": "据释文摘句概括，未经人工通读"
+    },
+    {
+      "claimId": "yuan_01_yufu:stone:currentLocation",
+      "entity": "stone",
+      "property": "currentLocation",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "physicalCollectionInstitution",
+          "value": null
+        }
+      ],
+      "missingReason": "目录 physicalCollectionInstitution 为空；本轮未打开原石现藏地的权威来源",
+      "catalogueField": "physicalCollectionInstitution"
+    },
+    {
+      "claimId": "yuan_01_yufu:stone:originalSite",
+      "entity": "stone",
+      "property": "originalSite",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "originalLocation",
+          "value": null
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "transcription",
+          "quote": "則爲終南重陽萬壽宮"
+        }
+      ],
+      "missingReason": "目录 originalLocation 为空；碑文只记御服藏于终南重阳万寿宫，没有写立碑地点，不能据此推定"
+    },
+    {
+      "claimId": "yuan_01_yufu:rubbing:holder",
+      "entity": "rubbing",
+      "property": "holder",
+      "value": "台北故宫博物院，贈拓000308",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "collectionNumber",
+          "value": "贈拓000308"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/yuan_01_yufu.json",
+          "field": "officialExtractedText",
+          "quote": "贈拓000308"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_01_yufu:rubbing:museumTitle",
+      "entity": "rubbing",
+      "property": "museumTitle",
+      "value": "元趙孟頫小楷書大元勑藏御服之碑墨拓本冊",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/yuan_01_yufu.json",
+          "field": "officialExtractedText",
+          "quote": "元趙孟頫小楷書大元勑藏御服之碑墨拓本冊"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_01_yufu:rubbing:format",
+      "entity": "rubbing",
+      "property": "format",
+      "value": "一冊：十三開（本幅十三開二十六幅）；本幅 21.3×11.1 厘米；紙本",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/yuan_01_yufu.json",
+          "field": "officialExtractedText",
+          "quote": "一冊：十三開（本幅十三開二十六幅）"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/yuan_01_yufu.json",
+          "field": "officialExtractedText",
+          "quote": "本幅21.3×11.1"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_01_yufu:rubbing:period",
+      "entity": "rubbing",
+      "property": "period",
+      "value": "封签作“初拓”",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/yuan_01_yufu.json",
+          "field": "officialExtractedText",
+          "quote": "初拓趙子昂書御服碑"
+        }
+      ],
+      "catalogueField": "rubbingPeriod",
+      "catalogueValue": "未核定；不据拓印年改变朝代",
+      "note": "张铣封签的说法，不是年代鉴定；目录为“未核定”，不升为已验证"
+    },
+    {
+      "claimId": "yuan_01_yufu:rubbing:sourceStone",
+      "entity": "rubbing",
+      "property": "sourceStone",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/yuan_01_yufu.json",
+          "field": "officialExtractedText",
+          "quote": "元趙孟頫小楷書"
+        }
+      ],
+      "missingReason": "品名作“小楷書”，但原石尺寸、所在地都没有来源，无法判断这件拓本拓自哪一块石"
+    },
+    {
+      "claimId": "yuan_01_yufu:image:sourceSha256",
+      "entity": "image",
+      "property": "sourceSha256",
+      "value": "03fd0e11841b4f519c9ed1c9676f09d1e7415d544af7109f55b83af06f1f09c6",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "sourceVerification.sourceSha256",
+          "value": "03fd0e11841b4f519c9ed1c9676f09d1e7415d544af7109f55b83af06f1f09c6"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/yuan_01_yufu.json",
+          "field": "reviewedMetadata.source_sha256",
+          "quote": "03fd0e11841b4f519c9ed1c9676f09d1e7415d544af7109f55b83af06f1f09c6"
+        }
+      ],
+      "note": "目录与证据文件的原图 SHA-256 一致；84 张部署影像另由 ASSET_FREEZE.json 冻结核对"
+    },
+    {
+      "claimId": "yuan_01_yufu:image:license",
+      "entity": "image",
+      "property": "license",
+      "value": "CC BY 4.0",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "license",
+          "value": "CC BY 4.0"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "attribution",
+          "value": "大元敕藏御服之碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_01_yufu:image:derivation",
+      "entity": "image",
+      "property": "derivation",
+      "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "modifications",
+          "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+        }
+      ],
+      "note": "影像是拓本数字影像的展示派生，不是原石照片，也不是修复结果"
+    },
+    {
+      "claimId": "yuan_01_yufu:person:author",
+      "entity": "person",
+      "property": "author",
+      "value": "赵世延（碑文作“正奉大夫中書參知政事臣趙世延奉勅譔”）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "author",
+          "value": "赵世延"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "transcription",
+          "quote": "臣趙世延奉勅譔"
+        }
+      ],
+      "catalogueField": "author"
+    },
+    {
+      "claimId": "yuan_01_yufu:person:calligrapher",
+      "entity": "person",
+      "property": "calligrapher",
+      "value": "赵孟頫",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "calligrapher",
+          "value": "赵孟頫"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "transcription",
+          "quote": "臣趙孟頫奉勅書"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/yuan_01_yufu.json",
+          "field": "officialExtractedText",
+          "quote": "趙孟頫,ZhaoMengfu"
+        }
+      ],
+      "catalogueField": "calligrapher"
+    },
+    {
+      "claimId": "yuan_01_yufu:person:titleCalligrapher",
+      "entity": "person",
+      "property": "titleCalligrapher",
+      "value": "李孟",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "titleCalligrapher",
+          "value": "李孟"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "transcription",
+          "quote": "秦國公臣李孟奉勅篆額"
+        }
+      ],
+      "catalogueField": "titleCalligrapher"
+    },
+    {
+      "claimId": "yuan_01_yufu:person:engraver",
+      "entity": "person",
+      "property": "engraver",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "engraver",
+          "value": "未核定"
+        }
+      ],
+      "missingReason": "目录未核定；释文未见刻工署名",
+      "catalogueField": "engraver"
+    },
+    {
+      "claimId": "yuan_01_yufu:person:steleSubject",
+      "entity": "person",
+      "property": "steleSubject",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "steleSubject",
+          "value": "未核定"
+        }
+      ],
+      "missingReason": "纪事碑，不是人物碑志；目录未核定",
+      "catalogueField": "steleSubject"
+    },
+    {
+      "claimId": "yuan_01_yufu:date:era",
+      "entity": "date",
+      "property": "era",
+      "value": "延祐二年三月三日",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "transcription",
+          "quote": "延祐二年三月三日"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_01_yufu:date:ce",
+      "entity": "date",
+      "property": "ce",
+      "value": 1315,
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "originalYearCE",
+          "value": 1315
+        }
+      ],
+      "note": "目录值；年号起始年（延祐元年=1314）取通行年表，本轮没有打开外部来源，馆方释文也没有公元注记"
+    },
+    {
+      "claimId": "yuan_01_yufu:date:yearCrossCheck",
+      "entity": "date",
+      "property": "yearCrossCheck",
+      "value": "部分互证：碑文没有写年干支；推算 1315 年为乙卯，无从对照",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "transcription",
+          "quote": "延祐二年三月三日"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "originalYearCE",
+          "value": 1315
+        }
+      ],
+      "derivation": {
+        "era": "延祐二年",
+        "ce": 1315,
+        "computedGanzhi": "乙卯",
+        "inscriptionGanzhi": null,
+        "method": "(ce-4) mod 60，甲子=0",
+        "result": "partial"
+      }
+    },
+    {
+      "claimId": "yuan_01_yufu:place:relatedSite",
+      "entity": "place",
+      "property": "relatedSite",
+      "value": "终南重阳万寿宫（御服收藏处）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "transcription",
+          "quote": "則爲終南重陽萬壽宮"
+        }
+      ],
+      "region": {
+        "historicalName": "终南重阳万寿宫",
+        "modernRegion": "未核实",
+        "precision": "region"
+      },
+      "note": "释文原文；现代地名对应本轮未核实，不给点位"
+    },
+    {
+      "claimId": "yuan_01_yufu:place:rubbing",
+      "entity": "place",
+      "property": "rubbingHolder",
+      "value": "台北故宫博物院",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        }
+      ],
+      "region": {
+        "modernRegion": "台北市",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "yuan_01_yufu:style:script",
+      "entity": "script_style",
+      "property": "script",
+      "value": null,
+      "status": "conflict",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_01_yufu",
+          "field": "scriptType",
+          "value": "行楷书"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/yuan_01_yufu.json",
+          "field": "officialExtractedText",
+          "quote": "行楷書"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/yuan_01_yufu.json",
+          "field": "officialExtractedText",
+          "quote": "元趙孟頫小楷書"
+        }
+      ],
+      "alternatives": [
+        {
+          "value": "行楷书（目录、馆方书体栏）",
+          "evidenceLevel": "已验证",
+          "sources": [
+            {
+              "type": "catalogue",
+              "path": "data/catalog/steles28.json",
+              "id": "yuan_01_yufu",
+              "field": "scriptType",
+              "value": "行楷书"
+            },
+            {
+              "type": "file",
+              "path": "data/catalog/evidence/yuan_01_yufu.json",
+              "field": "officialExtractedText",
+              "quote": "行楷書"
+            }
+          ]
+        },
+        {
+          "value": "小楷书（馆方品名）",
+          "evidenceLevel": "已验证",
+          "sources": [
+            {
+              "type": "file",
+              "path": "data/catalog/evidence/yuan_01_yufu.json",
+              "field": "officialExtractedText",
+              "quote": "元趙孟頫小楷書"
+            }
+          ]
+        }
+      ],
+      "note": "同一份馆方资料表里，书体栏与品名的说法不同，原样并列"
+    },
+    {
+      "claimId": "yuan_01_yufu:style:note",
+      "entity": "script_style",
+      "property": "styleNote",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/yuan_01_yufu.json",
+          "field": "officialExtractedText",
+          "quote": "初拓趙子昂書御服碑"
+        }
+      ],
+      "missingReason": "本轮没有打开有出处的风格评述；馆方资料表没有题跋评语"
+    },
+    {
+      "claimId": "yuan_01_yufu:bibliography:npm",
+      "entity": "bibliography",
+      "property": "catalogueReference",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/yuan_01_yufu.json",
+          "field": "officialExtractedText",
+          "quote": "元趙孟頫小楷書大元勑藏御服之碑墨拓本冊"
+        }
+      ],
+      "missingReason": "台北故宫资料表没有“參考資料”栏"
+    }
+  ]
+}

@@ -114,3 +114,21 @@
 
 - 4 个归档 JSON（`replacement_mapping.json`、`retired_steles.json`、`retired_database_records.json`、`museum_database_backup.json`）**保留原值不改**。它们是下架和迁移的历史记录，API 和静态目录都不提供；测试确认这些文件不会被 `/api`、`/static`、`/assets` 或前端数据带出。
 - 没有修改任何史实字段。
+
+## 2026-10-19 · 逐件深化第 1 批：6 件 claim（只增不改）
+
+- 新增 `data/catalog/claims/schema.json`、`index.json`，以及 6 份 claim 文件：tang_01_duobao、han_01_caoquan、tang_02_jiucheng、tang_04_xuanmita、yuan_01_yufu、ming_02_luxianzhi。`steles28.json`、证据文件和史料图谱**都没改**。
+- 挑选依据见 `index.json` 的 `selectionRule`：tang_01、han_01 是必选；其余 4 件按目录 verified 角色字段数、馆方释文长度、可打开的官方来源数挑选。
+- 来源：仓库文件（目录字段、台北故宫资料表、释文）的引文都经测试逐字核对。外部只引用本轮实际打开的 7 个页面（`index.json` 的 `openedUrls`）：西安碑林 4 页、故宫博物院、国家博物馆、宝鸡市文物局。陕西省文物局名录页返回 504，未引用。
+- 本批发现的异文和互证问题（都已原样并列，**没有改任何字段**）：
+
+| 文物 | 问题 | 来源 |
+|---|---|---|
+| tang_01 | 碑文“四月乙丑朔廿二日戊戌”：按乙丑朔顺推，廿二日应为丙戌，相差 12 日，待用历表复核；释文作“戊戍” | 台北故宫释文；干支序推算 |
+| tang_02 | 原石现藏地：故宫“立于麟游……今石尚存”、宝鸡市文物局列为本市碑刻 vs 国家博物馆“原碑今存于陕西省西安市碑林博物馆” | https://www.dpm.org.cn/collection/impres/234546.html ；http://wwj.baoji.gov.cn/col1896/col1884/202308/t20230801_824609.html ；https://www.chnmuseum.cn/zp/zpml/gjwxbt/201912/t20191211_179521.shtml |
+| tang_02 | 太宗驾临年：碑文“貞觀六年孟夏” vs 故宫介绍“贞观七年四月”；碑高：宝鸡“通高326厘米” vs 故宫“碑高2.44m” | 同上 |
+| tang_04 | 移入碑林时间：碑林两条目分别作“宋元祐年间”和“1103年”；台北故宫品名、封签都作“小楷”，与碑林原石（高 386 厘米）是否同石未核实 | https://www.beilin-museum.com/index.php?a=index&aid=2998&c=View&lang=en&m=home ；https://www.beilin-museum.com/index.php?a=index&aid=148&c=View&m=home ；台北故宫资料表 |
+| yuan_01 | 书体：馆方书体栏“行楷書” vs 品名“小楷書” | 台北故宫资料表 |
+| ming_02 | 作品性质：馆方分类“拓片” vs 李葆恂题跋“此潯州知府陸君墓志草稿”，关系到是否存在原刻载体 | 台北故宫资料表 |
+
+- 目录中未核定的字段（如 tang_01、han_01 的原石现藏地、tang_01 的拓本年代），claim 最高只到“有限支持”，由测试强制。

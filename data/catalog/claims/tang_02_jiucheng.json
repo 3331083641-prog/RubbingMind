@@ -1,0 +1,853 @@
+{
+  "schemaVersion": 1,
+  "steleId": "tang_02_jiucheng",
+  "title": "九成宫醴泉铭",
+  "curatedBy": "RM-金石史料",
+  "curatedAt": "2026-10-19（Asia/Shanghai）",
+  "selectionBasis": "目录撰文、书丹均为 verified；馆方释文 1413 字含撰书署名与纪年；故宫博物院、国家博物馆、宝鸡市文物局 3 个官方页面可开，原石现藏地有可列出的异说",
+  "layers": "作品（work）≠原刻载体（stone）≠拓本（rubbing）≠影像（image）；人物、纪年、地点、书体风格、著录分列",
+  "claims": [
+    {
+      "claimId": "tang_02_jiucheng:work:title",
+      "entity": "work",
+      "property": "title",
+      "value": "九成宫醴泉铭",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_02_jiucheng",
+          "field": "title",
+          "value": "九成宫醴泉铭"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_02_jiucheng",
+          "field": "transcription",
+          "quote": "九成宮醴泉銘"
+        },
+        {
+          "type": "url",
+          "url": "https://www.dpm.org.cn/collection/impres/234546.html",
+          "publisher": "故宫博物院",
+          "title": "宋拓唐九成宫醴泉铭",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "《九成宫醴泉铭》"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_02_jiucheng:work:dynasty",
+      "entity": "work",
+      "property": "dynasty",
+      "value": "唐",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_02_jiucheng",
+          "field": "dynasty",
+          "value": "唐代"
+        },
+        {
+          "type": "url",
+          "url": "https://www.dpm.org.cn/collection/impres/234546.html",
+          "publisher": "故宫博物院",
+          "title": "宋拓唐九成宫醴泉铭",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "唐碑，魏徵撰，欧阳询书"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_02_jiucheng:work:content",
+      "entity": "work",
+      "property": "content",
+      "value": "记九成宫（隋仁寿宫）来历及唐太宗在宫中发现醴泉事",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_02_jiucheng",
+          "field": "transcription",
+          "quote": "皇帝避暑乎九成之宮。此則随之仁壽宮也"
+        },
+        {
+          "type": "url",
+          "url": "http://wwj.baoji.gov.cn/col1896/col1884/202308/t20230801_824609.html",
+          "publisher": "宝鸡市文物局",
+          "title": "我市5通碑刻入选全国第一批古代名碑名刻文物名录",
+          "sourceKind": "official_government",
+          "accessedAt": "2026-10-19",
+          "quote": "全文记述了九成宫的来历，并介绍了唐太宗在九成宫避暑时发现醴泉的故事"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_02_jiucheng:stone:currentLocation",
+      "entity": "stone",
+      "property": "currentLocation",
+      "value": null,
+      "status": "conflict",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.dpm.org.cn/collection/impres/234546.html",
+          "publisher": "故宫博物院",
+          "title": "宋拓唐九成宫醴泉铭",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "贞观六年（632年）六月立于麟游（今在陕西宝鸡东北）九成宫。今石尚存，但经剜凿，损泐过多，已非原貌"
+        },
+        {
+          "type": "url",
+          "url": "http://wwj.baoji.gov.cn/col1896/col1884/202308/t20230801_824609.html",
+          "publisher": "宝鸡市文物局",
+          "title": "我市5通碑刻入选全国第一批古代名碑名刻文物名录",
+          "sourceKind": "official_government",
+          "accessedAt": "2026-10-19",
+          "quote": "我市5通碑刻入选，分别是唐九成宫醴泉铭碑"
+        },
+        {
+          "type": "url",
+          "url": "https://www.chnmuseum.cn/zp/zpml/gjwxbt/201912/t20191211_179521.shtml",
+          "publisher": "中国国家博物馆",
+          "title": "九成宫醴泉铭拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "原碑今存于陕西省西安市碑林博物馆"
+        }
+      ],
+      "alternatives": [
+        {
+          "value": "原石在陕西宝鸡麟游（九成宫原地）",
+          "evidenceLevel": "有限支持",
+          "sources": [
+            {
+              "type": "url",
+              "url": "https://www.dpm.org.cn/collection/impres/234546.html",
+              "publisher": "故宫博物院",
+              "title": "宋拓唐九成宫醴泉铭",
+              "sourceKind": "official_museum",
+              "accessedAt": "2026-10-19",
+              "quote": "贞观六年（632年）六月立于麟游（今在陕西宝鸡东北）九成宫。今石尚存，但经剜凿，损泐过多，已非原貌"
+            },
+            {
+              "type": "url",
+              "url": "http://wwj.baoji.gov.cn/col1896/col1884/202308/t20230801_824609.html",
+              "publisher": "宝鸡市文物局",
+              "title": "我市5通碑刻入选全国第一批古代名碑名刻文物名录",
+              "sourceKind": "official_government",
+              "accessedAt": "2026-10-19",
+              "quote": "我市5通碑刻入选，分别是唐九成宫醴泉铭碑"
+            }
+          ],
+          "note": "故宫只说“今石尚存”，没有写现存位置；宝鸡市文物局把它列为本市碑刻"
+        },
+        {
+          "value": "原碑今存于陕西省西安市碑林博物馆",
+          "evidenceLevel": "有限支持",
+          "sources": [
+            {
+              "type": "url",
+              "url": "https://www.chnmuseum.cn/zp/zpml/gjwxbt/201912/t20191211_179521.shtml",
+              "publisher": "中国国家博物馆",
+              "title": "九成宫醴泉铭拓本",
+              "sourceKind": "official_museum",
+              "accessedAt": "2026-10-19",
+              "quote": "原碑今存于陕西省西安市碑林博物馆"
+            }
+          ],
+          "note": "国家博物馆拓本页面的说法"
+        }
+      ],
+      "note": "两种官方来源对原石现藏地说法不同，原样并列，不选边；目录 originalLocation 和 physicalCollectionInstitution 均为空（未核定）。陕西省文物局文保单位名录页本轮打开时超时（504），未能核实",
+      "catalogueField": "physicalCollectionInstitution",
+      "catalogueValue": null
+    },
+    {
+      "claimId": "tang_02_jiucheng:stone:dimensions",
+      "entity": "stone",
+      "property": "dimensions",
+      "value": "通高 326 厘米，上宽 89、下宽 98、厚 29 厘米（宝鸡市文物局）；故宫作“碑高2.44m，宽1.18m”",
+      "status": "asserted",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "url",
+          "url": "http://wwj.baoji.gov.cn/col1896/col1884/202308/t20230801_824609.html",
+          "publisher": "宝鸡市文物局",
+          "title": "我市5通碑刻入选全国第一批古代名碑名刻文物名录",
+          "sourceKind": "official_government",
+          "accessedAt": "2026-10-19",
+          "quote": "通高326厘米，上宽89厘米，下宽98厘米，厚29厘米"
+        },
+        {
+          "type": "url",
+          "url": "https://www.dpm.org.cn/collection/impres/234546.html",
+          "publisher": "故宫博物院",
+          "title": "宋拓唐九成宫醴泉铭",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "碑高2.44m，宽1.18m"
+        }
+      ],
+      "note": "两处尺寸不同（可能是通高与碑身高的口径差别），原样并列"
+    },
+    {
+      "claimId": "tang_02_jiucheng:stone:condition",
+      "entity": "stone",
+      "property": "condition",
+      "value": "“今石尚存，但经剜凿，损泐过多，已非原貌”",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.dpm.org.cn/collection/impres/234546.html",
+          "publisher": "故宫博物院",
+          "title": "宋拓唐九成宫醴泉铭",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "今石尚存，但经剜凿，损泐过多，已非原貌"
+        }
+      ],
+      "note": "馆方评述，不是原石检测"
+    },
+    {
+      "claimId": "tang_02_jiucheng:rubbing:holder",
+      "entity": "rubbing",
+      "property": "holder",
+      "value": "台北故宫博物院，贈拓000362",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_02_jiucheng",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_02_jiucheng",
+          "field": "collectionNumber",
+          "value": "贈拓000362"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_02_jiucheng.json",
+          "field": "officialExtractedText",
+          "quote": "贈拓000362"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_02_jiucheng:rubbing:museumTitle",
+      "entity": "rubbing",
+      "property": "museumTitle",
+      "value": "唐歐陽詢九成宮醴泉銘墨拓本冊",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_02_jiucheng.json",
+          "field": "officialExtractedText",
+          "quote": "唐歐陽詢九成宮醴泉銘墨拓本冊"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_02_jiucheng:rubbing:format",
+      "entity": "rubbing",
+      "property": "format",
+      "value": "一冊：二十一開（本幅二十一開四十一幅）；本幅 12.4×6.9 厘米；紙本",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_02_jiucheng.json",
+          "field": "officialExtractedText",
+          "quote": "一冊：二十一開（本幅二十一開四十一幅）"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_02_jiucheng.json",
+          "field": "officialExtractedText",
+          "quote": "本幅12.4x6.9"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_02_jiucheng:rubbing:period",
+      "entity": "rubbing",
+      "property": "period",
+      "value": "题跋称宋人拓本（光绪十年菶梧跋：“所購宋人拓本也”）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_02_jiucheng.json",
+          "field": "officialExtractedText",
+          "quote": "此王觀察官豫章時。所購宋人拓本也"
+        }
+      ],
+      "catalogueField": "rubbingPeriod",
+      "catalogueValue": "未核定；不据拓印年改变朝代",
+      "note": "题跋者观点；馆方品名没写拓制年代，目录为“未核定”，不升为已验证"
+    },
+    {
+      "claimId": "tang_02_jiucheng:image:sourceSha256",
+      "entity": "image",
+      "property": "sourceSha256",
+      "value": "957bd964c1ca5e9b3c012d4e0588b0d913042ab9a49e96741c305b1f7b6869f8",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_02_jiucheng",
+          "field": "sourceVerification.sourceSha256",
+          "value": "957bd964c1ca5e9b3c012d4e0588b0d913042ab9a49e96741c305b1f7b6869f8"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_02_jiucheng.json",
+          "field": "reviewedMetadata.source_sha256",
+          "quote": "957bd964c1ca5e9b3c012d4e0588b0d913042ab9a49e96741c305b1f7b6869f8"
+        }
+      ],
+      "note": "目录与证据文件的原图 SHA-256 一致；84 张部署影像另由 ASSET_FREEZE.json 冻结核对"
+    },
+    {
+      "claimId": "tang_02_jiucheng:image:license",
+      "entity": "image",
+      "property": "license",
+      "value": "CC BY 4.0",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_02_jiucheng",
+          "field": "license",
+          "value": "CC BY 4.0"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_02_jiucheng",
+          "field": "attribution",
+          "value": "九成宫醴泉铭。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_02_jiucheng:image:derivation",
+      "entity": "image",
+      "property": "derivation",
+      "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_02_jiucheng",
+          "field": "modifications",
+          "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+        }
+      ],
+      "note": "影像是拓本数字影像的展示派生，不是原石照片，也不是修复结果"
+    },
+    {
+      "claimId": "tang_02_jiucheng:person:author",
+      "entity": "person",
+      "property": "author",
+      "value": "魏徵（碑文作“臣魏徵奉□撰”）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_02_jiucheng",
+          "field": "author",
+          "value": "魏徵"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_02_jiucheng",
+          "field": "transcription",
+          "quote": "臣魏徵奉"
+        },
+        {
+          "type": "url",
+          "url": "https://www.dpm.org.cn/collection/impres/234546.html",
+          "publisher": "故宫博物院",
+          "title": "宋拓唐九成宫醴泉铭",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "魏徵撰"
+        }
+      ],
+      "catalogueField": "author",
+      "note": "释文“奉”与“撰”之间有一个无法显示的字符（U+0000，疑为“敕”字或空格），以□表示"
+    },
+    {
+      "claimId": "tang_02_jiucheng:person:calligrapher",
+      "entity": "person",
+      "property": "calligrapher",
+      "value": "欧阳询（碑文作“臣歐陽詢奉□書”）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_02_jiucheng",
+          "field": "calligrapher",
+          "value": "欧阳询"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_02_jiucheng",
+          "field": "transcription",
+          "quote": "臣歐陽詢奉"
+        },
+        {
+          "type": "url",
+          "url": "https://www.dpm.org.cn/collection/impres/234546.html",
+          "publisher": "故宫博物院",
+          "title": "宋拓唐九成宫醴泉铭",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "欧阳询书"
+        }
+      ],
+      "catalogueField": "calligrapher"
+    },
+    {
+      "claimId": "tang_02_jiucheng:person:titleCalligrapher",
+      "entity": "person",
+      "property": "titleCalligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_02_jiucheng",
+          "field": "titleCalligrapher",
+          "value": "未核定"
+        },
+        {
+          "type": "url",
+          "url": "https://www.dpm.org.cn/collection/impres/234546.html",
+          "publisher": "故宫博物院",
+          "title": "宋拓唐九成宫醴泉铭",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "碑额篆书"
+        }
+      ],
+      "missingReason": "目录未核定；故宫只记“碑额篆书”，没有写篆额者",
+      "catalogueField": "titleCalligrapher"
+    },
+    {
+      "claimId": "tang_02_jiucheng:person:engraver",
+      "entity": "person",
+      "property": "engraver",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_02_jiucheng",
+          "field": "engraver",
+          "value": "未核定"
+        }
+      ],
+      "missingReason": "目录未核定；本轮来源未记刻工",
+      "catalogueField": "engraver"
+    },
+    {
+      "claimId": "tang_02_jiucheng:person:steleSubject",
+      "entity": "person",
+      "property": "steleSubject",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_02_jiucheng",
+          "field": "steleSubject",
+          "value": "未核定"
+        }
+      ],
+      "missingReason": "宫苑纪事铭文，不是人物碑志；目录未核定",
+      "catalogueField": "steleSubject"
+    },
+    {
+      "claimId": "tang_02_jiucheng:date:ce",
+      "entity": "date",
+      "property": "ce",
+      "value": 632,
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_02_jiucheng",
+          "field": "originalYearCE",
+          "value": 632
+        },
+        {
+          "type": "url",
+          "url": "https://www.dpm.org.cn/collection/impres/234546.html",
+          "publisher": "故宫博物院",
+          "title": "宋拓唐九成宫醴泉铭",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "贞观六年（632年）六月立"
+        },
+        {
+          "type": "url",
+          "url": "https://www.chnmuseum.cn/zp/zpml/gjwxbt/201912/t20191211_179521.shtml",
+          "publisher": "中国国家博物馆",
+          "title": "九成宫醴泉铭拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "唐贞观六年（632）刻石上碑"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_02_jiucheng:date:erectionMonth",
+      "entity": "date",
+      "property": "erectionMonth",
+      "value": "贞观六年六月立（故宫）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.dpm.org.cn/collection/impres/234546.html",
+          "publisher": "故宫博物院",
+          "title": "宋拓唐九成宫醴泉铭",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "贞观六年（632年）六月立"
+        }
+      ],
+      "note": "碑文“孟夏之月”指太宗避暑的时间，不是立碑月份；立碑月份只有故宫一个来源"
+    },
+    {
+      "claimId": "tang_02_jiucheng:date:yearCrossCheck",
+      "entity": "date",
+      "property": "yearCrossCheck",
+      "value": "部分互证：贞观六年＝632（故宫、国博、目录一致）；碑文不写年干支，推算 632 年为壬辰，无从对照",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_02_jiucheng",
+          "field": "transcription",
+          "quote": "維貞觀六年孟夏之月"
+        },
+        {
+          "type": "url",
+          "url": "https://www.dpm.org.cn/collection/impres/234546.html",
+          "publisher": "故宫博物院",
+          "title": "宋拓唐九成宫醴泉铭",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "贞观六年（632年）"
+        }
+      ],
+      "derivation": {
+        "era": "贞观六年",
+        "ce": 632,
+        "computedGanzhi": "壬辰",
+        "inscriptionGanzhi": null,
+        "method": "(ce-4) mod 60，甲子=0",
+        "result": "partial"
+      }
+    },
+    {
+      "claimId": "tang_02_jiucheng:date:visitYear",
+      "entity": "date",
+      "property": "eventDate",
+      "value": null,
+      "status": "conflict",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_02_jiucheng",
+          "field": "transcription",
+          "quote": "維貞觀六年孟夏之月。皇帝避暑乎九成之宮"
+        },
+        {
+          "type": "url",
+          "url": "https://www.dpm.org.cn/collection/impres/234546.html",
+          "publisher": "故宫博物院",
+          "title": "宋拓唐九成宫醴泉铭",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "碑载：贞观七年四月唐太宗到此"
+        }
+      ],
+      "alternatives": [
+        {
+          "value": "貞觀六年孟夏之月（碑文）",
+          "evidenceLevel": "已验证",
+          "sources": [
+            {
+              "type": "file",
+              "path": "data/catalog/steles28.json",
+              "id": "tang_02_jiucheng",
+              "field": "transcription",
+              "quote": "維貞觀六年孟夏之月。皇帝避暑乎九成之宮"
+            }
+          ]
+        },
+        {
+          "value": "贞观七年四月（故宫介绍文字）",
+          "evidenceLevel": "有限支持",
+          "sources": [
+            {
+              "type": "url",
+              "url": "https://www.dpm.org.cn/collection/impres/234546.html",
+              "publisher": "故宫博物院",
+              "title": "宋拓唐九成宫醴泉铭",
+              "sourceKind": "official_museum",
+              "accessedAt": "2026-10-19",
+              "quote": "碑载：贞观七年四月唐太宗到此"
+            }
+          ]
+        }
+      ],
+      "note": "太宗驾临、发现醴泉的年份，碑文释文与故宫介绍相差一年，原样并列；本条与立碑年 632 无关"
+    },
+    {
+      "claimId": "tang_02_jiucheng:place:originalSite",
+      "entity": "place",
+      "property": "originalSite",
+      "value": "九成宫（隋仁寿宫）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_02_jiucheng",
+          "field": "transcription",
+          "quote": "此則随之仁壽宮也"
+        },
+        {
+          "type": "url",
+          "url": "https://www.dpm.org.cn/collection/impres/234546.html",
+          "publisher": "故宫博物院",
+          "title": "宋拓唐九成宫醴泉铭",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "立于麟游（今在陕西宝鸡东北）九成宫"
+        }
+      ],
+      "region": {
+        "historicalName": "九成宫（隋仁寿宫，唐永徽间改万年宫）",
+        "modernRegion": "陕西省宝鸡市麟游县",
+        "precision": "region"
+      },
+      "note": "故宫：“在今陕西麟游县西”；遗址点位不给坐标"
+    },
+    {
+      "claimId": "tang_02_jiucheng:place:rubbing",
+      "entity": "place",
+      "property": "rubbingHolder",
+      "value": "台北故宫博物院",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_02_jiucheng",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        }
+      ],
+      "region": {
+        "modernRegion": "台北市",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "tang_02_jiucheng:style:script",
+      "entity": "script_style",
+      "property": "script",
+      "value": "楷书（碑文）；碑额篆书",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_02_jiucheng",
+          "field": "scriptType",
+          "value": "楷书"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_02_jiucheng.json",
+          "field": "officialExtractedText",
+          "quote": "楷書"
+        },
+        {
+          "type": "url",
+          "url": "https://www.dpm.org.cn/collection/impres/234546.html",
+          "publisher": "故宫博物院",
+          "title": "宋拓唐九成宫醴泉铭",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "碑额篆书，碑文楷书"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_02_jiucheng:style:museumNote",
+      "entity": "script_style",
+      "property": "styleNote",
+      "value": "“浑厚沉劲，意态饱满……表现了溶隶于楷的特点”",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.dpm.org.cn/collection/impres/234546.html",
+          "publisher": "故宫博物院",
+          "title": "宋拓唐九成宫醴泉铭",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "浑厚沉劲，意态饱满"
+        },
+        {
+          "type": "url",
+          "url": "https://www.dpm.org.cn/collection/impres/234546.html",
+          "publisher": "故宫博物院",
+          "title": "宋拓唐九成宫醴泉铭",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "这些表现了溶隶于楷的特点"
+        }
+      ],
+      "note": "故宫评述"
+    },
+    {
+      "claimId": "tang_02_jiucheng:style:historicalComment",
+      "entity": "script_style",
+      "property": "historicalComment",
+      "value": "郭尚先评：“《醴泉铭》高华浑补，体方笔圆”",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.dpm.org.cn/collection/impres/234546.html",
+          "publisher": "故宫博物院",
+          "title": "宋拓唐九成宫醴泉铭",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "《醴泉铭》高华浑补，体方笔圆"
+        }
+      ],
+      "note": "故宫转引，未核原书"
+    },
+    {
+      "claimId": "tang_02_jiucheng:style:museumNote2",
+      "entity": "script_style",
+      "property": "styleNote",
+      "value": "“笔力刚健，结构谨严，独具情态，被称为‘欧体’”",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.chnmuseum.cn/zp/zpml/gjwxbt/201912/t20191211_179521.shtml",
+          "publisher": "中国国家博物馆",
+          "title": "九成宫醴泉铭拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "笔力刚健，结构谨严，独具情态，被称为“欧体”"
+        }
+      ],
+      "note": "国家博物馆评述"
+    },
+    {
+      "claimId": "tang_02_jiucheng:bibliography:dpm",
+      "entity": "bibliography",
+      "property": "workReferences",
+      "value": "欧阳修《集古录》、洪适《隶释》、阮元《汉延熹西岳华山庙碑考》、朱文钧《欧斋石墨题跋》、张彦生《善本碑帖录》、马子云和施安昌《碑帖鉴定》等著录（据故宫）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.dpm.org.cn/collection/impres/234546.html",
+          "publisher": "故宫博物院",
+          "title": "宋拓唐九成宫醴泉铭",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "宋欧阳修《集古录》、洪适《隶释》，清阮元《汉延熹西岳华山庙碑考》，朱文钧《欧斋石墨题跋》，张彦生《善本碑帖录》，马子云、施安昌《碑帖鉴定》等书著录"
+        }
+      ],
+      "note": "故宫列出的是作品或其藏本的著录，不是台北故宫这件拓本的著录；未逐书核对"
+    },
+    {
+      "claimId": "tang_02_jiucheng:bibliography:npm",
+      "entity": "bibliography",
+      "property": "catalogueReference",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_02_jiucheng.json",
+          "field": "officialExtractedText",
+          "quote": "唐歐陽詢九成宮醴泉銘墨拓本冊"
+        }
+      ],
+      "missingReason": "台北故宫这件拓本的资料表没有“參考資料”栏"
+    }
+  ]
+}

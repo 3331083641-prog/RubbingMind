@@ -1,0 +1,314 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rm:schema:catalog-claims:v1",
+  "title": "RubbingMind 逐件 claim（作品/原石/拓本/影像/人物/纪年/地点/书体风格/著录）",
+  "description": "作品≠原刻载体≠拓本≠影像。每条 claim 都带来源和四级证据。缺失项保持 value=null，并写明 missingReason。异文用 status=conflict 并列 alternatives。不输出坐标，地点只到区域级。",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "steleId",
+    "title",
+    "curatedBy",
+    "curatedAt",
+    "selectionBasis",
+    "layers",
+    "claims"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "steleId": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "curatedBy": {
+      "type": "string"
+    },
+    "curatedAt": {
+      "type": "string"
+    },
+    "selectionBasis": {
+      "type": "string"
+    },
+    "layers": {
+      "type": "string"
+    },
+    "claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/claim"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "claim": {
+      "type": "object",
+      "required": [
+        "claimId",
+        "entity",
+        "property",
+        "value",
+        "status",
+        "evidenceLevel",
+        "sources"
+      ],
+      "properties": {
+        "claimId": {
+          "type": "string"
+        },
+        "entity": {
+          "enum": [
+            "work",
+            "stone",
+            "rubbing",
+            "image",
+            "person",
+            "date",
+            "place",
+            "script_style",
+            "bibliography"
+          ]
+        },
+        "property": {
+          "type": "string"
+        },
+        "value": {},
+        "status": {
+          "enum": [
+            "asserted",
+            "conflict",
+            "missing"
+          ]
+        },
+        "evidenceLevel": {
+          "enum": [
+            "已验证",
+            "有限支持",
+            "待人工复核",
+            "未评测"
+          ]
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          }
+        },
+        "alternatives": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/$defs/alternative"
+          }
+        },
+        "missingReason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "note": {
+          "type": "string"
+        },
+        "catalogueField": {
+          "type": "string"
+        },
+        "catalogueValue": {},
+        "region": {
+          "$ref": "#/$defs/region"
+        },
+        "derivation": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "oneOf": [
+        {
+          "properties": {
+            "type": {
+              "const": "catalogue"
+            },
+            "path": {
+              "const": "data/catalog/steles28.json"
+            },
+            "id": {
+              "type": "string"
+            },
+            "field": {
+              "type": "string"
+            },
+            "value": {}
+          },
+          "required": [
+            "type",
+            "path",
+            "id",
+            "field",
+            "value"
+          ]
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "file"
+            },
+            "path": {
+              "type": "string"
+            },
+            "field": {
+              "type": "string"
+            },
+            "quote": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "type",
+            "path",
+            "field",
+            "quote"
+          ]
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "url"
+            },
+            "url": {
+              "type": "string",
+              "pattern": "^https?://"
+            },
+            "publisher": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "sourceKind": {
+              "enum": [
+                "official_museum",
+                "official_government",
+                "media",
+                "encyclopedia"
+              ]
+            },
+            "accessedAt": {
+              "type": "string"
+            },
+            "quote": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "type",
+            "url",
+            "publisher",
+            "title",
+            "sourceKind",
+            "accessedAt",
+            "quote"
+          ]
+        }
+      ]
+    },
+    "alternative": {
+      "type": "object",
+      "required": [
+        "value",
+        "evidenceLevel",
+        "sources"
+      ],
+      "properties": {
+        "value": {},
+        "evidenceLevel": {
+          "enum": [
+            "已验证",
+            "有限支持",
+            "待人工复核",
+            "未评测"
+          ]
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/source"
+          }
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "region": {
+      "type": "object",
+      "required": [
+        "modernRegion",
+        "precision"
+      ],
+      "properties": {
+        "historicalName": {
+          "type": "string"
+        },
+        "modernRegion": {
+          "type": "string"
+        },
+        "precision": {
+          "const": "region"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "x-evidenceLevels": {
+    "已验证": "目录核验状态为 verified 的字段，或馆方一手资料表/释文原文直接记载、可逐字复核",
+    "有限支持": "单一官方页面、题跋观点、转引评述，或目录该字段未核定",
+    "待人工复核": "来源之间冲突、推算互证不上，或需要专业判断",
+    "未评测": "缺失项，或本轮没有评估"
+  },
+  "x-requiredCoverage": {
+    "work": [
+      "title",
+      "dynasty"
+    ],
+    "stone": [
+      "currentLocation"
+    ],
+    "rubbing": [
+      "holder",
+      "period"
+    ],
+    "image": [
+      "sourceSha256",
+      "license"
+    ],
+    "person": [
+      "author",
+      "calligrapher",
+      "engraver",
+      "steleSubject"
+    ],
+    "date": [
+      "yearCrossCheck"
+    ],
+    "place": [
+      "rubbingHolder"
+    ],
+    "script_style": [
+      "script"
+    ],
+    "bibliography": []
+  }
+}
