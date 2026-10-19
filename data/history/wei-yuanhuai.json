@@ -9,14 +9,16 @@
   "identity": "元怀史实可核；本地图片与馆藏编号待核，绝不沿用吴高黎记录",
   "rubbingPeriod": "年代待考",
   "collectionNumber": "未核实",
-  "originalStoneCollection": "待考",
+  "originalStoneCollection": "未核实：开封市博物馆（百度百科）／河南博物院（搜狐转述1996年调拨），两说并列",
   "digitalRubbingCollection": "待考",
   "authors": [
     "元怀 · 字宣义，广平王"
   ],
   "sourceIds": [
     "yuan-paper",
-    "local-audit"
+    "local-audit",
+    "baike-yuanhuai",
+    "sohu-yuanhuai"
   ],
   "locations": [
     {
@@ -56,7 +58,7 @@
       "coordinateMethod": "无已核实坐标，不上图",
       "accuracyKm": null,
       "province": null,
-      "note": "村名及原石馆藏尚无一致可靠记录，保留空坐标。",
+      "note": "出土地写法有异：河南省孟津县张阳村（百度百科）／洛阳张羊村（期刊网摘要）；原演示数据“洛阳邙山”无来源。村址坐标未核实，保留空坐标。",
       "regionLocationId": "luoyang"
     }
   ],
