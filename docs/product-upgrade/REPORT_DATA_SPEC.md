@@ -1,7 +1,7 @@
 # REPORT_DATA_SPEC — 评测报告六层数据契约
 
-- 版本：v1（2026-10-19，RM-评测科学家）
-- 基线：`feature/product-grade-upgrade` @ `f0c5886`。配套实现：分支 `agent/eval-sci`（未合并）
+- 版本：v2（2026-10-19，RM-评测科学家；v1 → v2：填入聚类 CI、B15 退化参数核对、E-04 测量原因、E-05 修复状态、机制层文件）
+- 基线：`feature/product-grade-upgrade` @ `f0c5886`。配套实现：分支 `agent/eval-sci`（未合并），代码在 `f21ceaa` 和 `7623a52`，派生数据见同分支后续提交
 - 依据：`docs/product-upgrade/AUDIT_EVALUATION.md`（E-01 … E-12）
 - 适用对象：报告前端（ReportsPage / ExperimentExplorer 的继任页面）和架构后端（main.py / API）
 - 本文件只定义数据与口径，不改 UI 和后端代码。凡是写“必须 / 禁止”的条目，前端验收按字面执行。
@@ -16,7 +16,11 @@
 | BV2 | `experiments/results/2026-10-17-v2/…` | v2 受控退化，1260 行，带 development/test 划分 | 有。`reference/input/output` 和对应 `*Sha256` |
 | BVT | `experiments/results/2026-10-17-v2-text/…` | v2-text，1260 行，划分同上 | 有 |
 | BRT | `experiments/results/2026-10-18-v21-heldout/…` | v2.0/v2.1 同批复测，490 行 | **没有图像**，只有数值和 `diagnosticsOperators` |
-| DER | `experiments/results/<批次>/derived/applied_status.{csv,json}` | 派生标注（本次新增，由 `experiments/derive_applied_status.py` 生成） | 不适用 |
+| DER | `experiments/results/<批次>/derived/applied_status.{csv,json}` | 派生标注（由 `experiments/derive_applied_status.py` 生成） | 不适用 |
+| CI | `experiments/results/{2026-10-17-v2,2026-10-17-v2-text}/derived/ci_by_artifact.{csv,json}` | 按文物聚类 bootstrap CI（`experiments/ci_by_artifact.py`） | 不适用 |
+| NLC | `experiments/results/{2026-10-15,2026-10-17-v2,2026-10-17-v2-text}/derived/negative_lift_causes.{csv,json}` | 负提升的测量原因（E-04，`experiments/derive_negative_lift_causes.py`） | 不适用 |
+| MEC | `experiments/results/{2026-10-17-v2,2026-10-17-v2-text}/derived/mechanism/` | 机制层代表样本（E-18，`experiments/mechanism_cases.py`；说明见 `REPRESENTATIVE_CASES.md`） | 派生 PNG |
+| DGC | `experiments/results/{2026-10-15,2026-10-17-v2,2026-10-17-v2-text}/derived/degradation_check.json` | 退化生成器核对（`experiments/verify_degradation_params.py`） | 不适用 |
 | RUN | `static/results/<stele>/<run>/processing.json` + PNG | 馆藏运行记录（本地，gitignore） | 有 |
 | REG | `GET /api/experiments`（`experiment_registry.batches()`） | 批次清单、限制说明 | — |
 
@@ -43,11 +47,11 @@
 |---|---|---|
 | 逐行改动量 | `D = |int16(out) − int16(in)|`（灰度；3 通道时任一通道 ≠0 即算该像素改动）。`changedPixelCount = Σ[D>0]`，`changedPixelRatio = changedPixelCount / (H·W)`，`maxAbsDiff = max D`，`meanAbsDiff = mean D` | `degradation_analysis.change_stats` |
 | isPassthrough | `changedPixelCount == 0`（判据 `pixel-equal-v1`）。`byteIdentical`（文件 SHA 相同）是充分非必要条件，另列 | 同上；DER 两项都给 |
-| 增益 | `ΔPSNR = PSNR(out, ref) − PSNR(in, ref)`，SSIM、edgeF1 同理；thinStrokeMae 用 `in − out`（越大越好） | 前端可算，DER/结果里已有 `psnr` |
+| 增益 | `ΔPSNR = PSNR(out, ref) − PSNR(in, ref)`，SSIM、edgeF1 同理（输出减输入，越大越好）。thinStrokeMae 越小越好，统一写成“输出减输入”，负值表示改善；CI 文件中 v2 系列没有 thinStrokeMae | CI 文件中的 `*Gain*` 字段 |
 | 差分热图 | `H = |out − in|`（不是 `out − ref`），显示时 `clip(H / max(1, P99(H)), 0, 1)` 映射到单色色带。另提供带符号图 `S = out − in`，用发散色带，0 为中性色。图上必须标注 `maxAbsDiff`、`changedPixelRatio` 和 P99 归一化常数 | 前端计算，或后端以后按需生成 |
 | 误差图 | `E_x = |x − ref|`，x ∈ {in, out}；`ΔE = E_in − E_out`（正值表示更接近参考） | 前端 |
-| 按文物聚类 CI | 对方法 m、退化 d、划分 s：先算每件文物的均值 `ā_k = mean_{strength} metric`；再对 K 件文物做 1000 次有放回重采样；CI = 第 2.5 和 97.5 百分位。与 `run_v2.grouped_summary` 一致。种子要固定并写进输出 | `experiments/run_v2.py: grouped_summary` |
-| 配对增益 CI | 与上相同，但对象换成每件文物的 `mean(ΔPSNR)`。只有 CI 下界 > 0 才能写“提升” | 前端或后端（待实现，见 §8） |
+| 按文物聚类 CI | 对方法 m、退化 d、划分 s 和口径（全部 / 实际处理 / 原图返回）：先算每件文物的均值 `ā_k`；再对 K 件文物做 1000 次有放回重采样，取重采样均值的第 2.5 和 97.5 百分位。**已计算**：seed=20261019，每个 CI 都用新的 `numpy.random.default_rng(20261019)`，K<3 的组标 `ciReliable=false`，空组输出 null | `experiments/ci_by_artifact.py` → CI 文件 |
+| 配对增益 CI | 与上相同，但对象换成每件文物的 `mean(输出 − 同 caseId 的 degraded 行)`。`*GainSign` 取值为 positive（下界 > 0）、negative（上界 < 0）、spans_zero、zero（上下界都正好是 0，即原图返回）。只有 positive 才能写“提升” | 已计算，同上 |
 | 负提升计数 | `ΔPSNR < 0` 的行数；同时按处理/原图返回分开计数（`negativeLiftCountProcessed`） | `compare_v21` 新运行 |
 | 分离均值 | 每个指标都给三种：`MeanAll`、`MeanProcessed`（isPassthrough=false）、`MeanPassthrough`（isPassthrough=true），并带 `processedN / passthroughN / undeterminedN` | `experiments/applied_status.split_means` |
 
@@ -81,11 +85,14 @@
 | `processed` | 改动 ≥1 像素 | 实际处理 |
 | `passthrough` | 0 像素改动，且记录里标为 applicable | 原图返回（未处理） |
 | `passthrough_not_applicable` | 0 像素改动，记录标 not_applicable | 原图返回（判定不适用） |
-| `processed_not_applicable_label` | 记录标 not_applicable，但像素被改动了（E-05：notch 走 NA 分支时 astype(uint8) 截断） | 标为不适用但有改动（E-05） |
+| `processed_not_applicable_label` | 记录标 not_applicable，但像素被改动了（E-05：历史代码中 notch 走 NA 分支时，astype(uint8) 截断改了像素；`7623a52` 起的新代码已改为原样返回，新运行不再出现此状态） | 标为不适用但有改动（E-05，历史数据） |
 | `failed` | 运行出错 | 失败 |
 | `undetermined` | 无图像或无法解码 | 无法判定 |
 
-- E-05 只在本 SPEC 中记录，本次不修：notch 的 NA 分支平均绝对差 0.084（BV2）/ 0.161（BVT），符号为负。`ExperimentExplorer.tsx:37` 的“以原图计入”说法不成立。前端在 notch 卡片上必须显示“不适用分支仍有轻微像素改动（E-05，待修）”。
+- E-05：历史数据中，notch 的 NA 分支平均绝对差为 0.084（BV2）/ 0.161（BVT），符号为负；`ExperimentExplorer.tsx:37` 的“以原图计入”说法对历史批次不成立。
+  - **新代码已修**（`agent/eval-sci` @ `7623a52`）：`algorithm_engine.apply_frequency_domain_filter` 在 notch 没有检出峰对时直接返回输入副本，`details.passthrough=true`。
+  - 历史批次不重跑，只靠 DER 的 `processed_not_applicable_label` 标注。前端 notch 卡片上，历史批次显示“历史批次：不适用分支仍有轻微像素改动（E-05，已在新代码修复）”。
+  - 对单次处理的影响见 §11。
 - BRT 没有图像，因此 `isPassthrough = null`，`undeterminedN = 70`（每个方法），不猜测。允许另列两个**指示量**，必须标“未经像素验证”：
   - `indicatorPsnrDeltaZeroN`：`psnrDeltaFromInput == 0` 的行数；
   - `indicatorCopyOnlyOperatorsN`：`diagnosticsOperators ⊆ {skip_notch, identity, preserve_missing, fallback_identity}` 的行数（按代码阅读，这些算子只复制输入）。
@@ -98,7 +105,7 @@
 | # | 差异 | 检查方式 | 警告文案 |
 |---|---|---|---|
 | C1 | 样本集 | 比较两批的 `sampleId` 集合和源图 SHA；记 Jaccard。B15/BV2 与 BVT/BRT 的文物集合不同，BVT 与 BRT 相同 | “两批样本集不同（重合 x/y 件），差异可能来自样本而非算法。” 若完全相同但其中一批参与过调参：“同一批文物复测，不是独立验证。” |
-| C2 | 退化生成器 | 比较 `config` 中退化类型、强度表、种子、生成代码提交。B15 与 v2 系列退化参数是否相同：待核（逐项比对 config 后填写） | “退化生成方式不同，PSNR 绝对值不可直接比较，只比较同批内相对增益。” |
+| C2 | 退化生成器 | 比较 `config` 中退化类型、强度表、种子、生成代码提交。**B15 与 v2 系列已逐项核对，结论为“不同”**（§10）：强度、参数、种子公式、裁切区域、joint 方法定义都不同 | “退化生成方式不同，PSNR 绝对值不可直接比较，只比较同批内相对增益。” B15 与 v2 互比时必须显示 |
 | C3 | 方法版本 | 比较 `VERSION`、`diagnostics.version` 与提交（v2.0 / v2.1） | “方法版本不同：A 为 v2.0，B 为 v2.1。” |
 | C4 | 汇总口径 | 是否计入 not_applicable 行（`run_ablation.py:122` 排除，`run_v2.py:72` 包含）、是否计入原图返回行、是否按文物聚类。E-06 实例：B15 notch summary 为 n=2、41.364 dB，全行均值为 n=10、27.813 dB | “汇总口径不同（A 排除不适用行，B 全部计入）。已按统一口径重算：…” 前端必须用 DER 的统一口径重算后再显示，不能直接拿两批的 summary.csv 互比 |
 
@@ -131,7 +138,7 @@
 
 | 项目 | 来源 | 派生 | 缺失时 |
 |---|---|---|---|
-| 主表 | DER `summaryBySplitMethod`（同一批次内） | 每格：`MeanProcessed`［聚类 CI］、`processedN/n`；次行灰字：`MeanAll`、`MeanPassthrough` | CI 未算：显示“无 CI”，等级降为有限支持 |
+| 主表 | DER `summaryBySplitMethod` + CI 文件（同一批次内，`degradation='ALL'` 行） | 每格：`MeanProcessed`［聚类 CI］、`processedN/n`；次行灰字：`MeanAll`、`MeanPassthrough` | CI 为 null 或 `ciReliable=false`：显示“CI 不可靠（文物数 K）”，等级降为有限支持 |
 | 划分 | `split` ∈ {development, test} | 默认显示 **test**。行没有 split 字段（B15、BRT）时，必须显示“本批未划分”，**不得**像 E-07 那样把无 split 的行混进 test | — |
 | 相对基线 | 同批 `degraded` | ΔPSNR 与配对增益 CI | — |
 | 跨批对照 | — | 必须走 §1(c) | — |
@@ -147,7 +154,31 @@
 | BVT | notch | 70 | 70 / 0 | 27.252 | 27.252 | — |
 | BVT | degraded | 70 | — | 24.705 | — | — |
 
-（以上为派生文件里的原始值。聚类 CI 未在派生文件中重算，标“待核”。）
+（以上为派生文件里的原始值，属于简单行均值。）
+
+**按文物聚类的配对增益 CI（已计算，seed=20261019，1000 次，每组 K=7 件文物）**：下表为 ΔPSNR（dB），数值为文物均值的均值［95% CI］，`degradation='ALL'`。
+
+| 批次 | 划分 | 方法 | 口径 | 行数 | ΔPSNR［95% CI］ | 判定 |
+|---|---|---|---|---|---|---|
+| BV2 | development | adaptive_joint | 全部 | 70 | 1.95［−0.01, 3.86］ | 跨 0 |
+| BV2 | development | adaptive_joint | 实际处理 | 46 | 4.08［0.50, 7.67］ | 下界 > 0 |
+| BV2 | test | adaptive_joint | 全部 | 70 | 0.23［−1.21, 1.47］ | 跨 0 |
+| BV2 | test | adaptive_joint | 实际处理 | 39 | 5.35［−1.49, 13.67］ | 跨 0 |
+| BV2 | test | notch | 全部 | 70 | 2.23［0.30, 3.55］ | 下界 > 0 |
+| BVT | development | adaptive_joint | 全部 | 70 | 1.71［−0.03, 3.42］ | 跨 0 |
+| BVT | development | adaptive_joint | 实际处理 | 48 | 3.09［0.06, 6.34］ | 下界 > 0 |
+| BVT | test | adaptive_joint | 全部 | 70 | 2.09［0.78, 3.48］ | 下界 > 0 |
+| BVT | test | adaptive_joint | 实际处理 | 47 | 3.53［1.11, 6.36］ | 下界 > 0 |
+| BVT | test | notch | 全部 | 70 | 2.55［1.67, 3.22］ | 下界 > 0 |
+
+- 两批的其余 6 种固定基线（gaussian_lowpass、butterworth_lowpass、fast_nlm、morphology、nlm_clahe、joint）在 development 和 test 上，“全部”口径的增益 CI 上界都 < 0。
+- 按退化类型拆分时，adaptive_joint 在 occlusion 上，两批两个划分的“全部”和“实际处理”口径 CI 上界都 < 0；periodic、salt_pepper 下界 > 0；blur 全部原图返回（增益正好为 0，“实际处理”为空组 null）；gaussian 在 BV2 两个划分跨 0、在 BVT 两个划分下界 > 0。完整结果见 CI 文件。
+- 注意：notch 在部分组的 CI 端点只有 ±0.00x dB，例如 BV2 development blur 判为 positive。这是 E-05 截断造成的极小差异，前端应同时显示数值，不要只显示判定。
+- 与现有 `grouped_summary` 的对照：
+  - 用 `run_v2.grouped_summary`（config seed、共享 rng）重放，复现的 CI 与 results.json 中的 `*CI95` 完全一致（split × method × 3 指标全部一致，atol=1e-12）。
+  - 本文件“全部”口径的行均值与 summary 的 `*Mean` 完全一致，最大差 0.0。
+  - CI 端点与 summary 不完全相同：BV2 最大差 0.427、BVT 最大差 0.279，约为 summary CI 宽度的 10% / 7.8%。原因只是随机流不同：summary 在所有组之间共用一个 rng，本文件每组用新的固定 seed。两者算法相同。
+  - 报告以 CI 文件为准，因为只有它有分口径、分退化的结果和配对增益。
 
 ## 5. 第 4 层：消融与机制
 
@@ -156,12 +187,14 @@
 | 决策链分布 | BV2/BVT `diagnostics.decisions`、`selectedOutput`、`fidelityGate`；BRT `diagnosticsOperators`、`fidelityAccepted` | 按算子组合计数。v2.1 新运行有 `outputMode`（`processed` / `identity_no_evidence` / `gate_fallback_original`）；历史行由 DER 的 `isPassthrough` 覆盖 `selectedOutput`（E-02：历史上 identity 分支即使输出等于输入也记为 `candidate`） | — |
 | v2.0 → v2.1 | BRT | 只能写“同批复测下的差异”，等级 ≤ 有限支持 | — |
 | 门控说明 | 固定文案：fidelity gate 是启发式规则，不是统计检验 | — | — |
+| 机制样本（E-18） | MEC：`derived/mechanism/index.json` 和 `<caseId>/mechanism.json` + PNG，字段见 `REPRESENTATIVE_CASES.md` | 每批每个划分 5 类（提升 / 负提升 / 原图返回 / 门控拒绝 / 陷波），按中位位次选取。机制图属于 v2.1（head 重算），已存指标属于 v2.0，必须分别标注 | 目录或 PNG 不存在：显示“该样本未生成机制图”。当前 PNG 还没有 API 路由，需要后端补 |
 | 参数机制 | §8 `effectiveParameters`（E-10） | 必须显示**实际生效**的参数；`ignoredRequestParameters` 里的参数要标“本路径未使用” | 旧运行：“未记录实际生效参数” |
 
 ## 6. 第 5 层：失败案例与不确定性
 
 | 项目 | 来源 | 规则 |
 |---|---|---|
+| 负提升原因（E-04） | NLC 文件；BRT 用 `/api` 的 `restoration_diagnosis` 新字段 | 以 `measuredCauses` 为主，每条附 `value`/`threshold`；旧 `cause` 只放在“规则推断”一栏 |
 | 负提升列表 | 各批 `ΔPSNR < 0` 的行；BRT `negativeLift` | 全部列出，不抽样，不删除。实测 BRT：v2.0 有 15/70，v2.1 有 16/70；occlusion 下 v2.1 为 35.415，degraded 为 35.886，负提升 9/14 |
 | 原图返回 | DER `appliedStatus ∈ {passthrough, passthrough_not_applicable}` | 单独一栏“未处理”，不算成功也不算失败 |
 | blur | BV2/BVT 中 adaptive 在 blur 上 28/28 原图返回；BRT 中 v2.0 = v2.1 = degraded = 20.97 | 必须写“该方法对模糊不做处理”，禁止计入提升 |
@@ -175,7 +208,7 @@
 | 结论卡 | 由上面各层汇总 | 每张卡写明：等级、批次 `displayName`、n_文物、口径（Processed / All）、CI |
 | 复现信息 | `config`、git 提交、`sourceResultsSha256`（DER）、图像 SHA | 提供 `results.json`、`summary.csv`、`applied_status.csv/json` 的下载（REG 导出已支持后两者） |
 | 判据版本 | `passthroughCriterion` | 必显 |
-| 已知问题 | E-05（未修）、E-06、E-07、E-08、E-10 | 列在页脚“已知限制” |
+| 已知问题 | E-05（历史批次存在，新代码已修）、E-06、E-07、E-08、E-10 | 列在页脚“已知限制” |
 
 ## 8. 后端字段需求（交架构后端实现）
 
@@ -206,3 +239,66 @@
 - `run_v2.py` 和 `compare_v21.py` 的每行增加 `isPassthrough`、`changedPixelCount`、`changedPixelRatio`、`maxAbsDiff`、`passthroughCriterion`；输出未改动时，`applicability` 记为 `passthrough`，不再记为 applicable。
 - summary 增加 `processedN`、`passthroughN`、`undeterminedN` 和 `*MeanProcessed`、`*MeanPassthrough`；`applicableN` 不再计入原图返回行。
 - `AdaptiveRubbingRestorer.restore` 的诊断增加 `changeStats` 和 `outputMode`；输出未改动时，`selectedOutput` 为 `original`。`VERSION` 未改（仍为 v2.1）。新数据要用新批次目录，不要覆盖历史结果。
+
+## 10. B15（2026-10-15）与 v2 系列的退化参数逐项核对
+
+核对方法：`experiments/verify_degradation_params.py`。对每个已存的 degraded 输入，用该批次自己的 `degrade()` 从已存 reference PNG 重新生成，再逐像素比较。
+
+- B15 的 degrade 取自 `git 10a63f4:experiments/run_ablation.py`。
+- v2 和 v2-text 的 degrade 取自各自的 `source_snapshot/experiments/run_v2.py`。
+- 结果：B15 10/10、BV2 140/140、BVT 140/140 逐像素一致。BV2/BVT 的 `degradationParameters` 与重算一致，140/140。B15 的行没有记录参数，只有 seed。
+
+| 项目 | B15（2026-10-15） | BV2（2026-10-17-v2） | BVT（2026-10-17-v2-text） | 是否相同 |
+|---|---|---|---|---|
+| 生成代码 | `run_ablation.degrade(reference, mode, seed)` @ 10a63f4 | `run_v2.degrade(reference, mode, seed, strength)`（快照 `6fea1321…`） | 同 BV2 的函数（快照 `8d804230…`，degrade 部分与 BV2 逐行相同） | B15 ≠ v2；BV2 = BVT |
+| 退化类型 | gaussian、salt_pepper、periodic、blur、occlusion | 同左 | 同左 | 相同 |
+| 强度 | 单一强度，等价于 strength = 1.0 | strengths = [0.65, 1.3] | 同 BV2 | 不同 |
+| gaussian | σ = 18；`reference.astype(float)` 为 float64 再加噪声 | σ = 18·s = 11.7 / 23.4；float32 | 同 BV2 | 不同 |
+| salt_pepper | 每侧概率 0.018 | 0.018·s = 0.0117 / 0.0234 | 同 BV2 | 不同 |
+| periodic | 水平正弦，幅值 27，周期 8 px，相位 0 | 幅值 27·s = 17.55 / 35.1，周期 8，相位 0 | 同 BV2 | 幅值不同 |
+| blur | GaussianBlur σ = 1.5 | σ = 1.5·s = 0.975 / 1.95 | 同 BV2 | 不同 |
+| occlusion | 在 (w//3, h//3) 处填 28×45 的中值块 | 位置相同，尺寸为 int(28·s)×int(45·s) = 18×29 / 36×58 | 同 BV2 | 尺寸不同 |
+| 种子 | 20261015 + 100·i + j（i = 样本序号，j = 退化序号） | 20261017 + 100·i + 10·j + k（k = 强度序号） | 20261018 + 100·i + 10·j + k | 不同 |
+| 样本 | 2 件：han_01_caoquan、tang_01_duobao | 14 件（每朝代前 2 件），其中包括 B15 的这 2 件 | 14 件（id 为 *_03 / *_04），与 B15、BV2 都不重合 | B15 ⊂ BV2（按文物） |
+| 裁切 | han_01 [300,400,556,656]；tang_01 [250,250,506,506] | han_01 [486,1282,742,1538]；tang_01 [809,695,1065,951]（中心裁切） | — | 同一源图（SHA 相同），但裁切区域重叠为 0 |
+| 方法差异 | `joint` 按退化标签选择：periodic 时用 notch，否则用 butterworth（**使用了退化标签**）；没有 adaptive_joint | `joint` 一律用 butterworth（不看标签）；有 adaptive_joint | 同 BV2 | 不同 |
+| 汇总口径 | summary 排除 not_applicable（`run_ablation.py:122`） | summary 计入全部行（`run_v2.py:72`） | 同 BV2 | 不同（E-06） |
+
+结论：
+- B15 与 v2 系列的退化生成器、强度、种子、裁切和 joint 定义都不同，只有退化类型名称相同。
+- 跨批比较必须同时触发 C1（裁切不同）、C2、C3（joint 定义不同）、C4 四条警告。
+- B15 的 `joint` 在 periodic 上使用了退化标签，不能作为“免标签”方法与 v2 的 `joint` 比较。
+
+## 11. E-04 负提升原因（测量量推导）与 E-05 对单次处理的影响
+
+**E-04**：`restoration_diagnosis.diagnose()` 保留旧字段，同时新增测量原因字段。
+
+- 旧字段 `cause` 保留，新增 `causeBasis='规则推断（按退化类型）'`。
+- 新增 `measuredCauses`（触发的原因列表）、`measuredEvidence`（每条判据的 `measure`、`value`、`comparator`、`threshold`、`available`、`triggered`、`unavailableReason`）、`measures`，以及顶层的 `measuredCauseCounts`、`measuredCriteria`、`measuredCriteriaVersion='measured-causes-v1'`。
+- 判据是事先声明的常数，没有按结果调整：
+
+| 原因 | 测量量 | 阈值 |
+|---|---|---|
+| 笔画前景损失 | `foregroundLossDelta`（参考图前景中，输出丢失的比例减去输入丢失的比例） | > 0.02 |
+| 边缘保真下降 | `edgeF1Delta` | < −0.02 |
+| 细笔画误差增大 | `thinStrokeMaeDelta`（参考 Canny 像素上的 MAE，输出减输入） | > 0.5 |
+| 结构相似度下降 | `ssimDelta` | < −0.01 |
+| 周期干扰残留 | `periodicEnergyRatio`（输出周期峰能量 / 输入周期峰能量） | ≥ 0.5 |
+| 引入新的周期峰 | 输入没有峰时，输出的周期峰能量 | > 0 |
+| 改动幅度超过输入误差 | `changeToInputErrorRatio` = mean\|out−in\| / mean\|in−ref\| | > 1.0 |
+| 改动落在缺失/平坦区域 | `changedInMissingFraction`（改动像素中，落在 `missing_information_mask(input)` 内的比例） | > 0.2 |
+| 强边缘被削弱 | `strongEdgeRetention` | < 0.85 |
+| 对比度被放大 | `contrastRatio` | > 1.10 |
+
+- 一个案例可以触发多条原因；没有任何判据触发时记为“未定位到测量原因（待人工复核）”。
+- 同批复测批次没有图像，像素级量标为 `available=false`。实测该批 16 个负提升中，13 个“未定位”，3 个“结构相似度下降”。旧规则把 9 个归为“本身信息不可恢复”。
+- 有图像的历史批次写在 NLC 文件里，覆盖全部方法：B15 40 行，BV2 747 行，BVT 754 行。adaptive_joint 的负提升 BV2 有 32 行、BVT 有 33 行，最常触发的是“结构相似度下降”和“边缘保真下降 / 细笔画误差增大 / 前景损失 / 改动超过输入误差”。notch 的负提升多数“未定位”（BV2 46 行、BVT 44 行），与 E-05 的极小截断差异一致。
+- 前端：失败层以 `measuredCauses` 为主，每条附测量值和阈值；`cause` 只能放在“旧规则推断”一栏，并标明。
+
+**E-05 对单次处理（museum_processing）的影响**：用 `experiments/e05_processing_impact.py` 在 `static/samples/sample_1..4.png` 上比较 f0c5886 与 7623a52 两版引擎的 `process_rubbing` 输出。
+
+- `filter_type='adaptive'`（默认）：4/4 restored 逐像素相同，不受影响。
+- `gaussian`、`butterworth`：4/4 相同。
+- `notch` 且未检出峰（sample_1、2、4）：restored 改变，改动 65869 / 84412 / 69501 px（共约 10 万 px），最大差 37 / 31 / 96。原因是旧代码的 1 级截断经过后续空域增强（含 CLAHE）后被放大。
+- `notch` 且检出峰（sample_3）：相同。
+- 因此，`museum_processing.process_verified_request` 只在用户选择 `filter_type='notch'` 且图像没有周期峰时，输出会变。这时新输出更接近“陷波不适用、直接做空域增强”的本意。旧运行记录不会被重算。

@@ -1,0 +1,465 @@
+{
+  "batch": "2026-10-17-v2",
+  "split": "test",
+  "sampleId": "song_02_wenxuan",
+  "caseId": "song_02_wenxuan_periodic_0",
+  "degradation": "periodic",
+  "strength": 0.65,
+  "category": "negative",
+  "selection": {
+    "rank": 8,
+    "candidateN": 18,
+    "sortKey": "gain"
+  },
+  "storedFiles": {
+    "reference": "song_02_wenxuan_reference.png",
+    "input": "song_02_wenxuan_periodic_0_input.png",
+    "output": "song_02_wenxuan_periodic_0_adaptive_joint.png",
+    "notchOutput": "song_02_wenxuan_periodic_0_notch.png"
+  },
+  "inputSha256": "5d8ac8e3a023e7f5077fe502a0e15560e16214e722e0bc406556ed2a7e710ed6",
+  "inputSha256Recorded": "5d8ac8e3a023e7f5077fe502a0e15560e16214e722e0bc406556ed2a7e710ed6",
+  "inputShaMatches": true,
+  "storedOutputSha256": "f8de2bb61ac0c247a745a301a93f121e60123d39db91cbb09c119a384a48c3af",
+  "storedOutputShaMatches": true,
+  "storedMetrics": {
+    "psnrInput": 26.23503063498191,
+    "psnrOutput": 23.623160302297347,
+    "psnrGain": -2.611870332684564,
+    "ssimGain": -0.3401392298786877,
+    "edgeF1Gain": -0.3123186942177148
+  },
+  "storedDiagnostics": {
+    "algorithmVersion": "adaptive-rubbing-v2.0",
+    "operators": [
+      "notch",
+      "nlm"
+    ],
+    "decisions": [
+      {
+        "operator": "notch",
+        "width": 0.8,
+        "reason": "检出共轭显著峰、幅值和能量证据"
+      },
+      {
+        "operator": "nlm",
+        "h": 17.012861347198484,
+        "reason": "高通MAD显示随机残差；保留强边缘"
+      }
+    ],
+    "fidelityGate": {
+      "accepted": true,
+      "strongEdgeRetention": 0.9115579128265381,
+      "meanAbsoluteChange": 16.86444091796875,
+      "contrastRatio": 0.6258246154676557,
+      "reasons": [],
+      "basis": "输入输出启发式保真门控，非质量真值"
+    },
+    "selectedOutput": "candidate"
+  },
+  "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+  "parameters": {
+    "strength": 1.0,
+    "notch_width": 0.8,
+    "canny": [
+      80,
+      160
+    ],
+    "spectrum": "log1p(|fftshift(fft2(x - mean(x)))|), min-max to 0..255, VIRIDIS",
+    "foreground": "Otsu, minority class (degradation_analysis.analyze_degradation)",
+    "skeleton": "AlgorithmEngine.extract_stroke_skeleton (Otsu + skimage skeletonize)",
+    "diff": "|out - in|, scaled by max(1, P99) to 0..255, INFERNO"
+  },
+  "replays": {
+    "historical": {
+      "code": {
+        "source": "experiments/results/2026-10-17-v2/source_snapshot/degradation_analysis.py",
+        "sha256": "14f172c0f775b2101c8a628d18a409dd372585f84d634dad08cd82dae72682f1",
+        "recordedCodeSha256": "14f172c0f775b2101c8a628d18a409dd372585f84d634dad08cd82dae72682f1"
+      },
+      "operators": [
+        "notch",
+        "nlm"
+      ],
+      "gateAccepted": true,
+      "versionString": "adaptive-rubbing-v2.0",
+      "vsStoredOutput": {
+        "pixelEqual": true,
+        "changedPixelCount": 0,
+        "maxAbsDiff": 0,
+        "meanAbsDiff": 0.0
+      },
+      "vsInput": {
+        "pixelEqual": false,
+        "changedPixelCount": 63900,
+        "maxAbsDiff": 116,
+        "meanAbsDiff": 16.86444091796875
+      },
+      "operatorsMatchStored": true
+    },
+    "base": {
+      "code": {
+        "source": "git f0c5886a9d4c8b47d64640e1f7eaeac44be3c388:degradation_analysis.py",
+        "sha256": "24c1edaf982862a7354bf78e6c322ab3465ae42068d1801ad817096d56f657c6"
+      },
+      "operators": [
+        "notch",
+        "thin_stroke_nlm"
+      ],
+      "gateAccepted": true,
+      "versionString": "adaptive-rubbing-v2.1",
+      "vsStoredOutput": {
+        "pixelEqual": false,
+        "changedPixelCount": 60535,
+        "maxAbsDiff": 98,
+        "meanAbsDiff": 12.519317626953125
+      },
+      "vsInput": {
+        "pixelEqual": false,
+        "changedPixelCount": 56787,
+        "maxAbsDiff": 23,
+        "meanAbsDiff": 10.991790771484375
+      }
+    },
+    "head": {
+      "code": {
+        "source": "working tree degradation_analysis.py",
+        "commit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+        "uncommittedChanges": false,
+        "sha256": "24af3c3b96f52f0c77de09342de543d898da2c327c5451632e8e90819527c962"
+      },
+      "operators": [
+        "notch",
+        "thin_stroke_nlm"
+      ],
+      "gateAccepted": true,
+      "versionString": "adaptive-rubbing-v2.1",
+      "vsStoredOutput": {
+        "pixelEqual": false,
+        "changedPixelCount": 60535,
+        "maxAbsDiff": 98,
+        "meanAbsDiff": 12.519317626953125
+      },
+      "vsInput": {
+        "pixelEqual": false,
+        "changedPixelCount": 56787,
+        "maxAbsDiff": 23,
+        "meanAbsDiff": 10.991790771484375
+      },
+      "vsBase": {
+        "pixelEqual": true,
+        "changedPixelCount": 0,
+        "maxAbsDiff": 0,
+        "meanAbsDiff": 0.0
+      }
+    }
+  },
+  "notchBaselineReplay": {
+    "storedApplicability": "applied",
+    "historicalEngine": {
+      "code": {
+        "source": "experiments/results/2026-10-17-v2/source_snapshot/algorithm_engine.py",
+        "sha256": "0ce77c1e8862e8cb94c510dd003c456ddd58f79d2b42a60a3bd0390a0d07e2fe"
+      },
+      "applicability": "applied",
+      "vsStoredNotch": {
+        "pixelEqual": true,
+        "changedPixelCount": 0,
+        "maxAbsDiff": 0,
+        "meanAbsDiff": 0.0
+      },
+      "vsInput": {
+        "pixelEqual": false,
+        "changedPixelCount": 61832,
+        "maxAbsDiff": 22,
+        "meanAbsDiff": 11.211898803710938
+      }
+    },
+    "headEngine": {
+      "code": {
+        "source": "working tree algorithm_engine.py (E-05 fix)",
+        "commit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+        "uncommittedChanges": false,
+        "sha256": "f45c7ceaaa35ff76784ad7981ba5fe8e3e5d06096fc94b27409aeb3ea4c0f8aa"
+      },
+      "applicability": "applied",
+      "vsStoredNotch": {
+        "pixelEqual": true,
+        "changedPixelCount": 0,
+        "maxAbsDiff": 0,
+        "meanAbsDiff": 0.0
+      },
+      "vsInput": {
+        "pixelEqual": false,
+        "changedPixelCount": 61832,
+        "maxAbsDiff": 22,
+        "meanAbsDiff": 11.211898803710938
+      }
+    }
+  },
+  "mechanism": {
+    "code": "head",
+    "features": {
+      "noiseSigmaMAD": 20.0151309967041,
+      "impulseFraction": 0.0003204345703125,
+      "periodicPeaks": [
+        {
+          "positions": [
+            [
+              128,
+              96
+            ],
+            [
+              128,
+              160
+            ]
+          ],
+          "amplitude": 18.039836883544922,
+          "energyFraction": 0.15950189530849457,
+          "logProminence": 4.265851020812988
+        }
+      ],
+      "thinStrokeRisk": 0.952396742935043,
+      "highFrequencyEnergyFraction": 0.4732459485530853
+    },
+    "decisions": [
+      {
+        "operator": "notch",
+        "width": 0.8,
+        "reason": "检出共轭显著峰、幅值和能量证据"
+      },
+      {
+        "operator": "thin_stroke_nlm",
+        "h": 7.655787606239318,
+        "thinStrokeRisk": 0.952396742935043,
+        "reason": "细笔画占比高，降低 NLM 强度，避免抹断或粘连"
+      }
+    ],
+    "fidelityGate": {
+      "accepted": true,
+      "strongEdgeRetention": 0.966271162033081,
+      "meanAbsoluteChange": 10.991790771484375,
+      "contrastRatio": 0.9161501934340971,
+      "reasons": [],
+      "basis": "输入输出启发式保真门控，非质量真值"
+    },
+    "outputMode": "processed",
+    "changeStats": {
+      "isPassthrough": false,
+      "changedPixelCount": 56787,
+      "totalPixelCount": 65536,
+      "changedPixelRatio": 0.8665008544921875,
+      "maxAbsDiff": 23,
+      "meanAbsDiff": 10.991790771484375,
+      "passthroughCriterion": "pixel-equal-v1"
+    },
+    "notchApplied": true,
+    "peaksOutput": [],
+    "diffScaleP99": 18.0,
+    "headVsStoredScaleP99": 47.0,
+    "measures": {
+      "changedPixelRatio": 0.8665008544921875,
+      "changedPixelCount": 56787,
+      "meanAbsChange": 10.991790771484375,
+      "maxAbsChange": 23,
+      "inputMeanAbsError": 10.616729736328125,
+      "changeToInputErrorRatio": 1.0353273601637303,
+      "psnrInput": 26.23503063498191,
+      "psnrOutput": 49.719117538585365,
+      "psnrDelta": 23.484086903603455,
+      "edgeF1Input": 0.6681021617703492,
+      "edgeF1Output": 0.9695671776375113,
+      "edgeF1Delta": 0.3014650158671621,
+      "thinStrokeMaeInput": 10.592745780944824,
+      "thinStrokeMaeOutput": 0.5311403274536133,
+      "thinStrokeMaeDelta": -10.061605453491211,
+      "foregroundLossInput": 0.133539023118373,
+      "foregroundLossOutput": 0.018555536241960716,
+      "foregroundLossDelta": -0.1149834868764123,
+      "periodicEnergyInput": 0.15950189530849457,
+      "periodicPeaksInput": 1,
+      "periodicEnergyOutput": 0.0,
+      "periodicPeaksOutput": 0,
+      "periodicEnergyRatio": 0.0,
+      "missingMaskPixels": 0,
+      "changedInMissingFraction": 0.0,
+      "strongEdgeRetention": 0.966271162033081,
+      "contrastRatio": 0.9161501934340971
+    },
+    "measuresStoredOutput": {
+      "changedPixelRatio": 0.97503662109375,
+      "changedPixelCount": 63900,
+      "meanAbsChange": 16.86444091796875,
+      "maxAbsChange": 116,
+      "inputMeanAbsError": 10.616729736328125,
+      "changeToInputErrorRatio": 1.588477934053678,
+      "psnrInput": 26.23503063498191,
+      "psnrOutput": 23.623160302297347,
+      "psnrDelta": -2.611870332684564,
+      "edgeF1Input": 0.6681021617703492,
+      "edgeF1Output": 0.3557834675526344,
+      "edgeF1Delta": -0.3123186942177148,
+      "thinStrokeMaeInput": 10.592745780944824,
+      "thinStrokeMaeOutput": 11.362343788146973,
+      "thinStrokeMaeDelta": 0.7695980072021484,
+      "foregroundLossInput": 0.133539023118373,
+      "foregroundLossOutput": 0.8438206153311316,
+      "foregroundLossDelta": 0.7102815922127586,
+      "periodicEnergyInput": 0.15950189530849457,
+      "periodicPeaksInput": 1,
+      "periodicEnergyOutput": 0.0,
+      "periodicPeaksOutput": 0,
+      "periodicEnergyRatio": 0.0,
+      "missingMaskPixels": 0,
+      "changedInMissingFraction": 0.0,
+      "strongEdgeRetention": 0.9115579128265381,
+      "contrastRatio": 0.6258246154676557
+    }
+  },
+  "images": [
+    {
+      "file": "spectrum_input.png",
+      "description": "输入 log 幅度谱；红圈为检出的共轭周期峰",
+      "shape": [
+        256,
+        256,
+        3
+      ],
+      "bytes": 147908,
+      "sha256": "875b09268396f220fccb7def5bf363be9c264ad3535982a19bd52e2a80042d2e"
+    },
+    {
+      "file": "spectrum_output.png",
+      "description": "head 重算输出的 log 幅度谱；红圈为残留峰",
+      "shape": [
+        256,
+        256,
+        3
+      ],
+      "bytes": 164476,
+      "sha256": "a83d4954190a83a88c33e6e657752efc77c0e70be3d82b290412245921b5e5d1"
+    },
+    {
+      "file": "notch_mask.png",
+      "description": "陷波掩膜（fftshift 坐标，白=保留，黑=抑制）",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 685,
+      "sha256": "ecc70bafa223aa0ecef9af16c90185d02915a2ab5994fc4ef8d84eb8e4974c48"
+    },
+    {
+      "file": "foreground_reference.png",
+      "description": "reference 二值前景（Otsu 少数类）",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 13059,
+      "sha256": "b621cf9a64e5d16d2ffe76e9c7c0ef8d556316d10a900282af09a0e04a123f86"
+    },
+    {
+      "file": "skeleton_reference.png",
+      "description": "reference 骨架",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 12806,
+      "sha256": "b04624aa95f573645a9ccb4cf597a0c453a98ca09825c00555c9d957638e76d1"
+    },
+    {
+      "file": "edges_reference.png",
+      "description": "reference Canny(80,160) 边缘",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 14263,
+      "sha256": "c1593bd5f98eaea2baa445aa90742d9182cb727e70b486a497fcbee4705e4bd8"
+    },
+    {
+      "file": "foreground_input.png",
+      "description": "input 二值前景（Otsu 少数类）",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 13650,
+      "sha256": "1f990376b7e331ee4273ff239c6f3af006b88902092034d55e2508dcab44bffa"
+    },
+    {
+      "file": "skeleton_input.png",
+      "description": "input 骨架",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 13571,
+      "sha256": "509e1dbbe7b9fb9f673d1adb4a1348ed86d136fcb9ca50105aca79fa638eb0ff"
+    },
+    {
+      "file": "edges_input.png",
+      "description": "input Canny(80,160) 边缘",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 15041,
+      "sha256": "98772a8df351acf72ac0e2a6a56e25acf8e4f1e399b7e6681a86359c0871ef3d"
+    },
+    {
+      "file": "foreground_output.png",
+      "description": "output 二值前景（Otsu 少数类）",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 12984,
+      "sha256": "a6e8e52b2dfbec3293ff369b60ca2142e86fd6ca8da6bfd9707fb2233fefd248"
+    },
+    {
+      "file": "skeleton_output.png",
+      "description": "output 骨架",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 12718,
+      "sha256": "56d06232ee192bb9504cfad81e9b6be919cf29ef92dc3af8a7d283c370deecde"
+    },
+    {
+      "file": "edges_output.png",
+      "description": "output Canny(80,160) 边缘",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 14257,
+      "sha256": "f0e82e48bf91c129cc1255770ff96bfbe680b969c8340e011ee8afd728ae2f46"
+    },
+    {
+      "file": "diff_output_input.png",
+      "description": "|head 输出 − 输入|，按 P99 归一",
+      "shape": [
+        256,
+        256,
+        3
+      ],
+      "bytes": 114235,
+      "sha256": "e88816186083e87c26ee4ea49d32e14e9d351536562161fc723e61a6edf7139c"
+    },
+    {
+      "file": "diff_head_vs_stored.png",
+      "description": "|head 重算输出 − 已存输出|，按 P99 归一",
+      "shape": [
+        256,
+        256,
+        3
+      ],
+      "bytes": 181971,
+      "sha256": "444279232c5f2c22e61142416ef40e16be591c9fdee63b385cbda6e7511883b9"
+    }
+  ]
+}

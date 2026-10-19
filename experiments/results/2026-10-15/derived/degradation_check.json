@@ -1,0 +1,108 @@
+{
+  "batch": "2026-10-15",
+  "derivedAt": "2026-10-19T04:24:26.216040+00:00",
+  "derivedBy": "experiments/verify_degradation_params.py",
+  "generatorCode": {
+    "source": "git 10a63f4:experiments/run_ablation.py",
+    "sha256": "b78f4c38dcaede730faf850dc21f6dab7f92c1404fbee98e69d07ab3ca28153a"
+  },
+  "configSeed": 20261015,
+  "strengths": null,
+  "samples": [
+    {
+      "id": "han_01_caoquan",
+      "crop": [
+        300,
+        400,
+        556,
+        656
+      ],
+      "sourceSha256": "e585c3231ba491e2b8ce0494da52fb8e375e7525673344acc2650d73b8c0dbd2"
+    },
+    {
+      "id": "tang_01_duobao",
+      "crop": [
+        250,
+        250,
+        506,
+        506
+      ],
+      "sourceSha256": "e59f12e90d4804a08e9db63523725223478986c9148b4a62c6012db0610971c2"
+    }
+  ],
+  "casesN": 10,
+  "pixelEqualN": 10,
+  "parametersMatchRecordN": 0,
+  "cases": [
+    {
+      "caseId": "han_01_caoquan_gaussian",
+      "seed": 20261015,
+      "strength": null,
+      "pixelEqual": true,
+      "changedPixels": 0
+    },
+    {
+      "caseId": "han_01_caoquan_salt_pepper",
+      "seed": 20261016,
+      "strength": null,
+      "pixelEqual": true,
+      "changedPixels": 0
+    },
+    {
+      "caseId": "han_01_caoquan_periodic",
+      "seed": 20261017,
+      "strength": null,
+      "pixelEqual": true,
+      "changedPixels": 0
+    },
+    {
+      "caseId": "han_01_caoquan_blur",
+      "seed": 20261018,
+      "strength": null,
+      "pixelEqual": true,
+      "changedPixels": 0
+    },
+    {
+      "caseId": "han_01_caoquan_occlusion",
+      "seed": 20261019,
+      "strength": null,
+      "pixelEqual": true,
+      "changedPixels": 0
+    },
+    {
+      "caseId": "tang_01_duobao_gaussian",
+      "seed": 20261115,
+      "strength": null,
+      "pixelEqual": true,
+      "changedPixels": 0
+    },
+    {
+      "caseId": "tang_01_duobao_salt_pepper",
+      "seed": 20261116,
+      "strength": null,
+      "pixelEqual": true,
+      "changedPixels": 0
+    },
+    {
+      "caseId": "tang_01_duobao_periodic",
+      "seed": 20261117,
+      "strength": null,
+      "pixelEqual": true,
+      "changedPixels": 0
+    },
+    {
+      "caseId": "tang_01_duobao_blur",
+      "seed": 20261118,
+      "strength": null,
+      "pixelEqual": true,
+      "changedPixels": 0
+    },
+    {
+      "caseId": "tang_01_duobao_occlusion",
+      "seed": 20261119,
+      "strength": null,
+      "pixelEqual": true,
+      "changedPixels": 0
+    }
+  ]
+}

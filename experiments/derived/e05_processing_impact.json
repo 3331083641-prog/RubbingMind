@@ -1,0 +1,151 @@
+{
+  "derivedAt": "2026-10-19T04:27:40.092705+00:00",
+  "baseCommit": "f0c5886",
+  "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+  "rows": [
+    {
+      "sample": "sample_1.png",
+      "filterType": "adaptive",
+      "notchApplied": false,
+      "restoredPixelEqual": true,
+      "changedPixelCount": 0,
+      "totalPixelCount": 100000,
+      "maxAbsDiff": 0
+    },
+    {
+      "sample": "sample_1.png",
+      "filterType": "notch",
+      "notchApplied": false,
+      "restoredPixelEqual": false,
+      "changedPixelCount": 65869,
+      "totalPixelCount": 100000,
+      "maxAbsDiff": 37
+    },
+    {
+      "sample": "sample_1.png",
+      "filterType": "gaussian",
+      "notchApplied": false,
+      "restoredPixelEqual": true,
+      "changedPixelCount": 0,
+      "totalPixelCount": 100000,
+      "maxAbsDiff": 0
+    },
+    {
+      "sample": "sample_1.png",
+      "filterType": "butterworth",
+      "notchApplied": false,
+      "restoredPixelEqual": true,
+      "changedPixelCount": 0,
+      "totalPixelCount": 100000,
+      "maxAbsDiff": 0
+    },
+    {
+      "sample": "sample_2.png",
+      "filterType": "adaptive",
+      "notchApplied": false,
+      "restoredPixelEqual": true,
+      "changedPixelCount": 0,
+      "totalPixelCount": 99960,
+      "maxAbsDiff": 0
+    },
+    {
+      "sample": "sample_2.png",
+      "filterType": "notch",
+      "notchApplied": false,
+      "restoredPixelEqual": false,
+      "changedPixelCount": 84412,
+      "totalPixelCount": 99960,
+      "maxAbsDiff": 31
+    },
+    {
+      "sample": "sample_2.png",
+      "filterType": "gaussian",
+      "notchApplied": false,
+      "restoredPixelEqual": true,
+      "changedPixelCount": 0,
+      "totalPixelCount": 99960,
+      "maxAbsDiff": 0
+    },
+    {
+      "sample": "sample_2.png",
+      "filterType": "butterworth",
+      "notchApplied": false,
+      "restoredPixelEqual": true,
+      "changedPixelCount": 0,
+      "totalPixelCount": 99960,
+      "maxAbsDiff": 0
+    },
+    {
+      "sample": "sample_3.png",
+      "filterType": "adaptive",
+      "notchApplied": false,
+      "restoredPixelEqual": true,
+      "changedPixelCount": 0,
+      "totalPixelCount": 99899,
+      "maxAbsDiff": 0
+    },
+    {
+      "sample": "sample_3.png",
+      "filterType": "notch",
+      "notchApplied": true,
+      "restoredPixelEqual": true,
+      "changedPixelCount": 0,
+      "totalPixelCount": 99899,
+      "maxAbsDiff": 0
+    },
+    {
+      "sample": "sample_3.png",
+      "filterType": "gaussian",
+      "notchApplied": false,
+      "restoredPixelEqual": true,
+      "changedPixelCount": 0,
+      "totalPixelCount": 99899,
+      "maxAbsDiff": 0
+    },
+    {
+      "sample": "sample_3.png",
+      "filterType": "butterworth",
+      "notchApplied": false,
+      "restoredPixelEqual": true,
+      "changedPixelCount": 0,
+      "totalPixelCount": 99899,
+      "maxAbsDiff": 0
+    },
+    {
+      "sample": "sample_4.png",
+      "filterType": "adaptive",
+      "notchApplied": false,
+      "restoredPixelEqual": true,
+      "changedPixelCount": 0,
+      "totalPixelCount": 99735,
+      "maxAbsDiff": 0
+    },
+    {
+      "sample": "sample_4.png",
+      "filterType": "notch",
+      "notchApplied": false,
+      "restoredPixelEqual": false,
+      "changedPixelCount": 69501,
+      "totalPixelCount": 99735,
+      "maxAbsDiff": 96
+    },
+    {
+      "sample": "sample_4.png",
+      "filterType": "gaussian",
+      "notchApplied": false,
+      "restoredPixelEqual": true,
+      "changedPixelCount": 0,
+      "totalPixelCount": 99735,
+      "maxAbsDiff": 0
+    },
+    {
+      "sample": "sample_4.png",
+      "filterType": "butterworth",
+      "notchApplied": false,
+      "restoredPixelEqual": true,
+      "changedPixelCount": 0,
+      "totalPixelCount": 99735,
+      "maxAbsDiff": 0
+    }
+  ]
+}

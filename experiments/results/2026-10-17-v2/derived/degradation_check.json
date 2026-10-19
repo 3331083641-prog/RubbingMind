@@ -1,0 +1,1281 @@
+{
+  "batch": "2026-10-17-v2",
+  "derivedAt": "2026-10-19T04:24:26.588238+00:00",
+  "derivedBy": "experiments/verify_degradation_params.py",
+  "generatorCode": {
+    "source": "experiments/results/2026-10-17-v2/source_snapshot/experiments/run_v2.py",
+    "sha256": "6fea13215fea97d9a3bdba493c61fec91eca5ffe2e3f47af953fd5fd8c4b2d35"
+  },
+  "configSeed": 20261017,
+  "strengths": [
+    0.65,
+    1.3
+  ],
+  "samples": [
+    {
+      "id": "han_01_caoquan",
+      "crop": [
+        486,
+        1282,
+        742,
+        1538
+      ],
+      "sourceSha256": "e585c3231ba491e2b8ce0494da52fb8e375e7525673344acc2650d73b8c0dbd2"
+    },
+    {
+      "id": "han_02_yiying",
+      "crop": [
+        554,
+        1298,
+        810,
+        1554
+      ],
+      "sourceSha256": "5aec3d3a705eda460c90da28c5bb0d63f24b386b4421fa02607e4964d6a527c7"
+    },
+    {
+      "id": "wei_01_zhangmenglong",
+      "crop": [
+        699,
+        1285,
+        955,
+        1541
+      ],
+      "sourceSha256": "2e884fdf44d1e9b3b1e57dfc325e6202fcef0ae42fc8f9f02a5311a8c0fefa79"
+    },
+    {
+      "id": "wei_02_wugaoli",
+      "crop": [
+        458,
+        450,
+        714,
+        706
+      ],
+      "sourceSha256": "12a8bfe268ddc8ba308e250922afa861cef6eda6ac748174d1a99724f63dd6f6"
+    },
+    {
+      "id": "tang_01_duobao",
+      "crop": [
+        809,
+        695,
+        1065,
+        951
+      ],
+      "sourceSha256": "e59f12e90d4804a08e9db63523725223478986c9148b4a62c6012db0610971c2"
+    },
+    {
+      "id": "tang_02_jiucheng",
+      "crop": [
+        699,
+        531,
+        955,
+        787
+      ],
+      "sourceSha256": "4317318d2de973e92fcbc3c933c6862a22e3a197552a54d87ee8a6de21de04e3"
+    },
+    {
+      "id": "song_01_yuanyou",
+      "crop": [
+        854,
+        1194,
+        1110,
+        1450
+      ],
+      "sourceSha256": "20e25ab7b522971efd135fbc0a73387d5899ed4f044afbef2b90aa5cc0ec2975"
+    },
+    {
+      "id": "song_02_wenxuan",
+      "crop": [
+        499,
+        1331,
+        755,
+        1587
+      ],
+      "sourceSha256": "3564d46727fa2f9157d77a43df4a4b988de875eb2166a5d5ab98bd540af9d2da"
+    },
+    {
+      "id": "yuan_01_yufu",
+      "crop": [
+        731,
+        681,
+        987,
+        937
+      ],
+      "sourceSha256": "1b1beea0dd67cf7186b5f58314d64a0090e60cf174631b44175625510e6077b0"
+    },
+    {
+      "id": "yuan_02_sundeyu",
+      "crop": [
+        614,
+        1447,
+        870,
+        1703
+      ],
+      "sourceSha256": "3ada3ac0a7ae548f16841c40b8541b9697a0f2751ec11847aa11f45c9adcf8c9"
+    },
+    {
+      "id": "ming_01_xianfu",
+      "crop": [
+        650,
+        1251,
+        906,
+        1507
+      ],
+      "sourceSha256": "70d472b2c7f61830f52c41683fbd99f43c093947ca519622e8951dc2be214d2c"
+    },
+    {
+      "id": "ming_02_luxianzhi",
+      "crop": [
+        1060,
+        495,
+        1316,
+        751
+      ],
+      "sourceSha256": "ccdb8b6adbb28f69ee074cb21d088c60cfe89770169873fd2d2f978a8d408b53"
+    },
+    {
+      "id": "qing_01_qianlong_heart_sutra",
+      "crop": [
+        239,
+        868,
+        495,
+        1124
+      ],
+      "sourceSha256": "72cc05f5ad38039f298ff2c0c05f4fb9def0d55912bd3a111f5f35f739f734b9"
+    },
+    {
+      "id": "qing_02_wushi_reerection",
+      "crop": [
+        1860,
+        685,
+        2116,
+        941
+      ],
+      "sourceSha256": "551b3c7a4a8c83f989a1d44b3c9c941b34f6c4eeb55c677c2940a29a7fb246e6"
+    }
+  ],
+  "casesN": 140,
+  "pixelEqualN": 140,
+  "parametersMatchRecordN": 140,
+  "cases": [
+    {
+      "caseId": "han_01_caoquan_gaussian_0",
+      "seed": 20261017,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "han_01_caoquan_gaussian_1",
+      "seed": 20261018,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "han_01_caoquan_salt_pepper_0",
+      "seed": 20261027,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "han_01_caoquan_salt_pepper_1",
+      "seed": 20261028,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "han_01_caoquan_periodic_0",
+      "seed": 20261037,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "han_01_caoquan_periodic_1",
+      "seed": 20261038,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "han_01_caoquan_blur_0",
+      "seed": 20261047,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "han_01_caoquan_blur_1",
+      "seed": 20261048,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "han_01_caoquan_occlusion_0",
+      "seed": 20261057,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "han_01_caoquan_occlusion_1",
+      "seed": 20261058,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "han_02_yiying_gaussian_0",
+      "seed": 20261117,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "han_02_yiying_gaussian_1",
+      "seed": 20261118,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "han_02_yiying_salt_pepper_0",
+      "seed": 20261127,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "han_02_yiying_salt_pepper_1",
+      "seed": 20261128,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "han_02_yiying_periodic_0",
+      "seed": 20261137,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "han_02_yiying_periodic_1",
+      "seed": 20261138,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "han_02_yiying_blur_0",
+      "seed": 20261147,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "han_02_yiying_blur_1",
+      "seed": 20261148,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "han_02_yiying_occlusion_0",
+      "seed": 20261157,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "han_02_yiying_occlusion_1",
+      "seed": 20261158,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "wei_01_zhangmenglong_gaussian_0",
+      "seed": 20261217,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "wei_01_zhangmenglong_gaussian_1",
+      "seed": 20261218,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "wei_01_zhangmenglong_salt_pepper_0",
+      "seed": 20261227,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "wei_01_zhangmenglong_salt_pepper_1",
+      "seed": 20261228,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "wei_01_zhangmenglong_periodic_0",
+      "seed": 20261237,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "wei_01_zhangmenglong_periodic_1",
+      "seed": 20261238,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "wei_01_zhangmenglong_blur_0",
+      "seed": 20261247,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "wei_01_zhangmenglong_blur_1",
+      "seed": 20261248,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "wei_01_zhangmenglong_occlusion_0",
+      "seed": 20261257,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "wei_01_zhangmenglong_occlusion_1",
+      "seed": 20261258,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "wei_02_wugaoli_gaussian_0",
+      "seed": 20261317,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "wei_02_wugaoli_gaussian_1",
+      "seed": 20261318,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "wei_02_wugaoli_salt_pepper_0",
+      "seed": 20261327,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "wei_02_wugaoli_salt_pepper_1",
+      "seed": 20261328,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "wei_02_wugaoli_periodic_0",
+      "seed": 20261337,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "wei_02_wugaoli_periodic_1",
+      "seed": 20261338,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "wei_02_wugaoli_blur_0",
+      "seed": 20261347,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "wei_02_wugaoli_blur_1",
+      "seed": 20261348,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "wei_02_wugaoli_occlusion_0",
+      "seed": 20261357,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "wei_02_wugaoli_occlusion_1",
+      "seed": 20261358,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "tang_01_duobao_gaussian_0",
+      "seed": 20261417,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "tang_01_duobao_gaussian_1",
+      "seed": 20261418,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "tang_01_duobao_salt_pepper_0",
+      "seed": 20261427,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "tang_01_duobao_salt_pepper_1",
+      "seed": 20261428,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "tang_01_duobao_periodic_0",
+      "seed": 20261437,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "tang_01_duobao_periodic_1",
+      "seed": 20261438,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "tang_01_duobao_blur_0",
+      "seed": 20261447,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "tang_01_duobao_blur_1",
+      "seed": 20261448,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "tang_01_duobao_occlusion_0",
+      "seed": 20261457,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "tang_01_duobao_occlusion_1",
+      "seed": 20261458,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "tang_02_jiucheng_gaussian_0",
+      "seed": 20261517,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "tang_02_jiucheng_gaussian_1",
+      "seed": 20261518,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "tang_02_jiucheng_salt_pepper_0",
+      "seed": 20261527,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "tang_02_jiucheng_salt_pepper_1",
+      "seed": 20261528,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "tang_02_jiucheng_periodic_0",
+      "seed": 20261537,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "tang_02_jiucheng_periodic_1",
+      "seed": 20261538,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "tang_02_jiucheng_blur_0",
+      "seed": 20261547,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "tang_02_jiucheng_blur_1",
+      "seed": 20261548,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "tang_02_jiucheng_occlusion_0",
+      "seed": 20261557,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "tang_02_jiucheng_occlusion_1",
+      "seed": 20261558,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "song_01_yuanyou_gaussian_0",
+      "seed": 20261617,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "song_01_yuanyou_gaussian_1",
+      "seed": 20261618,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "song_01_yuanyou_salt_pepper_0",
+      "seed": 20261627,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "song_01_yuanyou_salt_pepper_1",
+      "seed": 20261628,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "song_01_yuanyou_periodic_0",
+      "seed": 20261637,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "song_01_yuanyou_periodic_1",
+      "seed": 20261638,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "song_01_yuanyou_blur_0",
+      "seed": 20261647,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "song_01_yuanyou_blur_1",
+      "seed": 20261648,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "song_01_yuanyou_occlusion_0",
+      "seed": 20261657,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "song_01_yuanyou_occlusion_1",
+      "seed": 20261658,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "song_02_wenxuan_gaussian_0",
+      "seed": 20261717,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "song_02_wenxuan_gaussian_1",
+      "seed": 20261718,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "song_02_wenxuan_salt_pepper_0",
+      "seed": 20261727,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "song_02_wenxuan_salt_pepper_1",
+      "seed": 20261728,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "song_02_wenxuan_periodic_0",
+      "seed": 20261737,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "song_02_wenxuan_periodic_1",
+      "seed": 20261738,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "song_02_wenxuan_blur_0",
+      "seed": 20261747,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "song_02_wenxuan_blur_1",
+      "seed": 20261748,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "song_02_wenxuan_occlusion_0",
+      "seed": 20261757,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "song_02_wenxuan_occlusion_1",
+      "seed": 20261758,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "yuan_01_yufu_gaussian_0",
+      "seed": 20261817,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "yuan_01_yufu_gaussian_1",
+      "seed": 20261818,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "yuan_01_yufu_salt_pepper_0",
+      "seed": 20261827,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "yuan_01_yufu_salt_pepper_1",
+      "seed": 20261828,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "yuan_01_yufu_periodic_0",
+      "seed": 20261837,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "yuan_01_yufu_periodic_1",
+      "seed": 20261838,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "yuan_01_yufu_blur_0",
+      "seed": 20261847,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "yuan_01_yufu_blur_1",
+      "seed": 20261848,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "yuan_01_yufu_occlusion_0",
+      "seed": 20261857,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "yuan_01_yufu_occlusion_1",
+      "seed": 20261858,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "yuan_02_sundeyu_gaussian_0",
+      "seed": 20261917,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "yuan_02_sundeyu_gaussian_1",
+      "seed": 20261918,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "yuan_02_sundeyu_salt_pepper_0",
+      "seed": 20261927,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "yuan_02_sundeyu_salt_pepper_1",
+      "seed": 20261928,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "yuan_02_sundeyu_periodic_0",
+      "seed": 20261937,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "yuan_02_sundeyu_periodic_1",
+      "seed": 20261938,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "yuan_02_sundeyu_blur_0",
+      "seed": 20261947,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "yuan_02_sundeyu_blur_1",
+      "seed": 20261948,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "yuan_02_sundeyu_occlusion_0",
+      "seed": 20261957,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "yuan_02_sundeyu_occlusion_1",
+      "seed": 20261958,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "ming_01_xianfu_gaussian_0",
+      "seed": 20262017,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "ming_01_xianfu_gaussian_1",
+      "seed": 20262018,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "ming_01_xianfu_salt_pepper_0",
+      "seed": 20262027,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "ming_01_xianfu_salt_pepper_1",
+      "seed": 20262028,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "ming_01_xianfu_periodic_0",
+      "seed": 20262037,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "ming_01_xianfu_periodic_1",
+      "seed": 20262038,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "ming_01_xianfu_blur_0",
+      "seed": 20262047,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "ming_01_xianfu_blur_1",
+      "seed": 20262048,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "ming_01_xianfu_occlusion_0",
+      "seed": 20262057,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "ming_01_xianfu_occlusion_1",
+      "seed": 20262058,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "ming_02_luxianzhi_gaussian_0",
+      "seed": 20262117,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "ming_02_luxianzhi_gaussian_1",
+      "seed": 20262118,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "ming_02_luxianzhi_salt_pepper_0",
+      "seed": 20262127,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "ming_02_luxianzhi_salt_pepper_1",
+      "seed": 20262128,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "ming_02_luxianzhi_periodic_0",
+      "seed": 20262137,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "ming_02_luxianzhi_periodic_1",
+      "seed": 20262138,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "ming_02_luxianzhi_blur_0",
+      "seed": 20262147,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "ming_02_luxianzhi_blur_1",
+      "seed": 20262148,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "ming_02_luxianzhi_occlusion_0",
+      "seed": 20262157,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "ming_02_luxianzhi_occlusion_1",
+      "seed": 20262158,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "qing_01_qianlong_heart_sutra_gaussian_0",
+      "seed": 20262217,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "qing_01_qianlong_heart_sutra_gaussian_1",
+      "seed": 20262218,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "qing_01_qianlong_heart_sutra_salt_pepper_0",
+      "seed": 20262227,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "qing_01_qianlong_heart_sutra_salt_pepper_1",
+      "seed": 20262228,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "qing_01_qianlong_heart_sutra_periodic_0",
+      "seed": 20262237,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "qing_01_qianlong_heart_sutra_periodic_1",
+      "seed": 20262238,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "qing_01_qianlong_heart_sutra_blur_0",
+      "seed": 20262247,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "qing_01_qianlong_heart_sutra_blur_1",
+      "seed": 20262248,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "qing_01_qianlong_heart_sutra_occlusion_0",
+      "seed": 20262257,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "qing_01_qianlong_heart_sutra_occlusion_1",
+      "seed": 20262258,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "qing_02_wushi_reerection_gaussian_0",
+      "seed": 20262317,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "qing_02_wushi_reerection_gaussian_1",
+      "seed": 20262318,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "qing_02_wushi_reerection_salt_pepper_0",
+      "seed": 20262327,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "qing_02_wushi_reerection_salt_pepper_1",
+      "seed": 20262328,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "qing_02_wushi_reerection_periodic_0",
+      "seed": 20262337,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "qing_02_wushi_reerection_periodic_1",
+      "seed": 20262338,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "qing_02_wushi_reerection_blur_0",
+      "seed": 20262347,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "qing_02_wushi_reerection_blur_1",
+      "seed": 20262348,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "qing_02_wushi_reerection_occlusion_0",
+      "seed": 20262357,
+      "strength": 0.65,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    },
+    {
+      "caseId": "qing_02_wushi_reerection_occlusion_1",
+      "seed": 20262358,
+      "strength": 1.3,
+      "pixelEqual": true,
+      "changedPixels": 0,
+      "parametersMatchRecord": true
+    }
+  ]
+}
