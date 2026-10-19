@@ -388,7 +388,14 @@ async def get_stele_report(stele_id: str, run_id: Optional[str] = None):
     result['runSelection']=run_selection
     result['inferenceRecords']=[item for item in list_inferences(stele_id) if not selected or item.get('runId')==selected['runId']]
     result['sourceRecords']=[{'title':record['title'],'url':record.get('sourceUrl'),'license':record.get('license')}]
-    if selected:
+    mode=(selected or {}).get('outputMode')
+    if selected and mode=='passthrough':
+        # REPORT_DATA_SPEC §8: an unchanged output must never be described as "actually processed".
+        result['evaluation_summary']='本次未改动原图：算法判断无需处理，输出与输入逐像素相同；没有配对真值，配对质量未评测。'
+    elif selected and mode=='undetermined':
+        reason=selected.get('passthroughUndeterminedReason') or '原因未记录'
+        result['evaluation_summary']=f'未能判定是否改动原图（{reason}）；没有配对真值，配对质量未评测。'
+    elif selected:
         result['evaluation_summary']='实际处理已执行，但没有配对真值；配对质量未评测。'
     elif run_selection['legacyRunCount']:
         result['evaluation_summary']='只有旧版未核验运行，默认不选用（可在运行历史中显式打开）；配对质量未评测。'
