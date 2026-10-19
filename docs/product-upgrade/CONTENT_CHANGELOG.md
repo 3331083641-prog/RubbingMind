@@ -190,3 +190,13 @@
 **测试。** 新增 `tests/test_relevance_threshold.py`。其中一条会关闭过滤重新统计；如果语料变化，使无关问题的最高分达到或超过 10，测试就会失败，提醒重新标定。
 
 **局限。** BM25 的绝对分值依赖语料规模。语料有增删时，需要重跑上面的命令并核对阈值。
+
+## 2026-10-19 13:09（Asia/Shanghai）· C：ming_02 载体性质提示（RM-金石史料，Green 要求）
+
+| 位置 | 修改前 | 修改后 | 依据 |
+|---|---|---|---|
+| `claims/ming_02_luxianzhi.json` 中的 `work:objectNature` | conflict / 待人工复核，没有提示 | 加上 `reviewFlags: ["载体性质待人工鉴定"]`。status、evidenceLevel、value(null) 和两种说法都不变 | 馆方分类“拓片”与李葆恂题跋“此潯州知府陸君墓志草稿”冲突 |
+| `claims/schema.json` | — | claim 增加可选字段 `reviewFlags`（只作提示，不改变证据等级） | — |
+| `review_ledger.json` 及前端副本 | — | 每条记录新增 `contentFlags`，从 claims 原样传入；目前只有 ming_02 一条 | — |
+| `ReviewStatusBadges.tsx`（博物馆卡片和查看器共用） | 两枚徽章 | 有 contentFlags 时，再加一枚红色徽章（`data-testid="content-flag"`），文字来自数据 | — |
+| `tests/test_carrier_flag.py` | — | 3 条测试 | — |

@@ -122,6 +122,14 @@
         },
         "derivation": {
           "type": "object"
+        },
+        "reviewFlags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "需要人工处理的提示，原样显示在界面复核徽章上（经 review_ledger.json 的 contentFlags 传递）。只作提示，不改变 status 和 evidenceLevel"
         }
       },
       "additionalProperties": false

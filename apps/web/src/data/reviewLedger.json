@@ -43,7 +43,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "han_02_yiying",
@@ -67,7 +68,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "han_03_liqi",
@@ -91,7 +93,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "han_04_shichen",
@@ -115,7 +118,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "wei_01_zhangmenglong",
@@ -139,7 +143,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "wei_02_wugaoli",
@@ -163,7 +168,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "wei_03_kouyan",
@@ -187,7 +193,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "wei_04_wangsong",
@@ -211,7 +218,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "tang_01_duobao",
@@ -235,7 +243,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "tang_02_jiucheng",
@@ -259,7 +268,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "tang_03_yanjiamiao",
@@ -283,7 +293,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "tang_04_xuanmita",
@@ -307,7 +318,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "song_01_yuanyou",
@@ -331,7 +343,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "song_02_wenxuan",
@@ -355,7 +368,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "song_03_daguan",
@@ -379,7 +393,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "song_04_mengying",
@@ -403,7 +418,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "yuan_01_yufu",
@@ -427,7 +443,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "yuan_02_sundeyu",
@@ -451,7 +468,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "yuan_03_shengzhu",
@@ -475,7 +493,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "yuan_04_jingyuanchang",
@@ -499,7 +518,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "ming_01_xianfu",
@@ -523,7 +543,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "ming_02_luxianzhi",
@@ -547,7 +568,16 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": [
+        {
+          "flag": "载体性质待人工鉴定",
+          "claimId": "ming_02_luxianzhi:work:objectNature",
+          "status": "conflict",
+          "evidenceLevel": "待人工复核",
+          "file": "data/catalog/claims/ming_02_luxianzhi.json"
+        }
+      ]
     },
     {
       "id": "ming_03_wugou",
@@ -571,7 +601,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "ming_04_tongdian",
@@ -595,7 +626,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "qing_01_qianlong_heart_sutra",
@@ -619,7 +651,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "qing_02_wushi_reerection",
@@ -643,7 +676,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "qing_03_sanxitang_preface",
@@ -667,7 +701,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     },
     {
       "id": "qing_04_ayuwang_reliquary",
@@ -691,7 +726,8 @@
         "approvedAt": null,
         "approvalScope": null,
         "status": "待用户填写"
-      }
+      },
+      "contentFlags": []
     }
   ]
 }

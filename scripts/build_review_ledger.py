@@ -36,6 +36,27 @@ def evidence_label(status):
     return f'证据复核状态：{status}'
 
 
+def _claims_of(obj):
+    if isinstance(obj, dict):
+        if 'claimId' in obj:
+            yield obj
+        for value in obj.values():
+            yield from _claims_of(value)
+    elif isinstance(obj, list):
+        for value in obj:
+            yield from _claims_of(value)
+
+
+def content_flags(stele_id):
+    """reviewFlags from data/catalog/claims/<id>.json, passed through verbatim for the UI badges."""
+    path = CATALOG / 'claims' / f'{stele_id}.json'
+    if not path.exists():
+        return []
+    return [{'flag': flag, 'claimId': claim['claimId'], 'status': claim['status'], 'evidenceLevel': claim['evidenceLevel'],
+             'file': f'data/catalog/claims/{stele_id}.json'}
+            for claim in _claims_of(load(path)) for flag in claim.get('reviewFlags', [])]
+
+
 def build(previous=None):
     kept = {r['id']: r.get('userApproval') or {} for r in (previous or {}).get('records', [])}
     manifest = load(CATALOG / 'review_manifest.json')
@@ -60,6 +81,7 @@ def build(previous=None):
             'sourceSha256': sv.get('sourceSha256'),
             'sourceSha256MatchesEvidence': bool(sv.get('sourceSha256')) and sv.get('sourceSha256') == meta.get('source_sha256'),
             'userApproval': user,
+            'contentFlags': content_flags(item['id']),
         })
     return {
         'schemaVersion': 1,

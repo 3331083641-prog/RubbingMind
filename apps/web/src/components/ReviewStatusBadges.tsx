@@ -5,13 +5,15 @@ type LedgerRecord = {
   catalogueApproval: { status: string | null; label: string };
   evidenceReview: { humanReviewStatus: string | null; label: string; evidenceFile: string };
   userApproval: { status: string };
+  contentFlags?: { flag: string; claimId: string; status: string; evidenceLevel: string; file: string }[];
 };
 
 const LEDGER = new Map<string, LedgerRecord>(
   (reviewLedger.records as LedgerRecord[]).map((record) => [record.id, record]),
 );
 
-/** C-06: show the catalogue approval and the pending evidence review side by side, never just one of them. */
+/** C-06: show the catalogue approval and the pending evidence review side by side, never just one of them.
+ *  Claim-level reviewFlags (e.g. the ming_02 carrier-nature flag) follow as extra badges, verbatim from the ledger. */
 export function ReviewStatusBadges({ steleId, compact = false }: { steleId: string; compact?: boolean }) {
   const record = LEDGER.get(steleId);
   if (!record) return null;
@@ -30,6 +32,16 @@ export function ReviewStatusBadges({ steleId, compact = false }: { steleId: stri
       >
         {record.evidenceReview.label}
       </span>
+      {(record.contentFlags ?? []).map((flag) => (
+        <span
+          key={`${flag.claimId}:${flag.flag}`}
+          data-testid="content-flag"
+          className={`${base} rounded border border-rose-700/60 text-rose-300 bg-rose-950/30`}
+          title={`${flag.file} · ${flag.claimId} · status = ${flag.status} · ${flag.evidenceLevel}`}
+        >
+          {flag.flag}
+        </span>
+      ))}
     </div>
   );
 }
