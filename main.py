@@ -194,10 +194,15 @@ def get_experiment_asset(experiment_id: str,filename: str):
 
 @app.get('/api/experiments/{experiment_id}/diagnosis')
 def experiment_diagnosis(experiment_id: str):
-    if experiment_id != 'heldout-v20-v21-2026-10-18':
-        raise HTTPException(status_code=404, detail='没有这份实验的失败诊断')
-    from restoration_diagnosis import diagnose
-    return diagnose()
+    # R1-4: every registered batch has a diagnosis; only unknown batches are 404.
+    from restoration_diagnosis import diagnose, diagnose_batch
+    if experiment_id == 'heldout-v20-v21-2026-10-18':
+        return {**diagnose(), 'diagnosisVersion': 'heldout-legacy-heuristic'}
+    from experiment_registry import batch
+    data = batch(experiment_id)
+    if data is None:
+        raise HTTPException(status_code=404, detail='实验批次不存在')
+    return diagnose_batch(data, experiment_id)
 
 
 @app.get('/api/experiments/{experiment_id}/export/{kind}')
