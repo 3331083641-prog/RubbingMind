@@ -3,6 +3,7 @@ import { SteleItem, CharacterItem, ProcessingResult, ProcessingRun, roleText } f
 import { SteleService } from '../services/api';
 import type { GlyphInferenceRecord } from '../services/api';
 import { GlyphInferencePanel } from '../components/GlyphInferencePanel';
+import { readUrlState, writeUrlState } from '../components/reports/useReportUrlState';
 import { 
   Sliders, 
   Layers, 
@@ -154,6 +155,27 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
     }
   };
 
+  // URL 状态（steleId/runId）：进入时若 URL 指向本件的某条运行就恢复它；之后选中/新跑的运行写回 URL，报告页据此显示同一运行。
+  const urlHydrated = useRef(false);
+  useEffect(() => {
+    if (urlHydrated.current || !runs.length) return;
+    urlHydrated.current = true;
+    const state = readUrlState();
+    const wanted = state.steleId === stele.id && state.runId ? runs.find(item => item.runId === state.runId) : undefined;
+    if (wanted) restoreRun(wanted);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [runs, stele.id]);
+  useEffect(() => {
+    if (!urlHydrated.current && !selectedRunId) {
+      // 尚未恢复：只更新文物，不清掉 URL 中可能属于本件的 runId；属于其他文物的 runId 则清掉，避免串号
+      const state = readUrlState();
+      if (state.steleId !== stele.id) writeUrlState({ tab: 'workbench', steleId: stele.id, runId: '' });
+      return;
+    }
+    if (selectedRunId) urlHydrated.current = true;
+    writeUrlState({ tab: 'workbench', steleId: stele.id, runId: selectedRunId, view: selectedRunId ? 'artifact' : '' });
+  }, [selectedRunId, stele.id]);
+
   const restoreRun = (run: ProcessingRun) => {
     setAdaptiveDetails(run.adaptiveDiagnostics||null);
     setSelectedRunId(run.runId);
@@ -269,6 +291,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
               {runs.map(run=><option key={run.runId} value={run.runId}>{run.runId} · {run.algorithmParameters?.filter_type || '旧版参数'}</option>)}
             </select>
           </label>
+          {selectedRunId && <button type="button" onClick={() => onNavigate('reports')} className="ml-3 text-gold underline">在评测报告中查看此运行</button>}
           {selectedRunId && (() => { const run=runs.find(item=>item.runId===selectedRunId); return run ? <div className="space-y-1 text-slate-300">
             <p>运行 ID：{run.runId} · 算法：{run.algorithmVersion} · 耗时：{run.processing_time_ms} ms</p>
             <p>保存参数：D₀ {run.algorithmParameters?.d0}；阶数 {run.algorithmParameters?.filter_order}；NLM {run.algorithmParameters?.h_nlm}；CLAHE {run.algorithmParameters?.clahe_clip}。当前滑块：{d0} / {filterOrder} / {hNlm} / {claheClip}。</p>
