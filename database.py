@@ -9,7 +9,10 @@ import json
 from typing import List, Dict, Any, Optional
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(BASE_DIR, "data", "rubbingmind.sqlite")
+from runtime_paths import db_path as _db_path
+
+# Default unchanged (<repo>/data/rubbingmind.sqlite); RUBBINGMIND_DB_PATH relocates it.
+DB_PATH = _db_path()
 
 
 def get_db_connection() -> sqlite3.Connection:

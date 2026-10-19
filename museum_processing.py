@@ -5,6 +5,7 @@ from pathlib import Path
 from fastapi import HTTPException
 from catalog import BASE, METRIC_KEYS
 from degradation_analysis import VERSION as ADAPTIVE_VERSION
+from runtime_paths import results_override
 
 def process_verified_request(req, manager, engine):
     started_at=datetime.now(timezone.utc).isoformat()
@@ -32,7 +33,7 @@ def process_verified_request(req, manager, engine):
     if result.get('error'):raise HTTPException(status_code=422,detail=result['error'])
     run_id=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')+'_'+uuid.uuid4().hex[:8]
     artifact_id=record['id'] if record else 'uploaded-image'
-    out=BASE/'static/results'/artifact_id/run_id;out.mkdir(parents=True,exist_ok=True)
+    out=results_root()/artifact_id/run_id;out.mkdir(parents=True,exist_ok=True)
     saved={};hashes={}
     images = {role: result.get(key,'') for role,key in [('original','original_b64'),('restored','restored_b64'),('frequency_spectrum','fft_spectrum_b64'),('character_skeleton','skeleton_b64'),('binary_skeleton','binary_skeleton_b64'),('contour','contour_b64'),('cinnabar_rubbing','cinnabar_b64')]}
     try:
@@ -69,10 +70,19 @@ def process_verified_request(req, manager, engine):
     return response
 
 
+# None = historical default <BASE>/static/results; RUBBINGMIND_RESULTS_DIR relocates
+# run storage while URLs stay /static/results/... (tests patch BASE and RESULTS_DIR).
+RESULTS_DIR=results_override()
+
+
+def results_root():
+    return RESULTS_DIR or BASE/'static'/'results'
+
+
 def read_run(stele_id, run_id):
     if not re.fullmatch(r'[0-9]{8}T[0-9]{6}_[0-9a-f]{8}',run_id):
         return None
-    path=BASE/'static/results'/stele_id/run_id/'processing.json'
+    path=results_root()/stele_id/run_id/'processing.json'
     if not path.is_file():return None
     data=json.loads(path.read_text(encoding='utf-8'))
     if data.get('steleId',data.get('stele_id'))!=stele_id:return None
@@ -88,7 +98,7 @@ def read_run(stele_id, run_id):
 
 
 def list_runs(stele_id):
-    folder=BASE/'static/results'/stele_id
+    folder=results_root()/stele_id
     if not folder.is_dir():return []
     records=[]
     for path in folder.glob('*/processing.json'):
@@ -100,7 +110,7 @@ def list_runs(stele_id):
 def delete_run(stele_id,run_id):
     if read_run(stele_id,run_id) is None:
         return False
-    root=(BASE/'static/results'/stele_id).resolve()
+    root=(results_root()/stele_id).resolve()
     target=(root/run_id).resolve()
     if target.parent!=root:
         return False

@@ -80,7 +80,15 @@ from runtime_guard import RuntimeGuard
 app.add_middleware(RuntimeGuard)
 PROCESS_LOCK=threading.Lock()
 os.makedirs(STATIC_DIR, exist_ok=True)
+# R1-7: when RUBBINGMIND_RESULTS_DIR relocates run storage, serve it under the
+# unchanged URL prefix /static/results (mounted first so it wins over /static).
+from runtime_paths import describe as describe_runtime_paths, results_override
+if results_override() is not None:
+    os.makedirs(results_override(), exist_ok=True)
+    app.mount("/static/results", StaticFiles(directory=str(results_override())), name="static-results")
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+if describe_runtime_paths()['overridden']:
+    logger.warning('RubbingMind 数据路径已重定向: %s', describe_runtime_paths())
 
 app.mount("/assets", StaticFiles(directory=DIST_ASSETS_DIR if os.path.exists(DIST_ASSETS_DIR) else os.path.join(BASE_DIR,"apps","web","public","assets")), name="assets")
 
