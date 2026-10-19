@@ -7,37 +7,88 @@ from catalog import BASE, METRIC_KEYS
 from degradation_analysis import VERSION as ADAPTIVE_VERSION, change_stats
 from runtime_paths import results_override
 
-RUN_PASSTHROUGH_CRITERION='working-gray-pixel-equal-v1'
+# Green 2026-10-19: one criterion name for runs and experiments. pixel-equal-v1 = both
+# images decoded at their stored resolution with every channel kept (IMREAD_UNCHANGED);
+# equal shape and every value equal. No gray conversion, no resizing.
+RUN_PASSTHROUGH_CRITERION='pixel-equal-v1'
+COMPARED_IMAGES=['original','restored']
+CHANGE_FIELDS=('isPassthrough','changedPixelCount','totalPixelCount','changedPixelRatio','maxAbsDiff','meanAbsDiff',
+               'passthroughCriterion','passthroughSource','passthroughUndeterminedReason')
 
 
-def _decode_gray(raw):
+def _decode_full(raw):
     import cv2, numpy as np
-    image=cv2.imdecode(np.frombuffer(raw,np.uint8),cv2.IMREAD_UNCHANGED)
-    if image is None:return None
-    if image.ndim==3:
-        image=cv2.cvtColor(image[:,:,:3],cv2.COLOR_BGR2GRAY)
-    return image
+    if not raw:return None
+    return cv2.imdecode(np.frombuffer(raw,np.uint8),cv2.IMREAD_UNCHANGED)
 
 
-def run_change_status(original_png, restored_png):
-    """Compare the working input (after any synthetic damage mask) with the saved output.
+def _undetermined(reason):
+    return {'isPassthrough':None,'changedPixelCount':None,'totalPixelCount':None,'changedPixelRatio':None,
+            'maxAbsDiff':None,'meanAbsDiff':None,'passthroughCriterion':None,'passthroughSource':None,
+            'passthroughUndeterminedReason':reason}
 
-    Both are reduced to the engine's working grayscale: the engine itself derives
-    its gray input with COLOR_BGR2GRAY, and the restored PNG is gray replicated
-    into three equal channels. isPassthrough is None when either image cannot
-    be decoded or the shapes differ; it is never guessed.
+
+def run_change_status(original_png, restored_png, source='recorded'):
+    """pixel-equal-v1 between the saved working input (original.png) and the saved output.
+
+    Undeterminable (missing, undecodable, different shape) -> every field None,
+    including passthroughCriterion and passthroughSource; never guessed.
     """
-    empty={'isPassthrough':None,'changedPixelCount':None,'changedPixelRatio':None,'maxAbsDiff':None,
-           'meanAbsDiff':None,'totalPixelCount':None,'passthroughCriterion':RUN_PASSTHROUGH_CRITERION}
     if not original_png or not restored_png:
-        return {**empty,'passthroughUndeterminedReason':'缺少输入或输出图像'}
-    before=_decode_gray(original_png);after=_decode_gray(restored_png)
-    if before is None or after is None or before.shape!=after.shape:
-        return {**empty,'passthroughUndeterminedReason':'输入输出无法解码或尺寸不同'}
+        return _undetermined('缺少输入或输出图像')
+    before=_decode_full(original_png);after=_decode_full(restored_png)
+    if before is None or after is None:
+        return _undetermined('输入或输出图像无法解码')
+    if before.shape!=after.shape or before.dtype!=after.dtype:
+        return _undetermined(f'输入与输出的数组形状或位深不同（{before.shape}/{before.dtype} vs {after.shape}/{after.dtype}），按 pixel-equal-v1 无法逐像素比较')
     stats=change_stats(before,after)
     stats['passthroughCriterion']=RUN_PASSTHROUGH_CRITERION
+    stats['passthroughSource']=source
     stats['passthroughUndeterminedReason']=None
     return stats
+
+
+def output_mode(status):
+    flag=status.get('isPassthrough')
+    return 'passthrough' if flag is True else 'processed' if flag is False else 'undetermined'
+
+
+def _run_file(stele_id,run_id,url):
+    prefix=f'/static/results/{stele_id}/{run_id}/'
+    if not isinstance(url,str) or not url.startswith(prefix):return None
+    root=(results_root()/stele_id/run_id).resolve()
+    path=(root/url[len(prefix):]).resolve()
+    return path if path.parent==root and path.is_file() else None
+
+
+def _verified_bytes(path,expected_sha):
+    if path is None or not expected_sha:return None
+    raw=path.read_bytes()
+    return raw if hashlib.sha256(raw).hexdigest()==expected_sha else None
+
+
+_READ_CACHE={}
+
+
+def computed_on_read_status(stele_id,run_id,data):
+    """Old runs only: compute pixel-equal-v1 from the stored PNGs if BOTH SHA-256 match the
+    run record. Read-only: nothing is written back."""
+    images=data.get('outputImages') or {};hashes=data.get('outputSha256') or {}
+    if not isinstance(hashes,dict) or not hashes.get('original') or not hashes.get('restored'):
+        return _undetermined('该运行保存于判据引入前，且未记录输入/输出 SHA-256，无法校验后读取计算')
+    paths={role:_run_file(stele_id,run_id,images.get(role)) for role in ('original','restored')}
+    if None in paths.values():
+        return _undetermined('该运行保存于判据引入前，本地缺少输入或输出图像')
+    key=tuple((str(p),p.stat().st_mtime_ns,hashes[r]) for r,p in sorted(paths.items()))
+    if key in _READ_CACHE:return dict(_READ_CACHE[key])
+    raw={role:_verified_bytes(path,hashes[role]) for role,path in paths.items()}
+    if raw['original'] is None or raw['restored'] is None:
+        status=_undetermined('该运行保存于判据引入前，本地图像与记录的 SHA-256 不一致，拒绝计算')
+    else:
+        status=run_change_status(raw['original'],raw['restored'],source='computed-on-read')
+    if len(_READ_CACHE)>512:_READ_CACHE.clear()
+    _READ_CACHE[key]=dict(status)
+    return status
 
 
 def effective_parameters(req):
@@ -102,12 +153,7 @@ def process_verified_request(req, manager, engine):
     response['evaluationStatus']='unassessed'
     response['outputImages']=saved
     change=run_change_status(raw_images.get('original'),raw_images.get('restored'))
-    response.update(isPassthrough=change['isPassthrough'],changedPixelCount=change['changedPixelCount'],
-        changedPixelRatio=change['changedPixelRatio'],maxAbsDiff=change['maxAbsDiff'],meanAbsDiff=change['meanAbsDiff'],
-        totalPixelCount=change['totalPixelCount'],passthroughCriterion=change['passthroughCriterion'],
-        passthroughUndeterminedReason=change['passthroughUndeterminedReason'],
-        comparedImages={'before':'original（工作输入；有风化掩码时为合成退化图）','after':'restored'},
-        outputMode=('passthrough' if change['isPassthrough'] else 'processed' if change['isPassthrough'] is False else 'undetermined'))
+    response.update({key:change[key] for key in CHANGE_FIELDS},comparedImages=list(COMPARED_IMAGES),outputMode=output_mode(change))
     response['effectiveParameters']=effective_parameters(req)
     input_sha=hashlib.sha256(Path(image).read_bytes()).hexdigest() if not req.image_base64 else hashlib.sha256(base64.b64decode(req.image_base64.split(',',1)[-1])).hexdigest()
     record_json=dict(response,steleId=artifact_id,algorithmParameters=req.model_dump(exclude={'image_base64','damage_mask'}),
@@ -147,9 +193,9 @@ def read_run(stele_id, run_id):
             finishedAt='未记录',algorithmParameters=data.get('parameters',{}),
             outputImages={'restored':data.get('restored_image','')},inferenceRecords=[],sourceRecords=[])
     if 'isPassthrough' not in data:
-        # Runs saved before this field existed are not re-measured on read.
-        data.update(isPassthrough=None,changedPixelCount=None,changedPixelRatio=None,maxAbsDiff=None,
-            outputMode='undetermined',passthroughCriterion=None,passthroughUndeterminedReason='该运行保存于判据引入前，未记录改动量')
+        # Runs saved before the criterion: computed on read when both SHA-256 verify; never written back.
+        status=computed_on_read_status(stele_id,run_id,data)
+        data.update(status,comparedImages=list(COMPARED_IMAGES),outputMode=output_mode(status))
     return data if data.get('runId')==run_id else None
 
 
@@ -185,6 +231,8 @@ def annotate_run(record):
     if record is None:return None
     legacy=record.get('algorithmVersion')==LEGACY_VERSION
     record.update(legacy=legacy,runKind='legacy_unverified' if legacy else 'processing',sortTimestamp=run_timestamp(record.get('runId')))
+    # R1-5: no cross-id aggregation; each run states the id it is stored under.
+    record['sourceSteleId']=record.get('steleId',record.get('stele_id'))
     # REPORT_DATA_SPEC §8 lists these for every run; runs saved before the criterion lack them.
     for key in ('totalPixelCount','meanAbsDiff'):
         record.setdefault(key,None)
