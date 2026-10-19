@@ -44,3 +44,22 @@
 - “同作品”关系的证据等级定为**待人工复核**。依据是 `core_sample_links.json` 的原注：“同一碑刻题名；不同图像及实验身份，不证明为同一馆藏拓本。”
 - 回滚：删除 `id_mapping.json` 即恢复旧的 ALIASES 行为，测试 `test_rollback_without_mapping_restores_legacy_behaviour` 覆盖这一点。
 - 本节不改任何史实。
+
+## 2026-10-19 · C-17 `knowledge_agent.py`：错误史实、无来源坐标与纪年换算
+
+`knowledge_agent.py` 由 `main.py:24` 导入，`/health` 会输出它的键名。本节只改数据内容和换算函数，导出接口不变。
+
+| 样本 · 字段 | 修改前 | 修改后 | 来源 |
+|---|---|---|---|
+| 全部 `gis_timeline[].coord`（含自定义模板，共 14 处） | 有经纬度，但没有任何来源 | 全部改为 `None`，每条加 `verification`；标 confirmed 的条目必须带 `sourceUrl` | 无坐标来源，不能保留。有来源的位置见 `data/history/*.json` |
+| sample_2 曹全 · 时间轴 | “熹平五年 (176) 拜西域戊部司马”；“光和六年 (183) 迁郃阳令” | 建宁二年 (169)：举孝廉，除郎中，拜西域戊部司马 → 建宁二年后（年份未记）：征讨疏勒 → 光和六年 (183)：复举孝廉 → 光和七年 (184) 三月：除郎中，拜酒泉禄福长 → 张角起兵后（年份未记）：转拜郃阳令 → 中平二年 (185)：立碑 | 馆方释文（仓库 `steles28.json` han_01_caoquan，抽取自 https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P ）：“建寧二年。舉孝廉。除郎中。拜西域戊部司馬。時疏勒國王和德……君興師征討”“光和六年。復舉孝廉。七年三月。除郎中。拜酒泉祿福長。訞賊張角。起兵幽冀……轉拜郃陽令”；西安碑林博物馆“灵帝中平二年(185)立” https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home 。**原“176”“183 迁郃阳令”与碑文矛盾，已删** |
+| sample_2 · summary/translation/c4 | “率军出玉门关”“后迁郃阳令” | “兴师征讨疏勒王和德”“转拜郃阳令” | 同上碑文；“玉门关”碑文中没有，删 |
+| sample_2 · location_now / author_calligraphy | 西安碑林博物馆第三室／汉代书吏（无名氏） | 西安碑林博物馆（陈列室号未核实）／未核实 | 碑林同上 URL；室号、书手无来源 |
+| sample_1 多宝塔 · location_now / era_converted | 第一室／公元 752 年 5 月 | 陈列室号未核实／752 年（馆方记“四月建”，公历月日未核实） | https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home |
+| sample_1 · 时间轴 | 742 年感通、744 年“东都洛阳”敕赐五十万、752 年立碑 | 742、744 两条标 unverified（744 条的地点和数额改为“未核实”）；752 年四月建碑标 confirmed 并附碑林 URL | 碑林同上：“唐天宝十一载(752)四月建”“千福寺在唐长安城安定坊之东南隅” |
+| sample_3 元怀 · host/summary/w1/link | “孝文帝第四子”（单一说法） | “志文作第四子，另说第五子”，两说并列 | 志文“高祖孝文皇帝之第四子”（搜狐转录 https://www.sohu.com/a/818047024_121124391 ）；百度百科“孝文帝元宏第五子” https://baike.baidu.com/item/%E5%85%83%E6%80%80/10330461 ；刘军论文“第四/第五子表述有异” |
+| sample_3 · w4 元修 | “元怀平阳王时期所生第三子” | “元怀第三子，后即位为孝武帝（有限支持）” | 百度百科同上：“中兴二年，元怀第三子元脩即位”；“平阳王时期所生”无来源，删 |
+| sample_3 · location_now / era_converted / author_calligraphy | 开封市博物馆（1925年洛阳邙山出土）／517 年 4 月 27 日／北魏宗室御用书家 | 两说并列（同 C-02）／公历月日未核实／未核实（“无撰书人乡名”） | 同 C-02 |
+| sample_3 · 时间轴 | 488 年“平城宫中降诞”；517 年“葬于邙山之巅” | 488 年改为生年推算（unverified，出生地未核实）；517 年改为志文“三月廿六日丁亥薨；秋八月廿日窆于西郊之兆” | 搜狐转录志文同上；“平城宫中”“邙山之巅”无来源，删 |
+| sample_4（合成测试样本） | host 昌黎韩氏夫人；location_now 洛阳古墓博物馆石刻馆；时间轴 478 年等 | 全部改为“无（合成测试样本）”；时间轴只保留一条测试纪年标签 | 合成测试样本，见 C-03 |
+| `convert_ganzhi` | 中文年次只认到“十二”：“天宝十四载”→742，“天宝二十载”→742；无法识别的输入一律返回 752 / 岁次壬辰年 | 支持元、阿拉伯数字、十X、X十Y、廿、卅；年次超出该年号的年数时返回 `supported:false`；无法识别时返回 `supported:false`，不再给默认值 | 实测：天宝十四载→755（乙未），与 `/api/calendar` 使用的 `history_graph.convert_historical_year` 一致；天宝元载=742（年号起始年） |
