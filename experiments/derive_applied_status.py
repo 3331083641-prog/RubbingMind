@@ -36,6 +36,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from degradation_analysis import change_stats  # noqa: E402
 from experiments.applied_status import split_means  # noqa: E402
+from experiments.notch_na_changes import OTHER, ROUNDING, annotate  # noqa: E402
 
 # Operators that only copy input pixels (degradation_analysis v2.0/v2.1).
 COPY_ONLY = {'skip_notch', 'identity', 'preserve_missing', 'fallback_identity'}
@@ -44,7 +45,7 @@ FIELDS = ['batch', 'experimentId', 'rowIndex', 'sampleId', 'split', 'degradation
           'changedPixelCount', 'totalPixelCount', 'changedPixelRatio', 'maxAbsDiff', 'meanAbsDiff',
           'inputFile', 'inputSha256Actual', 'outputFile', 'outputSha256Actual', 'shaMatchesRecord',
           'psnr', 'ssim', 'edgeF1', 'psnrDeltaFromInput', 'indicatorPsnrDeltaZero', 'indicatorCopyOnlyOperators',
-          'undeterminedReason']
+          'undeterminedReason', 'appliedStatusDetail', 'naChangeEvidence']
 
 
 def sha256(path: Path) -> str:
@@ -126,6 +127,9 @@ def derive_batch(batch_dir: Path):
         if item['appliedStatus'] == 'undetermined' and item['undeterminedReason'] is None:
             item['undeterminedReason'] = '未知'
         out.append(item)
+    if has_images:
+        # E-05: explain notch rows labelled not_applicable whose pixels changed.
+        annotate(batch_dir, out)
     return data, experiment_id, has_images, out
 
 
@@ -139,6 +143,8 @@ def summarize(items, keys):
         entry.update(split_means(members, ('psnr', 'ssim', 'edgeF1')))
         entry['passthroughCriterion'] = '|'.join(sorted({m['criterion'] for m in members if m['criterion']}))
         entry['notApplicableLabelButChangedN'] = sum(m['appliedStatus'] == 'processed_not_applicable_label' for m in members)
+        entry['notApplicableModifiedRoundingN'] = sum(m['appliedStatusDetail'] == ROUNDING for m in members)
+        entry['notApplicableModifiedOtherN'] = sum(m['appliedStatusDetail'] == OTHER for m in members)
         entry['indicatorPsnrDeltaZeroN'] = sum(m['indicatorPsnrDeltaZero'] is True for m in members)
         entry['indicatorCopyOnlyOperatorsN'] = sum(m['indicatorCopyOnlyOperators'] is True for m in members)
         summary.append(entry)
@@ -178,10 +184,11 @@ def main(argv=None):
         with (out_dir / 'applied_status.csv').open('w', encoding='utf-8-sig', newline='') as handle:
             writer = csv.DictWriter(handle, fieldnames=FIELDS)
             writer.writeheader()
-            writer.writerows(items)
+            writer.writerows([dict(i, naChangeEvidence=json.dumps(i['naChangeEvidence'], ensure_ascii=False) if i['naChangeEvidence'] else None) for i in items])
         report.append({'batch': batch_dir.name, 'rows': len(items),
                        'counts': {s: sum(i['appliedStatus'] == s for i in items) for s in sorted({i['appliedStatus'] for i in items})},
-                       'shaMismatches': sum(i['shaMatchesRecord'] is False for i in items)})
+                       'shaMismatches': sum(i['shaMatchesRecord'] is False for i in items),
+                       'appliedStatusDetail': {d: sum(i['appliedStatusDetail'] == d for i in items) for d in (ROUNDING, OTHER)}})
     print(json.dumps(report, ensure_ascii=False, indent=2))
     return report
 

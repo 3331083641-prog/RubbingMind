@@ -1,7 +1,7 @@
 {
   "experimentId": "controlled-rubbings-2026-10-15",
   "batch": "2026-10-15",
-  "derivedAt": "2026-10-19T04:02:57.254424+00:00",
+  "derivedAt": "2026-10-19T04:45:49.635493+00:00",
   "derivedBy": "experiments/derive_applied_status.py",
   "sourceResultsSha256": "55c6e0a299f4949679b47e91e2d3a1c912ee816c80e5eb564980dcfc9ea1f58e",
   "imagesAvailable": true,
@@ -27,6 +27,8 @@
       "edgeF1MeanProcessed": 0.5439978190341854,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -49,6 +51,8 @@
       "edgeF1MeanProcessed": null,
       "edgeF1MeanPassthrough": 0.5208989605213368,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -71,6 +75,8 @@
       "edgeF1MeanProcessed": 0.5187541098344952,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -93,6 +99,8 @@
       "edgeF1MeanProcessed": 0.5398138387520796,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -115,6 +123,8 @@
       "edgeF1MeanProcessed": 0.530956195578576,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -137,6 +147,8 @@
       "edgeF1MeanProcessed": 0.44971231325481564,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -159,6 +171,8 @@
       "edgeF1MeanProcessed": 0.438483721421817,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -181,6 +195,8 @@
       "edgeF1MeanProcessed": 0.6416765893610779,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 8,
+      "notApplicableModifiedRoundingN": 8,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     }
@@ -205,6 +221,8 @@
       "edgeF1MeanProcessed": 0.5439978190341854,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -227,6 +245,8 @@
       "edgeF1MeanProcessed": null,
       "edgeF1MeanPassthrough": 0.5208989605213368,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -249,6 +269,8 @@
       "edgeF1MeanProcessed": 0.5187541098344952,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -271,6 +293,8 @@
       "edgeF1MeanProcessed": 0.5398138387520796,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -293,6 +317,8 @@
       "edgeF1MeanProcessed": 0.530956195578576,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -315,6 +341,8 @@
       "edgeF1MeanProcessed": 0.44971231325481564,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -337,6 +365,8 @@
       "edgeF1MeanProcessed": 0.438483721421817,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -359,6 +389,8 @@
       "edgeF1MeanProcessed": 0.6416765893610779,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 8,
+      "notApplicableModifiedRoundingN": 8,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     }
@@ -384,6 +416,8 @@
       "edgeF1MeanProcessed": 0.5188450736918298,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -407,6 +441,8 @@
       "edgeF1MeanProcessed": 0.681736420135914,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -430,6 +466,8 @@
       "edgeF1MeanProcessed": 0.7723297145241965,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -453,6 +491,8 @@
       "edgeF1MeanProcessed": 0.3145388415494488,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -476,6 +516,8 @@
       "edgeF1MeanProcessed": 0.4325390452695378,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -499,6 +541,8 @@
       "edgeF1MeanProcessed": null,
       "edgeF1MeanPassthrough": 0.5675095344426421,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -522,6 +566,8 @@
       "edgeF1MeanProcessed": null,
       "edgeF1MeanPassthrough": 0.3025796442985036,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -545,6 +591,8 @@
       "edgeF1MeanProcessed": null,
       "edgeF1MeanPassthrough": 0.9685814303095688,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -568,6 +616,8 @@
       "edgeF1MeanProcessed": null,
       "edgeF1MeanPassthrough": 0.34394937700320183,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -591,6 +641,8 @@
       "edgeF1MeanProcessed": null,
       "edgeF1MeanPassthrough": 0.4218748165527676,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -614,6 +666,8 @@
       "edgeF1MeanProcessed": 0.5255139165776033,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -637,6 +691,8 @@
       "edgeF1MeanProcessed": 0.41677644721153756,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -660,6 +716,8 @@
       "edgeF1MeanProcessed": 0.8592401556003834,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -683,6 +741,8 @@
       "edgeF1MeanProcessed": 0.3500875159906543,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -706,6 +766,8 @@
       "edgeF1MeanProcessed": 0.4421525137922975,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -729,6 +791,8 @@
       "edgeF1MeanProcessed": 0.5239468827579605,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -752,6 +816,8 @@
       "edgeF1MeanProcessed": 0.5948804423395148,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -775,6 +841,8 @@
       "edgeF1MeanProcessed": 0.8085844372010236,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -798,6 +866,8 @@
       "edgeF1MeanProcessed": 0.33279063804429787,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -821,6 +891,8 @@
       "edgeF1MeanProcessed": 0.43886679341760104,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -844,6 +916,8 @@
       "edgeF1MeanProcessed": 0.36630727812420905,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -867,6 +941,8 @@
       "edgeF1MeanProcessed": 0.538087491177121,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -890,6 +966,8 @@
       "edgeF1MeanProcessed": 0.5538058519092022,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -913,6 +991,8 @@
       "edgeF1MeanProcessed": 0.6821112487848255,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -936,6 +1016,8 @@
       "edgeF1MeanProcessed": 0.5144691078975224,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -959,6 +1041,8 @@
       "edgeF1MeanProcessed": 0.44015529805531917,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -982,6 +1066,8 @@
       "edgeF1MeanProcessed": 0.4477013380177816,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -1005,6 +1091,8 @@
       "edgeF1MeanProcessed": 0.6335174054078145,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -1028,6 +1116,8 @@
       "edgeF1MeanProcessed": 0.25360306213588746,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -1051,6 +1141,8 @@
       "edgeF1MeanProcessed": 0.47358446265727544,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -1074,6 +1166,8 @@
       "edgeF1MeanProcessed": 0.471992316987769,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -1097,6 +1191,8 @@
       "edgeF1MeanProcessed": 0.24988945409467267,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -1120,6 +1216,8 @@
       "edgeF1MeanProcessed": 0.7995313484684592,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -1143,6 +1241,8 @@
       "edgeF1MeanProcessed": 0.3032189864571688,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -1166,6 +1266,8 @@
       "edgeF1MeanProcessed": 0.3677865011010154,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -1189,6 +1291,8 @@
       "edgeF1MeanProcessed": 0.5656563550102935,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 2,
+      "notApplicableModifiedRoundingN": 2,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -1212,6 +1316,8 @@
       "edgeF1MeanProcessed": 0.3027677135830887,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 2,
+      "notApplicableModifiedRoundingN": 2,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -1235,6 +1341,8 @@
       "edgeF1MeanProcessed": 0.964050748965837,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 2,
+      "notApplicableModifiedRoundingN": 2,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -1258,6 +1366,8 @@
       "edgeF1MeanProcessed": 0.9546335031788019,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 0,
+      "notApplicableModifiedRoundingN": 0,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     },
@@ -1281,6 +1391,8 @@
       "edgeF1MeanProcessed": 0.4212746260673682,
       "edgeF1MeanPassthrough": null,
       "notApplicableLabelButChangedN": 2,
+      "notApplicableModifiedRoundingN": 2,
+      "notApplicableModifiedOtherN": 0,
       "indicatorPsnrDeltaZeroN": 0,
       "indicatorCopyOnlyOperatorsN": 0
     }
@@ -1316,7 +1428,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -1348,7 +1462,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -1380,7 +1496,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -1412,7 +1530,26 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": "not-applicable-but-modified-rounding",
+      "naChangeEvidence": {
+        "inputChannels": 1,
+        "outputChannels": 1,
+        "changedPixelCount": 8884,
+        "signedDiffValues": [
+          -1
+        ],
+        "maxAbsDiff": 1,
+        "snapshotReproducesStored": true,
+        "snapshotNotchApplied": false,
+        "headReturnsInput": true,
+        "headNotchApplied": false,
+        "floatRoundTripMaxError": 3.0517578125e-05,
+        "changedEqualsTruncation": true,
+        "failedChecks": [],
+        "snapshotSource": "git 10a63f4:algorithm_engine.py",
+        "snapshotSha256": "414bb19e97ae13390fb75e9c75d7626551fdd35e29e306eb26620d1132548055"
+      }
     },
     {
       "batch": "2026-10-15",
@@ -1444,7 +1581,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -1476,7 +1615,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -1508,7 +1649,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -1540,7 +1683,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -1572,7 +1717,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -1604,7 +1751,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -1636,7 +1785,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -1668,7 +1819,26 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": "not-applicable-but-modified-rounding",
+      "naChangeEvidence": {
+        "inputChannels": 1,
+        "outputChannels": 1,
+        "changedPixelCount": 10085,
+        "signedDiffValues": [
+          -1
+        ],
+        "maxAbsDiff": 1,
+        "snapshotReproducesStored": true,
+        "snapshotNotchApplied": false,
+        "headReturnsInput": true,
+        "headNotchApplied": false,
+        "floatRoundTripMaxError": 3.0517578125e-05,
+        "changedEqualsTruncation": true,
+        "failedChecks": [],
+        "snapshotSource": "git 10a63f4:algorithm_engine.py",
+        "snapshotSha256": "414bb19e97ae13390fb75e9c75d7626551fdd35e29e306eb26620d1132548055"
+      }
     },
     {
       "batch": "2026-10-15",
@@ -1700,7 +1870,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -1732,7 +1904,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -1764,7 +1938,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -1796,7 +1972,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -1828,7 +2006,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -1860,7 +2040,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -1892,7 +2074,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -1924,7 +2108,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -1956,7 +2142,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -1988,7 +2176,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2020,7 +2210,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2052,7 +2244,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2084,7 +2278,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2116,7 +2312,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2148,7 +2346,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2180,7 +2380,26 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": "not-applicable-but-modified-rounding",
+      "naChangeEvidence": {
+        "inputChannels": 1,
+        "outputChannels": 1,
+        "changedPixelCount": 2708,
+        "signedDiffValues": [
+          -1
+        ],
+        "maxAbsDiff": 1,
+        "snapshotReproducesStored": true,
+        "snapshotNotchApplied": false,
+        "headReturnsInput": true,
+        "headNotchApplied": false,
+        "floatRoundTripMaxError": 3.0517578125e-05,
+        "changedEqualsTruncation": true,
+        "failedChecks": [],
+        "snapshotSource": "git 10a63f4:algorithm_engine.py",
+        "snapshotSha256": "414bb19e97ae13390fb75e9c75d7626551fdd35e29e306eb26620d1132548055"
+      }
     },
     {
       "batch": "2026-10-15",
@@ -2212,7 +2431,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2244,7 +2465,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2276,7 +2499,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2308,7 +2533,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2340,7 +2567,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2372,7 +2601,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2404,7 +2635,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2436,7 +2669,26 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": "not-applicable-but-modified-rounding",
+      "naChangeEvidence": {
+        "inputChannels": 1,
+        "outputChannels": 1,
+        "changedPixelCount": 7156,
+        "signedDiffValues": [
+          -1
+        ],
+        "maxAbsDiff": 1,
+        "snapshotReproducesStored": true,
+        "snapshotNotchApplied": false,
+        "headReturnsInput": true,
+        "headNotchApplied": false,
+        "floatRoundTripMaxError": 3.0517578125e-05,
+        "changedEqualsTruncation": true,
+        "failedChecks": [],
+        "snapshotSource": "git 10a63f4:algorithm_engine.py",
+        "snapshotSha256": "414bb19e97ae13390fb75e9c75d7626551fdd35e29e306eb26620d1132548055"
+      }
     },
     {
       "batch": "2026-10-15",
@@ -2468,7 +2720,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2500,7 +2754,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2532,7 +2788,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2564,7 +2822,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2596,7 +2856,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2628,7 +2890,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2660,7 +2924,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2692,7 +2958,26 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": "not-applicable-but-modified-rounding",
+      "naChangeEvidence": {
+        "inputChannels": 1,
+        "outputChannels": 1,
+        "changedPixelCount": 10473,
+        "signedDiffValues": [
+          -1
+        ],
+        "maxAbsDiff": 1,
+        "snapshotReproducesStored": true,
+        "snapshotNotchApplied": false,
+        "headReturnsInput": true,
+        "headNotchApplied": false,
+        "floatRoundTripMaxError": 3.0517578125e-05,
+        "changedEqualsTruncation": true,
+        "failedChecks": [],
+        "snapshotSource": "git 10a63f4:algorithm_engine.py",
+        "snapshotSha256": "414bb19e97ae13390fb75e9c75d7626551fdd35e29e306eb26620d1132548055"
+      }
     },
     {
       "batch": "2026-10-15",
@@ -2724,7 +3009,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2756,7 +3043,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2788,7 +3077,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2820,7 +3111,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2852,7 +3145,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2884,7 +3179,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2916,7 +3213,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -2948,7 +3247,26 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": "not-applicable-but-modified-rounding",
+      "naChangeEvidence": {
+        "inputChannels": 1,
+        "outputChannels": 1,
+        "changedPixelCount": 13187,
+        "signedDiffValues": [
+          -1
+        ],
+        "maxAbsDiff": 1,
+        "snapshotReproducesStored": true,
+        "snapshotNotchApplied": false,
+        "headReturnsInput": true,
+        "headNotchApplied": false,
+        "floatRoundTripMaxError": 3.0517578125e-05,
+        "changedEqualsTruncation": true,
+        "failedChecks": [],
+        "snapshotSource": "git 10a63f4:algorithm_engine.py",
+        "snapshotSha256": "414bb19e97ae13390fb75e9c75d7626551fdd35e29e306eb26620d1132548055"
+      }
     },
     {
       "batch": "2026-10-15",
@@ -2980,7 +3298,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -3012,7 +3332,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -3044,7 +3366,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -3076,7 +3400,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -3108,7 +3434,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -3140,7 +3468,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -3172,7 +3502,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -3204,7 +3536,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -3236,7 +3570,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -3268,7 +3604,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -3300,7 +3638,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -3332,7 +3672,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -3364,7 +3706,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -3396,7 +3740,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -3428,7 +3774,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -3460,7 +3808,26 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": "not-applicable-but-modified-rounding",
+      "naChangeEvidence": {
+        "inputChannels": 1,
+        "outputChannels": 1,
+        "changedPixelCount": 9871,
+        "signedDiffValues": [
+          -1
+        ],
+        "maxAbsDiff": 1,
+        "snapshotReproducesStored": true,
+        "snapshotNotchApplied": false,
+        "headReturnsInput": true,
+        "headNotchApplied": false,
+        "floatRoundTripMaxError": 3.0517578125e-05,
+        "changedEqualsTruncation": true,
+        "failedChecks": [],
+        "snapshotSource": "git 10a63f4:algorithm_engine.py",
+        "snapshotSha256": "414bb19e97ae13390fb75e9c75d7626551fdd35e29e306eb26620d1132548055"
+      }
     },
     {
       "batch": "2026-10-15",
@@ -3492,7 +3859,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -3524,7 +3893,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -3556,7 +3927,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -3588,7 +3961,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -3620,7 +3995,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -3652,7 +4029,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -3684,7 +4063,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -3716,7 +4097,26 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": "not-applicable-but-modified-rounding",
+      "naChangeEvidence": {
+        "inputChannels": 1,
+        "outputChannels": 1,
+        "changedPixelCount": 11452,
+        "signedDiffValues": [
+          -1
+        ],
+        "maxAbsDiff": 1,
+        "snapshotReproducesStored": true,
+        "snapshotNotchApplied": false,
+        "headReturnsInput": true,
+        "headNotchApplied": false,
+        "floatRoundTripMaxError": 3.0517578125e-05,
+        "changedEqualsTruncation": true,
+        "failedChecks": [],
+        "snapshotSource": "git 10a63f4:algorithm_engine.py",
+        "snapshotSha256": "414bb19e97ae13390fb75e9c75d7626551fdd35e29e306eb26620d1132548055"
+      }
     },
     {
       "batch": "2026-10-15",
@@ -3748,7 +4148,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -3780,7 +4182,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -3812,7 +4216,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     },
     {
       "batch": "2026-10-15",
@@ -3844,7 +4250,9 @@
       "psnrDeltaFromInput": null,
       "indicatorPsnrDeltaZero": null,
       "indicatorCopyOnlyOperators": null,
-      "undeterminedReason": null
+      "undeterminedReason": null,
+      "appliedStatusDetail": null,
+      "naChangeEvidence": null
     }
   ]
 }
