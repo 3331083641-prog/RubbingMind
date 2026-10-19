@@ -1,6 +1,6 @@
 # REPORT_DATA_SPEC — 评测报告六层数据契约
 
-- 版本：v3 定稿（2026-10-19，RM-评测科学家；v1 → v2：填入聚类 CI、B15 退化参数核对、E-04 测量原因、E-05 修复状态、机制层文件；v2 → v3：判据统一为 `pixel-equal-v1`，新增 `passthroughSource`，`comparedImages` 定为数组，旧运行改为读取时计算（§8）；notch“不适用却改了像素”按原因逐行核实（§1(b)）；禁止报告同批复测 v2.1 的处理率 / 原图返回率（§1(a)）；原图返回按方法拆分（§1(b)）；CI 与前端对账规则（§0.3））
+- 版本：v3.1 定稿（2026-10-19，RM-评测科学家。Green 指令中的“v2 定稿”即本版；分支上 v2、v3 是本日的中间稿。v3 → v3.1：按 Green 判据裁定 F 写明彩色转灰度算改动、无法判定时判据和来源都为 null、新增灰度口径三个字段；按架构后端审查 D-2、D-3 写明 selectedOutput 新含义和两层 outputMode 的区别。更早的变更：v1 → v2：填入聚类 CI、B15 退化参数核对、E-04 测量原因、E-05 修复状态、机制层文件；v2 → v3：判据统一为 `pixel-equal-v1`，新增 `passthroughSource`，`comparedImages` 定为数组，旧运行改为读取时计算（§8）；notch“不适用却改了像素”按原因逐行核实（§1(b)）；禁止报告同批复测 v2.1 的处理率 / 原图返回率（§1(a)）；原图返回按方法拆分（§1(b)）；CI 与前端对账规则（§0.3））
 - 基线：`feature/product-grade-upgrade` @ `f0c5886`。配套实现：分支 `agent/eval-sci`（未合并），代码在 `f21ceaa`、`7623a52` 和其后的提交（`git log f0c5886..agent/eval-sci`），派生数据见同分支
 - 依据：`docs/product-upgrade/AUDIT_EVALUATION.md`（E-01 … E-12）
 - 适用对象：报告前端（ReportsPage / ExperimentExplorer 的继任页面）和架构后端（main.py / API）
@@ -249,15 +249,18 @@
 
 | 字段 | 类型 | 含义 | null 规则 | 前端文案 |
 |---|---|---|---|---|
-| `isPassthrough` | `bool \| null` | 按 `pixel-equal-v1`：`original.png` 与 `restored.png` 解码后形状相同且全部通道逐像素相等 | 图像缺失、解码失败、形状不同；旧运行另有 SHA 规则（见下）：null | true → 标题“本次未改动原图”，副标“算法判断无需处理，输出与输入逐像素相同”，**不得**显示“算法输出”或“实际处理已执行”；false → “算法输出”；null → “未能判定是否改动” |
+| `isPassthrough` | `bool \| null` | 按 `pixel-equal-v1`：`original.png` 与 `restored.png` 按存储分辨率解码（`IMREAD_UNCHANGED`，不缩放、不裁切、不转灰度），数组形状和位深都相同，且全部通道逐像素相等。**彩色输入经灰度化后输出，算“已改动”**（裁定 F，后端 `4379827` 同此实现） | 图像缺失、解码失败、形状不同；旧运行另有 SHA 规则（见下）：null | true → 标题“本次未改动原图”，副标“算法判断无需处理，输出与输入逐像素相同”，**不得**显示“算法输出”或“实际处理已执行”；false → “算法输出”；null → “未能判定是否改动” |
 | `changedPixelCount` | `int \| null` | 改动像素数（任一通道） | 同上 | “改动 N 像素” |
 | `totalPixelCount` | `int \| null` | H·W | 同上 | — |
 | `changedPixelRatio` | `float \| null`，范围 [0, 1] | 改动像素比例 | 同上 | 百分比，保留 2 位；如果 > 0 但 < 0.01%，显示“<0.01%” |
-| `maxAbsDiff` | `int \| null`，范围 0–255 | 最大绝对差 | 同上 | “最大灰度差 x” |
-| `meanAbsDiff` | `float \| null` | 平均绝对差 | 同上 | 仅放在详情里 |
-| `passthroughCriterion` | `string` | 判据版本，统一为 `pixel-equal-v1`（与实验侧相同）。`f21ceaa` 到本版之间在分支上保存的运行可能记为 `working-gray-pixel-equal-v1`（工作灰度图比较），按记录原样显示，不改写 | 不为 null | 详情：“判据：pixel-equal-v1” |
-| `passthroughSource` | `"recorded" \| "computed-on-read" \| null` | `recorded`：处理时计算并写入 `processing.json`；`computed-on-read`：旧运行没有该字段，后端读取时按 `pixel-equal-v1` 当场计算，不回写 | 只有 `isPassthrough=null` 且没有记录值时为 null | 详情：“来源：运行时记录 / 读取时计算” |
+| `maxAbsDiff` | `int \| null`，8 位图范围 0–255（16 位图 0–65535；差值按 int32 计算，不溢出） | 最大绝对差（任一通道） | 同上 | “最大差 x” |
+| `meanAbsDiff` | `float \| null` | 平均绝对差，按全部元素（H·W·通道数）平均 | 同上 | 仅放在详情里 |
+| `passthroughCriterion` | `string \| null` | 判据版本，统一为 `pixel-equal-v1`（与实验侧相同） | 无法判定时（`isPassthrough=null`）为 null | 详情：“判据：pixel-equal-v1”；null 时显示“无法判定” |
+| `passthroughSource` | `"recorded" \| "computed-on-read" \| null` | `recorded`：处理时计算并写入 `processing.json`；`computed-on-read`：旧运行没有该字段，后端读取时按 `pixel-equal-v1` 当场计算，不回写 | 无法判定时为 null | 详情：“来源：运行时记录 / 读取时计算”；null 时显示“无法判定” |
 | `passthroughUndeterminedReason` | `string \| null` | 为什么是 null | 只有 `isPassthrough=null` 时非空 | 原样显示 |
+| `grayChangedPixelCount` | `int \| null` | **灰度口径**，只用于并列显示，**不参与** passthrough 判定：两张图分别灰度化后，值不同的像素数（H·W 范围内计数） | 两张图任一缺失、无法解码、H·W 不同或位深不同时为 null；与 `isPassthrough` 是否为 null 无关 | 与 `changedPixelCount` 并列：“灰度口径：改动 N 像素” |
+| `grayChangedPixelRatio` | `float \| null`，范围 [0, 1] | `grayChangedPixelCount / (H·W)` | 同上 | 百分比 |
+| `grayCriterion` | `string \| null` | 当前为 `gray-bt601-pixel-equal-v1`。灰度化公式：OpenCV `cv2.cvtColor(img, COLOR_BGR2GRAY)`（4 通道用 `COLOR_BGRA2GRAY`，忽略 alpha；单通道原样使用），即 Y = 0.299·R + 0.587·G + 0.114·B，按 OpenCV 定点运算四舍五入到整数。注意：`cv2.imdecode(..., IMREAD_GRAYSCALE)` 走解码器自己的灰度转换，结果与此不同，不得混用（见 AUDIT 勘误：644816 的来源） | 同上 | 详情：“灰度口径：gray-bt601-pixel-equal-v1” |
 | `comparedImages` | `string[]`（数组，当前固定为 `["original", "restored"]`） | 参与比较的图像角色，顺序为 [比较前, 比较后]；`original` 是工作输入（有风化掩码时为合成退化图），`restored` 是算法输出 | 不为 null。旧版本写成对象 `{before, after}` 的记录，读取时规范为数组 | 详情 |
 | `outputMode` | `"processed" \| "passthrough" \| "undetermined"` | 由 `isPassthrough` 导出，便于前端分支 | — | 同 isPassthrough |
 | `effectiveParameters` | `object` | E-10：实际生效的参数。adaptive 路径给 `strength = max(0.1, h_nlm / 10)`、`notchWidth = max(0.5, d0 / 60)`、`derivedFrom`（公式）、`ignoredRequestParameters = ["filter_order", "clahe_clip", "morph_kernel"]`；固定路径给 `d0`、`filterOrder`、`nlmH`、`claheClip`、`morphKernel` | 不为 null | 参数面板显示“实际生效参数”，被忽略的参数灰显，并注明“自适应路径未使用” |
@@ -267,14 +270,17 @@
 - 计算位置在 PNG 落盘之后，用落盘字节解码比较，避免内存图与文件不一致。
 - 旧运行（`processing.json` 没有 `isPassthrough`）：后端读取时当场计算，**不回写**任何文件。条件：运行目录里 `original.png` 和 `restored.png` 都存在，并且两者的 SHA-256 与 `processing.json.outputSha256` 中的记录一致。满足时按 `pixel-equal-v1` 计算全部改动量字段，`passthroughSource='computed-on-read'`。任一图缺失、未记录 SHA 或 SHA 不符时，所有改动量字段为 null，`passthroughSource=null`，`passthroughUndeterminedReason` 写明哪张图、哪种原因；前端显示“无法判定”。
 - 本地实测（只读，`D:\RubbingMind\static\results`，24 个 `processing.json`，读取前后哈希不变）：22 个按读取时计算判定（10 个原图返回、12 个实际处理），2 个缺少 `original.png` 判为 null。10 个原图返回均为 `tang_01_duobao` 的 adaptive 运行，与审计 E-03“12 次 adaptive 中 10 次改动 0 像素”一致。
-- 全部通道比较的后果：源图是彩色时，`original.png` 是彩色，而 `restored.png` 是灰度复制成三通道，二者在全部通道上不会相等，所以彩色源图的运行即使在工作灰度图上没有改动，也会判为“实际处理”，`changedPixelCount` 接近全图。本地 22 个可判定运行里，两种比较方式的真假结论没有出现分歧，但改动像素数不同（例如 `tang-duobao/20261018T072201_13772747`：全部通道 1507328 px，工作灰度 2719 px）。这是本判据的已知性质，前端在彩色源图上显示改动比例时应注明“含彩色转灰度”。
+- 彩色输入（裁定 F）：源图是彩色时，`original.png` 是彩色，`restored.png` 是灰度复制成三通道，二者在全部通道上不会相等，所以按裁定判为“已改动”，`changedPixelCount` 通常等于全图。灰度口径字段同时给出灰度化之后的改动量，供并列显示。本地实测 `tang-duobao/20261018T072201_13772747`：全通道 1,507,328 / 1,507,328 px（比例 1.0）；灰度口径 2,719 px（0.18%）。本地 22 个可判定运行里，全通道与灰度口径的真假结论没有分歧。前端规则：`isPassthrough=false` 且 `grayChangedPixelCount` 远小于 `changedPixelCount` 时，在改动比例旁注明“含彩色转灰度，灰度口径改动 N 像素”。
+- 无法判定时：`isPassthrough`、`passthroughCriterion`、`passthroughSource` 和全部改动量字段都为 null，`outputMode='undetermined'`，界面显示“无法判定”和原因。
 - ReportsPage 的修改归前端负责；本 SPEC 只规定文案。
 
 ## 9. 实验侧新运行的字段（已在 agent/eval-sci 实现）
 
 - `run_v2.py` 和 `compare_v21.py` 的每行增加 `isPassthrough`、`changedPixelCount`、`changedPixelRatio`、`maxAbsDiff`、`passthroughCriterion`；输出未改动时，`applicability` 记为 `passthrough`，不再记为 applicable。
 - summary 增加 `processedN`、`passthroughN`、`undeterminedN` 和 `*MeanProcessed`、`*MeanPassthrough`；`applicableN` 不再计入原图返回行。
-- `AdaptiveRubbingRestorer.restore` 的诊断增加 `changeStats` 和 `outputMode`；输出未改动时，`selectedOutput` 为 `original`。`VERSION` 未改（仍为 v2.1）。新数据要用新批次目录，不要覆盖历史结果。
+- `AdaptiveRubbingRestorer.restore` 的诊断增加 `changeStats` 和 `outputMode`；输出未改动时，`selectedOutput` 为 `original`。
+  - `selectedOutput` 的新含义（架构后端 D-2）：`original` = 最终输出与输入逐像素相同（门控拒绝回退，或门控接受但候选恰好等于输入）；`candidate` = 最终输出至少有 1 个像素不同于输入。旧含义（“门控是否接受了候选”）不再成立。需要门控结论时读 `fidelityGate.accepted`，不要用 `selectedOutput` 推断。历史批次的 `selectedOutput` 仍是旧含义，由 DER 的 `isPassthrough` 覆盖显示。
+  - 两层 `outputMode`（架构后端 D-3）：算法诊断层 `diagnostics.outputMode ∈ {processed, identity_no_evidence, gate_fallback_original}`（实验行和 `adaptiveDiagnostics` 里），运行层 `outputMode ∈ {processed, passthrough, undetermined}`（`processing.json` 顶层，§8）。两者同名、取值不同，前端必须按路径区分：报告页的“是否改动”只读顶层 `outputMode`，算法诊断层只用于决策链展示。字段暂不改名，以免改动已存实验数据；如果以后改名，算法层用 `algorithmOutputMode`。`VERSION` 未改（仍为 v2.1）。新数据要用新批次目录，不要覆盖历史结果。
 
 ## 10. B15（2026-10-15）与 v2 系列的退化参数逐项核对
 
