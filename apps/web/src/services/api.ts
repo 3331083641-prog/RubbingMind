@@ -27,6 +27,37 @@ export interface GlyphInferenceRecord {
   ocrBaseline?: {status:string;engine:string;texts?:{text:string;score:number|null}[];limitation:string;countsAsAccuracy:boolean};
   createdAt: string;
 }
+// ---- R1 contracts (ARCHITECTURE_DECISIONS R1-1..R1-6). All fields optional so older backends still type-check. ----
+export interface RunSelection { rule: 'explicit' | 'latest_non_legacy' | 'none'; runId: string | null; legacyRunCount: number }
+/** REPORT_DATA_SPEC §8 run-level change fields; null = not determinable (see passthroughUndeterminedReason). */
+export interface RunChangeStatus {
+  isPassthrough?: boolean | null;
+  changedPixelCount?: number | null;
+  totalPixelCount?: number | null;
+  changedPixelRatio?: number | null;
+  maxAbsDiff?: number | null;
+  meanAbsDiff?: number | null;
+  passthroughCriterion?: string | null;
+  passthroughUndeterminedReason?: string | null;
+  comparedImages?: unknown;
+  outputMode?: 'processed' | 'passthrough' | 'undetermined';
+  effectiveParameters?: Record<string, unknown> | null;
+}
+export interface RunKindFields { legacy?: boolean; runKind?: 'processing' | 'legacy_unverified'; sortTimestamp?: string | null; sourceSteleId?: string }
+export type ProcessingRunR1 = ProcessingRun & RunChangeStatus & RunKindFields;
+export interface ExperimentBatchMeta {
+  id: string; directory: string; rowCount: number; sampleCount: number; displayName?: string; heldOut?: boolean | null;
+  imageComparisonAvailable: boolean; metricsOnly: boolean; limitations: string[];
+  splitAvailable?: boolean; splits?: Record<string, number>; rowsWithoutSplit?: number;
+  status?: 'valid' | 'historical-leakage' | 'metrics-only'; statusReasons?: string[];
+  defaultForReport?: boolean; defaultForReportBasis?: string | null;
+}
+export interface ExperimentDiagnosis {
+  experimentId: string; diagnosisVersion?: 'heldout-legacy-heuristic' | 'baseline-delta-v1' | string;
+  negativeLiftCount: number; cases: Record<string, unknown>[]; causeCounts: Record<string, number> | null; caveat: string;
+  baselineMethod?: string; byMethod?: Record<string, {n:number;negativeLift:number;byteIdenticalToInput:number;byteIdentityUnknown:number;unmatched:number}>;
+}
+
 function selected(id: string) { return resolveSelected(FALLBACK_STELES, id); }
 function transcriptionText(text:string):string {
   return text.replace(/\u0000/g,'').split('授權與引用')[0].split('License and attribution')[0].split(/\r?\n/)
@@ -64,6 +95,25 @@ export const SteleService = {
     catch { throw new Error('后端不可用，上传未保存'); }
     if(!res.ok){const body=await res.json().catch(()=>({}));throw new Error(typeof body.detail==='string'?body.detail:`上传失败（HTTP ${res.status}）`);}
     return await res.json();
+  },
+  /** R1-1: the backend picks the default run (never a legacy one); prefer this over items[0]. */
+  async getReportSelection(id: string, runId?: string): Promise<{run: ProcessingRunR1 | null; runSelection: RunSelection | null; reportId: string | null}> {
+    const res = await fetch(`/api/steles/${encodeURIComponent(id)}/report${runId ? `?run_id=${encodeURIComponent(runId)}` : ''}`);
+    if (!res.ok) throw new Error('报告不可用');
+    const body = await res.json();
+    return { run: body.run ?? null, runSelection: body.runSelection ?? null, reportId: body.reportId ?? null };
+  },
+  /** R1-3 batch metadata (status / split / defaultForReport). */
+  async listExperiments(): Promise<ExperimentBatchMeta[]> {
+    const res = await fetch('/api/experiments');
+    if (!res.ok) throw new Error('实验服务不可用');
+    return res.json();
+  },
+  /** R1-4: available for every registered batch; 404 only for unknown ids. */
+  async getExperimentDiagnosis(experimentId: string): Promise<ExperimentDiagnosis> {
+    const res = await fetch(`/api/experiments/${encodeURIComponent(experimentId)}/diagnosis`);
+    if (!res.ok) throw new Error('该批次诊断不可用');
+    return res.json();
   },
   async listRuns(id: string): Promise<ProcessingRun[]> {
     const res = await fetch(`/api/steles/${encodeURIComponent(id)}/runs`);

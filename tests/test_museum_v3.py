@@ -74,6 +74,7 @@ def test_real_processing_uses_selected_image_and_saves_result(monkeypatch,tmp_pa
     input_copy.parent.mkdir(parents=True)
     shutil.copyfile(source, input_copy)
     monkeypatch.setattr(museum_processing, 'BASE', tmp_path)
+    monkeypatch.setattr(museum_processing, 'RESULTS_DIR', None)  # hermetic even when RUBBINGMIND_RESULTS_DIR is set
     result=museum_processing.process_verified_request(ProcessRequest(stele_id='qing_02_wushi_reerection'),museum_manager,Engine())
     assert result['stele_id']=='qing_02_wushi_reerection' and result['psnr'] is None
     assert (tmp_path/result['restored_image'].lstrip('/')).is_file()

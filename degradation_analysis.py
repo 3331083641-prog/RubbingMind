@@ -8,6 +8,38 @@ from scipy import fft
 VERSION = 'adaptive-rubbing-v2.1'
 
 
+PASSTHROUGH_CRITERION = 'pixel-equal-v1'
+
+
+def change_stats(before, after):
+    """Pixel-level change between an algorithm input and its output.
+
+    isPassthrough is True only when every pixel is equal (criterion
+    pixel-equal-v1). Small but non-zero changes are reported as processed with
+    their real ratio; they are never rounded to passthrough.
+    """
+    a = np.asarray(before)
+    b = np.asarray(after)
+    if a.shape != b.shape:
+        raise ValueError('输入与输出尺寸不同，无法逐像素比较')
+    diff = np.abs(a.astype(np.int16) - b.astype(np.int16))
+    if diff.ndim == 3:
+        changed_mask = np.any(diff > 0, axis=2)
+    else:
+        changed_mask = diff > 0
+    changed = int(np.count_nonzero(changed_mask))
+    total = int(changed_mask.size)
+    return {
+        'isPassthrough': changed == 0,
+        'changedPixelCount': changed,
+        'totalPixelCount': total,
+        'changedPixelRatio': changed / total if total else None,
+        'maxAbsDiff': int(diff.max()) if diff.size else 0,
+        'meanAbsDiff': float(diff.mean()) if diff.size else 0.0,
+        'passthroughCriterion': PASSTHROUGH_CRITERION,
+    }
+
+
 def validate_gray(image):
     if image is None or image.ndim != 2 or image.dtype != np.uint8 or min(image.shape) < 16:
         raise ValueError('需要至少16×16的8位灰度图')

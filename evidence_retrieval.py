@@ -13,7 +13,8 @@ from pathlib import Path
 from catalog import BASE, load, transcription_text
 from history_graph import CORE_IDS, ALIASES
 
-INDEX=BASE/'data/runtime/evidence-v2.sqlite'
+from runtime_paths import runtime_dir
+INDEX=runtime_dir()/'evidence-v2.sqlite'
 VERSION='fts5-evidence-graph-v2.3'
 
 

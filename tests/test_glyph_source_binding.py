@@ -21,6 +21,7 @@ def client(tmp_path, monkeypatch):
     monkeypatch.setattr(database, 'DB_PATH', str(tmp_path / 'inference.sqlite'))
     monkeypatch.setattr(glyph_inference, 'INFERENCE_DIR', tmp_path / 'crops')
     monkeypatch.setattr(museum_processing, 'BASE', tmp_path)
+    monkeypatch.setattr(museum_processing, 'RESULTS_DIR', None)  # hermetic even when RUBBINGMIND_RESULTS_DIR is set
     monkeypatch.delenv('RUBBINGMIND_VISION_API_KEY', raising=False)
     return TestClient(app), tmp_path
 

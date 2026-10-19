@@ -4,7 +4,51 @@ from datetime import datetime,timezone
 from pathlib import Path
 from fastapi import HTTPException
 from catalog import BASE, METRIC_KEYS
-from degradation_analysis import VERSION as ADAPTIVE_VERSION
+from degradation_analysis import VERSION as ADAPTIVE_VERSION, change_stats
+from runtime_paths import results_override
+
+RUN_PASSTHROUGH_CRITERION='working-gray-pixel-equal-v1'
+
+
+def _decode_gray(raw):
+    import cv2, numpy as np
+    image=cv2.imdecode(np.frombuffer(raw,np.uint8),cv2.IMREAD_UNCHANGED)
+    if image is None:return None
+    if image.ndim==3:
+        image=cv2.cvtColor(image[:,:,:3],cv2.COLOR_BGR2GRAY)
+    return image
+
+
+def run_change_status(original_png, restored_png):
+    """Compare the working input (after any synthetic damage mask) with the saved output.
+
+    Both are reduced to the engine's working grayscale: the engine itself derives
+    its gray input with COLOR_BGR2GRAY, and the restored PNG is gray replicated
+    into three equal channels. isPassthrough is None when either image cannot
+    be decoded or the shapes differ; it is never guessed.
+    """
+    empty={'isPassthrough':None,'changedPixelCount':None,'changedPixelRatio':None,'maxAbsDiff':None,
+           'meanAbsDiff':None,'totalPixelCount':None,'passthroughCriterion':RUN_PASSTHROUGH_CRITERION}
+    if not original_png or not restored_png:
+        return {**empty,'passthroughUndeterminedReason':'缺少输入或输出图像'}
+    before=_decode_gray(original_png);after=_decode_gray(restored_png)
+    if before is None or after is None or before.shape!=after.shape:
+        return {**empty,'passthroughUndeterminedReason':'输入输出无法解码或尺寸不同'}
+    stats=change_stats(before,after)
+    stats['passthroughCriterion']=RUN_PASSTHROUGH_CRITERION
+    stats['passthroughUndeterminedReason']=None
+    return stats
+
+
+def effective_parameters(req):
+    """Parameters that actually reached the algorithm (E-10)."""
+    if req.filter_type=='adaptive':
+        return {'mode':'adaptive','strength':max(.1,req.h_nlm/10),'notchWidth':max(.5,req.d0/60),
+                'derivedFrom':{'strength':'max(0.1, h_nlm/10)','notchWidth':'max(0.5, d0/60)'},
+                'ignoredRequestParameters':['filter_order','clahe_clip','morph_kernel'],
+                'note':'NLM 实际 h 与是否陷波由自适应决策决定，见 adaptiveDiagnostics.decisions。'}
+    return {'mode':req.filter_type,'d0':req.d0,'filterOrder':req.filter_order,'nlmH':req.h_nlm,
+            'claheClip':req.clahe_clip,'morphKernel':req.morph_kernel,'ignoredRequestParameters':[]}
 
 def process_verified_request(req, manager, engine):
     started_at=datetime.now(timezone.utc).isoformat()
@@ -32,14 +76,15 @@ def process_verified_request(req, manager, engine):
     if result.get('error'):raise HTTPException(status_code=422,detail=result['error'])
     run_id=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')+'_'+uuid.uuid4().hex[:8]
     artifact_id=record['id'] if record else 'uploaded-image'
-    out=BASE/'static/results'/artifact_id/run_id;out.mkdir(parents=True,exist_ok=True)
-    saved={};hashes={}
+    out=results_root()/artifact_id/run_id;out.mkdir(parents=True,exist_ok=True)
+    saved={};hashes={};raw_images={}
     images = {role: result.get(key,'') for role,key in [('original','original_b64'),('restored','restored_b64'),('frequency_spectrum','fft_spectrum_b64'),('character_skeleton','skeleton_b64'),('binary_skeleton','binary_skeleton_b64'),('contour','contour_b64'),('cinnabar_rubbing','cinnabar_b64')]}
     try:
         for role,encoded in images.items():
             if not encoded:continue
             try:raw=base64.b64decode(encoded.split(',',1)[-1],validate=True)
             except ValueError:continue
+            raw_images[role]=raw
             name=role+'.png';(out/name).write_bytes(raw);saved[role]=f'/static/results/{artifact_id}/{run_id}/{name}';hashes[role]=hashlib.sha256(raw).hexdigest()
         if 'restored' not in saved:raise HTTPException(status_code=422,detail='算法未产生可保存的修复图像')
     except Exception:
@@ -56,6 +101,14 @@ def process_verified_request(req, manager, engine):
     response['adaptiveDiagnostics']=result.get('frequency_details',{}).get('adaptive')
     response['evaluationStatus']='unassessed'
     response['outputImages']=saved
+    change=run_change_status(raw_images.get('original'),raw_images.get('restored'))
+    response.update(isPassthrough=change['isPassthrough'],changedPixelCount=change['changedPixelCount'],
+        changedPixelRatio=change['changedPixelRatio'],maxAbsDiff=change['maxAbsDiff'],meanAbsDiff=change['meanAbsDiff'],
+        totalPixelCount=change['totalPixelCount'],passthroughCriterion=change['passthroughCriterion'],
+        passthroughUndeterminedReason=change['passthroughUndeterminedReason'],
+        comparedImages={'before':'original（工作输入；有风化掩码时为合成退化图）','after':'restored'},
+        outputMode=('passthrough' if change['isPassthrough'] else 'processed' if change['isPassthrough'] is False else 'undetermined'))
+    response['effectiveParameters']=effective_parameters(req)
     input_sha=hashlib.sha256(Path(image).read_bytes()).hexdigest() if not req.image_base64 else hashlib.sha256(base64.b64decode(req.image_base64.split(',',1)[-1])).hexdigest()
     record_json=dict(response,steleId=artifact_id,algorithmParameters=req.model_dump(exclude={'image_base64','damage_mask'}),
         inputImageSha256=input_sha,outputSha256=hashes,startedAt=started_at,finishedAt=datetime.now(timezone.utc).isoformat(),
@@ -69,10 +122,19 @@ def process_verified_request(req, manager, engine):
     return response
 
 
+# None = historical default <BASE>/static/results; RUBBINGMIND_RESULTS_DIR relocates
+# run storage while URLs stay /static/results/... (tests patch BASE and RESULTS_DIR).
+RESULTS_DIR=results_override()
+
+
+def results_root():
+    return RESULTS_DIR or BASE/'static'/'results'
+
+
 def read_run(stele_id, run_id):
     if not re.fullmatch(r'[0-9]{8}T[0-9]{6}_[0-9a-f]{8}',run_id):
         return None
-    path=BASE/'static/results'/stele_id/run_id/'processing.json'
+    path=results_root()/stele_id/run_id/'processing.json'
     if not path.is_file():return None
     data=json.loads(path.read_text(encoding='utf-8'))
     if data.get('steleId',data.get('stele_id'))!=stele_id:return None
@@ -84,23 +146,66 @@ def read_run(stele_id, run_id):
             diagnosticMetrics={},inputImageSha256='未记录',startedAt='未记录',
             finishedAt='未记录',algorithmParameters=data.get('parameters',{}),
             outputImages={'restored':data.get('restored_image','')},inferenceRecords=[],sourceRecords=[])
+    if 'isPassthrough' not in data:
+        # Runs saved before this field existed are not re-measured on read.
+        data.update(isPassthrough=None,changedPixelCount=None,changedPixelRatio=None,maxAbsDiff=None,
+            outputMode='undetermined',passthroughCriterion=None,passthroughUndeterminedReason='该运行保存于判据引入前，未记录改动量')
     return data if data.get('runId')==run_id else None
 
 
 def list_runs(stele_id):
-    folder=BASE/'static/results'/stele_id
+    folder=results_root()/stele_id
     if not folder.is_dir():return []
     records=[]
     for path in folder.glob('*/processing.json'):
         record=read_run(stele_id,path.parent.name)
-        if record:records.append(record)
-    return sorted(records,key=lambda row:row.get('finishedAt',row.get('runId','')),reverse=True)
+        if record:records.append(annotate_run(record))
+    # R1-1: verified runs newest first, then legacy runs newest first, then undatable ones.
+    # (Sorting the legacy placeholder finishedAt='未记录' as a string put it first.)
+    return sorted(records,key=lambda row:(row['legacy'],row['sortTimestamp'] is None,_neg_ts(row['sortTimestamp'])))
+
+
+LEGACY_VERSION='legacy-unverified'
+
+
+def run_timestamp(run_id):
+    """UTC ISO time encoded in the runId prefix (runs are named with UTC strftime)."""
+    try:
+        return datetime.strptime(str(run_id)[:15],'%Y%m%dT%H%M%S').replace(tzinfo=timezone.utc).isoformat()
+    except ValueError:
+        return None
+
+
+def _neg_ts(value):
+    return -datetime.fromisoformat(value).timestamp() if value else 0
+
+
+def annotate_run(record):
+    """Additive run-kind fields (R1-1); never rewrites the stored processing.json."""
+    if record is None:return None
+    legacy=record.get('algorithmVersion')==LEGACY_VERSION
+    record.update(legacy=legacy,runKind='legacy_unverified' if legacy else 'processing',sortTimestamp=run_timestamp(record.get('runId')))
+    # REPORT_DATA_SPEC §8 lists these for every run; runs saved before the criterion lack them.
+    for key in ('totalPixelCount','meanAbsDiff'):
+        record.setdefault(key,None)
+    return record
+
+
+def select_report_run(stele_id,run_id=None):
+    """Return (run, runSelection). Explicit ids may open legacy runs; the default never does."""
+    runs=list_runs(stele_id)
+    legacy_count=sum(1 for row in runs if row['legacy'])
+    if run_id:
+        run=annotate_run(read_run(stele_id,run_id))
+        return run,{'rule':'explicit','runId':run['runId'] if run else None,'legacyRunCount':legacy_count}
+    run=next((row for row in runs if not row['legacy']),None)
+    return run,{'rule':'latest_non_legacy' if run else 'none','runId':run['runId'] if run else None,'legacyRunCount':legacy_count}
 
 
 def delete_run(stele_id,run_id):
     if read_run(stele_id,run_id) is None:
         return False
-    root=(BASE/'static/results'/stele_id).resolve()
+    root=(results_root()/stele_id).resolve()
     target=(root/run_id).resolve()
     if target.parent!=root:
         return False

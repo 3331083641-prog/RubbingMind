@@ -25,9 +25,11 @@ import {
 interface WorkbenchPageProps {
   stele: SteleItem;
   onNavigate: (tab: string) => void;
+  /** R1-6: reports the run shown in the workbench so the report page opens the same run. */
+  onRunChange?: (runId: string | null) => void;
 }
 
-export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate }) => {
+export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate, onRunChange }) => {
   // View Modes: split, side-by-side, clean, cinnabar, skeleton
   const [viewMode, setViewMode] = useState<'split' | 'side' | 'clean' | 'cinnabar' | 'skeleton'>('split');
   const [sliderPos, setSliderPos] = useState<number>(50);
@@ -145,6 +147,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
         character_accuracy: result.character_accuracy
       });
       setSelectedRunId(result.runId);
+      onRunChange?.(result.runId);
       setAdaptiveDetails(result.adaptiveDiagnostics||null);
       SteleService.listRuns(stele.id).then(setRuns).catch(() => setAdoptionSuccessMsg('处理已保存，但历史列表暂不可用。'));
     } catch (e) {
@@ -179,6 +182,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
   const restoreRun = (run: ProcessingRun) => {
     setAdaptiveDetails(run.adaptiveDiagnostics||null);
     setSelectedRunId(run.runId);
+    onRunChange?.(run.runId);
     setRestoredImageUrl(run.outputImages?.restored || run.restored_image);
     setSkeletonUrl(run.outputImages?.character_skeleton || run.skeleton_b64 || '');
     setCinnabarUrl(run.outputImages?.cinnabar_rubbing || run.cinnabar_b64 || '');
@@ -193,6 +197,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
       await SteleService.deleteRun(stele.id, selectedRunId);
       setRuns(items => items.filter(item => item.runId !== selectedRunId));
       setSelectedRunId(''); setRestoredImageUrl(''); setSkeletonUrl(''); setCinnabarUrl('');
+      onRunChange?.(null);
       setAdoptionSuccessMsg('所选处理记录及输出文件已删除。');
     } catch (error) { setAdoptionSuccessMsg(error instanceof Error?error.message:'删除失败'); }
   };

@@ -80,7 +80,15 @@ from runtime_guard import RuntimeGuard
 app.add_middleware(RuntimeGuard)
 PROCESS_LOCK=threading.Lock()
 os.makedirs(STATIC_DIR, exist_ok=True)
+# R1-7: when RUBBINGMIND_RESULTS_DIR relocates run storage, serve it under the
+# unchanged URL prefix /static/results (mounted first so it wins over /static).
+from runtime_paths import describe as describe_runtime_paths, results_override
+if results_override() is not None:
+    os.makedirs(results_override(), exist_ok=True)
+    app.mount("/static/results", StaticFiles(directory=str(results_override())), name="static-results")
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+if describe_runtime_paths()['overridden']:
+    logger.warning('RubbingMind 数据路径已重定向: %s', describe_runtime_paths())
 
 app.mount("/assets", StaticFiles(directory=DIST_ASSETS_DIR if os.path.exists(DIST_ASSETS_DIR) else os.path.join(BASE_DIR,"apps","web","public","assets")), name="assets")
 
@@ -186,10 +194,15 @@ def get_experiment_asset(experiment_id: str,filename: str):
 
 @app.get('/api/experiments/{experiment_id}/diagnosis')
 def experiment_diagnosis(experiment_id: str):
-    if experiment_id != 'heldout-v20-v21-2026-10-18':
-        raise HTTPException(status_code=404, detail='没有这份实验的失败诊断')
-    from restoration_diagnosis import diagnose
-    return diagnose()
+    # R1-4: every registered batch has a diagnosis; only unknown batches are 404.
+    from restoration_diagnosis import diagnose, diagnose_batch
+    if experiment_id == 'heldout-v20-v21-2026-10-18':
+        return {**diagnose(), 'diagnosisVersion': 'heldout-legacy-heuristic'}
+    from experiment_registry import batch
+    data = batch(experiment_id)
+    if data is None:
+        raise HTTPException(status_code=404, detail='实验批次不存在')
+    return diagnose_batch(data, experiment_id)
 
 
 @app.get('/api/experiments/{experiment_id}/export/{kind}')
@@ -372,14 +385,27 @@ async def generate_historical_graph(stele_id: str = "tang-duobao"):
 async def get_stele_report(stele_id: str, run_id: Optional[str] = None):
     record=await get_stele(stele_id)
     result=catalog_report(record)
-    runs=list_runs(stele_id)
-    selected=read_run(stele_id,run_id) if run_id else (runs[0] if runs else None)
+    from museum_processing import select_report_run
+    selected,run_selection=select_report_run(stele_id,run_id)
     if run_id and not selected:
         raise HTTPException(status_code=404,detail='处理记录不存在')
     result['run']=selected
+    result['runSelection']=run_selection
     result['inferenceRecords']=[item for item in list_inferences(stele_id) if not selected or item.get('runId')==selected['runId']]
     result['sourceRecords']=[{'title':record['title'],'url':record.get('sourceUrl'),'license':record.get('license')}]
-    result['evaluation_summary']='实际处理已执行，但没有配对真值；配对质量未评测。' if selected else '尚未执行处理；配对质量未评测。'
+    mode=(selected or {}).get('outputMode')
+    if selected and mode=='passthrough':
+        # REPORT_DATA_SPEC §8: an unchanged output must never be described as "actually processed".
+        result['evaluation_summary']='本次未改动原图：算法判断无需处理，输出与输入逐像素相同；没有配对真值，配对质量未评测。'
+    elif selected and mode=='undetermined':
+        reason=selected.get('passthroughUndeterminedReason') or '原因未记录'
+        result['evaluation_summary']=f'未能判定是否改动原图（{reason}）；没有配对真值，配对质量未评测。'
+    elif selected:
+        result['evaluation_summary']='实际处理已执行，但没有配对真值；配对质量未评测。'
+    elif run_selection['legacyRunCount']:
+        result['evaluation_summary']='只有旧版未核验运行，默认不选用（可在运行历史中显式打开）；配对质量未评测。'
+    else:
+        result['evaluation_summary']='尚未执行处理；配对质量未评测。'
     result['reportId']=f"RM-{stele_id}-{selected['runId']}" if selected else None
     return result
 

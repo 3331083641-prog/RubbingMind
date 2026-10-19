@@ -15,7 +15,9 @@ from PIL import Image
 from catalog import BASE, load
 
 ASSESS = BASE / 'data/catalog/assessments'
-REVIEWS = BASE / 'data/runtime/condition-reviews'
+from runtime_paths import runtime_dir
+
+REVIEWS = runtime_dir() / 'condition-reviews'
 _REVIEW_LOCK = threading.Lock()
 _LOCAL_HOSTS = {'127.0.0.1', '::1', 'localhost', 'testclient'}
 ID_RE = re.compile(r'^[a-z][a-z0-9_]*$')

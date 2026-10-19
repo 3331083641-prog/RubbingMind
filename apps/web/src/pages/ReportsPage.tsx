@@ -15,7 +15,15 @@ import type { BatchDetail, Diagnosis, Loadable } from '../components/reports/dat
 import { useGlobalModel } from '../components/reports/data/globalModel';
 import { nowShanghaiIso } from '../components/reports/format';
 
-interface Props { stele: SteleItem; onNavigate: (tab: string) => void }
+interface Props {
+  stele: SteleItem;
+  onNavigate: (tab: string) => void;
+  runId?: string | null;
+  onRunChange?: (runId: string | null) => void;
+  experimentId?: string | null;
+  batch?: string | null;
+  onExperimentChange?: (experimentId: string | null, batch?: string | null) => void;
+}
 const loading = { state: 'loading' } as const;
 
 export const ReportsPage: React.FC<Props> = ({ stele, onNavigate }) => {
