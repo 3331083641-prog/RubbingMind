@@ -118,6 +118,23 @@ def sha256_file(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+DIGEST_BASIS_KEYS = ('sqliteSha256', 'catalogueSha256', 'sqliteRows', 'catalogueRecords')
+TOKEN_PREFIX = 'c08-confirm:v1'
+
+
+def diff_digest(basis, operations):
+    """SHA-256 over the canonical {basis (4 keys), operations} JSON: sort_keys, compact separators, UTF-8."""
+    canonical = json.dumps({'basis': {k: basis[k] for k in DIGEST_BASIS_KEYS}, 'operations': operations},
+                           ensure_ascii=False, sort_keys=True, separators=(',', ':'))
+    return hashlib.sha256(canonical.encode('utf-8')).hexdigest()
+
+
+def confirmation_token(digest, sqlite_sha256):
+    """Full 64-hex token bound to BOTH the diff digest and the real database's full SHA-256."""
+    assert len(digest) == 64 and len(sqlite_sha256) == 64
+    return hashlib.sha256(f'{TOKEN_PREFIX}:{digest}:{sqlite_sha256}'.encode('utf-8')).hexdigest()
+
+
 def sync_diff(sql):
     """C-08 option A: operations the backend sync script should preview, back up and (after user confirmation) apply."""
     ops = []
@@ -145,14 +162,24 @@ def sync_diff(sql):
             ops.append({'op': 'keep_row', 'table': 'steles', 'id': extra['id'], 'reason': '不在目录且未下架（如用户记录）；不同步', 'rule': 'R5'})
     for sid in sql['missingInSqlite']:
         ops.append({'op': 'insert_from_catalogue', 'table': 'steles', 'id': sid, 'rule': 'R6'})
+    basis = {'sqliteSha256': sha256_file(sql['db']), 'catalogueFile': 'data/catalog/steles28.json',
+             'catalogueSha256': sha256_file(CATALOG / 'steles28.json'), 'sqliteRows': sql['sqliteRows'],
+             'catalogueRecords': sql['catalogueRecords']}
+    digest = diff_digest(basis, ops)
     return {
         'schemaVersion': 1,
         'item': 'C-08', 'option': 'A', 'decidedBy': '用户（经 Green 传达）', 'spec': 'docs/product-upgrade/C08_SYNC_SPEC.md',
         'generator': 'scripts/check_catalog_governance.py --emit-sync-diff（SQLite mode=ro）',
-        'basis': {'sqliteSha256': sha256_file(sql['db']), 'catalogueFile': 'data/catalog/steles28.json',
-                  'catalogueSha256': sha256_file(CATALOG / 'steles28.json'), 'sqliteRows': sql['sqliteRows'],
-                  'catalogueRecords': sql['catalogueRecords']},
+        'basis': basis,
         'precondition': '执行前必须重新计算 basis 中两个 SHA-256；任一不一致则中止，并重新生成本文件',
+        'diffDigestSha256': digest,
+        'confirmation': {
+            'rule': '确认令牌同时绑定差异摘要哈希（diffDigestSha256）和真实库的完整 SHA-256；任一变化，令牌即失效',
+            'digestFormula': "sha256(json.dumps({'basis': basis 中 sqliteSha256/catalogueSha256/sqliteRows/catalogueRecords 四项, 'operations': operations}, ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode('utf-8'))",
+            'tokenFormula': "sha256(('c08-confirm:v1:' + diffDigestSha256 + ':' + 写入前对真实库重新计算的完整 SHA-256).encode('utf-8'))，64 位十六进制，不截断",
+            'binds': ['diffDigestSha256', 'sqliteSha256（写入前重算，必须等于 basis.sqliteSha256）'],
+            'tokenStoredInFile': False,
+        },
         'operations': ops,
         'counts': {op: sum(o['op'] == op for o in ops) for op in ('update', 'hold', 'set_null', 'keep_row', 'insert_from_catalogue')},
     }

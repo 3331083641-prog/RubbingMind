@@ -3,6 +3,8 @@ import hashlib
 import json
 import sqlite3
 import subprocess
+
+import pytest
 import sys
 from pathlib import Path
 
@@ -101,3 +103,40 @@ def test_committed_sync_diff_is_well_formed_and_has_no_coordinates():
             assert op['catalogueVerification'] in (None, 'verified')
     for value in ('120.202', '22.997', '117.939', '40.978', '120.161', '23.001', '120.203', '22.987', '112.241', '30.335'):
         assert value not in text
+
+
+def _module():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location('gov', SCRIPT)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def test_diff_digest_is_recorded_and_recomputable():
+    gov = _module()
+    diff = json.loads((ROOT / 'data/catalog/c08_sync_diff.json').read_text(encoding='utf-8'))
+    assert diff['diffDigestSha256'] == gov.diff_digest(diff['basis'], diff['operations'])
+    assert diff['confirmation']['tokenStoredInFile'] is False
+    assert 'confirmationToken' not in diff and gov.confirmation_token(diff['diffDigestSha256'], diff['basis']['sqliteSha256']) not in json.dumps(diff)
+
+
+def test_confirmation_token_binds_digest_and_full_database_sha():
+    gov = _module()
+    diff = json.loads((ROOT / 'data/catalog/c08_sync_diff.json').read_text(encoding='utf-8'))
+    digest, sqlite_sha = diff['diffDigestSha256'], diff['basis']['sqliteSha256']
+    token = gov.confirmation_token(digest, sqlite_sha)
+    assert len(token) == 64
+    # Changing one hex digit anywhere in either input invalidates the token, including beyond the first 8/16 characters.
+    for position in (0, 20, 63):
+        flipped_db = sqlite_sha[:position] + ('0' if sqlite_sha[position] != '0' else '1') + sqlite_sha[position + 1:]
+        assert gov.confirmation_token(digest, flipped_db) != token
+    changed_ops = [dict(diff['operations'][0], to='其他值')] + diff['operations'][1:]
+    assert gov.diff_digest(diff['basis'], changed_ops) != digest
+    with pytest.raises(AssertionError):
+        gov.confirmation_token(digest, sqlite_sha[:8])
+
+
+def test_spec_uses_full_sha_token_rule():
+    spec = (ROOT / 'docs/product-upgrade/C08_SYNC_SPEC.md').read_text(encoding='utf-8')
+    assert '前 8 位' not in spec and '不截断' in spec and 'diffDigestSha256' in spec

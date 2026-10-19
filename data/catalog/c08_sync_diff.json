@@ -13,6 +13,17 @@
     "catalogueRecords": 28
   },
   "precondition": "执行前必须重新计算 basis 中两个 SHA-256；任一不一致则中止，并重新生成本文件",
+  "diffDigestSha256": "32326a07b002522ce2855413b52bcd0161f3f4d9289af12cf0441037dc0674cb",
+  "confirmation": {
+    "rule": "确认令牌同时绑定差异摘要哈希（diffDigestSha256）和真实库的完整 SHA-256；任一变化，令牌即失效",
+    "digestFormula": "sha256(json.dumps({'basis': basis 中 sqliteSha256/catalogueSha256/sqliteRows/catalogueRecords 四项, 'operations': operations}, ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode('utf-8'))",
+    "tokenFormula": "sha256(('c08-confirm:v1:' + diffDigestSha256 + ':' + 写入前对真实库重新计算的完整 SHA-256).encode('utf-8'))，64 位十六进制，不截断",
+    "binds": [
+      "diffDigestSha256",
+      "sqliteSha256（写入前重算，必须等于 basis.sqliteSha256）"
+    ],
+    "tokenStoredInFile": false
+  },
   "operations": [
     {
       "op": "update",

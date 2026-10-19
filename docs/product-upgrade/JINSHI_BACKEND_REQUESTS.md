@@ -23,3 +23,9 @@
 | BR-07 | 任务 0 | `database.py:157-165` `query_steles(include_retired=True)` | 返回下架行（`museum_catalog_status.status='retired'`）时，把 `gis_lng/gis_lat` 置为 None 再返回，不改库。目前只有 `scripts/init_db.py` 调用它，且用的是默认值 False；这一条是防御性需求 | 用含下架行的库调用 `query_steles(include_retired=True)`，5 条下架记录的坐标都是 None |
 | BR-08 | C-16 | `main.py:144-154`（`EvidenceQueryRequest`、`/api/research/query`）、`apps/web/src/services/api.ts` | 请求体增加 `includeDemo: bool = False`，透传为 `evidence_retrieval.query(..., include_demo=...)`；`steleId` 允许 `rm:demo:<id>`（与 BR-02 一致，目前 `museum_manager` 会对它返回 404）。api.ts 的检索函数增加同名可选参数 | 默认请求的 `demoScope.included=false`；`includeDemo=true` 或 `steleId=rm:demo:wei-jianyi` 时为 true，证据带合成文本标签 |
 | BR-09 | C-16 | 前端 `EvidenceSearch.tsx`（依赖 BR-08 的 api.ts 参数） | BR-08 完成后加一个“包含演示样本（含合成测试文本）”开关，默认关闭；打开时显示 `demoScope.note` | 截图显示开关关闭时没有合成文本，打开时出现标签 |
+
+## 2026-10-19 · C-08 令牌规则（Green）与 8a97a12 只读比对
+
+| 编号 | 来源 | 涉及 | 需求 | 验收 |
+|---|---|---|---|---|
+| BR-10 | C-08 | `agent/arch-backend` `scripts/sync_catalog_db.py`（8a97a12） | ① 确认令牌改为 `sha256("c08-confirm:v1:" + diffDigestSha256 + ":" + 写入前重算的完整库 SHA-256)`，64 位十六进制，不截断；② `--apply` 必须带 `--diff`，并比对 `diffDigestSha256`；③ 写后复核补上“下架行仍在、总行数不变”。详见 `C08_BACKEND_REVIEW_8a97a12.md` | 新令牌与本分支 `confirmation_token()` 输出一致；库 SHA 或差异中任一字节变化，令牌即失效 |
