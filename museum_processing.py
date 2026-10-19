@@ -133,6 +133,39 @@ def effective_parameters(req):
     return {'mode':req.filter_type,'d0':req.d0,'filterOrder':req.filter_order,'nlmH':req.h_nlm,
             'claheClip':req.clahe_clip,'morphKernel':req.morph_kernel,'ignoredRequestParameters':[]}
 
+# Versions whose request -> effective parameter mapping is verified against stored code:
+# adaptive v2.0 (experiments/results/2026-10-17-v2/source_snapshot/algorithm_engine.py:355) and
+# v2.1 (algorithm_engine.py:365) both call restore(strength=max(.1,h/10), notch_width=max(.5,d0/60));
+# the fixed path passes d0/filter_order/nlm_h/clahe_clip/morph_kernel straight through since 751872d.
+EFFECTIVE_DERIVABLE={'adaptive':('adaptive-rubbing-v2.0','adaptive-rubbing-v2.1'),
+                     'fixed':('frequency-spatial-v2.1','fixed-frequency-spatial-v2.2')}
+_EFFECTIVE_NEEDS={'adaptive':('h_nlm','d0'),'fixed':('d0','filter_order','h_nlm','clahe_clip','morph_kernel')}
+
+
+def effective_parameters_on_read(data):
+    """(effectiveParameters, reason) for runs saved without them; derived from the stored request only."""
+    from types import SimpleNamespace
+    version=data.get('algorithmVersion');params=data.get('algorithmParameters')
+    if version==LEGACY_VERSION:
+        return None,'旧版未核验运行：记录中没有算法路径（filter_type）与算法版本，无法确定当时实际生效的参数'
+    if not isinstance(params,dict) or not params.get('filter_type'):
+        return None,'运行记录缺少 algorithmParameters.filter_type，无法确定实际生效的参数'
+    kind='adaptive' if params['filter_type']=='adaptive' else 'fixed'
+    if version not in EFFECTIVE_DERIVABLE[kind]:
+        return None,f'算法版本 {version} 的参数映射未经核实，不推算实际生效参数'
+    missing=[key for key in _EFFECTIVE_NEEDS[kind] if not isinstance(params.get(key),(int,float))]
+    if missing:
+        return None,f'运行记录缺少请求参数 {"、".join(missing)}，无法推算实际生效参数'
+    return effective_parameters(SimpleNamespace(**params)),None
+
+
+def _normalize_compared_images(value):
+    """REPORT_DATA_SPEC §8: older records wrote {before, after}; normalise to [before, after] on read."""
+    if isinstance(value,dict):
+        return [value.get('before','original'),value.get('after','restored')]
+    return list(value) if isinstance(value,(list,tuple)) else list(COMPARED_IMAGES)
+
+
 def process_verified_request(req, manager, engine):
     started_at=datetime.now(timezone.utc).isoformat()
     record=manager.get_stele_by_id(req.stele_id) if req.stele_id else None
@@ -187,6 +220,8 @@ def process_verified_request(req, manager, engine):
     change=run_change_status(raw_images.get('original'),raw_images.get('restored'))
     response.update({key:change[key] for key in CHANGE_FIELDS},comparedImages=list(COMPARED_IMAGES),outputMode=output_mode(change))
     response['effectiveParameters']=effective_parameters(req)
+    response['effectiveParametersSource']='recorded'
+    response['effectiveParametersUnavailableReason']=None
     input_sha=hashlib.sha256(Path(image).read_bytes()).hexdigest() if not req.image_base64 else hashlib.sha256(base64.b64decode(req.image_base64.split(',',1)[-1])).hexdigest()
     record_json=dict(response,steleId=artifact_id,algorithmParameters=req.model_dump(exclude={'image_base64','damage_mask'}),
         inputImageSha256=input_sha,outputSha256=hashes,startedAt=started_at,finishedAt=datetime.now(timezone.utc).isoformat(),
@@ -232,6 +267,16 @@ def read_run(stele_id, run_id):
         # Runs recorded before the gray reference existed: only the gray fields are computed on read.
         status=computed_on_read_status(stele_id,run_id,data)
         data.update({key:status.get(key) for key in GRAY_FIELDS})
+    data['comparedImages']=_normalize_compared_images(data.get('comparedImages'))
+    if data.get('effectiveParameters') is None:
+        # SPEC §8 wants effectiveParameters for every run: derive from the stored request when the
+        # version mapping is verified; otherwise null with an explicit reason. Never written back.
+        effective,reason=effective_parameters_on_read(data)
+        data.update(effectiveParameters=effective,effectiveParametersSource='derived-on-read' if effective else None,
+                    effectiveParametersUnavailableReason=reason)
+    else:
+        data.setdefault('effectiveParametersSource','recorded')
+        data.setdefault('effectiveParametersUnavailableReason',None)
     return data if data.get('runId')==run_id else None
 
 
