@@ -1,30 +1,32 @@
-# ES_EVAL_PROGRESS — 评测侧 ES-3/4/5 推进记录
+# ES_EVAL_PROGRESS — 评测侧 ES-3/4/5 推进台账
 
 - 作者：RM-评测科学家（Agent 04+05）
-- 时间：2026-10-25 13:11 Asia/Shanghai
-- 分支 tip：3e08545（3e085451373f8d1679ffd2d33a0af6405ab7dcdc）；含 feature@0654d13 + ES-3/4/5
-- 对齐：fast-forward `feature/product-grade-upgrade@0654d13`（含 reports MechanismPanel / claims 台账）
-- TASK_BOARD 本体在 D:\RubbingMind\docs\product-upgrade\TASK_BOARD.md（worktree 外）；本文件为 worktree 内进度镜像，供 Green 勾板。
+- 时间：2026-10-25 13:42 Asia/Shanghai
+- 分支 tip：9782d42（9782d42e9d7ad6a52536e48759a065fd9e043f08）— FF feature@c761d54 + ES-3/5 续做（NLD slim）
+- 对齐：fast-forward eature/product-grade-upgrade@c761d54（含 reports MechanismPanel / claims 台账）
+- TASK_BOARD 真源：D:\RubbingMind\docs\product-upgrade\TASK_BOARD.md（worktree 外）；本文件为 worktree 内进度镜像，供 Green 监工。
 
 ## 状态（本提交）
 
-| ID | TASK_BOARD 目标 | 本提交落地 | 状态 |
+| ID | TASK_BOARD 目标 | 本提交交付 | 状态 |
 |---|---|---|---|
-| ES-3 | 按文物聚类 bootstrap CI；CI 下界 >0 才能写「提升」 | 既有 `ci_by_artifact.json` 契约 + `may_claim_positive_lift` / `lift_claim_label` + 新增 `summarize_lift_claims`（不重算 bootstrap） | **进行中→门禁加固**（派生未重算） |
-| ES-4 | 机制层代表案例；缺标「未记录」；不伪造 | `enrich_mechanism_captions.py`：images[] 补 batch/caseId/derivedAt/headCommit/sourcePath/captionNote；index `captionProvenance.pngBytesUntouched=true`；**R7 未重跑** | **进行中→图注 provenance 已挂** |
-| ES-5 | 负提升原因改为测量量推导 | 既有 NLC 契约 + 新增 `negative_lift_display`（measured 主栏 / ruleInferred 次栏显式标注） | **进行中→口径辅助已挂** |
+| ES-3 | 按文物聚类 bootstrap CI；CI 下界 >0 才能写“提升” | 既有 ci_by_artifact.json 契约 + may_claim_positive_lift / lift_claim_label / summarize_lift_claims；**新增** lift_claim_summary.json 导出 + API liftClaimLabel/liftClaimSummary 注解（不重算 bootstrap） | **进行中·可再门禁**（数据未重算） |
+| ES-4 | 机制层代表案例图注「未记录」勿伪绿 | enrich_mechanism_captions.py（images[] 含 batch/caseId/derivedAt/headCommit/sourcePath/captionNote；index captionProvenance.pngBytesUntouched=true）；**R7 未重跑** | **进行中·图注 provenance 已挂** |
+| ES-5 | 负提升原因改为测量量推导 | 既有 NLC 契约 + 
+egative_lift_display；**新增** 
+egative_lift_display.json 伴生导出（measured 主列 / ruleInferred 次列启发式标注） | **进行中·口径伴生已挂** |
 
 ## R7 / A24 开项（勿谎关）
 
 | ID | 状态 | 证据 |
 |---|---|---|
-| **R7 / G7** | 开 | tip `3e08545` 超前 mechanism head `7623a52` **125** commits；见 MECHANISM_HEAD_NOTE §7 |
-| **A24** | xfail 保留 | `test_a24_export_label_recognized_forbidden_until_schema_exists`；产品缺口，勿伪绿 |
+| **R7 / G7** | 开 | tip 9782d42 超前 mechanism head 7623a52 **135** commits；见 MECHANISM_HEAD_NOTE §8 |
+| **A24** | xfail 保持 | 	est_a24_export_label_recognized_forbidden_until_schema_exists；产品/schema 缺口（AB-8 未落地 export label）；勿伪绿；另有 	est_a24_schema_still_absent_keep_xfail_evidence |
 
 ## 明确未做
 
-- mechanism 大批量重跑（R7）
+- mechanism 大重跑 / 重算（R7）
 - 改 museum_processing.py
-- 伪造 Top-k / CI / 机制指标
-- push / 合 main / 改 TASK_BOARD 主文件（worktree 外）
+- 伪绿 Top-k / CI / 负提升指标
+- push / 合 main / 改 TASK_BOARD 真源文件（worktree 外）
 - 把 A24 改成正式 assert

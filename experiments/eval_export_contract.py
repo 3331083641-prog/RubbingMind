@@ -88,3 +88,19 @@ def negative_lift_display(case: Mapping[str, Any]) -> dict[str, Any]:
         "forbidden": "不得把 ruleInferredCause 写成测量结论",
     }
 
+
+def annotate_ci_lift_claims(ci_payload: Mapping[str, Any], metric: str = "psnr") -> dict[str, Any]:
+    """ES-3: copy groups with liftClaimLabel + top-level liftClaimSummary (no bootstrap recompute)."""
+    annotated = []
+    for group in ci_payload.get("groups") or []:
+        row = dict(group)
+        row["liftClaimLabel"] = lift_claim_label(group, metric)
+        annotated.append(row)
+    out = dict(ci_payload)
+    out["groups"] = annotated
+    out["liftClaimSummary"] = summarize_lift_claims({"groups": annotated}, metric)
+    out["liftClaimRule"] = (
+        "only claim lift when CI lower bound > 0 and ciReliable and artifactN>=minReliable"
+    )
+    return out
+

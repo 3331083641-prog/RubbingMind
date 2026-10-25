@@ -114,8 +114,15 @@ def ci_by_artifact(experiment_id: str, filters: dict | None = None):
     active = {key: value for key, value in (filters or {}).items() if key in CI_FILTERS and value}
     if active:
         groups = [group for group in groups if all(str(group.get(key)) == value for key, value in active.items())]
+    # ES-3: annotate claim labels from existing CI fields (no bootstrap recompute).
+    from experiments.eval_export_contract import annotate_ci_lift_claims
+
+    annotated_payload = annotate_ci_lift_claims({'groups': groups}, 'psnr')
     return {**out, 'available': True, 'status': 'ok', **{key: data.get(key) for key in CI_KEYS},
-            'filters': active, 'groupCount': len(groups), 'groups': groups}
+            'filters': active, 'groupCount': len(annotated_payload['groups']),
+            'groups': annotated_payload['groups'],
+            'liftClaimSummary': annotated_payload['liftClaimSummary'],
+            'liftClaimRule': annotated_payload['liftClaimRule']}
 
 
 # --- mechanism layer PNGs (eval-sci derived/mechanism/, ~253 PNGs) ---

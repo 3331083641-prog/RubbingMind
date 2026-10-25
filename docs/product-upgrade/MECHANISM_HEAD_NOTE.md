@@ -3,7 +3,7 @@
 - 作者：RM-评测科学家（Agent 04+05）
 - 时间：2026-10-25（Asia/Shanghai）
 - 分支：`agent/eval-sci`
-- 当前 tip（写作时）：`3e085451373f8d1679ffd2d33a0af6405ab7dcdc`（短写 `3e08545`；对齐基线 feature@0654d13）
+- 当前 tip（写入时）：9782d42e9d7ad6a52536e48759a065fd9e043f08（短写 9782d42）。对齐 feature@c761d54（含 AB-8）后继续 ES-3/5；本 tip 含 lift_claim_summary / negative_lift_display（slim）。
 - 机制产物绑定 headCommit：`7623a52a3299b7c948031dfa1f79f04b8eb66d9e`（短写 `7623a52`）
 - 关联：`REPRESENTATIVE_CASES.md`、`REPORT_DATA_SPEC.md` §MEC / E-18、`experiments/mechanism_cases.py`
 
@@ -58,6 +58,7 @@
 | 2026-10-25 | 0f20bf1（7b54e2+） | 7623a52 | merge feature@9d8428e + ROI 核对文档；**仍不重跑** mechanism；禁令保持 |
 | 2026-10-25 | 0654d13（fast-forward feature@0654d13） | 7623a52 | tip 超前 mechanism head **125** commits；**仍不重跑** mechanism；ES-4 仅 JSON 图注 enrichment（pngBytesUntouched） |
 
+| 2026-10-25 | 9782d42（FF feature@c761d54 + ES-3/5 续做） | 7623a52 | tip 超前 mechanism head **135** commits；**仍不重跑** mechanism；仅记证据 |
 
 ## 7. 对齐 feature@0654d13 后的开项证据（2026-10-25 13:11 Asia/Shanghai）
 
@@ -70,3 +71,16 @@
 | ES-4 本轮 | `enrich_mechanism_captions.py` 只改 `mechanism.json` / `index.json` 图注字段；PNG SHA 未变 |
 | 宣称禁令 | 报告不得宣称机制 PNG 与当前 tip 字节一致 |
 
+## 8. 对齐 feature@c761d54 后的开项证据（2026-10-25 Asia/Shanghai）
+
+| 项 | 值 |
+| --- | --- |
+| 分支 tip | 9782d42e9d7ad6a52536e48759a065fd9e043f08 |
+| 父提交 | c761d546794c428a29c1a1e0f73c55c464d092cf（feature tip / FF 点） |
+| mechanism headCommit | 7623a52a3299b7c948031dfa1f79f04b8eb66d9e |
+| tip 相对 head 超前 | **135** commits（git rev-list --count 7623a52..HEAD） |
+| R7 / G7 | **仍开着** — 只记证据，勿谎关；未重跑 mechanism_cases.py |
+| ES-3 | lift_claim_summary.json + CI annotate（may_claim_positive_lift / liftClaimLabel） |
+| ES-5 | negative_lift_display.json（slim：无 measuredEvidence 复本；指向 NLC） |
+| ES-4 提醒 | 图注 provenance 已挂；PNG 字节仍属旧 headCommit |
+| A24 | 仍 xfail；Phase2 schema 缺口未落地 |

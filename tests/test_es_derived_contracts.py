@@ -166,7 +166,7 @@ def test_es4_r7_ban_note_forbids_tip_byte_identity():
     assert "不得" in note
     tip = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], cwd=ROOT, text=True).strip()
     # Note must acknowledge tip has moved (short hash of current tip or a7b54e2/0f20bf1 era)
-    assert any(h in note for h in (tip, "0654d13", "01dd3be", "0f20bf1", "a7b54e2", "65f7815", "tip")), (
+    assert any(h in note for h in (tip, "c761d54", "8a266b4", "0654d13", "01dd3be", "0f20bf1", "a7b54e2", "65f7815", "tip")), (
         "MECHANISM_HEAD_NOTE must name current tip or state tip has moved"
     )
 
@@ -273,3 +273,81 @@ def test_es4_index_records_caption_provenance_stamp():
         assert stamp.get("pngBytesUntouched") is True
         assert "enrich_mechanism_captions.py" in str(stamp.get("enrichedBy"))
         assert "sourcePath" in (stamp.get("fields") or [])
+
+
+def test_es3_lift_claim_summary_file():
+    """ES-3 derived summary must match summarize_lift_claims; positive rows must pass gate."""
+    from experiments.eval_export_contract import may_claim_positive_lift, summarize_lift_claims
+
+    for batch in BATCHES:
+        ci = json.loads(_ci_path(batch).read_text(encoding="utf-8"))
+        summary_path = _ci_path(batch).parent / "lift_claim_summary.json"
+        assert summary_path.is_file(), summary_path
+        summary = json.loads(summary_path.read_text(encoding="utf-8"))
+        assert summary.get("batch") == batch
+        assert summary.get("source") == "derived/ci_by_artifact.json"
+        assert summary.get("claimCounts") == summarize_lift_claims(ci, "psnr")
+        assert summary.get("groupCount") == len(ci.get("groups") or [])
+        min_reliable = summary.get("minReliableArtifacts") or 3
+        for g in summary.get("positiveLiftGroups") or []:
+            assert may_claim_positive_lift(
+                ci_low=g.get("psnrGainCI95Low"),
+                ci_reliable=g.get("ciReliable"),
+                artifact_n=g.get("artifactN"),
+                min_reliable=min_reliable,
+            )
+            assert g.get("liftClaimLabel") == "positive_lift_ci_excludes_zero"
+
+
+def test_es3_ci_api_annotates_lift_claim_labels():
+    """Annotation is pure (no bootstrap). API may be stale on SHA; still require helper contract."""
+    from experiments.eval_export_contract import annotate_ci_lift_claims
+
+    ci = json.loads(_ci_path("2026-10-17-v2").read_text(encoding="utf-8"))
+    body = annotate_ci_lift_claims(ci, "psnr")
+    assert isinstance(body.get("liftClaimSummary"), dict)
+    assert body["liftClaimSummary"]
+    sample = body["groups"][0]
+    assert "liftClaimLabel" in sample
+    for g in body["groups"]:
+        if g.get("liftClaimLabel") == "positive_lift_ci_excludes_zero":
+            assert g.get("psnrGainCI95Low") is not None and g["psnrGainCI95Low"] > 0
+            assert g.get("ciReliable") is True
+
+
+def test_es5_negative_lift_display_file():
+    for batch in BATCHES:
+        nlc = json.loads(_nl_path(batch).read_text(encoding="utf-8"))
+        path = _nl_path(batch).parent / "negative_lift_display.json"
+        assert path.is_file(), path
+        data = json.loads(path.read_text(encoding="utf-8"))
+        assert data.get("batch") == batch
+        assert data.get("rowCount") == len(nlc.get("cases") or [])
+        assert data.get("source") == "derived/negative_lift_causes.json"
+        row = data["rows"][0]
+        assert "primaryMeasuredCauses" in row
+        assert "secondaryRuleInferred" in row
+        assert "forbidden" in row
+        assert "measuredEvidence" not in row  # keep companion slim; evidence stays in NLC
+        assert isinstance(row.get("measuredEvidenceCount"), int)
+        assert "ruleInferred" in row["forbidden"] or "ruleInferredCause" in row["forbidden"]
+
+
+def test_a24_schema_still_absent_keep_xfail_evidence():
+    """A24 remains a product gap: no export schema with candidate/human_accepted_glyph labels."""
+    needles = ("human_accepted_glyph", 'label": "candidate"', "label=candidate")
+    hits = []
+    for p in (ROOT / "apps").rglob("*"):
+        if p.suffix not in {".ts", ".tsx", ".py", ".json"}:
+            continue
+        try:
+            text = p.read_text(encoding="utf-8")
+        except Exception:
+            continue
+        if any(n in text for n in needles):
+            hits.append(str(p.relative_to(ROOT)))
+    for p in ROOT.glob("*.py"):
+        text = p.read_text(encoding="utf-8")
+        if any(n in text for n in needles):
+            hits.append(p.name)
+    assert hits == [], f"A24 schema markers unexpectedly present: {hits}"
