@@ -6,7 +6,7 @@ from fastapi import HTTPException
 from catalog import BASE, METRIC_KEYS
 from degradation_analysis import VERSION as ADAPTIVE_VERSION, change_stats
 import os
-from runtime_paths import results_override
+from runtime_paths import results_override, runtime_dir
 
 # Green 2026-10-19: one criterion name for runs and experiments. pixel-equal-v1 = both
 # images decoded at their stored resolution with every channel kept (IMREAD_UNCHANGED);
@@ -371,12 +371,101 @@ def select_report_run(stele_id,run_id=None):
     return run,{'rule':'latest_non_legacy' if run else 'none','runId':run['runId'] if run else None,'legacyRunCount':legacy_count}
 
 
-def delete_run(stele_id,run_id):
-    if read_run(stele_id,run_id) is None:
+# RT-013 (minimal museum_processing patch): soft-delete runs into runtime trash
+# instead of shutil.rmtree. Refuse when glyph inferences still reference the runId.
+# Product RT ticket stays open; this is mitigation only. Retention default 30 days
+# (marker only — no auto-purge in this tip).
+TRASH_RUNS_SUBDIR = ('trash', 'runs')
+TRASH_RETENTION_DAYS = 30
+
+
+def trash_runs_root():
+    """data/runtime/trash/runs (honors RUBBINGMIND_RUNTIME_DIR)."""
+    return runtime_dir().joinpath(*TRASH_RUNS_SUBDIR)
+
+
+def _glyph_references_to_run(stele_id, run_id):
+    """Return [{kind, inferenceId}] for glyph inferences that still point at this run."""
+    try:
+        from glyph_inference import list_inferences
+    except Exception:
+        return []
+    refs = []
+    for rec in list_inferences(stele_id):
+        if rec.get('runId') == run_id:
+            refs.append({
+                'kind': 'glyph_inference',
+                'inferenceId': rec.get('inferenceId') or rec.get('id'),
+            })
+    return refs
+
+
+def restore_run(stele_id, run_id):
+    """Move the newest soft-deleted trash copy back under results (RT-013 recoverability)."""
+    if read_run(stele_id, run_id) is not None:
         return False
-    root=(results_root()/stele_id).resolve()
-    target=(root/run_id).resolve()
-    if target.parent!=root:
+    if not re.fullmatch(r'[0-9]{8}T[0-9]{6}_[0-9a-f]{8}', run_id):
         return False
-    shutil.rmtree(target)
-    return True
+    trash_stele = trash_runs_root() / stele_id
+    if not trash_stele.is_dir():
+        return False
+    candidates = sorted(
+        [p for p in trash_stele.iterdir() if p.is_dir() and p.name.startswith(run_id + '__')],
+        key=lambda p: p.name,
+        reverse=True,
+    )
+    if not candidates:
+        return False
+    src = candidates[0].resolve()
+    dest_root = (results_root() / stele_id).resolve()
+    dest_root.mkdir(parents=True, exist_ok=True)
+    dest = (dest_root / run_id).resolve()
+    if dest.exists() or dest.parent != dest_root:
+        return False
+    shutil.move(str(src), str(dest))
+    marker = dest / 'soft_delete.json'
+    if marker.is_file():
+        marker.unlink()
+    return read_run(stele_id, run_id) is not None
+
+
+def delete_run(stele_id, run_id):
+    """RT-013 soft-delete. Returns False if missing; raises ValueError if referenced.
+
+    On success returns a dict: softDeleted/trashPath/retentionDays (truthy for callers).
+    """
+    if read_run(stele_id, run_id) is None:
+        return False
+    refs = _glyph_references_to_run(stele_id, run_id)
+    if refs:
+        raise ValueError('run_referenced:' + json.dumps(refs, ensure_ascii=False))
+    root = (results_root() / stele_id).resolve()
+    target = (root / run_id).resolve()
+    if target.parent != root:
+        return False
+    stamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')
+    trash_dir = (trash_runs_root() / stele_id / f'{run_id}__{stamp}').resolve()
+    trash_dir.parent.mkdir(parents=True, exist_ok=True)
+    if not str(trash_dir).startswith(str(trash_runs_root().resolve())):
+        return False
+    marker = {
+        'steleId': stele_id,
+        'runId': run_id,
+        'softDeletedAt': datetime.now(timezone.utc).isoformat(),
+        'retentionDays': TRASH_RETENTION_DAYS,
+        'sourcePath': str(target),
+        'note': 'RT-013 soft-delete; restore via museum_processing.restore_run',
+    }
+    shutil.move(str(target), str(trash_dir))
+    (trash_dir / 'soft_delete.json').write_text(
+        json.dumps(marker, ensure_ascii=False, indent=2), encoding='utf-8'
+    )
+    rel = str(trash_dir.relative_to(runtime_dir().resolve())) if trash_dir.is_relative_to(runtime_dir().resolve()) else str(trash_dir)
+    return {
+        'softDeleted': True,
+        'deleted': run_id,
+        'steleId': stele_id,
+        'trashPath': str(Path(rel)).replace(chr(92), '/'),
+        'retentionDays': TRASH_RETENTION_DAYS,
+        'recoverable': True,
+    }

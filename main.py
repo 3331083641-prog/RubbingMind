@@ -5,6 +5,7 @@
 """
 
 import os
+import json
 import sys
 import logging
 import io
@@ -628,12 +629,26 @@ async def get_processing_runs(stele_id: str):
 
 @app.delete('/api/steles/{stele_id}/runs/{run_id}')
 async def remove_processing_run(stele_id: str, run_id: str, confirm: bool = False):
+    """RT-013: confirm-gated soft-delete into runtime trash; 409 if referenced."""
     await get_stele(stele_id)
     if not confirm:
         raise HTTPException(status_code=400,detail='删除单次处理记录需要明确确认')
-    if not delete_run(stele_id,run_id):
+    try:
+        result = delete_run(stele_id, run_id)
+    except ValueError as exc:
+        msg = str(exc)
+        if msg.startswith('run_referenced:'):
+            refs = json.loads(msg.split(':', 1)[1])
+            raise HTTPException(
+                status_code=409,
+                detail={'error': 'run_referenced', 'message': 'run is referenced by glyph inferences; refuse delete', 'references': refs},
+            )
+        raise HTTPException(status_code=400, detail=msg)
+    if not result:
         raise HTTPException(status_code=404,detail='处理记录不存在')
-    return {'deleted':run_id,'steleId':stele_id}
+    if isinstance(result, dict):
+        return result
+    return {'deleted': run_id, 'steleId': stele_id}
 
 
 @app.post("/api/process")
