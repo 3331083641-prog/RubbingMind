@@ -49,8 +49,32 @@ export const ReportApi = {
   diagnosis: (id: string) => getJson<Diagnosis>(`/api/experiments/${encodeURIComponent(id)}/diagnosis`, '没有这份实验的失败诊断'),
   runs: (steleId: string) => wrap(SteleService.listRuns(steleId) as Promise<ProcessingRunR1[]>, '运行记录不可用'),
   selection: (steleId: string, runId?: string) => wrap(SteleService.getReportSelection(steleId, runId), '报告接口不可用'),
-  /** 完整报告体（含识读建议记录、来源记录）。不走 api.ts getReport 的静态回退：后端失败要如实显示。 */
-  report: (steleId: string, runId: string) => getJson<RunReport>(`/api/steles/${encodeURIComponent(steleId)}/report?run_id=${encodeURIComponent(runId)}`, '没有这条运行的报告'),
+  /** 完整报告体（含识读建议记录、来源记录）。不走 api.ts getReport 的静态回退：后端失败要如实显示，并保留 reportStatus 全路径文案。 */
+  report: async (steleId: string, runId: string): Promise<Loadable<RunReport>> => {
+    const url = `/api/steles/${encodeURIComponent(steleId)}/report?run_id=${encodeURIComponent(runId)}`;
+    let res: Response;
+    try { res = await fetch(url); }
+    catch { return { state: 'error', message: '后端不可用（backend_unavailable）；本件报告无法读取。这不等于“尚未执行”，也不替换为其他文物/运行。' }; }
+    if (res.ok) {
+      try { return { state: 'ok', data: await res.json() as RunReport }; }
+      catch { return { state: 'error', message: '返回内容不是有效 JSON（error）' }; }
+    }
+    let detail = '';
+    try {
+      const body = await res.json() as { detail?: unknown };
+      if (typeof body?.detail === 'string') detail = body.detail;
+    } catch { /* ignore non-JSON error bodies */ }
+    if (res.status === 410) {
+      return { state: 'missing', status: 410, message: detail || `文物 ${steleId} 已下架（stele_retired）；未替换为其他文物。` };
+    }
+    if (res.status === 404 && (detail.includes('处理记录') || detail.includes('运行') || /run/i.test(detail))) {
+      return { state: 'missing', status: 404, message: detail || `本件没有运行 ${runId}（run_not_found）；未替换为其他运行。` };
+    }
+    if (res.status === 404) {
+      return { state: 'missing', status: 404, message: detail || `没有找到文物 ${steleId} 或该运行报告（stele_not_found）；未替换为其他对象。` };
+    }
+    return { state: 'error', message: detail || `读取失败（HTTP ${res.status}；error）` };
+  },
   glyphEvaluation: () => getJson<GlyphEvaluation>('/api/glyph-evaluation', '识字评测接口不存在'),
   appliedStatus: (id: string, dir?: string) => derived<DerFile>(id, dir, 'applied_status.json'),
   ciByArtifact: (id: string, dir?: string) => derived<CiFile>(id, dir, 'ci_by_artifact.json'),
@@ -75,6 +99,26 @@ export type { GlyphInferenceRecord, GlyphRoi, GlyphBBox } from './glyphInference
 
 export interface RunReport { run: ProcessingRunR1 | null; runSelection?: RunSelection | null; inferenceRecords?: GlyphInferenceRecord[]; sourceRecords?: { title: string | null; url: string | null; license: string | null }[]; reportId?: string | null; evaluation_summary?: string }
 export interface GlyphEvaluation { status: string; top1: number | null; top3: number | null; verifiedLabels: number; recordedLabels?: number; reason?: string }
+
+/** 识字评测文案：not_evaluated / 无 GT 时只写「未评测」，禁止伪 Top-k / 拒识率数字（R8 / P1）。 */
+export function glyphEvaluationText(g: GlyphEvaluation, mode: 'short' | 'with-topk' = 'short'): string {
+  const labels = `已核验标注 ${g.verifiedLabels} 条`;
+  const reason = g.reason ? ` ${g.reason}` : '';
+  if (g.status === 'not_evaluated' || (g.top1 == null && g.top3 == null && g.status !== 'ok' && g.status !== 'evaluated')) {
+    return mode === 'with-topk'
+      ? `未评测（${labels}）${reason}`.trim()
+      : `未评测；${labels}。${reason}`.trim();
+  }
+  if (g.top1 == null && g.top3 == null) {
+    return `状态 ${g.status}；${labels}；Top-1/Top-3 无数值（不伪报）。${reason}`.trim();
+  }
+  if (mode === 'with-topk') {
+    const t1 = g.top1 == null ? '—' : String(g.top1);
+    const t3 = g.top3 == null ? '—' : String(g.top3);
+    return `${t1} / ${t3}（${labels}）${reason}`.trim();
+  }
+  return `状态：${g.status}；${labels}。${reason}`.trim();
+}
 
 /* ---------------- 批次分级与命名 ---------------- */
 

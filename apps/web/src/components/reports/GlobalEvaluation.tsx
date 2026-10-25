@@ -6,7 +6,7 @@
 import React, { useState } from 'react';
 import type { GlobalModel } from './data/globalModel';
 import { caseKeyOf } from './data/globalModel';
-import { appliedStatus, BatchInfo, BOOTSTRAP_RESAMPLES, BOOTSTRAP_SEED, gainWord, GAIN_SIGN_TEXT, GlyphEvaluation, isPassthroughStatus, MethodAggregate, ReportApi, ScopeStat, SCOPE_LABELS } from './data/reportData';
+import { appliedStatus, BatchInfo, BOOTSTRAP_RESAMPLES, BOOTSTRAP_SEED, gainWord, GAIN_SIGN_TEXT, GlyphEvaluation, isPassthroughStatus, MethodAggregate, ReportApi, ScopeStat, SCOPE_LABELS, glyphEvaluationText } from './data/reportData';
 import type { ExperimentRow, Loadable } from './data/types';
 import { APPLIED_LABELS, degradationLabel, methodLabel, SPLIT_LABELS } from './data/labels';
 import { signed, shortSha } from './format';
@@ -102,7 +102,7 @@ export const GlobalEvaluation: React.FC<Props> = ({ model, batches, glyph, filte
         <article className="rounded-lg border border-slate-700/80 bg-black/20 p-3 space-y-1" data-testid="conclusion-unevaluated">
           <div className="flex items-center justify-between gap-2"><p className="text-xs text-slate-400">结论 3 · 未评测项</p><GradeBadge grade="未评测" /></div>
           <p className="text-sm">真实拓本修复质量：未评测（无配对参考，不报告 PSNR/SSIM）。</p>
-          <p className="text-sm">古碑识字 Top-1 / Top-3：{glyph.state === 'ok' ? (glyph.data.status === 'not_evaluated' ? `未评测（已核验标注 ${glyph.data.verifiedLabels} 条）` : `${glyph.data.top1 ?? '—'} / ${glyph.data.top3 ?? '—'}（已核验标注 ${glyph.data.verifiedLabels} 条）`) : glyph.state === 'loading' ? '读取中…' : `状态不可用（${glyph.state === 'missing' || glyph.state === 'error' ? glyph.message : ''}）`}</p>
+          <p className="text-sm" data-testid="glyph-topk-line">古碑识字 Top-1 / Top-3：{glyph.state === 'ok' ? glyphEvaluationText(glyph.data, 'with-topk') : glyph.state === 'loading' ? '读取中…' : `状态不可用（${glyph.state === 'missing' || glyph.state === 'error' ? glyph.message : ''}）`}</p>
         </article>
         <p className="text-[11px] text-gold-light/90 border-l-2 border-gold/60 pl-2">{REFERENCE_NOTE}</p>
         {retest && <p className="text-[11px] text-cinnabar-light border-l-2 border-cinnabar pl-2">同一批文物复测，不是独立验证：本批 14 件文物与 v2-text 相同，且参与过 v2.1 的误差分析；结论最高为“有限支持”。本批没有图像，全部行“无法判定”，不显示有效处理率、原图返回率，也不显示 dev/test 划分。</p>}

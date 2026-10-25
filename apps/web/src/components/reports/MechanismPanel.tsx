@@ -101,7 +101,17 @@ export const MechanismPanel: React.FC<Props> = ({ model, filters, setFilters }) 
           <div><dt className="text-slate-500 inline">派生时间 </dt><dd className="inline">{index.data.file.derivedAt || '未记录'}</dd></div>
           <div className="md:col-span-2"><dt className="text-slate-500 inline">记录的 headCommit </dt>
             <dd className="inline"><code className="text-[10px]">{index.data.file.headCommit || '未记录'}</code>
-              <span className="text-slate-500">（仅展示派生记录，不宣称与当前 tip 字节一致）</span></dd></div>
+              {index.data.file.baseCommit ? <> · baseCommit <code className="text-[10px]">{index.data.file.baseCommit}</code></> : null}
+            </dd></div>
+          {index.data.file.headCommit ? (
+            <div className="md:col-span-2 rounded border border-amber-700/50 bg-amber-950/30 px-2 py-1.5 text-[11px] text-amber-100/90" data-testid="mechanism-head-lag-note" role="note">
+              MECHANISM_HEAD_NOTE：机制产物绑定的 headCommit=<code className="text-[10px]">{index.data.file.headCommit.slice(0, 12)}</code>… 是派生写入时的记录值，可能落后于当前分支 tip。
+              在评测科学家重跑 mechanism 并更新 index.json 之前，<strong className="font-semibold">不得宣称</strong>机制 PNG / 决策链与当前 tip 字节一致；本页只展示 MEC 记录，不表示已与 tip 对齐。
+            </div>
+          ) : (
+            <p className="md:col-span-2 text-[11px] text-slate-500" data-testid="mechanism-head-unrecorded">index 未记录 headCommit；不推断与 tip 的关系。</p>
+          )}
+          <div className="md:col-span-2 text-[11px] text-slate-400" data-testid="mechanism-der-scope">口径：本面板只读 MEC（derived/mechanism），不是 DER 汇总统计；不把机制样本数当作全批处理率或提升结论。</div>
           <div className="md:col-span-2"><dt className="text-slate-500">选取规则</dt>
             <dd className="whitespace-pre-wrap text-slate-400 mt-0.5">{index.data.file.selectionRule || '未记录'}</dd></div>
           <div className="md:col-span-2 text-slate-500">来源：{index.data.source}</div>
@@ -109,7 +119,7 @@ export const MechanismPanel: React.FC<Props> = ({ model, filters, setFilters }) 
         {!cases.length ? <p className="text-sm text-slate-400" data-testid="mechanism-cases-empty">索引存在但 cases 为空。</p> : (
           <div className="overflow-x-auto" data-testid="mechanism-cases-table">
             <table className="w-full text-[11px] text-left">
-              <thead className="text-slate-400"><tr>{['类别', '划分', 'caseId', '文物', '退化', '强度', 'ΔPSNR', '操作'].map(h => <th key={h} className="py-1 pr-2 font-normal">{h}</th>)}</tr></thead>
+              <thead className="text-slate-400"><tr>{['类别', '划分', 'caseId', '文物', '退化', '强度', 'ΔPSNR', 'head对照', '操作'].map(h => <th key={h} className="py-1 pr-2 font-normal">{h}</th>)}</tr></thead>
               <tbody>
                 {CATEGORY_ORDER.flatMap(cat => (byCat.get(cat) || [])).concat(cases.filter(c => !CATEGORY_ORDER.includes(c.category))).map(c => (
                   <tr key={c.caseId}
@@ -124,6 +134,7 @@ export const MechanismPanel: React.FC<Props> = ({ model, filters, setFilters }) 
                     <td className="pr-2">{degradationLabel(c.degradation)}</td>
                     <td className="pr-2">{c.strength ?? '—'}</td>
                     <td className="pr-2">{c.psnrGain == null ? '—' : signed(c.psnrGain, 3, 'dB')}</td>
+                    <td className="pr-2 text-[10px] text-slate-400">{c.headEqualsBase == null && c.headChangedVsStored == null ? '—' : [c.headEqualsBase === true ? 'head=base' : c.headEqualsBase === false ? 'head≠base' : null, typeof c.headChangedVsStored === 'number' ? `Δvs存=${c.headChangedVsStored}` : null].filter(Boolean).join(' · ') || '—'}</td>
                     <td className="pr-2"><button type="button" className="underline text-gold-light" onClick={e => { e.stopPropagation(); openInOverview(c); }}>在总览打开</button></td>
                   </tr>
                 ))}
@@ -145,6 +156,7 @@ export const MechanismPanel: React.FC<Props> = ({ model, filters, setFilters }) 
         )}
         {detail && detail.state === 'ok' && <>
           <p className="text-[11px] text-slate-500">来源：{detail.data.source}{detail.data.file.headCommit ? <> · 案记录 headCommit <code className="text-[10px]">{detail.data.file.headCommit}</code></> : null}</p>
+          <p className="text-[11px] text-amber-100/80" data-testid="mechanism-version-split">已存诊断/算子来自历史运行产物（通常 v2.0 已存）；下方决策链与改动统计优先取 mechanism 重放字段（记录为 head 重算）。两者不一致时以各自标注为准，不合并成单一“当前 tip”结论。</p>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div className="space-y-2">
               <h4 className="text-xs font-bold text-slate-200">实际执行步骤（决策链）</h4>

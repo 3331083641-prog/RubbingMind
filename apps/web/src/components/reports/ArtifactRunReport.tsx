@@ -7,7 +7,7 @@ import React, { useCallback, useState } from 'react';
 import type { SteleItem } from '../../types/stele';
 import { roleText } from '../../types/stele';
 import type { GlyphEvaluation, RunInfo, RunReport, RunSelection } from './data/reportData';
-import { evaluationSummaryText, runAdaptive, runOutcome } from './data/reportData';
+import { evaluationSummaryText, glyphEvaluationText, runAdaptive, runOutcome } from './data/reportData';
 import { formatGlyphBBox, mappedSourceBBox } from './data/glyphInference';
 import type { BatchDetail, Loadable } from './data/types';
 import { formatTime, shortSha } from './format';
@@ -67,7 +67,13 @@ export const ArtifactRunReport: React.FC<Props> = ({ stele, runs, runId, selecti
       {selection.state === 'error' && <p role="alert" className="text-[#9E2813]">{selection.message}</p>}
       {runs.state === 'ok' && runs.data.length > 0 && !runId && selection.state === 'ok' && <p className="text-[#7a5a14]">{runs.data.every(x => x.legacy) ? '本件只有旧版未验证（legacy）运行，不作默认显示；请在上方“本件运行”中手动选择。' : '请在上方“本件运行”中选择一条运行。'}</p>}
       {runId && report?.state === 'loading' && <p>读取运行报告…</p>}
-      {runId && report && (report.state === 'error' || report.state === 'missing') && <p role="alert" className="text-[#9E2813]">运行报告读取失败：{report.message}</p>}
+      {runId && report && (report.state === 'error' || report.state === 'missing') && (
+        <p role="alert" className="text-[#9E2813]" data-testid="artifact-report-status"
+          data-http={report.state === 'missing' ? String(report.status) : 'error'}
+          data-status={/stele_retired/.test(report.message) ? 'stele_retired' : /run_not_found/.test(report.message) ? 'run_not_found' : /stele_not_found/.test(report.message) ? 'stele_not_found' : /backend_unavailable/.test(report.message) ? 'backend_unavailable' : 'error'}>
+          运行报告读取失败：{report.message}
+        </p>
+      )}
       {run && outcome && <>
         <div className={`rounded-lg border-2 p-3 ${passthrough ? 'border-[#C83C23] bg-[#C83C23]/10' : outcome.mode === 'undetermined' ? 'border-[#937d5d]' : 'border-[#3E8E7E] bg-[#3E8E7E]/10'}`} data-testid="run-outcome" data-outcome={outcome.mode} data-source={(run as { passthroughSource?: string | null }).passthroughSource || ''}>
           <p className="font-serif text-lg font-bold">{outcome.title}{outcome.mode === 'passthrough' && (run as { passthroughSource?: string | null }).passthroughSource === 'computed-on-read' && <span className="ml-2 align-middle text-xs rounded border border-[#7a5a14] text-[#7a5a14] px-1.5 py-0.5" data-testid="computed-on-read">读取时校验</span>}{info?.legacy && <span className="ml-2 align-middle text-xs rounded bg-[#9E2813] text-white px-1.5 py-0.5">旧版未验证（legacy）</span>}</p>
@@ -128,7 +134,7 @@ export const ArtifactRunReport: React.FC<Props> = ({ stele, runs, runId, selecti
       </li>)}</ul> : <p>没有与本运行关联的残字推演记录；没有人工确认结论。</p>}
     </section>
     <section className="space-y-1 text-sm"><h4 className="font-bold">古碑识字</h4>
-      <p>{glyph.state === 'ok' ? `状态：${glyph.data.status === 'not_evaluated' ? '未评测' : glyph.data.status}；已核验标注 ${glyph.data.verifiedLabels} 条。${glyph.data.reason || ''}` : glyph.state === 'loading' ? '读取中…' : `识字评测状态不可用（${glyph.message}）。`}</p>
+      <p data-testid="artifact-glyph-evaluation">{glyph.state === 'ok' ? glyphEvaluationText(glyph.data, 'short') : glyph.state === 'loading' ? '读取中…' : `识字评测状态不可用（${glyph.message}）。`}</p>
       <p className="text-xs">图像处理指标与识字是两项不同能力；没有配对真值时，不把 PSNR 或候选分数写成识别准确率。</p>
     </section>
     <section className="space-y-1 text-sm"><h4 className="font-bold">本件在全局实验中的记录</h4>
