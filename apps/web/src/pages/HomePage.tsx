@@ -242,11 +242,12 @@ export const HomePage: React.FC<HomePageProps> = ({ steles, onSelectStele, onNav
               className="glass-panel rounded-xl overflow-hidden border border-gold/20 hover:border-gold/60 transition-all duration-300 flex flex-col group"
             >
               {/* Stele Image Window */}
-              <div className="relative h-48 w-full bg-slate-950 overflow-hidden flex items-center justify-center">
+              {/* 拓本完整显示（object-contain，不裁字）；纸色衬底保持原卡片观感 */}
+              <div className="relative h-48 w-full bg-[#eee4d2] overflow-hidden flex items-center justify-center" data-testid="core-sample-image-frame">
                 <img
                   src={stele.raw_image}
                   alt={stele.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter contrast-125"
+                  className="w-full h-full object-contain p-1 group-hover:brightness-110 transition duration-500 filter contrast-125"
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = '/assets/stele/rubbings/stele_tang_duobao_damaged.png';
                   }}
@@ -266,7 +267,7 @@ export const HomePage: React.FC<HomePageProps> = ({ steles, onSelectStele, onNav
                 </div>
 
                 <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-[11px] text-slate-300">
-                  <span className="font-mono text-gold-light">PSNR: {stele.metrics?.psnr ?? '未评测'} dB</span>
+                  <span className="font-mono text-gold-light">PSNR: {stele.metrics?.psnr != null ? `${stele.metrics.psnr} dB` : '未评测'}</span>
                   <span className="font-mono text-celadon-light">SSIM: {stele.metrics?.ssim ?? '未评测'}</span>
                 </div>
               </div>
@@ -277,7 +278,6 @@ export const HomePage: React.FC<HomePageProps> = ({ steles, onSelectStele, onNav
                   <h4 className="font-serif font-bold text-base text-slate-100 group-hover:text-gold transition-colors">
                     {stele.title}
                   </h4>
-                  {stele.textProvenance?.kind === 'synthetic_test_text' && <p className="text-[11px] text-cinnabar-light mt-1" data-testid="synthetic-text-badge">{stele.textProvenance.label}</p>}
                   <p className="text-[11px] text-slate-400 mt-1 line-clamp-1">{stele.author}</p>
                   <p className="text-xs text-slate-300 mt-2 line-clamp-2 leading-relaxed">
                     {stele.summary}

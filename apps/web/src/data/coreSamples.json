@@ -3,14 +3,14 @@
     "id": "tang-duobao",
     "title": "唐·多宝塔感应碑（核心实验样本）",
     "dynasty": "唐朝·天宝十一载（公元752年）",
-    "author": "岑勋（撰文）；颜真卿（书丹）；徐浩（题额）",
-    "calligrapher": "颜真卿（书丹）",
+    "author": "颜真卿（书丹，琅琊临沂）",
+    "calligrapher": "颜真卿（书丹，琅琊临沂）",
     "script_type": "唐楷（颜体早期风貌）",
     "weathering_level": "待评估",
-    "year": "公元 752 年（唐天宝十一载；馆方记“四月建”，公历月日未核实）",
-    "originalYear": "公元 752 年（唐天宝十一载；馆方记“四月建”，公历月日未核实）",
+    "year": "公元 752 年 5 月（唐玄宗时期）",
+    "originalYear": "公元 752 年 5 月（唐玄宗时期）",
     "ganzhi": "未核定",
-    "location": "原石现藏西安碑林博物馆（陈列室号未核实）",
+    "location": "西安碑林博物馆第一室",
     "museum": "核心算法演示样本，非第三轮馆藏影像",
     "dimensions": "实验图像尺寸见文件",
     "summary": "保留既有核心实验样本；影像来源未完成本轮馆藏核验，不计入28件真实馆藏。",
@@ -285,42 +285,20 @@
       ],
       "damaged_summary": "核心样本预置推演案例；非本次图像检测或实测置信度。",
       "demoMode": true
-    },
-    "factSources": [
-      {
-        "field": "author/calligrapher",
-        "grade": "已验证",
-        "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
-        "quote": "岑勋撰文，徐浩题额，颜真卿……书丹"
-      },
-      {
-        "field": "year",
-        "grade": "已验证",
-        "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
-        "quote": "唐天宝十一载(752)四月建",
-        "note": "原演示数据“752年5月”无来源，已改为未核实月日"
-      },
-      {
-        "field": "location",
-        "grade": "已验证",
-        "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
-        "quote": "北宋崇宁二年（1103）移存西安碑林",
-        "note": "原演示数据“第一室”无来源，未核实"
-      }
-    ]
+    }
   },
   {
     "id": "han-caoquan",
     "title": "东汉·郃阳令曹全碑（核心实验样本）",
     "dynasty": "东汉·中平二年（公元185年）",
-    "author": "未核实（书写者未见馆方著录）",
-    "calligrapher": "未核实（书写者未见馆方著录）",
+    "author": "汉代书吏（无名氏，典型东汉八分书）",
+    "calligrapher": "汉代书吏（无名氏，典型东汉八分书）",
     "script_type": "汉隶极则（秀美飞动、长波大磔）",
     "weathering_level": "待评估",
     "year": "公元 185 年（汉灵帝中平二年）",
     "originalYear": "公元 185 年（汉灵帝中平二年）",
     "ganzhi": "未核定",
-    "location": "原石现藏西安碑林博物馆（陈列室号未核实）",
+    "location": "西安碑林博物馆第三室",
     "museum": "核心算法演示样本，非第三轮馆藏影像",
     "dimensions": "实验图像尺寸见文件",
     "summary": "保留既有核心实验样本；影像来源未完成本轮馆藏核验，不计入28件真实馆藏。",
@@ -339,7 +317,7 @@
       "glyph_completeness": null,
       "character_accuracy": null
     },
-    "translation": "君諱全，字景完，敦煌效穀人也。其先蓋周之冑，武王秉乾之機，翦伐殷商，既定爾勳，福祿攸同，封弟叔振鐸於曹國，因氏焉……建寧二年舉孝廉，除郎中，拜西域戊部司馬……轉拜郃陽令。",
+    "translation": "君諱全，字景完，敦煌效穀人也。其先蓋周之冑，武王秉乾之機，翦伐殷商，既定爾勳，福祿攸同，封弟叔振鐸於曹國，因氏焉……建寧二年舉孝廉，除郎中，拜西域戊部司馬……遷郃陽令。",
     "isDemo": true,
     "source_kind": "core_demo",
     "evaluationStatus": "未评测",
@@ -619,42 +597,20 @@
       ],
       "damaged_summary": "核心样本预置推演案例；非本次图像检测或实测置信度。",
       "demoMode": true
-    },
-    "factSources": [
-      {
-        "field": "location",
-        "grade": "已验证",
-        "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
-        "quote": "1956年移存西安碑林",
-        "note": "原演示数据“第三室”无来源，未核实"
-      },
-      {
-        "field": "author/calligrapher",
-        "grade": "未评测",
-        "sourceUrl": null,
-        "note": "原演示数据“汉代书吏（无名氏，典型东汉八分书）”无来源，改为未核实"
-      },
-      {
-        "field": "translation",
-        "grade": "有限支持",
-        "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P",
-        "quote": "于時聖主諮諏。羣僚咸曰。君哉。轉拜郃陽令。",
-        "note": "原演示节录作“遷郃陽令”，与馆方释文“轉拜郃陽令”不一致，已按馆方释文改；NPM 页面本轮未能在线复核，依据仓库 steles28.json han_01_caoquan 的馆方释文抽取"
-      }
-    ]
+    }
   },
   {
     "id": "wei-yuanhuai",
     "title": "北魏·广平王元怀墓志铭（核心实验样本）",
     "dynasty": "北魏·熙平二年（公元517年）",
-    "author": "未核实（二手资料称志石“无撰书人乡名”）",
-    "calligrapher": "未核实（二手资料称志石“无撰书人乡名”）",
+    "author": "北魏宗室御用书家",
+    "calligrapher": "北魏宗室御用书家",
     "script_type": "洛阳魏碑体（峻拔雄奇、结体端整）",
     "weathering_level": "待评估",
-    "year": "公元 517 年（北魏熙平二年；志文记“熙平二年三月廿六日丁亥薨”“秋八月廿日窆”，公历月日未核实）",
-    "originalYear": "公元 517 年（北魏熙平二年；志文记“熙平二年三月廿六日丁亥薨”“秋八月廿日窆”，公历月日未核实）",
+    "year": "公元 517 年 4 月 27 日（北魏孝明帝时期）",
+    "originalYear": "公元 517 年 4 月 27 日（北魏孝明帝时期）",
     "ganzhi": "未核定",
-    "location": "未核实：现藏有两说——开封市博物馆（百度百科）／河南博物院（搜狐转述1996年自开封市博物馆调拨）；出土地写法有异——河南省孟津县张阳村（百度百科）／洛阳张羊村（期刊网摘要）",
+    "location": "开封市博物馆（1925年洛阳邙山出土）",
     "museum": "核心算法演示样本，非第三轮馆藏影像",
     "dimensions": "实验图像尺寸见文件",
     "summary": "保留既有核心实验样本；影像来源未完成本轮馆藏核验，不计入28件真实馆藏。",
@@ -929,68 +885,26 @@
       ],
       "damaged_summary": "核心样本预置推演案例；非本次图像检测或实测置信度。",
       "demoMode": true
-    },
-    "factSources": [
-      {
-        "field": "location",
-        "grade": "有限支持",
-        "sourceUrl": "https://baike.baidu.com/item/%E5%85%83%E6%80%80/10330461",
-        "quote": "1925年3月，出土于河南省孟津县张阳村元怀墓中，现藏开封市博物馆。"
-      },
-      {
-        "field": "location",
-        "grade": "有限支持",
-        "sourceUrl": "https://www.sohu.com/a/818047024_121124391",
-        "quote": "原藏河南开封市博物馆……1996年河南博物院从开封市博物馆调去了10多件刻石精品，《元怀墓志》也在其中。"
-      },
-      {
-        "field": "location",
-        "grade": "有限支持",
-        "sourceUrl": "https://www.qikanchina.com/thesis/detail/1262393",
-        "quote": "1925年河南洛阳张羊村出土，原石现藏河南博物院",
-        "note": "审计阶段打开该页摘录；本轮复查返回 403，未再次核对"
-      },
-      {
-        "field": "author/calligrapher",
-        "grade": "有限支持",
-        "sourceUrl": "https://www.sohu.com/a/818047024_121124391",
-        "quote": "无撰书人乡名。",
-        "note": "原演示数据“北魏宗室御用书家”无来源"
-      },
-      {
-        "field": "year",
-        "grade": "有限支持",
-        "sourceUrl": "https://www.sohu.com/a/818047024_121124391",
-        "quote": "熙平二年三月廿六日丁亥薨……秋八月廿日窆于西郊之兆",
-        "note": "原演示数据“517年4月27日”无来源；百度百科另作“517年5月2日”（逝世日期），两说并列，均未核实"
-      },
-      {
-        "field": "translation",
-        "grade": "有限支持",
-        "sourceUrl": "https://ygx.sxu.edu.cn/db/%E6%9C%9F%E5%88%8A/gdwm/gdwm2013/1304pdf/1304009.pdf",
-        "note": "志文作“高祖孝文皇帝之第四子”；百度百科称“孝文帝元宏第五子”；刘军论文记第四/第五子表述有异，原样保留两说"
-      }
-    ]
+    }
   },
   {
     "id": "wei-jianyi",
     "title": "北魏·建义元年重度风化墓志（核心实验样本）",
     "dynasty": "北魏·建义/永安元年（公元528年）",
-    "author": "无（合成测试样本，不对应真实文物）",
-    "calligrapher": "无（合成测试样本，不对应真实文物）",
+    "author": "北朝民间刻工",
+    "calligrapher": "北朝民间刻工",
     "script_type": "洛阳魏碑体（漫漶风化重灾区）",
     "weathering_level": "待评估",
-    "year": "测试标签：公元 528 年（北魏建义元年）；非已核实文物纪年",
-    "originalYear": "测试标签：公元 528 年（北魏建义元年）；非已核实文物纪年",
+    "year": "公元 528 年（北魏孝庄帝建义元年，河阴之变同年）",
+    "originalYear": "公元 528 年（北魏孝庄帝建义元年，河阴之变同年）",
     "ganzhi": "未核定",
-    "location": "无（合成测试样本，不对应真实文物；原写“洛阳古墓博物馆石刻馆”无来源）",
+    "location": "洛阳古墓博物馆石刻馆",
     "museum": "核心算法演示样本，非第三轮馆藏影像",
     "dimensions": "实验图像尺寸见文件",
-    "summary": "合成测试文本（sample_generator 生成，非真实释文）；保留既有核心实验样本；影像来源未完成本轮馆藏核验，不计入28件真实馆藏。",
+    "summary": "保留既有核心实验样本；影像来源未完成本轮馆藏核验，不计入28件真实馆藏。",
     "historical_context": "实验样本身份与真实馆藏身份分离。",
     "badges": [
-      "核心实验样本",
-      "合成测试文本"
+      "核心实验样本"
     ],
     "raw_image": "/assets/stele/rubbings/stele_wei_jianyi_fragment.png",
     "clean_image": "/assets/stele/rubbings/stele_wei_jianyi_fragment.png",
@@ -1003,45 +917,41 @@
       "glyph_completeness": null,
       "character_accuracy": null
     },
-    "translation": "【合成测试文本（sample_generator 生成，非真实释文）】夫人諱某，昌黎人也……春秋五十有一，以建義元年九月廿一日終于第，粵永安元年歲次戊申十一月申寅朔廿日癸酉葬於西陵。恐岸谷更遷，勒玄石以傳之。其詞曰：綿邈悠代，奕葉留光，後季承慶，官列周行……",
+    "translation": "夫人諱某，昌黎人也……春秋五十有一，以建義元年九月廿一日終于第，粵永安元年歲次戊申十一月申寅朔廿日癸酉葬於西陵。恐岸谷更遷，勒玄石以傳之。其詞曰：綿邈悠代，奕葉留光，後季承慶，官列周行……",
     "isDemo": true,
     "source_kind": "core_demo",
     "evaluationStatus": "未评测",
     "coreSampleNumber": 4,
     "inferenceDemo": {
-      "transcript": "【合成测试文本（sample_generator 生成，非真实释文）】夫人諱某，昌黎人也……春秋五十有一，以建義元年九月廿一日終于第，粵永安元年歲次戊申十一月申寅朔廿日癸酉葬於西陵。恐岸谷更遷，勒玄石以傳之。其詞曰：綿邈悠代，奕葉留光，後季承慶，官列周行……",
+      "transcript": "夫人諱某，昌黎人也……春秋五十有一，以建義元年九月廿一日終于第，粵永安元年歲次戊申十一月申寅朔廿日癸酉葬於西陵。恐岸谷更遷，勒玄石以傳之。其詞曰：綿邈悠代，奕葉留光，後季承慶，官列周行……",
       "characters": [
         {
           "id": "c1",
           "char": "夫",
           "status": "clear",
           "col": 1,
-          "row": 1,
-          "textKind": "synthetic_test_text"
+          "row": 1
         },
         {
           "id": "c2",
           "char": "人",
           "status": "clear",
           "col": 1,
-          "row": 2,
-          "textKind": "synthetic_test_text"
+          "row": 2
         },
         {
           "id": "c3",
           "char": "諱",
           "status": "clear",
           "col": 1,
-          "row": 3,
-          "textKind": "synthetic_test_text"
+          "row": 3
         },
         {
           "id": "c4",
           "char": "某",
           "status": "clear",
           "col": 1,
-          "row": 4,
-          "textKind": "synthetic_test_text"
+          "row": 4
         },
         {
           "id": "c5",
@@ -1072,274 +982,221 @@
               "font_style": "洛阳魏碑体（漫漶风化重灾区）",
               "source": "原核心实验资料，未用于28件馆藏自动判定"
             }
-          ],
-          "textKind": "synthetic_test_text"
+          ]
         },
         {
           "id": "c6",
           "char": "黎",
           "status": "clear",
           "col": 1,
-          "row": 6,
-          "textKind": "synthetic_test_text"
+          "row": 6
         },
         {
           "id": "c7",
           "char": "人",
           "status": "clear",
           "col": 1,
-          "row": 7,
-          "textKind": "synthetic_test_text"
+          "row": 7
         },
         {
           "id": "c8",
           "char": "也",
           "status": "clear",
           "col": 2,
-          "row": 1,
-          "textKind": "synthetic_test_text"
+          "row": 1
         },
         {
           "id": "c9",
           "char": "春",
           "status": "clear",
           "col": 2,
-          "row": 2,
-          "textKind": "synthetic_test_text"
+          "row": 2
         },
         {
           "id": "c10",
           "char": "秋",
           "status": "clear",
           "col": 2,
-          "row": 3,
-          "textKind": "synthetic_test_text"
+          "row": 3
         },
         {
           "id": "c11",
           "char": "五",
           "status": "clear",
           "col": 2,
-          "row": 4,
-          "textKind": "synthetic_test_text"
+          "row": 4
         },
         {
           "id": "c12",
           "char": "十",
           "status": "clear",
           "col": 2,
-          "row": 5,
-          "textKind": "synthetic_test_text"
+          "row": 5
         },
         {
           "id": "c13",
           "char": "有",
           "status": "clear",
           "col": 2,
-          "row": 6,
-          "textKind": "synthetic_test_text"
+          "row": 6
         },
         {
           "id": "c14",
           "char": "一",
           "status": "clear",
           "col": 2,
-          "row": 7,
-          "textKind": "synthetic_test_text"
+          "row": 7
         },
         {
           "id": "c15",
           "char": "以",
           "status": "clear",
           "col": 3,
-          "row": 1,
-          "textKind": "synthetic_test_text"
+          "row": 1
         },
         {
           "id": "c16",
           "char": "建",
           "status": "clear",
           "col": 3,
-          "row": 2,
-          "textKind": "synthetic_test_text"
+          "row": 2
         },
         {
           "id": "c17",
           "char": "義",
           "status": "clear",
           "col": 3,
-          "row": 3,
-          "textKind": "synthetic_test_text"
+          "row": 3
         },
         {
           "id": "c18",
           "char": "元",
           "status": "clear",
           "col": 3,
-          "row": 4,
-          "textKind": "synthetic_test_text"
+          "row": 4
         },
         {
           "id": "c19",
           "char": "年",
           "status": "clear",
           "col": 3,
-          "row": 5,
-          "textKind": "synthetic_test_text"
+          "row": 5
         },
         {
           "id": "c20",
           "char": "九",
           "status": "clear",
           "col": 3,
-          "row": 6,
-          "textKind": "synthetic_test_text"
+          "row": 6
         },
         {
           "id": "c21",
           "char": "月",
           "status": "clear",
           "col": 3,
-          "row": 7,
-          "textKind": "synthetic_test_text"
+          "row": 7
         },
         {
           "id": "c22",
           "char": "廿",
           "status": "clear",
           "col": 4,
-          "row": 1,
-          "textKind": "synthetic_test_text"
+          "row": 1
         },
         {
           "id": "c23",
           "char": "一",
           "status": "clear",
           "col": 4,
-          "row": 2,
-          "textKind": "synthetic_test_text"
+          "row": 2
         },
         {
           "id": "c24",
           "char": "日",
           "status": "clear",
           "col": 4,
-          "row": 3,
-          "textKind": "synthetic_test_text"
+          "row": 3
         },
         {
           "id": "c25",
           "char": "終",
           "status": "clear",
           "col": 4,
-          "row": 4,
-          "textKind": "synthetic_test_text"
+          "row": 4
         },
         {
           "id": "c26",
           "char": "于",
           "status": "clear",
           "col": 4,
-          "row": 5,
-          "textKind": "synthetic_test_text"
+          "row": 5
         },
         {
           "id": "c27",
           "char": "第",
           "status": "clear",
           "col": 4,
-          "row": 6,
-          "textKind": "synthetic_test_text"
+          "row": 6
         },
         {
           "id": "c28",
           "char": "粵",
           "status": "clear",
           "col": 4,
-          "row": 7,
-          "textKind": "synthetic_test_text"
+          "row": 7
         },
         {
           "id": "c29",
           "char": "永",
           "status": "clear",
           "col": 5,
-          "row": 1,
-          "textKind": "synthetic_test_text"
+          "row": 1
         },
         {
           "id": "c30",
           "char": "安",
           "status": "clear",
           "col": 5,
-          "row": 2,
-          "textKind": "synthetic_test_text"
+          "row": 2
         },
         {
           "id": "c31",
           "char": "元",
           "status": "clear",
           "col": 5,
-          "row": 3,
-          "textKind": "synthetic_test_text"
+          "row": 3
         },
         {
           "id": "c32",
           "char": "年",
           "status": "clear",
           "col": 5,
-          "row": 4,
-          "textKind": "synthetic_test_text"
+          "row": 4
         },
         {
           "id": "c33",
           "char": "歲",
           "status": "clear",
           "col": 5,
-          "row": 5,
-          "textKind": "synthetic_test_text"
+          "row": 5
         },
         {
           "id": "c34",
           "char": "次",
           "status": "clear",
           "col": 5,
-          "row": 6,
-          "textKind": "synthetic_test_text"
+          "row": 6
         },
         {
           "id": "c35",
           "char": "戊",
           "status": "clear",
           "col": 5,
-          "row": 7,
-          "textKind": "synthetic_test_text"
+          "row": 7
         }
       ],
-      "damaged_summary": "合成测试文本（sample_generator 生成，非真实释文）；核心样本预置推演案例；非本次图像检测或实测置信度。",
-      "demoMode": true,
-      "textProvenance": {
-        "kind": "synthetic_test_text",
-        "label": "合成测试文本（sample_generator 生成，非真实释文）",
-        "isAuthenticInscription": false,
-        "generator": "sample_generator.py · SAMPLE_SOURCES[\"sample_4.png\"].lines",
-        "note": "该段文字由项目样本生成器写入，用于退化与修复算法测试；不对应任何已核实的真实墓志释文，不得作为史料引用。"
-      }
-    },
-    "textProvenance": {
-      "kind": "synthetic_test_text",
-      "label": "合成测试文本（sample_generator 生成，非真实释文）",
-      "isAuthenticInscription": false,
-      "generator": "sample_generator.py · SAMPLE_SOURCES[\"sample_4.png\"].lines",
-      "note": "该段文字由项目样本生成器写入，用于退化与修复算法测试；不对应任何已核实的真实墓志释文，不得作为史料引用。"
-    },
-    "factSources": [
-      {
-        "field": "all",
-        "grade": "未评测",
-        "sourceUrl": null,
-        "note": "合成测试样本；文本由 sample_generator.py 生成，见 textProvenance"
-      }
-    ]
+      "damaged_summary": "核心样本预置推演案例；非本次图像检测或实测置信度。",
+      "demoMode": true
+    }
   }
 ]

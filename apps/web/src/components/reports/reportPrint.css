@@ -1,0 +1,27 @@
+/* 报告页专用 A4 纵版打印布局（ReportPrintLayout）。屏幕上不显示。 */
+.report-print { display: none; }
+@media print {
+  @page { size: A4 portrait; margin: 12mm 12mm 14mm; }
+  html:has(body.printing-report), body.printing-report, body.printing-report #root, body.printing-report #root > div { background: #fff !important; }
+  body.printing-report .report-screen { display: none !important; }
+  body.printing-report .report-print {
+    display: block !important; color: #111; background: #fff;
+    font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+    font-size: 10.5pt; line-height: 1.5;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .report-print h1 { font-size: 17pt; margin: 0 0 2mm; }
+  .report-print h2 { font-size: 12.5pt; margin: 5mm 0 2mm; border-bottom: 0.4pt solid #8a7a5c; padding-bottom: 1mm; break-after: avoid; }
+  .report-print figure { break-inside: avoid; margin: 3mm 0; }
+  .report-print figcaption { font-size: 9pt; color: #333; margin-top: 1mm; }
+  .report-print .rp-triptych { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; }
+  .report-print .rp-triptych img, .report-print .rp-pair img { width: 100%; height: 52mm; object-fit: contain; background: #f3efe6; border: 0.3pt solid #999; }
+  .report-print .rp-pair { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3mm; }
+  .report-print .rp-meta { font-size: 9pt; color: #333; }
+  .report-print .rp-card { border: 0.4pt solid #999; padding: 2mm 3mm; margin: 2mm 0; break-inside: avoid; }
+  .report-print .rp-grade { border: 0.4pt solid #555; padding: 0 1.5mm; font-size: 8.5pt; margin-left: 2mm; }
+  .report-print .rp-warn { color: #9e2813; }
+  .report-print code { font-family: "Consolas", "Courier New", monospace; font-size: 8.5pt; }
+  .report-print ul { margin: 1mm 0 1mm 5mm; padding: 0; }
+  .report-print .rp-footer { margin-top: 6mm; font-size: 8.5pt; color: #444; border-top: 0.4pt solid #8a7a5c; padding-top: 1.5mm; }
+}
