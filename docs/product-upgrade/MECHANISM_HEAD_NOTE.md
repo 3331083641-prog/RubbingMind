@@ -3,7 +3,7 @@
 - 作者：RM-评测科学家（Agent 04+05）
 - 时间：2026-10-25（Asia/Shanghai）
 - 分支：`agent/eval-sci`
-- 当前 tip（写入时）：e53929f1f5e9281427dc11d244f6c78bb0dde3a7（短写 e53929f；FF 对齐 feature 最终 HEAD，含 c027714/cc1e1da + report@ffb9138；pytest 747p/1xfail；R7 仍开只记证据）
+- 当前 tip（写入时）：3b0c47bb41351d37fe77d125ca9b84b111e8e7e0（短写 3b0c47b；== feature tip；窄冒烟通过；R7/A24 仍开）
 - 机制产物绑定 headCommit：`7623a52a3299b7c948031dfa1f79f04b8eb66d9e`（短写 `7623a52`）
 - 关联：`REPRESENTATIVE_CASES.md`、`REPORT_DATA_SPEC.md` §MEC / E-18、`experiments/mechanism_cases.py`
 
@@ -129,4 +129,15 @@
 | pytest | 747 passed / 1 xfailed / 0 failed |
 | A24 | 仍 xfail；禁伪 Top-k / 无假 schema 前勿伪绿 |
 | ES-3/4/5 | 契约与 derived 证据维持；不伪绿 CI / Top-k |
+| 铁律 | 未 push / 未合 main / 未改 museum_processing / 未把 A24 改正式 assert |
+
+## 12. feature@3b0c47b 窄冒烟后开项核验（2026-10-25 15:24 Asia/Shanghai）
+
+| 项 | 值 |
+| --- | --- |
+| 分支 tip / feature tip | 3b0c47bb41351d37fe77d125ca9b84b111e8e7e0（已对齐，无需再 FF） |
+| mechanism index.json headCommit | 7623a52a3299b7c948031dfa1f79f04b8eb66d9e（v2 + v2-text 均同） |
+| tip 相对 head 超前 | **162** commits（git rev-list --count 7623a52..HEAD；含本 tip 相对 e53929f +1） |
+| R7 / G7 | **仍开项** — 只记证据，未谎关；本期不重跑大批量 mechanism |
+| A24 | 	est_a24_export_label_recognized_forbidden_until_schema_exists 仍 xfail；	est_a24_schema_still_absent_keep_xfail_evidence PASSED；禁伪 Top-k |
 | 铁律 | 未 push / 未合 main / 未改 museum_processing / 未把 A24 改正式 assert |
