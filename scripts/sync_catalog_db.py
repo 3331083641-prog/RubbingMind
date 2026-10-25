@@ -210,8 +210,10 @@ def _external_governance_summary(db: Path):
 def _backup(db: Path) -> Path:
     stamp = datetime.now(SHANGHAI).strftime('%Y%m%d-%H%M%S')
     bak = db.with_name(f'{db.name}.{stamp}.bak')
-    if bak.exists():
-        raise SystemExit(f'备份文件已存在：{bak}（中止，未写入）')
+    n = 0
+    while bak.exists():  # same-second apply+rollback (RV-AI01 pre-backup) must not collide
+        n += 1
+        bak = db.with_name(f'{db.name}.{stamp}-{n}.bak')
     original = sha256_file(db)
     shutil.copy2(db, bak)
     copied = sha256_file(bak)
