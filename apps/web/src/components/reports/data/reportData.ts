@@ -77,7 +77,47 @@ export const ReportApi = {
   },
   glyphEvaluation: () => getJson<GlyphEvaluation>('/api/glyph-evaluation', '识字评测接口不存在'),
   appliedStatus: (id: string, dir?: string) => derived<DerFile>(id, dir, 'applied_status.json'),
-  ciByArtifact: (id: string, dir?: string) => derived<CiFile>(id, dir, 'ci_by_artifact.json'),
+  /**
+   * ES-3: prefer annotated /ci-by-artifact (liftClaimLabel / liftClaimSummary / liftClaimRule).
+   * Falls back to raw derived/ci_by_artifact.json only when the annotated route is missing.
+   * Does not edit services/api.ts; mirrors SteleService.getCiByArtifact shape locally.
+   */
+  ciByArtifact: async (id: string, dir?: string): Promise<Loadable<Derived<CiFile>>> => {
+    const annotatedUrl = `/api/experiments/${encodeURIComponent(id)}/ci-by-artifact`;
+    let res: Response;
+    try { res = await fetch(annotatedUrl); }
+    catch { return { state: 'error', message: '后端不可用，无法读取 CI' }; }
+    if (res.ok) {
+      try {
+        const body = await res.json() as Record<string, unknown>;
+        if (body.available === false) {
+          const status = body.status === 'stale' ? 409 : 404;
+          return { state: 'missing', status, message: String(body.reason || `CI 未入库（${body.status || 'missing'}）`) };
+        }
+        const groups = (body.groups as CiFile['groups']) || [];
+        const file: CiFile = {
+          batch: String(body.batch || dir || ''),
+          experimentId: String(body.experimentId || id),
+          derivedAt: String(body.derivedAt || ''),
+          seed: Number(body.seed ?? 0),
+          bootstrap: Number(body.bootstrap ?? 0),
+          percentiles: (body.percentiles as number[]) || [],
+          minReliableArtifacts: Number(body.minReliableArtifacts ?? 3),
+          rngRule: String(body.rngRule || ''),
+          gainDefinition: String(body.gainDefinition || ''),
+          appliedStatusSha256: body.appliedStatusSha256 ? String(body.appliedStatusSha256) : undefined,
+          groups,
+          liftClaimSummary: (body.liftClaimSummary as Record<string, number> | undefined) || undefined,
+          liftClaimRule: body.liftClaimRule ? String(body.liftClaimRule) : undefined,
+        };
+        return { state: 'ok', data: { file, source: `API ${annotatedUrl}（annotate_ci_lift_claims）` } };
+      } catch { return { state: 'error', message: 'CI 响应不是有效 JSON' }; }
+    }
+    if (res.status === 404) {
+      return derived<CiFile>(id, dir, 'ci_by_artifact.json');
+    }
+    return { state: 'error', message: `读取 CI 失败（HTTP ${res.status}）` };
+  },
   negativeLiftCauses: (id: string, dir?: string) => derived<NlcFile>(id, dir, 'negative_lift_causes.json'),
   mechanismIndex: (id: string, dir?: string) => derived<MechanismIndex>(id, dir, 'mechanism/index.json'),
   /** 单案 mechanism.json；404 → missing，不伪造决策链。 */
@@ -333,6 +373,8 @@ export interface ScopeStat {
   nRecords: number;
   ciSource: 'ci_by_artifact' | 'frontend';
   ciNote: string | null;
+  /** ES-3 backend label from annotate_ci_lift_claims; null when frontend CI fallback. */
+  liftClaimLabel?: string | null;
   points: { sampleId: string; value: number }[];
 }
 export interface MethodAggregate {
@@ -358,7 +400,8 @@ function fromCiFile(ci: CiLookup | null, metric: MetricKey, split: string, metho
   const lo = g[`${key}CI95Low`] as number | null, hi = g[`${key}CI95High`] as number | null;
   const value = g[`${key}ArtifactMean`] as number | null;
   const civ: [number, number] | null = lo != null && hi != null ? [lo, hi] : null;
-  return { scope, value: value ?? null, ci: civ, ciReliable: !!g.ciReliable && !!civ, sign: (g[`${key}Sign`] as GainSign | null) ?? gainSign(civ), nArtifacts: g.artifactN, nRecords: g.rowN, ciSource: 'ci_by_artifact', ciNote: g.ciNote };
+  const label = typeof g.liftClaimLabel === 'string' ? g.liftClaimLabel : null;
+  return { scope, value: value ?? null, ci: civ, ciReliable: !!g.ciReliable && !!civ, sign: (g[`${key}Sign`] as GainSign | null) ?? gainSign(civ), nArtifacts: g.artifactN, nRecords: g.rowN, ciSource: 'ci_by_artifact', ciNote: g.ciNote, liftClaimLabel: label };
 }
 
 export interface AggregateContext { split: string; degradation: string; sampleFiltered: boolean; ci: CiLookup | null }
@@ -383,7 +426,7 @@ export function aggregate(rows: ExperimentRow[], map: BaselineMap, metric: Metri
       const file = !ctx.sampleFiltered ? fromCiFile(ctx.ci, metric, ctx.split, method, ctx.degradation, scope) : null;
       if (file) return { ...file, points };
       const ci = clusterCI(points.map(p => p.value));
-      return { scope, value: mean(points.map(p => p.value)), ci, ciReliable: !!ci && points.length >= MIN_RELIABLE_ARTIFACTS, sign: metric === 'processingMs' ? null : gainSign(ci), nArtifacts: points.length, nRecords, ciSource: 'frontend', ciNote: points.length === 0 ? '无数据' : points.length < MIN_RELIABLE_ARTIFACTS ? `CI 不可靠（文物数 ${points.length}）` : null, points };
+      return { scope, value: mean(points.map(p => p.value)), ci, ciReliable: !!ci && points.length >= MIN_RELIABLE_ARTIFACTS, sign: metric === 'processingMs' ? null : gainSign(ci), nArtifacts: points.length, nRecords, ciSource: 'frontend', ciNote: points.length === 0 ? '无数据' : points.length < MIN_RELIABLE_ARTIFACTS ? `CI 不可靠（文物数 ${points.length}）` : null, liftClaimLabel: null, points };
     };
     const scopes: Record<Scope, ScopeStat> = { all: stat('all', notFailed), processed: stat('processed', processed), passthrough: stat('passthrough', passthrough) };
     const determinable = processedN + passthroughN > 0;
@@ -419,12 +462,34 @@ export function gradeDelta(agg: MethodAggregate | undefined, batch: BatchInfo | 
   return { grade: reasons.length > 1 ? '有限支持' : '已验证（受控退化）', reasons };
 }
 /** “提升”只能在配对增益 CI 下界 > 0 时使用。 */
-export function gainWord(s: ScopeStat): string {
-  if (s.value == null) return '无数据';
-  if (s.sign === 'positive' && s.ciReliable) return '提升';
+/** 正向「提升」仅当 CI 下界>0 且可靠且文物数>=3（或后端 liftClaimLabel 明确允许）。 */
+export function mayClaimPositiveLift(s: ScopeStat): boolean {
+  if (s.liftClaimLabel === 'positive_lift_ci_excludes_zero') return true;
+  if (s.liftClaimLabel === 'no_positive_lift_claim' || s.liftClaimLabel === '未评测' || s.liftClaimLabel === 'not_evaluated') return false;
+  return !!(s.ci && s.ci[0] > 0 && s.ciReliable && s.nArtifacts >= MIN_RELIABLE_ARTIFACTS);
+}
+/** 展示用 lift 声明标签：优先后端 liftClaimLabel，否则按 SPEC 门禁推导。 */
+export function liftClaimDisplay(s: ScopeStat): string {
+  if (s.value == null) return '未评测';
+  if (s.liftClaimLabel === 'positive_lift_ci_excludes_zero') return '提升';
+  if (s.liftClaimLabel === '未评测' || s.liftClaimLabel === 'not_evaluated') return '未评测';
+  if (s.liftClaimLabel === 'no_positive_lift_claim') {
+    if (!s.ciReliable || s.nArtifacts < MIN_RELIABLE_ARTIFACTS) return '不可靠';
+    if (s.sign === 'spans_zero') return '跨 0';
+    if (s.sign === 'negative') return '下降';
+    if (s.sign === 'zero') return '未改动';
+    return '跨 0';
+  }
+  if (mayClaimPositiveLift(s)) return '提升';
   if (s.sign === 'negative' && s.ciReliable) return '下降';
   if (s.sign === 'zero') return '未改动';
+  if (!s.ciReliable || s.nArtifacts < MIN_RELIABLE_ARTIFACTS) return '不可靠';
+  if (s.sign === 'spans_zero') return '跨 0';
   return '变化不确定';
+}
+/** Alias kept for existing print/chart call sites. */
+export function gainWord(s: ScopeStat): string {
+  return liftClaimDisplay(s);
 }
 
 /* ---------------- 馆藏运行：排序、默认、原图返回 ---------------- */
