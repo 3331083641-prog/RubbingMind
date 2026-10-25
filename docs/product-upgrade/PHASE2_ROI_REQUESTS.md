@@ -114,3 +114,11 @@
 | R8/G8 | 未评测契约保持 | backend + 前端 |
 
 条目数：**8**（R1–R8）。
+
+---
+
+## 落地跟踪（评测侧 0f20bf1）
+
+- 2026-10-25：REVIEW_ARCH_PHASE2_ROI.md — arch@fa31279 对 R2–R6/R8 **可进门禁**；feature 仍 9d8428e 未含 ROI。
+- R1（TS）/ R7（mechanism head）仍开；R7 **不大重跑**，禁令见 MECHANISM_HEAD_NOTE.md。
+- 评测侧 ES-3/4/5 契约见 ES_EVAL_PROGRESS.md 与 	ests/test_es_derived_contracts.py。

@@ -48,3 +48,11 @@
 ## 5. 脚本注释
 
 `experiments/mechanism_cases.py` 模块文档字符串已注明：产物 `headCommit` 以各批 `derived/mechanism/index.json` 为准；若落后于分支 tip，报告不得声称与 tip 字节一致（见本文件）。
+
+
+## 6. tip 前移记录
+
+| 日期 (Asia/Shanghai) | tip | 机制 headCommit | 动作 |
+|---|---|---|---|
+| 2026-10-25 | 65f7815 | 7623a52 | 初版禁令 |
+| 2026-10-25 | 0f20bf1（7b54e2+） | 7623a52 | merge feature@9d8428e + ROI 核对文档；**仍不重跑** mechanism；禁令保持 |
