@@ -3,7 +3,7 @@
 - 作者：RM-评测科学家（Agent 04+05）
 - 时间：2026-10-25（Asia/Shanghai）
 - 分支：`agent/eval-sci`
-- 当前 tip（写入时）：b60d55697d741682d28af5f28319e2b84aca8230（短写 b60d556；FF 对齐 feature@b60d556，含 89ff1db 合入 + RT 安全；冒烟 747p/1xfail；R7 仍开只记证据）
+- 当前 tip（写入时）：e53929f1f5e9281427dc11d244f6c78bb0dde3a7（短写 e53929f；FF 对齐 feature 最终 HEAD，含 c027714/cc1e1da + report@ffb9138；pytest 747p/1xfail；R7 仍开只记证据）
 - 机制产物绑定 headCommit：`7623a52a3299b7c948031dfa1f79f04b8eb66d9e`（短写 `7623a52`）
 - 关联：`REPRESENTATIVE_CASES.md`、`REPORT_DATA_SPEC.md` §MEC / E-18、`experiments/mechanism_cases.py`
 
@@ -64,6 +64,8 @@
 
 | 2026-10-25 | b60d556（FF feature@b60d556） | 7623a52 | tip 超前 mechanism head **145** commits；**仍不重跑** mechanism；89ff1db 已合入 |
 
+| 2026-10-25 | e53929f（FF feature@e53929f） | 7623a52 | tip 超前 mechanism head **161** commits；**仍不重跑** mechanism；含 report slice8/9 |
+
 ## 7. 对齐 feature@0654d13 后的开项证据（2026-10-25 13:11 Asia/Shanghai）
 
 | 项 | 值 |
@@ -114,3 +116,17 @@
 | pytest | 747 passed / 1 xfailed / 0 failed |
 | A24 | 仍 xfail；禁伪 Top-k / 无假 schema 前勿伪绿 |
 | 铁律 | 未 push / 未合 main；FF 未改写 museum_processing（仅随 feature 带入） |
+
+## 11. 对齐 feature@e53929f 后开项证据（2026-10-25 15:09 Asia/Shanghai）
+
+| 项 | 值 |
+| --- | --- |
+| 分支 tip | e53929f1f5e9281427dc11d244f6c78bb0dde3a7 |
+| feature tip | e53929f1f5e9281427dc11d244f6c78bb0dde3a7（对齐时相同；含 c027714 + ffb9138） |
+| mechanism headCommit | 7623a52a3299b7c948031dfa1f79f04b8eb66d9e |
+| tip 相对 head 超前 | **161** commits（git rev-list --count 7623a52..HEAD） |
+| R7 / G7 | **仍开项** — 只记证据，未谎关；本期不重跑大批量 mechanism |
+| pytest | 747 passed / 1 xfailed / 0 failed |
+| A24 | 仍 xfail；禁伪 Top-k / 无假 schema 前勿伪绿 |
+| ES-3/4/5 | 契约与 derived 证据维持；不伪绿 CI / Top-k |
+| 铁律 | 未 push / 未合 main / 未改 museum_processing / 未把 A24 改正式 assert |
