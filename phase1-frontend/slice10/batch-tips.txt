@@ -1,0 +1,10 @@
+slice10 batch tips (ASCII)
+base: e53929f1f5e9281427dc11d244f6c78bb0dde3a7
+commits after base:
+  21cb82b feat(report): export JSON liftClaims align on-screen ES-3
+  c0862aa docs(report): phase1 slice10 evidence P1-9 RF-8 algoMode
+full HEAD: c0862aaf77166fff9c86d48326ce6c11ed1281a6
+gate batch: e53929f..HEAD
+RF-8: open (not self-closed)
+algorithmOutputMode: skipped (no api.ts field)
+no push
