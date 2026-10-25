@@ -290,3 +290,9 @@ m:demo:* 与演示 legacy id 的 evidenceId 固定为演示自身，不再落到
 | song_02 | 目录作者宋太宗 verified；行楷+篆额；大中祥符诏令年可指 1008/1012 | 太宗题名 vs 真宗纪年 conflict；刊刻年 originalYearCE 仍空 |
 
 影像未改；无坐标；未核定不升格。
+
+## 2026-10-25（Asia/Shanghai）· RV-AI06 测试对齐
+
+- `tests/test_history_graph.py::test_graph_images_use_reviewed_rubbings`：馆藏实体仍断言已审 `museum-rubbings`；裸演示 id / `rm:demo:*` 断言 `core_samples` 图且永不含馆藏路径（与 4f9d568 行为一致）。
+- 说明：`/api/steles/rm:demo:…/graph` 因路径冒号仍 404，属后端 BR；本测试对命名空间 id 走 `get_history_graph`。
+- 史实字段未改；影像未改。
