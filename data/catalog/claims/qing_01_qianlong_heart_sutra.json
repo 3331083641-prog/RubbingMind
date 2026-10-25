@@ -1,0 +1,664 @@
+{
+  "schemaVersion": 1,
+  "steleId": "qing_01_qianlong_heart_sutra",
+  "title": "乾隆御书般若波罗蜜多心经",
+  "curatedBy": "agent/jinshi",
+  "curatedAt": "2026-10-25T13:00:00+08:00",
+  "selectionBasis": "Green 指定第5批收官；普林斯顿官页实开；calligrapher pending_review→待人工复核；甲子年干支一致；2026-10-25",
+  "layers": "作品（work）≠原刻载体（stone）≠拓本（rubbing）≠影像（image）；人物、纪年、地点、书体风格、著录分列",
+  "claims": [
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:work:title",
+      "entity": "work",
+      "property": "title",
+      "value": "乾隆御书般若波罗蜜多心经（馆方 Heart Sutra…般若波羅蜜多心經）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_01_qianlong_heart_sutra",
+          "field": "title",
+          "value": "乾隆御书般若波罗蜜多心经"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+          "publisher": "Princeton University Art Museum",
+          "title": "Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Title Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:work:dynasty",
+      "entity": "work",
+      "property": "dynasty",
+      "value": "清代",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_01_qianlong_heart_sutra",
+          "field": "dynasty",
+          "value": "清代"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+          "publisher": "Princeton University Art Museum",
+          "title": "Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Qing dynasty, 1644–1912"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:work:content",
+      "entity": "work",
+      "property": "content",
+      "value": "乾隆御书心经文字与童子礼佛图构成的图文石刻；1744年刻石立于北京法源寺大雄宝殿前（馆方 description）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_01_qianlong_heart_sutra",
+          "field": "description",
+          "value": "乾隆御书心经文字与童子礼佛图构成的图文石刻，1744年原刻；封面取经文部分。"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_01_qianlong_heart_sutra",
+          "field": "sourceVerification.locationBasis",
+          "quote": "北京法源寺大雄宝殿前"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+          "publisher": "Princeton University Art Museum",
+          "title": "Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "The engraved stone from which this rubbing was taken was carved in 1744 on a stele erected in front of the Dahongbao Dian 大雄寶殿hall in the Fayuan Si 法源寺 temple, Beijing."
+        }
+      ]
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:stone:currentLocation",
+      "entity": "stone",
+      "property": "currentLocation",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "馆方说明原立于法源寺，但明确不据此推定原石当前收藏机构",
+      "note": "不下坐标。"
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:stone:originalSite",
+      "entity": "stone",
+      "property": "originalSite",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "原立地点改记于 place:originalSite；stone 层不重复推定现址"
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:stone:transfer",
+      "entity": "stone",
+      "property": "transfer",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批未核原石迁移史"
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:stone:condition",
+      "entity": "stone",
+      "property": "condition",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "无原石现况官方评测"
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:rubbing:holder",
+      "entity": "rubbing",
+      "property": "holder",
+      "value": "普林斯顿大学艺术博物馆（Princeton University Art Museum）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_01_qianlong_heart_sutra",
+          "field": "rubbingCollectionInstitution",
+          "value": "普林斯顿大学艺术博物馆"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_01_qianlong_heart_sutra",
+          "field": "collectionNumber",
+          "value": "y1958-220"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+          "publisher": "Princeton University Art Museum",
+          "title": "Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Object Number y1958-220"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:rubbing:museumTitle",
+      "entity": "rubbing",
+      "property": "museumTitle",
+      "value": "Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+          "publisher": "Princeton University Art Museum",
+          "title": "Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:rubbing:format",
+      "entity": "rubbing",
+      "property": "format",
+      "value": "立轴；纸本墨拓（Hanging scroll; ink rubbing on paper）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+          "publisher": "Princeton University Art Museum",
+          "title": "Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Hanging scroll; ink rubbing on paper"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_01_qianlong_heart_sutra",
+          "field": "artifactType",
+          "value": "碑刻拓本"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:rubbing:period",
+      "entity": "rubbing",
+      "property": "period",
+      "value": "late 19th to first half of 20th century（拓印年代≠原刻 1744）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_01_qianlong_heart_sutra",
+          "field": "rubbingPeriod",
+          "value": "late 19th to first half of 20th century"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+          "publisher": "Princeton University Art Museum",
+          "title": "Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "1744 (stone); late 19th to first half of 20th century (rubbing)"
+        }
+      ],
+      "catalogueField": "rubbingPeriod",
+      "catalogueValue": "late 19th to first half of 20th century",
+      "note": "拓印年代≠原刻年；原刻仍属清代乾隆。"
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:image:sourceSha256",
+      "entity": "image",
+      "property": "sourceSha256",
+      "value": "504851fefe45202105241d4590793e32df14ee552d9c4e42a6bcb846b6259dec",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_01_qianlong_heart_sutra",
+          "field": "sourceVerification.sourceSha256",
+          "value": "504851fefe45202105241d4590793e32df14ee552d9c4e42a6bcb846b6259dec"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:image:license",
+      "entity": "image",
+      "property": "license",
+      "value": "Public Domain",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_01_qianlong_heart_sutra",
+          "field": "license",
+          "value": "Public Domain"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_01_qianlong_heart_sutra",
+          "field": "licenseUrl",
+          "value": "https://artmuseum.princeton.edu/art/our-collections/image-use-and-access"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+          "publisher": "Princeton University Art Museum",
+          "title": "Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Princeton University Art Museum supports free access to images of works in the Public Domain."
+        }
+      ]
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:image:derivation",
+      "entity": "image",
+      "property": "derivation",
+      "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_01_qianlong_heart_sutra",
+          "field": "modifications",
+          "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:person:author",
+      "entity": "person",
+      "property": "author",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录 author=未核定；馆方 Maker 仅列 calligrapher 弘历，未列撰文人",
+      "catalogueField": "author",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:person:calligrapher",
+      "entity": "person",
+      "property": "calligrapher",
+      "value": "弘历（乾隆帝；馆方 Maker：Hongli 弘曆, calligrapher；目录 pending_review）",
+      "status": "asserted",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_01_qianlong_heart_sutra",
+          "field": "calligrapher",
+          "value": "弘历（乾隆帝）"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_01_qianlong_heart_sutra",
+          "field": "calligrapherVerification",
+          "value": "pending_review"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+          "publisher": "Princeton University Art Museum",
+          "title": "Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Hongli 弘曆, calligrapher, 1711–1799"
+        }
+      ],
+      "catalogueField": "calligrapher",
+      "catalogueValue": "弘历（乾隆帝）",
+      "note": "目录 calligrapherVerification=pending_review；馆方明确列为 calligrapher。保持待人工复核，不升已验证。"
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:person:titleCalligrapher",
+      "entity": "person",
+      "property": "titleCalligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定；馆方未另列额题书人",
+      "catalogueField": "titleCalligrapher",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:person:engraver",
+      "entity": "person",
+      "property": "engraver",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定；馆方本页未列 carver",
+      "catalogueField": "engraver",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:person:steleSubject",
+      "entity": "person",
+      "property": "steleSubject",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "心经图文碑，无特定墓主/受主；目录未核定",
+      "catalogueField": "steleSubject",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:date:era",
+      "entity": "date",
+      "property": "era",
+      "value": "乾隆甲子秋九月（馆方 Inscription：乾隆甲子秋九月御筆敬書）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+          "publisher": "Princeton University Art Museum",
+          "title": "Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "乾隆甲子秋九月御筆敬書"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_01_qianlong_heart_sutra",
+          "field": "originalYear",
+          "value": "1744年"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:date:ce",
+      "entity": "date",
+      "property": "ce",
+      "value": 1744,
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_01_qianlong_heart_sutra",
+          "field": "originalYearCE",
+          "value": 1744
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+          "publisher": "Princeton University Art Museum",
+          "title": "Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "1744 (stone); late 19th to first half of 20th century (rubbing)"
+        }
+      ],
+      "catalogueField": "originalYearCE",
+      "catalogueValue": 1744
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:date:yearCrossCheck",
+      "entity": "date",
+      "property": "yearCrossCheck",
+      "value": "一致：1744 CE ↔ 碑面“乾隆甲子”（推算 甲子）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+          "publisher": "Princeton University Art Museum",
+          "title": "Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "乾隆甲子秋九月御筆敬書"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_01_qianlong_heart_sutra",
+          "field": "originalYearCE",
+          "value": 1744
+        }
+      ],
+      "catalogueField": "originalYearCE",
+      "catalogueValue": 1744,
+      "derivation": {
+        "ce": 1744,
+        "inscriptionGanzhi": "甲子",
+        "computedGanzhi": "甲子",
+        "result": "consistent"
+      }
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:date:dayCrossCheck",
+      "entity": "date",
+      "property": "dayCrossCheck",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "馆方释文仅至“秋九月”，无日干支可核"
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:place:originalSite",
+      "entity": "place",
+      "property": "originalSite",
+      "value": "北京法源寺大雄宝殿前（区域级；馆方 description；不推定原石现藏）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_01_qianlong_heart_sutra",
+          "field": "sourceVerification.locationBasis",
+          "quote": "北京法源寺大雄宝殿前"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_01_qianlong_heart_sutra",
+          "field": "originalLocation",
+          "value": "北京法源寺大雄宝殿前"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+          "publisher": "Princeton University Art Museum",
+          "title": "Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Fayuan Si 法源寺 temple, Beijing"
+        }
+      ],
+      "region": {
+        "historicalName": "北京法源寺",
+        "modernRegion": "北京市（现代对应待人工复核）",
+        "precision": "region"
+      },
+      "catalogueField": "originalLocation",
+      "catalogueValue": "北京法源寺大雄宝殿前",
+      "note": "区域级；不下坐标。"
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:place:currentStone",
+      "entity": "place",
+      "property": "currentStone",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "不据此推定原石当前收藏机构"
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:place:rubbingHolder",
+      "entity": "place",
+      "property": "rubbingHolder",
+      "value": "美国新泽西州普林斯顿（Princeton University Art Museum）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_01_qianlong_heart_sutra",
+          "field": "rubbingCollectionInstitution",
+          "value": "普林斯顿大学艺术博物馆"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+          "publisher": "Princeton University Art Museum",
+          "title": "Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Princeton University Art Museum"
+        }
+      ],
+      "region": {
+        "modernRegion": "美国新泽西州普林斯顿",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:script_style:script",
+      "entity": "script_style",
+      "property": "script",
+      "value": "楷书",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_01_qianlong_heart_sutra",
+          "field": "scriptType",
+          "value": "楷书"
+        }
+      ],
+      "catalogueField": "scriptType",
+      "catalogueValue": "楷书",
+      "note": "馆方本页未单列书体字段；依目录 scriptType，等级有限支持。另见额题篆书带（seal-script band）属装饰，不改正文楷书判定。"
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:script_style:historicalComment",
+      "entity": "script_style",
+      "property": "historicalComment",
+      "value": "馆方：经文两侧复书经题，额题大字篆书带；下部童子礼佛图为丁观鹏摹乾隆稿（丁觀鹏敬摹）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+          "publisher": "Princeton University Art Museum",
+          "title": "Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "The title is also written in large seal-script calligraphy in a band across the top."
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+          "publisher": "Princeton University Art Museum",
+          "title": "Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "丁觀鹏敬摹"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_01_qianlong_heart_sutra:bibliography:catalogueReference",
+      "entity": "bibliography",
+      "property": "catalogueReference",
+      "value": "Princeton y1958-220；Gift of George Rowley；Record of the Art Museum 18/1 (1959) p.40",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_01_qianlong_heart_sutra",
+          "field": "collectionNumber",
+          "value": "y1958-220"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_01_qianlong_heart_sutra",
+          "field": "sourceUrl",
+          "value": "https://artmuseum.princeton.edu/art/collections/objects/57606"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+          "publisher": "Princeton University Art Museum",
+          "title": "Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Object Number y1958-220"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+          "publisher": "Princeton University Art Museum",
+          "title": "Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "\"Recent Acquisitions,\" Record of the Art Museum, Princeton University 18, no. 1 (1959): p. 40-42."
+        }
+      ]
+    }
+  ]
+}

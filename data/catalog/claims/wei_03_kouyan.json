@@ -1,0 +1,630 @@
+{
+  "schemaVersion": 1,
+  "steleId": "wei_03_kouyan",
+  "title": "寇演墓志",
+  "curatedBy": "RM-金石史料",
+  "curatedAt": "2026-10-25（Asia/Shanghai）",
+  "selectionBasis": "释文含神龟元年薨、二年窆洛阳西北芒；NPM 2026-10-25 实开",
+  "layers": "作品（work）≠原刻载体（stone）≠拓本（rubbing）≠影像（image）；人物、纪年、地点、书体风格、著录分列",
+  "claims": [
+    {
+      "claimId": "wei_03_kouyan:work:title",
+      "entity": "work",
+      "property": "title",
+      "value": "寇演墓志（馆方品名“北魏故汝南太守寇府君演墓誌銘拓片 軸”）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_03_kouyan",
+          "field": "title",
+          "value": "寇演墓志"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30320&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故汝南太守寇府君演墓誌銘拓片 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名：北魏故汝南太守寇府君演墓誌銘拓片 軸"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_03_kouyan",
+          "field": "transcription",
+          "quote": "君諱演。字真孫"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_03_kouyan:work:dynasty",
+      "entity": "work",
+      "property": "dynasty",
+      "value": "北魏",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_03_kouyan",
+          "field": "dynasty",
+          "value": "北魏"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30320&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故汝南太守寇府君演墓誌銘拓片 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名冠“北魏”"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_03_kouyan:work:content",
+      "entity": "work",
+      "property": "content",
+      "value": "汝南太守寇演墓志；神龟元年七月廿七日薨于位，二年二月廿三日窆于洛阳城西北芒",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_03_kouyan",
+          "field": "transcription",
+          "quote": "以神龜元年七月廿七日薨于位"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_03_kouyan",
+          "field": "transcription",
+          "quote": "二年二月廿三日窆于洛陽城西北芒"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30320&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故汝南太守寇府君演墓誌銘拓片 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "窆于洛陽城西北芒"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_03_kouyan:stone:currentLocation",
+      "entity": "stone",
+      "property": "currentLocation",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批所开馆方页与目录均未给出原石现藏地"
+    },
+    {
+      "claimId": "wei_03_kouyan:stone:originalSite",
+      "entity": "stone",
+      "property": "originalSite",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批所开馆方页与目录均未给出原立地点的可核坐标或馆方确认地址"
+    },
+    {
+      "claimId": "wei_03_kouyan:stone:transfer",
+      "entity": "stone",
+      "property": "transfer",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "未见可核的原石流转记述"
+    },
+    {
+      "claimId": "wei_03_kouyan:stone:condition",
+      "entity": "stone",
+      "property": "condition",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "无原石影像；目录 stoneWeathering 不评定原石"
+    },
+    {
+      "claimId": "wei_03_kouyan:rubbing:holder",
+      "entity": "rubbing",
+      "property": "holder",
+      "value": "台北故宫博物院（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_03_kouyan",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_03_kouyan",
+          "field": "collectionNumber",
+          "value": "贈拓000234"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30320&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故汝南太守寇府君演墓誌銘拓片 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "文物統一編號：贈拓000234"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_03_kouyan:rubbing:museumTitle",
+      "entity": "rubbing",
+      "property": "museumTitle",
+      "value": "北魏故汝南太守寇府君演墓誌銘拓片 軸",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30320&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故汝南太守寇府君演墓誌銘拓片 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名栏"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_03_kouyan:rubbing:format",
+      "entity": "rubbing",
+      "property": "format",
+      "value": "一轴；本幅约 52.5×51.3 公分；纸本",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30320&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故汝南太守寇府君演墓誌銘拓片 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "数量：一轴；本幅 52.5x51.3；质地：纸"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_03_kouyan:rubbing:period",
+      "entity": "rubbing",
+      "property": "period",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录 rubbingPeriod 为未核定；本批馆方页未提供可核的拓印年代",
+      "catalogueField": "rubbingPeriod",
+      "catalogueValue": "未核定；不据拓印年改变朝代"
+    },
+    {
+      "claimId": "wei_03_kouyan:image:sourceSha256",
+      "entity": "image",
+      "property": "sourceSha256",
+      "value": "153cc74cd90a67a9985261f67845e4714afdd7bcee8bf8f38cbeedaa5be59759",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_03_kouyan",
+          "field": "sourceVerification.sourceSha256",
+          "value": "153cc74cd90a67a9985261f67845e4714afdd7bcee8bf8f38cbeedaa5be59759"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_03_kouyan:image:license",
+      "entity": "image",
+      "property": "license",
+      "value": "CC BY 4.0",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_03_kouyan",
+          "field": "license",
+          "value": "CC BY 4.0"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30320&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故汝南太守寇府君演墓誌銘拓片 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "授權條款 CC BY 4.0"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_03_kouyan:image:derivation",
+      "entity": "image",
+      "property": "derivation",
+      "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_03_kouyan",
+          "field": "modifications",
+          "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_03_kouyan:person:author",
+      "entity": "person",
+      "property": "author",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定；有铭辞但未见撰人署名",
+      "catalogueField": "author",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "wei_03_kouyan:person:calligrapher",
+      "entity": "person",
+      "property": "calligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定；释文未见书丹人",
+      "catalogueField": "calligrapher",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "wei_03_kouyan:person:titleCalligrapher",
+      "entity": "person",
+      "property": "titleCalligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定",
+      "catalogueField": "titleCalligrapher",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "wei_03_kouyan:person:engraver",
+      "entity": "person",
+      "property": "engraver",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定",
+      "catalogueField": "engraver",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "wei_03_kouyan:person:steleSubject",
+      "entity": "person",
+      "property": "steleSubject",
+      "value": "寇演（字真孙；上谷昌平人；汝南太守）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_03_kouyan",
+          "field": "transcription",
+          "quote": "君諱演。字真孫。上谷昌平人也"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30320&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故汝南太守寇府君演墓誌銘拓片 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "君諱演。字真孫"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_03_kouyan",
+          "field": "steleSubject",
+          "value": "未核定"
+        }
+      ],
+      "catalogueField": "steleSubject",
+      "catalogueValue": "未核定",
+      "note": "目录 steleSubject 未核定；碑面墓主信息作有限支持，不升格。"
+    },
+    {
+      "claimId": "wei_03_kouyan:date:era",
+      "entity": "date",
+      "property": "era",
+      "value": "神龟二年二月廿三日窆（神龟元年七月廿七日薨）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_03_kouyan",
+          "field": "transcription",
+          "quote": "以神龜元年七月廿七日薨于位"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_03_kouyan",
+          "field": "transcription",
+          "quote": "二年二月廿三日窆于洛陽城西北芒"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30320&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故汝南太守寇府君演墓誌銘拓片 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "神龜元年七月廿七日"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_03_kouyan",
+          "field": "originalYear",
+          "value": "519年"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_03_kouyan",
+          "field": "sourceVerification.dateBasis",
+          "value": "神龟二年二月葬，518为卒年，馆方释文"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_03_kouyan:date:ce",
+      "entity": "date",
+      "property": "ce",
+      "value": 519,
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_03_kouyan",
+          "field": "originalYearCE",
+          "value": 519
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30320&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故汝南太守寇府君演墓誌銘拓片 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "二年二月廿三日窆"
+        }
+      ],
+      "catalogueField": "originalYearCE",
+      "catalogueValue": 519,
+      "note": "目录以葬年 519 为 originalYearCE；卒年神龟元年=518，见 dateBasis。"
+    },
+    {
+      "claimId": "wei_03_kouyan:date:yearCrossCheck",
+      "entity": "date",
+      "property": "yearCrossCheck",
+      "value": "一致：神龟二年（葬）→519（碑面无年干支；推算 己亥）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_03_kouyan",
+          "field": "transcription",
+          "quote": "二年二月廿三日窆"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_03_kouyan",
+          "field": "originalYearCE",
+          "value": 519
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30320&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故汝南太守寇府君演墓誌銘拓片 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "二年二月廿三日窆"
+        }
+      ],
+      "catalogueField": "originalYearCE",
+      "catalogueValue": 519,
+      "derivation": {
+        "ce": 519,
+        "inscriptionGanzhi": null,
+        "computedGanzhi": "己亥",
+        "result": "partial"
+      }
+    },
+    {
+      "claimId": "wei_03_kouyan:date:dayCrossCheck",
+      "entity": "date",
+      "property": "dayCrossCheck",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "有二月廿三日，但未见朔日干支，无法做日干支交验"
+    },
+    {
+      "claimId": "wei_03_kouyan:place:originalSite",
+      "entity": "place",
+      "property": "originalSite",
+      "value": "洛阳城西北芒一带（区域级）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_03_kouyan",
+          "field": "transcription",
+          "quote": "窆于洛陽城西北芒"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30320&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故汝南太守寇府君演墓誌銘拓片 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "窆于洛陽城西北芒"
+        }
+      ],
+      "region": {
+        "historicalName": "洛阳城西北芒",
+        "modernRegion": "河南省洛阳市一带（现代对应待人工复核）",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "wei_03_kouyan:place:currentStone",
+      "entity": "place",
+      "property": "currentStone",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "未见原石现藏的可核记述"
+    },
+    {
+      "claimId": "wei_03_kouyan:place:rubbingHolder",
+      "entity": "place",
+      "property": "rubbingHolder",
+      "value": "台北（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_03_kouyan",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30320&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故汝南太守寇府君演墓誌銘拓片 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "國立故宮博物院"
+        }
+      ],
+      "region": {
+        "modernRegion": "台北市",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "wei_03_kouyan:script_style:script",
+      "entity": "script_style",
+      "property": "script",
+      "value": "楷书",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_03_kouyan",
+          "field": "scriptType",
+          "value": "楷书"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30320&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故汝南太守寇府君演墓誌銘拓片 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "書體：楷書"
+        }
+      ],
+      "catalogueField": "scriptType",
+      "catalogueValue": "楷书"
+    },
+    {
+      "claimId": "wei_03_kouyan:script_style:historicalComment",
+      "entity": "script_style",
+      "property": "historicalComment",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批未采独立书评材料"
+    },
+    {
+      "claimId": "wei_03_kouyan:bibliography:catalogueReference",
+      "entity": "bibliography",
+      "property": "catalogueReference",
+      "value": "國立故宮博物院开放资料 id=30320；贈拓000234",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_03_kouyan",
+          "field": "sourceUrl",
+          "value": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30320&dep=P&mode=full"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_03_kouyan",
+          "field": "collectionNumber",
+          "value": "贈拓000234"
+        }
+      ]
+    }
+  ]
+}

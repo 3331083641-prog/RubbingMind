@@ -1,0 +1,584 @@
+{
+  "schemaVersion": 1,
+  "steleId": "song_01_yuanyou",
+  "title": "元祐党籍碑",
+  "curatedBy": "RM-金石史料",
+  "curatedAt": "2026-10-25（Asia/Shanghai）",
+  "selectionBasis": "NPM 书体栏楷书 vs 释文（隶书）冲突并列；原刻年份未核定；2026-10-25 实开",
+  "layers": "作品（work）≠原刻载体（stone）≠拓本（rubbing）≠影像（image）；人物、纪年、地点、书体风格、著录分列",
+  "claims": [
+    {
+      "claimId": "song_01_yuanyou:work:title",
+      "entity": "work",
+      "property": "title",
+      "value": "元祐党籍碑（馆方品名“宋元祐黨籍碑墨拓本 軸”）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_01_yuanyou",
+          "field": "title",
+          "value": "元祐党籍碑"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32237&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋元祐黨籍碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名：宋元祐黨籍碑墨拓本 軸"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_01_yuanyou",
+          "field": "transcription",
+          "quote": "元祐黨籍"
+        }
+      ]
+    },
+    {
+      "claimId": "song_01_yuanyou:work:dynasty",
+      "entity": "work",
+      "property": "dynasty",
+      "value": "宋",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_01_yuanyou",
+          "field": "dynasty",
+          "value": "宋代"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32237&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋元祐黨籍碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名冠“宋”"
+        }
+      ]
+    },
+    {
+      "claimId": "song_01_yuanyou:work:content",
+      "entity": "work",
+      "property": "content",
+      "value": "元祐党籍碑拓本；馆方释文仅录标题“元祐党籍”，正文不录",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_01_yuanyou",
+          "field": "transcription",
+          "quote": "元祐黨籍。（隸書）（文不錄。）"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32237&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋元祐黨籍碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "元祐黨籍。（隸書）（文不錄。）"
+        }
+      ],
+      "note": "不据他书补写党人名单。"
+    },
+    {
+      "claimId": "song_01_yuanyou:stone:currentLocation",
+      "entity": "stone",
+      "property": "currentLocation",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批所开馆方页与目录均未给出原石现藏地"
+    },
+    {
+      "claimId": "song_01_yuanyou:stone:originalSite",
+      "entity": "stone",
+      "property": "originalSite",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批所开馆方页与目录均未给出原立地点的可核坐标或馆方确认地址"
+    },
+    {
+      "claimId": "song_01_yuanyou:stone:transfer",
+      "entity": "stone",
+      "property": "transfer",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "未见可核的原石流转记述"
+    },
+    {
+      "claimId": "song_01_yuanyou:stone:condition",
+      "entity": "stone",
+      "property": "condition",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "无原石影像；目录 stoneWeathering 不评定原石"
+    },
+    {
+      "claimId": "song_01_yuanyou:rubbing:holder",
+      "entity": "rubbing",
+      "property": "holder",
+      "value": "台北故宫博物院（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_01_yuanyou",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_01_yuanyou",
+          "field": "collectionNumber",
+          "value": "購拓000449"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32237&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋元祐黨籍碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "文物統一編號：購拓000449"
+        }
+      ]
+    },
+    {
+      "claimId": "song_01_yuanyou:rubbing:museumTitle",
+      "entity": "rubbing",
+      "property": "museumTitle",
+      "value": "宋元祐黨籍碑墨拓本 軸",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32237&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋元祐黨籍碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名栏"
+        }
+      ]
+    },
+    {
+      "claimId": "song_01_yuanyou:rubbing:format",
+      "entity": "rubbing",
+      "property": "format",
+      "value": "一幅；本幅约 176×133.2 公分；纸本",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32237&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋元祐黨籍碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "数量：一幅；本幅 176x133.2；质地：纸"
+        }
+      ]
+    },
+    {
+      "claimId": "song_01_yuanyou:rubbing:period",
+      "entity": "rubbing",
+      "property": "period",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录 rubbingPeriod 为未核定；本批馆方页未提供可核的拓印年代",
+      "catalogueField": "rubbingPeriod",
+      "catalogueValue": "未核定；不据拓印年改变朝代"
+    },
+    {
+      "claimId": "song_01_yuanyou:image:sourceSha256",
+      "entity": "image",
+      "property": "sourceSha256",
+      "value": "7700c8e3336dcf483a91903d0c49145c1880e5c71367d8aea5c714f88e9ed43d",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_01_yuanyou",
+          "field": "sourceVerification.sourceSha256",
+          "value": "7700c8e3336dcf483a91903d0c49145c1880e5c71367d8aea5c714f88e9ed43d"
+        }
+      ]
+    },
+    {
+      "claimId": "song_01_yuanyou:image:license",
+      "entity": "image",
+      "property": "license",
+      "value": "CC BY 4.0",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_01_yuanyou",
+          "field": "license",
+          "value": "CC BY 4.0"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32237&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋元祐黨籍碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "授權條款 CC BY 4.0"
+        }
+      ]
+    },
+    {
+      "claimId": "song_01_yuanyou:image:derivation",
+      "entity": "image",
+      "property": "derivation",
+      "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_01_yuanyou",
+          "field": "modifications",
+          "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+        }
+      ]
+    },
+    {
+      "claimId": "song_01_yuanyou:person:author",
+      "entity": "person",
+      "property": "author",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定；释文正文不录，未见撰人",
+      "catalogueField": "author",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "song_01_yuanyou:person:calligrapher",
+      "entity": "person",
+      "property": "calligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定；释文未见书丹人",
+      "catalogueField": "calligrapher",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "song_01_yuanyou:person:titleCalligrapher",
+      "entity": "person",
+      "property": "titleCalligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定",
+      "catalogueField": "titleCalligrapher",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "song_01_yuanyou:person:engraver",
+      "entity": "person",
+      "property": "engraver",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定",
+      "catalogueField": "engraver",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "song_01_yuanyou:person:steleSubject",
+      "entity": "person",
+      "property": "steleSubject",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "党籍碑非单一墓主；目录未核定",
+      "catalogueField": "steleSubject",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "song_01_yuanyou:date:era",
+      "entity": "date",
+      "property": "era",
+      "value": "宋代（确切原刻年份未核定）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_01_yuanyou",
+          "field": "originalYear",
+          "value": "宋代，确切原刻年份未核定"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32237&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋元祐黨籍碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名冠“宋”"
+        }
+      ],
+      "note": "目录 originalYearCE=null；不臆补崇宁复刻年份。"
+    },
+    {
+      "claimId": "song_01_yuanyou:date:ce",
+      "entity": "date",
+      "property": "ce",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录 originalYearCE 为空；本批不编造公元年",
+      "catalogueField": "originalYearCE",
+      "catalogueValue": null
+    },
+    {
+      "claimId": "song_01_yuanyou:date:yearCrossCheck",
+      "entity": "date",
+      "property": "yearCrossCheck",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "无确切原刻年份与年干支，无法交验"
+    },
+    {
+      "claimId": "song_01_yuanyou:date:dayCrossCheck",
+      "entity": "date",
+      "property": "dayCrossCheck",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "无朔日与日干支"
+    },
+    {
+      "claimId": "song_01_yuanyou:place:originalSite",
+      "entity": "place",
+      "property": "originalSite",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "原立地点（如桂林等翻刻系统）本批未核官方来源，保持 missing"
+    },
+    {
+      "claimId": "song_01_yuanyou:place:currentStone",
+      "entity": "place",
+      "property": "currentStone",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "未见原石现藏的可核记述"
+    },
+    {
+      "claimId": "song_01_yuanyou:place:rubbingHolder",
+      "entity": "place",
+      "property": "rubbingHolder",
+      "value": "台北（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_01_yuanyou",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32237&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋元祐黨籍碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "國立故宮博物院"
+        }
+      ],
+      "region": {
+        "modernRegion": "台北市",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "song_01_yuanyou:script_style:script",
+      "entity": "script_style",
+      "property": "script",
+      "value": null,
+      "status": "conflict",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_01_yuanyou",
+          "field": "scriptType",
+          "value": "楷书"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32237&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋元祐黨籍碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "書體：楷書"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_01_yuanyou",
+          "field": "transcription",
+          "quote": "元祐黨籍。（隸書）"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32237&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋元祐黨籍碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "元祐黨籍。（隸書）（文不錄。）"
+        }
+      ],
+      "catalogueField": "scriptType",
+      "catalogueValue": "楷书",
+      "alternatives": [
+        {
+          "value": "楷书（馆方书体栏；目录 scriptType）",
+          "evidenceLevel": "有限支持",
+          "sources": [
+            {
+              "type": "catalogue",
+              "path": "data/catalog/steles28.json",
+              "id": "song_01_yuanyou",
+              "field": "scriptType",
+              "value": "楷书"
+            },
+            {
+              "type": "url",
+              "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32237&dep=P&mode=full",
+              "publisher": "國立故宮博物院",
+              "title": "宋元祐黨籍碑墨拓本 軸",
+              "sourceKind": "official_museum",
+              "accessedAt": "2026-10-25",
+              "quote": "書體：楷書"
+            }
+          ]
+        },
+        {
+          "value": "隶书（馆方释文对标题的书体标注）",
+          "evidenceLevel": "有限支持",
+          "sources": [
+            {
+              "type": "file",
+              "path": "data/catalog/steles28.json",
+              "id": "song_01_yuanyou",
+              "field": "transcription",
+              "quote": "（隸書）"
+            },
+            {
+              "type": "url",
+              "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32237&dep=P&mode=full",
+              "publisher": "國立故宮博物院",
+              "title": "宋元祐黨籍碑墨拓本 軸",
+              "sourceKind": "official_museum",
+              "accessedAt": "2026-10-25",
+              "quote": "（隸書）"
+            }
+          ]
+        }
+      ],
+      "note": "馆方“书体”栏作楷书，释文却标注标题为隶书。并列待复核，不臆选一侧升格。"
+    },
+    {
+      "claimId": "song_01_yuanyou:script_style:historicalComment",
+      "entity": "script_style",
+      "property": "historicalComment",
+      "value": "参考书目：方令光《宋元祐党籍碑墨拓本 轴》，收入何炎泉主编《千年神遇—北宋西园雅集传奇》（故宫，2025.10）页42-43（书目信息，正文未核）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32237&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋元祐黨籍碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "方令光，〈宋元祐黨籍碑墨拓本 軸〉"
+        }
+      ],
+      "note": "仅著录书目线索，不引未核正文观点。"
+    },
+    {
+      "claimId": "song_01_yuanyou:bibliography:catalogueReference",
+      "entity": "bibliography",
+      "property": "catalogueReference",
+      "value": "國立故宮博物院开放资料 id=32237；購拓000449",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_01_yuanyou",
+          "field": "sourceUrl",
+          "value": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32237&dep=P&mode=full"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_01_yuanyou",
+          "field": "collectionNumber",
+          "value": "購拓000449"
+        }
+      ]
+    }
+  ]
+}
