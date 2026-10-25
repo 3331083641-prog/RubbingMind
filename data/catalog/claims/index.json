@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "schema": "data/catalog/claims/schema.json",
-  "batch": "Phase 3 深化第 2 批（8/28；本批 yuan_03、song_03）",
+  "batch": "Phase 3 深化第 2 批（12/28；yuan_03/song_03/yuan_02/tang_03/song_04/song_02）",
   "curatedBy": "RM-金石史料",
   "curatedAt": "2026-10-25（Asia/Shanghai）",
-  "selectionRule": "tang_01、han_01 为 Green 指定必选（C-05 跨源差异涉及）；其余 4 件按以下顺序挑选：①目录角色字段为 verified 的项数；②仓库内馆方释文长度（含署名与纪年）；③本轮能打开的官方来源数。tang_04（4 项 verified）、yuan_01（3 项）、ming_02（3 项，含墓主）、tang_02（2 项，释文最长，另有 3 个官方页面）。yuan_03（2 项）和 song_03（2 项）留到下一批；2026-10-25 第 2 批完成 Green 指定优先的 yuan_03、song_03（NPM 页实开）",
-  "remaining": 20,
+  "selectionRule": "tang_01、han_01 为 Green 指定必选（C-05 跨源差异涉及）；其余 4 件按以下顺序挑选：①目录角色字段为 verified 的项数；②仓库内馆方释文长度（含署名与纪年）；③本轮能打开的官方来源数。tang_04（4 项 verified）、yuan_01（3 项）、ming_02（3 项，含墓主）、tang_02（2 项，释文最长，另有 3 个官方页面）。yuan_03（2 项）和 song_03（2 项）留到下一批；2026-10-25 第 2 批完成 Green 指定优先的 yuan_03、song_03（NPM 页实开）；同日续做 yuan_02、tang_03、song_04、song_02",
+  "remaining": 16,
   "works": [
     {
       "steleId": "tang_01_duobao",
@@ -145,6 +145,76 @@
       "statuses": {
         "asserted": 19,
         "missing": 13
+      }
+    },
+    {
+      "steleId": "yuan_02_sundeyu",
+      "title": "元重阳宫孙德彧道行碑",
+      "file": "data/catalog/claims/yuan_02_sundeyu.json",
+      "selectionBasis": "证据充分度次高；书丹/篆额 verified；释文含撰书篆三人与元统三年纪年；NPM 2026-10-25 实开；立碑年晚于书者卒年已在目录说明",
+      "claimCount": 33,
+      "evidenceLevels": {
+        "已验证": 16,
+        "有限支持": 5,
+        "未评测": 11,
+        "待人工复核": 1
+      },
+      "statuses": {
+        "asserted": 21,
+        "missing": 11,
+        "conflict": 1
+      }
+    },
+    {
+      "steleId": "tang_03_yanjiamiao",
+      "title": "颜氏家庙碑",
+      "file": "data/catalog/claims/tang_03_yanjiamiao.json",
+      "selectionBasis": "书丹 verified；NPM 页含长题跋可核地点与书年异文；2026-10-25 实开",
+      "claimCount": 32,
+      "evidenceLevels": {
+        "已验证": 12,
+        "有限支持": 8,
+        "未评测": 10,
+        "待人工复核": 2
+      },
+      "statuses": {
+        "asserted": 20,
+        "missing": 10,
+        "conflict": 2
+      }
+    },
+    {
+      "steleId": "song_04_mengying",
+      "title": "释梦英十八体书碑",
+      "file": "data/catalog/claims/song_04_mengying.json",
+      "selectionBasis": "书丹 verified；乾德五年／967；NPM 2026-10-25 实开",
+      "claimCount": 32,
+      "evidenceLevels": {
+        "已验证": 15,
+        "有限支持": 5,
+        "未评测": 12
+      },
+      "statuses": {
+        "asserted": 20,
+        "missing": 12
+      }
+    },
+    {
+      "steleId": "song_02_wenxuan",
+      "title": "宋太宗御制至圣文宣王赞碑",
+      "file": "data/catalog/claims/song_02_wenxuan.json",
+      "selectionBasis": "目录作者 verified 但与释文真宗纪年矛盾，适合做 conflict 样例；NPM 2026-10-25 实开",
+      "claimCount": 33,
+      "evidenceLevels": {
+        "已验证": 11,
+        "有限支持": 5,
+        "未评测": 16,
+        "待人工复核": 1
+      },
+      "statuses": {
+        "asserted": 16,
+        "missing": 16,
+        "conflict": 1
       }
     }
   ],

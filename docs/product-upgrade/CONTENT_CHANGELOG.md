@@ -265,3 +265,28 @@ m:demo:* 与演示 legacy id 的 evidenceId 固定为演示自身，不再落到
 | song_03 大观圣作碑 | 李时雍摹写、蔡京题额；大观二年八月二十九日刻石→1108（奏请大观元年=1107 另记）；楷书；拓本现藏台北故宫 | 撰人未核定；原石现藏缺失；兴平县衔名仅作区域级有限支持，不输出坐标 |
 
 **规则遵守：** 目录未核定字段不升为已验证；异文并列；地点无坐标；影像 SHA 未改。
+
+## 2026-10-25（Asia/Shanghai）· 第 2 批续：yuan_02、tang_03、song_04、song_02
+
+增量：
+- `data/catalog/claims/yuan_02_sundeyu.json`
+- `data/catalog/claims/tang_03_yanjiamiao.json`
+- `data/catalog/claims/song_04_mengying.json`
+- `data/catalog/claims/song_02_wenxuan.json`
+- index → 12/28
+
+**来源（实开，除非注明）：**
+- yuan_02：https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34667&dep=P&mode=full
+- tang_03：https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full（含宋膺三长跋）
+- song_04：https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full（丁卯年於長安集；本幅 130.8×81.6）
+- song_02：NPM Detail id=34722 本轮 fetch 超时；依据目录释文／attribution／既有 provenance 段（与先前 PDF 摘录一致），品名以目录 transcription 授权段为准
+
+**要点：**
+| 作品 | 已验证／有限支持 | 冲突／缺失 |
+|---|---|---|
+| yuan_02 | 赵孟頫书、赵世延篆额；元统三年乙亥→1335；终南／重阳宫区域级 | 撰人目录 disputed vs 释文赵文原 vs 馆方作者栏赵孟頫；立碑年晚于书者卒年（目录已说明，分别理解） |
+| tang_03 | 颜真卿书；台北故宫册页 23 幅；题跋明拓／长安学府 | 目录原刻年 780 vs 题跋大历己未 779；撰人／篆额目录 pending，题跋线索不升格 |
+| song_04 | 释梦英书；乾德五年丁卯=967；长安集；安文璨刊（有限支持） | 原石现藏缺失 |
+| song_02 | 目录作者宋太宗 verified；行楷+篆额；大中祥符诏令年可指 1008/1012 | 太宗题名 vs 真宗纪年 conflict；刊刻年 originalYearCE 仍空 |
+
+影像未改；无坐标；未核定不升格。

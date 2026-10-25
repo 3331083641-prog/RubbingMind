@@ -1,0 +1,616 @@
+{
+  "schemaVersion": 1,
+  "steleId": "tang_03_yanjiamiao",
+  "title": "颜氏家庙碑",
+  "curatedBy": "RM-金石史料",
+  "curatedAt": "2026-10-25（Asia/Shanghai）",
+  "selectionBasis": "书丹 verified；NPM 页含长题跋可核地点与书年异文；2026-10-25 实开",
+  "layers": "作品（work）≠原刻载体（stone）≠拓本（rubbing）≠影像（image）；人物、纪年、地点、书体风格、著录分列",
+  "claims": [
+    {
+      "claimId": "tang_03_yanjiamiao:work:title",
+      "entity": "work",
+      "property": "title",
+      "value": "颜氏家庙碑（馆方品名“唐顏真卿書顏氏家廟碑墨拓本 冊”；题签亦作颜家庙碑）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_03_yanjiamiao",
+          "field": "title",
+          "value": "颜氏家庙碑"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+          "note": "品名"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+          "note": "题签：明拓顏家廟碑殘本"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:work:dynasty",
+      "entity": "work",
+      "property": "dynasty",
+      "value": "唐",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_03_yanjiamiao",
+          "field": "dynasty",
+          "value": "唐代"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:work:content",
+      "entity": "work",
+      "property": "content",
+      "value": "颜真卿为其父立家庙之碑；四面刻；本馆藏为残本册页",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+          "note": "宋膺三跋：顏氏家廟碑係真卿為其父立廟而建之碑"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_03_yanjiamiao",
+          "field": "description"
+        }
+      ],
+      "note": "内容概括主要依据馆藏题跋，释文片段为碑文中段"
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:stone:currentLocation",
+      "entity": "stone",
+      "property": "currentLocation",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_03_yanjiamiao",
+          "field": "physicalCollectionInstitution"
+        }
+      ],
+      "missingReason": "目录为空；题跋称西安碑林有全石，本轮未开碑林权威页核定现藏"
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:stone:originalSite",
+      "entity": "stone",
+      "property": "originalSite",
+      "value": "长安／西安府学一带（区域级，待复核）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+          "note": "宋膺三跋：宋太平兴国七年由李延袭奏请重建于长安学府；西安府儒学碑洞／碑林"
+        }
+      ],
+      "note": "不输出坐标"
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:stone:transfer",
+      "entity": "stone",
+      "property": "transfer",
+      "value": "题跋称宋太平兴国七年（982）重建于长安学府；后入西安碑林系统（待权威页复核）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+          "note": "宋膺三跋"
+        }
+      ],
+      "note": "仅据馆藏题跋，未开西安碑林官网"
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:stone:condition",
+      "entity": "stone",
+      "property": "condition",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "无原石影像；本拓为残本"
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:rubbing:holder",
+      "entity": "rubbing",
+      "property": "holder",
+      "value": "台北故宫博物院（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_03_yanjiamiao",
+          "field": "rubbingCollectionInstitution"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_03_yanjiamiao",
+          "field": "collectionNumber",
+          "value": "贈拓000305"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+          "note": "贈拓000305；23幅册页"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:rubbing:museumTitle",
+      "entity": "rubbing",
+      "property": "museumTitle",
+      "value": "唐顏真卿書顏氏家廟碑墨拓本 冊",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:rubbing:format",
+      "entity": "rubbing",
+      "property": "format",
+      "value": "册；23幅；本幅约 20.2×9.9 公分（馆方尺寸栏）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+          "note": "数量影像23幅；本幅20.2x9.9"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:rubbing:period",
+      "entity": "rubbing",
+      "property": "period",
+      "value": "题跋定为嘉靖前拓／明拓残本（有限支持）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+          "note": "题签：明拓顏家廟碑殘本；宋膺三据“幹”字完整定为嘉靖前所拓"
+        }
+      ],
+      "note": "目录 rubbingPeriod 仍为未核定；此为题跋意见，不改目录字段"
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:image:sourceSha256",
+      "entity": "image",
+      "property": "sourceSha256",
+      "value": "1db357191b9d9fd5fc6a395cdfaac68150a7f4aa632ef12f8e427d9902ca28fd",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_03_yanjiamiao",
+          "field": "sourceVerification.sourceSha256"
+        }
+      ],
+      "note": "本轮未改影像"
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:image:license",
+      "entity": "image",
+      "property": "license",
+      "value": "CC BY 4.0",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_03_yanjiamiao",
+          "field": "license"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:image:derivation",
+      "entity": "image",
+      "property": "derivation",
+      "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_03_yanjiamiao",
+          "field": "modifications"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:person:author",
+      "entity": "person",
+      "property": "author",
+      "value": "颜真卿（目录 pending_review，不升格）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_03_yanjiamiao",
+          "field": "author",
+          "value": "颜真卿"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_03_yanjiamiao",
+          "field": "authorVerification",
+          "value": "pending_review"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+          "note": "宋膺三跋：真卿自撰正书"
+        }
+      ],
+      "note": "目录 authorVerification=pending_review，故证据等级不超过有限支持"
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:person:calligrapher",
+      "entity": "person",
+      "property": "calligrapher",
+      "value": "颜真卿",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_03_yanjiamiao",
+          "field": "calligrapher",
+          "value": "颜真卿"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_03_yanjiamiao",
+          "field": "calligrapherVerification",
+          "value": "verified"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+          "note": "品名／题跋"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:person:titleCalligrapher",
+      "entity": "person",
+      "property": "titleCalligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_03_yanjiamiao",
+          "field": "titleCalligrapher",
+          "value": "未核定"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_03_yanjiamiao",
+          "field": "titleCalligrapherVerification",
+          "value": "pending_review"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+          "note": "宋膺三跋：李阳冰篆额"
+        }
+      ],
+      "missingReason": "目录未核定／pending_review；题跋称李阳冰篆额，仅作线索，不升为已验证"
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:person:engraver",
+      "entity": "person",
+      "property": "engraver",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_03_yanjiamiao",
+          "field": "engraver"
+        }
+      ],
+      "missingReason": "目录未核定"
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:person:steleSubject",
+      "entity": "person",
+      "property": "steleSubject",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_03_yanjiamiao",
+          "field": "steleSubject"
+        }
+      ],
+      "missingReason": "家庙碑为父立庙，目录 steleSubject 未核定；不自行填父名"
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:date:era",
+      "entity": "date",
+      "property": "era",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_03_yanjiamiao",
+          "field": "sourceVerification.dateBasis"
+        }
+      ],
+      "missingReason": "目录 dateBasis 为空；释文摘录未见建碑干支行"
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:date:ce",
+      "entity": "date",
+      "property": "ce",
+      "value": null,
+      "status": "conflict",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_03_yanjiamiao",
+          "field": "originalYearCE",
+          "value": 780
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_03_yanjiamiao",
+          "field": "originalYear",
+          "value": "780年"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+          "note": "宋膺三跋：此碑书於大历末年己未（西元七七九年）"
+        }
+      ],
+      "alternatives": [
+        {
+          "value": 780,
+          "source": "steles28.originalYearCE"
+        },
+        {
+          "value": 779,
+          "source": "NPM 题跋 宋膺三：大历己未"
+        }
+      ],
+      "note": "目录 780 与题跋 779 不一致；不改目录字段，并列待复核"
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:date:yearCrossCheck",
+      "entity": "date",
+      "property": "yearCrossCheck",
+      "value": "目录780 vs 题跋大历己未779 → 冲突待复核",
+      "status": "conflict",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_03_yanjiamiao",
+          "field": "originalYearCE",
+          "value": 780
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+          "note": "大历末年己未（七七九年）"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:date:dayCrossCheck",
+      "entity": "date",
+      "property": "dayCrossCheck",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "无日级信息"
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:date:month",
+      "entity": "date",
+      "property": "month",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "未见月"
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:place:originalSite",
+      "entity": "place",
+      "property": "originalSite",
+      "value": "长安／西安（区域级）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+          "note": "题跋：长安学府／西安府儒学碑洞"
+        }
+      ],
+      "note": "不输出坐标"
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:place:currentStone",
+      "entity": "place",
+      "property": "currentStone",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "题跋暗示西安碑林，未开权威页，保持缺失"
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:place:rubbingHolder",
+      "entity": "place",
+      "property": "rubbingHolder",
+      "value": "台北（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_03_yanjiamiao",
+          "field": "rubbingCollectionInstitution"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:script_style:script",
+      "entity": "script_style",
+      "property": "script",
+      "value": "楷书（正书）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_03_yanjiamiao",
+          "field": "scriptType",
+          "value": "楷书"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+          "note": "题跋：自撰正书"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:script_style:styleNote",
+      "entity": "script_style",
+      "property": "styleNote",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本轮无新书风评述"
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:script_style:historicalComment",
+      "entity": "script_style",
+      "property": "historicalComment",
+      "value": "题跋引王澍：年高笔老，风棱遒厚（有限支持）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+          "note": "宋膺三跋引王澍虚舟题跋"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:script_style:colophonComment",
+      "entity": "script_style",
+      "property": "colophonComment",
+      "value": "观复斋张铣题签；宋膺三辛亥（1971）跋定明拓／嘉靖前",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+          "note": "题跋资料栏"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_03_yanjiamiao:bibliography:catalogueReference",
+      "entity": "bibliography",
+      "property": "catalogueReference",
+      "value": "國立故宮博物院开放资料 id=29634；贈拓000305",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_03_yanjiamiao",
+          "field": "collectionNumber"
+        }
+      ]
+    }
+  ]
+}
