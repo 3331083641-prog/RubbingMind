@@ -1,0 +1,57 @@
+# Phase1 frontend slice8 — ES-3 liftClaim UI + ES-5 NLC columns
+Date: 2026-10-25 Asia/Shanghai
+Worktree: D:\RubbingMind\wt\rm-report-frontend (agent/report-frontend)
+Base: feature@4f57eb5ef57cdcb702042ccaa23904dbafcf9648
+Forbidden untouched: App.tsx, api.ts, urlState.ts, HomePage.tsx (RF-8), no push
+
+## Backend field source (feature@4f57eb5 contract; read from qa-feature-smoke mirror)
+- experiments/eval_export_contract.py
+  - L15 may_claim_positive_lift
+  - L35 lift_claim_label
+  - L76 negative_lift_display
+  - L92-102 annotate_ci_lift_claims → per-group liftClaimLabel; top-level liftClaimSummary / liftClaimRule
+- experiment_derived.py L118-125 annotate wiring into derived CI payload
+- main.py L300 GET /api/experiments/{id}/ci-by-artifact (annotated)
+
+## Frontend consumption (api.ts NOT modified)
+Component-side types + ReportApi (reportData.ts), not services/api.ts.
+
+### types.ts
+- L122 LiftClaimLabel union
+- L126-127 CiGroup.liftClaimLabel / mayClaimPositiveLift?
+- L133-134 CiFile.liftClaimSummary / liftClaimRule
+
+### reportData.ts
+- L81-86 ReportApi.ciByArtifact prefers GET /api/experiments/{id}/ci-by-artifact
+- L110-111 pass-through liftClaimSummary / liftClaimRule
+- L403-404 fromCiFile copies liftClaimLabel onto ScopeStat
+- L466-469 mayClaimPositiveLift: backend label OR (CI lower>0 && reliable && n>=3)
+- L472-492 liftClaimDisplay / gainWord alias → 提升 / 跨 0 / 不可靠 / 未评测
+
+### GlobalEvaluation.tsx
+- data-testid="lift-claim-label" (per-scope badge)
+- data-testid="lift-claim-summary" (file-level summary article)
+- pos/neg conclusions gated by mayClaimPositiveLift
+
+### MethodComparisonChart.tsx
+- bar color + tooltip use mayClaimPositiveLift / liftClaimDisplay
+
+### ReportPrintLayout.tsx
+- print pos/neg lists use mayClaimPositiveLift (no api.ts change)
+
+### FailureCasesPanel.tsx (ES-5)
+- data-testid="nlc-measured-primary" — measuredCauses/measuredEvidence primary column
+- data-testid="nlc-rule-inferred" — ruleInferredCause secondary with basis label
+- GAP: no dedicated negative_lift_display HTTP route; UI mirrors eval_export_contract.negative_lift_display via existing NLC derived fields only
+
+## Skipped
+- algorithmOutputMode: still absent from api.ts → skipped
+- RF-8: HomePage NOT modified; object-contain still at HomePage.tsx L245/L250 (evidence only, ticket NOT closed)
+- Optional curl: 5720 /api/health returned 500; 8720 timed out — did not start own servers this round
+
+## Build
+cd apps/web && npm run build → tsc && vite build OK (exit 0), ~44.68s
+ReportsPage chunk: dist/assets/ReportsPage-jCRIk9pL.js
+
+## RF-8
+Untouched / not closed. Still awaiting user screenshot confirmation.
