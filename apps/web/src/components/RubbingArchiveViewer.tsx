@@ -18,7 +18,7 @@ export const RubbingArchiveViewer: React.FC<{ stele: SteleItem; mode: 'readable'
   }, [onClose]);
   return <div role="dialog" aria-modal="true" aria-label={label} className="fixed inset-0 z-50 bg-[#080b0e]/95 flex flex-col p-4 text-slate-200">
     <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
-      <div><h2 className="font-serif text-gold">{stele.title} · {label}</h2><p className="text-xs">{stele.collectionInstitution} · {stele.collectionNumber} · {stele.year}</p><ReviewStatusBadges steleId={stele.id} compact /></div>
+      <div><h2 className="font-serif text-gold">{stele.title} · {label}</h2><p className="text-xs">{stele.collectionInstitution} · {stele.collectionNumber} · {stele.year}</p>{/* C-06/C: ReviewStatusBadges 查看器挂载点；合并时勿删 */}<ReviewStatusBadges steleId={stele.id} compact /></div>
       <div className="flex gap-3 items-center">
         <button aria-label="缩小" onClick={() => setZoom(z => Math.max(.25, z / 1.25))}>−</button>
         <output data-testid="archive-zoom">{Math.round(zoom * 100)}%</output>

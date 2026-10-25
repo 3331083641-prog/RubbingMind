@@ -365,6 +365,7 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
 
                     <p className="text-xs text-slate-400">拓本：{stele.rubbingPeriod}</p><p className="text-xs text-slate-400">类型：{stele.artifactType}</p>
                     <p className="text-xs text-slate-400">篆额：{roleText(stele.titleCalligrapher, stele.titleCalligrapherVerification)} · 刻工：{roleText(stele.engraver, stele.engraverVerification)} · 碑主/墓主：{roleText(stele.steleSubject, stele.steleSubjectVerification)}</p>
+                    {/* C-06/C: ReviewStatusBadges 博物馆卡片挂载点（目录批准 + 证据复核 + contentFlags）；合并时勿删 */}
                     <ReviewStatusBadges steleId={stele.id} compact />
                     <p className="text-xs text-slate-400">影像初筛：{stele.imageConditionReviewStatus || '自动初筛，待人工复核'}</p>
                     <p className="text-xs text-slate-400">原石风化：{stele.physicalStoneWeathering || stele.stoneWeathering || '无可靠原石证据，不评定'}</p>

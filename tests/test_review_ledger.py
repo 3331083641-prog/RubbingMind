@@ -42,5 +42,7 @@ def test_reviewer_date_scope_are_not_invented():
 def test_ui_component_renders_both_labels():
     component = (ROOT / 'apps/web/src/components/ReviewStatusBadges.tsx').read_text(encoding='utf-8')
     assert 'catalogueApproval.label' in component and 'evidenceReview.label' in component
+    # Museum card + archive viewer — both required (merge regressions have dropped MuseumPage).
     for page in ('apps/web/src/pages/MuseumPage.tsx', 'apps/web/src/components/RubbingArchiveViewer.tsx'):
-        assert '<ReviewStatusBadges' in (ROOT / page).read_text(encoding='utf-8')
+        text = (ROOT / page).read_text(encoding='utf-8')
+        assert text.count('<ReviewStatusBadges') >= 1, f'{page}: missing ReviewStatusBadges mount'
