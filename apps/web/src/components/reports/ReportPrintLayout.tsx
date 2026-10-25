@@ -11,7 +11,7 @@ import type { Loadable } from './data/types';
 import { degradationLabel, methodLabel, SPLIT_LABELS } from './data/labels';
 import { buildOption } from './MethodComparisonChart';
 import { triptychPanes, REFERENCE_NOTE } from './GlobalEvaluation';
-import { formatTime, shortSha, signed } from './format';
+import { formatTime, num, shortSha, signed } from './format';
 import type { SteleItem } from '../../types/stele';
 import './reportPrint.css';
 
@@ -57,7 +57,7 @@ export const ReportPrintLayout: React.FC<Props> = ({ model, stele, runId, report
         <h2>三、视觉对照</h2>
         {panes == null ? <p>本批次只保存了数值，没有保存对比图像；不使用其他批次的图代替。</p> : model.caseRow && panes.length ? <figure>
           <div className="rp-triptych">{panes.map(p => <div key={p.key}>{p.src ? <img src={p.src} alt={p.label} /> : <p>{p.emptyReason}</p>}<div className="rp-meta">{p.label}{p.sha ? ` · SHA ${shortSha(p.sha)}` : ''}</div></div>)}</div>
-          <figcaption>图 {++fig}　{model.batch.shortName} · case <code>{caseKeyOf(model.caseRow)}</code>（{model.caseKind === 'median' ? '中位案例' : model.caseKind === 'worst' ? '最差一条' : model.caseKind === 'passthrough' ? '原图返回样例' : '手动选择'}） · {methodLabel(model.caseRow.method)}（{model.caseRow.algorithmVersion || '版本未记录'}）· seed {model.caseRow.seed ?? '未记录'}。PSNR {model.caseRow.psnr?.toFixed(2) ?? '未评测'} dB（输入 {model.caseBaseline?.psnr?.toFixed(2) ?? '—'}）。图像按 contain 完整显示，未裁切。</figcaption>
+          <figcaption>图 {++fig}　{model.batch.shortName} · case <code>{caseKeyOf(model.caseRow)}</code>（{model.caseKind === 'median' ? '中位案例' : model.caseKind === 'worst' ? '最差一条' : model.caseKind === 'passthrough' ? '原图返回样例' : '手动选择'}） · {methodLabel(model.caseRow.method)}（{model.caseRow.algorithmVersion || '版本未记录'}）· seed {model.caseRow.seed ?? '未记录'}。PSNR {num(model.caseRow.psnr, 2, 'dB')}（输入 {num(model.caseBaseline?.psnr, 2, 'dB', '—')}）。图像按 contain 完整显示，未裁切。</figcaption>
         </figure> : <p>当前筛选下没有记录。</p>}
       </>}
       {!model && <p>实验批次数据未载入，本页不含全局评测。</p>}
