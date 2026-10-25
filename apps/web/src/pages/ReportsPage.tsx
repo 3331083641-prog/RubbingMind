@@ -30,7 +30,7 @@ interface Props {
 const loading = { state: 'loading' } as const;
 type Keyed<T> = { id: string; value: Loadable<T> };
 
-export const ReportsPage: React.FC<Props> = ({ stele, onNavigate, runId: sharedRunId, onRunChange, experimentId: sharedExperimentId, batch: sharedBatch, onExperimentChange }) => {
+export const ReportsPage: React.FC<Props> = ({ stele, onNavigate, runId: sharedRunId, onRunChange, experimentId: sharedExperimentId, batch: sharedBatch, onExperimentChange, experimentStatus }) => {
   useEffect(() => { document.body.classList.add('printing-report'); return () => document.body.classList.remove('printing-report'); }, []);
   const [filters, setFilters] = useReportFilters();
   const [batches, setBatches] = useState<Loadable<BatchInfo[]>>(loading);
@@ -133,7 +133,7 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate, runId: sharedR
       stele: { id: stele.id, title: stele.title, dynasty: stele.dynasty, originalYear: stele.originalYear || stele.year, rubbingPeriod: stele.rubbingPeriod, collectionInstitution: stele.collectionInstitution || stele.museum, collectionNumber: stele.collectionNumber, sourceUrl: stele.sourceUrl, license: stele.license },
       runId: run?.runId || null, runSelection: selection.state === 'ok' ? selection.data.runSelection : null, algorithmVersion: run?.algorithmVersion || null, inputImageSha256: run?.inputImageSha256 || null,
       workingImage: run?.workingImage || null, randomSeed: run?.randomSeed ?? null, outputSha256: run?.outputSha256 || null, imageRoles: run?.imageRoles || null,
-      changeStatus: run ? { isPassthrough: run.isPassthrough ?? null, changedPixelCount: run.changedPixelCount ?? null, changedPixelRatio: run.changedPixelRatio ?? null, maxAbsDiff: run.maxAbsDiff ?? null, passthroughCriterion: run.passthroughCriterion ?? null, passthroughSource: (run as { passthroughSource?: string | null }).passthroughSource ?? null, grayChangedPixelCount: (run as { grayChangedPixelCount?: number | null }).grayChangedPixelCount ?? null, grayChangedPixelRatio: (run as { grayChangedPixelRatio?: number | null }).grayChangedPixelRatio ?? null, grayMaxAbsDiff: (run as { grayMaxAbsDiff?: number | null }).grayMaxAbsDiff ?? null, grayPassthroughCriterion: (run as { grayPassthroughCriterion?: string | null }).grayPassthroughCriterion ?? null, effectiveParameters: run.effectiveParameters ?? null } : null,
+      changeStatus: run ? { isPassthrough: run.isPassthrough ?? null, changedPixelCount: run.changedPixelCount ?? null, changedPixelRatio: run.changedPixelRatio ?? null, maxAbsDiff: run.maxAbsDiff ?? null, passthroughCriterion: run.passthroughCriterion ?? null, passthroughSource: run.passthroughSource ?? null, comparedImages: run.comparedImages ?? null, grayChangedPixelCount: run.grayChangedPixelCount ?? null, grayChangedPixelRatio: run.grayChangedPixelRatio ?? null, grayCriterion: run.grayCriterion ?? null, grayCriterionRule: run.grayCriterionRule ?? null, graySource: run.graySource ?? null, effectiveParameters: run.effectiveParameters ?? null, effectiveParametersSource: run.effectiveParametersSource ?? null, effectiveParametersUnavailableReason: run.effectiveParametersUnavailableReason ?? null } : null,
       evaluationSummary: evaluationSummaryText(run),
       adaptiveDiagnostics: run?.adaptiveDiagnostics || null, algorithmParameters: run?.algorithmParameters || null,
       startedAt: run?.startedAt || null, finishedAt: run?.finishedAt || null, processingTimeMs: run?.processing_time_ms ?? null, outputImages: run?.outputImages || null,
@@ -163,7 +163,10 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate, runId: sharedR
         setFilters={setFilters} onSelectRun={selectRun} onSelectBatch={selectBatch} onExportJson={exportJson} onPrint={print} onNavigate={onNavigate} />
       {view === 'global' ? <section aria-label="全局评测" className="space-y-3">
         <p className="text-[11px] text-slate-400">全局评测：受控退化实验的批次级结果，与当前文物《{stele.title}》无关。</p>
-        {resolution?.state === 'unknown' ? <div role="alert" data-testid="unknown-experiment" className="rounded-xl border border-cinnabar/50 bg-[#140f0e] p-5 text-sm text-slate-200">没有登记 {resolution.param === 'experimentId' ? '实验 ID' : '批次别名'} <code>{resolution.requested}</code> 的实验批次。不会改用其他批次；请在上方“实验批次”中选择。</div>
+        {experimentStatus === 'unknown' ? <div role="alert" data-testid="app-unknown-experiment" className="rounded-xl border border-cinnabar/50 bg-[#140f0e] p-5 text-sm text-slate-200">链接中的 experimentId 无效或未登记；不会回落到其他批次。请从上方「实验批次」重新选择。</div>
+          : experimentStatus === 'unavailable' ? <div role="alert" data-testid="app-unavailable-experiment" className="rounded-xl border border-cinnabar/50 bg-[#140f0e] p-5 text-sm text-slate-200">实验批次列表暂时不可用，无法解析 URL 中的实验参数。</div>
+          : experimentStatus === 'resolving' ? <p role="status" className="text-gold">正在解析实验批次…</p>
+          : resolution?.state === 'unknown' ? <div role="alert" data-testid="unknown-experiment" className="rounded-xl border border-cinnabar/50 bg-[#140f0e] p-5 text-sm text-slate-200">没有登记 {resolution.param === 'experimentId' ? '实验 ID' : '批次别名'} <code>{resolution.requested}</code> 的实验批次。不会改用其他批次；请在上方“实验批次”中选择。</div>
           : resolution?.state === 'no-default' ? <div role="status" className="rounded-xl border border-slate-600 p-5 text-sm text-slate-300">后端没有标记默认报告批次（defaultForReport），请在上方“实验批次”中选择。</div>
           : batchState && batchState.state !== 'ok' ? (batchState.state === 'loading' ? <p role="status" className="text-gold">正在读取实验批次…</p> : <p role="alert" className="text-cinnabar-light">实验数据读取失败：{batchState.message}</p>)
           : !model ? <p role="status" className="text-gold">正在读取派生状态…</p>

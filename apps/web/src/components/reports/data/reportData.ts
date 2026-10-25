@@ -343,11 +343,7 @@ export function sortRuns(runs: ProcessingRunR1[]): RunInfo[] {
 }
 
 type RunExtras = ProcessingRunR1 & {
-  passthroughSource?: 'recorded' | 'computed-on-read' | null;
-  /** 灰度域改动量（后端另口径；暂无则 null，页面真实空状态）。不改 api.ts，本地扩展。 */
-  grayChangedPixelCount?: number | null;
-  grayTotalPixelCount?: number | null;
-  grayChangedPixelRatio?: number | null;
+  /** 兼容旧字段名；优先用 api.ts 的 grayCriterion / graySource（arch-backend@9ba3a57）。 */
   grayMaxAbsDiff?: number | null;
   grayMeanAbsDiff?: number | null;
   grayPassthroughCriterion?: string | null;
@@ -378,11 +374,12 @@ export function runOutcome(run: ProcessingRunR1): RunOutcome {
   const changeText = r.changedPixelCount != null
     ? `全通道改动 ${r.changedPixelCount.toLocaleString()} 像素（${ratioText(r.changedPixelRatio)}），最大绝对差 ${r.maxAbsDiff ?? '—'}`
     : null;
+  const grayCriterion = r.grayCriterion || r.grayPassthroughCriterion || null;
   const grayText = r.grayChangedPixelCount != null
-    ? `灰度域改动 ${r.grayChangedPixelCount.toLocaleString()} 像素（${ratioText(r.grayChangedPixelRatio)}）${r.grayMaxAbsDiff != null ? `，最大差 ${r.grayMaxAbsDiff}` : ''}${r.grayPassthroughCriterion ? `；灰度判据 ${r.grayPassthroughCriterion}` : ''}`
+    ? `灰度域改动 ${r.grayChangedPixelCount.toLocaleString()} 像素（${ratioText(r.grayChangedPixelRatio)}）${r.grayMaxAbsDiff != null ? `，最大差 ${r.grayMaxAbsDiff}` : ''}${grayCriterion ? `；灰度判据 ${grayCriterion}` : ''}${r.graySource === 'computed-on-read' ? '（读取时校验，仅参考，不决定 isPassthrough）' : r.graySource === 'recorded' ? '（处理时记录，仅参考）' : '（仅参考，不决定 isPassthrough）'}`
     : null;
   if (r.isPassthrough === true) return { mode: 'passthrough', title: '本次未改动原图', detail: '算法判断无需处理，输出与输入逐像素相同（全通道 pixel-equal-v1）。', criterion, source, changeText, grayText };
-  if (r.isPassthrough === false) return { mode: 'processed', title: '算法输出', detail: '输出与输入存在像素差异（全通道 pixel-equal-v1）。', criterion, source, changeText, grayText };
+  if (r.isPassthrough === false) return { mode: 'processed', title: '算法已改动像素', detail: '输出与输入存在像素差异（全通道 pixel-equal-v1）。', criterion, source, changeText, grayText };
   return { mode: 'undetermined', title: '未能判定是否改动', detail: r.passthroughUndeterminedReason || '该运行保存于判据引入前，未记录改动量。', criterion, source, changeText, grayText };
 }
 /** 代替后端 evaluation_summary（main.py:426 对原图返回也写“实际处理已执行”）。后端修正前前端按 isPassthrough 改写。 */

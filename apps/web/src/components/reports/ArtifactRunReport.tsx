@@ -38,6 +38,7 @@ export const ArtifactRunReport: React.FC<Props> = ({ stele, runs, runId, selecti
   const passthrough = outcome?.mode === 'passthrough';
   const conflict = !!(pixel?.sameSize && outcome && outcome.mode !== 'undetermined' && (pixel.changed === 0) !== passthrough);
   const eff = run?.effectiveParameters as (Record<string, unknown> & { ignoredRequestParameters?: string[] }) | null | undefined;
+  const effMissing = !eff && (run as { effectiveParametersUnavailableReason?: string | null } | null)?.effectiveParametersUnavailableReason;
   const adaptive = run ? runAdaptive(run) : null;
   const features = (adaptive?.features || {}) as Record<string, unknown>;
   const gate = (adaptive?.fidelityGate || null) as Record<string, unknown> | null;
@@ -71,6 +72,7 @@ export const ArtifactRunReport: React.FC<Props> = ({ stele, runs, runId, selecti
           <p className="font-serif text-lg font-bold">{outcome.title}{outcome.mode === 'passthrough' && (run as { passthroughSource?: string | null }).passthroughSource === 'computed-on-read' && <span className="ml-2 align-middle text-xs rounded border border-[#7a5a14] text-[#7a5a14] px-1.5 py-0.5" data-testid="computed-on-read">读取时校验</span>}{info?.legacy && <span className="ml-2 align-middle text-xs rounded bg-[#9E2813] text-white px-1.5 py-0.5">旧版未验证（legacy）</span>}</p>
           <p className="text-sm">{outcome.detail}{outcome.changeText ? ` ${outcome.changeText}。` : ''}</p>
           <p className="text-[11px] text-[#5d4c35]" data-testid="gray-change">{outcome.grayText ? outcome.grayText : '灰度域改动：后端尚未返回 grayChangedPixelCount（真实空状态，不推断）。'}</p>
+          {effMissing && <p className="text-[11px] text-[#9E2813]" data-testid="eff-params-unavailable">实际生效参数不可用：{effMissing}。不伪造参数。</p>}
           <p className="text-[11px] text-[#5d4c35]">{outcome.criterion}{run.comparedImages ? `；比较对象 ${(run.comparedImages as string[]).join(' / ')}` : ''}{outcome.source ? `；来源：${outcome.source}` : ''}</p>
           {pixel?.sameSize && <p className="text-[11px] text-[#5d4c35]">浏览器逐像素补充确认：{confirmedSame ? `0 像素不同（${pixel.width}×${pixel.height}）` : `改动 ${(pixel.ratio * 100).toFixed(2)}% 像素，最大差 ${pixel.max}`}。</p>}
           {conflict && <p role="alert" className="text-[11px] text-[#9E2813]">后端判定与浏览器逐像素比较不一致，请人工复核。</p>}
@@ -90,7 +92,7 @@ export const ArtifactRunReport: React.FC<Props> = ({ stele, runs, runId, selecti
           <SyncedTriptych testId="run-triptych" height={300} onDiffStats={onDiff} diffPair={['original', 'restored']} knownPassthrough={passthrough}
             panes={[
               { key: 'original', label: '工作输入（original.png）', src: run.outputImages?.original || null, sha: run.outputSha256?.original, tone: 'input', emptyReason: '该运行没有保存工作输入图' },
-              { key: 'restored', label: passthrough ? '本次未改动原图（restored.png 与输入逐像素相同）' : outcome.mode === 'undetermined' ? '输出（restored.png，未能判定是否改动）' : '算法输出（restored.png）', src: run.outputImages?.restored || run.restored_image || null, sha: run.outputSha256?.restored, tone: passthrough ? 'passthrough' : 'output', emptyReason: '该运行没有保存输出图' },
+              { key: 'restored', label: passthrough ? '本次未改动原图（restored.png 与输入逐像素相同）' : outcome.mode === 'undetermined' ? '输出（restored.png，未能判定是否改动）' : '算法已改动像素（restored.png）', src: run.outputImages?.restored || run.restored_image || null, sha: run.outputSha256?.restored, tone: passthrough ? 'passthrough' : 'output', emptyReason: '该运行没有保存输出图' },
             ]}
             meta={<>真实拓本没有配对参考，只能对照输入与输出；不计算 PSNR/SSIM。</>} />
         </div>

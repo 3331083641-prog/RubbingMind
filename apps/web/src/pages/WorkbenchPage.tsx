@@ -477,7 +477,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate,
                       className="w-full h-full object-contain filter invert hue-rotate-[320deg] saturate-200" 
                     />
                     <div className="absolute top-4 left-4 px-2.5 py-1 rounded bg-cinnabar/80 text-white font-serif text-xs">
-                      实际算法输出 · 朱砂风格可视化（非历史拓本）
+                      算法处理结果 · 朱砂风格可视化（非历史拓本，非原刻复原）
                     </div>
                   </div>
                 </div>

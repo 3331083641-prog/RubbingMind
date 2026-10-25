@@ -68,7 +68,7 @@ export const ReportPrintLayout: React.FC<Props> = ({ model, stele, runId, report
         <figure><div className="rp-pair">
           {run.outputImages?.original ? <img src={run.outputImages.original} alt="工作输入" /> : <p>未保存工作输入</p>}
           {run.outputImages?.restored ? <img src={run.outputImages.restored} alt="输出" /> : <p>未保存输出</p>}
-        </div><figcaption>图 {++fig}　左：工作输入；右：{outcome.mode === 'passthrough' ? '本次未改动原图（与输入逐像素相同）' : outcome.mode === 'undetermined' ? '输出（未能判定是否改动）' : '算法输出'}。真实拓本无配对参考，不计算 PSNR/SSIM。</figcaption></figure>
+        </div><figcaption>图 {++fig}　左：工作输入；右：{outcome.mode === 'passthrough' ? '本次未改动原图（与输入逐像素相同）' : outcome.mode === 'undetermined' ? '输出（未能判定是否改动）' : '算法已改动像素'}。真实拓本无配对参考，不计算 PSNR/SSIM。</figcaption></figure>
       </> : <p>{runId ? '运行报告未载入。' : '未选择本件运行（legacy 或无时间的旧运行不作默认）。'}</p>}
       <h2>{model ? '五' : '二'}、来源与局限</h2>
       <ul>
