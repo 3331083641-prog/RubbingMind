@@ -1,7 +1,13 @@
 # DRAFT ONLY — not under .github/workflows/ (RT-010).
 # Promote into .github/workflows/ only after Green approval.
-# Green scope 2026-10-25 18:01 / 18:40 Asia/Shanghai (RM-架构后端):
+# Green scope 2026-10-25 18:01 / 18:40 / 19:06 Asia/Shanghai (RM-架构后端):
 #   extend this draft only; DO NOT change .github/workflows/ci.yml.
+# Promote checklist (Green must approve before moving under .github/workflows/):
+#   1) draft-feature-gate green on a feature/** PR
+#   2) draft-catalogue-gis green (hard)
+#   3) draft-eval-contracts green
+#   4) decide whether browser-extended-draft stays continue-on-error
+#   5) never promote by copying into ci.yml without a dedicated Green order
 name: RubbingMind CI (feature draft)
 
 on:
@@ -10,6 +16,10 @@ on:
   pull_request:
     branches: [ "feature/**", "main" ]
   workflow_dispatch:
+
+# Least privilege for a future promote; draft is never auto-triggered from this path.
+permissions:
+  contents: read
 
 concurrency:
   group: ci-feature-draft-${{ github.ref }}
@@ -126,6 +136,10 @@ jobs:
 
   frontend-build:
     runs-on: ubuntu-latest
+    env:
+      # DRAFT_NPM_CACHE_NOTE: tip uses package-lock.json; main ci.yml still points at package.json.
+      # On promote, pick one cache-dependency-path and keep lockfile committed.
+      DRAFT_NPM_CACHE_NOTE: package-lock.json
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

@@ -50,3 +50,11 @@
 
 并行：`RT006_USER_DECISION_BRIEF.md` docs-only，供用户 A/B/C widget；**不执行**删除/归档。
 
+## Green scope 2026-10-25 19:06（Asia/Shanghai）
+
+空档：可续 RT-010 draft / 开项文档；**禁**改生效 `ci.yml`；**禁**自选 RT-006；eval@4d93c78 过闸前勿 FF。
+
+本 tip：
+
+- `ci-feature.draft.yml`：加 `permissions: contents: read`；卷首 promote checklist；`frontend-build` 标注 npm cache 路径与正式 `ci.yml`（package.json）差异，迁入时须 Green 选定
+- 刷新 `AB_OPEN_AFTER_25aa898.md` 至 tip@bd15ce0（淘汰过期「等 Green 定 RT-010 scope / eval@c6de56e」表述）
