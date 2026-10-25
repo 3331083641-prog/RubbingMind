@@ -143,3 +143,16 @@ def test_r8_glyph_evaluation_stays_not_evaluated_without_truth(client):
     assert body["top1"] is None and body["top3"] is None
     assert body.get("rejectionRate") is None
     assert body.get("reason")
+
+# ----- R1 / G1 (AB-7 shared api.ts) -----
+def test_ts_glyph_inference_record_declares_roi_and_shas_g1():
+    """G1/R1/AB-7: shared GlyphInferenceRecord declares roi + inputImageSha256 + cropSha256."""
+    import re
+    api_ts = ROOT / 'apps' / 'web' / 'src' / 'services' / 'api.ts'
+    body = api_ts.read_text(encoding='utf-8')
+    m = re.search(r'export interface GlyphInferenceRecord \{([\s\S]*?)\n\}', body)
+    assert m, 'GlyphInferenceRecord interface missing'
+    block = m.group(1)
+    for name in ('roi', 'inputImageSha256', 'cropSha256'):
+        assert re.search(rf'\b{name}\b', block), f'GlyphInferenceRecord missing {name}'
+    assert re.search(r'\bmappedSourceBBox\b', block)

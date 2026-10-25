@@ -49,3 +49,18 @@ export const APPLIED_LABELS: Record<string, string> = {
   failed: '失败',
   undetermined: '无法判定',
 };
+
+/** SPEC §1(b) E-05：rounding / other 细分文案（兼容 DER 长值 not-applicable-but-modified-*）。 */
+export function appliedStatusLabel(status: string, detail?: string | null): string {
+  if (status === 'processed_not_applicable_label') {
+    const d = detail || '';
+    if (d === 'rounding' || d === 'not-applicable-but-modified-rounding' || d.includes('rounding')) {
+      return '不适用分支的 1 级截断（E-05），非算法处理';
+    }
+    if (d === 'other' || d === 'not-applicable-but-modified-other' || d.includes('other')) {
+      return '标为不适用但有改动，原因未定，待人工复核';
+    }
+    return APPLIED_LABELS.processed_not_applicable_label;
+  }
+  return APPLIED_LABELS[status] || status;
+}
