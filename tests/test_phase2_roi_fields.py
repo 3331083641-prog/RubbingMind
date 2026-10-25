@@ -2,7 +2,7 @@
 
 Asserts that report/API responses expose or explicitly lack the seven skeleton fields:
 steleId / source SHA / runId / ROI / version / params / time.
-Missing product gaps are xfail/skip with gap ids — never silent pass.
+Landed R2–R6 gaps are asserted; remaining product gaps are xfail/skip with gap ids — never silent pass.
 Does not fabricate ground-truth stele labels; uses live API + checked-in TS/source contracts.
 """
 from __future__ import annotations
@@ -79,15 +79,16 @@ def test_report_includes_stele_and_inference_records_with_sha(client):
     assert "createdAt" in matched
 
 
-def test_inference_lacks_version_and_effective_parameters_marked_g5(client):
-    """F5/F6 on inference: currently absent — must not silently pretend they exist (G5/R5)."""
+def test_inference_exposes_version_and_effective_parameters_g5(client):
+    """G5/R5: inference envelope exposes algorithmVersion/effectiveParameters (nullable) + reason when unjoined."""
     body = _create_inference(client)
-    missing = [k for k in ("algorithmVersion", "effectiveParameters") if k not in body]
-    if missing:
-        pytest.xfail(
-            f"G5/R5: inference omits {missing}; join runId->run.effectiveParameters not on this payload"
-        )
-    assert "algorithmVersion" in body and "effectiveParameters" in body
+    assert "algorithmVersion" in body
+    assert "effectiveParameters" in body
+    # original-image inference: runId is null → params stay null with explicit unavailable reason
+    if body.get("runId") is None:
+        assert body.get("effectiveParameters") is None
+        reason = body.get("effectiveParametersUnavailableReason")
+        assert isinstance(reason, str) and reason.strip(), body
 
 
 def test_ts_glyph_inference_record_declares_roi_and_shas_g1():
@@ -104,60 +105,111 @@ def test_ts_glyph_inference_record_declares_roi_and_shas_g1():
         assert re.search(rf"\b{name}\b", block)
 
 
-def test_roi_geometry_field_names_are_dual_schemas_g2():
-    """G2/R2: GlyphBox uses w/h; ReviewBox uses width/height — gap until normalized."""
+def test_roi_geometry_normalized_for_export_g2(client):
+    """G2/R2: dual wire schemas remain, but export normalize path yields single glyph-bbox."""
+    from roi_geometry import SCHEMA_GLYPH, export_geometry, normalize_roi
+
     main = MAIN_PY.read_text(encoding="utf-8")
     assert "class GlyphBox" in main and "class ReviewBox" in main
     glyph = main[main.find("class GlyphBox") : main.find("class GlyphBox") + 200]
     review = main[main.find("class ReviewBox") : main.find("class ReviewBox") + 200]
-    glyph_wh = ("w:" in glyph or "w :" in glyph) and ("h:" in glyph or "h :" in glyph)
-    review_wh = "width" in review and "height" in review
-    assert glyph_wh and review_wh
-    pytest.xfail("G2/R2: dual ROI schemas (w/h vs width/height) not yet normalized for export")
+    assert ("w:" in glyph or "w :" in glyph) and ("h:" in glyph or "h :" in glyph)
+    assert "width" in review and "height" in review
+
+    g = normalize_roi({"x": 10, "y": 20, "w": 64, "h": 48})
+    r = normalize_roi({"x": 10, "y": 20, "width": 64, "height": 48})
+    assert g["schema"] == SCHEMA_GLYPH and r["schema"] == SCHEMA_GLYPH
+    assert (g["x"], g["y"], g["w"], g["h"]) == (r["x"], r["y"], r["w"], r["h"])
+    exported = export_geometry({"x": 1, "y": 2, "width": 3, "height": 4})
+    assert exported["schema"] == SCHEMA_GLYPH and "width" not in exported
+
+    api = client.get(
+        "/api/roi-geometry/normalize",
+        params={"x": 1, "y": 2, "width": 30, "height": 40},
+    )
+    assert api.status_code == 200, api.text
+    body = api.json()
+    assert body["schema"] == "glyph-bbox"
+    assert body["sourceSchema"] == "review-box"
+    assert (body["x"], body["y"], body["w"], body["h"]) == (1, 2, 30, 40)
 
 
-def test_no_paired_roi_compare_session_on_inference_g3(client):
-    """G3/R3: no before/after ROI compare session object on inference/report yet."""
-    body = _create_inference(client)
+def test_paired_roi_compare_session_g3(client):
+    """G3/R3: dedicated roi-compare session exists; missing run → explicit unavailableReason."""
+    _create_inference(client)
     report = client.get("/api/steles/tang_01_duobao/report").json()
-    banned = ("roiCompareSession", "beforeCropSha256", "afterCropSha256", "pairedRoi")
-    present = [k for k in banned if k in body or k in report]
-    if not present:
-        pytest.xfail("G3/R3: paired before/after ROI compare session not implemented")
-    assert present
+    assert "roiCompareSession" in report
+
+    response = client.get("/api/steles/tang_01_duobao/roi-compare")
+    assert response.status_code == 200, response.text
+    session = response.json()
+    for key in (
+        "steleId",
+        "runId",
+        "bbox",
+        "beforeImageSha256",
+        "afterImageSha256",
+        "beforeCropSha256",
+        "afterCropSha256",
+        "algorithmVersion",
+        "effectiveParameters",
+        "createdAt",
+        "unavailableReason",
+    ):
+        assert key in session, key
+    assert session["steleId"] == "tang_01_duobao"
+    # No processing run on this fixture → must not fabricate paired SHAs
+    if session.get("runId") is None:
+        assert session.get("beforeCropSha256") is None and session.get("afterCropSha256") is None
+        assert isinstance(session.get("unavailableReason"), str) and session["unavailableReason"].strip()
 
 
 def test_catalog_assessment_run_link_g4(client):
-    """G4/R4: assessment payload should expose processing runId or explicit null+reason."""
+    """G4/R4: assessment exposes runId and/or runLinkUnavailableReason (no silent omit)."""
     response = client.get("/api/catalog/tang_01_duobao/assessment")
     if response.status_code == 404:
         pytest.skip("G4/R4: no assessment payload for sample stele in this worktree")
     assert response.status_code == 200, response.text
     data = response.json()
     has_run = data.get("runId") or data.get("processingRunId")
-    if not has_run and not data.get("runLinkUnavailableReason"):
-        pytest.xfail(
-            "G4/R4: assessment lacks processing runId / runLinkUnavailableReason "
-            f"(keys sample={sorted(data.keys())[:20]})"
-        )
-    assert has_run or data.get("runLinkUnavailableReason")
+    reason = data.get("runLinkUnavailableReason")
+    assert has_run or reason, sorted(data.keys())[:30]
+    # When runLink is null, reason must explain namespace / miss — never silent
+    if data.get("runLink") is None:
+        assert isinstance(reason, str) and reason.strip(), data
 
 
-def test_mechanism_case_ids_are_not_product_stele_ids_g6():
-    """G6/R6: mechanism caseIds must not be silently treated as steleIds (no mapping API yet)."""
+def test_mechanism_case_ids_are_not_product_stele_ids_g6(client):
+    """G6/R6: case-stele mapping API exists; unmapped mechanism caseId must not claim same artifact."""
+    overview = client.get("/api/case-stele-mapping")
+    assert overview.status_code == 200, overview.text
+    ov = overview.json()
+    assert ov.get("available") is True or ov.get("entries") is not None
+    assert (ROOT / "data" / "catalog" / "case_stele_mapping.json").is_file()
+
+    resolved_any = False
     for path in MECH_INDEXES:
         if not path.is_file():
-            pytest.skip(f"mechanism index missing: {path}")
+            continue
         index = json.loads(path.read_text(encoding="utf-8"))
         cases = index.get("cases") or []
         assert cases, path
         sample = cases[0]
         case_id = sample.get("caseId") or sample.get("id")
         assert case_id, sample
-        pytest.xfail(
-            f"G6/R6: no caseId<->steleId mapping API; refusing to equate mechanism "
-            f"caseId={case_id!r} with product steleId"
-        )
+        entry = client.get(f"/api/case-stele-mapping/{case_id}")
+        assert entry.status_code == 200, entry.text
+        body = entry.json()
+        assert body.get("caseId") == case_id
+        # Refuse silent equate: either unmapped, or claim gate closed without human_reviewed
+        assert body.get("sameArtifactClaimAllowed") is False
+        if not body.get("mapped"):
+            assert body.get("steleId") is None
+            assert isinstance(body.get("unavailableReason"), str) and body["unavailableReason"].strip()
+        resolved_any = True
+        break
+    if not resolved_any:
+        pytest.skip("mechanism index missing; mapping API still asserted via overview")
 
 
 def test_mechanism_head_commit_lag_documented_g7():
