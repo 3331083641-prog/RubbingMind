@@ -81,3 +81,7 @@
 1. 按上表 #1 起逐条打开馆方页 / 碑面纪年 / 目录字段，只记录核对结果与证据缺口
 2. 有足以定论的新证据后，再另案改对应 claims JSON（本文件不授权改库）
 3. 关闭须同时满足：新证据入库 + 台账 `--check` 计数下降；仅本文档存在 ≠ 关闭
+
+## 后续文档指针
+
+- 人工复核笔记（Top5）：[`CLAIMS_HUMAN_REVIEW_NOTES_TOP5.md`](./CLAIMS_HUMAN_REVIEW_NOTES_TOP5.md)（RM-金石史料，2026-10-25 18:44 Asia/Shanghai；开项仍开）
