@@ -10,7 +10,7 @@ import * as echarts from 'echarts/core';
 import { BarChart, ScatterChart, CustomChart } from 'echarts/charts';
 import { GridComponent, TooltipComponent, TitleComponent, MarkLineComponent } from 'echarts/components';
 import { CanvasRenderer } from 'echarts/renderers';
-import { GAIN_SIGN_TEXT, SCOPE_LABELS, type MethodAggregate, type Scope } from './data/reportData';
+import { GAIN_SIGN_TEXT, liftClaimDisplay, mayClaimPositiveLift, SCOPE_LABELS, type MethodAggregate, type Scope } from './data/reportData';
 import { MetricDef, directionText, methodLabel } from './data/labels';
 
 echarts.use([BarChart, ScatterChart, CustomChart, GridComponent, TooltipComponent, TitleComponent, MarkLineComponent, CanvasRenderer]);
@@ -84,11 +84,11 @@ export function buildOption(panels: ChartPanel[], methods: string[], selected: s
       return [
         { type: 'bar', xAxisIndex: i, yAxisIndex: i, barMaxWidth: 14, name: p.metric.title,
           data: methods.map(m => { const it = byMethod.get(m); const v = it ? it.scopes[it.primaryScope].value : null;
-            const color = !p.metric.delta ? col.neutral : v == null || v >= 0 ? col.pos : col.neg;
+            const st0 = it ? it.scopes[it.primaryScope] : null; const color = !p.metric.delta ? col.neutral : !st0 || st0.value == null ? col.neutral : mayClaimPositiveLift(st0) ? col.pos : st0.sign === 'negative' && st0.ciReliable ? col.neg : col.neutral;
             return { value: v, method: m, itemStyle: { color, borderColor: m === selected ? col.sel : 'transparent', borderWidth: m === selected ? 2 : 0 } }; }),
           tooltip: { formatter: (q: { data: { method: string } }) => { const it = byMethod.get(q.data.method); if (!it) return '';
             const line = (sc: Scope) => { const st = it.scopes[sc]; const ci = st.ci && st.ciReliable ? `［${fmt(st.ci[0])}, ${fmt(st.ci[1])}］` : st.ciNote ? `（${st.ciNote}）` : st.ci ? '' : '（无数据）';
-              return `${sc === it.primaryScope ? '<b>' : ''}${SCOPE_LABELS[sc]}：${fmt(st.value)} ${ci} · 文物 ${st.nArtifacts} / 行 ${st.nRecords}${p.metric.delta && st.sign ? ` · ${GAIN_SIGN_TEXT[st.sign]}` : ''}${sc === it.primaryScope ? '</b>' : ''}`; };
+              return `${sc === it.primaryScope ? '<b>' : ''}${SCOPE_LABELS[sc]}：${fmt(st.value)} ${ci} · 文物 ${st.nArtifacts} / 行 ${st.nRecords}${p.metric.delta && st.sign ? ` · ${GAIN_SIGN_TEXT[st.sign]}` : ''}${p.metric.delta ? ` · 声明 ${liftClaimDisplay(st)}${st.liftClaimLabel ? `（${st.liftClaimLabel}）` : ''}` : ''}${sc === it.primaryScope ? '</b>' : ''}`; };
             const src = it.scopes[it.primaryScope].ciSource === 'ci_by_artifact' ? 'CI 来源：derived/ci_by_artifact.json' : 'CI：临时口径，前端计算，待替换为 derived/ci_by_artifact';
             return `<b>${methodLabel(it.method)}</b> · ${p.metric.title}（主口径：${SCOPE_LABELS[it.primaryScope]}）<br/>${p.metric.delta ? (['processed', 'all', 'passthrough'] as Scope[]).map(line).join('<br/>') : line('all')}<br/>n ${it.n} · 实际处理 ${it.processedN} · 原图返回 ${it.passthroughN} · 无法判定 ${it.undeterminedN}${it.naChangedN ? ` · E-05 ${it.naChangedN}` : ''}${it.failedN ? ` · 失败 ${it.failedN}` : ''}${p.metric.delta ? ` · 实际处理中负提升 ${it.negativeProcessedN}` : ''}<br/><span style="color:#94a3b8">${src}</span>`; } },
           markLine: { silent: true, symbol: 'none', lineStyle: { color: col.zero, width: 1.2, type: 'solid' }, label: { show: false }, data: [{ xAxis: 0 }] },
