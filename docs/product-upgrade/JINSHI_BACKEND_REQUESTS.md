@@ -28,4 +28,15 @@
 
 | 编号 | 来源 | 涉及 | 需求 | 验收 |
 |---|---|---|---|---|
-| BR-10 | C-08 | `agent/arch-backend` `scripts/sync_catalog_db.py`（8a97a12） | 令牌已与本分支对齐为 `diffDigestSha256[:16]`（即 `sha256(库SHA+目录SHA+行数+操作清单)[:16]`），16 位截断不再算缺陷。仍需：① `--apply` 必须带 `--diff`，并比对 `diffDigestSha256`；② 写后复核补上“下架行仍在、总行数不变”。详见 `C08_BACKEND_REVIEW_8a97a12.md` | `--apply` 无 `--diff` 被拒绝；写后下架 5 行仍在、总行数不变 |
+| BR-10 | C-08 | `agent/arch-backend` `scripts/sync_catalog_db.py`（8a97a12） | 令牌已更正为 `sha256(C-08|diffDigest|dbSHA)[:16]`（arch@a261ba0；旧 `digest[:16]` / 库+目录+行数+操作清单 已撤回），16 位截断不再算缺陷。仍需：① `--apply` 必须带 `--diff`，并比对 `diffDigestSha256`；② 写后复核补上“下架行仍在、总行数不变”。详见 `C08_BACKEND_REVIEW_8a97a12.md` | `--apply` 无 `--diff` 被拒绝；写后下架 5 行仍在、总行数不变 |
+
+
+## 2026-10-25 · 红队必须项 / 合并归属（金石）
+
+| 编号 | 来源 | 涉及 | 需求 | 验收 |
+|---|---|---|---|---|
+| BR-11 | RV-AI06 / 红队 | `main.py` `_resolve_stele_for_api`（本分支已实现） | 路径与查询均接受 `rm:demo:<id>`，经 `resolve_id` 解析到演示实体，**禁止**折叠成馆藏。行为与裸 `han-caoquan` 一致。 | `GET /api/steles/rm:demo:han-caoquan` 与 `/graph`、`/generate?stele_id=rm:demo:han-caoquan` 均 200，影像为演示图 |
+| BR-12 | C-16 / 红队 | `evidence_retrieval.py` `include_demo`；`main.py` `EvidenceQueryRequest.includeDemo` | **合并时后端取金石分支的 `include_demo` 实现**（含 `demo_opt_in`、`demoScope`）。本分支已在 `EvidenceQueryRequest` 增加 `includeDemo` 并透传。 | 默认 `demoScope.included=false`；`includeDemo=true` 或 `steleId=rm:demo:…` 时为 true |
+| BR-13 | 合并冲突 | `evidence_retrieval.py`、`glyph_inference.py` | 与报告前端冲突时：**以金石 `include_demo` 与演示隔离为准**，勿用对方分支盖掉。 | 合并后演示检索默认关闭、显式 opt-in 仍可用 |
+| BR-14 | C-08 / arch@a261ba0 | `scripts/sync_catalog_db.py`（后端） | 令牌改为 `sha256(C-08|diffDigest|dbSHA)[:16]`；**主库禁止 --apply**。 | 与金石 `confirmation_token` 及 dry-run 预览一致 |
+

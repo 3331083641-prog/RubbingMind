@@ -278,7 +278,6 @@ export const HomePage: React.FC<HomePageProps> = ({ steles, onSelectStele, onNav
                   <h4 className="font-serif font-bold text-base text-slate-100 group-hover:text-gold transition-colors">
                     {stele.title}
                   </h4>
-                  {stele.textProvenance?.kind === 'synthetic_test_text' && <p className="text-[11px] text-cinnabar-light mt-1" data-testid="synthetic-text-badge">{stele.textProvenance.label}</p>}
                   <p className="text-[11px] text-slate-400 mt-1 line-clamp-1">{stele.author}</p>
                   <p className="text-xs text-slate-300 mt-2 line-clamp-2 leading-relaxed">
                     {stele.summary}

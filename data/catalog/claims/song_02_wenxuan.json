@@ -31,7 +31,12 @@
         },
         {
           "type": "url",
-          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full"
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋太宗御製至聖文宣王贊碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "宋太宗御製至聖文宣王贊碑墨拓本"
         }
       ]
     },
@@ -52,7 +57,12 @@
         },
         {
           "type": "url",
-          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full"
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋太宗御製至聖文宣王贊碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "宋太宗御製至聖文宣王贊碑墨拓本"
         }
       ]
     },
@@ -99,7 +109,8 @@
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_02_wenxuan",
-          "field": "physicalCollectionInstitution"
+          "field": "physicalCollectionInstitution",
+          "value": null
         }
       ],
       "missingReason": "目录为空"
@@ -116,7 +127,8 @@
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_02_wenxuan",
-          "field": "originalLocation"
+          "field": "originalLocation",
+          "value": null
         },
         {
           "type": "file",
@@ -160,7 +172,8 @@
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_02_wenxuan",
-          "field": "rubbingCollectionInstitution"
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
         },
         {
           "type": "catalogue",
@@ -171,7 +184,12 @@
         },
         {
           "type": "url",
-          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full"
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋太宗御製至聖文宣王贊碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "宋太宗御製至聖文宣王贊碑墨拓本"
         }
       ]
     },
@@ -186,7 +204,11 @@
         {
           "type": "url",
           "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full",
-          "note": "姓名标示／品名"
+          "publisher": "國立故宮博物院",
+          "title": "宋太宗御製至聖文宣王贊碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "姓名标示／品名"
         }
       ]
     },
@@ -201,7 +223,11 @@
         {
           "type": "url",
           "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full",
-          "note": "品名含軸"
+          "publisher": "國立故宮博物院",
+          "title": "宋太宗御製至聖文宣王贊碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名含軸"
         }
       ]
     },
@@ -217,7 +243,8 @@
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_02_wenxuan",
-          "field": "rubbingPeriod"
+          "field": "rubbingPeriod",
+          "value": "未核定；不据拓印年改变朝代"
         }
       ],
       "missingReason": "目录未核定"
@@ -234,7 +261,8 @@
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_02_wenxuan",
-          "field": "sourceVerification.sourceSha256"
+          "field": "sourceVerification.sourceSha256",
+          "value": "dcdcefe1d35e87b62da1dedaae9f652e3b07142fac75e5290b548c715e30a174"
         }
       ],
       "note": "本轮未改影像"
@@ -251,11 +279,17 @@
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_02_wenxuan",
-          "field": "license"
+          "field": "license",
+          "value": "CC BY 4.0"
         },
         {
           "type": "url",
-          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full"
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋太宗御製至聖文宣王贊碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "宋太宗御製至聖文宣王贊碑墨拓本"
         }
       ]
     },
@@ -271,7 +305,8 @@
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_02_wenxuan",
-          "field": "modifications"
+          "field": "modifications",
+          "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
         }
       ]
     },
@@ -340,17 +375,45 @@
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_02_wenxuan",
-          "field": "description"
+          "field": "description",
+          "value": "真实馆藏影像派生；宋代；释文含1008/1012年诏令，实际刊刻年未独立核定。原拓残损保留。 馆方题名为宋太宗，但释文大中祥符纪年涉及真宗；保留馆方题名，作者归属待专门考证，不自行改名。 馆方题名与释文纪年存在矛盾，作者及原刻年份未独立核定，不采用旧版994年断言。"
         }
       ],
       "alternatives": [
         {
           "value": "宋太宗（馆方题名／目录）",
-          "source": "steles28 + NPM 品名"
+          "evidenceLevel": "有限支持",
+          "sources": [
+            {
+              "type": "catalogue",
+              "path": "data/catalog/steles28.json",
+              "id": "song_02_wenxuan",
+              "field": "author",
+              "value": "宋太宗"
+            },
+            {
+              "type": "url",
+              "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full",
+              "publisher": "國立故宮博物院",
+              "title": "宋太宗御製至聖文宣王贊碑墨拓本",
+              "sourceKind": "official_museum",
+              "accessedAt": "2026-10-25",
+              "quote": "宋太宗御製至聖文宣王贊碑墨拓本"
+            }
+          ]
         },
         {
           "value": "大中祥符诏令语境属真宗朝（释文）",
-          "source": "transcription"
+          "evidenceLevel": "已验证",
+          "sources": [
+            {
+              "type": "file",
+              "path": "data/catalog/steles28.json",
+              "id": "song_02_wenxuan",
+              "field": "transcription",
+              "quote": "大中祥符"
+            }
+          ]
         }
       ],
       "note": "目录说明已写矛盾；claims 并列，不改目录"
@@ -392,7 +455,8 @@
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_02_wenxuan",
-          "field": "titleCalligrapher"
+          "field": "titleCalligrapher",
+          "value": "未核定"
         }
       ],
       "missingReason": "目录未核定；碑额篆书书者未见署名"
@@ -409,7 +473,8 @@
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_02_wenxuan",
-          "field": "engraver"
+          "field": "engraver",
+          "value": "未核定"
         }
       ],
       "missingReason": "目录未核定"
@@ -426,7 +491,8 @@
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_02_wenxuan",
-          "field": "steleSubject"
+          "field": "steleSubject",
+          "value": "未核定"
         }
       ],
       "missingReason": "赞碑非墓碑碑主"
@@ -457,7 +523,8 @@
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_02_wenxuan",
-          "field": "originalYear"
+          "field": "originalYear",
+          "value": "宋代；释文含1008/1012年诏令，实际刊刻年未独立核定"
         }
       ],
       "note": "目录 originalYearCE=null；不编造刊刻年"
@@ -474,7 +541,8 @@
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_02_wenxuan",
-          "field": "originalYearCE"
+          "field": "originalYearCE",
+          "value": null
         }
       ],
       "missingReason": "目录 originalYearCE 为空；1008/1012 为诏令年，不等于已核定刊刻年"
@@ -570,13 +638,23 @@
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_02_wenxuan",
-          "field": "rubbingCollectionInstitution"
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
         },
         {
           "type": "url",
-          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full"
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋太宗御製至聖文宣王贊碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "宋太宗御製至聖文宣王贊碑墨拓本"
         }
-      ]
+      ],
+      "region": {
+        "modernRegion": "台北市",
+        "precision": "region"
+      }
     },
     {
       "claimId": "song_02_wenxuan:script_style:script",
@@ -598,14 +676,14 @@
           "path": "data/catalog/steles28.json",
           "id": "song_02_wenxuan",
           "field": "transcription",
-          "quote": "（篆書。）"
+          "quote": "（篆書）"
         },
         {
           "type": "file",
           "path": "data/catalog/steles28.json",
           "id": "song_02_wenxuan",
           "field": "transcription",
-          "quote": "（行楷書。）"
+          "quote": "（行楷書）"
         }
       ]
     },
@@ -649,13 +727,19 @@
       "sources": [
         {
           "type": "url",
-          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full"
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋太宗御製至聖文宣王贊碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "宋太宗御製至聖文宣王贊碑墨拓本"
         },
         {
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_02_wenxuan",
-          "field": "collectionNumber"
+          "field": "collectionNumber",
+          "value": "購拓000260"
         }
       ]
     }

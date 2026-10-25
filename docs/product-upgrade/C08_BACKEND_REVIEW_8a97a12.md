@@ -48,3 +48,8 @@
 
 1. `--apply` 必须带 `--diff`，并比对 `diffDigestSha256`；
 2. 写后复核补上“下架行仍在、总行数不变”。
+
+
+## 2026-10-25 令牌口径更正（红队 / arch@a261ba0）
+
+最终确认令牌为 `sha256(C-08|diffDigest|dbSHA)[:16]`，**不是** `digest[:16]`。上文与 8a97a12 对齐时写的 `diffDigestSha256[:16]` / `sha256(库SHA+目录SHA+行数+操作清单)[:16]` **已撤回**。金石分支 `check_catalog_governance.confirmation_token` 与 `C08_SYNC_SPEC` 已按新口径更新。主库禁止 `--apply`；副本 dry-run 示例令牌 `112ba2d3ebd14f2a`。

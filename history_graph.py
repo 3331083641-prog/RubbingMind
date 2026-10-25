@@ -96,10 +96,19 @@ def get_history_graph(stele_id, records):
                 data['identity'] = (f"演示样本 {resolution['newId']}（概念演示图或合成测试图，不是馆藏实物）。" + data['identity'])
         elif resolution['kind'] in ('rubbing', 'review_alias'):
             # Same history document, filed under the collection rubbing's own id.
+            # Shared history JSON may carry demo artwork; museum entities must use reviewed rubbing assets.
             data['steleId'] = stele_id
             for event in data.get('events', []):
                 event['steleId'] = stele_id
             data['demoSamples'] = _demo_ids_for(resolution['evidenceId'])
+            record = next((s for s in (records or []) if s.get('id') == resolution['evidenceId']), None)
+            if record:
+                readable = (record.get('imageAssets') or {}).get('readable') or record.get('raw_image')
+                if readable:
+                    data['image'] = readable
+                    data['imageStatus'] = record.get('imageStatus') or '真实馆藏拓本'
+                if record.get('collectionNumber'):
+                    data['collectionNumber'] = record['collectionNumber']
         all_sources = json.loads((HISTORY / 'sources.json').read_text(encoding='utf-8'))
         used = set(data['sourceIds']) | {p['sourceId'] for p in data['locations']}
         data['sources'] = [s for s in all_sources if s['id'] in used or s['id'] in ('tdt', 'beilin-coordinate')]

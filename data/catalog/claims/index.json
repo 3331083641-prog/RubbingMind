@@ -267,6 +267,48 @@
       "title": "宋拓唐九成宫醴泉铭",
       "accessedAt": "2026-10-19",
       "how": "WebFetch 打开并读取正文"
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34561&dep=P&mode=full",
+      "publisher": "國立故宮博物院",
+      "title": "元趙孟頫書聖主本命長生之碑并碑額墨拓本",
+      "accessedAt": "2026-10-25",
+      "how": "浏览器实开 NPM 开放资料 Detail 页并读取品名/作者/释文/题跋栏（2026-10-25）"
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32018&dep=P&mode=full",
+      "publisher": "國立故宮博物院",
+      "title": "宋大觀聖作碑墨拓本 軸",
+      "accessedAt": "2026-10-25",
+      "how": "浏览器实开 NPM 开放资料 Detail 页并读取品名/作者/释文/题跋栏（2026-10-25）"
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34667&dep=P&mode=full",
+      "publisher": "國立故宮博物院",
+      "title": "元趙孟頫書孫德彧道行碑墨拓本",
+      "accessedAt": "2026-10-25",
+      "how": "浏览器实开 NPM 开放资料 Detail 页并读取品名/作者/释文/题跋栏（2026-10-25）"
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29634&dep=P&mode=full",
+      "publisher": "國立故宮博物院",
+      "title": "明拓顏家廟碑殘本",
+      "accessedAt": "2026-10-25",
+      "how": "浏览器实开 NPM 开放资料 Detail 页并读取品名/作者/释文/题跋栏（2026-10-25）"
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full",
+      "publisher": "國立故宮博物院",
+      "title": "宋釋夢英十八體書碑墨拓本",
+      "accessedAt": "2026-10-25",
+      "how": "浏览器实开 NPM 开放资料 Detail 页并读取品名/作者/释文/题跋栏（2026-10-25）"
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full",
+      "publisher": "國立故宮博物院",
+      "title": "宋太宗御製至聖文宣王贊碑墨拓本",
+      "accessedAt": "2026-10-25",
+      "how": "浏览器实开 NPM 开放资料 Detail 页并读取品名/作者/释文/题跋栏（2026-10-25）"
     }
   ],
   "notOpened": [
