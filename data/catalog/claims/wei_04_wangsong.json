@@ -1,0 +1,674 @@
+{
+  "schemaVersion": 1,
+  "steleId": "wei_04_wangsong",
+  "title": "建义元年王诵墓志",
+  "curatedBy": "RM-金石史料",
+  "curatedAt": "2026-10-25（Asia/Shanghai）",
+  "selectionBasis": "馆方释文含建义元年戊申与七月丙辰朔日干支；NPM 册页形制可核；2026-10-25 实开",
+  "layers": "作品（work）≠原刻载体（stone）≠拓本（rubbing）≠影像（image）；人物、纪年、地点、书体风格、著录分列",
+  "claims": [
+    {
+      "claimId": "wei_04_wangsong:work:title",
+      "entity": "work",
+      "property": "title",
+      "value": "建义元年王诵墓志（馆方品名“北魏建義元年王誦墓誌 冊”）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "title",
+          "value": "建义元年王诵墓志"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29482&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏建義元年王誦墓誌 冊",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名：北魏建義元年王誦墓誌 冊"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "transcription",
+          "quote": "公諱誦。字國章"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_04_wangsong:work:dynasty",
+      "entity": "work",
+      "property": "dynasty",
+      "value": "北魏",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "dynasty",
+          "value": "北魏"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29482&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏建義元年王誦墓誌 冊",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名冠“北魏”"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_04_wangsong:work:content",
+      "entity": "work",
+      "property": "content",
+      "value": "王诵墓志；建义元年四月十三日卒于洛阳，七月祔葬芒阜；李奖为铭",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "transcription",
+          "quote": "建義元年歲在戊申四月十三日薨于洛陽"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "transcription",
+          "quote": "撫軍將軍頓丘李獎"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29482&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏建義元年王誦墓誌 冊",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "建義元年歲在戊申"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_04_wangsong:stone:currentLocation",
+      "entity": "stone",
+      "property": "currentLocation",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批所开馆方页与目录均未给出原石现藏地"
+    },
+    {
+      "claimId": "wei_04_wangsong:stone:originalSite",
+      "entity": "stone",
+      "property": "originalSite",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批所开馆方页与目录均未给出原立地点的可核坐标或馆方确认地址"
+    },
+    {
+      "claimId": "wei_04_wangsong:stone:transfer",
+      "entity": "stone",
+      "property": "transfer",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "未见可核的原石流转记述"
+    },
+    {
+      "claimId": "wei_04_wangsong:stone:condition",
+      "entity": "stone",
+      "property": "condition",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "无原石影像；目录 stoneWeathering 不评定原石"
+    },
+    {
+      "claimId": "wei_04_wangsong:rubbing:holder",
+      "entity": "rubbing",
+      "property": "holder",
+      "value": "台北故宫博物院（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "collectionNumber",
+          "value": "贈拓000382"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29482&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏建義元年王誦墓誌 冊",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "文物統一編號：贈拓000382"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_04_wangsong:rubbing:museumTitle",
+      "entity": "rubbing",
+      "property": "museumTitle",
+      "value": "北魏建義元年王誦墓誌 冊",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29482&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏建義元年王誦墓誌 冊",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名栏"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_04_wangsong:rubbing:format",
+      "entity": "rubbing",
+      "property": "format",
+      "value": "一册：六开（本幅六开十二幅）；本幅约 23.8×15 公分；纸本",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29482&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏建義元年王誦墓誌 冊",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "数量：一冊：六開（本幅六開十二幅）；本幅 23.8×15"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_04_wangsong:rubbing:period",
+      "entity": "rubbing",
+      "property": "period",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录 rubbingPeriod 为未核定；本批馆方页未提供可核的拓印年代",
+      "catalogueField": "rubbingPeriod",
+      "catalogueValue": "未核定；不据拓印年改变朝代"
+    },
+    {
+      "claimId": "wei_04_wangsong:image:sourceSha256",
+      "entity": "image",
+      "property": "sourceSha256",
+      "value": "0f5f655d30fdd4d93348c809eed6a808b943ce9432a0bf5079c02cb8e45679b8",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "sourceVerification.sourceSha256",
+          "value": "0f5f655d30fdd4d93348c809eed6a808b943ce9432a0bf5079c02cb8e45679b8"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_04_wangsong:image:license",
+      "entity": "image",
+      "property": "license",
+      "value": "CC BY 4.0",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "license",
+          "value": "CC BY 4.0"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29482&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏建義元年王誦墓誌 冊",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "授權條款 CC BY 4.0"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_04_wangsong:image:derivation",
+      "entity": "image",
+      "property": "derivation",
+      "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "modifications",
+          "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_04_wangsong:person:author",
+      "entity": "person",
+      "property": "author",
+      "value": "李奖（抚军将军顿丘；“辄凭以为铭”）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "transcription",
+          "quote": "撫軍將軍頓丘李獎"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "transcription",
+          "quote": "輒憑以為銘"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29482&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏建義元年王誦墓誌 冊",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "撫軍將軍頓丘李獎"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "author",
+          "value": "未核定"
+        }
+      ],
+      "catalogueField": "author",
+      "catalogueValue": "未核定",
+      "note": "目录 author=未核定、verification=pending_review；馆方作者栏 Anonymous。释文铭手线索作有限支持，不升格。"
+    },
+    {
+      "claimId": "wei_04_wangsong:person:calligrapher",
+      "entity": "person",
+      "property": "calligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定；释文未见书丹人",
+      "catalogueField": "calligrapher",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "wei_04_wangsong:person:titleCalligrapher",
+      "entity": "person",
+      "property": "titleCalligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定",
+      "catalogueField": "titleCalligrapher",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "wei_04_wangsong:person:engraver",
+      "entity": "person",
+      "property": "engraver",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定",
+      "catalogueField": "engraver",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "wei_04_wangsong:person:steleSubject",
+      "entity": "person",
+      "property": "steleSubject",
+      "value": "王诵（字国章；徐州琅邪临沂人）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "transcription",
+          "quote": "公諱誦。字國章。徐州琅邪臨沂人"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29482&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏建義元年王誦墓誌 冊",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "公諱誦。字國章"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "steleSubject",
+          "value": "未核定"
+        }
+      ],
+      "catalogueField": "steleSubject",
+      "catalogueValue": "未核定",
+      "note": "目录 steleSubject 未核定；碑面墓主信息作有限支持。"
+    },
+    {
+      "claimId": "wei_04_wangsong:date:era",
+      "entity": "date",
+      "property": "era",
+      "value": "魏建义元年岁在戊申四月十三日（葬：七月丙辰朔廿七日壬午）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "transcription",
+          "quote": "建義元年歲在戊申四月十三日薨于洛陽"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "transcription",
+          "quote": "七月丙辰朔廿七日壬午祔塟芒阜"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29482&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏建義元年王誦墓誌 冊",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "建義元年歲在戊申"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "originalYear",
+          "value": "528年"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_04_wangsong:date:ce",
+      "entity": "date",
+      "property": "ce",
+      "value": 528,
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "originalYearCE",
+          "value": 528
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29482&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏建義元年王誦墓誌 冊",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "西元五二八年"
+        }
+      ],
+      "catalogueField": "originalYearCE",
+      "catalogueValue": 528
+    },
+    {
+      "claimId": "wei_04_wangsong:date:yearCrossCheck",
+      "entity": "date",
+      "property": "yearCrossCheck",
+      "value": "一致：建义元年岁在戊申→528→戊申",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "transcription",
+          "quote": "歲在戊申"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "originalYearCE",
+          "value": 528
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29482&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏建義元年王誦墓誌 冊",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "歲在戊申"
+        }
+      ],
+      "catalogueField": "originalYearCE",
+      "catalogueValue": 528,
+      "derivation": {
+        "ce": 528,
+        "inscriptionGanzhi": "戊申",
+        "computedGanzhi": "戊申",
+        "result": "consistent"
+      }
+    },
+    {
+      "claimId": "wei_04_wangsong:date:dayCrossCheck",
+      "entity": "date",
+      "property": "dayCrossCheck",
+      "value": "一致：丙辰朔+27日→壬午",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "transcription",
+          "quote": "七月丙辰朔廿七日壬午"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29482&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏建義元年王誦墓誌 冊",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "七月丙辰朔廿七日壬午"
+        }
+      ],
+      "derivation": {
+        "newMoonGanzhi": "丙辰",
+        "day": 27,
+        "inscriptionDayGanzhi": "壬午",
+        "computedDayGanzhi": "壬午",
+        "result": "consistent"
+      }
+    },
+    {
+      "claimId": "wei_04_wangsong:place:originalSite",
+      "entity": "place",
+      "property": "originalSite",
+      "value": "洛阳芒阜一带（区域级）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "transcription",
+          "quote": "薨于洛陽"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "transcription",
+          "quote": "祔塟芒阜之隈"
+        }
+      ],
+      "region": {
+        "historicalName": "洛阳芒阜",
+        "modernRegion": "河南省洛阳市一带（现代对应待人工复核）",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "wei_04_wangsong:place:currentStone",
+      "entity": "place",
+      "property": "currentStone",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "未见原石现藏的可核记述"
+    },
+    {
+      "claimId": "wei_04_wangsong:place:rubbingHolder",
+      "entity": "place",
+      "property": "rubbingHolder",
+      "value": "台北（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29482&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏建義元年王誦墓誌 冊",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "國立故宮博物院"
+        }
+      ],
+      "region": {
+        "modernRegion": "台北市",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "wei_04_wangsong:script_style:script",
+      "entity": "script_style",
+      "property": "script",
+      "value": "楷书",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "scriptType",
+          "value": "楷书"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29482&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏建義元年王誦墓誌 冊",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "書體：楷書"
+        }
+      ],
+      "catalogueField": "scriptType",
+      "catalogueValue": "楷书"
+    },
+    {
+      "claimId": "wei_04_wangsong:script_style:styleNote",
+      "entity": "script_style",
+      "property": "styleNote",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批未采独立书评材料"
+    },
+    {
+      "claimId": "wei_04_wangsong:bibliography:catalogueReference",
+      "entity": "bibliography",
+      "property": "catalogueReference",
+      "value": "國立故宮博物院开放资料 id=29482；贈拓000382",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "sourceUrl",
+          "value": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29482&dep=P&mode=full"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_04_wangsong",
+          "field": "collectionNumber",
+          "value": "贈拓000382"
+        }
+      ]
+    }
+  ]
+}

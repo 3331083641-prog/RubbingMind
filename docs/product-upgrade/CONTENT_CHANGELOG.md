@@ -324,3 +324,40 @@ m:demo:* 与演示 legacy id 的 evidenceId 固定为演示自身，不再落到
 另：`test_synthetic_sample_label` identity 断言改为兼容 RV-AI06「演示样本 rm:demo:…」前缀（LABEL 仍须出现在 identity 中）。
 
 主库未执行 C-08 `--apply`。C-08 令牌仍为 `sha256(C-08|diffDigest|dbSHA)[:16]`；用户库 dry-run 预览 token `ef30c1d51053b8a8`（dbSHA `8408dbc3…`）。
+
+## 2026-10-25（Asia/Shanghai）· 第 3 批逐件深化：ming_04、wei_01、wei_04、ming_01、ming_03、han_03
+
+增量文件（不覆盖原目录著录；不改已审证据文件）：
+- `data/catalog/claims/ming_04_tongdian.json`（30 claims）
+- `data/catalog/claims/wei_01_zhangmenglong.json`（29 claims）
+- `data/catalog/claims/wei_04_wangsong.json`（29 claims）
+- `data/catalog/claims/ming_01_xianfu.json`（29 claims）
+- `data/catalog/claims/ming_03_wugou.json`（29 claims）
+- `data/catalog/claims/han_03_liqi.json`（29 claims）
+- `data/catalog/claims/index.json` 更新为 18/28（remaining=10）；openedUrls 13→19（+6 NPM）
+- `tests/test_catalog_claims.py`：WORKS 12→18、remaining 16→10
+
+**挑选规则：** ①目录 verified 角色数 ②馆方释文长度 ③可开官方来源。本批 6 件均实开 NPM 开放资料页。
+
+**来源（均实开）：**
+- ming_04：https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34907&dep=P&mode=full （品名「明大峩山永明華藏寺新建銅殿記碑墨拓本 軸」）
+- wei_01：https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33681&dep=P&mode=full （张猛龙碑相关拓本）
+- wei_04：https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29482&dep=P&mode=full （建义元年王诵墓志拓本）
+- ming_01：https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full （明弘治八年西安府学题名碑拓本）
+- ming_03：https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full （无垢子何君墓志铭拓本）
+- han_03：https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34648&dep=P&mode=full （礼器碑拓本）
+
+**要点：**
+| 作品 | 已验证要点 | 缺失／冲突 |
+|---|---|---|
+| ming_04 铜殿记碑 | 王毓宗撰文（authorVerification=verified）；万历癸卯；集王羲之署款见释文；拓本现藏台北故宫 | 书丹人：馆方「集王」vs 释文署款 → conflict 并列；原石现藏缺失；地点仅区域级 |
+| wei_01 张猛龙碑 | 北魏正书；鲁郡故地相关；拓本现藏台北故宫 | 撰/书/刻多字段未核实；原石现藏缺失 |
+| wei_04 王诵墓志 | 建义元年；洛阳芒阜一带；拓本现藏台北故宫 | 人物角色多 missing；原石现藏缺失 |
+| ming_01 西安府学题名碑 | 弘治八年；西安府学；拓本现藏台北故宫 | 撰书人未核定；原石现藏缺失 |
+| ming_03 无垢子何君墓志 | 墓主何君；终南／楼观一带相关；拓本现藏台北故宫 | script 书体：目录 vs 馆方表述 → conflict；多角色 missing |
+| han_03 礼器碑 | 东汉；鲁地孔庙一带；拓本现藏台北故宫 | 书丹人未核实；原石现藏缺失 |
+
+**规则遵守：** 目录未核定不升「已验证」；place.region 仅 precision=region + modernRegion，无坐标；conflict 含 alternatives+note；url source 含 publisher/title/sourceKind/accessedAt/quote。
+
+**测试：** `tests/test_catalog_claims.py` 129 passed；`scripts/validate_museum_v3.py` 28/84 SHA 全过。
+

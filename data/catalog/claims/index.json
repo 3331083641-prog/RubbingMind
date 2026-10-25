@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "schema": "data/catalog/claims/schema.json",
-  "batch": "Phase 3 深化第 2 批（12/28；yuan_03/song_03/yuan_02/tang_03/song_04/song_02）",
+  "batch": "Phase 3 深化第 3 批（18/28；ming_04/wei_01/wei_04/ming_01/ming_03/han_03）",
   "curatedBy": "RM-金石史料",
   "curatedAt": "2026-10-25（Asia/Shanghai）",
-  "selectionRule": "tang_01、han_01 为 Green 指定必选（C-05 跨源差异涉及）；其余 4 件按以下顺序挑选：①目录角色字段为 verified 的项数；②仓库内馆方释文长度（含署名与纪年）；③本轮能打开的官方来源数。tang_04（4 项 verified）、yuan_01（3 项）、ming_02（3 项，含墓主）、tang_02（2 项，释文最长，另有 3 个官方页面）。yuan_03（2 项）和 song_03（2 项）留到下一批；2026-10-25 第 2 批完成 Green 指定优先的 yuan_03、song_03（NPM 页实开）；同日续做 yuan_02、tang_03、song_04、song_02",
-  "remaining": 16,
+  "selectionRule": "tang_01、han_01 为 Green 指定必选（C-05 跨源差异涉及）；其余 4 件按以下顺序挑选：①目录角色字段为 verified 的项数；②仓库内馆方释文长度（含署名与纪年）；③本轮能打开的官方来源数。tang_04（4 项 verified）、yuan_01（3 项）、ming_02（3 项，含墓主）、tang_02（2 项，释文最长，另有 3 个官方页面）。yuan_03（2 项）和 song_03（2 项）留到下一批；2026-10-25 第 2 批完成 Green 指定优先的 yuan_03、song_03（NPM 页实开）；同日续做 yuan_02、tang_03、song_04、song_02；2026-10-25 第 3 批按 ①verified 角色数 ②释文长度 ③可开官方来源：ming_04（1 verified）+ wei_01/wei_04/ming_01/ming_03/han_03",
+  "remaining": 10,
   "works": [
     {
       "steleId": "tang_01_duobao",
@@ -216,6 +216,106 @@
         "missing": 16,
         "conflict": 1
       }
+    },
+    {
+      "steleId": "ming_04_tongdian",
+      "title": "大峨山永明华藏寺新建铜殿记碑",
+      "file": "data/catalog/claims/ming_04_tongdian.json",
+      "selectionBasis": "目录撰文 authorVerification=verified（王毓宗）；馆方释文含万历癸卯纪年与集王羲之署款；NPM 开放资料页 2026-10-25 实开",
+      "claimCount": 30,
+      "evidenceLevels": {
+        "已验证": 15,
+        "有限支持": 4,
+        "未评测": 10,
+        "待人工复核": 1
+      },
+      "statuses": {
+        "asserted": 19,
+        "missing": 10,
+        "conflict": 1
+      }
+    },
+    {
+      "steleId": "wei_01_zhangmenglong",
+      "title": "张猛龙碑",
+      "file": "data/catalog/claims/wei_01_zhangmenglong.json",
+      "selectionBasis": "馆方释文最长之一（3259）；含正光三年刊讫与颂主张猛龙；NPM 2026-10-25 实开",
+      "claimCount": 29,
+      "evidenceLevels": {
+        "已验证": 14,
+        "有限支持": 3,
+        "未评测": 12
+      },
+      "statuses": {
+        "asserted": 17,
+        "missing": 12
+      }
+    },
+    {
+      "steleId": "wei_04_wangsong",
+      "title": "建义元年王诵墓志",
+      "file": "data/catalog/claims/wei_04_wangsong.json",
+      "selectionBasis": "馆方释文含建义元年戊申与七月丙辰朔日干支；NPM 册页形制可核；2026-10-25 实开",
+      "claimCount": 29,
+      "evidenceLevels": {
+        "已验证": 15,
+        "有限支持": 4,
+        "未评测": 10
+      },
+      "statuses": {
+        "asserted": 19,
+        "missing": 10
+      }
+    },
+    {
+      "steleId": "ming_01_xianfu",
+      "title": "明弘治八年西安府学题名碑",
+      "file": "data/catalog/claims/ming_01_xianfu.json",
+      "selectionBasis": "释文含弘治八年乙卯与八月辛亥朔日干支；NPM 创作时间栏可核；2026-10-25 实开",
+      "claimCount": 29,
+      "evidenceLevels": {
+        "已验证": 15,
+        "有限支持": 4,
+        "未评测": 10
+      },
+      "statuses": {
+        "asserted": 19,
+        "missing": 10
+      }
+    },
+    {
+      "steleId": "ming_03_wugou",
+      "title": "无垢子何君墓志铭",
+      "file": "data/catalog/claims/ming_03_wugou.json",
+      "selectionBasis": "释文含周昉撰／夹谷希颜篆额／宋□书；年号泐损；书体栏与目录冲突可并列；NPM 2026-10-25 实开",
+      "claimCount": 29,
+      "evidenceLevels": {
+        "已验证": 10,
+        "有限支持": 7,
+        "未评测": 11,
+        "待人工复核": 1
+      },
+      "statuses": {
+        "asserted": 17,
+        "missing": 11,
+        "conflict": 1
+      }
+    },
+    {
+      "steleId": "han_03_liqi",
+      "title": "礼器碑",
+      "file": "data/catalog/claims/han_03_liqi.json",
+      "selectionBasis": "释文含永寿二年；NPM 内容简介可核庙堂三巨制表述；2026-10-25 实开",
+      "claimCount": 29,
+      "evidenceLevels": {
+        "已验证": 14,
+        "有限支持": 4,
+        "未评测": 11
+      },
+      "statuses": {
+        "asserted": 18,
+        "missing": 11
+      }
     }
   ],
   "openedUrls": [
@@ -309,6 +409,48 @@
       "title": "宋太宗御製至聖文宣王贊碑墨拓本",
       "accessedAt": "2026-10-25",
       "how": "浏览器实开 NPM 开放资料 Detail 页并读取品名/作者/释文/题跋栏（2026-10-25）"
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34907&dep=P&mode=full",
+      "publisher": "國立故宮博物院",
+      "title": "明大峩山永明華藏寺新建銅殿記碑墨拓本 軸",
+      "accessedAt": "2026-10-25",
+      "how": "WebFetch 实开 NPM 开放资料 Detail 页并读取品名/书体/释文/尺寸栏（2026-10-25）"
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33681&dep=P&mode=full",
+      "publisher": "國立故宮博物院",
+      "title": "北魏魯郡太守張猛龍清頌之碑墨拓本",
+      "accessedAt": "2026-10-25",
+      "how": "WebFetch 实开 NPM 开放资料 Detail 页并读取品名/书体/释文栏（2026-10-25）"
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29482&dep=P&mode=full",
+      "publisher": "國立故宮博物院",
+      "title": "北魏建義元年王誦墓誌 冊",
+      "accessedAt": "2026-10-25",
+      "how": "WebFetch 实开 NPM 开放资料 Detail 页并读取品名/作者/书体/释文/题跋/尺寸栏（2026-10-25）"
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full",
+      "publisher": "國立故宮博物院",
+      "title": "明弘治八年西安府學題名碑墨拓本 橫披",
+      "accessedAt": "2026-10-25",
+      "how": "WebFetch 实开 NPM 开放资料 Detail 页并读取品名/创作时间/书体/释文/尺寸栏（2026-10-25）"
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full",
+      "publisher": "國立故宮博物院",
+      "title": "明無垢子何君墓誌銘墨拓本 軸",
+      "accessedAt": "2026-10-25",
+      "how": "WebFetch 实开 NPM 开放资料 Detail 页并读取品名/书体/释文/尺寸栏（2026-10-25）"
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34648&dep=P&mode=full",
+      "publisher": "國立故宮博物院",
+      "title": "漢禮器碑墨拓本 軸",
+      "accessedAt": "2026-10-25",
+      "how": "WebFetch 实开 NPM 开放资料 Detail 页并读取品名/书体/释文/内容简介/尺寸栏（2026-10-25）"
     }
   ],
   "notOpened": [
