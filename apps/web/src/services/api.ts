@@ -4,6 +4,17 @@ import STILES_28_DATA from '../data/steles28.json';
 import { CORE_SAMPLES, resolveSelected } from '../data/catalogSelection';
 export const FALLBACK_STELES = STILES_28_DATA as unknown as SteleItem[];
 export let backendAvailable = false;
+
+/** RT-002 / AB-8: /api/health samples_* (ops + UI); degraded when missing/mismatch. */
+export interface HealthResponse {
+  status: 'healthy' | 'degraded' | string;
+  system?: string;
+  version?: string;
+  samples_available: string[];
+  samples_missing: string[];
+  samples_sha_mismatch: string[];
+  catalog_keys?: string[];
+}
 export interface GlyphInferenceRecord {
   inferenceId: string;
   steleId: string;
@@ -133,6 +144,16 @@ export const SteleService = {
   async getSteles(): Promise<SteleItem[]> {
     try { const res=await fetch('/api/steles'); if(!res.ok) throw new Error('Unavailable'); const data=await res.json(); backendAvailable=true; return data.steles || data; }
     catch { backendAvailable=false; return FALLBACK_STELES; }
+  },
+  /** RT-002: samples_missing / samples_sha_mismatch; does not throw on network failure. */
+  async getHealth(): Promise<HealthResponse | null> {
+    try {
+      const res = await fetch('/api/health');
+      if (!res.ok) return null;
+      return await res.json();
+    } catch {
+      return null;
+    }
   },
   async getSteleById(id: string): Promise<SteleItem> {
     try { const res=await fetch(`/api/steles/${id}`); if(!res.ok) throw new Error('文物不可用'); return await res.json(); }
