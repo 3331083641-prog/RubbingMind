@@ -117,8 +117,8 @@
 
 ---
 
-## 落地跟踪（评测侧 0f20bf1）
+## 落地跟踪（评测侧）
 
-- 2026-10-25：REVIEW_ARCH_PHASE2_ROI.md — arch@fa31279 对 R2–R6/R8 **可进门禁**；feature 仍 9d8428e 未含 ROI。
+- 2026-10-25：arch@fa31279 已合入 feature（tip=fa31279）；R2–R6/R8 随本 merge 进入 agent/eval-sci。
 - R1（TS）/ R7（mechanism head）仍开；R7 **不大重跑**，禁令见 MECHANISM_HEAD_NOTE.md。
-- 评测侧 ES-3/4/5 契约见 ES_EVAL_PROGRESS.md 与 	ests/test_es_derived_contracts.py。
+- 评测侧 ES-3/4/5 契约见 ES_EVAL_PROGRESS.md 与 tests/test_es_derived_contracts.py。
