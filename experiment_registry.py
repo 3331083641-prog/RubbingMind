@@ -6,6 +6,7 @@ import json
 from functools import lru_cache
 from pathlib import Path
 from catalog import BASE
+from experiment_metadata import batch_metadata, mark_default
 
 RESULTS=BASE/'experiments/results'
 METRICS_NOTE='本批次只保留了数值，没有保存任何图像，无法提供图像对比'
@@ -58,8 +59,9 @@ def batches():
         data=_read(str(path),path.stat().st_mtime_ns)
         entry=_entry(path, data)
         if entry is not None:
+            entry.update(batch_metadata(entry,data))
             result.append(entry)
-    return result
+    return mark_default(result)
 
 
 def batch(experiment_id):

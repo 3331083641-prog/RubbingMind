@@ -78,16 +78,30 @@ app.add_middleware(
 # 挂载静态资源目录
 from runtime_guard import RuntimeGuard
 app.add_middleware(RuntimeGuard)
+# R1-5: rm:rubbing:/rm:demo:/rm:retired: ids are accepted everywhere under /api/steles/
+# (outermost, so the guard and every route see the legacy id).
+from id_mapping import NamespacedSteleIdMiddleware
+app.add_middleware(NamespacedSteleIdMiddleware)
 PROCESS_LOCK=threading.Lock()
 os.makedirs(STATIC_DIR, exist_ok=True)
+# R1-7: when RUBBINGMIND_RESULTS_DIR relocates run storage, serve it under the
+# unchanged URL prefix /static/results (mounted first so it wins over /static).
+from runtime_paths import describe as describe_runtime_paths, results_override
+if results_override() is not None:
+    os.makedirs(results_override(), exist_ok=True)
+    app.mount("/static/results", StaticFiles(directory=str(results_override())), name="static-results")
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+if describe_runtime_paths()['overridden']:
+    logger.warning('RubbingMind 数据路径已重定向: %s', describe_runtime_paths())
 
 app.mount("/assets", StaticFiles(directory=DIST_ASSETS_DIR if os.path.exists(DIST_ASSETS_DIR) else os.path.join(BASE_DIR,"apps","web","public","assets")), name="assets")
 
 
 # Pydantic 请求数据模型
 class ProcessRequest(BaseModel):
-    stele_id: Optional[str] = "tang-duobao"
+    # RT-014: no silent default artifact. Callers must name stele_id (or a built-in sample_id);
+    # a missing id is a 422, never a run filed under tang-duobao.
+    stele_id: Optional[str] = None
     sample_id: Optional[str] = None
     image_base64: Optional[str] = Field(default=None,max_length=17_000_000)
     d0: float = Field(default=45.0, ge=1, le=500)
@@ -144,14 +158,28 @@ class CalendarRequest(BaseModel):
 class EvidenceQueryRequest(BaseModel):
     question: str = Field(min_length=2,max_length=500)
     steleId: Optional[str] = Field(default=None,max_length=100)
+    # BR-08 / C-16: default excludes synthetic demo samples; jinshi owns include_demo in evidence_retrieval.
+    includeDemo: bool = False
 
 
 @app.post('/api/research/query')
 def query_evidence(request: EvidenceQueryRequest):
     from evidence_retrieval import query
+    import inspect
     if request.steleId and not museum_manager.get_stele_by_id(request.steleId):
+        # rm:demo:<id> is accepted once jinshi's resolver is merged; until then only known ids pass.
         raise HTTPException(status_code=404,detail='文物不存在')
-    return query(request.question,request.steleId)
+    params = inspect.signature(query).parameters
+    if 'include_demo' in params:
+        return query(request.question, request.steleId, include_demo=request.includeDemo)
+    # Compatible call: this branch's evidence_retrieval has no include_demo yet (merge takes jinshi's).
+    result = query(request.question, request.steleId)
+    if isinstance(result, dict):
+        note = '本分支 evidence_retrieval 尚未实现 include_demo；合并时以 agent/jinshi 的实现为准（ARCHITECTURE_DECISIONS R2）。'
+        scope = dict(result.get('demoScope') or {})
+        scope.update({'requested': bool(request.includeDemo), 'honoured': False, 'compatNote': note})
+        result = {**result, 'demoScope': scope}
+    return result
 
 
 @app.get('/api/research/steles/{stele_id}')
@@ -165,6 +193,21 @@ def get_research_graph(stele_id: str):
 def list_experiments():
     from experiment_registry import batches
     return batches()
+
+
+@app.get('/api/experiments/batch-index')
+def experiment_batch_index():
+    # experimentId is authoritative; batch (results directory) is a readable alias, one-to-one.
+    from experiment_derived import batch_index
+    return batch_index()
+
+
+@app.get('/api/experiments/resolve')
+def resolve_experiment_batch(batch: str):
+    from experiment_derived import resolve_batch
+    item=resolve_batch(batch)
+    if item is None:raise HTTPException(status_code=404,detail='没有这个实验批次（batch）；不会回落到其他批次')
+    return item
 
 
 @app.get('/api/experiments/{experiment_id}')
@@ -186,10 +229,50 @@ def get_experiment_asset(experiment_id: str,filename: str):
 
 @app.get('/api/experiments/{experiment_id}/diagnosis')
 def experiment_diagnosis(experiment_id: str):
-    if experiment_id != 'heldout-v20-v21-2026-10-18':
-        raise HTTPException(status_code=404, detail='没有这份实验的失败诊断')
-    from restoration_diagnosis import diagnose
-    return diagnose()
+    # R1-4: every registered batch has a diagnosis; only unknown batches are 404.
+    from restoration_diagnosis import diagnose, diagnose_batch
+    if experiment_id == 'heldout-v20-v21-2026-10-18':
+        return {**diagnose(), 'diagnosisVersion': 'heldout-legacy-heuristic'}
+    from experiment_registry import batch
+    data = batch(experiment_id)
+    if data is None:
+        raise HTTPException(status_code=404, detail='实验批次不存在')
+    return diagnose_batch(data, experiment_id)
+
+
+@app.get('/api/experiments/{experiment_id}/mechanism')
+def experiment_mechanism_index(experiment_id: str):
+    from experiment_derived import mechanism_index
+    body=mechanism_index(experiment_id)
+    if body is None:raise HTTPException(status_code=404,detail='实验批次不存在')
+    return body
+
+
+@app.get('/api/experiments/{experiment_id}/mechanism-assets/{asset_path:path}')
+def experiment_mechanism_asset(experiment_id: str, asset_path: str):
+    from experiment_derived import resolve_mechanism_png
+    path, reason = resolve_mechanism_png(experiment_id, asset_path)
+    if path is None:
+        raise HTTPException(status_code=404 if '不存在' in (reason or '') and '越界' not in (reason or '') and '不合法' not in (reason or '') else 400,
+                            detail=reason or '不可用')
+    return FileResponse(path, media_type='image/png')
+
+
+@app.get('/api/experiments/{experiment_id}/applied-status')
+def experiment_applied_status(experiment_id: str, rows: bool = False):
+    from experiment_derived import applied_status
+    body=applied_status(experiment_id, include_rows=rows)
+    if body is None:raise HTTPException(status_code=404,detail='实验批次不存在')
+    return body
+
+
+@app.get('/api/experiments/{experiment_id}/ci-by-artifact')
+def experiment_ci_by_artifact(experiment_id: str, split: Optional[str] = None, method: Optional[str] = None,
+                              degradation: Optional[str] = None, scope: Optional[str] = None):
+    from experiment_derived import ci_by_artifact
+    body=ci_by_artifact(experiment_id, {'split':split,'method':method,'degradation':degradation,'scope':scope})
+    if body is None:raise HTTPException(status_code=404,detail='实验批次不存在')
+    return body
 
 
 @app.get('/api/experiments/{experiment_id}/export/{kind}')
@@ -352,13 +435,31 @@ async def get_stele_inference(stele_id: str):
 @app.get("/api/steles/{stele_id}/graph")
 async def get_stele_graph(stele_id: str):
     verified = await get_stele(stele_id)
+    from id_mapping import resolve as resolve_entity
     if verified.get("source_kind") == "verified_review_v3":
-        return catalog_graph(verified)
+        # R1-5 / BR-03: collection graphs now carry their steleId and entity classification.
+        return {**catalog_graph(verified), 'steleId': verified['id'], 'entity': resolve_entity(stele_id)}
     from history_graph import get_history_graph
     graph = get_history_graph(stele_id, museum_manager.get_all_steles())
     if graph is None:
         raise HTTPException(status_code=404, detail="Historical record not found")
+    graph.setdefault('entity', resolve_entity(stele_id))
     return graph
+
+
+@app.get('/api/id-mapping')
+def get_id_mapping():
+    from id_mapping import mapping_overview
+    return mapping_overview()
+
+
+@app.get('/api/id-mapping/{raw_id}')
+def get_id_mapping_entry(raw_id: str):
+    from id_mapping import namespace_mismatch, resolve
+    error = namespace_mismatch(raw_id)
+    if error:
+        raise HTTPException(status_code=404, detail=error)
+    return resolve(raw_id)
 
 
 @app.get("/generate")
@@ -372,14 +473,27 @@ async def generate_historical_graph(stele_id: str = "tang-duobao"):
 async def get_stele_report(stele_id: str, run_id: Optional[str] = None):
     record=await get_stele(stele_id)
     result=catalog_report(record)
-    runs=list_runs(stele_id)
-    selected=read_run(stele_id,run_id) if run_id else (runs[0] if runs else None)
+    from museum_processing import select_report_run
+    selected,run_selection=select_report_run(stele_id,run_id)
     if run_id and not selected:
         raise HTTPException(status_code=404,detail='处理记录不存在')
     result['run']=selected
-    result['inferenceRecords']=[item for item in list_inferences(stele_id) if not selected or item.get('runId')==selected['runId']]
+    result['runSelection']=run_selection
+    result['inferenceRecords']=[{**item,'sourceSteleId':item.get('steleId',stele_id)} for item in list_inferences(stele_id) if not selected or item.get('runId')==selected['runId']]
     result['sourceRecords']=[{'title':record['title'],'url':record.get('sourceUrl'),'license':record.get('license')}]
-    result['evaluation_summary']='实际处理已执行，但没有配对真值；配对质量未评测。' if selected else '尚未执行处理；配对质量未评测。'
+    mode=(selected or {}).get('outputMode')
+    if selected and mode=='passthrough':
+        # REPORT_DATA_SPEC §8: an unchanged output must never be described as "actually processed".
+        result['evaluation_summary']='本次未改动原图：算法判断无需处理，输出与输入逐像素相同；没有配对真值，配对质量未评测。'
+    elif selected and mode=='undetermined':
+        reason=selected.get('passthroughUndeterminedReason') or '原因未记录'
+        result['evaluation_summary']=f'未能判定是否改动原图（{reason}）；没有配对真值，配对质量未评测。'
+    elif selected:
+        result['evaluation_summary']='实际处理已执行，但没有配对真值；配对质量未评测。'
+    elif run_selection['legacyRunCount']:
+        result['evaluation_summary']='只有旧版未核验运行，默认不选用（可在运行历史中显式打开）；配对质量未评测。'
+    else:
+        result['evaluation_summary']='尚未执行处理；配对质量未评测。'
     result['reportId']=f"RM-{stele_id}-{selected['runId']}" if selected else None
     return result
 
@@ -481,7 +595,7 @@ async def create_glyph_inference(stele_id: str, request: GlyphInferenceRequest):
 @app.get('/api/steles/{stele_id}/inferences')
 async def get_glyph_inferences(stele_id: str):
     await get_stele(stele_id)
-    return list_inferences(stele_id)
+    return [{**item, 'sourceSteleId': item.get('steleId', stele_id)} for item in list_inferences(stele_id)]
 
 
 @app.get('/api/inferences/{inference_id}/crop')

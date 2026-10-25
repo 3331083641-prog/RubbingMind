@@ -20,6 +20,7 @@ def isolated(tmp_path, monkeypatch):
     monkeypatch.setattr(database, 'DB_PATH', str(tmp_path / 'rubbingmind.sqlite'))
     monkeypatch.setattr(upload_storage, 'UPLOAD_DIR', tmp_path / 'uploads')
     monkeypatch.setattr(museum_processing, 'BASE', tmp_path)
+    monkeypatch.setattr(museum_processing, 'RESULTS_DIR', None)  # hermetic even when RUBBINGMIND_RESULTS_DIR is set
     return tmp_path, TestClient(app)
 
 
