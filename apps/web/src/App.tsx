@@ -34,6 +34,8 @@ export const App: React.FC = () => {
   const [isUploadOpen, setIsUploadOpen] = useState<boolean>(false);
   const [isBackendConnected, setIsBackendConnected] = useState<boolean>(false);
   const [catalogueStatus, setCatalogueStatus] = useState<'loading' | 'ready' | 'fallback'>('loading');
+  // AB-8 / RT-002: ops samples_* surface; dismissible, never blocks catalogue.
+  const [healthNotice, setHealthNotice] = useState<string | null>(null);
 
   // Fetch steles from FastAPI backend on mount. The status stays "loading" until that request settles.
   useEffect(() => {
@@ -56,6 +58,23 @@ export const App: React.FC = () => {
         setCatalogueStatus('fallback');
       });
     return () => { isMounted = false; };
+  }, []);
+
+  // AB-8: /api/health samples_missing / samples_sha_mismatch (non-blocking banner).
+  useEffect(() => {
+    let live = true;
+    SteleService.getHealth().then((h) => {
+      if (!live || !h) return;
+      const missing = Array.isArray(h.samples_missing) ? h.samples_missing : [];
+      const mismatch = Array.isArray(h.samples_sha_mismatch) ? h.samples_sha_mismatch : [];
+      if (!missing.length && !mismatch.length && h.status !== 'degraded') return;
+      const parts: string[] = [];
+      if (missing.length) parts.push(`样本缺失 ${missing.length}：${missing.slice(0, 6).join('、')}${missing.length > 6 ? '…' : ''}`);
+      if (mismatch.length) parts.push(`样本 SHA 不一致 ${mismatch.length}：${mismatch.slice(0, 6).join('、')}${mismatch.length > 6 ? '…' : ''}`);
+      if (!parts.length && h.status === 'degraded') parts.push('后端健康检查为 degraded（samples_*）');
+      setHealthNotice(parts.join('；') + '。目录与页面仍可用，请核对 samples/ 与清单。');
+    });
+    return () => { live = false; };
   }, []);
 
   // User-driven setters: only these make the URL writable.
@@ -152,6 +171,13 @@ export const App: React.FC = () => {
         <div role="status" data-url-notices={urlNotices.length} className="mx-4 mt-2 rounded border border-gold/40 bg-slate-900/80 p-2 text-sm text-gold-light">
           {urlNotices.map(message => <p key={message}>{message}</p>)}
           <button type="button" className="mt-1 text-xs underline" onClick={() => setUrlNotices([])}>知道了</button>
+        </div>
+      )}
+
+      {healthNotice && (
+        <div role="status" data-testid="health-samples-banner" data-health-notice="1" className="mx-4 mt-2 rounded border border-amber-500/50 bg-slate-900/80 p-2 text-sm text-amber-100">
+          <p>{healthNotice}</p>
+          <button type="button" className="mt-1 text-xs underline" onClick={() => setHealthNotice(null)}>知道了</button>
         </div>
       )}
 
