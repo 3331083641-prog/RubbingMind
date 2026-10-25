@@ -1,0 +1,552 @@
+{
+  "schemaVersion": 1,
+  "steleId": "yuan_04_jingyuanchang",
+  "title": "赵孟頫书敬元长墓碣铭",
+  "curatedBy": "RM-金石史料",
+  "curatedAt": "2026-10-25（Asia/Shanghai）",
+  "selectionBasis": "NPM Collection Detail 实开；作者栏赵孟頫与墓主敬元长均为 pending_review，不升已验证；无释文",
+  "layers": "作品（work）≠原刻载体（stone）≠拓本（rubbing）≠影像（image）；人物、纪年、地点、书体风格、著录分列",
+  "claims": [
+    {
+      "claimId": "yuan_04_jingyuanchang:work:title",
+      "entity": "work",
+      "property": "title",
+      "value": "赵孟頫书敬元长墓碣铭（馆方品名“元趙孟頫書元故太常博士敬元長墓碣銘墨拓本”）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_04_jingyuanchang",
+          "field": "title",
+          "value": "赵孟頫书敬元长墓碣铭"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/34668?dep=P",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書元故太常博士敬元長墓碣銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名：元趙孟頫書元故太常博士敬元長墓碣銘墨拓本"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:work:dynasty",
+      "entity": "work",
+      "property": "dynasty",
+      "value": "元",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_04_jingyuanchang",
+          "field": "dynasty",
+          "value": "元代"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/34668?dep=P",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書元故太常博士敬元長墓碣銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名冠“元”"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:work:content",
+      "entity": "work",
+      "property": "content",
+      "value": "元故太常博士敬元长墓碣铭拓本（赵孟頫书；二件分片）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/34668?dep=P",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書元故太常博士敬元長墓碣銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名：元趙孟頫書元故太常博士敬元長墓碣銘墨拓本"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_04_jingyuanchang",
+          "field": "description",
+          "value": "元代赵孟頫墓碣铭，原拓为二件分片，原生断裂保留。"
+        }
+      ],
+      "note": "仓库 transcription 为空；不以他书补写铭文。"
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:stone:currentLocation",
+      "entity": "stone",
+      "property": "currentLocation",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批所开馆方页与目录均未给出原石现藏地"
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:stone:originalSite",
+      "entity": "stone",
+      "property": "originalSite",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批所开馆方页与目录均未给出原立地点的可核坐标或馆方确认地址"
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:stone:transfer",
+      "entity": "stone",
+      "property": "transfer",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "未见可核的原石流转记述"
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:stone:condition",
+      "entity": "stone",
+      "property": "condition",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "无原石影像；目录 stoneWeathering 不评定原石"
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:rubbing:holder",
+      "entity": "rubbing",
+      "property": "holder",
+      "value": "台北故宫博物院（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_04_jingyuanchang",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_04_jingyuanchang",
+          "field": "collectionNumber",
+          "value": "贈拓000412"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/34668?dep=P",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書元故太常博士敬元長墓碣銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "文物統一編號：贈拓000412"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:rubbing:museumTitle",
+      "entity": "rubbing",
+      "property": "museumTitle",
+      "value": "元趙孟頫書元故太常博士敬元長墓碣銘墨拓本",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/34668?dep=P",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書元故太常博士敬元長墓碣銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名栏"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:rubbing:format",
+      "entity": "rubbing",
+      "property": "format",
+      "value": "二件；本幅一约 209×98、本幅二约 212.2×30 公分；纸本",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/34668?dep=P",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書元故太常博士敬元長墓碣銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "数量：二件；本幅一 209x98；本幅二 212.2x30"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:rubbing:period",
+      "entity": "rubbing",
+      "property": "period",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录 rubbingPeriod 为未核定；馆方页未提供可核拓印年代",
+      "catalogueField": "rubbingPeriod",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:image:sourceSha256",
+      "entity": "image",
+      "property": "sourceSha256",
+      "value": "24f8c82a46d8b7882675cb21a4218bf775e308351440fd19636e2107716f8b23",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_04_jingyuanchang",
+          "field": "sourceVerification.sourceSha256",
+          "value": "24f8c82a46d8b7882675cb21a4218bf775e308351440fd19636e2107716f8b23"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:image:license",
+      "entity": "image",
+      "property": "license",
+      "value": "CC BY 4.0",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_04_jingyuanchang",
+          "field": "license",
+          "value": "CC BY 4.0"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/34668?dep=P",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書元故太常博士敬元長墓碣銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "授權條款 CC BY 4.0"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:image:derivation",
+      "entity": "image",
+      "property": "derivation",
+      "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_04_jingyuanchang",
+          "field": "modifications",
+          "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:person:author",
+      "entity": "person",
+      "property": "author",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定；馆方作者栏仅列赵孟頫（书），未见撰人",
+      "catalogueField": "author",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:person:calligrapher",
+      "entity": "person",
+      "property": "calligrapher",
+      "value": "赵孟頫（馆方作者栏；目录 pending_review）",
+      "status": "asserted",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_04_jingyuanchang",
+          "field": "calligrapher",
+          "value": "赵孟頫"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_04_jingyuanchang",
+          "field": "calligrapherVerification",
+          "value": "pending_review"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/34668?dep=P",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書元故太常博士敬元長墓碣銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "作者：趙孟頫,Zhao Mengfu"
+        }
+      ],
+      "catalogueField": "calligrapher",
+      "catalogueValue": "赵孟頫",
+      "note": "目录 calligrapherVerification=pending_review；馆方著录赵孟頫为作者/书者。保持待人工复核，不升已验证。"
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:person:titleCalligrapher",
+      "entity": "person",
+      "property": "titleCalligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定",
+      "catalogueField": "titleCalligrapher",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:person:engraver",
+      "entity": "person",
+      "property": "engraver",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定",
+      "catalogueField": "engraver",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:person:steleSubject",
+      "entity": "person",
+      "property": "steleSubject",
+      "value": "敬元长（元故太常博士；目录 pending_review）",
+      "status": "asserted",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_04_jingyuanchang",
+          "field": "steleSubject",
+          "value": "敬元长"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_04_jingyuanchang",
+          "field": "steleSubjectVerification",
+          "value": "pending_review"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/34668?dep=P",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書元故太常博士敬元長墓碣銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名含“敬元長墓碣銘”"
+        }
+      ],
+      "catalogueField": "steleSubject",
+      "catalogueValue": "敬元长",
+      "note": "目录 steleSubjectVerification=pending_review；依品名作待复核，不升已验证。"
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:date:era",
+      "entity": "date",
+      "property": "era",
+      "value": "元代（具体原刻年份未核定）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_04_jingyuanchang",
+          "field": "originalYear",
+          "value": "元代，具体原刻年份未核定"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/34668?dep=P",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書元故太常博士敬元長墓碣銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名冠“元”"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:date:ce",
+      "entity": "date",
+      "property": "ce",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录 originalYearCE 为空；本批不编造公元年",
+      "catalogueField": "originalYearCE",
+      "catalogueValue": null
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:date:yearCrossCheck",
+      "entity": "date",
+      "property": "yearCrossCheck",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "无确切原刻年份与年干支"
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:date:dayCrossCheck",
+      "entity": "date",
+      "property": "dayCrossCheck",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "无释文，未见朔日与日干支"
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:place:originalSite",
+      "entity": "place",
+      "property": "originalSite",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "原立/葬地本批未核；无释文地望可引"
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:place:currentStone",
+      "entity": "place",
+      "property": "currentStone",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "未见原石现藏的可核记述"
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:place:rubbingHolder",
+      "entity": "place",
+      "property": "rubbingHolder",
+      "value": "台北（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_04_jingyuanchang",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/34668?dep=P",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書元故太常博士敬元長墓碣銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "國立故宮博物院"
+        }
+      ],
+      "region": {
+        "modernRegion": "台北市",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:script_style:script",
+      "entity": "script_style",
+      "property": "script",
+      "value": "楷书",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_04_jingyuanchang",
+          "field": "scriptType",
+          "value": "楷书（赵孟頫墓碣铭）"
+        }
+      ],
+      "catalogueField": "scriptType",
+      "catalogueValue": "楷书（赵孟頫墓碣铭）",
+      "note": "Collection Detail 本批未返回独立书体栏；依目录 scriptType，有限支持。"
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:script_style:historicalComment",
+      "entity": "script_style",
+      "property": "historicalComment",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批未采独立书评材料"
+    },
+    {
+      "claimId": "yuan_04_jingyuanchang:bibliography:catalogueReference",
+      "entity": "bibliography",
+      "property": "catalogueReference",
+      "value": "國立故宮博物院 Collection Detail 34668；贈拓000412",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_04_jingyuanchang",
+          "field": "sourceUrl",
+          "value": "https://digitalarchive.npm.gov.tw/Collection/Detail/34668?dep=P"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_04_jingyuanchang",
+          "field": "collectionNumber",
+          "value": "贈拓000412"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/34668?dep=P",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書元故太常博士敬元長墓碣銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "文物統一編號：贈拓000412"
+        }
+      ]
+    }
+  ]
+}

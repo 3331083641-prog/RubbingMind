@@ -1,0 +1,732 @@
+{
+  "schemaVersion": 1,
+  "steleId": "han_02_yiying",
+  "title": "乙瑛碑",
+  "curatedBy": "RM-金石史料",
+  "curatedAt": "2026-10-25（Asia/Shanghai）",
+  "selectionBasis": "馆方释文含元嘉三年/永兴元年纪年与日干支；NPM 2026-10-25 实开；钟太尉书题记与目录未核定并列",
+  "layers": "作品（work）≠原刻载体（stone）≠拓本（rubbing）≠影像（image）；人物、纪年、地点、书体风格、著录分列",
+  "claims": [
+    {
+      "claimId": "han_02_yiying:work:title",
+      "entity": "work",
+      "property": "title",
+      "value": "乙瑛碑（馆方品名“漢魯相乙瑛碑墨拓本 軸”；又称鲁相乙瑛请置孔庙百石卒史碑）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "title",
+          "value": "乙瑛碑"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "漢魯相乙瑛碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名：漢魯相乙瑛碑墨拓本 軸"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "transcription",
+          "quote": "相乙瑛字少卿"
+        }
+      ]
+    },
+    {
+      "claimId": "han_02_yiying:work:dynasty",
+      "entity": "work",
+      "property": "dynasty",
+      "value": "东汉",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "dynasty",
+          "value": "东汉"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "漢魯相乙瑛碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名冠“漢”"
+        }
+      ]
+    },
+    {
+      "claimId": "han_02_yiying:work:content",
+      "entity": "work",
+      "property": "content",
+      "value": "鲁相乙瑛请为孔庙置百石卒史掌礼器；司徒/司空奏可；永兴元年选补孔龢",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "transcription",
+          "quote": "請置百石"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "transcription",
+          "quote": "相乙瑛字少卿"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "漢魯相乙瑛碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "為孔子廟置百石卒史一人"
+        }
+      ]
+    },
+    {
+      "claimId": "han_02_yiying:stone:currentLocation",
+      "entity": "stone",
+      "property": "currentLocation",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批所开馆方页与目录均未给出原石现藏地"
+    },
+    {
+      "claimId": "han_02_yiying:stone:originalSite",
+      "entity": "stone",
+      "property": "originalSite",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批所开馆方页与目录均未给出原立地点的可核坐标或馆方确认地址"
+    },
+    {
+      "claimId": "han_02_yiying:stone:transfer",
+      "entity": "stone",
+      "property": "transfer",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "未见可核的原石流转记述"
+    },
+    {
+      "claimId": "han_02_yiying:stone:condition",
+      "entity": "stone",
+      "property": "condition",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "无原石影像；目录 stoneWeathering 不评定原石"
+    },
+    {
+      "claimId": "han_02_yiying:rubbing:holder",
+      "entity": "rubbing",
+      "property": "holder",
+      "value": "台北故宫博物院（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "collectionNumber",
+          "value": "購拓000009"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "漢魯相乙瑛碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "文物統一編號：購拓000009"
+        }
+      ]
+    },
+    {
+      "claimId": "han_02_yiying:rubbing:museumTitle",
+      "entity": "rubbing",
+      "property": "museumTitle",
+      "value": "漢魯相乙瑛碑墨拓本 軸",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "漢魯相乙瑛碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名栏"
+        }
+      ]
+    },
+    {
+      "claimId": "han_02_yiying:rubbing:format",
+      "entity": "rubbing",
+      "property": "format",
+      "value": "一轴；本幅约 189.5×89 公分；纸本",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "漢魯相乙瑛碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "数量：一轴；本幅 189.5x89；质地：纸"
+        }
+      ]
+    },
+    {
+      "claimId": "han_02_yiying:rubbing:period",
+      "entity": "rubbing",
+      "property": "period",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录 rubbingPeriod 为未核定；本批馆方页未提供可核的拓印年代",
+      "catalogueField": "rubbingPeriod",
+      "catalogueValue": "未核定；不据拓印年改变朝代"
+    },
+    {
+      "claimId": "han_02_yiying:image:sourceSha256",
+      "entity": "image",
+      "property": "sourceSha256",
+      "value": "1ee71af3b141f4afe5c74f03ebec00d40dfe08867ae1a385542c8d9c56314fd3",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "sourceVerification.sourceSha256",
+          "value": "1ee71af3b141f4afe5c74f03ebec00d40dfe08867ae1a385542c8d9c56314fd3"
+        }
+      ]
+    },
+    {
+      "claimId": "han_02_yiying:image:license",
+      "entity": "image",
+      "property": "license",
+      "value": "CC BY 4.0",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "license",
+          "value": "CC BY 4.0"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "漢魯相乙瑛碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "授權條款 CC BY 4.0"
+        }
+      ]
+    },
+    {
+      "claimId": "han_02_yiying:image:derivation",
+      "entity": "image",
+      "property": "derivation",
+      "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "modifications",
+          "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+        }
+      ]
+    },
+    {
+      "claimId": "han_02_yiying:person:author",
+      "entity": "person",
+      "property": "author",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定；奏疏体未见单一撰人署名",
+      "catalogueField": "author",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "han_02_yiying:person:titleCalligrapher",
+      "entity": "person",
+      "property": "titleCalligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定",
+      "catalogueField": "titleCalligrapher",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "han_02_yiying:person:engraver",
+      "entity": "person",
+      "property": "engraver",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定",
+      "catalogueField": "engraver",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "han_02_yiying:person:calligrapher",
+      "entity": "person",
+      "property": "calligrapher",
+      "value": null,
+      "status": "conflict",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "transcription",
+          "quote": "後漢鐘太尉書"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "calligrapher",
+          "value": "未核定"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "漢魯相乙瑛碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "後漢鐘太尉書。元嘉祐七年張稚圭按圖題記"
+        }
+      ],
+      "catalogueField": "calligrapher",
+      "catalogueValue": "未核定",
+      "alternatives": [
+        {
+          "value": "后汉钟太尉书（传统题记；张稚圭按图题记）",
+          "evidenceLevel": "有限支持",
+          "sources": [
+            {
+              "type": "file",
+              "path": "data/catalog/steles28.json",
+              "id": "han_02_yiying",
+              "field": "transcription",
+              "quote": "後漢鐘太尉書"
+            },
+            {
+              "type": "url",
+              "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full",
+              "publisher": "國立故宮博物院",
+              "title": "漢魯相乙瑛碑墨拓本 軸",
+              "sourceKind": "official_museum",
+              "accessedAt": "2026-10-25",
+              "quote": "後漢鐘太尉書"
+            }
+          ]
+        },
+        {
+          "value": "未核定（目录 calligrapher）",
+          "evidenceLevel": "有限支持",
+          "sources": [
+            {
+              "type": "catalogue",
+              "path": "data/catalog/steles28.json",
+              "id": "han_02_yiying",
+              "field": "calligrapher",
+              "value": "未核定"
+            }
+          ]
+        }
+      ],
+      "note": "释文附楷书题记“后汉钟太尉书”，属后世按图题记传统归属；目录 calligrapher=未核定。并列待复核，不升格。"
+    },
+    {
+      "claimId": "han_02_yiying:person:steleSubject",
+      "entity": "person",
+      "property": "steleSubject",
+      "value": "乙瑛（字少卿；鲁前相；平原高唐人）——请置卒史之主请人",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "transcription",
+          "quote": "相乙瑛字少卿。平原高唐人"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "漢魯相乙瑛碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "相乙瑛字少卿"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "steleSubject",
+          "value": "未核定"
+        }
+      ],
+      "catalogueField": "steleSubject",
+      "catalogueValue": "未核定",
+      "note": "目录 steleSubject=未核定、verification=pending_review；碑面主请人信息作有限支持，不升格。"
+    },
+    {
+      "claimId": "han_02_yiying:date:era",
+      "entity": "date",
+      "property": "era",
+      "value": "元嘉三年三月廿七日奏；永兴元年六月十八日选补（东汉桓帝）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "transcription",
+          "quote": "元嘉三年三月廿七日壬寅"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "transcription",
+          "quote": "永興元年六月甲辰朔十八日辛酉"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "漢魯相乙瑛碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "元嘉三年三月廿七日壬寅"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "originalYear",
+          "value": "153年"
+        }
+      ]
+    },
+    {
+      "claimId": "han_02_yiying:date:ce",
+      "entity": "date",
+      "property": "ce",
+      "value": 153,
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "originalYearCE",
+          "value": 153
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "漢魯相乙瑛碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "元嘉三年"
+        }
+      ],
+      "catalogueField": "originalYearCE",
+      "catalogueValue": 153
+    },
+    {
+      "claimId": "han_02_yiying:date:yearCrossCheck",
+      "entity": "date",
+      "property": "yearCrossCheck",
+      "value": "一致：元嘉三年→153（碑面无年干支；推算 癸巳）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "transcription",
+          "quote": "元嘉三年三月廿七日壬寅"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "originalYearCE",
+          "value": 153
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "漢魯相乙瑛碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "元嘉三年"
+        }
+      ],
+      "catalogueField": "originalYearCE",
+      "catalogueValue": 153,
+      "derivation": {
+        "ce": 153,
+        "inscriptionGanzhi": null,
+        "computedGanzhi": "癸巳",
+        "result": "partial"
+      }
+    },
+    {
+      "claimId": "han_02_yiying:date:dayCrossCheck",
+      "entity": "date",
+      "property": "dayCrossCheck",
+      "value": "一致：丙子朔+27日→壬寅",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "transcription",
+          "quote": "元嘉三年三月丙子朔。廿七日壬寅"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "漢魯相乙瑛碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "元嘉三年三月丙子朔。廿七日壬寅"
+        }
+      ],
+      "derivation": {
+        "newMoonGanzhi": "丙子",
+        "day": 27,
+        "inscriptionDayGanzhi": "壬寅",
+        "computedDayGanzhi": "壬寅",
+        "result": "consistent"
+      }
+    },
+    {
+      "claimId": "han_02_yiying:place:originalSite",
+      "entity": "place",
+      "property": "originalSite",
+      "value": "鲁国孔庙一带（区域级）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "transcription",
+          "quote": "為孔子廟置百石卒史"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "漢魯相乙瑛碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "為孔子廟置百石卒史一人"
+        }
+      ],
+      "region": {
+        "historicalName": "鲁国孔子庙",
+        "modernRegion": "山东省济宁市曲阜市一带（现代对应待人工复核）",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "han_02_yiying:place:currentStone",
+      "entity": "place",
+      "property": "currentStone",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "曲阜孔庙现藏等说法本批未核官方来源，保持 missing"
+    },
+    {
+      "claimId": "han_02_yiying:place:rubbingHolder",
+      "entity": "place",
+      "property": "rubbingHolder",
+      "value": "台北（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "漢魯相乙瑛碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "國立故宮博物院"
+        }
+      ],
+      "region": {
+        "modernRegion": "台北市",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "han_02_yiying:script_style:script",
+      "entity": "script_style",
+      "property": "script",
+      "value": "隶书",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "scriptType",
+          "value": "隶书"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "漢魯相乙瑛碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "書體：隸書"
+        }
+      ],
+      "catalogueField": "scriptType",
+      "catalogueValue": "隶书"
+    },
+    {
+      "claimId": "han_02_yiying:script_style:historicalComment",
+      "entity": "script_style",
+      "property": "historicalComment",
+      "value": "释文末附楷书题记“后汉钟太尉书。元嘉祐七年张稚圭按图题记”（后世题记，非碑阳书体本身）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "transcription",
+          "quote": "後漢鐘太尉書。元嘉祐七年張稚圭按圖題記。（楷書）"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "漢魯相乙瑛碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "後漢鐘太尉書。元嘉祐七年張稚圭按圖題記"
+        }
+      ],
+      "note": "题记书体为楷书，与碑阳隶书分层；不作书丹定论。"
+    },
+    {
+      "claimId": "han_02_yiying:bibliography:catalogueReference",
+      "entity": "bibliography",
+      "property": "catalogueReference",
+      "value": "國立故宮博物院开放资料 id=34635；購拓000009；院藏碑帖特展目录页18、364",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "sourceUrl",
+          "value": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_02_yiying",
+          "field": "collectionNumber",
+          "value": "購拓000009"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "漢魯相乙瑛碑墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "院藏碑帖特展目錄，頁18、364"
+        }
+      ]
+    }
+  ]
+}

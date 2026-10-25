@@ -361,3 +361,37 @@ m:demo:* 与演示 legacy id 的 evidenceId 固定为演示自身，不再落到
 
 **测试：** `tests/test_catalog_claims.py` 129 passed；`scripts/validate_museum_v3.py` 28/84 SHA 全过。
 
+## 2026-10-25（Asia/Shanghai）· 第 4 批逐件深化：han_02、han_04、wei_02、wei_03、song_01、yuan_04
+
+增量文件（不覆盖原目录著录；不改已审证据文件；不改 ming_04/ming_03 既有 conflict）：
+- `data/catalog/claims/han_02_yiying.json`（29）
+- `data/catalog/claims/han_04_shichen.json`（29）
+- `data/catalog/claims/wei_02_wugaoli.json`（29）
+- `data/catalog/claims/wei_03_kouyan.json`（29）
+- `data/catalog/claims/song_01_yuanyou.json`（29）
+- `data/catalog/claims/yuan_04_jingyuanchang.json`（29）
+- `data/catalog/claims/index.json` 更新为 24/28（remaining=4）；openedUrls 19→25
+- `tests/test_catalog_claims.py`：WORKS 18→24、remaining 10→4
+
+**挑选：** Green 指定本批 6 件；清 4 件留第 5 批。
+
+**来源（均实开）：**
+- han_02：https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full
+- han_04：https://www.metmuseum.org/art/collection/search/36445（网页 429；Met Collection API objects/36445 实开）
+- wei_02：https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full
+- wei_03：https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30320&dep=P&mode=full
+- song_01：https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32237&dep=P&mode=full
+- yuan_04：https://digitalarchive.npm.gov.tw/Collection/Detail/34668?dep=P
+
+**要点／冲突（并列待复核，不臆断）：**
+| 作品 | 已验证／有限支持要点 | 缺失／冲突 |
+|---|---|---|
+| han_02 乙瑛碑 | 元嘉三年/永兴元年纪年；三月丙子朔廿七日壬寅日干支一致；隶书；拓本台北故宫 | calligrapher：后汉钟太尉书题记 vs 目录未核定 → conflict |
+| han_04 史晨碑 | Met：原碑 169 CE、拓本 19 世纪/清、册页 32 开、CC0/PD；纽约大都会 | 无仓库释文；人物多 missing；书体仅目录有限支持 |
+| wei_02 吴高黎 | 孝昌二年正月权殡刊记→526；楷书；台北故宫 | dayCrossCheck：碑面“癸申”非法干支 vs 丙午朔推算 → conflict |
+| wei_03 寇演 | 神龟元年薨、二年窆洛阳西北芒→519；楷书 | 撰/书/刻 missing |
+| song_01 元祐党籍 | 宋代品名可核；拓本台北故宫；释文仅标题 | script：书体栏楷书 vs 释文（隶书）→ conflict；原刻年 CE missing |
+| yuan_04 敬元长碣 | 品名/作者栏赵孟頫、二件尺寸可核；台北故宫 | calligrapher/steleSubject 均为 pending_review→待人工复核不升已验证；无释文 |
+
+**规则：** 红队①–⑤；place 仅 region+modernRegion；未核定不升已验证；既有 ming_04/ming_03 conflict 未改。
+

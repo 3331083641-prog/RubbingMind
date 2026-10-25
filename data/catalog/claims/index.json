@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "schema": "data/catalog/claims/schema.json",
-  "batch": "Phase 3 深化第 3 批（18/28；ming_04/wei_01/wei_04/ming_01/ming_03/han_03）",
+  "batch": "Phase 3 深化第 4 批（24/28；han_02/han_04/wei_02/wei_03/song_01/yuan_04）",
   "curatedBy": "RM-金石史料",
   "curatedAt": "2026-10-25（Asia/Shanghai）",
-  "selectionRule": "tang_01、han_01 为 Green 指定必选（C-05 跨源差异涉及）；其余 4 件按以下顺序挑选：①目录角色字段为 verified 的项数；②仓库内馆方释文长度（含署名与纪年）；③本轮能打开的官方来源数。tang_04（4 项 verified）、yuan_01（3 项）、ming_02（3 项，含墓主）、tang_02（2 项，释文最长，另有 3 个官方页面）。yuan_03（2 项）和 song_03（2 项）留到下一批；2026-10-25 第 2 批完成 Green 指定优先的 yuan_03、song_03（NPM 页实开）；同日续做 yuan_02、tang_03、song_04、song_02；2026-10-25 第 3 批按 ①verified 角色数 ②释文长度 ③可开官方来源：ming_04（1 verified）+ wei_01/wei_04/ming_01/ming_03/han_03",
-  "remaining": 10,
+  "selectionRule": "tang_01、han_01 为 Green 指定必选（C-05 跨源差异涉及）；其余 4 件按以下顺序挑选：①目录角色字段为 verified 的项数；②仓库内馆方释文长度（含署名与纪年）；③本轮能打开的官方来源数。tang_04（4 项 verified）、yuan_01（3 项）、ming_02（3 项，含墓主）、tang_02（2 项，释文最长，另有 3 个官方页面）。yuan_03（2 项）和 song_03（2 项）留到下一批；2026-10-25 第 2 批完成 Green 指定优先的 yuan_03、song_03（NPM 页实开）；同日续做 yuan_02、tang_03、song_04、song_02；2026-10-25 第 3 批按 ①verified 角色数 ②释文长度 ③可开官方来源：ming_04（1 verified）+ wei_01/wei_04/ming_01/ming_03/han_03；2026-10-25 第 4 批按 Green 指定优先：han_02/han_04/wei_02/wei_03/song_01/yuan_04（清 4 件留第 5 批）",
+  "remaining": 4,
   "works": [
     {
       "steleId": "tang_01_duobao",
@@ -316,6 +316,109 @@
         "asserted": 18,
         "missing": 11
       }
+    },
+    {
+      "steleId": "han_02_yiying",
+      "title": "乙瑛碑",
+      "file": "data/catalog/claims/han_02_yiying.json",
+      "selectionBasis": "馆方释文含元嘉三年/永兴元年纪年与日干支；NPM 2026-10-25 实开；钟太尉书题记与目录未核定并列",
+      "claimCount": 29,
+      "evidenceLevels": {
+        "已验证": 15,
+        "有限支持": 4,
+        "未评测": 9,
+        "待人工复核": 1
+      },
+      "statuses": {
+        "asserted": 19,
+        "missing": 9,
+        "conflict": 1
+      }
+    },
+    {
+      "steleId": "han_04_shichen",
+      "title": "史晨碑",
+      "file": "data/catalog/claims/han_04_shichen.json",
+      "selectionBasis": "Met Collection API objects/36445 实开（网页 429）；拓本 19 世纪/清，原碑 169 CE；无仓库释文",
+      "claimCount": 29,
+      "evidenceLevels": {
+        "已验证": 13,
+        "有限支持": 3,
+        "未评测": 13
+      },
+      "statuses": {
+        "asserted": 16,
+        "missing": 13
+      }
+    },
+    {
+      "steleId": "wei_02_wugaoli",
+      "title": "吴高黎墓志",
+      "file": "data/catalog/claims/wei_02_wugaoli.json",
+      "selectionBasis": "释文含孝昌二年正月刊记；日干支“癸申”非法干支→conflict；NPM 2026-10-25 实开",
+      "claimCount": 29,
+      "evidenceLevels": {
+        "已验证": 14,
+        "有限支持": 3,
+        "未评测": 11,
+        "待人工复核": 1
+      },
+      "statuses": {
+        "asserted": 17,
+        "missing": 11,
+        "conflict": 1
+      }
+    },
+    {
+      "steleId": "wei_03_kouyan",
+      "title": "寇演墓志",
+      "file": "data/catalog/claims/wei_03_kouyan.json",
+      "selectionBasis": "释文含神龟元年薨、二年窆洛阳西北芒；NPM 2026-10-25 实开",
+      "claimCount": 29,
+      "evidenceLevels": {
+        "已验证": 14,
+        "有限支持": 3,
+        "未评测": 12
+      },
+      "statuses": {
+        "asserted": 17,
+        "missing": 12
+      }
+    },
+    {
+      "steleId": "song_01_yuanyou",
+      "title": "元祐党籍碑",
+      "file": "data/catalog/claims/song_01_yuanyou.json",
+      "selectionBasis": "NPM 书体栏楷书 vs 释文（隶书）冲突并列；原刻年份未核定；2026-10-25 实开",
+      "claimCount": 29,
+      "evidenceLevels": {
+        "已验证": 10,
+        "有限支持": 3,
+        "未评测": 15,
+        "待人工复核": 1
+      },
+      "statuses": {
+        "asserted": 13,
+        "missing": 15,
+        "conflict": 1
+      }
+    },
+    {
+      "steleId": "yuan_04_jingyuanchang",
+      "title": "赵孟頫书敬元长墓碣铭",
+      "file": "data/catalog/claims/yuan_04_jingyuanchang.json",
+      "selectionBasis": "NPM Collection Detail 实开；作者栏赵孟頫与墓主敬元长均为 pending_review，不升已验证；无释文",
+      "claimCount": 29,
+      "evidenceLevels": {
+        "已验证": 10,
+        "有限支持": 3,
+        "未评测": 14,
+        "待人工复核": 2
+      },
+      "statuses": {
+        "asserted": 15,
+        "missing": 14
+      }
     }
   ],
   "openedUrls": [
@@ -451,6 +554,48 @@
       "title": "漢禮器碑墨拓本 軸",
       "accessedAt": "2026-10-25",
       "how": "WebFetch 实开 NPM 开放资料 Detail 页并读取品名/书体/释文/内容简介/尺寸栏（2026-10-25）"
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full",
+      "publisher": "國立故宮博物院",
+      "title": "漢魯相乙瑛碑墨拓本 軸",
+      "accessedAt": "2026-10-25",
+      "how": "WebFetch 实开 NPM 开放资料 Detail 页并读取品名/书体/释文/尺寸/著录栏（2026-10-25）"
+    },
+    {
+      "url": "https://www.metmuseum.org/art/collection/search/36445",
+      "publisher": "The Metropolitan Museum of Art",
+      "title": "Rubbing of Stele for Shi Chen",
+      "accessedAt": "2026-10-25",
+      "how": "网页 WebFetch/curl 429；改以 Met Collection API /public/collection/v1/objects/36445 实开并核对 title/objectDate/period/medium/accession/repository/isPublicDomain（2026-10-25）"
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full",
+      "publisher": "國立故宮博物院",
+      "title": "北魏故士吳高黎墓誌銘墨拓本",
+      "accessedAt": "2026-10-25",
+      "how": "WebFetch 实开 NPM 开放资料 Detail 页并读取品名/书体/释文栏（2026-10-25）"
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30320&dep=P&mode=full",
+      "publisher": "國立故宮博物院",
+      "title": "北魏故汝南太守寇府君演墓誌銘拓片 軸",
+      "accessedAt": "2026-10-25",
+      "how": "WebFetch 实开 NPM 开放资料 Detail 页并读取品名/书体/释文/尺寸栏（2026-10-25）"
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32237&dep=P&mode=full",
+      "publisher": "國立故宮博物院",
+      "title": "宋元祐黨籍碑墨拓本 軸",
+      "accessedAt": "2026-10-25",
+      "how": "WebFetch 实开 NPM 开放资料 Detail 页并读取品名/书体/释文/尺寸/参考书目栏（2026-10-25）"
+    },
+    {
+      "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/34668?dep=P",
+      "publisher": "國立故宮博物院",
+      "title": "元趙孟頫書元故太常博士敬元長墓碣銘墨拓本",
+      "accessedAt": "2026-10-25",
+      "how": "WebFetch 实开 NPM Collection Detail 页并读取品名/作者/数量/尺寸栏（2026-10-25）"
     }
   ],
   "notOpened": [
