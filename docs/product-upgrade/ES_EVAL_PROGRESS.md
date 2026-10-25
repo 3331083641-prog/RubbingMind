@@ -85,3 +85,23 @@
 
 - 无配对参考不报 PSNR/SSIM 增益结论；spans_zero/negative/不可靠 CI 不得写成正提升
 - 不改 museum_processing / 馆藏与实验原始数据；不 push；不合 main；不作废 tip 续写
+
+## rebase 到 feature@eba2faf 续开（2026-10-25 18:55 Asia/Shanghai）
+
+- 对齐分支：feature/product-grade-upgrade@eba2faf505dfa4f79f0fae523d00cc5dadbc6823（金石；本 tip parent=eba2faf）
+- rebase --onto eba2faf d376dbc 后收束为 **单 tip**；**作废** 6f42ab1ab2922e9b8344a72d0a138900d8e05130 / 4b17bc5556e0eceff6f603465bbf37ba77934c34 / 46eb4d2cf172573b0f788b31dfa9a7d24d7f7d89 / 788a17f6ce04adc07ed747bb1a6d81eec96a7657 / eb1847f401e77692ad06149199fd3ea5df9d237c
+- 本 tip 相对 mechanism head 7623a52：**194** commits（git rev-list --count 7623a52..HEAD = tip HEAD 实测；与文档一致）
+- 内容：ES-3 bootstrap 只读 dry-run + ES-6 E-05 闸门草案 + G1 边界/反例/缺证据不得通过强化；**不**伪绿关 ES-6；A24/R7 仍开
+
+### 本轮交付
+
+| ID | 交付 | 仍开 |
+|---|---|---|
+| ES-3 | ES3_BOOTSTRAP_DRY_RUN.md + ci_bootstrap_dry_run.py 只读核对；不写 derived、不重算 | SHA 飘移仍开 |
+| ES-6 | ES6_E05_GATE_DRAFT.md + es6_e05_gate_evidence.py + 测骨架（G1 副本相等/旧截断反例/缺证据 blocked；TASK_BOARD 只读仍「进行中」） | **仍进行中 / 未关** |
+| A24 | xfail 保持 | **勿假关** |
+| R7 | lag=**194** 只记账；未重跑 mechanism | **仍开** |
+
+### 禁令（维持）
+
+- 不伪绿关 ES-6/E-05；不改 TASK_BOARD 真源；不碰 museum_processing / 馆藏与实验原始数据；未 push；不合 main；不对作废 tip 强推

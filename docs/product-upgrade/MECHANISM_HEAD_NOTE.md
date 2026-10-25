@@ -3,7 +3,7 @@
 - 作者：RM-评测科学家（Agent 04+05）
 - 时间：2026-10-25（Asia/Shanghai）
 - 分支：`agent/eval-sci`
-- 当前 tip（写入时）：叠在 feature@bd7303e 之上（parent=bd7303e；R7 lag=187；勿用已作废 tip 8178f46/109eec1/c6de56e）
+- 当前 tip：写稿时落在 feature@eba2faf 之上（parent=eba2faf；R7 lag=194）；作废旧 tip 6f42ab1ab2922e9b8344a72d0a138900d8e05130（曾 parent=d376dbc）、4b17bc5556e0eceff6f603465bbf37ba77934c34（曾 parent=0c1ac0c）、40acb18ab934d406dd3e00dbb1cbd731ab86786d（曾 parent=f27719c）及更早作废 tip。
 - 机制产物绑定 headCommit：`7623a52a3299b7c948031dfa1f79f04b8eb66d9e`（短写 `7623a52`）
 - 关联：`REPRESENTATIVE_CASES.md`、`REPORT_DATA_SPEC.md` §MEC / E-18、`experiments/mechanism_cases.py`
 
@@ -71,6 +71,8 @@
 | 2026-10-25 | 6f25bfc（parent=19255db） | 7623a52 | tip 超前 mechanism head **185** commits；**仍不重跑** mechanism；见 §16 |
 | 2026-10-25 | （本 tip，parent=bd7303e） | 7623a52 | tip 超前 mechanism head **187** commits；**仍不重跑** mechanism；见 §17；取代误标186的 fa5bf1c |
 | 2026-10-25 | （本 tip，parent=46c7ded）| 7623a52 | tip 超前 mechanism head **188** commits；**仍不重跑** mechanism；见 §18；ES 配对门禁/全量断言 |
+| 2026-10-25 | （本 tip，parent=e662631）| 7623a52 | tip 超前 mechanism head **189** commits；**仍不重跑** mechanism；见 §19；ES-3 dry-run + ES-6 E-05 草案 |
+| 2026-10-25 | 本 tip（parent=0c1ac0c）| 7623a52 | tip 相对 mechanism head **192** commits；**仍不重跑** mechanism；见 §20；rebase 作废 40acb18/dfbf8f0/8e72315 |
 
 ## 7. 对齐 feature@0654d13 后的开项证据（2026-10-25 13:11 Asia/Shanghai）
 
@@ -237,3 +239,24 @@ egative_lift_display.json 仍在；规则次级口径维持 |
 | A24 | 仍 xfail；禁伪绿 Top-k |
 | ES-3/4/5 | 本 tip 落地配对参考门禁 + 全量图注/NLC 对齐测试；bootstrap 未重算 |
 | 铁律 | 未 push / 未改 main / 未碰 museum_processing / 非纯 stamp |
+
+
+## 19. rebase 到 feature@d6f434d 续开（2026-10-25 18:20 Asia/Shanghai）— 历史
+
+（parent=d6f434d；lag=190）已被 §20 rebase 到 0c1ac0c 取代（旧 tip dfbf8f0/40acb18 作废）。
+
+## 20. rebase 到 feature@eba2faf 续开（2026-10-25 18:55 Asia/Shanghai）
+
+| 项 | 值 |
+| --- | --- |
+| 对齐分支 tip | eba2faf505dfa4f79f0fae523d00cc5dadbc6823（金石；feature 已 FF；本 tip parent） |
+| 本 tip | agent/eval-sci HEAD（parent=eba2faf；以 git rev-parse HEAD 为准） |
+| mechanism headCommit | 7623a52a3299b7c948031dfa1f79f04b8eb66d9e |
+| tip 相对 head 超前 | **194** commits（git rev-list --count 7623a52..HEAD = tip HEAD 实测） |
+| 作废 tip | 6f42ab1ab2922e9b8344a72d0a138900d8e05130；4b17bc5556e0eceff6f603465bbf37ba77934c34；46eb4d2cf172573b0f788b31dfa9a7d24d7f7d89；788a17f6ce04adc07ed747bb1a6d81eec96a7657；eb1847f401e77692ad06149199fd3ea5df9d237c |
+| R7 / G7 | **仍开着** — 只记账，勿假关；未重跑 mechanism_cases.py |
+| ES-3 | 只读 dry-run；appliedStatusSha256 飘移仍开；未写 derived；未重算 |
+| ES-6 | E-05 闸门草案 + 证据骨架强化；**未**关 TASK_BOARD；不伪绿 |
+| A24 | 仍 xfail |
+| 约束 | 未 push / 未合 main / 未碰 museum_processing |
+
