@@ -1,8 +1,8 @@
 # ES_EVAL_PROGRESS — 评测侧 ES-3/4/5 推进台账
 
 - 作者：RM-评测科学家（Agent 04+05）
-- 时间：2026-10-25 15:24 Asia/Shanghai
-- 分支 tip：3b0c47b（3b0c47bb41351d37fe77d125ca9b84b111e8e7e0）；== feature；窄冒烟后开项核验
+- 时间：2026-10-25 15:43 Asia/Shanghai
+- 分支 tip：ed9f1a0（ed9f1a0b20978d5500453bdbbaa43505a6f9297d）；FF 对齐 feature 稳定 tip；pytest 747p/1xfail；续 ES-3/4/5 核验
 - 对齐：fast-forward eature/product-grade-upgrade@c761d54（含 reports MechanismPanel / claims 台账）
 - TASK_BOARD 真源：D:\RubbingMind\docs\product-upgrade\TASK_BOARD.md（worktree 外）；本文件为 worktree 内进度镜像，供 Green 监工。
 
@@ -20,7 +20,7 @@ egative_lift_display.json 伴生导出（measured 主列 / ruleInferred 次列�
 
 | ID | 状态 | 证据 |
 |---|---|---|
-| **R7 / G7** | 开 | tip 3b0c47b 超前 mechanism head 7623a52 **162** commits（见 MECHANISM_HEAD_NOTE §12）；本期不重跑大批量 |
+| **R7 / G7** | 开 | tip ed9f1a0 超前 mechanism head 7623a52 **169** commits（见 MECHANISM_HEAD_NOTE §13）；本期不重跑大批量 |
 | **A24** | xfail 保持（禁伪 Top-k） | 	est_a24_export_label_recognized_forbidden_until_schema_exists；产品/schema 缺口（AB-8 未落地 export label）；勿伪绿；另有 	est_a24_schema_still_absent_keep_xfail_evidence |
 
 ## 明确未做
@@ -30,3 +30,9 @@ egative_lift_display.json 伴生导出（measured 主列 / ruleInferred 次列�
 - 伪绿 Top-k / CI / 负提升指标
 - push / 合 main / 改 TASK_BOARD 真源文件（worktree 外）
 - 把 A24 改成正式 assert
+
+## 对齐 feature@ed9f1a0（2026-10-25 15:43）
+
+- FF 自 51fa1ba → ed9f1a0（含 report slice10；export JSON liftClaims 屏上对齐属报告侧）
+- 评测侧 ES-3/4/5 契约与 derived 再核：仍绿；不伪绿 Top-k/CI
+- R7 lag=169 / A24 xfail：**勿谎关**

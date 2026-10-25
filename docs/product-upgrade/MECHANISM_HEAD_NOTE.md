@@ -3,7 +3,7 @@
 - 作者：RM-评测科学家（Agent 04+05）
 - 时间：2026-10-25（Asia/Shanghai）
 - 分支：`agent/eval-sci`
-- 当前 tip（写入时）：3b0c47bb41351d37fe77d125ca9b84b111e8e7e0（短写 3b0c47b；== feature tip；窄冒烟通过；R7/A24 仍开）
+- 当前 tip（写入时）：ed9f1a0b20978d5500453bdbbaa43505a6f9297d（短写 ed9f1a0；FF 对齐 feature 稳定 tip；含 report slice10 / liftClaims 屏上对齐；冒烟 747p/1xfail；R7/A24 仍开）
 - 机制产物绑定 headCommit：`7623a52a3299b7c948031dfa1f79f04b8eb66d9e`（短写 `7623a52`）
 - 关联：`REPRESENTATIVE_CASES.md`、`REPORT_DATA_SPEC.md` §MEC / E-18、`experiments/mechanism_cases.py`
 
@@ -65,6 +65,8 @@
 | 2026-10-25 | b60d556（FF feature@b60d556） | 7623a52 | tip 超前 mechanism head **145** commits；**仍不重跑** mechanism；89ff1db 已合入 |
 
 | 2026-10-25 | e53929f（FF feature@e53929f） | 7623a52 | tip 超前 mechanism head **161** commits；**仍不重跑** mechanism；含 report slice8/9 |
+
+| 2026-10-25 | ed9f1a0（FF feature@ed9f1a0） | 7623a52 | tip 超前 mechanism head **169** commits；**仍不重跑** mechanism；续 ES-3/4/5 契约核验 |
 
 ## 7. 对齐 feature@0654d13 后的开项证据（2026-10-25 13:11 Asia/Shanghai）
 
@@ -141,3 +143,20 @@
 | R7 / G7 | **仍开项** — 只记证据，未谎关；本期不重跑大批量 mechanism |
 | A24 | 	est_a24_export_label_recognized_forbidden_until_schema_exists 仍 xfail；	est_a24_schema_still_absent_keep_xfail_evidence PASSED；禁伪 Top-k |
 | 铁律 | 未 push / 未合 main / 未改 museum_processing / 未把 A24 改正式 assert |
+
+## 13. 对齐 feature@ed9f1a0 后 ES/R7 开项（2026-10-25 15:43 Asia/Shanghai）
+
+| 项 | 值 |
+| --- | --- |
+| 分支 tip | ed9f1a0b20978d5500453bdbbaa43505a6f9297d |
+| feature tip | ed9f1a0b20978d5500453bdbbaa43505a6f9297d（对齐时相同） |
+| mechanism headCommit | 7623a52a3299b7c948031dfa1f79f04b8eb66d9e |
+| tip 相对 head 超前 | **169** commits（git rev-list --count 7623a52..HEAD） |
+| R7 / G7 | **仍开项** — 只记证据，未谎关；未重跑大批量 mechanism |
+| A24 | 仍 xfail；禁伪 Top-k |
+| ES-3 | lift_claim_summary.json + CI annotate 契约仍绿；报告侧 export JSON liftClaims 屏上对齐（report 合入） |
+| ES-4 | captionProvenance.pngBytesUntouched=true；head 仍滞后 tip |
+| ES-5 | 
+egative_lift_display.json 仍在；规则次级口径维持 |
+| pytest | 747 passed / 1 xfailed / 0 failed |
+| 铁律 | 未 push / 未合 main / 未改 museum_processing；文件只写 D:\RubbingMind |
