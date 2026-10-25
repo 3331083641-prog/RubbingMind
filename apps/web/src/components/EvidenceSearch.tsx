@@ -4,17 +4,18 @@ type Evidence={sourceId:string;steleId:string;title:string;text:string;url:strin
 type Relation={source:string;target:string;relation:string;sourceIds:string[];sourceUrl:string};
 type Place={id:string;name:string;longitude:number|null;latitude:number|null;coreSampleId:string;precision:string};
 type ClaimSource={source?:string;url?:string;quote?:string;location?:string;status?:string};
-type SearchResult={answer:string;status:string;judgment?:string|null;claim?:{sources?:ClaimSource[]}|null;algorithmVersion:string;evidence:Evidence[];relations:Relation[];entities:{id:string;name:string}[];places:Place[];limitations:string};
+type DemoScope={included?:boolean;requested?:boolean;honoured?:boolean;optIn?:string|null;compatNote?:string};
+type SearchResult={answer:string;status:string;judgment?:string|null;claim?:{sources?:ClaimSource[]}|null;algorithmVersion:string;evidence:Evidence[];relations:Relation[];entities:{id:string;name:string}[];places:Place[];limitations:string;demoScope?:DemoScope};
 
 export const EvidenceSearch:React.FC<{steleId:string;onLocate?:(id:string)=>void}>=({steleId,onLocate})=>{
-  const [question,setQuestion]=useState('');const [scope,setScope]=useState(true);
+  const [question,setQuestion]=useState('');const [scope,setScope]=useState(true);const [includeDemo,setIncludeDemo]=useState(false);
   const [result,setResult]=useState<SearchResult|null>(null);const [busy,setBusy]=useState(false);const [error,setError]=useState('');
   const [graph,setGraph]=useState<{nodes:{id:string;name:string;category:string}[];links:Relation[];sources:Evidence[]}|null>(null);
   useEffect(()=>{let active=true;setResult(null);setError('');setGraph(null);
     fetch(`/api/research/steles/${encodeURIComponent(steleId)}`).then(async r=>{if(!r.ok)throw new Error('馆藏关系接口暂不可用');return r.json();}).then(d=>{if(active)setGraph(d);}).catch(e=>{if(active)setError(String(e));});
     return()=>{active=false;};},[steleId]);
   const search=async()=>{setBusy(true);setError('');setResult(null);try{
-    const response=await fetch('/api/research/query',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question,steleId:scope?steleId:null})});
+    const response=await fetch('/api/research/query',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question,steleId:scope?steleId:null,includeDemo})});
     if(!response.ok)throw new Error(`史料检索未成功（${response.status}）`);setResult(await response.json());
   }catch(e){setError(String(e));}finally{setBusy(false);}};
   const names=Object.fromEntries([...(graph?.nodes||[]),...(result?.entities||[])].map(n=>[n.id,n.name]));
@@ -24,7 +25,9 @@ export const EvidenceSearch:React.FC<{steleId:string;onLocate?:(id:string)=>void
     <div className="grid lg:grid-cols-3 gap-4">
       <form onSubmit={e=>{e.preventDefault();search();}} className="space-y-3">
         <textarea aria-label="史料问题" value={question} onChange={e=>setQuestion(e.target.value)} maxLength={500} placeholder="如：多宝塔碑的撰文者与书丹者是谁？" className="w-full bg-slate-950 border border-slate-700 p-3 rounded min-h-24"/>
-        <label className="block text-xs"><input type="checkbox" checked={scope} onChange={e=>setScope(e.target.checked)}/> 限定当前文物；取消后检索全库</label>
+        <label className="block text-xs"><input type="checkbox" checked={scope} onChange={e=>setScope(e.target.checked)} data-testid="evidence-scope"/> 限定当前文物；取消后检索全库</label>
+        <label className="block text-xs"><input type="checkbox" checked={includeDemo} onChange={e=>setIncludeDemo(e.target.checked)} data-testid="evidence-include-demo"/> 包含演示样本</label>
+        {includeDemo && <div role="alert" data-testid="evidence-demo-warning" className="p-2.5 rounded-lg bg-cinnabar/20 border border-cinnabar/40 text-cinnabar-light text-xs">警示：开启后，检索结果将包含合成演示数据（非真实史料/非实测运行），仅供界面演示与联调，不可作为研究结论或评测依据。</div>}
         <button disabled={busy||question.trim().length<2} className="bg-gold text-black rounded px-4 py-2 disabled:opacity-40">{busy?'检索中…':'检索史料'}</button>
         {graph && <details className="text-xs"><summary>本件 {graph.nodes.length} 个有据实体 / {graph.links.length} 条关系</summary>
           {graph.links.map((edge,i)=><p key={i} className="my-2">{names[edge.source]||edge.source} → {edge.relation} → {names[edge.target]||edge.target}<a className="text-gold ml-1" href={edge.sourceUrl} target="_blank" rel="noreferrer">依据</a></p>)}
@@ -32,7 +35,7 @@ export const EvidenceSearch:React.FC<{steleId:string;onLocate?:(id:string)=>void
       </form>
       <div className="lg:col-span-2 text-sm space-y-3 min-w-0" aria-live="polite">
         {error && <p role="alert" className="text-cinnabar-light">{error}</p>}
-        {result ? <><p data-testid="research-answer" className="whitespace-pre-wrap max-h-72 overflow-auto">{result.answer}</p>
+        {result ? <>{(includeDemo || result.demoScope?.included || result.demoScope?.requested) && <div role="alert" data-testid="evidence-demo-result-banner" className="p-2.5 rounded-lg bg-cinnabar/20 border border-cinnabar/40 text-cinnabar-light text-xs">{result.demoScope?.included ? "本次结果含合成演示数据，不可作为真实史料或评测依据。" : result.demoScope?.requested && result.demoScope?.honoured === false ? "已请求包含演示样本，但当前后端尚未落实 include_demo（兼容模式）；仍按合成演示数据风险读待。" : "已开启「包含演示样本」：结果可含合成演示数据，不可作为研究结论或评测依据。"}</div>}<p data-testid="research-answer" className="whitespace-pre-wrap max-h-72 overflow-auto">{result.answer}</p>
           {result.judgment==='disputed' && <p>状态：存在争议。系统保留互相冲突的著录，不按来源排序选边。</p>}
           {result.claim?.sources?.map(item => <p key={(item.source || '') + (item.quote || '')} className="text-xs">{item.status} · {item.quote} {item.url && <a className="text-gold underline" href={item.url} target="_blank" rel="noreferrer">{item.source || '查看来源'}</a>}</p>)}
           <p className="text-xs text-slate-400">{result.algorithmVersion} · 检索 {result.status}{result.judgment ? ` · 判断 ${result.judgment==='supported'?'支持':result.judgment==='contradicted'?'反驳':'证据不足'}` : ''}</p>
