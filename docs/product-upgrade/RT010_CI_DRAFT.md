@@ -23,3 +23,16 @@
 1. 将 `ci-feature.draft.yml` 迁入 `.github/workflows/` 或合并进 `ci.yml`
 2. 新增 job：`validate_history_gis.py`、graph / terrain3d browser、technical_v2 非 `--ci` 或显式 mobile viewport
 3. 与 RT-001（technical_v2 移动导航）一并修，避免 feature CI 红灯无人认领
+
+## Green scope 2026-10-25 18:01（Asia/Shanghai）
+
+授权：仅扩展 `docs/product-upgrade/ci-feature.draft.yml`，**禁止**改 `.github/workflows/ci.yml` 生效面。
+
+本 tip：
+
+- 新增草稿 job `draft-feature-gate`：串联 `pytest tests/ -v` + `python scripts/validate_museum_v3.py` + `apps/web` 的 `npm ci` / `npm run build`（含 security_scan + init_db 前置）
+- 保留原 `backend-test` / `frontend-build` / `browser-extended-draft`（含 history GIS / browser 提案步骤，`continue-on-error`）
+- 仍为草稿；迁入 `.github/workflows/` 须 Green 再批
+
+暂缓：RT-008 tailwind v4；RT-006 / RF-8 仍等用户。
+

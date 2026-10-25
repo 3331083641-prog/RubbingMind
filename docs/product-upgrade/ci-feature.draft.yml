@@ -1,5 +1,8 @@
 # DRAFT ONLY — not under .github/workflows/ (RT-010).
 # Promote into .github/workflows/ only after Green approval.
+# Green scope 2026-10-25 18:01 Asia/Shanghai (RM-架构后端):
+#   extend this draft with explicit pytest + validate_museum_v3 + npm run build
+#   gate job; DO NOT change .github/workflows/ci.yml effective surface.
 name: RubbingMind CI (feature draft)
 
 on:
@@ -10,6 +13,48 @@ on:
   workflow_dispatch:
 
 jobs:
+  # --- RT-010 / Green 18:01: promote-first package (draft only) ---
+  draft-feature-gate:
+    name: Draft feature gate (pytest + museum_v3 + web build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+
+      - name: Install Python deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Security scan + init DB
+        run: |
+          python scripts/security_scan.py
+          python scripts/init_db.py
+
+      - name: pytest
+        run: pytest tests/ -v
+
+      - name: validate_museum_v3
+        run: python scripts/validate_museum_v3.py
+
+      - name: npm ci (apps/web)
+        working-directory: apps/web
+        run: npm ci
+
+      - name: npm run build
+        working-directory: apps/web
+        run: npm run build
+
   backend-test:
     runs-on: ubuntu-latest
     steps:
