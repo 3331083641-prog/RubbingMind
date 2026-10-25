@@ -3,7 +3,7 @@
 - 作者：RM-评测科学家（Agent 04+05）
 - 时间：2026-10-25（Asia/Shanghai）
 - 分支：`agent/eval-sci`
-- 当前 tip（写入时）：rebase 于 feature@7e080c5 之上（含 AB-8 health samples banner；R7 lag=184；勿用旧 tip c6de56e/802d51d）
+- 当前 tip（写入时）：叠在 feature@19255db 之上（parent=19255db；R7 lag=185；勿用已作废 tip 8178f46/109eec1/c6de56e）
 - 机制产物绑定 headCommit：`7623a52a3299b7c948031dfa1f79f04b8eb66d9e`（短写 `7623a52`）
 - 关联：`REPRESENTATIVE_CASES.md`、`REPORT_DATA_SPEC.md` §MEC / E-18、`experiments/mechanism_cases.py`
 
@@ -67,6 +67,8 @@
 | 2026-10-25 | e53929f（FF feature@e53929f） | 7623a52 | tip 超前 mechanism head **161** commits；**仍不重跑** mechanism；含 report slice8/9 |
 
 | 2026-10-25 | ed9f1a0（FF feature@ed9f1a0） | 7623a52 | tip 超前 mechanism head **169** commits；**仍不重跑** mechanism；续 ES-3/4/5 契约核验 |
+
+| 2026-10-25 | （本 tip，parent=19255db） | 7623a52 | tip 超前 mechanism head **185** commits；**仍不重跑** mechanism；见 §16 |
 
 ## 7. 对齐 feature@0654d13 后的开项证据（2026-10-25 13:11 Asia/Shanghai）
 
@@ -185,3 +187,20 @@ egative_lift_display.json 仍在；规则次级口径维持 |
 | A24 | 仍 xfail；禁伪 Top-k |
 | ES-3/4/5 | 契约维持；续核随 tip |
 | 铁律 | 未 push / 未合 main / 未改 museum_processing |
+
+
+## 16. 对齐 feature@19255db 后开项（2026-10-25 16:46 Asia/Shanghai）
+
+| 项 | 值 |
+| --- | --- |
+| 对齐基线 tip | 19255dbff2fc9454c51904521aa01fffb61f0186（feature 已 FF 合入；本 tip parent） |
+| 本 tip | agent/eval-sci HEAD（parent=19255dbff2fc9454c51904521aa01fffb61f0186；以 git rev-parse HEAD 为准） |
+| mechanism headCommit | 7623a52a3299b7c948031dfa1f79f04b8eb66d9e |
+| tip 相对 head 超前 | **185** commits（git rev-list --count 7623a52..HEAD；parent 对齐点为 184） |
+| R7 / G7 | **仍开项** — 只记证据，勿假关；未重跑 mechanism_cases.py；不得宣称机制 PNG 与 tip 字节一致 |
+| pytest | python -m pytest tests/ -q --tb=no → **747 passed / 1 xfailed / 0 failed** |
+| A24 | 仍 xfail：	est_a24_export_label_recognized_forbidden_until_schema_exists（Phase2 export schema with label=candidate|human_accepted_glyph not implemented） |
+| ES-3 | bootstrap CI 口径写入 ES_EVAL_PROGRESS（bootstrap=1000/seed=20261019；不重算） |
+| ES-4 | 图注 provenance 已挂；pngBytesUntouched；head 落后 tip |
+| ES-5 | negative_lift_display 口径再核；measured 主 / rule 次 |
+| 铁律 | 未 push / 未改 main / 未碰 museum_processing / 未改馆藏影像与实验原始数据 / 不作废 tip 续写 |
