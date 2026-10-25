@@ -22,6 +22,13 @@ from catalog import museum_records
 from degradation_analysis import AdaptiveRubbingRestorer, VERSION, missing_information_mask
 
 CATALOG_PATH = ROOT / 'data/catalog/steles28.json'
+
+
+def results_root() -> Path:
+    """RUBBINGMIND_RESULTS_DIR when set, else the historical <repo>/static/results."""
+    from runtime_paths import results_override
+    return results_override() or ROOT / 'static/results'
+
 ASSESS_DIR = ROOT / 'data/catalog/assessments'
 REVIEW_CSV = ROOT / 'docs/audit/28-steles-authorship-condition-review.csv'
 REVIEW_MD = ROOT / 'docs/audit/28-steles-authorship-condition-review.md'
@@ -193,7 +200,7 @@ def main():
         x, y, x1, y1 = box
         crop = readable[y:y1, x:x1]
         run_id = f'{BATCH}-{item["id"]}'
-        out_dir = ROOT / 'static/results' / item['id'] / run_id
+        out_dir = results_root() / item['id'] / run_id
         started = time.time()
         error = None
         diagnostics = None
@@ -226,7 +233,8 @@ def main():
             'cropBox': {'x': x, 'y': y, 'width': x1 - x, 'height': y1 - y, 'space': 'readable native pixels, right/bottom exclusive'},
             'partialResultIsNotFullFrame': scope != 'full_readable_frame',
             'processingTimeMs': elapsed_ms,
-            'outputImage': None if output_sha is None else (out_dir / 'restored.png').relative_to(ROOT).as_posix(),
+            # Same string as before for the default location; stays a /static/results-style path when relocated.
+            'outputImage': None if output_sha is None else f"static/results/{item['id']}/{run_id}/restored.png",
             'archivedOutput': None if output_sha is None else f'data/catalog/assessments/outputs/{item["id"]}.png',
             'outputImageSha256': output_sha,
             'adaptiveDecisions': None if not diagnostics else diagnostics['decisions'],

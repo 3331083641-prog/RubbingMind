@@ -45,5 +45,9 @@ def test_generic_rules_on_synthetic_rows():
     ]
     body = diagnose_batch({'rows': rows}, 'synthetic')
     assert body['negativeLiftCount'] == 1 and body['cases'][0]['method'] == 'a' and body['cases'][0]['psnrDeltaFromInput'] == -1.0
-    assert body['byMethod']['b']['byteIdenticalToInput'] == 1 and body['byMethod']['a']['unmatched'] == 1
+    assert body['byMethod']['b']['byteIdentical'] == 1 and body['byMethod']['a']['unmatched'] == 1
+    # one-version alias, same values (red-team gate 7c0e258, non-blocking item)
+    assert all(m['byteIdenticalToInput'] == m['byteIdentical'] for m in body['byMethod'].values())
+    assert all(c['byteIdenticalToInput'] == c['byteIdentical'] for c in body['cases'])
+    assert 'byteIdenticalToInput' in body['deprecatedFields']
     assert body['unmatchedRowCount'] == 1

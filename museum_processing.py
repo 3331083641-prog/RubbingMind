@@ -12,8 +12,14 @@ from runtime_paths import results_override
 # equal shape and every value equal. No gray conversion, no resizing.
 RUN_PASSTHROUGH_CRITERION='pixel-equal-v1'
 COMPARED_IMAGES=['original','restored']
+# Green 2026-10-19 (a): a working-gray count is reported next to pixel-equal-v1 for reference only.
+# It never decides isPassthrough / outputMode / the "本次未改动原图" wording.
+GRAY_CRITERION='working-gray-pixel-equal-v1'
+GRAY_CRITERION_RULE=('两张图各自按处理管线同一灰度化（algorithm_engine.process_rubbing 的 cv2.cvtColor(BGR→GRAY)；'
+                     '单通道图不转换，四通道先去掉 alpha）后，形状相同则逐像素比较；仅供参考，不决定 isPassthrough。')
+GRAY_FIELDS=('grayChangedPixelCount','grayChangedPixelRatio','grayCriterion','grayCriterionRule','graySource')
 CHANGE_FIELDS=('isPassthrough','changedPixelCount','totalPixelCount','changedPixelRatio','maxAbsDiff','meanAbsDiff',
-               'passthroughCriterion','passthroughSource','passthroughUndeterminedReason')
+               'passthroughCriterion','passthroughSource','passthroughUndeterminedReason')+GRAY_FIELDS
 
 
 def _decode_full(raw):
@@ -22,10 +28,34 @@ def _decode_full(raw):
     return cv2.imdecode(np.frombuffer(raw,np.uint8),cv2.IMREAD_UNCHANGED)
 
 
+def _gray_undetermined():
+    return {key:None for key in GRAY_FIELDS}
+
+
 def _undetermined(reason):
     return {'isPassthrough':None,'changedPixelCount':None,'totalPixelCount':None,'changedPixelRatio':None,
             'maxAbsDiff':None,'meanAbsDiff':None,'passthroughCriterion':None,'passthroughSource':None,
-            'passthroughUndeterminedReason':reason}
+            'passthroughUndeterminedReason':reason,**_gray_undetermined()}
+
+
+def _working_gray(image):
+    import cv2
+    if image.ndim==2:return image
+    if image.shape[2]==1:return image[:,:,0]
+    return cv2.cvtColor(image[:,:,:3],cv2.COLOR_BGR2GRAY)
+
+
+def gray_change_status(before,after,source='recorded'):
+    """Reference count on the pipeline's working gray image; None when it cannot be determined."""
+    if before is None or after is None:return _gray_undetermined()
+    try:
+        a=_working_gray(before);b=_working_gray(after)
+    except Exception:
+        return _gray_undetermined()
+    if a.shape!=b.shape or a.dtype!=b.dtype:return _gray_undetermined()
+    stats=change_stats(a,b)
+    return {'grayChangedPixelCount':stats['changedPixelCount'],'grayChangedPixelRatio':stats['changedPixelRatio'],
+            'grayCriterion':GRAY_CRITERION,'grayCriterionRule':GRAY_CRITERION_RULE,'graySource':source}
 
 
 def run_change_status(original_png, restored_png, source='recorded'):
@@ -40,11 +70,13 @@ def run_change_status(original_png, restored_png, source='recorded'):
     if before is None or after is None:
         return _undetermined('输入或输出图像无法解码')
     if before.shape!=after.shape or before.dtype!=after.dtype:
-        return _undetermined(f'输入与输出的数组形状或位深不同（{before.shape}/{before.dtype} vs {after.shape}/{after.dtype}），按 pixel-equal-v1 无法逐像素比较')
+        return {**_undetermined(f'输入与输出的数组形状或位深不同（{before.shape}/{before.dtype} vs {after.shape}/{after.dtype}），按 pixel-equal-v1 无法逐像素比较'),
+                **gray_change_status(before,after,source)}
     stats=change_stats(before,after)
     stats['passthroughCriterion']=RUN_PASSTHROUGH_CRITERION
     stats['passthroughSource']=source
     stats['passthroughUndeterminedReason']=None
+    stats.update(gray_change_status(before,after,source))
     return stats
 
 
@@ -71,8 +103,8 @@ _READ_CACHE={}
 
 
 def computed_on_read_status(stele_id,run_id,data):
-    """Old runs only: compute pixel-equal-v1 from the stored PNGs if BOTH SHA-256 match the
-    run record. Read-only: nothing is written back."""
+    """Old runs only: compute pixel-equal-v1 (and the gray reference) from the stored PNGs if BOTH
+    SHA-256 match the run record. Read-only: nothing is written back."""
     images=data.get('outputImages') or {};hashes=data.get('outputSha256') or {}
     if not isinstance(hashes,dict) or not hashes.get('original') or not hashes.get('restored'):
         return _undetermined('该运行保存于判据引入前，且未记录输入/输出 SHA-256，无法校验后读取计算')
@@ -101,6 +133,39 @@ def effective_parameters(req):
     return {'mode':req.filter_type,'d0':req.d0,'filterOrder':req.filter_order,'nlmH':req.h_nlm,
             'claheClip':req.clahe_clip,'morphKernel':req.morph_kernel,'ignoredRequestParameters':[]}
 
+# Versions whose request -> effective parameter mapping is verified against stored code:
+# adaptive v2.0 (experiments/results/2026-10-17-v2/source_snapshot/algorithm_engine.py:355) and
+# v2.1 (algorithm_engine.py:365) both call restore(strength=max(.1,h/10), notch_width=max(.5,d0/60));
+# the fixed path passes d0/filter_order/nlm_h/clahe_clip/morph_kernel straight through since 751872d.
+EFFECTIVE_DERIVABLE={'adaptive':('adaptive-rubbing-v2.0','adaptive-rubbing-v2.1'),
+                     'fixed':('frequency-spatial-v2.1','fixed-frequency-spatial-v2.2')}
+_EFFECTIVE_NEEDS={'adaptive':('h_nlm','d0'),'fixed':('d0','filter_order','h_nlm','clahe_clip','morph_kernel')}
+
+
+def effective_parameters_on_read(data):
+    """(effectiveParameters, reason) for runs saved without them; derived from the stored request only."""
+    from types import SimpleNamespace
+    version=data.get('algorithmVersion');params=data.get('algorithmParameters')
+    if version==LEGACY_VERSION:
+        return None,'旧版未核验运行：记录中没有算法路径（filter_type）与算法版本，无法确定当时实际生效的参数'
+    if not isinstance(params,dict) or not params.get('filter_type'):
+        return None,'运行记录缺少 algorithmParameters.filter_type，无法确定实际生效的参数'
+    kind='adaptive' if params['filter_type']=='adaptive' else 'fixed'
+    if version not in EFFECTIVE_DERIVABLE[kind]:
+        return None,f'算法版本 {version} 的参数映射未经核实，不推算实际生效参数'
+    missing=[key for key in _EFFECTIVE_NEEDS[kind] if not isinstance(params.get(key),(int,float))]
+    if missing:
+        return None,f'运行记录缺少请求参数 {"、".join(missing)}，无法推算实际生效参数'
+    return effective_parameters(SimpleNamespace(**params)),None
+
+
+def _normalize_compared_images(value):
+    """REPORT_DATA_SPEC §8: older records wrote {before, after}; normalise to [before, after] on read."""
+    if isinstance(value,dict):
+        return [value.get('before','original'),value.get('after','restored')]
+    return list(value) if isinstance(value,(list,tuple)) else list(COMPARED_IMAGES)
+
+
 def process_verified_request(req, manager, engine):
     started_at=datetime.now(timezone.utc).isoformat()
     record=manager.get_stele_by_id(req.stele_id) if req.stele_id else None
@@ -122,7 +187,7 @@ def process_verified_request(req, manager, engine):
         image=str(image)
     elif req.sample_id in ('sample_1.png','sample_2.png','sample_3.png','sample_4.png'):
         image=str(BASE/'static/samples'/req.sample_id)
-    else:raise HTTPException(status_code=400,detail='需要文物ID或用户图像')
+    else:raise HTTPException(status_code=422,detail='缺少 stele_id：请明确指定要处理的文物（或内置样本 sample_id）；不会默认处理任何文物')
     result=engine.process_rubbing(image_input=image,d0=req.d0,filter_order=req.filter_order,filter_type=req.filter_type,nlm_h=req.h_nlm,clahe_clip=req.clahe_clip,morph_kernel=req.morph_kernel,damage_mask=req.damage_mask,cinnabar_style=req.cinnabar_style,random_seed=req.random_seed)
     if result.get('error'):raise HTTPException(status_code=422,detail=result['error'])
     run_id=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')+'_'+uuid.uuid4().hex[:8]
@@ -155,6 +220,8 @@ def process_verified_request(req, manager, engine):
     change=run_change_status(raw_images.get('original'),raw_images.get('restored'))
     response.update({key:change[key] for key in CHANGE_FIELDS},comparedImages=list(COMPARED_IMAGES),outputMode=output_mode(change))
     response['effectiveParameters']=effective_parameters(req)
+    response['effectiveParametersSource']='recorded'
+    response['effectiveParametersUnavailableReason']=None
     input_sha=hashlib.sha256(Path(image).read_bytes()).hexdigest() if not req.image_base64 else hashlib.sha256(base64.b64decode(req.image_base64.split(',',1)[-1])).hexdigest()
     record_json=dict(response,steleId=artifact_id,algorithmParameters=req.model_dump(exclude={'image_base64','damage_mask'}),
         inputImageSha256=input_sha,outputSha256=hashes,startedAt=started_at,finishedAt=datetime.now(timezone.utc).isoformat(),
@@ -196,6 +263,20 @@ def read_run(stele_id, run_id):
         # Runs saved before the criterion: computed on read when both SHA-256 verify; never written back.
         status=computed_on_read_status(stele_id,run_id,data)
         data.update(status,comparedImages=list(COMPARED_IMAGES),outputMode=output_mode(status))
+    elif 'grayCriterion' not in data:
+        # Runs recorded before the gray reference existed: only the gray fields are computed on read.
+        status=computed_on_read_status(stele_id,run_id,data)
+        data.update({key:status.get(key) for key in GRAY_FIELDS})
+    data['comparedImages']=_normalize_compared_images(data.get('comparedImages'))
+    if data.get('effectiveParameters') is None:
+        # SPEC §8 wants effectiveParameters for every run: derive from the stored request when the
+        # version mapping is verified; otherwise null with an explicit reason. Never written back.
+        effective,reason=effective_parameters_on_read(data)
+        data.update(effectiveParameters=effective,effectiveParametersSource='derived-on-read' if effective else None,
+                    effectiveParametersUnavailableReason=reason)
+    else:
+        data.setdefault('effectiveParametersSource','recorded')
+        data.setdefault('effectiveParametersUnavailableReason',None)
     return data if data.get('runId')==run_id else None
 
 

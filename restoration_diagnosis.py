@@ -61,6 +61,7 @@ def diagnose(path=RESULT):
 
 GENERIC_VERSION = 'baseline-delta-v1'
 BASELINE_METHOD = 'degraded'
+BYTE_IDENTICAL_ALIAS = 'byteIdenticalToInput'
 
 
 def _case_key(row: dict):
@@ -83,7 +84,7 @@ def diagnose_batch(data: dict, experiment_id: str) -> dict:
         method = row.get('method')
         if method == BASELINE_METHOD:
             continue
-        stats = by_method.setdefault(method, {'n': 0, 'negativeLift': 0, 'byteIdenticalToInput': 0, 'byteIdentityUnknown': 0, 'unmatched': 0})
+        stats = by_method.setdefault(method, {'n': 0, 'negativeLift': 0, 'byteIdentical': 0, 'byteIdentityUnknown': 0, 'unmatched': 0})
         stats['n'] += 1
         base = baselines.get(_case_key(row))
         psnr, base_psnr = row.get('psnr'), (base or {}).get('psnr')
@@ -96,7 +97,7 @@ def diagnose_batch(data: dict, experiment_id: str) -> dict:
         if identical is None:
             stats['byteIdentityUnknown'] += 1
         elif identical:
-            stats['byteIdenticalToInput'] += 1
+            stats['byteIdentical'] += 1
         delta = psnr - base_psnr
         if delta < 0:
             stats['negativeLift'] += 1
@@ -104,10 +105,16 @@ def diagnose_batch(data: dict, experiment_id: str) -> dict:
                 'caseId': row.get('caseId'), 'sampleId': row.get('sampleId'), 'split': row.get('split'),
                 'degradation': row.get('degradation'), 'strength': row.get('strength'), 'seed': row.get('seed'),
                 'method': method, 'psnr': psnr, 'baselinePsnr': base_psnr, 'psnrDeltaFromInput': delta,
-                'negativeLift': True, 'byteIdenticalToInput': identical,
+                'negativeLift': True, 'byteIdentical': identical,
                 'output': row.get('output'), 'outputSha256': row.get('outputSha256'),
             })
     cases.sort(key=lambda c: c['psnrDeltaFromInput'])
+    # REPORT_DATA_SPEC §0.3 names the file-SHA flag `byteIdentical`. `byteIdenticalToInput` is kept for one
+    # version as a deprecated alias with the same value (BYTE_IDENTICAL_ALIAS), then removed.
+    for stats in by_method.values():
+        stats[BYTE_IDENTICAL_ALIAS] = stats['byteIdentical']
+    for case in cases:
+        case[BYTE_IDENTICAL_ALIAS] = case['byteIdentical']
     return {
         'experimentId': experiment_id,
         'diagnosisVersion': GENERIC_VERSION,
@@ -119,6 +126,7 @@ def diagnose_batch(data: dict, experiment_id: str) -> dict:
         'cases': cases,
         'causeCounts': None,
         'causeBasis': '未做归因：通用诊断只报告事实，不推断原因。',
+        'deprecatedFields': {BYTE_IDENTICAL_ALIAS: '别名，等于 byteIdentical；保留一个版本后移除'},
         'byteIdentityBasis': 'outputSha256 与输入（inputSha256，缺失时取同 case 的 degraded 输出）相同即为原图返回；像素级判据以评测侧 applied_status 为准。',
         'caveat': CAVEAT,
     }

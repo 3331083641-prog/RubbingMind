@@ -1,0 +1,118 @@
+"""Read-only access to eval-sci derived files (REPORT_DATA_SPEC §0.1 DER / CI rows).
+
+applied_status: per-row label written by eval-sci `experiments/derive_applied_status.py` into
+`experiments/results/<batch>/derived/applied_status.json` (appliedStatus ∈ processed / passthrough /
+passthrough_not_applicable / processed_not_applicable_label / undetermined; criterion pixel-equal-v1).
+ci_by_artifact: artifact-clustered bootstrap CIs written by `experiments/ci_by_artifact.py`.
+
+The backend computes no statistic here: it serves the files as written, after checking that they
+belong to the requested batch and still match the result files they were derived from. A missing,
+mismatched or stale file gives an explicit status, never another batch's data.
+"""
+from __future__ import annotations
+
+import hashlib
+import json
+from pathlib import Path
+
+import experiment_registry
+
+APPLIED_STATUS = 'applied_status.json'
+CI_BY_ARTIFACT = 'ci_by_artifact.json'
+APPLIED_KEYS = ('criterion', 'imagesAvailable', 'note', 'derivedAt', 'derivedBy', 'sourceResultsSha256',
+                'summaryByMethod', 'summaryBySplitMethod', 'summaryByMethodDegradation')
+CI_KEYS = ('derivedAt', 'derivedBy', 'seed', 'bootstrap', 'percentiles', 'minReliableArtifacts', 'rngRule', 'gainDefinition',
+           'scopeSource', 'sourceResultsSha256', 'appliedStatusSha256', 'rowN', 'artifactN', 'comparisonWithGroupedSummary')
+CI_FILTERS = ('split', 'method', 'degradation', 'scope')
+SERVED_BY = '后端只读转发评测科学家生成的派生文件，不重算任何统计量'
+
+
+def _sha(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def registry_entry(experiment_id: str):
+    return next((entry for entry in experiment_registry.batches() if entry['id'] == experiment_id), None)
+
+
+def batch_index() -> dict:
+    """One-to-one experimentId <-> batch (results directory) mapping, from the registry itself."""
+    entries = experiment_registry.batches()
+    by_batch = {entry['directory']: entry['id'] for entry in entries}
+    if len(by_batch) != len(entries):  # cannot happen with one results.json per directory; fail loudly if it does
+        raise RuntimeError('实验登记中 batch（目录名）与 experimentId 不是一一对应')
+    return {'items': [{'experimentId': entry['id'], 'batch': entry['directory']} for entry in entries],
+            'basis': 'batch = experiments/results 下的目录名；experimentId 为权威参数，batch 仅作可读别名'}
+
+
+def resolve_batch(batch: str):
+    return next((item for item in batch_index()['items'] if item['batch'] == batch), None)
+
+
+def _derived(entry: dict, name: str):
+    path = experiment_registry.RESULTS / entry['directory'] / 'derived' / name
+    return path if path.is_file() else None
+
+
+def _base(entry: dict, name: str, path):
+    return {'experimentId': entry['id'], 'batch': entry['directory'],
+            'file': f"experiments/results/{entry['directory']}/derived/{name}", 'servedBy': SERVED_BY,
+            'fileSha256': _sha(path) if path else None}
+
+
+def _check_identity(entry: dict, data: dict, results_sha: str) -> list[str]:
+    problems = []
+    if data.get('experimentId') not in (None, entry['id']):
+        problems.append(f"文件声明的 experimentId={data.get('experimentId')} 与请求的批次不一致")
+    if data.get('batch') not in (None, entry['directory']):
+        problems.append(f"文件声明的 batch={data.get('batch')} 与请求的批次目录不一致")
+    if data.get('sourceResultsSha256') and data['sourceResultsSha256'] != results_sha:
+        problems.append('派生文件的 sourceResultsSha256 与当前 results.json 不一致（结果已变化，派生文件过期）')
+    if not data.get('sourceResultsSha256'):
+        problems.append('派生文件没有记录 sourceResultsSha256，无法核对来源')
+    return problems
+
+
+def applied_status(experiment_id: str, include_rows: bool = False):
+    entry = registry_entry(experiment_id)
+    if entry is None:
+        return None
+    path = _derived(entry, APPLIED_STATUS)
+    out = _base(entry, APPLIED_STATUS, path)
+    if path is None:
+        return {**out, 'available': False, 'status': 'missing',
+                'reason': '本批次没有 derived/applied_status.json（由评测科学家 experiments/derive_applied_status.py 生成）'}
+    data = json.loads(path.read_text('utf-8'))
+    problems = _check_identity(entry, data, _sha(experiment_registry.RESULTS / entry['directory'] / 'results.json'))
+    if problems:
+        return {**out, 'available': False, 'status': 'stale', 'reason': '；'.join(problems)}
+    body = {key: data.get(key) for key in APPLIED_KEYS}
+    if include_rows:
+        body['rows'] = data.get('rows') or []
+    else:
+        body['rowCount'] = len(data.get('rows') or [])
+    return {**out, 'available': True, 'status': 'ok', **body}
+
+
+def ci_by_artifact(experiment_id: str, filters: dict | None = None):
+    entry = registry_entry(experiment_id)
+    if entry is None:
+        return None
+    path = _derived(entry, CI_BY_ARTIFACT)
+    out = _base(entry, CI_BY_ARTIFACT, path)
+    if path is None:
+        return {**out, 'available': False, 'status': 'missing',
+                'reason': '本批次没有按文物聚类的 CI 文件（REPORT_DATA_SPEC §0.1 只为 2026-10-17-v2 与 2026-10-17-v2-text 计算）'}
+    data = json.loads(path.read_text('utf-8'))
+    problems = _check_identity(entry, data, _sha(experiment_registry.RESULTS / entry['directory'] / 'results.json'))
+    status_path = _derived(entry, APPLIED_STATUS)
+    if data.get('appliedStatusSha256') and (status_path is None or _sha(status_path) != data['appliedStatusSha256']):
+        problems.append('CI 文件记录的 appliedStatusSha256 与当前 applied_status.json 不一致（口径来源已变化）')
+    if problems:
+        return {**out, 'available': False, 'status': 'stale', 'reason': '；'.join(problems)}
+    groups = data.get('groups') or []
+    active = {key: value for key, value in (filters or {}).items() if key in CI_FILTERS and value}
+    if active:
+        groups = [group for group in groups if all(str(group.get(key)) == value for key, value in active.items())]
+    return {**out, 'available': True, 'status': 'ok', **{key: data.get(key) for key in CI_KEYS},
+            'filters': active, 'groupCount': len(groups), 'groups': groups}

@@ -29,6 +29,7 @@ def batch_metadata(entry: dict, data: dict) -> dict:
     if not splits:
         reasons.append('本批未划分 development/test。')
     return {
+        'batch': entry.get('directory'),  # readable alias of the authoritative experimentId (one-to-one)
         'splitAvailable': bool(splits),
         'splits': dict(sorted(splits.items())),
         'rowsWithoutSplit': len(rows) - sum(splits.values()),

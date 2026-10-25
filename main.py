@@ -99,7 +99,9 @@ app.mount("/assets", StaticFiles(directory=DIST_ASSETS_DIR if os.path.exists(DIS
 
 # Pydantic 请求数据模型
 class ProcessRequest(BaseModel):
-    stele_id: Optional[str] = "tang-duobao"
+    # RT-014: no silent default artifact. Callers must name stele_id (or a built-in sample_id);
+    # a missing id is a 422, never a run filed under tang-duobao.
+    stele_id: Optional[str] = None
     sample_id: Optional[str] = None
     image_base64: Optional[str] = Field(default=None,max_length=17_000_000)
     d0: float = Field(default=45.0, ge=1, le=500)
@@ -179,6 +181,21 @@ def list_experiments():
     return batches()
 
 
+@app.get('/api/experiments/batch-index')
+def experiment_batch_index():
+    # experimentId is authoritative; batch (results directory) is a readable alias, one-to-one.
+    from experiment_derived import batch_index
+    return batch_index()
+
+
+@app.get('/api/experiments/resolve')
+def resolve_experiment_batch(batch: str):
+    from experiment_derived import resolve_batch
+    item=resolve_batch(batch)
+    if item is None:raise HTTPException(status_code=404,detail='没有这个实验批次（batch）；不会回落到其他批次')
+    return item
+
+
 @app.get('/api/experiments/{experiment_id}')
 def get_experiment(experiment_id: str):
     from experiment_registry import batch
@@ -207,6 +224,23 @@ def experiment_diagnosis(experiment_id: str):
     if data is None:
         raise HTTPException(status_code=404, detail='实验批次不存在')
     return diagnose_batch(data, experiment_id)
+
+
+@app.get('/api/experiments/{experiment_id}/applied-status')
+def experiment_applied_status(experiment_id: str, rows: bool = False):
+    from experiment_derived import applied_status
+    body=applied_status(experiment_id, include_rows=rows)
+    if body is None:raise HTTPException(status_code=404,detail='实验批次不存在')
+    return body
+
+
+@app.get('/api/experiments/{experiment_id}/ci-by-artifact')
+def experiment_ci_by_artifact(experiment_id: str, split: Optional[str] = None, method: Optional[str] = None,
+                              degradation: Optional[str] = None, scope: Optional[str] = None):
+    from experiment_derived import ci_by_artifact
+    body=ci_by_artifact(experiment_id, {'split':split,'method':method,'degradation':degradation,'scope':scope})
+    if body is None:raise HTTPException(status_code=404,detail='实验批次不存在')
+    return body
 
 
 @app.get('/api/experiments/{experiment_id}/export/{kind}')
