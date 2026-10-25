@@ -34,7 +34,7 @@
 | BR-07 | `query_steles(include_retired=True)` 退役坐标置空 | 本轮已做 |
 | BR-08 / C-16 `includeDemo` | API + api.ts；检索逻辑合并取 jinshi | API 本轮；逻辑排期合并 |
 | RV-AI02 / RV-AI03 | C-08 P3 | 排期 |
-| RT-002..010 | 见 R2-7；**AB-8 已落地 RT-002/003/004**（`f894760`：health samples_*、browser_target/Port、conftest tmp + validate report_path）；其余 RT 仍排期 | AB-8 部分完成 |
+| RT-002..010 | 见 R2-7；**AB-8 已落地 RT-002/003/004**（`f894760`）；**本轮残余：RT-005/007/009/011 + RT-006 部分**（安全响应头 + remote 关 docs；`.env.example`→RUBBINGMIND_*；Forwarded 不信任 loopback；start/check 仅 GET `/api/health`；无 dist 时 `/`→503 不回退 `static/index.html`）。RT-006 全删 / RT-008 vite / RT-010 CI / RT-013 soft-delete 仍排期（勿关产品单） | AB-8 残余部分完成 |
 
 ## R2-11 RV-AI05
 
