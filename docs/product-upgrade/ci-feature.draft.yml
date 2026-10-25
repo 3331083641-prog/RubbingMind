@@ -1,0 +1,71 @@
+# DRAFT ONLY — not under .github/workflows/ (RT-010).
+# Promote into .github/workflows/ only after Green approval.
+name: RubbingMind CI (feature draft)
+
+on:
+  push:
+    branches: [ "feature/**", "agent/**" ]
+  pull_request:
+    branches: [ "feature/**", "main" ]
+  workflow_dispatch:
+
+jobs:
+  backend-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+      - run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - run: python scripts/security_scan.py
+      - run: python scripts/init_db.py
+      - run: pytest tests/ -v
+      - run: python scripts/validate_museum_v3.py
+      # Proposed additions (not yet in main ci.yml):
+      - name: Validate history GIS catalogue
+        run: python scripts/validate_history_gis.py
+        continue-on-error: true
+
+  frontend-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+      - working-directory: apps/web
+        run: npm ci
+      - working-directory: apps/web
+        run: npm audit --audit-level=high
+      - working-directory: apps/web
+        run: npm run build
+
+  browser-extended-draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: |
+          pip install -r requirements-browser.txt
+          python -m playwright install --with-deps chromium
+          cd apps/web && npm ci && npm run build
+      - name: technical_v2 (ci mode — RT-001 still open for mobile)
+        run: python scripts/test_technical_v2_browser.py --ci --url http://127.0.0.1:4173
+        continue-on-error: true
+      - name: graph browser (proposed)
+        run: python scripts/test_graph_browser.py --ci
+        continue-on-error: true
+      - name: terrain3d browser (proposed)
+        run: python scripts/test_terrain3d_v22_browser.py --ci
+        continue-on-error: true
