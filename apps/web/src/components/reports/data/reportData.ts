@@ -508,7 +508,7 @@ type RunExtras = ProcessingRunR1 & {
   grayMeanAbsDiff?: number | null;
   grayPassthroughCriterion?: string | null;
   engineDiagnosticMetrics?: Record<string, number | null>;
-  adaptiveDiagnostics?: { version?: string; features?: Record<string, unknown>; decisions?: { operator: string; reason?: string }[]; fidelityGate?: Record<string, unknown>; selectedOutput?: string; limitations?: string } | null;
+  adaptiveDiagnostics?: { version?: string; features?: Record<string, unknown>; decisions?: { operator: string; reason?: string }[]; fidelityGate?: Record<string, unknown>; selectedOutput?: string; algorithmOutputMode?: 'processed' | 'identity_no_evidence' | 'gate_fallback_original'; changeStats?: Record<string, unknown>; limitations?: string } | null;
   frequencyDetails?: { mode?: string; notchApplied?: boolean; adaptive?: RunExtras['adaptiveDiagnostics'] } | null;
 };
 export type RunOutputMode = 'passthrough' | 'processed' | 'undetermined';
