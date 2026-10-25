@@ -3,6 +3,8 @@ import { SteleItem, CharacterItem, ProcessingResult, ProcessingRun, roleText } f
 import { SteleService } from '../services/api';
 import type { GlyphInferenceRecord } from '../services/api';
 import { GlyphInferencePanel } from '../components/GlyphInferencePanel';
+import { readUrlState } from '../state/urlState';
+import { writeFilters } from '../components/reports/reportFilters';
 import { 
   Sliders, 
   Layers, 
@@ -24,9 +26,11 @@ import {
 interface WorkbenchPageProps {
   stele: SteleItem;
   onNavigate: (tab: string) => void;
+  /** R1-6: reports the run shown in the workbench so the report page opens the same run. */
+  onRunChange?: (runId: string | null) => void;
 }
 
-export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate }) => {
+export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate, onRunChange }) => {
   // View Modes: split, side-by-side, clean, cinnabar, skeleton
   const [viewMode, setViewMode] = useState<'split' | 'side' | 'clean' | 'cinnabar' | 'skeleton'>('split');
   const [sliderPos, setSliderPos] = useState<number>(50);
@@ -144,6 +148,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
         character_accuracy: result.character_accuracy
       });
       setSelectedRunId(result.runId);
+      onRunChange?.(result.runId);
       setAdaptiveDetails(result.adaptiveDiagnostics||null);
       SteleService.listRuns(stele.id).then(setRuns).catch(() => setAdoptionSuccessMsg('处理已保存，但历史列表暂不可用。'));
     } catch (e) {
@@ -154,9 +159,21 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
     }
   };
 
+  // 进入时若 URL（state/urlState）指向本件的某条运行就恢复它；之后的选择通过 onRunChange 交给 App，由 App 写回 URL（R1-6）。
+  const urlHydrated = useRef(false);
+  useEffect(() => {
+    if (urlHydrated.current || !runs.length) return;
+    urlHydrated.current = true;
+    const state = readUrlState();
+    const wanted = state.steleId === stele.id && state.runId ? runs.find(item => item.runId === state.runId) : undefined;
+    if (wanted) restoreRun(wanted);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [runs, stele.id]);
+
   const restoreRun = (run: ProcessingRun) => {
     setAdaptiveDetails(run.adaptiveDiagnostics||null);
     setSelectedRunId(run.runId);
+    onRunChange?.(run.runId);
     setRestoredImageUrl(run.outputImages?.restored || run.restored_image);
     setSkeletonUrl(run.outputImages?.character_skeleton || run.skeleton_b64 || '');
     setCinnabarUrl(run.outputImages?.cinnabar_rubbing || run.cinnabar_b64 || '');
@@ -171,6 +188,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
       await SteleService.deleteRun(stele.id, selectedRunId);
       setRuns(items => items.filter(item => item.runId !== selectedRunId));
       setSelectedRunId(''); setRestoredImageUrl(''); setSkeletonUrl(''); setCinnabarUrl('');
+      onRunChange?.(null);
       setAdoptionSuccessMsg('所选处理记录及输出文件已删除。');
     } catch (error) { setAdoptionSuccessMsg(error instanceof Error?error.message:'删除失败'); }
   };
@@ -193,7 +211,6 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
   return (
     <div className="min-h-[calc(100vh-68px)] bg-[#0A0D12] text-slate-100 p-4 lg:p-6 flex flex-col space-y-4">
       {/* Top Breadcrumb & Quick Stele Info Banner */}
-      {stele.textProvenance?.kind === 'synthetic_test_text' && <p className="text-xs text-cinnabar-light border border-cinnabar/40 rounded px-2 py-1" role="note" data-testid="synthetic-text-notice">{stele.textProvenance.label}：{stele.textProvenance.note}</p>}
       <p className="text-xs text-slate-400" role="status">{stele.isDemo ? '核心实验样本：预置释文仅作演示；实际推演须提交图像选区。' : '真实馆藏：释文依据馆方资料，残字检测与配对评测需独立进行。'}</p>
       {adoptionSuccessMsg && <p role="alert" className="text-xs text-gold">{adoptionSuccessMsg}</p>}
       <div className="flex flex-wrap items-center justify-between gap-3 px-2">
@@ -270,6 +287,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
               {runs.map(run=><option key={run.runId} value={run.runId}>{run.runId} · {run.algorithmParameters?.filter_type || '旧版参数'}</option>)}
             </select>
           </label>
+          {selectedRunId && <button type="button" onClick={() => { writeFilters({ view: 'artifact' }); onNavigate('reports'); }} className="ml-3 text-gold underline">在评测报告中查看此运行</button>}
           {selectedRunId && (() => { const run=runs.find(item=>item.runId===selectedRunId); return run ? <div className="space-y-1 text-slate-300">
             <p>运行 ID：{run.runId} · 算法：{run.algorithmVersion} · 耗时：{run.processing_time_ms} ms</p>
             <p>保存参数：D₀ {run.algorithmParameters?.d0}；阶数 {run.algorithmParameters?.filter_order}；NLM {run.algorithmParameters?.h_nlm}；CLAHE {run.algorithmParameters?.clahe_clip}。当前滑块：{d0} / {filterOrder} / {hNlm} / {claheClip}。</p>
@@ -459,7 +477,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
                       className="w-full h-full object-contain filter invert hue-rotate-[320deg] saturate-200" 
                     />
                     <div className="absolute top-4 left-4 px-2.5 py-1 rounded bg-cinnabar/80 text-white font-serif text-xs">
-                      实际算法输出 · 朱砂风格可视化（非历史拓本）
+                      算法处理结果 · 朱砂风格可视化（非历史拓本，非原刻复原）
                     </div>
                   </div>
                 </div>
@@ -679,7 +697,6 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate 
               </span>
             </div>
 
-            {stele.textProvenance?.kind === 'synthetic_test_text' && <p className="text-[11px] text-cinnabar-light" data-testid="synthetic-text-label">以下字符为{stele.textProvenance.label}</p>}
             {/* Xuan Paper Vertical Container */}
             <div className="relative w-full h-[270px] rounded-xl overflow-x-auto overflow-y-hidden p-4 bg-xuan-grid border border-[#D3C3A8]/40 shadow-inner">
               <div className="h-full flex flex-row-reverse items-start justify-start gap-4 writing-vertical-rl select-none">

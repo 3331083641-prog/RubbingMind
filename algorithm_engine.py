@@ -191,6 +191,14 @@ class RubbingAlgorithmEngine:
                 if len(seen) == 8:
                     break
             details["notchApplied"] = bool(seen)
+            if not seen:
+                # E-05: no qualifying peak pair means the notch is not applicable.
+                # Return the input unchanged; a round trip through FFT and
+                # astype(uint8) truncation would otherwise darken pixels by 1.
+                details["passthrough"] = True
+                details["passthroughReason"] = "未检出符合阈值的共轭周期峰，陷波不适用，原样返回输入"
+                unchanged = gray_img.copy()
+                return (unchanged, spectrum_color, details) if return_details else (unchanged, spectrum_color)
         else:
             raise ValueError("未知频域处理模式")
 

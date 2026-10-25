@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState, useEffect } from 'react';
+import React, { lazy, Suspense, useState, useEffect, useRef, useCallback } from 'react';
 import { SteleItem } from './types/stele';
 import { SteleService, FALLBACK_STELES, backendAvailable } from './services/api';
 import { Header } from './components/Header';
@@ -12,11 +12,25 @@ const ReportsPage = lazy(() => import('./pages/ReportsPage').then(module => ({de
 import { graphSelectionItems, resolveCoreId } from './data/graphSelection';
 import { CORE_SAMPLES, resolveSelected } from './data/catalogSelection';
 import { VerifiedMuseumGraph } from './components/VerifiedMuseumGraph';
+import { parseUrlState, resolveExperiment, writeUrlState, UrlState } from './state/urlState';
 
 export const App: React.FC = () => {
-  const [currentTab, setCurrentTab] = useState<string>('home');
+  // R1-6 / R2-8: initial state may come from the URL; without parameters the defaults are unchanged
+  // and the URL is not rewritten until the user changes something.
+  const [initialParse] = useState(() => parseUrlState());
+  const initialUrl = initialParse.state;
+  const userChanged = useRef(false);
+  const [urlNotices, setUrlNotices] = useState<string[]>(() => initialParse.issues.map(issue => issue.message));
+  const addNotice = useCallback((message: string) => setUrlNotices(items => items.includes(message) ? items : [...items, message]), []);
+  const [currentTab, setCurrentTabState] = useState<string>(initialUrl.tab || 'home');
   const [steles, setSteles] = useState<SteleItem[]>(FALLBACK_STELES);
-  const [selectedSteleId, setSelectedSteleId] = useState<string>('tang-duobao');
+  const [selectedSteleId, setSelectedSteleId] = useState<string>(initialUrl.steleId || 'tang-duobao');
+  // Shared run / experiment selection: the workbench writes it, the report page reads it.
+  const [activeRunId, setActiveRunIdState] = useState<string | null>(initialUrl.runId || null);
+  // experimentId is authoritative; a `batch` alias is resolved below and never kept in state or URL.
+  const [activeExperimentId, setActiveExperimentId] = useState<string | null>(initialUrl.experimentId || null);
+  const [experimentStatus, setExperimentStatus] = useState<'none' | 'resolving' | 'ok' | 'unknown' | 'unavailable'>(
+    initialUrl.experimentId || initialUrl.batch ? 'resolving' : 'none');
   const [isUploadOpen, setIsUploadOpen] = useState<boolean>(false);
   const [isBackendConnected, setIsBackendConnected] = useState<boolean>(false);
   const [catalogueStatus, setCatalogueStatus] = useState<'loading' | 'ready' | 'fallback'>('loading');
@@ -44,16 +58,81 @@ export const App: React.FC = () => {
     return () => { isMounted = false; };
   }, []);
 
+  // User-driven setters: only these make the URL writable.
+  const setCurrentTab = useCallback((tab: string) => { userChanged.current = true; setCurrentTabState(tab); }, []);
+  const setActiveRunId = useCallback((runId: string | null) => { userChanged.current = true; setActiveRunIdState(runId); }, []);
+
+  // Normalise a URL that came with parameters (drop invalid values and the batch alias) without
+  // adding any default value. Skipped once the user has changed state (the effect below writes then).
+  const normaliseInitialUrl = useCallback((patch: Partial<UrlState>) => {
+    if (userChanged.current) return;
+    const provided: UrlState = { ...initialUrl, ...patch };
+    delete provided.batch;
+    writeUrlState(provided);
+  }, [initialUrl]);
+
+  useEffect(() => {
+    if (initialParse.issues.length) normaliseInitialUrl({});
+    if (!initialUrl.experimentId && !initialUrl.batch) return;
+    let live = true;
+    SteleService.listExperiments().then(list => {
+      if (!live) return;
+      const resolution = resolveExperiment(list, { experimentId: initialUrl.experimentId, batch: initialUrl.batch });
+      if (resolution.status === 'ok') {
+        setActiveExperimentId(resolution.experimentId);
+        setExperimentStatus('ok');
+        if (resolution.notice) addNotice(resolution.notice);
+        normaliseInitialUrl({ experimentId: resolution.experimentId });
+      } else if (resolution.status === 'unknown') {
+        // Real empty state: keep the requested experimentId, never substitute another batch.
+        setActiveExperimentId(resolution.experimentId);
+        setExperimentStatus('unknown');
+        addNotice(resolution.notice);
+        normaliseInitialUrl({ experimentId: resolution.experimentId ?? undefined });
+      }
+    }).catch(() => { if (live) { setExperimentStatus('unavailable'); addNotice('实验登记暂不可用，链接中的实验批次尚未核对'); } });
+    return () => { live = false; };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // A deep-linked runId must exist for the linked artifact; otherwise clear it with a notice.
+  useEffect(() => {
+    const runId = initialUrl.runId;
+    if (!runId) return;
+    let live = true;
+    SteleService.listRuns(initialUrl.steleId || selectedSteleId).then(items => {
+      if (!live || userChanged.current || items.some(item => item.runId === runId)) return;
+      setActiveRunIdState(null);
+      addNotice(`链接中的运行 ${runId} 不属于当前文物或已不存在，已从地址中移除，未替换为其他运行`);
+      normaliseInitialUrl({ runId: undefined });
+    }).catch(() => undefined);
+    return () => { live = false; };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const coreItems = graphSelectionItems(steles);
-  const currentStele = resolveSelected(steles, selectedSteleId);
+  // An unknown steleId (e.g. from a link) is an explicit empty state, never another artifact.
+  const currentStele: SteleItem | null = (() => { try { return resolveSelected(steles, selectedSteleId); } catch { return null; } })();
   const graphHeaderItems = [...coreItems, ...steles.filter(s => !coreItems.some(c => c.id === s.id))];
 
   const handleSelectStele = (id: string) => {
+    userChanged.current = true;
+    // A runId belongs to one artifact; never carry it over to another one.
+    if (id !== selectedSteleId) setActiveRunIdState(null);
     setSelectedSteleId(id);
   };
 
+  useEffect(() => {
+    if (!userChanged.current) return; // never rewrite a URL the user has not changed
+    writeUrlState({
+      tab: currentTab === 'home' ? undefined : currentTab,
+      steleId: selectedSteleId,
+      runId: activeRunId || undefined,
+      experimentId: activeExperimentId || undefined,
+    });
+  }, [currentTab, selectedSteleId, activeRunId, activeExperimentId]);
+
   const handleUploaded = (newStele: SteleItem) => {
     setSteles((prev) => [newStele, ...prev]);
+    setActiveRunId(null);
     setSelectedSteleId(newStele.id);
     setCurrentTab('workbench');
   };
@@ -69,8 +148,21 @@ export const App: React.FC = () => {
         onSelectStele={handleSelectStele}
       />
 
+      {urlNotices.length > 0 && (
+        <div role="status" data-url-notices={urlNotices.length} className="mx-4 mt-2 rounded border border-gold/40 bg-slate-900/80 p-2 text-sm text-gold-light">
+          {urlNotices.map(message => <p key={message}>{message}</p>)}
+          <button type="button" className="mt-1 text-xs underline" onClick={() => setUrlNotices([])}>知道了</button>
+        </div>
+      )}
+
       {/* Main Dynamic View with 300ms Fade Transition */}
       <main className="flex-1 transition-opacity duration-300">
+        {!currentStele && (
+          <div role="status" data-stele-missing={selectedSteleId} className="p-8 text-gold">
+            {catalogueStatus === 'loading' ? '正在读取文物目录…' : `没有找到文物 ${selectedSteleId}；未替换为其他文物。请从顶部选择文物。`}
+          </div>
+        )}
+        {currentStele && (
         <Suspense fallback={<div role="status" className="p-8 text-gold">正在载入当前页面…</div>}>
         {currentTab === 'home' && (
           <HomePage
@@ -94,6 +186,7 @@ export const App: React.FC = () => {
             key={currentStele.id}
             stele={currentStele}
             onNavigate={setCurrentTab}
+            onRunChange={setActiveRunId}
           />
         )}
 
@@ -111,9 +204,15 @@ export const App: React.FC = () => {
             key={currentStele.id}
             stele={currentStele}
             onNavigate={setCurrentTab}
+            runId={activeRunId}
+            onRunChange={setActiveRunId}
+            experimentId={activeExperimentId}
+            experimentStatus={experimentStatus}
+            onExperimentChange={(experimentId) => { userChanged.current = true; setActiveExperimentId(experimentId); setExperimentStatus(experimentId ? 'ok' : 'none'); }}
           />
         )}
         </Suspense>
+        )}
       </main>
 
       {/* Footer */}

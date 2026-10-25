@@ -12,7 +12,9 @@ from pathlib import Path
 
 from database import BASE_DIR, get_db_connection
 
-UPLOAD_DIR = Path(BASE_DIR) / 'data' / 'uploads'
+from runtime_paths import upload_dir
+
+UPLOAD_DIR = upload_dir()  # default <repo>/data/uploads; RUBBINGMIND_UPLOAD_DIR
 
 
 def _connection():

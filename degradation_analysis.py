@@ -8,6 +8,39 @@ from scipy import fft
 VERSION = 'adaptive-rubbing-v2.1'
 
 
+PASSTHROUGH_CRITERION = 'pixel-equal-v1'
+
+
+def change_stats(before, after):
+    """Pixel-level change between an algorithm input and its output.
+
+    isPassthrough is True only when every pixel is equal (criterion
+    pixel-equal-v1). Small but non-zero changes are reported as processed with
+    their real ratio; they are never rounded to passthrough.
+    """
+    a = np.asarray(before)
+    b = np.asarray(after)
+    if a.shape != b.shape:
+        raise ValueError('输入与输出尺寸不同，无法逐像素比较')
+    # int32: int16 overflows for 16-bit PNGs (values up to 65535).
+    diff = np.abs(a.astype(np.int32) - b.astype(np.int32))
+    if diff.ndim == 3:
+        changed_mask = np.any(diff > 0, axis=2)
+    else:
+        changed_mask = diff > 0
+    changed = int(np.count_nonzero(changed_mask))
+    total = int(changed_mask.size)
+    return {
+        'isPassthrough': changed == 0,
+        'changedPixelCount': changed,
+        'totalPixelCount': total,
+        'changedPixelRatio': changed / total if total else None,
+        'maxAbsDiff': int(diff.max()) if diff.size else 0,
+        'meanAbsDiff': float(diff.mean()) if diff.size else 0.0,
+        'passthroughCriterion': PASSTHROUGH_CRITERION,
+    }
+
+
 def validate_gray(image):
     if image is None or image.ndim != 2 or image.dtype != np.uint8 or min(image.shape) < 16:
         raise ValueError('需要至少16×16的8位灰度图')
@@ -191,8 +224,17 @@ class AdaptiveRubbingRestorer:
         if not gate['accepted']:
             decisions.append({'operator':'fallback_identity','reason':'; '.join(gate['reasons'])})
             result=image.copy()
+        change = change_stats(image, result)
+        if not gate['accepted']:
+            output_mode = 'gate_fallback_original'
+        elif change['isPassthrough']:
+            output_mode = 'identity_no_evidence'
+        else:
+            output_mode = 'processed'
         return result, {'version':self.version,'features':features,'decisions':decisions,'fidelityGate':gate,
-                        'selectedOutput':'candidate' if gate['accepted'] else 'original',
+                        # A byte-equal output is the original image, even when the gate accepted it.
+                        'selectedOutput':'original' if change['isPassthrough'] else 'candidate',
+                        'algorithmOutputMode':output_mode,'changeStats':change,
                         'limitations':'不补全遮挡/剥落，不识别或重绘缺失笔画；无真值不计算修复准确率。'}
 
 
@@ -232,6 +274,8 @@ class AdaptiveRubbingRestorerV22(AdaptiveRubbingRestorer):
                 }],
                 'fidelityGate': {'accepted': False, 'reasons': ['平坦区域拒绝修改'], 'basis': '常数块检测，不是历史真值'},
                 'selectedOutput': 'original',
+                'algorithmOutputMode': 'gate_fallback_original',
+                'changeStats': change_stats(image, image),
                 'limitations': '只拒绝模拟器式的精确平坦块。没有把它评成博物馆拓片上的通用遮挡检测，也不替换 v2.1 默认算法。',
             }
         result, meta = super().restore(image, strength=strength, notch_width=notch_width)

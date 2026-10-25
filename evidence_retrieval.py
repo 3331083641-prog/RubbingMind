@@ -12,8 +12,9 @@ from contextlib import closing
 from pathlib import Path
 from catalog import BASE, load, transcription_text
 from history_graph import CORE_IDS, ALIASES, resolve_id
+from runtime_paths import runtime_dir
 
-INDEX=BASE/'data/runtime/evidence-v2.sqlite'
+INDEX=runtime_dir()/'evidence-v2.sqlite'
 # Calibrated 2026-10-19: max BM25 over 15 unrelated queries = 9.647; see CONTENT_CHANGELOG (relevance threshold).
 WEAK_BM25_THRESHOLD=10.0
 WEAK_LABEL='弱相关，仅供参考'

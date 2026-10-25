@@ -9,7 +9,10 @@ import json
 from typing import List, Dict, Any, Optional
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(BASE_DIR, "data", "rubbingmind.sqlite")
+from runtime_paths import db_path as _db_path
+
+# Default unchanged (<repo>/data/rubbingmind.sqlite); RUBBINGMIND_DB_PATH relocates it.
+DB_PATH = _db_path()
 
 
 def get_db_connection() -> sqlite3.Connection:
@@ -154,8 +157,19 @@ def init_database(schema_only: bool = False, json_seed_path: Optional[str] = Non
     conn.close()
 
 
+def _retired_ids() -> set:
+    """Ids marked retired in museum_catalog_status; empty when the table is absent."""
+    conn = get_db_connection()
+    try:
+        if not conn.execute("SELECT name FROM sqlite_master WHERE name='museum_catalog_status'").fetchone():
+            return set()
+        return {r[0] for r in conn.execute("SELECT id FROM museum_catalog_status WHERE status='retired'")}
+    finally:
+        conn.close()
+
+
 def query_steles(dynasty: Optional[str] = None, include_retired: bool = False) -> List[Dict[str, Any]]:
-    """查询碑刻列表"""
+    """查询碑刻列表. BR-07: when include_retired=True, retired rows have gis_lng/gis_lat set to None (DB unchanged)."""
     conn = get_db_connection()
     cursor = conn.cursor()
     conditions=[];params=[]
@@ -167,4 +181,11 @@ def query_steles(dynasty: Optional[str] = None, include_retired: bool = False) -
     cursor.execute(query,params)
     rows = cursor.fetchall()
     conn.close()
-    return [dict(r) for r in rows]
+    result = [dict(r) for r in rows]
+    if include_retired:
+        retired = _retired_ids()
+        for row in result:
+            if row['id'] in retired:
+                row['gis_lng'] = None
+                row['gis_lat'] = None
+    return result

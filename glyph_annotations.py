@@ -10,7 +10,9 @@ from datetime import datetime, timezone
 from catalog import BASE
 
 ANNOTATION_DIR = BASE / 'data' / 'catalog' / 'glyph-annotations'
-RUNTIME_DIR = BASE / 'data' / 'runtime' / 'glyph-annotations'
+from runtime_paths import runtime_dir
+
+RUNTIME_DIR = runtime_dir() / 'glyph-annotations'
 REQUIRED = ('steleId', 'bbox', 'glyph', 'sourceCitation', 'annotator', 'reviewStatus', 'damageLevel', 'split')
 VERIFIED = 'human_verified'
 

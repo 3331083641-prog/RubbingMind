@@ -20,7 +20,9 @@ from database import get_db_connection
 from upload_storage import image_path as uploaded_image_path
 from glyph_vision import VERSION as GLYPH_VERSION, analyze_crop, shape_similarity
 
-INFERENCE_DIR = BASE / 'data' / 'runtime' / 'glyph-inferences'
+from runtime_paths import runtime_dir
+
+INFERENCE_DIR = runtime_dir() / 'glyph-inferences'  # default <repo>/data/runtime/glyph-inferences
 RULES = {
     '慶歸法': [('胤', '上下文可组成「慶歸法胤」；尚未据图像确认笔画。')],
     '尚書都官': [('檢', '上下文可能涉及「檢校尚書都官」；尚未据图像确认笔画。')],
@@ -89,7 +91,7 @@ def resolve_inference_image(record, image_source='original', run_id=None):
         return image, data, provenance
     if not run_id:
         raise ValueError('选择修复结果时必须提供本次运行 ID')
-    from museum_processing import BASE as RESULTS_BASE, read_run
+    from museum_processing import read_run, results_root
     run = read_run(stele_id, run_id)
     if run is None or run.get('steleId', run.get('stele_id')) != stele_id or run.get('runId') != run_id:
         raise LookupError('关联的处理运行不存在或不属于当前文物')
@@ -97,8 +99,8 @@ def resolve_inference_image(record, image_source='original', run_id=None):
     prefix = f'/static/results/{stele_id}/{run_id}/'
     if not relative.startswith(prefix):
         raise ValueError('修复图像路径不属于当前文物的本次运行')
-    root = (RESULTS_BASE / 'static' / 'results' / stele_id / run_id).resolve()
-    path = (RESULTS_BASE / relative.lstrip('/')).resolve()
+    root = (results_root() / stele_id / run_id).resolve()
+    path = (results_root() / relative[len('/static/results/'):]).resolve()
     if not path.is_relative_to(root) or not path.is_file():
         raise ValueError('修复图像文件缺失或越界')
     data = path.read_bytes()

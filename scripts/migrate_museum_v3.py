@@ -5,12 +5,19 @@ from datetime import datetime,timezone
 BASE=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(BASE))
 from catalog import museum_records,load
+from runtime_paths import db_path,runtime_dir
+def state_paths(base=BASE):
+    """(sqlite, runtime dir). For the repo itself these follow RUBBINGMIND_DB_PATH / RUBBINGMIND_RUNTIME_DIR
+    (defaults unchanged: <repo>/data/rubbingmind.sqlite, <repo>/data/runtime); an explicit base (tests) stays self-contained."""
+    if Path(base).resolve()==BASE:return Path(db_path()),runtime_dir()
+    return Path(base)/'data/rubbingmind.sqlite',Path(base)/'data/runtime'
 def dump(p,v):
     p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(v,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 def migrate(base=BASE,backup=True):
     rows=museum_records();active={r['id'] for r in rows};retired={r['oldId'] for r in load('replacement_mapping.json')}
     db=base/'data/museum_database.json';existing=json.loads(db.read_text('utf-8')) if db.exists() else []
-    backupdir=base/'data/runtime/museum-v3/backups'/datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%f')
+    sqlite,runtime=state_paths(base)
+    backupdir=runtime/'museum-v3/backups'/datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%f')
     if backup:
         for name in ['data/museum_database.json','data/museum_database_backup.json','data/museum-import/merged_28_steles.json','apps/web/src/data/steles28.json','data/museum-images/import_image_status.json']:
             p=base/name
@@ -23,7 +30,7 @@ def migrate(base=BASE,backup=True):
     extras=[r for r in existing if r['id'] not in active|retired];dump(db,rows+extras)
     for name in ['data/museum-import/merged_28_steles.json','apps/web/src/data/steles28.json']:dump(base/name,rows)
     dump(base/'data/museum-images/import_image_status.json',{r['id']:{'status':r['imageStatus'],'imageAssets':r['imageAssets']} for r in rows})
-    sqlite=base/'data/rubbingmind.sqlite';sqlcounts={'updated':0,'added':0,'retainedRetired':0}
+    sqlcounts={'updated':0,'added':0,'retainedRetired':0}
     if sqlite.exists():
         with sqlite3.connect(sqlite) as conn:
             if backup:
