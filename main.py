@@ -19,7 +19,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from PIL import Image, UnidentifiedImageError
 
-from sample_generator import ensure_samples, SAMPLES_DIR, BASE_DIR
+from sample_generator import ensure_samples, check_samples, SAMPLES_DIR, BASE_DIR
 from algorithm_engine import algorithm_engine, safe_read_image, mat_to_base64
 from knowledge_agent import knowledge_agent, AUTHENTIC_RUBBING_DATABASE
 from museum_manager import museum_manager
@@ -48,11 +48,18 @@ STELE_REVERSE_MAP = {v: k for k, v in STELE_MAP.items()}
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """服务启动时生命周期事件：确保 4 张核心碑拓样本就绪"""
+    """服务启动时生命周期事件：检查核心碑拓样本（RT-002：不下载/不合成）"""
     logger.info("=== 正在启动【墨韵智考】系统 ===")
     try:
-        samples_status = ensure_samples()
-        logger.info(f"碑刻拓片样本库检查完毕，可用样本数: {len(samples_status)}")
+        report = check_samples()
+        if report["ok"]:
+            logger.info("碑刻拓片样本库检查完毕，可用样本数: %s", len(report["present"]))
+        else:
+            logger.error(
+                "RT-002: samples degraded missing=%s sha_mismatch=%s (no auto-fetch)",
+                report["missing"],
+                [m["key"] for m in report["sha_mismatch"]],
+            )
     except Exception as e:
         logger.error(f"样本库初始化异常: {e}")
     yield
@@ -415,12 +422,17 @@ async def root():
 @app.get("/health")
 @app.get("/api/health")
 async def health_check():
-    """系统运行健康状态"""
+    """系统运行健康状态（RT-002: expose samples_missing / sha mismatch）"""
+    report = check_samples()
+    status = "healthy" if report["ok"] else "degraded"
     return {
-        "status": "healthy",
+        "status": status,
         "system": "墨韵智考",
         "version": "2.0.0",
-        "samples_available": [k for k in AUTHENTIC_RUBBING_DATABASE.keys()],
+        "samples_available": sorted(report["present"].keys()),
+        "samples_missing": list(report["missing"]),
+        "samples_sha_mismatch": list(report["sha_mismatch"]),
+        "catalog_keys": [k for k in AUTHENTIC_RUBBING_DATABASE.keys()],
     }
 
 

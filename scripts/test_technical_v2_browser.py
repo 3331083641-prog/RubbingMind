@@ -167,5 +167,10 @@ def run(url,ci=False):
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('--url',default=os.getenv('RUBBINGMIND_FRONTEND_URL','http://127.0.0.1:5180'));parser.add_argument('--ci',action='store_true');args=parser.parse_args()
-    print(json.dumps(run(args.url,args.ci),ensure_ascii=False,indent=2))
+    from scripts.browser_target import assert_safe_target
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--url', default=os.getenv('RUBBINGMIND_FRONTEND_URL') or '')
+    parser.add_argument('--ci', action='store_true')
+    args=parser.parse_args()
+    url = assert_safe_target(args.url, label='--url / RUBBINGMIND_FRONTEND_URL')
+    print(json.dumps(run(url, args.ci), ensure_ascii=False, indent=2))

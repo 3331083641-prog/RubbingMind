@@ -351,3 +351,39 @@
 - `notch` 且未检出峰（sample_1、2、4）：restored 改变，改动 65869 / 84412 / 69501 px（共约 10 万 px），最大差 37 / 31 / 96。原因是旧代码的 1 级截断经过后续空域增强（含 CLAHE）后被放大。
 - `notch` 且检出峰（sample_3）：相同。
 - 因此，`museum_processing.process_verified_request` 只在用户选择 `filter_type='notch'` 且图像没有周期峰时，输出会变。这时新输出更接近“陷波不适用、直接做空域增强”的本意。旧运行的输出图不会被重算；只有改动量字段在读取时计算（§8）。
+
+## 12. Phase2 ROI 持久化 / 接口字段（arch-backend，R2–R6/R8）
+
+范围：局部对照可追溯袋。实现落在 `agent/arch-backend`（模块 `roi_geometry.py` / `roi_compare.py` / `case_stele_mapping.py` / `inference_trace.py`；验收 `tests/test_phase2_roi_arch.py`）。**不改** `museum_processing.py` 内核；R1（TS）已在 `apps/web/src/services/api.ts` `GlyphInferenceRecord` 声明 `roi` / `inputImageSha256` / `cropSha256`；R7（mechanism headCommit）仍由评测侧文档门禁，本表不宣称与 tip 字节一致。
+
+| ID | 接口 / 载体 | 关键字段 | null / 失败规则 |
+|---|---|---|---|
+| R2 | `GET /api/roi-geometry/normalize`；`normalize_roi` | 导出统一 **glyph-bbox** `{x,y,w,h,schema,sourceSchema}`；ingest 可接受 review-box `{width,height}` | 同时带 `w/h` 与 `width/height` → 拒绝（禁止静默混用） |
+| R3 | `GET /api/steles/{id}/roi-compare` → `roiCompareSession` | `steleId,runId,bbox,beforeImageSha256,afterImageSha256,beforeCropSha256,afterCropSha256,algorithmVersion,effectiveParameters,createdAt`；可选 `unavailableReason` / `cropUnavailableReason` | 缺 run / 缺图时 SHA 全 null + 非空 reason；**禁止**用单图字段冒充成对 |
+| R4 | assessment 载荷 `runLink` | `{processingRunId,matched,algorithmVersion?,…}` 或 `null` + reason | 有 ID 必须能在 `/api/steles/{id}/runs` 命中；无关联不静默 |
+| R5 | inference 追溯 join | `algorithmVersion` + `effectiveParameters`（via `runId` → ProcessingRun） | 无 runId / 找不到 run → 字段 null + reason；不编造参数 |
+| R6 | case↔stele 映射 API | `caseId` ↔ `steleId`（显式表；禁止无 mapping 跨域 ROI 声明） | 未映射 → 明确 miss，不猜 |
+| R8 | `GET /api/glyph-evaluation` / glyph-benchmark | `status=not_evaluated`；`top1/top3/rejectionRate` 在 annotations=0 时为 null | **保持**；无独立人工注解不得写数值准确率 |
+
+最小导出袋（单图可追溯；成对见 R3）：
+
+```text
+steleId, inputImageSha256, selectedImageSha256, cropSha256,
+runId, bbox, roi.mappedSourceBBox, roi.mappedInsideSource,
+algorithmVersion, effectiveParameters (via runId join),
+createdAt, inferenceId, status
+```
+
+## 13. `/health` 样本完整性字段（AB-8 / RT-002）
+
+接口：`GET /health`、`GET /api/health`。样本检查走 `sample_generator.check_samples()`：**不联网、不合成、不写盘**；与 `EXPECTED_SAMPLE_SHA256` 对照。
+
+| 字段 | 类型 | 含义 |
+|---|---|---|
+| `status` | `"healthy" \| "degraded"` | `check_samples().ok` 为真则 healthy，否则 degraded |
+| `samples_available` | `string[]` | 已存在且 SHA 匹配的样本文件名 |
+| `samples_missing` | `string[]` | 缺失文件 |
+| `samples_sha_mismatch` | `string[]` | 存在但 SHA 与期望不符 |
+| `catalog_keys` | `string[]` | `AUTHENTIC_RUBBING_DATABASE` 键（只读清单） |
+
+相关：RT-003 浏览器脚本拒绝默认 `8000`/`5180`，经 `scripts/browser_target.py` + `start.ps1 -Port`；RT-004 测试经 `tests/conftest.py` 将 `RUBBINGMIND_*` 指到 worktree-tmp，`validate_stele_asset(report_path=…)` 不写受控路径。

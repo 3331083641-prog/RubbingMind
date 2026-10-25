@@ -1,4 +1,8 @@
-﻿$ErrorActionPreference = 'Stop'
+﻿param(
+    [int]$Port = 0
+)
+
+$ErrorActionPreference = 'Stop'
 $projectRoot = $PSScriptRoot
 $webRoot = Join-Path $projectRoot 'apps/web'
 $distIndex = Join-Path $webRoot 'dist/index.html'
@@ -34,9 +38,17 @@ if ($needsBuild) {
     finally { Pop-Location }
 }
 New-Item -ItemType Directory -Path $runtime -Force | Out-Null
-$port = 8000
-while (Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinue) { $port++ }
-if ($port -gt 8100) { throw '8000–8100 端口均已占用。' }
+# RT-003: honor -Port when provided (e.g. start.ps1 -Port 8740)
+if ($Port -gt 0) {
+    $port = $Port
+    if (Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinue) {
+        throw "端口 $port 已被占用，请换一个 -Port。"
+    }
+} else {
+    $port = 8000
+    while (Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinue) { $port++ }
+    if ($port -gt 8100) { throw '8000–8100 端口均已占用。请使用 start.ps1 -Port <端口>。' }
+}
 $logPath = Join-Path $runtime 'server.log'
 $errPath = Join-Path $runtime 'server-error.log'
 $process = Start-Process python -ArgumentList @('-m','uvicorn','main:app','--app-dir',"`"$projectRoot`"",'--host','127.0.0.1','--port',"$port") -WorkingDirectory $projectRoot -RedirectStandardOutput $logPath -RedirectStandardError $errPath -PassThru -WindowStyle Hidden
