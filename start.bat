@@ -21,11 +21,15 @@ if %errorlevel% neq 0 (
 echo [2/3] 正在检查依赖项...
 python -c "import cv2, numpy, skimage, fastapi, uvicorn" >nul 2>&1
 if %errorlevel% neq 0 (
-    echo 正在安装必要依赖...
-    pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com --quiet
+    echo [错误] 缺少依赖。请手动执行：
+    echo     pip install -r requirements.txt
+    echo 本脚本不再自动 pip 安装（RT-003）。
+    pause
+    exit /b 1
 )
 
 echo [3/3] 正在启动服务并打开浏览器大屏...
+echo 提示：默认端口 8000。多 Agent / 测试请改用 start.ps1 -Port 8740 等。
 start "" cmd /c "timeout /t 2 >nul & start http://127.0.0.1:8000"
 
 echo.
