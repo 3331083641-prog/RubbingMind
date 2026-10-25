@@ -114,3 +114,11 @@
 | R8/G8 | 未评测契约保持 | backend + 前端 |
 
 条目数：**8**（R1–R8）。
+
+---
+
+## 落地跟踪（评测侧）
+
+- 2026-10-25：arch@fa31279 已合入 feature（tip=fa31279）；R2–R6/R8 随本 merge 进入 agent/eval-sci。
+- R1（TS）/ R7（mechanism head）仍开；R7 **不大重跑**，禁令见 MECHANISM_HEAD_NOTE.md。
+- 评测侧 ES-3/4/5 契约见 ES_EVAL_PROGRESS.md 与 tests/test_es_derived_contracts.py。

@@ -9,7 +9,15 @@ from catalog import BASE
 from experiment_metadata import batch_metadata, mark_default
 
 RESULTS=BASE/'experiments/results'
-METRICS_NOTE='本批次已保留真实数值，部分图像对比不可用'
+METRICS_NOTE='本批次只保留了数值，没有保存任何图像，无法提供图像对比'
+DERIVED='derived/applied_status.json'
+# Display names override experiment IDs whose wording overstates the protocol.
+# The stored ID stays unchanged so historical files and exports remain addressable.
+DISPLAY={
+    'heldout-v20-v21-2026-10-18':{
+        'displayName':'同批复测 v2.1（v2.0 对照，2026-10-18）','heldOut':False,
+        'protocolNote':'不是留出评测：14 件文物与 2026-10-17-v2-text 批次相同（源图 SHA 一致，song_03_daguan 裁切完全重叠、tang_04_xuanmita 重叠 79.5%），且 v2.1 在该批误差分析之后修改。见 docs/product-upgrade/AUDIT_EVALUATION.md E-01。'},
+}
 
 
 @lru_cache(maxsize=8)
@@ -34,7 +42,12 @@ def _entry(path, data):
             limitations.append(note)
     if not images_available and METRICS_NOTE not in limitations:
         limitations.append(METRICS_NOTE)
-    return {'id':experiment_id,'directory':path.parent.name,'rowCount':len(data['rows']),
+    display=DISPLAY.get(experiment_id,{})
+    if display.get('protocolNote') and display['protocolNote'] not in limitations:
+        limitations.insert(0,display['protocolNote'])
+    derived=path.parent/DERIVED
+    return {'id':experiment_id,'displayName':display.get('displayName',experiment_id),'heldOut':display.get('heldOut'),
+        'appliedStatusAvailable':derived.is_file(),'directory':path.parent.name,'rowCount':len(data['rows']),
         'sampleCount':len(sources) if sources is not None else len(samples),'summary':data['summary'],
         'limitations':limitations,'imageComparisonAvailable':images_available,'metricsOnly':not images_available,
         'historicalWarning':'历史joint根据生成器退化标签选陷波，有先验泄漏；仅作历史记录。' if path.parent.name=='2026-10-15' else None}
@@ -60,6 +73,10 @@ def batch(experiment_id):
         data['config']={'experimentId':data.get('experimentId'),'referenceNote':data.get('pairedReference') or METRICS_NOTE,'limitations':entry['limitations']}
     if not isinstance(data.get('sources'), list):
         data['sources']=[]
+    derived=path.parent/DERIVED
+    if derived.is_file():
+        status=json.loads(derived.read_text('utf8'))
+        data['appliedStatus']={k:status.get(k) for k in ('criterion','imagesAvailable','note','summaryByMethod','summaryBySplitMethod','summaryByMethodDegradation','sourceResultsSha256')}
     return {**data,'registry':entry}
 
 
@@ -98,8 +115,11 @@ def _csv_bytes(rows):
 
 def export_payload(experiment_id,kind):
     data=batch(experiment_id)
-    if data is None or kind not in ('results.json','results.csv','summary.csv'):return None
+    if data is None or kind not in ('results.json','results.csv','summary.csv','applied_status.csv','applied_status.json'):return None
     path=RESULTS/data['registry']['directory']/kind
+    if kind.startswith('applied_status'):
+        path=RESULTS/data['registry']['directory']/'derived'/kind
+        return (path.read_bytes(),'text/csv' if kind.endswith('.csv') else 'application/json') if path.is_file() else None
     if path.is_file():
         return path.read_bytes(),'text/csv' if kind.endswith('.csv') else 'application/json'
     if kind=='results.json':

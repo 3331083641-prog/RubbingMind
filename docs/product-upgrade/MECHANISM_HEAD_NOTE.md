@@ -1,0 +1,58 @@
+# MECHANISM_HEAD_NOTE — 机制层 headCommit 与 tip 关系（红队条件）
+
+- 作者：RM-评测科学家（Agent 04+05）
+- 时间：2026-10-25（Asia/Shanghai）
+- 分支：`agent/eval-sci`
+- 当前 tip（本文写作时）：`65f78159a87ddee5895eb2d8d7b49fdbd1325028`（短写 `65f7815`）
+- 机制产物绑定 headCommit：`7623a52a3299b7c948031dfa1f79f04b8eb66d9e`（短写 `7623a52`）
+- 关联：`REPRESENTATIVE_CASES.md`、`REPORT_DATA_SPEC.md` §MEC / E-18、`experiments/mechanism_cases.py`
+
+## 1. 红队条件（有条件可合并）
+
+红队对 tip `65f7815` 结论为「有条件可合并」。条件之一：
+
+> 现有真实 cv2 机制层产物（`derived/mechanism/`）绑定的 `headCommit` 仍是旧 tip `7623a52`，已落后于当前 tip。
+
+本文档将该条件固化为评测与报告约束，**只改文档 / 脚本注释**；不删实验原始数据，不擅自重跑大批量 mechanism。
+
+## 2. 事实核对（2026-10-25）
+
+| 批次 | `derived/mechanism/index.json` → `headCommit` | `baseCommit` | 与 tip `65f7815` |
+|---|---|---|---|
+| `2026-10-17-v2` | `7623a52a3299b7c948031dfa1f79f04b8eb66d9e` | `f0c5886a9d4c8b47d64640e1f7eaeac44be3c388` | **落后** |
+| `2026-10-17-v2-text` | `7623a52a3299b7c948031dfa1f79f04b8eb66d9e` | 同上 | **落后** |
+
+生成脚本：`experiments/mechanism_cases.py`（只读历史批次，只写 `derived/mechanism/`）。说明见 `REPRESENTATIVE_CASES.md`。
+
+### appliedStatusSha256（红队非阻断建议）
+
+对上述两批核对：`derived/applied_status.json` 的 `sourceResultsSha256` **等于** 对应 `results.json` 的 SHA-256（v2：`dd565cee…fc06131`；v2-text：`d70a821c…0c641b`）。行级 `shaMatchesRecord` 抽样为 true。
+
+**结论：appliedStatus 未过期，本期不重生 derived。** 若日后 tip 前移导致 `results.json` 变更或 SHA 失配，再按红队非阻断建议重生 `applied_status` 并在本文件追加记录。
+
+## 3. 报告与对外表述禁令（在重跑 mechanism 之前）
+
+在 `derived/mechanism/index.json` 的 `headCommit` 更新为与当前 tip（或声明的 replay 提交）一致之前：
+
+1. **不得**把机制 PNG / `mechanism.json` 宣称为「与当前 tip 字节一致」或「在 tip `65f7815`（或更新 tip）上重算」。
+2. 允许表述：「机制图在 headCommit=`7623a52` 上由 `mechanism_cases.py` 生成；当前 tip 已前移，机制层尚未重跑。」
+3. 前端 / 报告页若展示机制图，须保留「v2.1（head 重算）」标签中的 **head 含义 = 生成时 headCommit**，并链到本文或 `REPRESENTATIVE_CASES.md` 本节，避免读者误以为 head = 仓库 tip。
+4. 合并或 tip 前移后：**必须**重跑 mechanism（两批），更新 `index.json` 的 `headCommit` / `environment`，再解除上述禁令。
+
+## 4. 重跑门槛（本期不做）
+
+- 重跑需可复现环境（Python / numpy / OpenCV / scipy / scikit-image 与 `index.json` → `environment` 对齐）。
+- 只写 `derived/mechanism/`；不得改 `results.json`、不得删原始实验产物。
+- 重跑完成后：更新本文件「事实核对」表、`REPRESENTATIVE_CASES.md` 文首 head、SPEC §MEC 交叉引用；可选再跑 pytest 相关只读服务测试。
+
+## 5. 脚本注释
+
+`experiments/mechanism_cases.py` 模块文档字符串已注明：产物 `headCommit` 以各批 `derived/mechanism/index.json` 为准；若落后于分支 tip，报告不得声称与 tip 字节一致（见本文件）。
+
+
+## 6. tip 前移记录
+
+| 日期 (Asia/Shanghai) | tip | 机制 headCommit | 动作 |
+|---|---|---|---|
+| 2026-10-25 | 65f7815 | 7623a52 | 初版禁令 |
+| 2026-10-25 | 0f20bf1（7b54e2+） | 7623a52 | merge feature@9d8428e + ROI 核对文档；**仍不重跑** mechanism；禁令保持 |

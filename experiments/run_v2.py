@@ -17,7 +17,8 @@ from PIL import Image, ImageDraw
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 from algorithm_engine import compute_metrics
-from degradation_analysis import AdaptiveRubbingRestorer, VERSION
+from degradation_analysis import AdaptiveRubbingRestorer, VERSION, change_stats
+from experiments.applied_status import split_means
 from experiments.run_ablation import apply_method
 
 METHODS=['degraded','gaussian_lowpass','butterworth_lowpass','notch','fast_nlm','morphology','nlm_clahe','joint','adaptive_joint']
@@ -70,8 +71,12 @@ def grouped_summary(rows,seed):
         for method in METHODS:
             # All inputs retained, including non-applicable notch identity and failures.
             values=[r for r in rows if r['split']==split and r['method']==method and r.get('error') is None]
-            item={'split':split,'method':method,'n':len(values),'applicableN':sum(r['applicability']!='not_applicable' for r in values),
+            # applicableN excludes passthrough: an unchanged output is not counted as applied processing.
+            item={'split':split,'method':method,'n':len(values),'applicableN':sum(r['applicability'] not in ('not_applicable','passthrough') for r in values),
                   'artifactN':len(set(r['sampleId'] for r in values))}
+            separated=split_means(values,('psnr','ssim','edgeF1'))
+            item.update({k:separated[k] for k in ('processedN','passthroughN','undeterminedN','passthroughCriterion',
+                         'psnrMeanProcessed','psnrMeanPassthrough','ssimMeanProcessed','ssimMeanPassthrough','edgeF1MeanProcessed','edgeF1MeanPassthrough')})
             for metric in ['psnr','ssim','edgeF1','processingMs']:
                 numeric=[r for r in values if r[metric] is not None]
                 vals=np.array([r[metric] for r in numeric]);groups=[np.mean([r[metric] for r in numeric if r['sampleId']==i]) for i in sorted(set(r['sampleId'] for r in numeric))]
@@ -108,16 +113,22 @@ def run(config,out):
                             output,diagnostics=AdaptiveRubbingRestorer().restore(damaged);applicability='applied'
                         else:output,applicability=apply_method(damaged,method)
                         ms=(time.perf_counter()-start)*1000
+                        change=change_stats(damaged,output)
+                        # An adaptive output equal to its input is a passthrough, not applied processing.
+                        if method=='adaptive_joint' and change['isPassthrough']:applicability='passthrough'
                         filename=case+'_'+method+'.png';cv2.imwrite(str(out/filename),output)
                         measured=compute_metrics(reference,output)
                         a=cv2.Canny(reference,80,160)>0;b=cv2.Canny(output,80,160)>0
                         edge=2*np.count_nonzero(a&b)/max(1,np.count_nonzero(a)+np.count_nonzero(b))
                         psnr=measured['psnr'] if np.isfinite(measured['psnr']) else None
-                        row={'psnr':psnr,'perfectMatch':not np.isfinite(measured['psnr']),'ssim':measured['ssim'],'edgeF1':edge,'output':filename,'outputSha256':sha(out/filename)}
+                        row={'psnr':psnr,'perfectMatch':not np.isfinite(measured['psnr']),'ssim':measured['ssim'],'edgeF1':edge,'output':filename,'outputSha256':sha(out/filename),
+                             'isPassthrough':change['isPassthrough'],'changedPixelCount':change['changedPixelCount'],'changedPixelRatio':change['changedPixelRatio'],
+                             'maxAbsDiff':change['maxAbsDiff'],'passthroughCriterion':change['passthroughCriterion']}
                         comparisons.append((method,output))
                     except Exception as exc:
                         error=type(exc).__name__+': '+str(exc);ms=(time.perf_counter()-start)*1000;applicability='failed'
-                        row={'psnr':None,'ssim':None,'edgeF1':None,'output':None,'outputSha256':None,'perfectMatch':False}
+                        row={'psnr':None,'ssim':None,'edgeF1':None,'output':None,'outputSha256':None,'perfectMatch':False,
+                             'isPassthrough':None,'changedPixelCount':None,'changedPixelRatio':None,'maxAbsDiff':None,'passthroughCriterion':None}
                     rows.append({'sampleId':s['id'],'dynasty':s['dynasty'],'split':s['split'],'caseId':case,'degradation':mode,'strength':strength,
                         'seed':seed,'degradationParameters':params,'method':method,'applicability':applicability,'processingMs':ms,'error':error,
                         'sourceSha256':s['sourceSha256'],'crop':s['crop'],'reference':ref_name,'referenceSha256':sha(out/ref_name),

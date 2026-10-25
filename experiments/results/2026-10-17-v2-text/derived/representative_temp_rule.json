@@ -1,0 +1,1775 @@
+{
+  "batch": "2026-10-17-v2-text",
+  "rule": "frontend-temporary-v0: median+min dPSNR of processed rows, plus one passthrough, per batch/split/method/degradation",
+  "derivedAt": "2026-10-19T04:49:35.385783+00:00",
+  "derivedBy": "experiments/representative_temp_rule.py",
+  "groups": [
+    {
+      "split": "development",
+      "method": "adaptive_joint",
+      "degradation": "blur",
+      "n": 14,
+      "processedN": 0,
+      "passthroughN": 14,
+      "median": null,
+      "minimum": null,
+      "passthrough": {
+        "caseId": "han_03_liqi_blur_0",
+        "sampleId": "han_03_liqi",
+        "gain": 0.0,
+        "appliedStatus": "passthrough"
+      }
+    },
+    {
+      "split": "development",
+      "method": "adaptive_joint",
+      "degradation": "gaussian",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "yuan_03_shengzhu_gaussian_1",
+        "sampleId": "yuan_03_shengzhu",
+        "gain": 1.500024847819578,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_03_daguan_gaussian_0",
+        "sampleId": "song_03_daguan",
+        "gain": -4.3085999280662755,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "adaptive_joint",
+      "degradation": "occlusion",
+      "n": 14,
+      "processedN": 12,
+      "passthroughN": 2,
+      "median": {
+        "caseId": "ming_03_wugou_occlusion_0",
+        "sampleId": "ming_03_wugou",
+        "gain": -3.398937330916361,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "wei_03_kouyan_occlusion_0",
+        "sampleId": "wei_03_kouyan",
+        "gain": -11.575838188419475,
+        "appliedStatus": "processed"
+      },
+      "passthrough": {
+        "caseId": "qing_03_sanxitang_preface_occlusion_0",
+        "sampleId": "qing_03_sanxitang_preface",
+        "gain": 0.0,
+        "appliedStatus": "passthrough"
+      }
+    },
+    {
+      "split": "development",
+      "method": "adaptive_joint",
+      "degradation": "periodic",
+      "n": 14,
+      "processedN": 9,
+      "passthroughN": 5,
+      "median": {
+        "caseId": "song_03_daguan_periodic_1",
+        "sampleId": "song_03_daguan",
+        "gain": 3.4920666872877426,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_03_daguan_periodic_0",
+        "sampleId": "song_03_daguan",
+        "gain": -3.166273029872457,
+        "appliedStatus": "processed"
+      },
+      "passthrough": {
+        "caseId": "han_03_liqi_periodic_1",
+        "sampleId": "han_03_liqi",
+        "gain": 0.0,
+        "appliedStatus": "passthrough"
+      }
+    },
+    {
+      "split": "development",
+      "method": "adaptive_joint",
+      "degradation": "salt_pepper",
+      "n": 14,
+      "processedN": 13,
+      "passthroughN": 1,
+      "median": {
+        "caseId": "han_03_liqi_salt_pepper_1",
+        "sampleId": "han_03_liqi",
+        "gain": 4.709770513969527,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_03_daguan_salt_pepper_0",
+        "sampleId": "song_03_daguan",
+        "gain": -0.13525502479735962,
+        "appliedStatus": "processed"
+      },
+      "passthrough": {
+        "caseId": "tang_03_yanjiamiao_salt_pepper_1",
+        "sampleId": "tang_03_yanjiamiao",
+        "gain": 0.0,
+        "appliedStatus": "passthrough"
+      }
+    },
+    {
+      "split": "development",
+      "method": "butterworth_lowpass",
+      "degradation": "blur",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "yuan_03_shengzhu_blur_0",
+        "sampleId": "yuan_03_shengzhu",
+        "gain": -0.7272873232365278,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "qing_03_sanxitang_preface_blur_0",
+        "sampleId": "qing_03_sanxitang_preface",
+        "gain": -1.4293028953414684,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "butterworth_lowpass",
+      "degradation": "gaussian",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "yuan_03_shengzhu_gaussian_1",
+        "sampleId": "yuan_03_shengzhu",
+        "gain": 0.135642893693813,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_03_daguan_gaussian_0",
+        "sampleId": "song_03_daguan",
+        "gain": -6.497287630161182,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "butterworth_lowpass",
+      "degradation": "occlusion",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "song_03_daguan_occlusion_0",
+        "sampleId": "song_03_daguan",
+        "gain": -13.74355934647383,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "yuan_03_shengzhu_occlusion_0",
+        "sampleId": "yuan_03_shengzhu",
+        "gain": -23.127301051367382,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "butterworth_lowpass",
+      "degradation": "periodic",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "yuan_03_shengzhu_periodic_1",
+        "sampleId": "yuan_03_shengzhu",
+        "gain": -1.8820151511790364,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_03_daguan_periodic_0",
+        "sampleId": "song_03_daguan",
+        "gain": -6.690571428931818,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "butterworth_lowpass",
+      "degradation": "salt_pepper",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "wei_03_kouyan_salt_pepper_0",
+        "sampleId": "wei_03_kouyan",
+        "gain": 2.6242593235721117,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_03_daguan_salt_pepper_0",
+        "sampleId": "song_03_daguan",
+        "gain": -1.8667696569582866,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "fast_nlm",
+      "degradation": "blur",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "yuan_03_shengzhu_blur_0",
+        "sampleId": "yuan_03_shengzhu",
+        "gain": -0.7532868109157,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "tang_03_yanjiamiao_blur_0",
+        "sampleId": "tang_03_yanjiamiao",
+        "gain": -2.410417764071326,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "fast_nlm",
+      "degradation": "gaussian",
+      "n": 14,
+      "processedN": 13,
+      "passthroughN": 1,
+      "median": {
+        "caseId": "qing_03_sanxitang_preface_gaussian_1",
+        "sampleId": "qing_03_sanxitang_preface",
+        "gain": 0.2032623036502521,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_03_daguan_gaussian_0",
+        "sampleId": "song_03_daguan",
+        "gain": 1.4053111740963686e-05,
+        "appliedStatus": "processed"
+      },
+      "passthrough": {
+        "caseId": "song_03_daguan_gaussian_1",
+        "sampleId": "song_03_daguan",
+        "gain": 0.0,
+        "appliedStatus": "passthrough"
+      }
+    },
+    {
+      "split": "development",
+      "method": "fast_nlm",
+      "degradation": "occlusion",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "wei_03_kouyan_occlusion_1",
+        "sampleId": "wei_03_kouyan",
+        "gain": -4.587612718225781,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "qing_03_sanxitang_preface_occlusion_0",
+        "sampleId": "qing_03_sanxitang_preface",
+        "gain": -17.560752704861763,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "fast_nlm",
+      "degradation": "periodic",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "han_03_liqi_periodic_1",
+        "sampleId": "han_03_liqi",
+        "gain": 0.0018461358826016294,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "wei_03_kouyan_periodic_0",
+        "sampleId": "wei_03_kouyan",
+        "gain": -0.12832442625591156,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "fast_nlm",
+      "degradation": "salt_pepper",
+      "n": 14,
+      "processedN": 13,
+      "passthroughN": 1,
+      "median": {
+        "caseId": "ming_03_wugou_salt_pepper_0",
+        "sampleId": "ming_03_wugou",
+        "gain": 0.008943920606494515,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "wei_03_kouyan_salt_pepper_0",
+        "sampleId": "wei_03_kouyan",
+        "gain": -0.05313908802509815,
+        "appliedStatus": "processed"
+      },
+      "passthrough": {
+        "caseId": "song_03_daguan_salt_pepper_1",
+        "sampleId": "song_03_daguan",
+        "gain": 0.0,
+        "appliedStatus": "passthrough"
+      }
+    },
+    {
+      "split": "development",
+      "method": "gaussian_lowpass",
+      "degradation": "blur",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "yuan_03_shengzhu_blur_0",
+        "sampleId": "yuan_03_shengzhu",
+        "gain": -0.6668571129994305,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "qing_03_sanxitang_preface_blur_0",
+        "sampleId": "qing_03_sanxitang_preface",
+        "gain": -1.6057191918887597,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "gaussian_lowpass",
+      "degradation": "gaussian",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "yuan_03_shengzhu_gaussian_1",
+        "sampleId": "yuan_03_shengzhu",
+        "gain": 0.7600534106685686,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_03_daguan_gaussian_0",
+        "sampleId": "song_03_daguan",
+        "gain": -5.280804566110241,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "gaussian_lowpass",
+      "degradation": "occlusion",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "song_03_daguan_occlusion_0",
+        "sampleId": "song_03_daguan",
+        "gain": -12.46421604834006,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "yuan_03_shengzhu_occlusion_0",
+        "sampleId": "yuan_03_shengzhu",
+        "gain": -22.003601289819084,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "gaussian_lowpass",
+      "degradation": "periodic",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "yuan_03_shengzhu_periodic_1",
+        "sampleId": "yuan_03_shengzhu",
+        "gain": -1.162998665879119,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_03_daguan_periodic_0",
+        "sampleId": "song_03_daguan",
+        "gain": -5.5375136604863755,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "gaussian_lowpass",
+      "degradation": "salt_pepper",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "wei_03_kouyan_salt_pepper_0",
+        "sampleId": "wei_03_kouyan",
+        "gain": 2.903366161839223,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_03_daguan_salt_pepper_0",
+        "sampleId": "song_03_daguan",
+        "gain": -0.9325868794598655,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "joint",
+      "degradation": "blur",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "wei_03_kouyan_blur_0",
+        "sampleId": "wei_03_kouyan",
+        "gain": -3.043209202358785,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "tang_03_yanjiamiao_blur_0",
+        "sampleId": "tang_03_yanjiamiao",
+        "gain": -9.248293363037774,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "joint",
+      "degradation": "gaussian",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "tang_03_yanjiamiao_gaussian_0",
+        "sampleId": "tang_03_yanjiamiao",
+        "gain": -5.860301664232164,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_03_daguan_gaussian_0",
+        "sampleId": "song_03_daguan",
+        "gain": -11.787693570864873,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "joint",
+      "degradation": "occlusion",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "song_03_daguan_occlusion_0",
+        "sampleId": "song_03_daguan",
+        "gain": -19.005097736988496,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "qing_03_sanxitang_preface_occlusion_0",
+        "sampleId": "qing_03_sanxitang_preface",
+        "gain": -27.861741352283413,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "joint",
+      "degradation": "periodic",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "yuan_03_shengzhu_periodic_1",
+        "sampleId": "yuan_03_shengzhu",
+        "gain": -7.523869885459611,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_03_daguan_periodic_0",
+        "sampleId": "song_03_daguan",
+        "gain": -11.786580870648983,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "joint",
+      "degradation": "salt_pepper",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "han_03_liqi_salt_pepper_1",
+        "sampleId": "han_03_liqi",
+        "gain": -1.4672773572056066,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_03_daguan_salt_pepper_0",
+        "sampleId": "song_03_daguan",
+        "gain": -6.778935956809583,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "morphology",
+      "degradation": "blur",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "tang_03_yanjiamiao_blur_0",
+        "sampleId": "tang_03_yanjiamiao",
+        "gain": -0.9243689239533701,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "han_03_liqi_blur_0",
+        "sampleId": "han_03_liqi",
+        "gain": -1.7177127596059663,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "morphology",
+      "degradation": "gaussian",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "yuan_03_shengzhu_gaussian_1",
+        "sampleId": "yuan_03_shengzhu",
+        "gain": -5.749772274532495,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_03_daguan_gaussian_0",
+        "sampleId": "song_03_daguan",
+        "gain": -12.629114239511262,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "morphology",
+      "degradation": "occlusion",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "qing_03_sanxitang_preface_occlusion_1",
+        "sampleId": "qing_03_sanxitang_preface",
+        "gain": -17.194577673778472,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "yuan_03_shengzhu_occlusion_0",
+        "sampleId": "yuan_03_shengzhu",
+        "gain": -28.48164685980369,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "morphology",
+      "degradation": "periodic",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "yuan_03_shengzhu_periodic_1",
+        "sampleId": "yuan_03_shengzhu",
+        "gain": -4.383399350616433,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_03_daguan_periodic_0",
+        "sampleId": "song_03_daguan",
+        "gain": -11.891623517780218,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "morphology",
+      "degradation": "salt_pepper",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "yuan_03_shengzhu_salt_pepper_1",
+        "sampleId": "yuan_03_shengzhu",
+        "gain": -2.107918294484458,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_03_daguan_salt_pepper_0",
+        "sampleId": "song_03_daguan",
+        "gain": -7.86037891459582,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "nlm_clahe",
+      "degradation": "blur",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "ming_03_wugou_blur_1",
+        "sampleId": "ming_03_wugou",
+        "gain": -2.209591699911261,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "tang_03_yanjiamiao_blur_0",
+        "sampleId": "tang_03_yanjiamiao",
+        "gain": -9.130640064852162,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "nlm_clahe",
+      "degradation": "gaussian",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "han_03_liqi_gaussian_0",
+        "sampleId": "han_03_liqi",
+        "gain": -9.020057728821328,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "yuan_03_shengzhu_gaussian_0",
+        "sampleId": "yuan_03_shengzhu",
+        "gain": -11.595024065268461,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "nlm_clahe",
+      "degradation": "occlusion",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "yuan_03_shengzhu_occlusion_1",
+        "sampleId": "yuan_03_shengzhu",
+        "gain": -19.196044683526292,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "yuan_03_shengzhu_occlusion_0",
+        "sampleId": "yuan_03_shengzhu",
+        "gain": -28.522894472064795,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "nlm_clahe",
+      "degradation": "periodic",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "wei_03_kouyan_periodic_1",
+        "sampleId": "wei_03_kouyan",
+        "gain": -8.110584653875083,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "yuan_03_shengzhu_periodic_0",
+        "sampleId": "yuan_03_shengzhu",
+        "gain": -11.901974924539731,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "nlm_clahe",
+      "degradation": "salt_pepper",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "tang_03_yanjiamiao_salt_pepper_0",
+        "sampleId": "tang_03_yanjiamiao",
+        "gain": -3.3089506216697835,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "yuan_03_shengzhu_salt_pepper_0",
+        "sampleId": "yuan_03_shengzhu",
+        "gain": -5.782864458128248,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "notch",
+      "degradation": "blur",
+      "n": 14,
+      "processedN": 2,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "tang_03_yanjiamiao_blur_0",
+        "sampleId": "tang_03_yanjiamiao",
+        "gain": -0.4647010633629307,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "tang_03_yanjiamiao_blur_0",
+        "sampleId": "tang_03_yanjiamiao",
+        "gain": -0.4647010633629307,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "notch",
+      "degradation": "gaussian",
+      "n": 14,
+      "processedN": 2,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "tang_03_yanjiamiao_gaussian_0",
+        "sampleId": "tang_03_yanjiamiao",
+        "gain": -1.2099527601257165,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "tang_03_yanjiamiao_gaussian_0",
+        "sampleId": "tang_03_yanjiamiao",
+        "gain": -1.2099527601257165,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "notch",
+      "degradation": "occlusion",
+      "n": 14,
+      "processedN": 2,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "tang_03_yanjiamiao_occlusion_0",
+        "sampleId": "tang_03_yanjiamiao",
+        "gain": -14.244045730669995,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "tang_03_yanjiamiao_occlusion_0",
+        "sampleId": "tang_03_yanjiamiao",
+        "gain": -14.244045730669995,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "notch",
+      "degradation": "periodic",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "ming_03_wugou_periodic_0",
+        "sampleId": "ming_03_wugou",
+        "gain": 13.539766604658865,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "tang_03_yanjiamiao_periodic_0",
+        "sampleId": "tang_03_yanjiamiao",
+        "gain": 4.575575038150987,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "development",
+      "method": "notch",
+      "degradation": "salt_pepper",
+      "n": 14,
+      "processedN": 1,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "tang_03_yanjiamiao_salt_pepper_0",
+        "sampleId": "tang_03_yanjiamiao",
+        "gain": -0.12984468928453552,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "tang_03_yanjiamiao_salt_pepper_0",
+        "sampleId": "tang_03_yanjiamiao",
+        "gain": -0.12984468928453552,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "adaptive_joint",
+      "degradation": "blur",
+      "n": 14,
+      "processedN": 0,
+      "passthroughN": 14,
+      "median": null,
+      "minimum": null,
+      "passthrough": {
+        "caseId": "han_04_shichen_blur_0",
+        "sampleId": "han_04_shichen",
+        "gain": 0.0,
+        "appliedStatus": "passthrough"
+      }
+    },
+    {
+      "split": "test",
+      "method": "adaptive_joint",
+      "degradation": "gaussian",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "ming_04_tongdian_gaussian_0",
+        "sampleId": "ming_04_tongdian",
+        "gain": 1.7626605234705721,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "yuan_04_jingyuanchang_gaussian_0",
+        "sampleId": "yuan_04_jingyuanchang",
+        "gain": -1.0740439395971961,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "adaptive_joint",
+      "degradation": "occlusion",
+      "n": 14,
+      "processedN": 11,
+      "passthroughN": 3,
+      "median": {
+        "caseId": "yuan_04_jingyuanchang_occlusion_1",
+        "sampleId": "yuan_04_jingyuanchang",
+        "gain": -2.534162366516803,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "yuan_04_jingyuanchang_occlusion_0",
+        "sampleId": "yuan_04_jingyuanchang",
+        "gain": -13.188609661662994,
+        "appliedStatus": "processed"
+      },
+      "passthrough": {
+        "caseId": "han_04_shichen_occlusion_0",
+        "sampleId": "han_04_shichen",
+        "gain": 0.0,
+        "appliedStatus": "passthrough"
+      }
+    },
+    {
+      "split": "test",
+      "method": "adaptive_joint",
+      "degradation": "periodic",
+      "n": 14,
+      "processedN": 8,
+      "passthroughN": 6,
+      "median": {
+        "caseId": "yuan_04_jingyuanchang_periodic_0",
+        "sampleId": "yuan_04_jingyuanchang",
+        "gain": 5.80626598282991,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_04_mengying_periodic_0",
+        "sampleId": "song_04_mengying",
+        "gain": -0.36280102158457694,
+        "appliedStatus": "processed"
+      },
+      "passthrough": {
+        "caseId": "han_04_shichen_periodic_1",
+        "sampleId": "han_04_shichen",
+        "gain": 0.0,
+        "appliedStatus": "passthrough"
+      }
+    },
+    {
+      "split": "test",
+      "method": "adaptive_joint",
+      "degradation": "salt_pepper",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "ming_04_tongdian_salt_pepper_1",
+        "sampleId": "ming_04_tongdian",
+        "gain": 6.432342354368714,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_04_mengying_salt_pepper_0",
+        "sampleId": "song_04_mengying",
+        "gain": 3.017994188052352,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "butterworth_lowpass",
+      "degradation": "blur",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "yuan_04_jingyuanchang_blur_0",
+        "sampleId": "yuan_04_jingyuanchang",
+        "gain": -0.8176991716909896,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "han_04_shichen_blur_0",
+        "sampleId": "han_04_shichen",
+        "gain": -1.4013923985868963,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "butterworth_lowpass",
+      "degradation": "gaussian",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "qing_04_ayuwang_reliquary_gaussian_1",
+        "sampleId": "qing_04_ayuwang_reliquary",
+        "gain": -0.7048188697357745,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_04_mengying_gaussian_0",
+        "sampleId": "song_04_mengying",
+        "gain": -6.448574236875611,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "butterworth_lowpass",
+      "degradation": "occlusion",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "han_04_shichen_occlusion_1",
+        "sampleId": "han_04_shichen",
+        "gain": -9.961868780506165,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "yuan_04_jingyuanchang_occlusion_0",
+        "sampleId": "yuan_04_jingyuanchang",
+        "gain": -22.421919764987212,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "butterworth_lowpass",
+      "degradation": "periodic",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "qing_04_ayuwang_reliquary_periodic_1",
+        "sampleId": "qing_04_ayuwang_reliquary",
+        "gain": -2.3200611670783324,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_04_mengying_periodic_0",
+        "sampleId": "song_04_mengying",
+        "gain": -6.6212562024835755,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "butterworth_lowpass",
+      "degradation": "salt_pepper",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "yuan_04_jingyuanchang_salt_pepper_1",
+        "sampleId": "yuan_04_jingyuanchang",
+        "gain": 2.757838915480331,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_04_mengying_salt_pepper_0",
+        "sampleId": "song_04_mengying",
+        "gain": -0.872273062742206,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "fast_nlm",
+      "degradation": "blur",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "han_04_shichen_blur_1",
+        "sampleId": "han_04_shichen",
+        "gain": -0.5217644769725069,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "tang_04_xuanmita_blur_0",
+        "sampleId": "tang_04_xuanmita",
+        "gain": -1.6882880415373904,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "fast_nlm",
+      "degradation": "gaussian",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "yuan_04_jingyuanchang_gaussian_1",
+        "sampleId": "yuan_04_jingyuanchang",
+        "gain": 0.0867120840099247,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_04_mengying_gaussian_1",
+        "sampleId": "song_04_mengying",
+        "gain": 0.0037267643414296003,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "fast_nlm",
+      "degradation": "occlusion",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "ming_04_tongdian_occlusion_0",
+        "sampleId": "ming_04_tongdian",
+        "gain": -4.436036786427742,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "wei_04_wangsong_occlusion_0",
+        "sampleId": "wei_04_wangsong",
+        "gain": -11.001782184639183,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "fast_nlm",
+      "degradation": "periodic",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "qing_04_ayuwang_reliquary_periodic_1",
+        "sampleId": "qing_04_ayuwang_reliquary",
+        "gain": -0.001565598251414002,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "wei_04_wangsong_periodic_0",
+        "sampleId": "wei_04_wangsong",
+        "gain": -0.13942463256544002,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "fast_nlm",
+      "degradation": "salt_pepper",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "wei_04_wangsong_salt_pepper_1",
+        "sampleId": "wei_04_wangsong",
+        "gain": -0.01143838155553567,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "tang_04_xuanmita_salt_pepper_0",
+        "sampleId": "tang_04_xuanmita",
+        "gain": -0.13950433220225378,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "gaussian_lowpass",
+      "degradation": "blur",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "yuan_04_jingyuanchang_blur_0",
+        "sampleId": "yuan_04_jingyuanchang",
+        "gain": -0.7062709260713405,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "han_04_shichen_blur_0",
+        "sampleId": "han_04_shichen",
+        "gain": -1.3400610656855108,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "gaussian_lowpass",
+      "degradation": "gaussian",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "qing_04_ayuwang_reliquary_gaussian_1",
+        "sampleId": "qing_04_ayuwang_reliquary",
+        "gain": 0.31769589024186473,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_04_mengying_gaussian_0",
+        "sampleId": "song_04_mengying",
+        "gain": -5.166957065348544,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "gaussian_lowpass",
+      "degradation": "occlusion",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "han_04_shichen_occlusion_1",
+        "sampleId": "han_04_shichen",
+        "gain": -8.758450927146953,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "yuan_04_jingyuanchang_occlusion_0",
+        "sampleId": "yuan_04_jingyuanchang",
+        "gain": -21.123692298500842,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "gaussian_lowpass",
+      "degradation": "periodic",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "qing_04_ayuwang_reliquary_periodic_1",
+        "sampleId": "qing_04_ayuwang_reliquary",
+        "gain": -1.3783506237205714,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_04_mengying_periodic_0",
+        "sampleId": "song_04_mengying",
+        "gain": -5.414276027055042,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "gaussian_lowpass",
+      "degradation": "salt_pepper",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "yuan_04_jingyuanchang_salt_pepper_1",
+        "sampleId": "yuan_04_jingyuanchang",
+        "gain": 3.0610051209587326,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_04_mengying_salt_pepper_0",
+        "sampleId": "song_04_mengying",
+        "gain": 0.037294365430923904,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "joint",
+      "degradation": "blur",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "yuan_04_jingyuanchang_blur_0",
+        "sampleId": "yuan_04_jingyuanchang",
+        "gain": -3.021098578213998,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "han_04_shichen_blur_0",
+        "sampleId": "han_04_shichen",
+        "gain": -5.419278806085163,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "joint",
+      "degradation": "gaussian",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "wei_04_wangsong_gaussian_0",
+        "sampleId": "wei_04_wangsong",
+        "gain": -4.552678362266263,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_04_mengying_gaussian_0",
+        "sampleId": "song_04_mengying",
+        "gain": -10.683848405968362,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "joint",
+      "degradation": "occlusion",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "ming_04_tongdian_occlusion_0",
+        "sampleId": "ming_04_tongdian",
+        "gain": -15.83835680434753,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "yuan_04_jingyuanchang_occlusion_0",
+        "sampleId": "yuan_04_jingyuanchang",
+        "gain": -26.710465049546773,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "joint",
+      "degradation": "periodic",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "wei_04_wangsong_periodic_0",
+        "sampleId": "wei_04_wangsong",
+        "gain": -7.998384756707068,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_04_mengying_periodic_0",
+        "sampleId": "song_04_mengying",
+        "gain": -11.576968512619683,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "joint",
+      "degradation": "salt_pepper",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "yuan_04_jingyuanchang_salt_pepper_1",
+        "sampleId": "yuan_04_jingyuanchang",
+        "gain": -0.024957517921102124,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "song_04_mengying_salt_pepper_0",
+        "sampleId": "song_04_mengying",
+        "gain": -4.551188842611538,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "morphology",
+      "degradation": "blur",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "tang_04_xuanmita_blur_0",
+        "sampleId": "tang_04_xuanmita",
+        "gain": -1.067255358726971,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "qing_04_ayuwang_reliquary_blur_0",
+        "sampleId": "qing_04_ayuwang_reliquary",
+        "gain": -2.2650990192197433,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "morphology",
+      "degradation": "gaussian",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "wei_04_wangsong_gaussian_0",
+        "sampleId": "wei_04_wangsong",
+        "gain": -6.474152559763294,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "qing_04_ayuwang_reliquary_gaussian_0",
+        "sampleId": "qing_04_ayuwang_reliquary",
+        "gain": -13.38085674441607,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "morphology",
+      "degradation": "occlusion",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "han_04_shichen_occlusion_1",
+        "sampleId": "han_04_shichen",
+        "gain": -14.886249238248435,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "yuan_04_jingyuanchang_occlusion_0",
+        "sampleId": "yuan_04_jingyuanchang",
+        "gain": -28.83119089384414,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "morphology",
+      "degradation": "periodic",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "wei_04_wangsong_periodic_0",
+        "sampleId": "wei_04_wangsong",
+        "gain": -5.266833926045852,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "qing_04_ayuwang_reliquary_periodic_0",
+        "sampleId": "qing_04_ayuwang_reliquary",
+        "gain": -12.629635976348927,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "morphology",
+      "degradation": "salt_pepper",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "yuan_04_jingyuanchang_salt_pepper_1",
+        "sampleId": "yuan_04_jingyuanchang",
+        "gain": -2.078793393864432,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "qing_04_ayuwang_reliquary_salt_pepper_0",
+        "sampleId": "qing_04_ayuwang_reliquary",
+        "gain": -7.2981717989963,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "nlm_clahe",
+      "degradation": "blur",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "qing_04_ayuwang_reliquary_blur_1",
+        "sampleId": "qing_04_ayuwang_reliquary",
+        "gain": -1.9993239679811552,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "han_04_shichen_blur_0",
+        "sampleId": "han_04_shichen",
+        "gain": -4.320711779124384,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "nlm_clahe",
+      "degradation": "gaussian",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "qing_04_ayuwang_reliquary_gaussian_1",
+        "sampleId": "qing_04_ayuwang_reliquary",
+        "gain": -10.029858678446294,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "yuan_04_jingyuanchang_gaussian_0",
+        "sampleId": "yuan_04_jingyuanchang",
+        "gain": -12.42484029869227,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "nlm_clahe",
+      "degradation": "occlusion",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "ming_04_tongdian_occlusion_0",
+        "sampleId": "ming_04_tongdian",
+        "gain": -14.706531694443054,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "yuan_04_jingyuanchang_occlusion_0",
+        "sampleId": "yuan_04_jingyuanchang",
+        "gain": -28.630725183809552,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "nlm_clahe",
+      "degradation": "periodic",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "han_04_shichen_periodic_0",
+        "sampleId": "han_04_shichen",
+        "gain": -9.52730715062069,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "yuan_04_jingyuanchang_periodic_0",
+        "sampleId": "yuan_04_jingyuanchang",
+        "gain": -12.708827392280948,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "nlm_clahe",
+      "degradation": "salt_pepper",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "qing_04_ayuwang_reliquary_salt_pepper_1",
+        "sampleId": "qing_04_ayuwang_reliquary",
+        "gain": -3.42614555620224,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "yuan_04_jingyuanchang_salt_pepper_0",
+        "sampleId": "yuan_04_jingyuanchang",
+        "gain": -6.440739240013697,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "notch",
+      "degradation": "blur",
+      "n": 14,
+      "processedN": 5,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "ming_04_tongdian_blur_0",
+        "sampleId": "ming_04_tongdian",
+        "gain": -0.03454870826287504,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "tang_04_xuanmita_blur_0",
+        "sampleId": "tang_04_xuanmita",
+        "gain": -2.1665268963327193,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "notch",
+      "degradation": "gaussian",
+      "n": 14,
+      "processedN": 2,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "tang_04_xuanmita_gaussian_0",
+        "sampleId": "tang_04_xuanmita",
+        "gain": -1.5560697981972886,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "tang_04_xuanmita_gaussian_0",
+        "sampleId": "tang_04_xuanmita",
+        "gain": -1.5560697981972886,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "notch",
+      "degradation": "occlusion",
+      "n": 14,
+      "processedN": 2,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "tang_04_xuanmita_occlusion_0",
+        "sampleId": "tang_04_xuanmita",
+        "gain": -5.000394740416482,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "tang_04_xuanmita_occlusion_0",
+        "sampleId": "tang_04_xuanmita",
+        "gain": -5.000394740416482,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "notch",
+      "degradation": "periodic",
+      "n": 14,
+      "processedN": 14,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "song_04_mengying_periodic_1",
+        "sampleId": "song_04_mengying",
+        "gain": 13.467425538137004,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "tang_04_xuanmita_periodic_0",
+        "sampleId": "tang_04_xuanmita",
+        "gain": 3.6831600041831294,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    },
+    {
+      "split": "test",
+      "method": "notch",
+      "degradation": "salt_pepper",
+      "n": 14,
+      "processedN": 1,
+      "passthroughN": 0,
+      "median": {
+        "caseId": "tang_04_xuanmita_salt_pepper_0",
+        "sampleId": "tang_04_xuanmita",
+        "gain": -0.10641206084034849,
+        "appliedStatus": "processed"
+      },
+      "minimum": {
+        "caseId": "tang_04_xuanmita_salt_pepper_0",
+        "sampleId": "tang_04_xuanmita",
+        "gain": -0.10641206084034849,
+        "appliedStatus": "processed"
+      },
+      "passthrough": null
+    }
+  ],
+  "mechanismCasesOverlap": [
+    {
+      "split": "development",
+      "category": "improvement",
+      "caseId": "ming_03_wugou_salt_pepper_1",
+      "alsoPickedAs": null
+    },
+    {
+      "split": "development",
+      "category": "negative",
+      "caseId": "yuan_03_shengzhu_occlusion_1",
+      "alsoPickedAs": null
+    },
+    {
+      "split": "development",
+      "category": "passthrough",
+      "caseId": "qing_03_sanxitang_preface_occlusion_1",
+      "alsoPickedAs": null
+    },
+    {
+      "split": "development",
+      "category": "gate_reject",
+      "caseId": "qing_03_sanxitang_preface_periodic_1",
+      "alsoPickedAs": null
+    },
+    {
+      "split": "development",
+      "category": "notch",
+      "caseId": "yuan_03_shengzhu_periodic_1",
+      "alsoPickedAs": null
+    },
+    {
+      "split": "test",
+      "category": "improvement",
+      "caseId": "qing_04_ayuwang_reliquary_salt_pepper_1",
+      "alsoPickedAs": null
+    },
+    {
+      "split": "test",
+      "category": "negative",
+      "caseId": "tang_04_xuanmita_occlusion_0",
+      "alsoPickedAs": null
+    },
+    {
+      "split": "test",
+      "category": "passthrough",
+      "caseId": "song_04_mengying_blur_0",
+      "alsoPickedAs": null
+    },
+    {
+      "split": "test",
+      "category": "gate_reject",
+      "caseId": "qing_04_ayuwang_reliquary_periodic_1",
+      "alsoPickedAs": null
+    },
+    {
+      "split": "test",
+      "category": "notch",
+      "caseId": "song_04_mengying_periodic_1",
+      "alsoPickedAs": null
+    }
+  ]
+}

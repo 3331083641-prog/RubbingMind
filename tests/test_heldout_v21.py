@@ -1,4 +1,9 @@
-"""The held-out comparison artifact keeps every sample, including occlusion losses."""
+"""The 2026-10-18 same-batch retest (directory name says "heldout") keeps every sample.
+
+The directory and experiment ID are historical and stay unchanged, but the batch is NOT a
+held-out set: its 14 artifacts are the 14 artifacts of 2026-10-17-v2-text (audit E-01).
+The UI name is "同批复测 v2.1"; see test_retest_samples_are_the_v2_text_artifacts.
+"""
 import json
 from pathlib import Path
 
@@ -37,3 +42,11 @@ def test_failure_diagnosis_keeps_negative_cases():
     assert any(case['cause'] == '本身信息不可恢复' and case['negativeLift'] for case in report['cases'])
     assert '历史碑刻' in report['caveat']
     assert '没有删除负提升' in report['notRetuned']
+
+
+def test_retest_samples_are_the_v2_text_artifacts():
+    """Documents the overlap honestly instead of trusting excludedFromPreviousBatch=True."""
+    result = json.loads((ROOT / 'experiments/results/2026-10-18-v21-heldout/results.json').read_text(encoding='utf-8'))
+    v2_text = json.loads((ROOT / 'experiments/results/2026-10-17-v2-text/results.json').read_text(encoding='utf-8'))
+    v2_text_ids = {row['sampleId'] for row in v2_text['rows']}
+    assert {row['id'] for row in result['samples']} == v2_text_ids
