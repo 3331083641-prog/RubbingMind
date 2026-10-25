@@ -1,0 +1,662 @@
+{
+  "schemaVersion": 1,
+  "steleId": "ming_01_xianfu",
+  "title": "明弘治八年西安府学题名碑",
+  "curatedBy": "RM-金石史料",
+  "curatedAt": "2026-10-25（Asia/Shanghai）",
+  "selectionBasis": "释文含弘治八年乙卯与八月辛亥朔日干支；NPM 创作时间栏可核；2026-10-25 实开",
+  "layers": "作品（work）≠原刻载体（stone）≠拓本（rubbing）≠影像（image）；人物、纪年、地点、书体风格、著录分列",
+  "claims": [
+    {
+      "claimId": "ming_01_xianfu:work:title",
+      "entity": "work",
+      "property": "title",
+      "value": "明弘治八年西安府学题名碑（馆方品名“明弘治八年西安府學題名碑墨拓本 橫披”）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_01_xianfu",
+          "field": "title",
+          "value": "明弘治八年西安府学题名碑"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明弘治八年西安府學題名碑墨拓本 橫披",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名：明弘治八年西安府學題名碑墨拓本 橫披"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_01_xianfu:work:dynasty",
+      "entity": "work",
+      "property": "dynasty",
+      "value": "明",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_01_xianfu",
+          "field": "dynasty",
+          "value": "明代"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明弘治八年西安府學題名碑墨拓本 橫披",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名冠“明”／創作時間明孝宗弘治八年"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_01_xianfu:work:content",
+      "entity": "work",
+      "property": "content",
+      "value": "弘治八年陕西乡试监临／提调／考试等官题名与誓词；十二月李训立石",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_01_xianfu",
+          "field": "transcription",
+          "quote": "維弘治八年"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_01_xianfu",
+          "field": "transcription",
+          "quote": "李訓立石"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明弘治八年西安府學題名碑墨拓本 橫披",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "西安府同知山西澤州李訓立石"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_01_xianfu:stone:currentLocation",
+      "entity": "stone",
+      "property": "currentLocation",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批所开馆方页与目录均未给出原石现藏地"
+    },
+    {
+      "claimId": "ming_01_xianfu:stone:originalSite",
+      "entity": "stone",
+      "property": "originalSite",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批所开馆方页与目录均未给出原立地点的可核坐标或馆方确认地址"
+    },
+    {
+      "claimId": "ming_01_xianfu:stone:transfer",
+      "entity": "stone",
+      "property": "transfer",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "未见可核的原石流转记述"
+    },
+    {
+      "claimId": "ming_01_xianfu:stone:condition",
+      "entity": "stone",
+      "property": "condition",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "无原石影像；目录 stoneWeathering 不评定原石"
+    },
+    {
+      "claimId": "ming_01_xianfu:rubbing:holder",
+      "entity": "rubbing",
+      "property": "holder",
+      "value": "台北故宫博物院（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_01_xianfu",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_01_xianfu",
+          "field": "collectionNumber",
+          "value": "購拓000274"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明弘治八年西安府學題名碑墨拓本 橫披",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "文物統一編號：購拓000274"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_01_xianfu:rubbing:museumTitle",
+      "entity": "rubbing",
+      "property": "museumTitle",
+      "value": "明弘治八年西安府學題名碑墨拓本 橫披",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明弘治八年西安府學題名碑墨拓本 橫披",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名栏"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_01_xianfu:rubbing:format",
+      "entity": "rubbing",
+      "property": "format",
+      "value": "横披／一轴；本幅约 63.2×114.5 公分；纸本",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明弘治八年西安府學題名碑墨拓本 橫披",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "数量：一轴；本幅 63.2x114.5；质地：纸"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_01_xianfu:rubbing:period",
+      "entity": "rubbing",
+      "property": "period",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录 rubbingPeriod 为未核定；本批馆方页未提供可核的拓印年代",
+      "catalogueField": "rubbingPeriod",
+      "catalogueValue": "未核定；不据拓印年改变朝代"
+    },
+    {
+      "claimId": "ming_01_xianfu:image:sourceSha256",
+      "entity": "image",
+      "property": "sourceSha256",
+      "value": "f957e8226bf1729c2d0ce387f73581435bd313ec03754929614c5e24744768b2",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_01_xianfu",
+          "field": "sourceVerification.sourceSha256",
+          "value": "f957e8226bf1729c2d0ce387f73581435bd313ec03754929614c5e24744768b2"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_01_xianfu:image:license",
+      "entity": "image",
+      "property": "license",
+      "value": "CC BY 4.0",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_01_xianfu",
+          "field": "license",
+          "value": "CC BY 4.0"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明弘治八年西安府學題名碑墨拓本 橫披",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "授權條款 CC BY 4.0"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_01_xianfu:image:derivation",
+      "entity": "image",
+      "property": "derivation",
+      "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_01_xianfu",
+          "field": "modifications",
+          "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_01_xianfu:person:author",
+      "entity": "person",
+      "property": "author",
+      "value": "誓词具名监临官李瀚等；非单一撰人",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_01_xianfu",
+          "field": "transcription",
+          "quote": "巡按陝西監察御史李瀚"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明弘治八年西安府學題名碑墨拓本 橫披",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "監臨官巡按陝西監察御史李瀚"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_01_xianfu",
+          "field": "author",
+          "value": "未核定"
+        }
+      ],
+      "catalogueField": "author",
+      "catalogueValue": "未核定",
+      "note": "目录 author=未核定；碑为题名誓词体，具名官员作有限支持，不升格单一撰人。"
+    },
+    {
+      "claimId": "ming_01_xianfu:person:calligrapher",
+      "entity": "person",
+      "property": "calligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定；释文未见书丹人",
+      "catalogueField": "calligrapher",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "ming_01_xianfu:person:titleCalligrapher",
+      "entity": "person",
+      "property": "titleCalligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定",
+      "catalogueField": "titleCalligrapher",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "ming_01_xianfu:person:engraver",
+      "entity": "person",
+      "property": "engraver",
+      "value": "李训立石（西安府同知；立石人，非必然镌手）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_01_xianfu",
+          "field": "transcription",
+          "quote": "李訓立石"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明弘治八年西安府學題名碑墨拓本 橫披",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "李訓立石"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_01_xianfu",
+          "field": "engraver",
+          "value": "未核定"
+        }
+      ],
+      "catalogueField": "engraver",
+      "catalogueValue": "未核定",
+      "note": "“立石”不等于镌刻署名；目录 engraver 未核定，作有限支持。"
+    },
+    {
+      "claimId": "ming_01_xianfu:person:steleSubject",
+      "entity": "person",
+      "property": "steleSubject",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "题名碑无单一墓主／碑主；目录 steleSubject 未核定",
+      "catalogueField": "steleSubject",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "ming_01_xianfu:date:era",
+      "entity": "date",
+      "property": "era",
+      "value": "弘治八年岁次乙卯（八月辛亥朔越七日丁巳；冬十二月立石）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_01_xianfu",
+          "field": "transcription",
+          "quote": "維弘治八年（西元一四九五年）歲次乙卯"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_01_xianfu",
+          "field": "transcription",
+          "quote": "八月辛亥朔。越七日丁巳"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明弘治八年西安府學題名碑墨拓本 橫披",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "弘治八年（西元一四九五年）歲次乙卯"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_01_xianfu",
+          "field": "originalYear",
+          "value": "1495年"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_01_xianfu:date:ce",
+      "entity": "date",
+      "property": "ce",
+      "value": 1495,
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_01_xianfu",
+          "field": "originalYearCE",
+          "value": 1495
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明弘治八年西安府學題名碑墨拓本 橫披",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "西元一四九五年"
+        }
+      ],
+      "catalogueField": "originalYearCE",
+      "catalogueValue": 1495
+    },
+    {
+      "claimId": "ming_01_xianfu:date:yearCrossCheck",
+      "entity": "date",
+      "property": "yearCrossCheck",
+      "value": "一致：弘治八年岁次乙卯→1495→乙卯",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_01_xianfu",
+          "field": "transcription",
+          "quote": "歲次乙卯"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_01_xianfu",
+          "field": "originalYearCE",
+          "value": 1495
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明弘治八年西安府學題名碑墨拓本 橫披",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "歲次乙卯"
+        }
+      ],
+      "catalogueField": "originalYearCE",
+      "catalogueValue": 1495,
+      "derivation": {
+        "ce": 1495,
+        "inscriptionGanzhi": "乙卯",
+        "computedGanzhi": "乙卯",
+        "result": "consistent"
+      }
+    },
+    {
+      "claimId": "ming_01_xianfu:date:dayCrossCheck",
+      "entity": "date",
+      "property": "dayCrossCheck",
+      "value": "一致：辛亥朔+7日→丁巳",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_01_xianfu",
+          "field": "transcription",
+          "quote": "八月辛亥朔。越七日丁巳"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明弘治八年西安府學題名碑墨拓本 橫披",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "八月辛亥朔。越七日丁巳"
+        }
+      ],
+      "derivation": {
+        "newMoonGanzhi": "辛亥",
+        "day": 7,
+        "inscriptionDayGanzhi": "丁巳",
+        "computedDayGanzhi": "丁巳",
+        "result": "consistent"
+      }
+    },
+    {
+      "claimId": "ming_01_xianfu:place:originalSite",
+      "entity": "place",
+      "property": "originalSite",
+      "value": "西安府学（区域级）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_01_xianfu",
+          "field": "transcription",
+          "quote": "西安府"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明弘治八年西安府學題名碑墨拓本 橫披",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "西安府學題名碑"
+        }
+      ],
+      "region": {
+        "historicalName": "西安府学",
+        "modernRegion": "陕西省西安市",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "ming_01_xianfu:place:currentStone",
+      "entity": "place",
+      "property": "currentStone",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "未见原石现藏的可核记述"
+    },
+    {
+      "claimId": "ming_01_xianfu:place:rubbingHolder",
+      "entity": "place",
+      "property": "rubbingHolder",
+      "value": "台北（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_01_xianfu",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明弘治八年西安府學題名碑墨拓本 橫披",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "國立故宮博物院"
+        }
+      ],
+      "region": {
+        "modernRegion": "台北市",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "ming_01_xianfu:script_style:script",
+      "entity": "script_style",
+      "property": "script",
+      "value": "楷书",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_01_xianfu",
+          "field": "scriptType",
+          "value": "楷书"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明弘治八年西安府學題名碑墨拓本 橫披",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "書體：楷書"
+        }
+      ],
+      "catalogueField": "scriptType",
+      "catalogueValue": "楷书"
+    },
+    {
+      "claimId": "ming_01_xianfu:script_style:styleNote",
+      "entity": "script_style",
+      "property": "styleNote",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批未采独立书评材料"
+    },
+    {
+      "claimId": "ming_01_xianfu:bibliography:catalogueReference",
+      "entity": "bibliography",
+      "property": "catalogueReference",
+      "value": "國立故宮博物院开放资料 id=34734；購拓000274",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_01_xianfu",
+          "field": "sourceUrl",
+          "value": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_01_xianfu",
+          "field": "collectionNumber",
+          "value": "購拓000274"
+        }
+      ]
+    }
+  ]
+}

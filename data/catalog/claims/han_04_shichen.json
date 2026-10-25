@@ -1,0 +1,571 @@
+{
+  "schemaVersion": 1,
+  "steleId": "han_04_shichen",
+  "title": "史晨碑",
+  "curatedBy": "RM-金石史料",
+  "curatedAt": "2026-10-25（Asia/Shanghai）",
+  "selectionBasis": "Met Collection API objects/36445 实开（网页 429）；拓本 19 世纪/清，原碑 169 CE；无仓库释文",
+  "layers": "作品（work）≠原刻载体（stone）≠拓本（rubbing）≠影像（image）；人物、纪年、地点、书体风格、著录分列",
+  "claims": [
+    {
+      "claimId": "han_04_shichen:work:title",
+      "entity": "work",
+      "property": "title",
+      "value": "史晨碑（馆方英译品名 Rubbing of Stele for Shi Chen）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_04_shichen",
+          "field": "title",
+          "value": "史晨碑"
+        },
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36445",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Rubbing of Stele for Shi Chen",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "title: Rubbing of Stele for Shi Chen"
+        }
+      ]
+    },
+    {
+      "claimId": "han_04_shichen:work:dynasty",
+      "entity": "work",
+      "property": "dynasty",
+      "value": "东汉",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_04_shichen",
+          "field": "dynasty",
+          "value": "东汉"
+        },
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36445",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Rubbing of Stele for Shi Chen",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "objectDate: 19th century rubbing; stele dated 169 CE"
+        }
+      ],
+      "note": "Met objectDate 区分拓本世纪与原碑 169 CE；作品朝代取原碑东汉，不与拓本清代混淆。"
+    },
+    {
+      "claimId": "han_04_shichen:work:content",
+      "entity": "work",
+      "property": "content",
+      "value": "史晨碑拓本（汉碑；本批无仓库释文，内容细节待补）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36445",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Rubbing of Stele for Shi Chen",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "objectName: Rubbing；classification: Rubbing"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_04_shichen",
+          "field": "description",
+          "value": "真实馆藏影像派生；169年。原拓残损保留。"
+        }
+      ],
+      "note": "仓库 transcription 为空；不以百科补写碑文内容。"
+    },
+    {
+      "claimId": "han_04_shichen:stone:currentLocation",
+      "entity": "stone",
+      "property": "currentLocation",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批所开馆方页与目录均未给出原石现藏地"
+    },
+    {
+      "claimId": "han_04_shichen:stone:originalSite",
+      "entity": "stone",
+      "property": "originalSite",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批所开馆方页与目录均未给出原立地点的可核坐标或馆方确认地址"
+    },
+    {
+      "claimId": "han_04_shichen:stone:transfer",
+      "entity": "stone",
+      "property": "transfer",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "未见可核的原石流转记述"
+    },
+    {
+      "claimId": "han_04_shichen:stone:condition",
+      "entity": "stone",
+      "property": "condition",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "无原石影像；目录 stoneWeathering 不评定原石"
+    },
+    {
+      "claimId": "han_04_shichen:rubbing:holder",
+      "entity": "rubbing",
+      "property": "holder",
+      "value": "美国大都会艺术博物馆（Metropolitan Museum of Art, New York）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_04_shichen",
+          "field": "rubbingCollectionInstitution",
+          "value": "美国大都会艺术博物馆"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_04_shichen",
+          "field": "collectionNumber",
+          "value": "1992.166.2a–ff"
+        },
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36445",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Rubbing of Stele for Shi Chen",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "repository: Metropolitan Museum of Art, New York, NY；accessionNumber: 1992.166.2a–ff"
+        }
+      ]
+    },
+    {
+      "claimId": "han_04_shichen:rubbing:museumTitle",
+      "entity": "rubbing",
+      "property": "museumTitle",
+      "value": "Rubbing of Stele for Shi Chen",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36445",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Rubbing of Stele for Shi Chen",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "title: Rubbing of Stele for Shi Chen"
+        }
+      ]
+    },
+    {
+      "claimId": "han_04_shichen:rubbing:format",
+      "entity": "rubbing",
+      "property": "format",
+      "value": "册页：三十二开（album of thirty-two leaves）；墨拓纸本",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36445",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Rubbing of Stele for Shi Chen",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "medium: Rubbing mounted in an album of thirty-two leaves; ink on paper"
+        }
+      ]
+    },
+    {
+      "claimId": "han_04_shichen:rubbing:period",
+      "entity": "rubbing",
+      "property": "period",
+      "value": "19 世纪（清；Met period=Qing dynasty；objectDate=19th century rubbing）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_04_shichen",
+          "field": "rubbingPeriod",
+          "value": "19世纪"
+        },
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36445",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Rubbing of Stele for Shi Chen",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "period: Qing dynasty (1644–1911)；objectDate: 19th century rubbing"
+        }
+      ],
+      "catalogueField": "rubbingPeriod",
+      "catalogueValue": "19世纪",
+      "note": "拓印年代≠原刻朝代；原刻仍属东汉。"
+    },
+    {
+      "claimId": "han_04_shichen:image:sourceSha256",
+      "entity": "image",
+      "property": "sourceSha256",
+      "value": "082a8bfcf47f4d3e90555f262afadda436a80887943de1b5f3130d23f61f522d",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_04_shichen",
+          "field": "sourceVerification.sourceSha256",
+          "value": "082a8bfcf47f4d3e90555f262afadda436a80887943de1b5f3130d23f61f522d"
+        }
+      ]
+    },
+    {
+      "claimId": "han_04_shichen:image:license",
+      "entity": "image",
+      "property": "license",
+      "value": "CC0",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_04_shichen",
+          "field": "license",
+          "value": "CC0"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_04_shichen",
+          "field": "licenseUrl",
+          "value": "https://www.metmuseum.org/about-the-met/policies-and-documents/open-access"
+        },
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36445",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Rubbing of Stele for Shi Chen",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "isPublicDomain: true"
+        }
+      ]
+    },
+    {
+      "claimId": "han_04_shichen:image:derivation",
+      "entity": "image",
+      "property": "derivation",
+      "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_04_shichen",
+          "field": "modifications",
+          "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+        }
+      ]
+    },
+    {
+      "claimId": "han_04_shichen:person:author",
+      "entity": "person",
+      "property": "author",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定；Met Artist=Unidentified artist",
+      "catalogueField": "author",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "han_04_shichen:person:calligrapher",
+      "entity": "person",
+      "property": "calligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定；Met 未著录书丹人",
+      "catalogueField": "calligrapher",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "han_04_shichen:person:titleCalligrapher",
+      "entity": "person",
+      "property": "titleCalligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定",
+      "catalogueField": "titleCalligrapher",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "han_04_shichen:person:engraver",
+      "entity": "person",
+      "property": "engraver",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定",
+      "catalogueField": "engraver",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "han_04_shichen:person:steleSubject",
+      "entity": "person",
+      "property": "steleSubject",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定；本批无释文可核碑主/立石人细节",
+      "catalogueField": "steleSubject",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "han_04_shichen:date:era",
+      "entity": "date",
+      "property": "era",
+      "value": "原碑约东汉建宁二年（馆方 stele dated 169 CE；具体年号本批未开释文页）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36445",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Rubbing of Stele for Shi Chen",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "stele dated 169 CE"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_04_shichen",
+          "field": "originalYear",
+          "value": "169年"
+        }
+      ],
+      "note": "169 CE 与目录 originalYear=169年一致；年号细节待有释文后再核。"
+    },
+    {
+      "claimId": "han_04_shichen:date:ce",
+      "entity": "date",
+      "property": "ce",
+      "value": 169,
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_04_shichen",
+          "field": "originalYearCE",
+          "value": 169
+        },
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36445",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Rubbing of Stele for Shi Chen",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "stele dated 169 CE"
+        }
+      ],
+      "catalogueField": "originalYearCE",
+      "catalogueValue": 169
+    },
+    {
+      "claimId": "han_04_shichen:date:yearCrossCheck",
+      "entity": "date",
+      "property": "yearCrossCheck",
+      "value": "一致：169 CE（Met）→169（碑面无年干支；推算 己酉）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36445",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Rubbing of Stele for Shi Chen",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "stele dated 169 CE"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_04_shichen",
+          "field": "originalYearCE",
+          "value": 169
+        }
+      ],
+      "catalogueField": "originalYearCE",
+      "catalogueValue": 169,
+      "derivation": {
+        "ce": 169,
+        "inscriptionGanzhi": null,
+        "computedGanzhi": "己酉",
+        "result": "partial"
+      }
+    },
+    {
+      "claimId": "han_04_shichen:date:dayCrossCheck",
+      "entity": "date",
+      "property": "dayCrossCheck",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批无释文，未见朔日与日干支"
+    },
+    {
+      "claimId": "han_04_shichen:place:originalSite",
+      "entity": "place",
+      "property": "originalSite",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "曲阜孔庙等说法本批未核官方来源；Met 未给原立地点",
+      "note": "不下坐标。"
+    },
+    {
+      "claimId": "han_04_shichen:place:currentStone",
+      "entity": "place",
+      "property": "currentStone",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "未见原石现藏的可核记述"
+    },
+    {
+      "claimId": "han_04_shichen:place:rubbingHolder",
+      "entity": "place",
+      "property": "rubbingHolder",
+      "value": "纽约（The Metropolitan Museum of Art）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_04_shichen",
+          "field": "rubbingCollectionInstitution",
+          "value": "美国大都会艺术博物馆"
+        },
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36445",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Rubbing of Stele for Shi Chen",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "repository: Metropolitan Museum of Art, New York, NY"
+        }
+      ],
+      "region": {
+        "modernRegion": "美国纽约州纽约市",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "han_04_shichen:script_style:script",
+      "entity": "script_style",
+      "property": "script",
+      "value": "隶书",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_04_shichen",
+          "field": "scriptType",
+          "value": "隶书"
+        }
+      ],
+      "catalogueField": "scriptType",
+      "catalogueValue": "隶书",
+      "note": "Met API 本批未返回 script/书法字段；依目录 scriptType，等级有限支持。"
+    },
+    {
+      "claimId": "han_04_shichen:script_style:historicalComment",
+      "entity": "script_style",
+      "property": "historicalComment",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批未采独立书评材料"
+    },
+    {
+      "claimId": "han_04_shichen:bibliography:catalogueReference",
+      "entity": "bibliography",
+      "property": "catalogueReference",
+      "value": "Met objectID 36445；accession 1992.166.2a–ff；Gift of Mr. and Mrs. Wan-go H. C. Weng, 1992",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_04_shichen",
+          "field": "sourceUrl",
+          "value": "https://www.metmuseum.org/art/collection/search/36445"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_04_shichen",
+          "field": "collectionNumber",
+          "value": "1992.166.2a–ff"
+        },
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36445",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Rubbing of Stele for Shi Chen",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "accessionNumber: 1992.166.2a–ff；creditLine: Gift of Mr. and Mrs. Wan-go H. C. Weng, 1992"
+        }
+      ]
+    }
+  ]
+}

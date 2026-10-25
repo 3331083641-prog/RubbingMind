@@ -324,3 +324,104 @@ m:demo:* 与演示 legacy id 的 evidenceId 固定为演示自身，不再落到
 另：`test_synthetic_sample_label` identity 断言改为兼容 RV-AI06「演示样本 rm:demo:…」前缀（LABEL 仍须出现在 identity 中）。
 
 主库未执行 C-08 `--apply`。C-08 令牌仍为 `sha256(C-08|diffDigest|dbSHA)[:16]`；用户库 dry-run 预览 token `ef30c1d51053b8a8`（dbSHA `8408dbc3…`）。
+
+## 2026-10-25（Asia/Shanghai）· 第 3 批逐件深化：ming_04、wei_01、wei_04、ming_01、ming_03、han_03
+
+增量文件（不覆盖原目录著录；不改已审证据文件）：
+- `data/catalog/claims/ming_04_tongdian.json`（30 claims）
+- `data/catalog/claims/wei_01_zhangmenglong.json`（29 claims）
+- `data/catalog/claims/wei_04_wangsong.json`（29 claims）
+- `data/catalog/claims/ming_01_xianfu.json`（29 claims）
+- `data/catalog/claims/ming_03_wugou.json`（29 claims）
+- `data/catalog/claims/han_03_liqi.json`（29 claims）
+- `data/catalog/claims/index.json` 更新为 18/28（remaining=10）；openedUrls 13→19（+6 NPM）
+- `tests/test_catalog_claims.py`：WORKS 12→18、remaining 16→10
+
+**挑选规则：** ①目录 verified 角色数 ②馆方释文长度 ③可开官方来源。本批 6 件均实开 NPM 开放资料页。
+
+**来源（均实开）：**
+- ming_04：https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34907&dep=P&mode=full （品名「明大峩山永明華藏寺新建銅殿記碑墨拓本 軸」）
+- wei_01：https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33681&dep=P&mode=full （张猛龙碑相关拓本）
+- wei_04：https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=29482&dep=P&mode=full （建义元年王诵墓志拓本）
+- ming_01：https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34734&dep=P&mode=full （明弘治八年西安府学题名碑拓本）
+- ming_03：https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full （无垢子何君墓志铭拓本）
+- han_03：https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34648&dep=P&mode=full （礼器碑拓本）
+
+**要点：**
+| 作品 | 已验证要点 | 缺失／冲突 |
+|---|---|---|
+| ming_04 铜殿记碑 | 王毓宗撰文（authorVerification=verified）；万历癸卯；集王羲之署款见释文；拓本现藏台北故宫 | 书丹人：馆方「集王」vs 释文署款 → conflict 并列；原石现藏缺失；地点仅区域级 |
+| wei_01 张猛龙碑 | 北魏正书；鲁郡故地相关；拓本现藏台北故宫 | 撰/书/刻多字段未核实；原石现藏缺失 |
+| wei_04 王诵墓志 | 建义元年；洛阳芒阜一带；拓本现藏台北故宫 | 人物角色多 missing；原石现藏缺失 |
+| ming_01 西安府学题名碑 | 弘治八年；西安府学；拓本现藏台北故宫 | 撰书人未核定；原石现藏缺失 |
+| ming_03 无垢子何君墓志 | 墓主何君；终南／楼观一带相关；拓本现藏台北故宫 | script 书体：目录 vs 馆方表述 → conflict；多角色 missing |
+| han_03 礼器碑 | 东汉；鲁地孔庙一带；拓本现藏台北故宫 | 书丹人未核实；原石现藏缺失 |
+
+**规则遵守：** 目录未核定不升「已验证」；place.region 仅 precision=region + modernRegion，无坐标；conflict 含 alternatives+note；url source 含 publisher/title/sourceKind/accessedAt/quote。
+
+**测试：** `tests/test_catalog_claims.py` 129 passed；`scripts/validate_museum_v3.py` 28/84 SHA 全过。
+
+## 2026-10-25（Asia/Shanghai）· 第 4 批逐件深化：han_02、han_04、wei_02、wei_03、song_01、yuan_04
+
+增量文件（不覆盖原目录著录；不改已审证据文件；不改 ming_04/ming_03 既有 conflict）：
+- `data/catalog/claims/han_02_yiying.json`（29）
+- `data/catalog/claims/han_04_shichen.json`（29）
+- `data/catalog/claims/wei_02_wugaoli.json`（29）
+- `data/catalog/claims/wei_03_kouyan.json`（29）
+- `data/catalog/claims/song_01_yuanyou.json`（29）
+- `data/catalog/claims/yuan_04_jingyuanchang.json`（29）
+- `data/catalog/claims/index.json` 更新为 24/28（remaining=4）；openedUrls 19→25
+- `tests/test_catalog_claims.py`：WORKS 18→24、remaining 10→4
+
+**挑选：** Green 指定本批 6 件；清 4 件留第 5 批。
+
+**来源（均实开）：**
+- han_02：https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34635&dep=P&mode=full
+- han_04：https://www.metmuseum.org/art/collection/search/36445（网页 429；Met Collection API objects/36445 实开）
+- wei_02：https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full
+- wei_03：https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=30320&dep=P&mode=full
+- song_01：https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32237&dep=P&mode=full
+- yuan_04：https://digitalarchive.npm.gov.tw/Collection/Detail/34668?dep=P
+
+**要点／冲突（并列待复核，不臆断）：**
+| 作品 | 已验证／有限支持要点 | 缺失／冲突 |
+|---|---|---|
+| han_02 乙瑛碑 | 元嘉三年/永兴元年纪年；三月丙子朔廿七日壬寅日干支一致；隶书；拓本台北故宫 | calligrapher：后汉钟太尉书题记 vs 目录未核定 → conflict |
+| han_04 史晨碑 | Met：原碑 169 CE、拓本 19 世纪/清、册页 32 开、CC0/PD；纽约大都会 | 无仓库释文；人物多 missing；书体仅目录有限支持 |
+| wei_02 吴高黎 | 孝昌二年正月权殡刊记→526；楷书；台北故宫 | dayCrossCheck：碑面“癸申”非法干支 vs 丙午朔推算 → conflict |
+| wei_03 寇演 | 神龟元年薨、二年窆洛阳西北芒→519；楷书 | 撰/书/刻 missing |
+| song_01 元祐党籍 | 宋代品名可核；拓本台北故宫；释文仅标题 | script：书体栏楷书 vs 释文（隶书）→ conflict；原刻年 CE missing |
+| yuan_04 敬元长碣 | 品名/作者栏赵孟頫、二件尺寸可核；台北故宫 | calligrapher/steleSubject 均为 pending_review→待人工复核不升已验证；无释文 |
+
+**规则：** 红队①–⑤；place 仅 region+modernRegion；未核定不升已验证；既有 ming_04/ming_03 conflict 未改。
+
+## 2026-10-25（Asia/Shanghai）· 第 5 批逐件深化：qing_01、qing_02、qing_03、qing_04（28/28 收官）
+
+增量文件（不覆盖原目录著录；不改已审证据文件；不改既有 ming_03/ming_04/han_02/wei_02/song_01 conflict 与 yuan_04 待人工复核判定）：
+- `data/catalog/claims/qing_01_qianlong_heart_sutra.json`（29）
+- `data/catalog/claims/qing_02_wushi_reerection.json`（29）
+- `data/catalog/claims/qing_03_sanxitang_preface.json`（29）
+- `data/catalog/claims/qing_04_ayuwang_reliquary.json`（29）
+- `data/catalog/claims/index.json` 更新为 28/28（remaining=0）；openedUrls 25→29（+3 Princeton +1 Met）
+- `tests/test_catalog_claims.py`：WORKS 24→28、remaining 4→0
+
+**挑选：** Green 指定本批收官剩余 4 件清代作品。
+
+**来源（均实开）：**
+- qing_01：https://artmuseum.princeton.edu/art/collections/objects/57606
+- qing_02：https://artmuseum.princeton.edu/art/collections/objects/57837
+- qing_03：https://www.metmuseum.org/art/collection/search/36142（Collection API objects/36142 实开）
+- qing_04：https://artmuseum.princeton.edu/art/collections/objects/57684
+
+**要点／冲突（并列待复核，不臆断）：**
+| 作品 | 已验证／有限支持要点 | 缺失／冲突 |
+|---|---|---|
+| qing_01 乾隆御书心经 | 1744 石刻；乾隆甲子年干支一致；拓本普林斯顿 y1958-220；法源寺区域级地点 | calligrapher pending_review→待人工复核；原石现藏 missing |
+| qing_02 重立武氏祠石记 | 1787 新刻；拓本普林斯顿 y1957-139 b；嘉祥武宅山区域级 | **dynasty** 馆方 Eastern Han 标签 vs 目录清代 → conflict；author/calligrapher pending_review；**engraver** 郑之宗 vs 未核定 → conflict |
+| qing_03 三希堂御序 | Met 全套 1984.496.1–.32；清乾隆时段；CC0 | author/calligrapher pending_review；刊刻 CE null→yearCrossCheck missing；原立地点 missing |
+| qing_04 阿育王寺舍利塔碑 | 光绪十年→1884；拓本普林斯顿 y1958-279；宁波阿育王寺区域级 | **engraver** 授轮等募刊/carving agent vs 未核定 → conflict；撰书人 missing |
+
+**规则：** 红队①–⑤；place 仅 region+modernRegion；未核定／pending_review 不升已验证；conflict 含 alternatives+note；既有冲突与 yuan_04 待复核未改。
+
+**测试：** `tests/test_catalog_claims.py` 全绿；`scripts/validate_museum_v3.py` 28/84 SHA 全过。主库 C-08 仅 dry-run，未 `--apply`；未 push。
+

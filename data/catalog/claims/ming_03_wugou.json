@@ -1,0 +1,703 @@
+{
+  "schemaVersion": 1,
+  "steleId": "ming_03_wugou",
+  "title": "无垢子何君墓志铭",
+  "curatedBy": "RM-金石史料",
+  "curatedAt": "2026-10-25（Asia/Shanghai）",
+  "selectionBasis": "释文含周昉撰／夹谷希颜篆额／宋□书；年号泐损；书体栏与目录冲突可并列；NPM 2026-10-25 实开",
+  "layers": "作品（work）≠原刻载体（stone）≠拓本（rubbing）≠影像（image）；人物、纪年、地点、书体风格、著录分列",
+  "claims": [
+    {
+      "claimId": "ming_03_wugou:work:title",
+      "entity": "work",
+      "property": "title",
+      "value": "无垢子何君墓志铭（馆方品名“明無垢子何君墓誌銘墨拓本 軸”）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "title",
+          "value": "无垢子何君墓志铭"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明無垢子何君墓誌銘墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名：明無垢子何君墓誌銘墨拓本 軸"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "transcription",
+          "quote": "無垢子何君墓誌銘"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_03_wugou:work:dynasty",
+      "entity": "work",
+      "property": "dynasty",
+      "value": "明",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "dynasty",
+          "value": "明代"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明無垢子何君墓誌銘墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名冠“明”"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_03_wugou:work:content",
+      "entity": "work",
+      "property": "content",
+      "value": "全真道士何道全（无垢子／松浮道人）墓志；周昉撰、夹谷希颜篆额、宋□书；年号泐损",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "transcription",
+          "quote": "無垢子"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "transcription",
+          "quote": "周昉譔"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "transcription",
+          "quote": "夾谷希顏篆額"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明無垢子何君墓誌銘墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "杭新城周昉譔維楊夾谷希顏篆額"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_03_wugou:stone:currentLocation",
+      "entity": "stone",
+      "property": "currentLocation",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批所开馆方页与目录均未给出原石现藏地"
+    },
+    {
+      "claimId": "ming_03_wugou:stone:originalSite",
+      "entity": "stone",
+      "property": "originalSite",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批所开馆方页与目录均未给出原立地点的可核坐标或馆方确认地址"
+    },
+    {
+      "claimId": "ming_03_wugou:stone:transfer",
+      "entity": "stone",
+      "property": "transfer",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "未见可核的原石流转记述"
+    },
+    {
+      "claimId": "ming_03_wugou:stone:condition",
+      "entity": "stone",
+      "property": "condition",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "无原石影像；目录 stoneWeathering 不评定原石"
+    },
+    {
+      "claimId": "ming_03_wugou:rubbing:holder",
+      "entity": "rubbing",
+      "property": "holder",
+      "value": "台北故宫博物院（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "collectionNumber",
+          "value": "購拓000430"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明無垢子何君墓誌銘墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "文物統一編號：購拓000430"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_03_wugou:rubbing:museumTitle",
+      "entity": "rubbing",
+      "property": "museumTitle",
+      "value": "明無垢子何君墓誌銘墨拓本 軸",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明無垢子何君墓誌銘墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名栏"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_03_wugou:rubbing:format",
+      "entity": "rubbing",
+      "property": "format",
+      "value": "一轴；本幅约 166×62 公分",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明無垢子何君墓誌銘墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "数量：一轴；本幅 166x62"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_03_wugou:rubbing:period",
+      "entity": "rubbing",
+      "property": "period",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录 rubbingPeriod 为未核定；本批馆方页未提供可核的拓印年代",
+      "catalogueField": "rubbingPeriod",
+      "catalogueValue": "未核定；不据拓印年改变朝代"
+    },
+    {
+      "claimId": "ming_03_wugou:image:sourceSha256",
+      "entity": "image",
+      "property": "sourceSha256",
+      "value": "0d8152e57832ffa9b2580ba8be856efb077f52d423c4b742803e5cb3c60bd3dc",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "sourceVerification.sourceSha256",
+          "value": "0d8152e57832ffa9b2580ba8be856efb077f52d423c4b742803e5cb3c60bd3dc"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_03_wugou:image:license",
+      "entity": "image",
+      "property": "license",
+      "value": "CC BY 4.0",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "license",
+          "value": "CC BY 4.0"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明無垢子何君墓誌銘墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "授權條款 CC BY 4.0"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_03_wugou:image:derivation",
+      "entity": "image",
+      "property": "derivation",
+      "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "modifications",
+          "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_03_wugou:person:author",
+      "entity": "person",
+      "property": "author",
+      "value": "周昉（杭新城）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "transcription",
+          "quote": "杭新城周昉譔"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明無垢子何君墓誌銘墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "杭新城周昉譔"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "author",
+          "value": "未核定"
+        }
+      ],
+      "catalogueField": "author",
+      "catalogueValue": "未核定",
+      "note": "目录 author=未核定；释文末署周昉譔，原拓多处阙损，作有限支持不升格。"
+    },
+    {
+      "claimId": "ming_03_wugou:person:calligrapher",
+      "entity": "person",
+      "property": "calligrapher",
+      "value": "宋□（会稽；末字泐）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "transcription",
+          "quote": "會稽宋□書"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明無垢子何君墓誌銘墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "會稽宋□書"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "calligrapher",
+          "value": "未核定"
+        }
+      ],
+      "catalogueField": "calligrapher",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "ming_03_wugou:person:titleCalligrapher",
+      "entity": "person",
+      "property": "titleCalligrapher",
+      "value": "夹谷希颜（维扬；篆额）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "transcription",
+          "quote": "夾谷希顏篆額"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明無垢子何君墓誌銘墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "夾谷希顏篆額"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "titleCalligrapher",
+          "value": "未核定"
+        }
+      ],
+      "catalogueField": "titleCalligrapher",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "ming_03_wugou:person:engraver",
+      "entity": "person",
+      "property": "engraver",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定；释文未见镌手",
+      "catalogueField": "engraver",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "ming_03_wugou:person:steleSubject",
+      "entity": "person",
+      "property": "steleSubject",
+      "value": "何君／无垢子（道全；松浮道人；四明人）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "transcription",
+          "quote": "無垢子何君墓誌銘"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "transcription",
+          "quote": "又號松浮道人"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明無垢子何君墓誌銘墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "無垢子何君墓誌銘"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "steleSubject",
+          "value": "未核定"
+        }
+      ],
+      "catalogueField": "steleSubject",
+      "catalogueValue": "未核定",
+      "note": "目录 steleSubjectVerification=pending_review；碑面墓主信息作有限支持。"
+    },
+    {
+      "claimId": "ming_03_wugou:date:era",
+      "entity": "date",
+      "property": "era",
+      "value": "□□元年岁在己卯九月重阳日（年号泐损）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "transcription",
+          "quote": "元年歲在己卯九月重陽日"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明無垢子何君墓誌銘墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "元年歲在己卯九月重陽日"
+        }
+      ],
+      "note": "年号两字阙损，不能唯一对应明代某个己卯年。"
+    },
+    {
+      "claimId": "ming_03_wugou:date:ce",
+      "entity": "date",
+      "property": "ce",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录 originalYearCE 为空；年号泐损无法核定公元年",
+      "catalogueField": "originalYearCE",
+      "catalogueValue": null
+    },
+    {
+      "claimId": "ming_03_wugou:date:yearCrossCheck",
+      "entity": "date",
+      "property": "yearCrossCheck",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "无可用公元年，无法做干支交验"
+    },
+    {
+      "claimId": "ming_03_wugou:date:dayCrossCheck",
+      "entity": "date",
+      "property": "dayCrossCheck",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "仅有九月重阳日，无朔日干支"
+    },
+    {
+      "claimId": "ming_03_wugou:place:originalSite",
+      "entity": "place",
+      "property": "originalSite",
+      "value": "陕西终南／楼观一带与墓主活动相关（区域级；葬地记述残泐）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "transcription",
+          "quote": "終南山道士"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "transcription",
+          "quote": "樓觀袁了春"
+        }
+      ],
+      "region": {
+        "historicalName": "终南／楼观一带",
+        "modernRegion": "陕西省西安市周至县一带（现代对应待人工复核）",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "ming_03_wugou:place:currentStone",
+      "entity": "place",
+      "property": "currentStone",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "未见原石现藏的可核记述"
+    },
+    {
+      "claimId": "ming_03_wugou:place:rubbingHolder",
+      "entity": "place",
+      "property": "rubbingHolder",
+      "value": "台北（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明無垢子何君墓誌銘墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "國立故宮博物院"
+        }
+      ],
+      "region": {
+        "modernRegion": "台北市",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "ming_03_wugou:script_style:script",
+      "entity": "script_style",
+      "property": "script",
+      "value": null,
+      "status": "conflict",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "scriptType",
+          "value": "篆额、楷书正文"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "明無垢子何君墓誌銘墨拓本 軸",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "書體：篆書"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "transcription",
+          "quote": "（篆書）"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "transcription",
+          "quote": "（楷書）"
+        }
+      ],
+      "catalogueField": "scriptType",
+      "catalogueValue": "篆额、楷书正文",
+      "alternatives": [
+        {
+          "value": "篆额 + 楷书正文（目录 scriptType）",
+          "evidenceLevel": "有限支持",
+          "sources": [
+            {
+              "type": "catalogue",
+              "path": "data/catalog/steles28.json",
+              "id": "ming_03_wugou",
+              "field": "scriptType",
+              "value": "篆额、楷书正文"
+            },
+            {
+              "type": "file",
+              "path": "data/catalog/steles28.json",
+              "id": "ming_03_wugou",
+              "field": "transcription",
+              "quote": "（篆書）"
+            },
+            {
+              "type": "file",
+              "path": "data/catalog/steles28.json",
+              "id": "ming_03_wugou",
+              "field": "transcription",
+              "quote": "（楷書）"
+            }
+          ]
+        },
+        {
+          "value": "篆书（馆方书体栏单值）",
+          "evidenceLevel": "有限支持",
+          "sources": [
+            {
+              "type": "url",
+              "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full",
+              "publisher": "國立故宮博物院",
+              "title": "明無垢子何君墓誌銘墨拓本 軸",
+              "sourceKind": "official_museum",
+              "accessedAt": "2026-10-25",
+              "quote": "書體：篆書"
+            }
+          ]
+        }
+      ],
+      "note": "馆方书体栏作“篆书”，目录与释文标记为篆额+楷书正文。并列，不单取一侧。"
+    },
+    {
+      "claimId": "ming_03_wugou:script_style:styleNote",
+      "entity": "script_style",
+      "property": "styleNote",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批未采独立书评材料"
+    },
+    {
+      "claimId": "ming_03_wugou:bibliography:catalogueReference",
+      "entity": "bibliography",
+      "property": "catalogueReference",
+      "value": "國立故宮博物院开放资料 id=32027；購拓000430",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "sourceUrl",
+          "value": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32027&dep=P&mode=full"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_03_wugou",
+          "field": "collectionNumber",
+          "value": "購拓000430"
+        }
+      ]
+    }
+  ]
+}
