@@ -1,0 +1,12 @@
+﻿RF-8 audit (slice11, 2026-10-25 Asia/Shanghai)
+align: ed9f1a0
+HomePage.tsx: NOT modified this round (and not in prior report tips for RF-8 close)
+object-contain: present at HomePage.tsx L245 comment + L250 className (no object-cover on core cards)
+User confirm: still required before merge/close; screenshots already exist
+shots:
+  D:\RubbingMind\screenshots\product-upgrade\phase1-frontend\home-core-cards_before_1920w.png
+  D:\RubbingMind\screenshots\product-upgrade\phase1-frontend\home-core-cards_before_390w.png
+  D:\RubbingMind\screenshots\product-upgrade\phase1-frontend\home-core-cards_after_1920w.png
+  D:\RubbingMind\screenshots\product-upgrade\phase1-frontend\home-core-cards_after_390w.png
+  D:\RubbingMind\screenshots\product-upgrade\phase1-frontend\slice10\rf8_home_core_cards_1920x1080.png
+Ticket: NOT self-closed.

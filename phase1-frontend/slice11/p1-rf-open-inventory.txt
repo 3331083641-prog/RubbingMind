@@ -1,0 +1,38 @@
+﻿Phase1 / RF open inventory after align ed9f1a0 (slice11, 2026-10-25 Asia/Shanghai)
+
+ALIGN:
+- FF-only: 49002cc -> ed9f1a0b20978d5500453bdbbaa43505a6f9297d (feature merge of report tip@49002cc)
+- branch: agent/report-frontend
+- worktree: D:\RubbingMind\wt\rm-report-frontend
+- No App.tsx / api.ts / urlState.ts / HomePage.tsx edits this round
+- No push; did not touch 5173/8000/5180
+
+DONE-enough (prior tips; evidence != product close; do not verbally close ACCEPTANCE):
+- RF-2..RF-7, RF-9..RF-11 prior
+- RF-3 global disclaimer on ReportsPage
+- P1-1 not_evaluated / glyphEvaluationText
+- P1-4 mechanism head lag + captionNote
+- P1-5/6/7/8 partial + print limitations / DER v3.3
+- P1-9: 1920/1440 (slice7) + 1366x768 / 390x844 (slice10)
+- P1-11 empty metrics / print PSNR empty without unit
+- ES-3 liftClaim UI + export JSON liftClaims align screen (21cb82b)
+- ES-5 NLC columns
+- C1-C4 warning texts audited complete (slice10)
+- BR-09 EvidenceSearch includeDemo checkbox + banners already in tree (checklist "remaining" stale)
+
+OPEN / blocked (no stackable frontend code tip this round):
+- RF-8: awaiting user screenshot confirm; HomePage NOT modified (object-contain @L245/L250); NOT self-closed
+  shots: D:\RubbingMind\screenshots\product-upgrade\phase1-frontend\home-core-cards_{before,after}_{1920w,390w}.png
+  + slice10 rf8_home_core_cards_1920x1080.png
+- algorithmOutputMode UI: api.ts field present=False (Select-String count=0 @ed9f1a0); run-level outputMode only
+  -> gap only; do not fabricate field; hand to arch (ADR R2-12 / MERGE_NOTE)
+- ACCEPTANCE_MATRIX Phase1 P1-* remain 待验证 at product level (evidence != close)
+- AB-8 health samples_* report UI: ops field; not this agent
+
+CODE SCAN (slice11): no additional frontend-codeable P1 gap found beyond RF-8(user) + algorithmOutputMode(arch).
+Action: docs tip only; do not pad unrelated code.
+
+Evidence paths (prior, still valid):
+- phase1-frontend/slice10/* (liftClaims, P1-9 1366/390, audits)
+- D:\RubbingMind\screenshots\product-upgrade\phase1-frontend\slice10\
+- D:\RubbingMind\screenshots\product-upgrade\phase1-frontend\slice7\

@@ -1,0 +1,27 @@
+﻿# Phase1 frontend slice11 - FF ed9f1a0 + open inventory (no code tip)
+Date: 2026-10-25 Asia/Shanghai
+Worktree: D:\RubbingMind\wt\rm-report-frontend (agent/report-frontend)
+Align: FF-only 49002cc -> ed9f1a0b20978d5500453bdbbaa43505a6f9297d
+Forbidden untouched: App.tsx, api.ts, urlState.ts, HomePage.tsx (RF-8), no push, no feature edit, no main merge
+
+## Why no feat tip
+Scanned inventory + FRONTEND_INTEGRATION_CHECKLIST + ACCEPTANCE Phase1 + ReportsPage/components/reports + api.ts:
+- Codeable P1 items already landed in prior slices (through slice10 tip@49002cc / feat 21cb82b)
+- BR-09 includeDemo UI already present in EvidenceSearch.tsx (checklist remaining list stale)
+- reportStatus full-path copy already in reportData.ts + ReportApi.getReport
+- Remaining blockers: RF-8 (user confirm) + algorithmOutputMode (arch field absent)
+- Per Green: do not pad unrelated code for a tip; do not self-close RF-8; do not fake algorithmOutputMode
+
+## Build
+Not re-run: no apps/web source change this round. Prior slice10 build green (ReportsPage-e8S6O9Um.js).
+
+## Ports
+- Did NOT start 8720/5720 (no new evidence capture needed)
+- Did NOT touch 5173/8000 (left listening)
+
+## Docs this round
+- phase1-frontend/slice11/p1-rf-open-inventory.txt
+- phase1-frontend/slice11/algorithmOutputMode-gap.txt
+- phase1-frontend/slice11/evidence.txt
+- phase1-frontend/slice11/batch-tips.txt
+- phase1-frontend/slice11/rf8-audit-evidence.txt
