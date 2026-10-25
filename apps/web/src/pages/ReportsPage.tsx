@@ -8,6 +8,7 @@ import { SteleItem } from '../types/stele';
 import { ReportContextBar } from '../components/reports/ReportContextBar';
 import { GlobalEvaluation } from '../components/reports/GlobalEvaluation';
 import { FailureCasesPanel } from '../components/reports/FailureCasesPanel';
+import { MechanismPanel } from '../components/reports/MechanismPanel';
 import { ArtifactRunReport } from '../components/reports/ArtifactRunReport';
 import { ReportPrintLayout } from '../components/reports/ReportPrintLayout';
 import { useReportFilters, readFilters } from '../components/reports/reportFilters';
@@ -111,7 +112,7 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate, runId: sharedR
   }, [stele.id, runId, view]);
 
   useEffect(() => { if (filters.view !== view) setFilters({ view }); }, [filters.view, view, setFilters]);
-  const panel: 'overview' | 'failures' = filters.panel === 'failures' ? 'failures' : 'overview';
+  const panel: 'overview' | 'failures' | 'mechanism' = filters.panel === 'failures' ? 'failures' : filters.panel === 'mechanism' ? 'mechanism' : 'overview';
 
   const detailNow = detail && detail.id === experimentId ? detail.value : loading;
   const derNow = der && der.id === experimentId ? der.value : loading;
@@ -171,6 +172,7 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate, runId: sharedR
           : batchState && batchState.state !== 'ok' ? (batchState.state === 'loading' ? <p role="status" className="text-gold">正在读取实验批次…</p> : <p role="alert" className="text-cinnabar-light">实验数据读取失败：{batchState.message}</p>)
           : !model ? <p role="status" className="text-gold">正在读取派生状态…</p>
           : panel === 'failures' ? <FailureCasesPanel model={model} diagnosis={diagnosisNow} setFilters={setFilters} />
+          : panel === 'mechanism' ? <MechanismPanel model={model} filters={filters} setFilters={setFilters} />
           : <GlobalEvaluation model={model} batches={batches.state === 'ok' ? batches.data : []} glyph={glyph} filters={filters} setFilters={setFilters} onSelectBatch={selectBatch} />}
       </section> : <ArtifactRunReport stele={stele} runs={runs} runId={runId} selection={selection} report={report} glyph={glyph} batchDetail={detailNow.state === 'ok' ? detailNow.data : null} batchName={batchInfo?.title || ''} onNavigate={onNavigate} />}
     </div>

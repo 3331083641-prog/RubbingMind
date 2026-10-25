@@ -126,8 +126,58 @@ export interface CiFile { batch: string; experimentId: string; derivedAt: string
 export interface NlcEvidence { cause: string; measure: string; value: number | null; comparator: string; threshold: number; available: boolean; triggered: boolean; unavailableReason: string | null }
 export interface NlcCase { rowIndex: number; sampleId: string; split: string | null; caseId?: string; degradation: string; strength?: number; method: string; psnrDelta: number; ruleInferredCause?: string; ruleInferredBasis?: string; measuredCauses: string[]; measuredEvidence: NlcEvidence[] }
 export interface NlcFile { batch: string; derivedAt: string; measuredCriteriaVersion: string; note?: string; negativeLiftN: number; cases: NlcCase[] }
-export interface MechanismCase { split: string; category: string; caseId: string; sampleId: string; degradation: string; strength?: number; psnrGain?: number; directory: string }
-export interface MechanismIndex { batch: string; derivedAt: string; selectionRule: string; headCommit?: string; cases: MechanismCase[] }
+export interface MechanismCase {
+  split: string;
+  category: string;
+  caseId: string;
+  sampleId: string;
+  degradation: string;
+  strength?: number;
+  psnrGain?: number | null;
+  directory: string;
+  historicalEqualsStored?: boolean;
+  baseEqualsStored?: boolean;
+  headEqualsBase?: boolean;
+  headChangedVsStored?: number;
+  imageBytes?: number;
+}
+export interface MechanismIndex {
+  batch: string;
+  derivedAt: string;
+  derivedBy?: string;
+  selectionRule: string;
+  headCommit?: string;
+  baseCommit?: string;
+  cases: MechanismCase[];
+}
+/** 单案 mechanism.json（E-18）；缺文件时界面显示未接入，不伪造。 */
+export interface MechanismDetail {
+  batch?: string;
+  split?: string;
+  sampleId?: string;
+  caseId?: string;
+  degradation?: string;
+  strength?: number;
+  category?: string;
+  headCommit?: string;
+  storedDiagnostics?: {
+    algorithmVersion?: string;
+    operators?: string[];
+    decisions?: { operator: string; reason?: string; [k: string]: unknown }[];
+    fidelityGate?: { accepted?: boolean; strongEdgeRetention?: number; meanAbsoluteChange?: number; contrastRatio?: number; reasons?: string[]; basis?: string };
+    selectedOutput?: string;
+  };
+  mechanism?: {
+    code?: string;
+    decisions?: { operator: string; reason?: string; [k: string]: unknown }[];
+    fidelityGate?: { accepted?: boolean; strongEdgeRetention?: number; meanAbsoluteChange?: number; contrastRatio?: number; reasons?: string[]; basis?: string };
+    outputMode?: string;
+    changeStats?: { isPassthrough?: boolean | null; changedPixelCount?: number | null; changedPixelRatio?: number | null; maxAbsDiff?: number | null; passthroughCriterion?: string | null };
+    notchApplied?: boolean;
+  };
+  images?: { file: string; description?: string; sha256?: string }[];
+  parameters?: Record<string, unknown>;
+}
 /** 派生文件的来源：本地开发时从 agent/eval-sci 只读取出（git show），以后改为后端 API。 */
 export interface Derived<T> { file: T; source: string }
 
