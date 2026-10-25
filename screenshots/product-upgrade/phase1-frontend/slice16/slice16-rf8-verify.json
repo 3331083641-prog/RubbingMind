@@ -1,0 +1,49 @@
+{
+  "ok": true,
+  "shots": [
+    {
+      "path": "D:\\RubbingMind\\screenshots\\product-upgrade\\phase1-frontend\\slice16\\rf8_home_core_cards_1440x900.png",
+      "size": 1197153,
+      "viewport": "1440x900",
+      "measured_px": "1440x900",
+      "deviceScaleFactor": 1,
+      "captured_at_asia_shanghai": "2026-10-25 18:47:32 +0800",
+      "dom_audit": {
+        "contain": 4,
+        "cover": 0,
+        "imgCount": 4,
+        "classes": [
+          "w-full h-full object-contain p-1 group-hover:brightness-110 transition duration-500 filter contrast-125",
+          "w-full h-full object-contain p-1 group-hover:brightness-110 transition duration-500 filter contrast-125",
+          "w-full h-full object-contain p-1 group-hover:brightness-110 transition duration-500 filter contrast-125",
+          "w-full h-full object-contain p-1 group-hover:brightness-110 transition duration-500 filter contrast-125"
+        ],
+        "paperSample": [
+          "bg-[#0A0D12] text-slate-100 font-sans selection:bg-[#D4AF37]/30 selection:text-[#F5D46E] overflow-x-hidden antialiased",
+          "min-h-screen bg-[#0A0D12] text-slate-100 flex flex-col font-sans selection:bg-gold/30 selection:text-gold-light",
+          "sticky top-0 z-50 w-full bg-[#0C1113]/92 backdrop-blur-md border-b border-gold/20 shadow-card",
+          "w-10 h-10 shrink-0 rounded-lg bg-gradient-to-br from-cinnabar to-cinnabar-dark border border-cinnabar-light/60 flex items-center justify-center shadow-cinnabar-glow",
+          "text-[10px] font-sans font-medium px-1.5 py-0.5 rounded bg-gold/15 text-gold border border-gold/30"
+        ]
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "rf8-home-object-contain-present",
+      "pass": true,
+      "detail": "contain=4 cover=0 imgs=4"
+    },
+    {
+      "name": "shot-1440x900-exists",
+      "pass": true,
+      "detail": "size=1197153"
+    },
+    {
+      "name": "shot-1440x900-pixels",
+      "pass": true,
+      "detail": "measured=1440x900"
+    }
+  ],
+  "captured_at": "2026-10-25 18:47:32 +0800"
+}

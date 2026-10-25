@@ -116,3 +116,48 @@
 ## D. 建议门禁
 
 - 窄门禁 / docs-only：核对本文件路径存在、声明 RF-8=仍开、1440×900 标「待补」、未改 `apps/web`。
+
+---
+
+## E. 续页（RM-报告前端 · tip after 0c1ac0c · 2026-10-25 18:48 Asia/Shanghai）
+
+> **docs + 真实截图**。未改 HomePage / App.tsx / api.ts / urlState.ts。**未自关 RF-8**。未 push。未抬 verification / 未关 Phase1。
+
+### E.1 本轮补拍：RF-8 首页核心卡 @ 1440×900
+
+| 字段 | 值 |
+|---|---|
+| 绝对路径（证据台账） | D:\RubbingMind\screenshots\product-upgrade\phase1-frontend\slice16\rf8_home_core_cards_1440x900.png |
+| 仓库相对路径（本 tip 入库） | screenshots/product-upgrade/phase1-frontend/slice16/rf8_home_core_cards_1440x900.png |
+| 视口 / deviceScaleFactor | 1440×900 / **1** |
+| **Pillow 实测像素** | **1440×900** |
+| 文件大小 | 1197153 bytes |
+| 拍摄时间（Asia/Shanghai） | 2026-10-25 18:47:32 +0800 |
+| DOM 抽查（Playwright） | object-contain=4，object-cover=0，imgs=4（首页核心卡） |
+| 1920 帧 | **已有，本轮不重拍**：slice10\rf8_home_core_cards_1920x1080.png（及 slice7 同名副本） |
+| RF-8 状态 | **仍开 / 待用户确认**（禁止自关；禁止改 HomePage） |
+
+校验旁证：screenshots/product-upgrade/phase1-frontend/slice16/slice16-rf8-verify.json（含 measured_px / captured_at）。
+
+### E.2 B.3 / B.4 缺口关闭情况（截图层）
+
+- ~~缺少 *rf8*1440* / *home*core*1440*~~ → **已补**（上表）。
+- 产品闸门 / 用户确认仍未完成 → RF-8 **不得**标关闭。
+
+### E.3 P1 开项轻量再盘点（相对 tip@0c1ac0c，docs-only）
+
+| 项 | 状态 | 备注 |
+|---|---|---|
+| **RF-8** | **仍开** | 1920+1440 证据帧齐；待用户目视确认 contain/纸色底 |
+| RF-2..7,9..11 / P1-1,4..9,11 | 仍开（产品闸门） | tip 上有代码证据 ≠ 关单 |
+| algorithmOutputMode UI | CHECKLIST §2 文案仍可能偏旧 | tip 已接 algorithmLayer；不抬 verification |
+| BR-09 includeDemo | CHECKLIST 临时 | 有既有截图/证据；非本轮 |
+| AB-8 health banner | 非本 Agent 范围 | App.tsx |
+| ACCEPTANCE Phase1 全表 | **仍开** | 证据 ≠ 口头关闭；本 tip 不声称 Phase1/六层关闭 |
+| 可叠代码 tip | 无 | 扫描无新的可合入报告前端代码缺口（除 RF-8 用户确认外） |
+
+### E.4 本 tip 范围
+
+- 新增：screenshots/.../slice16/rf8_home_core_cards_1440x900.png + verify json
+- 更新：本续页
+- 不做：push、改 HomePage、关 RF-8、抬 verification
