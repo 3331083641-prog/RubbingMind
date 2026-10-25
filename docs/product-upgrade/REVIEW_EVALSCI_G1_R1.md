@@ -43,3 +43,20 @@
 1. feature tip 是否仍为 / 包含 `e9ce60e`。
 2. `api.ts` GlyphInferenceRecord 字段与后端 `_map_roi` 同名同形。
 3. eval-sci tip 含 G1 正式 assert 且全量 pytest 无 fail（允许 A24 xfail）。
+
+
+---
+
+## 附录：对齐 feature@0654d13（2026-10-25 13:11 Asia/Shanghai）
+
+| 项 | 值 |
+|---|---|
+| feature tip | `0654d1307f849f5dadbfaca87fd96f2ce3b56c41` |
+| eval-sci tip（ff） | `0654d1307f849f5dadbfaca87fd96f2ce3b56c41`（原 `01dd3be` fast-forward） |
+| pytest | **709 passed, 1 xfailed (A24), 0 failed** |
+| G1 | 仍正式绿（本 tip 未回退） |
+| A24 | 仍 xfail，勿伪绿 |
+| R7 | tip 超前 head `7623a52` 122 commits；未重跑；MECHANISM_HEAD_NOTE §7 |
+| 本轮增量 | ES-4 图注 provenance；ES-3 `summarize_lift_claims`；ES-5 `negative_lift_display` |
+| 门禁请求 | 可门禁（未 push）；请红队复核 tip 与开项台账 |
+

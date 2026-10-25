@@ -3,7 +3,7 @@
 - 作者：RM-评测科学家（Agent 04+05）
 - 时间：2026-10-25（Asia/Shanghai）
 - 分支：`agent/eval-sci`
-- 当前 tip（本文写作时）：`65f78159a87ddee5895eb2d8d7b49fdbd1325028`（短写 `65f7815`）
+- 当前 tip（写作时）：`0654d1307f849f5dadbfaca87fd96f2ce3b56c41`（短写 `0654d13`）
 - 机制产物绑定 headCommit：`7623a52a3299b7c948031dfa1f79f04b8eb66d9e`（短写 `7623a52`）
 - 关联：`REPRESENTATIVE_CASES.md`、`REPORT_DATA_SPEC.md` §MEC / E-18、`experiments/mechanism_cases.py`
 
@@ -56,3 +56,17 @@
 |---|---|---|---|
 | 2026-10-25 | 65f7815 | 7623a52 | 初版禁令 |
 | 2026-10-25 | 0f20bf1（7b54e2+） | 7623a52 | merge feature@9d8428e + ROI 核对文档；**仍不重跑** mechanism；禁令保持 |
+| 2026-10-25 | 0654d13（fast-forward feature@0654d13） | 7623a52 | tip 超前 mechanism head **122** commits；**仍不重跑** mechanism；ES-4 仅 JSON 图注 enrichment（pngBytesUntouched） |
+
+
+## 7. 对齐 feature@0654d13 后的开项证据（2026-10-25 13:11 Asia/Shanghai）
+
+| 项 | 值 |
+|---|---|
+| 分支 tip | `0654d1307f849f5dadbfaca87fd96f2ce3b56c41` |
+| mechanism `headCommit` | `7623a52a3299b7c948031dfa1f79f04b8eb66d9e` |
+| tip 相对 head 超前 | **122** commits（`git rev-list --count 7623a52..0654d13`） |
+| R7 / G7 | **仍开项** — 只记证据，不谎关；未重跑 `mechanism_cases.py` |
+| ES-4 本轮 | `enrich_mechanism_captions.py` 只改 `mechanism.json` / `index.json` 图注字段；PNG SHA 未变 |
+| 宣称禁令 | 报告不得宣称机制 PNG 与当前 tip 字节一致 |
+
