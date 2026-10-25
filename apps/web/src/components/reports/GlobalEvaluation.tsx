@@ -42,9 +42,10 @@ export function triptychPanes(model: GlobalModel, row: ExperimentRow | undefined
 const ciText = (s: ScopeStat, digits = 2) => s.value == null ? '无数据' : s.ci && s.ciReliable ? `95% CI ${signed(s.ci[0], digits)} ~ ${signed(s.ci[1], digits)}` : s.ciNote || (s.ci ? `CI 不可靠（文物数 ${s.nArtifacts}）` : '无 CI');
 const ciSourceText = (s: ScopeStat) => s.ciSource === 'ci_by_artifact' ? 'CI 来源：derived/ci_by_artifact.json' : `临时口径：前端计算，待替换为 derived/ci_by_artifact（文物 bootstrap ${BOOTSTRAP_RESAMPLES} 次，种子 ${BOOTSTRAP_SEED}）`;
 
-/** 三口径并列：主显示“实际处理”，旁边同时给 n、“全部”的值与原图返回行数；原图返回写“未处理 N 条”。 */
+/** 三口径并列：主显示“实际处理”；旁注全部 / MeanPassthrough；E-05 单独计数（SPEC §1(b)，不进 MeanProcessed）。 */
 export const ScopeTriple: React.FC<{ it: MethodAggregate; unit?: string; retest?: boolean }> = ({ it, unit = 'dB', retest }) => {
   const main = it.scopes[it.primaryScope];
+  const pt = it.scopes.passthrough;
   return <div className="space-y-1" data-testid="scope-triple">
     <p className="font-serif text-2xl" style={{ color: main.value == null ? '#94a3b8' : main.sign === 'negative' ? '#EE5C42' : main.sign === 'positive' && main.ciReliable ? '#85D3C3' : '#F5D46E' }}>
       {main.value == null ? (it.passthroughN > 0 && it.processedN === 0 ? `未处理 ${it.passthroughN} 条` : '无数据') : signed(main.value, 2, unit)}
@@ -55,8 +56,8 @@ export const ScopeTriple: React.FC<{ it: MethodAggregate; unit?: string; retest?
     <ul className="text-[11px] text-slate-400 grid grid-cols-1 sm:grid-cols-3 gap-x-3">
       <li>全部：{it.scopes.all.value == null ? '无数据' : signed(it.scopes.all.value, 2, unit)}（{it.scopes.all.nRecords} 行{!retest && it.processedN === 0 && it.passthroughN > 0 ? '，均为原图返回，不是“提升 0”' : ''}）</li>
       {retest ? <li className="sm:col-span-2">无法判定 {it.undeterminedN} 条（本批没有图像，不区分实际处理与原图返回）</li> : <>
-        <li>实际处理：{it.processedN} 条{it.negativeProcessedN ? `，其中负提升 ${it.negativeProcessedN}` : ''}</li>
-        <li>原图返回：未处理 {it.passthroughN} 条{it.undeterminedN ? ` · 无法判定 ${it.undeterminedN} 条（单独计数）` : ''}</li>
+        <li>实际处理：{it.scopes.processed.value == null ? '无数据' : signed(it.scopes.processed.value, 2, unit)}（{it.processedN} 条{it.negativeProcessedN ? `，其中负提升 ${it.negativeProcessedN}` : ''}；不含 E-05）</li>
+        <li>原图返回：{pt.value == null ? '无均值' : signed(pt.value, 2, unit)}（未处理 {it.passthroughN} 条；MeanPassthrough）{it.undeterminedN ? ` · 无法判定 ${it.undeterminedN} 条（单独计数）` : ''}{it.naChangedN ? ` · E-05 标为不适用但有改动 ${it.naChangedN} 条（不计入实际处理/原图返回）` : ''}</li>
       </>}
     </ul>
     <p className="text-[10px] text-slate-500">{ciSourceText(main)}</p>
@@ -128,7 +129,7 @@ export const GlobalEvaluation: React.FC<Props> = ({ model, batches, glyph, filte
           ? <div className="rounded-md border border-dashed border-slate-600 p-6 text-sm text-slate-300" data-testid="no-images">本批次只保存了数值，没有保存对比图像；不使用其他批次的图代替，也不从本批选取对照案例。可在“失败案例与不确定性”中查看逐条数值。</div>
           : !caseRow ? <div className="rounded-md border border-dashed border-slate-600 p-6 text-sm text-slate-300" data-testid="no-case">当前筛选下 {methodLabel(model.method)} 没有{model.caseKind === 'worst' || filters.case === '@worst' ? '负提升的实际处理' : model.caseKind === 'passthrough' || filters.case === '@passthrough' ? '原图返回的' : ''}记录。</div>
           : <SyncedTriptych testId="experiment-triptych" panes={panes} diffPair={['in', 'out']} height={248} knownPassthrough={caseStatus != null && isPassthroughStatus(caseStatus) && caseRow.statusSource === 'DER'}
-              meta={<>实验 <code>{batch.id}</code> · 方法 {methodLabel(caseRow.method)}（{caseRow.algorithmVersion || '版本未记录'}）· case <code>{caseKeyOf(caseRow)}</code> · seed {caseRow.seed ?? '未记录'} · 状态 <StatusTag status={caseStatus!} source={caseRow.statusSource} /></>} />}
+              meta={<>实验 <code>{batch.id}</code> · 方法 {methodLabel(caseRow.method)}（{caseRow.algorithmVersion || '版本未记录'}）· case <code>{caseKeyOf(caseRow)}</code> · seed {caseRow.seed ?? '未记录'} · 状态 <StatusTag status={caseStatus!} source={caseRow.statusSource} detail={caseRow.appliedStatusDetail} /></>} />}
         {panes != null && <p className="text-[11px] text-slate-400" data-testid="case-rule">{model.caseKind === 'explicit' ? '当前为手动选择的记录。' : `当前为“${CASE_BUTTONS.find(b => b.kind === model.caseKind)?.label || '—'}”。`}{model.representative.rule}（本筛选实际处理 {model.representative.processedN} 条）</p>}
         {caseRow && <p className="text-[11px] text-slate-400">本条：PSNR {caseRow.psnr?.toFixed(2) ?? '未评测'}（输入 {model.caseBaseline?.psnr?.toFixed(2) ?? caseRow.inputPsnr?.toFixed(2) ?? '—'}）· SSIM {caseRow.ssim?.toFixed(3) ?? '未评测'} · 边缘 F1 {caseRow.edgeF1?.toFixed(3) ?? '未评测'} · DER 改动 {caseRow.changedPixelRatio != null ? `${(caseRow.changedPixelRatio * 100).toFixed(2)}% 像素，最大差 ${caseRow.maxAbsDiff ?? '—'}` : '无法判定'} · 输出 SHA {shortSha(caseRow.outputSha256)}</p>}
       </section>
