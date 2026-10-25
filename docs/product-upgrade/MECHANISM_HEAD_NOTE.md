@@ -3,7 +3,7 @@
 - 作者：RM-评测科学家（Agent 04+05）
 - 时间：2026-10-25（Asia/Shanghai）
 - 分支：`agent/eval-sci`
-- 当前 tip（写入时）：ed9f1a0b20978d5500453bdbbaa43505a6f9297d（短写 ed9f1a0；FF 对齐 feature 稳定 tip；含 report slice10 / liftClaims 屏上对齐；冒烟 747p/1xfail；R7/A24 仍开）
+- 当前 tip（写入时）：rebase 于 feature@25aa898 之上（短写见提交；含 arch@847e7f1；R7 lag=177；冒烟进行中）
 - 机制产物绑定 headCommit：`7623a52a3299b7c948031dfa1f79f04b8eb66d9e`（短写 `7623a52`）
 - 关联：`REPRESENTATIVE_CASES.md`、`REPORT_DATA_SPEC.md` §MEC / E-18、`experiments/mechanism_cases.py`
 
@@ -160,3 +160,15 @@
 egative_lift_display.json 仍在；规则次级口径维持 |
 | pytest | 747 passed / 1 xfailed / 0 failed |
 | 铁律 | 未 push / 未合 main / 未改 museum_processing；文件只写 D:\RubbingMind |
+
+## 14. 对齐 feature@25aa898 后开项（rebase 自 a1ae0cc）（2026-10-25 15:55 Asia/Shanghai）
+
+| 项 | 值 |
+| --- | --- |
+| 分支 tip | 25aa898ee882221bbd5affbdda20deceeb7058bc |
+| feature tip | 25aa898ee882221bbd5affbdda20deceeb7058bc（对齐基线；含 arch@847e7f1；其上为本证据戳） |
+| mechanism headCommit | 7623a52a3299b7c948031dfa1f79f04b8eb66d9e |
+| tip 相对 head 超前 | **177** commits（git rev-list --count 7623a52..HEAD） |
+| R7 / G7 | **仍开项** — 只记证据，未谎关；未重跑大批量 mechanism |
+| A24 | 仍 xfail；禁伪 Top-k |
+| 铁律 | 未 push / 未合 main / 未改 museum_processing |
