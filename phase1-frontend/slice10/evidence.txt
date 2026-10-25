@@ -1,7 +1,7 @@
 # Phase1 frontend slice10 - export liftClaims + P1-9 1366/390 + audits
 Date: 2026-10-25 Asia/Shanghai
 Worktree: D:\RubbingMind\wt\rm-report-frontend (agent/report-frontend)
-Base: feature@e53929f1f5e9281427dc11d244f6c78bb0dde3a7
+Base: feature@3b0c47b (merge tip c8e52ef atop 21cb82b/732ef69; prior align e53929f)
 Forbidden untouched: App.tsx, api.ts, urlState.ts, HomePage.tsx (RF-8), no push, no feature edit, no main merge
 
 ## Build

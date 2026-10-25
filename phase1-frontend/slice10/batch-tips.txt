@@ -1,10 +1,12 @@
 slice10 batch tips (ASCII)
-base: e53929f1f5e9281427dc11d244f6c78bb0dde3a7
-commits after base:
+feature base: 3b0c47bb41351d37fe77d125ca9b84b111e8e7e0
+worktree HEAD tip: 7a6b265 (7a6b265adac9c9d942ddedc2ed47bcff5208b586)
+commits relative to 3b0c47b:
   21cb82b feat(report): export JSON liftClaims align on-screen ES-3
-  c0862aa docs(report): phase1 slice10 evidence P1-9 RF-8 algoMode
-full HEAD: c0862aaf77166fff9c86d48326ce6c11ed1281a6
-gate batch: e53929f..HEAD
+  732ef69 docs(report): phase1 slice10 evidence P1-9 RF-8 algoMode
+  c8e52ef merge(feature): product-grade-upgrade@3b0c47b into report-frontend
+  7a6b265 docs(report): slice10 batch-tips align feature@3b0c47b merge
+gate batch suggestion: 21cb82b..7a6b265 (or 3b0c47b..HEAD; prior suggest 21cb82b..c8e52ef)
 RF-8: open (not self-closed)
 algorithmOutputMode: skipped (no api.ts field)
 no push
