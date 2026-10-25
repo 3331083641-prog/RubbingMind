@@ -121,27 +121,33 @@ def test_diff_digest_is_recorded_and_recomputable():
     assert 'confirmationToken' not in diff and diff['confirmation'].get('tokenStoredInFile') is False
 
 
-def test_confirmation_token_is_first_16_of_diff_digest():
+def test_confirmation_token_binds_c08_digest_and_db_sha():
+    """令牌 = sha256(C-08|diffDigest|dbSHA)[:16]，与仅 digest[:16] 不同（arch@a261ba0）。"""
+    import hashlib
     gov = _module()
     diff = json.loads((ROOT / 'data/catalog/c08_sync_diff.json').read_text(encoding='utf-8'))
     digest = diff['diffDigestSha256']
-    token = gov.confirmation_token(digest, diff['basis']['sqliteSha256'])
-    assert token == digest[:16] and len(token) == 16
-    # Changing basis (库SHA) or operations invalidates the digest and therefore the token.
-    flipped_basis = dict(diff['basis'])
-    sha = flipped_basis['sqliteSha256']
-    flipped_basis['sqliteSha256'] = ('0' if sha[0] != '0' else '1') + sha[1:]
-    assert gov.diff_digest(flipped_basis, diff['operations'])[:16] != token
-    changed_ops = [dict(diff['operations'][0], to='探测值')] + diff['operations'][1:]
-    assert gov.diff_digest(diff['basis'], changed_ops)[:16] != token
+    db_sha = diff['basis']['sqliteSha256']
+    token = gov.confirmation_token(digest, db_sha)
+    expected = hashlib.sha256(('C-08|%s|%s' % (digest, db_sha)).encode('utf-8')).hexdigest()[:16]
+    assert token == expected and len(token) == 16
+    assert token != digest[:16], 'token must NOT equal bare digest[:16]'
+    flipped = ('0' if digest[0] != '0' else '1') + digest[1:]
+    assert gov.confirmation_token(flipped, db_sha) != token
+    flipped_db = ('0' if db_sha[0] != '0' else '1') + db_sha[1:]
+    assert gov.confirmation_token(digest, flipped_db) != token
     with pytest.raises(AssertionError):
-        gov.confirmation_token(digest[:15])
+        gov.confirmation_token(digest[:15], db_sha)
+    with pytest.raises(AssertionError):
+        gov.confirmation_token(digest, None)
 
 
-def test_spec_uses_16_hex_token_aligned_with_backend():
+def test_spec_uses_c08_pipe_token_formula():
     spec = (ROOT / 'docs/product-upgrade/C08_SYNC_SPEC.md').read_text(encoding='utf-8')
-    assert ('[:16]' in spec or '前 16 位' in spec)
-    assert '不截断' not in spec
-    assert '64 位十六进制' not in spec
+    assert 'sha256(C-08|diffDigest|dbSHA)[:16]' in spec or 'sha256(C-08|diffDigest|' in spec
+    assert '已撤回' in spec or '旧公式' in spec
     assert 'diffDigestSha256' in spec
+    assert '112ba2d3ebd14f2a' in spec
+    assert '主库' in spec and ('禁止' in spec or '--apply' in spec)
+
 

@@ -9,7 +9,7 @@
 
 | 位置 | 修改前 | 修改后 | 依据 |
 |---|---|---|---|
-| `data/catalog/core_samples.json` 与 `apps/web/src/data/coreSamples.json`（两份逐字节一致）· wei-jianyi | `translation`、`inferenceDemo.transcript` 是“夫人諱某，昌黎人也……”，无任何标记 | 文首加“【合成测试文本（sample_generator 生成，非真实释文）】”；新增 `textProvenance`（kind=`synthetic_test_text`，isAuthenticInscription=false）；`damaged_summary`、`summary` 开头加同一标签；35 个字符加 `textKind`；badges 加“合成测试文本” | `sample_generator.py` `SAMPLE_SOURCES["sample_4.png"].lines` 与该文本逐字相同（项目内部来源，不是史料）；审计 C-03 |
+| `data/catalog/core_samples.json` 与 `apps/web/src/data/coreSamples.json`（两份逐字节一致）· wei-jianyi | `textProvenance`、`inferenceDemo.transcript`（及 `inferenceDemo.textProvenance`）是“夫人諱某，昌黎人也……”，无任何标记 | 文首加“【合成测试文本（sample_generator 生成，非真实释文）】”；新增 `textProvenance`（kind=`synthetic_test_text`，isAuthenticInscription=false）；`damaged_summary`、`summary` 开头加同一标签；35 个字符加 `textKind`；badges 加“合成测试文本” | `sample_generator.py` `SAMPLE_SOURCES["sample_4.png"].lines` 与该文本逐字相同（项目内部来源，不是史料）；审计 C-03 |
 | `data/history/wei-jianyi.json` | `identity` 与主节点 `desc` 没有说明文本是合成的 | `identity`、主节点 `desc` 开头加标签；新增 `textProvenance` | 同上 |
 | `evidence_retrieval.py` | wei-jianyi 的证据条目没有标记 | 条目 `text` 开头加标签，并带 `textProvenance`；回答中命中这类条目时，开头加“注意：检索结果含合成测试文本……不能作为史料证据”；响应新增 `contentWarnings`；索引版本升到 v2.4（指纹变化后自动重建，旧索引不受影响） | 同上 |
 | 前端 `WorkbenchPage.tsx` / `HomePage.tsx` / `EvidenceSearch.tsx` / `types/stele.ts` | 没有标记 | 工作台顶部提示、字符区标题、首页卡片、检索证据标题和警示行都显示标签；类型只加可选字段 | 同上 |
@@ -296,3 +296,31 @@ m:demo:* 与演示 legacy id 的 evidenceId 固定为演示自身，不再落到
 - `tests/test_history_graph.py::test_graph_images_use_reviewed_rubbings`：馆藏实体仍断言已审 `museum-rubbings`；裸演示 id / `rm:demo:*` 断言 `core_samples` 图且永不含馆藏路径（与 4f9d568 行为一致）。
 - 说明：`/api/steles/rm:demo:…/graph` 因路径冒号仍 404，属后端 BR；本测试对命名空间 id 走 `get_history_graph`。
 - 史实字段未改；影像未改。
+
+
+## 2026-10-25 · 红队必须项（4f9d568 后续）
+
+| 项 | 变更 |
+|---|---|
+| 落后测试 | `test_graph_images_use_reviewed_rubbings`（han-caoquan / tang-duobao）改为期望演示图/演示标记；离线 `data/history/{han-caoquan,tang-duobao}.json` 影像改为演示图 |
+| rm:demo API | `main.py` `_resolve_stele_for_api`：路径/查询/`/api/research/query` 接受 `rm:demo:<id>`，与裸演示一致；补测试 |
+| include_demo | 金石为准；`EvidenceQueryRequest.includeDemo` 透传；BR-12/BR-13 写明合并取金石实现；WorkbenchPage 冲突交报告前端（见 FRONTEND 请求） |
+| C-03 文档字段 | 口径改为实际的 `transcript` / `textProvenance`（不再把不存在的 provenance 字段写成 `translation`） |
+| C-08 令牌 | `sha256(C-08|diffDigest|dbSHA)[:16]`（arch@a261ba0）；撤回仅 `digest[:16]` 等旧公式；主库禁止 --apply；预览见 `C08_DRY_RUN_PREVIEW.md` |
+| claims 2a/2b | `b3e4a94`、`719eea1` 红队必须项①–⑤已收口（见下节） |
+
+## 2026-10-25（Asia/Shanghai）— claims 2a/2b 红队必须项收口
+
+在 `b3e4a94` / `719eea1` 之上补齐红队短审条件（①–⑤），史实字段与馆藏影像未改。
+
+| # | 项 | 结果 |
+|---|---|---|
+| ① | 全部 url source 补齐 publisher / title / sourceKind / accessedAt / quote | 6 件 batch2 作品 NPM url 均已补齐；原 `note` 迁入 `quote` |
+| ② | 6 条 NPM URL 写入 `index.openedUrls` | openedUrls 7→13（+6 NPM） |
+| ③ | conflict 补 alternatives / note | tang_03 yearCrossCheck、yuan_02 authorDispute 等 5 条 conflict 均含 ≥2 alternatives（含 evidenceLevel+sources）与 note |
+| ④ | place asserted 补 `region.precision=region` | 全部 asserted place 已补 region |
+| ⑤ | 测试 batch 期望 6/22→12/16，`test_catalog_claims` 全绿 | 87 passed；全量 pytest 387 passed |
+
+另：`test_synthetic_sample_label` identity 断言改为兼容 RV-AI06「演示样本 rm:demo:…」前缀（LABEL 仍须出现在 identity 中）。
+
+主库未执行 C-08 `--apply`。C-08 令牌仍为 `sha256(C-08|diffDigest|dbSHA)[:16]`；用户库 dry-run 预览 token `ef30c1d51053b8a8`（dbSHA `8408dbc3…`）。
