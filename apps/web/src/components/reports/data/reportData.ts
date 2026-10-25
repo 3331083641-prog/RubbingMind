@@ -44,7 +44,8 @@ async function derived<T>(experimentId: string, directory: string | undefined, n
 export const ReportApi = {
   batches: () => wrap(SteleService.listExperiments() as unknown as Promise<BatchRegistry[]>, '实验登记不可用'),
   batch: (id: string) => getJson<BatchDetail>(`/api/experiments/${encodeURIComponent(id)}`, '没有这个实验批次'),
-  diagnosis: (id: string) => wrap(SteleService.getExperimentDiagnosis(id) as unknown as Promise<Diagnosis>, '诊断接口不可用'),
+  /** 四批次均应 200；未知 ID 才 404→missing（不用 wrap+throw，以免丢失空状态）。 */
+  diagnosis: (id: string) => getJson<Diagnosis>(`/api/experiments/${encodeURIComponent(id)}/diagnosis`, '没有这份实验的失败诊断'),
   runs: (steleId: string) => wrap(SteleService.listRuns(steleId) as Promise<ProcessingRunR1[]>, '运行记录不可用'),
   selection: (steleId: string, runId?: string) => wrap(SteleService.getReportSelection(steleId, runId), '报告接口不可用'),
   /** 完整报告体（含识读建议记录、来源记录）。不走 api.ts getReport 的静态回退：后端失败要如实显示。 */
@@ -188,6 +189,39 @@ export function rowDelta(row: ExperimentRow, metric: MetricKey, map: BaselineMap
   if (out == null || input == null || !Number.isFinite(out) || !Number.isFinite(input)) return null;
   return metric === 'thinStrokeMae' ? input - out : out - input;
 }
+
+/** RF-6 / P1-5：诊断 negativeLiftCount、cases 列表、本批逐行 ΔPSNR<0 三方对齐（按诊断 method 收窄；无 method 则全部方法）。 */
+export interface DiagnosisConsistency {
+  apiCount: number | null;
+  casesCount: number;
+  clientCount: number;
+  methodScope: string | null;
+  apiMatchesCases: boolean;
+  apiMatchesClient: boolean;
+  ok: boolean;
+}
+export function diagnosisNegativeCasesCount(d: Diagnosis): number {
+  const cases = d.cases || [];
+  if (d.diagnosisVersion === 'heldout-legacy-heuristic') return cases.filter(c => c.negativeLift).length;
+  return cases.length;
+}
+export function clientNegativeLiftRows(rows: ExperimentRow[], map: BaselineMap, method?: string | null): ExperimentRow[] {
+  return rows.filter(r => r.method !== 'degraded' && (!method || r.method === method))
+    .map(r => ({ r, d: rowDelta(r, 'psnr', map) }))
+    .filter(x => x.d != null && x.d < 0)
+    .sort((a, b) => (a.d! - b.d!))
+    .map(x => x.r);
+}
+export function diagnosisConsistency(d: Diagnosis, rowsAll: ExperimentRow[], map: BaselineMap): DiagnosisConsistency {
+  const methodScope = d.method || null;
+  const apiCount = typeof d.negativeLiftCount === 'number' ? d.negativeLiftCount : null;
+  const casesCount = diagnosisNegativeCasesCount(d);
+  const clientCount = clientNegativeLiftRows(rowsAll, map, methodScope).length;
+  const apiMatchesCases = apiCount != null && apiCount === casesCount;
+  const apiMatchesClient = apiCount != null && apiCount === clientCount;
+  return { apiCount, casesCount, clientCount, methodScope, apiMatchesCases, apiMatchesClient, ok: apiMatchesCases && apiMatchesClient };
+}
+
 
 /* ---------------- 按文物聚类 bootstrap（前端临时口径） ---------------- */
 

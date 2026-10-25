@@ -8,7 +8,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import type { GlobalModel } from './data/globalModel';
 import { caseKeyOf } from './data/globalModel';
-import { appliedStatus, baselineMap, isPassthroughStatus, ReportApi, rowDelta } from './data/reportData';
+import { appliedStatus, baselineMap, diagnosisConsistency, isPassthroughStatus, ReportApi, rowDelta } from './data/reportData';
 import type { Derived, Diagnosis, Loadable, NlcCase, NlcFile } from './data/types';
 import { degradationLabel, methodLabel } from './data/labels';
 import { signed } from './format';
@@ -42,6 +42,8 @@ export const FailureCasesPanel: React.FC<Props> = ({ model, diagnosis, setFilter
     if (diagnosis.state === 'ok') (diagnosis.data.cases || []).forEach(c => { if (c.cause) m.set(`${c.sampleId}|${c.degradation}|${c.method || diagnosis.data.method || ''}`, c.cause); });
     return m;
   }, [diagnosis]);
+  const consistency = useMemo(() => diagnosis.state === 'ok' ? diagnosisConsistency(diagnosis.data, model.rowsAll, map) : null, [diagnosis, model.rowsAll, map]);
+  const filtersActive = model.rows.length !== model.rowsAll.length;
 
   return <div className="space-y-4" data-testid="failure-cases">
     <section aria-label="诊断接口" className="rounded-xl border border-cinnabar/30 bg-[#140f0e] p-4 space-y-2">
@@ -49,9 +51,17 @@ export const FailureCasesPanel: React.FC<Props> = ({ model, diagnosis, setFilter
       {diagnosis.state === 'loading' && <p className="text-sm text-slate-400">读取诊断数据…</p>}
       {(diagnosis.state === 'missing' || diagnosis.state === 'error') && <p role="alert" className="text-sm text-slate-300" data-testid="diagnosis-missing">诊断数据不可用：{diagnosis.message}。下方列表由逐条结果计算，不是诊断结论。</p>}
       {diagnosis.state === 'ok' && <div className="space-y-2 text-sm" data-testid="diagnosis-ok" data-version={diagnosis.data.diagnosisVersion || ''}>
-        <p>诊断版本 <code className="text-xs">{diagnosis.data.diagnosisVersion || '未标注'}</code>：负提升 <b className="text-cinnabar-light">{diagnosis.data.negativeLiftCount ?? '—'}</b> 条{diagnosis.data.method ? `（方法 ${methodLabel(diagnosis.data.method)}）` : '（全部方法）'}，全部保留。{legacyDiag ? `“输出未改动” ${diagnosis.data.unchangedCount ?? '—'} 条为旧启发式判断，未经像素验证。` : ''}</p>
+        <p>诊断版本 <code className="text-xs">{diagnosis.data.diagnosisVersion || '未标注'}</code>：负提升 <b className="text-cinnabar-light" data-testid="diagnosis-count">{diagnosis.data.negativeLiftCount ?? '—'}</b> 条{diagnosis.data.method ? `（方法 ${methodLabel(diagnosis.data.method)}）` : '（全部方法）'}，全部保留。{legacyDiag ? `“输出未改动” ${diagnosis.data.unchangedCount ?? '—'} 条为旧启发式判断，未经像素验证。` : ''}</p>
+        {consistency && <p className="text-[11px]" data-testid="diagnosis-consistency" data-ok={consistency.ok ? '1' : '0'}>
+          计数核对：诊断 <b>{consistency.apiCount ?? '—'}</b>
+          {' · '}cases 列表 <b data-testid="diagnosis-cases-count">{consistency.casesCount}</b>
+          {' · '}本批逐行（{consistency.methodScope ? methodLabel(consistency.methodScope) : '全部方法'}）<b data-testid="diagnosis-client-count">{consistency.clientCount}</b>
+          {consistency.ok
+            ? <span className="ml-2 text-celadon-light">三方一致</span>
+            : <span role="alert" className="ml-2 text-cinnabar-light">不一致（api↔cases {consistency.apiMatchesCases ? '齐' : '否'} · api↔逐行 {consistency.apiMatchesClient ? '齐' : '否'}）；下方列表以逐行 ΔPSNR&lt;0 为准，不删不抽样。</span>}
+        </p>}
         {diagnosis.data.byMethod && <div className="overflow-x-auto"><table className="text-[11px] text-left" data-testid="diagnosis-by-method"><thead className="text-slate-400"><tr>{['方法', 'n', '负提升', '输出与输入字节相同', '无法判定字节', '未配对'].map(h => <th key={h} className="pr-3 font-normal">{h}</th>)}</tr></thead>
-          <tbody>{Object.entries(diagnosis.data.byMethod).map(([m, v]) => <tr key={m} className="border-t border-slate-800"><td className="pr-3">{methodLabel(m)}</td><td className="pr-3">{v.n}</td><td className="pr-3 text-cinnabar-light">{v.negativeLift}</td><td className="pr-3">{v.byteIdenticalToInput}</td><td className="pr-3">{v.byteIdentityUnknown}</td><td>{v.unmatched}</td></tr>)}</tbody></table></div>}
+          <tbody>{Object.entries(diagnosis.data.byMethod).map(([m, v]) => <tr key={m} className="border-t border-slate-800"><td className="pr-3">{methodLabel(m)}</td><td className="pr-3">{v.n}</td><td className="pr-3 text-cinnabar-light">{v.negativeLift}</td><td className="pr-3">{v.byteIdentical ?? v.byteIdenticalToInput ?? '—'}</td><td className="pr-3">{v.byteIdentityUnknown}</td><td>{v.unmatched}</td></tr>)}</tbody></table></div>}
         {diagnosis.data.causeCounts && <p className="flex flex-wrap gap-2 text-xs"><span className="text-slate-400">旧规则推断：</span>{Object.entries(diagnosis.data.causeCounts).map(([c, n]) => <span key={c} className="rounded border border-slate-600 px-2 py-0.5 text-slate-300">{c} · {n}</span>)}</p>}
         {diagnosis.data.causeBasis && <p className="text-xs text-slate-400">{diagnosis.data.causeBasis}</p>}
         {diagnosis.data.caveat && <p className="text-xs text-slate-400">{diagnosis.data.caveat}</p>}
@@ -62,9 +72,9 @@ export const FailureCasesPanel: React.FC<Props> = ({ model, diagnosis, setFilter
 
     <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
       <section aria-label="负提升记录" className="xl:col-span-2 rounded-xl border border-gold/20 bg-[#0f1418] p-4 space-y-2">
-        <h3 className="font-serif text-gold text-sm">负提升记录（ΔPSNR &lt; 0，当前筛选下全部 {negatives.length} 条）</h3>
-        <p className="text-[11px] text-slate-400">按方法：{byMethod(negatives.map(x => x.r)).map(([m, n]) => `${methodLabel(m)} ${n}`).join(' · ') || '无'}。{model.batch.hasImages ? '点击一行在视觉对照中打开。' : ''}</p>
-        {negatives.length === 0 ? <p className="text-sm text-slate-400">当前筛选下没有 ΔPSNR&lt;0 的记录{passthrough.length ? `；另有未处理 ${passthrough.length} 条（原图返回，不算“无负提升”）` : ''}。</p> :
+        <h3 className="font-serif text-gold text-sm" data-testid="negative-lift-heading">负提升记录（ΔPSNR &lt; 0，当前筛选下全部 {negatives.length} 条{consistency ? `；本批同口径 ${consistency.clientCount} 条` : ''}{filtersActive ? '，已应用筛选' : ''}）</h3>
+        <p className="text-[11px] text-slate-400">按方法：{byMethod(negatives.map(x => x.r)).map(([m, n]) => `${methodLabel(m)} ${n}`).join(' · ') || '无'}。列表条数须等于上表「当前筛选」计数；与诊断核对见上方「计数核对」。{model.batch.hasImages ? '点击一行在视觉对照中打开。' : ''}</p>
+        {negatives.length === 0 ? <p className="text-sm text-slate-400" data-testid="negative-lift-empty">当前筛选下没有 ΔPSNR&lt;0 的记录{passthrough.length ? `；另有未处理 ${passthrough.length} 条（原图返回，不算“无负提升”）` : ''}{consistency && consistency.clientCount > 0 ? `（本批另有 ${consistency.clientCount} 条负提升，被当前筛选挡住）` : ''}{diagnosis.state === 'ok' && (diagnosis.data.negativeLiftCount ?? 0) === 0 ? '；诊断接口亦报告 0 条。' : ''}。</p> :
           <div className="max-h-96 overflow-auto"><table className="w-full text-[11px] text-left" data-testid="negative-lift-table"><thead className="text-slate-400 sticky top-0 bg-[#0f1418]"><tr>{['方法', '文物', '退化', '强度', 'ΔPSNR', '状态', '测量原因（值 / 阈值）', '旧规则推断'].map(h => <th key={h} className="py-1 pr-2 font-normal">{h}</th>)}</tr></thead>
             <tbody>{negatives.map(({ r, d, s }) => { const c = nlcByRow?.get(rowIndex.get(r) ?? -1); const ev = c?.measuredEvidence.filter(e => e.triggered) || [];
               const old = c?.ruleInferredCause || legacyCause.get(`${r.sampleId}|${r.degradation}|${r.method}`);

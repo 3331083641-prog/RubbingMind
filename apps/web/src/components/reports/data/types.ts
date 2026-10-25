@@ -94,11 +94,24 @@ export interface BatchDetail {
 }
 
 /** /api/experiments/{id}/diagnosis：通用版 baseline-delta-v1（全部批次）与同批复测的旧启发式版 heldout-legacy-heuristic。 */
-export interface DiagnosisCase { caseId?: string; sampleId: string; split?: string | null; degradation: string; strength?: number; method?: string; negativeLift?: boolean; unchangedFromInput?: boolean; byteIdenticalToInput?: boolean | null; psnrDeltaFromInput?: number | null; fidelityAccepted?: boolean | null; cause?: string }
+export interface DiagnosisCase {
+  caseId?: string; sampleId: string; split?: string | null; degradation: string; strength?: number; seed?: number; method?: string;
+  negativeLift?: boolean; unchangedFromInput?: boolean;
+  /** SPEC §0.3 主字段；byteIdenticalToInput 为弃用别名。 */
+  byteIdentical?: boolean | null; byteIdenticalToInput?: boolean | null;
+  psnr?: number | null; baselinePsnr?: number | null; psnrDeltaFromInput?: number | null;
+  fidelityAccepted?: boolean | null; cause?: string; output?: string | null; outputSha256?: string | null;
+}
+export interface DiagnosisMethodStats {
+  n: number; negativeLift: number;
+  byteIdentical?: number; byteIdenticalToInput?: number; byteIdentityUnknown: number; unmatched: number;
+}
 export interface Diagnosis {
-  experimentId?: string; diagnosisVersion?: string; method?: string; negativeLiftCount?: number; unchangedCount?: number;
+  experimentId?: string; diagnosisVersion?: string; method?: string; baselineMethod?: string; comparison?: string;
+  negativeLiftCount?: number; unchangedCount?: number; unmatchedRowCount?: number;
   causeCounts?: Record<string, number> | null; causeBasis?: string; cases?: DiagnosisCase[]; caveat?: string; notRetuned?: string;
-  byMethod?: Record<string, { n: number; negativeLift: number; byteIdenticalToInput: number; byteIdentityUnknown: number; unmatched: number }>;
+  byMethod?: Record<string, DiagnosisMethodStats>;
+  deprecatedFields?: Record<string, string>; byteIdentityBasis?: string;
 }
 
 /* ---- agent/eval-sci 派生文件（REPORT_DATA_SPEC §0.1 DER / CI / NLC / MEC） ---- */
