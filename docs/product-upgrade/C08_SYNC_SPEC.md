@@ -32,10 +32,9 @@
 1. **默认只预览**：不加参数时只打印将执行的操作，不写库。
 2. **前置校验**：重新计算 SQLite 和 `steles28.json` 的 SHA-256，必须与 `basis` 一致，否则中止，并提示重新生成差异清单。
 3. **先备份**：写入前把 SQLite 复制为 `rubbingmind.sqlite.<YYYYMMDD-HHMMSS>.bak`（Asia/Shanghai 时间），记录备份的 SHA-256，校验通过后再继续。
-4. **用户确认后写入**：需同时给出 `--apply` 和用户的明确确认（交互输入令牌，或 `--confirm <令牌>`），并在单个事务里执行；任何一步失败就回滚。**确认令牌规则**（Green，2026-10-19）：令牌同时绑定差异摘要哈希和真实库的完整 SHA-256，任一变化，令牌即失效。
+4. **用户确认后写入**：需同时给出 `--apply` 和用户的明确确认（交互输入令牌，或 `--confirm <令牌>`），并在单个事务里执行；任何一步失败就回滚。**确认令牌规则**（Green，2026-10-25，与后端 8a97a12 对齐）：令牌为 `sha256(库SHA + 目录SHA + 行数 + 操作清单)[:16]`，即 `diffDigestSha256` 的前 16 位十六进制。
    - `diffDigestSha256 = sha256(canonical_json({"basis": {sqliteSha256, catalogueSha256, sqliteRows, catalogueRecords}, "operations": [...]}))`。canonical_json 的参数是 `sort_keys=True, separators=(',', ':'), ensure_ascii=False`，编码 UTF-8。这个值写在 `c08_sync_diff.json` 的 `diffDigestSha256` 字段里，后端须重算并比对。
-   - `token = sha256("c08-confirm:v1:" + diffDigestSha256 + ":" + sqlite_sha256_now)`，64 位十六进制，**不截断**。`sqlite_sha256_now` 是写入前对真实库重新计算的完整 SHA-256，必须等于 `basis.sqliteSha256`。
-   - 差异清单文件里**不存令牌**，令牌只在 dry-run 时打印。参考实现：`scripts/check_catalog_governance.py` 中的 `diff_digest()`、`confirmation_token()`。
+   - `token = diffDigestSha256[:16]`（16 位十六进制）。库 SHA、目录 SHA、行数或操作清单任一变化，摘要与令牌即失效。参考实现：`scripts/check_catalog_governance.py` 中的 `diff_digest()`、`confirmation_token()`。
 5. **只执行清单中的操作**：不做清单之外的修改，不执行 `hold`。
 6. **写后复核**：运行 `check_catalog_governance.py --summary`，`C08_fieldDiffs` 应为 0，`C08_extraWithCoordinates` 应为 0，`C08_extraInSqlite` 仍为 5（保留的下架行）。
 7. **可回滚**：提供把 `.bak` 恢复回原位的命令。

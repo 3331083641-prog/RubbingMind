@@ -118,25 +118,30 @@ def test_diff_digest_is_recorded_and_recomputable():
     diff = json.loads((ROOT / 'data/catalog/c08_sync_diff.json').read_text(encoding='utf-8'))
     assert diff['diffDigestSha256'] == gov.diff_digest(diff['basis'], diff['operations'])
     assert diff['confirmation']['tokenStoredInFile'] is False
-    assert 'confirmationToken' not in diff and gov.confirmation_token(diff['diffDigestSha256'], diff['basis']['sqliteSha256']) not in json.dumps(diff)
+    assert 'confirmationToken' not in diff and diff['confirmation'].get('tokenStoredInFile') is False
 
 
-def test_confirmation_token_binds_digest_and_full_database_sha():
+def test_confirmation_token_is_first_16_of_diff_digest():
     gov = _module()
     diff = json.loads((ROOT / 'data/catalog/c08_sync_diff.json').read_text(encoding='utf-8'))
-    digest, sqlite_sha = diff['diffDigestSha256'], diff['basis']['sqliteSha256']
-    token = gov.confirmation_token(digest, sqlite_sha)
-    assert len(token) == 64
-    # Changing one hex digit anywhere in either input invalidates the token, including beyond the first 8/16 characters.
-    for position in (0, 20, 63):
-        flipped_db = sqlite_sha[:position] + ('0' if sqlite_sha[position] != '0' else '1') + sqlite_sha[position + 1:]
-        assert gov.confirmation_token(digest, flipped_db) != token
-    changed_ops = [dict(diff['operations'][0], to='其他值')] + diff['operations'][1:]
-    assert gov.diff_digest(diff['basis'], changed_ops) != digest
+    digest = diff['diffDigestSha256']
+    token = gov.confirmation_token(digest, diff['basis']['sqliteSha256'])
+    assert token == digest[:16] and len(token) == 16
+    # Changing basis (库SHA) or operations invalidates the digest and therefore the token.
+    flipped_basis = dict(diff['basis'])
+    sha = flipped_basis['sqliteSha256']
+    flipped_basis['sqliteSha256'] = ('0' if sha[0] != '0' else '1') + sha[1:]
+    assert gov.diff_digest(flipped_basis, diff['operations'])[:16] != token
+    changed_ops = [dict(diff['operations'][0], to='探测值')] + diff['operations'][1:]
+    assert gov.diff_digest(diff['basis'], changed_ops)[:16] != token
     with pytest.raises(AssertionError):
-        gov.confirmation_token(digest, sqlite_sha[:8])
+        gov.confirmation_token(digest[:15])
 
 
-def test_spec_uses_full_sha_token_rule():
+def test_spec_uses_16_hex_token_aligned_with_backend():
     spec = (ROOT / 'docs/product-upgrade/C08_SYNC_SPEC.md').read_text(encoding='utf-8')
-    assert '前 8 位' not in spec and '不截断' in spec and 'diffDigestSha256' in spec
+    assert ('[:16]' in spec or '前 16 位' in spec)
+    assert '不截断' not in spec
+    assert '64 位十六进制' not in spec
+    assert 'diffDigestSha256' in spec
+

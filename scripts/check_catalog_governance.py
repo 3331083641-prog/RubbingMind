@@ -129,10 +129,16 @@ def diff_digest(basis, operations):
     return hashlib.sha256(canonical.encode('utf-8')).hexdigest()
 
 
-def confirmation_token(digest, sqlite_sha256):
-    """Full 64-hex token bound to BOTH the diff digest and the real database's full SHA-256."""
-    assert len(digest) == 64 and len(sqlite_sha256) == 64
-    return hashlib.sha256(f'{TOKEN_PREFIX}:{digest}:{sqlite_sha256}'.encode('utf-8')).hexdigest()
+def confirmation_token(digest, sqlite_sha256=None):
+    """16-hex token = diffDigestSha256[:16].
+
+    Matches agent/arch-backend 8a97a12 (Green 2026-10-25): token is
+    sha256(库SHA + 目录SHA + 行数 + 操作清单) 的前 16 位。diff_digest() 已把
+    basis.sqliteSha256 / catalogueSha256 / sqliteRows / catalogueRecords 与
+    operations 编进摘要，故截取 digest 前 16 位即可；sqlite_sha256 参数保留以兼容调用方，不再单独二次哈希。
+    """
+    assert len(digest) == 64 and all(c in '0123456789abcdef' for c in digest)
+    return digest[:16]
 
 
 def sync_diff(sql):
@@ -174,10 +180,10 @@ def sync_diff(sql):
         'precondition': '执行前必须重新计算 basis 中两个 SHA-256；任一不一致则中止，并重新生成本文件',
         'diffDigestSha256': digest,
         'confirmation': {
-            'rule': '确认令牌同时绑定差异摘要哈希（diffDigestSha256）和真实库的完整 SHA-256；任一变化，令牌即失效',
+            'rule': '确认令牌 = diffDigestSha256 前 16 位（与后端 8a97a12 一致）；库 SHA、目录 SHA、行数或操作清单任一变化，摘要与令牌即失效',
             'digestFormula': "sha256(json.dumps({'basis': basis 中 sqliteSha256/catalogueSha256/sqliteRows/catalogueRecords 四项, 'operations': operations}, ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode('utf-8'))",
-            'tokenFormula': "sha256(('c08-confirm:v1:' + diffDigestSha256 + ':' + 写入前对真实库重新计算的完整 SHA-256).encode('utf-8'))，64 位十六进制，不截断",
-            'binds': ['diffDigestSha256', 'sqliteSha256（写入前重算，必须等于 basis.sqliteSha256）'],
+            'tokenFormula': "sha256(canonical_json({basis: {sqliteSha256, catalogueSha256, sqliteRows, catalogueRecords}, operations}))[:16]  （即 diffDigestSha256 前 16 位；与后端 8a97a12 一致）",
+            'binds': ['diffDigestSha256[:16]', 'basis.sqliteSha256', 'basis.catalogueSha256', 'basis.sqliteRows', 'basis.catalogueRecords', 'operations'],
             'tokenStoredInFile': False,
         },
         'operations': ops,

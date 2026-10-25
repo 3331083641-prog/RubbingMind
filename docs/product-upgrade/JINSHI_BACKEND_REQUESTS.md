@@ -28,4 +28,4 @@
 
 | 编号 | 来源 | 涉及 | 需求 | 验收 |
 |---|---|---|---|---|
-| BR-10 | C-08 | `agent/arch-backend` `scripts/sync_catalog_db.py`（8a97a12） | ① 确认令牌改为 `sha256("c08-confirm:v1:" + diffDigestSha256 + ":" + 写入前重算的完整库 SHA-256)`，64 位十六进制，不截断；② `--apply` 必须带 `--diff`，并比对 `diffDigestSha256`；③ 写后复核补上“下架行仍在、总行数不变”。详见 `C08_BACKEND_REVIEW_8a97a12.md` | 新令牌与本分支 `confirmation_token()` 输出一致；库 SHA 或差异中任一字节变化，令牌即失效 |
+| BR-10 | C-08 | `agent/arch-backend` `scripts/sync_catalog_db.py`（8a97a12） | 令牌已与本分支对齐为 `diffDigestSha256[:16]`（即 `sha256(库SHA+目录SHA+行数+操作清单)[:16]`），16 位截断不再算缺陷。仍需：① `--apply` 必须带 `--diff`，并比对 `diffDigestSha256`；② 写后复核补上“下架行仍在、总行数不变”。详见 `C08_BACKEND_REVIEW_8a97a12.md` | `--apply` 无 `--diff` 被拒绝；写后下架 5 行仍在、总行数不变 |
