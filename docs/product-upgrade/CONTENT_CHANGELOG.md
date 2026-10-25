@@ -247,3 +247,21 @@
 m:demo:* 与演示 legacy id 的 evidenceId 固定为演示自身，不再落到馆藏 han_01/	ang_01；evidence_retrieval.corpus 历史证据按演示 id 入索引；图谱演示图改用 core_samples.raw_image，不再返回 museum-rubbings/ 馆藏图。depictsSameWorkAs 仅作关系元数据。 | 红队 RV-AI06；resolve_id / get_history_graph / canonical_id / tests/test_id_namespace.py |
 | B 历表核对 | 已 git am 17.patch（中研院 sinocal）：tang_01 四月朔=丁丑，乙丑待复核；字段未改。 | calendar_check_B.json |
 
+## 2026-10-25（Asia/Shanghai）· 第 2 批逐件深化：yuan_03、song_03（RM-金石史料 · Green）
+
+增量文件（不覆盖原目录著录）：
+- `data/catalog/claims/yuan_03_shengzhu.json`（33 claims）
+- `data/catalog/claims/song_03_daguan.json`（32 claims）
+- `data/catalog/claims/index.json` 更新为 8/28
+
+**来源（均实开）：**
+- yuan_03：https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34561&dep=P&mode=full （品名「元趙孟頫書聖主本命長生之碑并碑額墨拓本」，贈拓000410）
+- song_03：https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32018&dep=P&mode=full （品名「宋大觀聖作碑墨拓本 軸」，購拓000421）
+
+**要点：**
+| 作品 | 已验证要点 | 缺失／冲突 |
+|---|---|---|
+| yuan_03 圣主本命长生之碑 | 王思廉撰、赵孟頫书；延祐四年十一月→1317；楷书+碑额篆书；拓本现藏台北故宫 | 原石地点／现藏缺失；篆额二字残泐，titleCalligrapher 不升格；馆方「作者」栏仅列赵孟頫 vs 释文撰/书分工 → conflict 并列 |
+| song_03 大观圣作碑 | 李时雍摹写、蔡京题额；大观二年八月二十九日刻石→1108（奏请大观元年=1107 另记）；楷书；拓本现藏台北故宫 | 撰人未核定；原石现藏缺失；兴平县衔名仅作区域级有限支持，不输出坐标 |
+
+**规则遵守：** 目录未核定字段不升为已验证；异文并列；地点无坐标；影像 SHA 未改。

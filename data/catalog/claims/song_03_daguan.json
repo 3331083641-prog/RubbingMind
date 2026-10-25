@@ -1,0 +1,663 @@
+{
+  "schemaVersion": 1,
+  "steleId": "song_03_daguan",
+  "title": "大观圣作碑",
+  "curatedBy": "RM-金石史料",
+  "curatedAt": "2026-10-25（Asia/Shanghai）",
+  "selectionBasis": "Green 指定优先；目录书丹/篆额 verified；馆方释文含李时雍摹写、蔡京题额与大观元/二年纪年；NPM 开放资料页 2026-10-25 实开核对",
+  "layers": "作品（work）≠原刻载体（stone）≠拓本（rubbing）≠影像（image）；人物、纪年、地点、书体风格、著录分列",
+  "claims": [
+    {
+      "claimId": "song_03_daguan:work:title",
+      "entity": "work",
+      "property": "title",
+      "value": "大观圣作碑（馆方品名“宋大觀聖作碑墨拓本 軸”；又称八行诏旨／圣作碑）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "title",
+          "value": "大观圣作碑"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32018&dep=P&mode=full",
+          "note": "品名：宋大觀聖作碑墨拓本 軸"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "transcription",
+          "quote": "以御筆八行詔旨摹刻于石"
+        }
+      ]
+    },
+    {
+      "claimId": "song_03_daguan:work:dynasty",
+      "entity": "work",
+      "property": "dynasty",
+      "value": "宋",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "dynasty",
+          "value": "宋代"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32018&dep=P&mode=full",
+          "note": "品名冠“宋”"
+        }
+      ]
+    },
+    {
+      "claimId": "song_03_daguan:work:content",
+      "entity": "work",
+      "property": "content",
+      "value": "徽宗御笔“八行”诏旨摹刻于石，立于宫学及天下郡邑学校；规范士人八行八刑与升贡法",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "transcription",
+          "quote": "以御筆八行詔旨摹刻于石"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "transcription",
+          "quote": "諸士有孝悌。睦婣任恤忠和八行"
+        }
+      ],
+      "note": "据释文摘句概括，未经人工通读全文"
+    },
+    {
+      "claimId": "song_03_daguan:stone:currentLocation",
+      "entity": "stone",
+      "property": "currentLocation",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "physicalCollectionInstitution"
+        }
+      ],
+      "missingReason": "目录 physicalCollectionInstitution 为空；本轮未打开原石现藏权威来源",
+      "catalogueField": "physicalCollectionInstitution"
+    },
+    {
+      "claimId": "song_03_daguan:stone:originalSite",
+      "entity": "stone",
+      "property": "originalSite",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "originalLocation"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "transcription",
+          "quote": "知京兆府興平縣事"
+        }
+      ],
+      "missingReason": "目录 originalLocation 为空；释文末有京兆府兴平县官吏衔名，提示此拓或出兴平一刻，但不能单独定为原立地点"
+    },
+    {
+      "claimId": "song_03_daguan:stone:transfer",
+      "entity": "stone",
+      "property": "transfer",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本轮未查到原石迁徙可靠来源"
+    },
+    {
+      "claimId": "song_03_daguan:stone:condition",
+      "entity": "stone",
+      "property": "condition",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "无原石影像；目录 stoneWeathering=无原石影像，不评定"
+    },
+    {
+      "claimId": "song_03_daguan:rubbing:holder",
+      "entity": "rubbing",
+      "property": "holder",
+      "value": "台北故宫博物院（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "collectionNumber",
+          "value": "購拓000421"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32018&dep=P&mode=full",
+          "note": "文物統一編號 購拓000421N000000000"
+        }
+      ]
+    },
+    {
+      "claimId": "song_03_daguan:rubbing:museumTitle",
+      "entity": "rubbing",
+      "property": "museumTitle",
+      "value": "宋大觀聖作碑墨拓本 軸",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32018&dep=P&mode=full",
+          "note": "品名栏"
+        }
+      ]
+    },
+    {
+      "claimId": "song_03_daguan:rubbing:format",
+      "entity": "rubbing",
+      "property": "format",
+      "value": "一轴；本幅约 202×89 公分；纸本",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32018&dep=P&mode=full",
+          "note": "数量：一轴；本幅 202x89；质地：纸"
+        }
+      ]
+    },
+    {
+      "claimId": "song_03_daguan:rubbing:period",
+      "entity": "rubbing",
+      "property": "period",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "rubbingPeriod",
+          "value": "未核定；不据拓印年改变朝代"
+        }
+      ],
+      "missingReason": "目录 rubbingPeriod 未核定"
+    },
+    {
+      "claimId": "song_03_daguan:image:sourceSha256",
+      "entity": "image",
+      "property": "sourceSha256",
+      "value": "7daed181c0ba9b8feb30a8d383712834ae1e67c9c017d753d8b99c9cde731d21",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "sourceVerification.sourceSha256",
+          "value": "7daed181c0ba9b8feb30a8d383712834ae1e67c9c017d753d8b99c9cde731d21"
+        }
+      ],
+      "note": "审核包源图 SHA；派生影像见 ASSET_FREEZE，本轮未改"
+    },
+    {
+      "claimId": "song_03_daguan:image:license",
+      "entity": "image",
+      "property": "license",
+      "value": "CC BY 4.0",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "license",
+          "value": "CC BY 4.0"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32018&dep=P&mode=full"
+        }
+      ]
+    },
+    {
+      "claimId": "song_03_daguan:image:derivation",
+      "entity": "image",
+      "property": "derivation",
+      "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "modifications"
+        }
+      ]
+    },
+    {
+      "claimId": "song_03_daguan:person:author",
+      "entity": "person",
+      "property": "author",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "author",
+          "value": "未核定"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "authorVerification",
+          "value": "pending_review"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "transcription",
+          "quote": "御筆八行詔旨"
+        }
+      ],
+      "missingReason": "内容为御笔诏旨，目录 author 未核定／pending_review；不把“徽宗”或郑居中奏请升为已验证撰人",
+      "catalogueField": "author"
+    },
+    {
+      "claimId": "song_03_daguan:person:calligrapher",
+      "entity": "person",
+      "property": "calligrapher",
+      "value": "李时雍（通直郎书学博士，奉敕摹写）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "calligrapher",
+          "value": "李时雍"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "calligrapherVerification",
+          "value": "verified"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "transcription",
+          "quote": "通直郎書學博士臣李時雍奉勑摹寫"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32018&dep=P&mode=full",
+          "note": "释文"
+        }
+      ]
+    },
+    {
+      "claimId": "song_03_daguan:person:titleCalligrapher",
+      "entity": "person",
+      "property": "titleCalligrapher",
+      "value": "蔡京（奉敕题额）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "titleCalligrapher",
+          "value": "蔡京"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "titleCalligrapherVerification",
+          "value": "verified"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "transcription",
+          "quote": "臣蔡京奉勑題額"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32018&dep=P&mode=full",
+          "note": "释文"
+        }
+      ]
+    },
+    {
+      "claimId": "song_03_daguan:person:engraver",
+      "entity": "person",
+      "property": "engraver",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "engraver",
+          "value": "未核定"
+        }
+      ],
+      "missingReason": "目录未核定；释文未见刻工"
+    },
+    {
+      "claimId": "song_03_daguan:person:steleSubject",
+      "entity": "person",
+      "property": "steleSubject",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "steleSubject",
+          "value": "未核定"
+        }
+      ],
+      "missingReason": "诏敕碑，非墓碑碑主"
+    },
+    {
+      "claimId": "song_03_daguan:date:era",
+      "entity": "date",
+      "property": "era",
+      "value": "大观二年八月二十九日奉御笔令刻石（奏请：大观元年九月十八日）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "sourceVerification.dateBasis",
+          "value": "大观二年八月奉御笔令刻石；1107为奏请年，馆方释文"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "transcription",
+          "quote": "大觀元年九月十八日"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "transcription",
+          "quote": "二年八月二十九日奉御筆"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32018&dep=P&mode=full"
+        }
+      ]
+    },
+    {
+      "claimId": "song_03_daguan:date:ce",
+      "entity": "date",
+      "property": "ce",
+      "value": 1108,
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "originalYearCE",
+          "value": 1108
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "originalYear",
+          "value": "1108年"
+        }
+      ],
+      "note": "刻石年取大观二年=1108；奏请年大观元年=1107，见 dateBasis，不混为原刻年"
+    },
+    {
+      "claimId": "song_03_daguan:date:yearCrossCheck",
+      "entity": "date",
+      "property": "yearCrossCheck",
+      "value": "一致：大观二年→1108（奏请大观元年→1107 另记）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "originalYearCE",
+          "value": 1108
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "transcription",
+          "quote": "二年八月二十九日奉御筆"
+        }
+      ]
+    },
+    {
+      "claimId": "song_03_daguan:date:dayCrossCheck",
+      "entity": "date",
+      "property": "dayCrossCheck",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "transcription",
+          "quote": "二年八月二十九日"
+        }
+      ],
+      "missingReason": "有月日无干支；本轮未做日级历表核对"
+    },
+    {
+      "claimId": "song_03_daguan:date:month",
+      "entity": "date",
+      "property": "month",
+      "value": "八月",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "transcription",
+          "quote": "二年八月二十九日奉御筆"
+        }
+      ]
+    },
+    {
+      "claimId": "song_03_daguan:place:originalSite",
+      "entity": "place",
+      "property": "originalSite",
+      "value": "可能与京兆府兴平县一刻相关（区域级，待复核）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "transcription",
+          "quote": "知京兆府興平縣事"
+        }
+      ],
+      "note": "释文列兴平县官吏；全国多处摹刻，此拓具体原石地点仍待权威来源；不输出坐标"
+    },
+    {
+      "claimId": "song_03_daguan:place:currentStone",
+      "entity": "place",
+      "property": "currentStone",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "原石现藏未核定"
+    },
+    {
+      "claimId": "song_03_daguan:place:rubbingHolder",
+      "entity": "place",
+      "property": "rubbingHolder",
+      "value": "台北（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32018&dep=P&mode=full"
+        }
+      ]
+    },
+    {
+      "claimId": "song_03_daguan:script_style:script",
+      "entity": "script_style",
+      "property": "script",
+      "value": "楷书（摹写御笔）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "scriptType",
+          "value": "楷书"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32018&dep=P&mode=full",
+          "note": "书体栏：楷书"
+        }
+      ]
+    },
+    {
+      "claimId": "song_03_daguan:script_style:styleNote",
+      "entity": "script_style",
+      "property": "styleNote",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本轮未做书法风格人工评述"
+    },
+    {
+      "claimId": "song_03_daguan:script_style:historicalComment",
+      "entity": "script_style",
+      "property": "historicalComment",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本轮未引用外部书论"
+    },
+    {
+      "claimId": "song_03_daguan:script_style:colophonComment",
+      "entity": "script_style",
+      "property": "colophonComment",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本轮未见可用题跋摘录"
+    },
+    {
+      "claimId": "song_03_daguan:bibliography:catalogueReference",
+      "entity": "bibliography",
+      "property": "catalogueReference",
+      "value": "國立故宮博物院开放资料 id=32018；購拓000421",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=32018&dep=P&mode=full"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_03_daguan",
+          "field": "collectionNumber",
+          "value": "購拓000421"
+        }
+      ]
+    }
+  ]
+}

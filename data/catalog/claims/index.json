@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "schema": "data/catalog/claims/schema.json",
-  "batch": "Phase 3 深化第 1 批（6/28）",
+  "batch": "Phase 3 深化第 2 批（8/28；本批 yuan_03、song_03）",
   "curatedBy": "RM-金石史料",
-  "curatedAt": "2026-10-19（Asia/Shanghai）",
-  "selectionRule": "tang_01、han_01 为 Green 指定必选（C-05 跨源差异涉及）；其余 4 件按以下顺序挑选：①目录角色字段为 verified 的项数；②仓库内馆方释文长度（含署名与纪年）；③本轮能打开的官方来源数。tang_04（4 项 verified）、yuan_01（3 项）、ming_02（3 项，含墓主）、tang_02（2 项，释文最长，另有 3 个官方页面）。yuan_03（2 项）和 song_03（2 项）留到下一批",
-  "remaining": 22,
+  "curatedAt": "2026-10-25（Asia/Shanghai）",
+  "selectionRule": "tang_01、han_01 为 Green 指定必选（C-05 跨源差异涉及）；其余 4 件按以下顺序挑选：①目录角色字段为 verified 的项数；②仓库内馆方释文长度（含署名与纪年）；③本轮能打开的官方来源数。tang_04（4 项 verified）、yuan_01（3 项）、ming_02（3 项，含墓主）、tang_02（2 项，释文最长，另有 3 个官方页面）。yuan_03（2 项）和 song_03（2 项）留到下一批；2026-10-25 第 2 批完成 Green 指定优先的 yuan_03、song_03（NPM 页实开）",
+  "remaining": 20,
   "works": [
     {
       "steleId": "tang_01_duobao",
@@ -111,6 +111,40 @@
         "asserted": 17,
         "conflict": 1,
         "missing": 7
+      }
+    },
+    {
+      "steleId": "yuan_03_shengzhu",
+      "title": "圣主本命长生之碑",
+      "file": "data/catalog/claims/yuan_03_shengzhu.json",
+      "selectionBasis": "Green 指定优先；目录撰文/书丹 verified；馆方释文含王思廉撰、赵孟頫书并篆题与延祐四年十一月纪年；NPM 开放资料页 2026-10-25 实开核对",
+      "claimCount": 33,
+      "evidenceLevels": {
+        "已验证": 16,
+        "有限支持": 2,
+        "未评测": 14,
+        "待人工复核": 1
+      },
+      "statuses": {
+        "asserted": 18,
+        "missing": 14,
+        "conflict": 1
+      }
+    },
+    {
+      "steleId": "song_03_daguan",
+      "title": "大观圣作碑",
+      "file": "data/catalog/claims/song_03_daguan.json",
+      "selectionBasis": "Green 指定优先；目录书丹/篆额 verified；馆方释文含李时雍摹写、蔡京题额与大观元/二年纪年；NPM 开放资料页 2026-10-25 实开核对",
+      "claimCount": 32,
+      "evidenceLevels": {
+        "已验证": 16,
+        "有限支持": 3,
+        "未评测": 13
+      },
+      "statuses": {
+        "asserted": 19,
+        "missing": 13
       }
     }
   ],
