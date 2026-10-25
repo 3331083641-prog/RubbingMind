@@ -35,6 +35,13 @@ def test_ledger_passes_flag_to_ui_data_only_for_ming_02():
 def test_badges_render_flags_on_museum_card_and_viewer():
     badges = (ROOT / 'apps/web/src/components/ReviewStatusBadges.tsx').read_text(encoding='utf-8')
     assert 'contentFlags' in badges and 'data-testid="content-flag"' in badges and FLAG not in badges  # text comes from data
-    for page in ('apps/web/src/pages/MuseumPage.tsx', 'apps/web/src/components/RubbingArchiveViewer.tsx'):
-        matches = list(ROOT.glob(page)) or list(ROOT.glob('apps/web/src/**/' + Path(page).name))
-        assert matches and '<ReviewStatusBadges' in matches[0].read_text(encoding='utf-8'), page
+    # Two mount points: MuseumPage card + RubbingArchiveViewer (arch/report merges must not drop either).
+    mounts = {
+        'apps/web/src/pages/MuseumPage.tsx': 0,
+        'apps/web/src/components/RubbingArchiveViewer.tsx': 0,
+    }
+    for page in mounts:
+        text = (ROOT / page).read_text(encoding='utf-8')
+        mounts[page] = text.count('<ReviewStatusBadges')
+        assert mounts[page] >= 1, f'{page}: ReviewStatusBadges JSX mount missing (got {mounts[page]})'
+    assert sum(mounts.values()) >= 2

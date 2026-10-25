@@ -382,6 +382,7 @@ def glyph_evaluation_status():
     measured=evaluate()
     status='not_evaluated' if measured.get('evaluationStatus')!='measured' else 'measured'
     return {'status':status,'top1':measured.get('top1'),'top3':measured.get('top3'),
+        'rejectionRate':measured.get('rejectionRate'),
         'verifiedLabels':measured.get('verifiedLabels'),'recordedLabels':measured.get('recordedLabels'),
         'reason':measured.get('reason')}
 
@@ -436,11 +437,16 @@ async def get_steles():
 
 @app.get("/api/steles/{stele_id}")
 async def get_stele(stele_id: str):
-    item = museum_manager.get_stele_by_id(stele_id)
+    # Path /api/steles/rm:demo:… is rewritten by NamespacedSteleIdMiddleware; query-param
+    # callers (e.g. GET /generate?stele_id=rm:demo:…) bypass that rewrite — resolve here so
+    # TestClient and live uvicorn share one boundary (jinshi _resolve_stele_for_api 口径).
+    lookup = _lookup_stele_id(stele_id)
+    item = museum_manager.get_stele_by_id(lookup)
     if item: return item
-    if stele_id in museum_manager.retired:
-        mapping = museum_manager.retired[stele_id]
-        raise HTTPException(status_code=410, detail={"message":"原记录已下架，推荐查看新馆藏（不同文物）", "oldId":stele_id,"recommendedId":mapping["newId"]})
+    for key in (stele_id, lookup):
+        if key in museum_manager.retired:
+            mapping = museum_manager.retired[key]
+            raise HTTPException(status_code=410, detail={"message":"原记录已下架，推荐查看新馆藏（不同文物）", "oldId":key,"recommendedId":mapping["newId"]})
     raise HTTPException(status_code=404, detail="未找到该文物，不自动切换样本")
 
 
@@ -479,6 +485,78 @@ def get_id_mapping_entry(raw_id: str):
     return resolve(raw_id)
 
 
+@app.get('/api/roi-geometry/normalize')
+def normalize_roi_geometry(x: int, y: int, w: int = None, h: int = None, width: int = None, height: int = None, schema: str = None):
+    """Phase2 R2: normalize dual ROI schemas to canonical glyph-bbox {x,y,w,h}."""
+    from roi_geometry import RoiGeometryError, normalize_roi
+    box = {'x': x, 'y': y}
+    if w is not None:
+        box['w'] = w
+    if h is not None:
+        box['h'] = h
+    if width is not None:
+        box['width'] = width
+    if height is not None:
+        box['height'] = height
+    try:
+        return normalize_roi(box, source_schema=schema)
+    except RoiGeometryError as exc:
+        raise HTTPException(status_code=422, detail=str(exc))
+
+
+@app.get('/api/steles/{stele_id}/roi-compare')
+async def get_roi_compare_session(
+    stele_id: str,
+    runId: Optional[str] = None,
+    x: Optional[int] = None,
+    y: Optional[int] = None,
+    w: Optional[int] = None,
+    h: Optional[int] = None,
+    width: Optional[int] = None,
+    height: Optional[int] = None,
+    schema: Optional[str] = None,
+):
+    """Phase2 R3: paired before/after ROI compare session (never fabricates SHA)."""
+    await get_stele(stele_id)
+    from roi_compare import build_roi_compare_session
+    bbox = None
+    if x is not None and y is not None and (w is not None or width is not None):
+        bbox = {'x': x, 'y': y}
+        if w is not None:
+            bbox['w'] = w
+        if h is not None:
+            bbox['h'] = h
+        if width is not None:
+            bbox['width'] = width
+        if height is not None:
+            bbox['height'] = height
+    return build_roi_compare_session(stele_id, runId, bbox, source_schema=schema)
+
+
+@app.get('/api/case-stele-mapping')
+def get_case_stele_mapping():
+    """Phase2 R6: experiment caseId <-> product steleId mapping overview."""
+    from case_stele_mapping import mapping_overview
+    return mapping_overview()
+
+
+@app.get('/api/case-stele-mapping/{case_id}')
+def get_case_stele_mapping_entry(case_id: str):
+    from case_stele_mapping import resolve_case
+    return resolve_case(case_id)
+
+
+@app.get('/api/case-stele-mapping/{case_id}/claim/{stele_id}')
+def claim_case_same_artifact(case_id: str, stele_id: str):
+    """Gate: refuse same-artifact claim without human_reviewed mapping."""
+    from case_stele_mapping import assert_same_artifact_claim
+    result = assert_same_artifact_claim(case_id, stele_id)
+    if not result['allowed']:
+        raise HTTPException(status_code=409, detail=result['reason'])
+    return result
+
+
+
 @app.get("/generate")
 async def generate_historical_graph(stele_id: str = "tang-duobao"):
     """Graph-only compatibility entry for /health -> /generate validation."""
@@ -496,7 +574,13 @@ async def get_stele_report(stele_id: str, run_id: Optional[str] = None):
         raise HTTPException(status_code=404,detail='处理记录不存在')
     result['run']=selected
     result['runSelection']=run_selection
-    result['inferenceRecords']=[{**item,'sourceSteleId':item.get('steleId',stele_id)} for item in list_inferences(stele_id) if not selected or item.get('runId')==selected['runId']]
+    from inference_trace import enrich_many
+    from roi_compare import report_roi_compare_stub
+    result['inferenceRecords']=enrich_many(
+        [{**item,'sourceSteleId':item.get('steleId',stele_id)} for item in list_inferences(stele_id) if not selected or item.get('runId')==selected['runId']],
+        stele_id=stele_id,
+    )
+    result['roiCompareSession']=report_roi_compare_stub(stele_id, selected)
     result['sourceRecords']=[{'title':record['title'],'url':record.get('sourceUrl'),'license':record.get('license')}]
     mode=(selected or {}).get('outputMode')
     if selected and mode=='passthrough':
@@ -602,17 +686,23 @@ async def create_glyph_inference(stele_id: str, request: GlyphInferenceRequest):
     if request.runId and not read_run(stele_id, request.runId):
         raise HTTPException(status_code=404, detail='关联的处理运行不存在')
     try:
-        return await infer_crop(record, request.bbox.model_dump(), request.context, request.characterId, request.originalGlyph, request.originalStatus, request.runId, request.imageSource)
+        created = await infer_crop(record, request.bbox.model_dump(), request.context, request.characterId, request.originalGlyph, request.originalStatus, request.runId, request.imageSource)
     except LookupError as exc:
         raise HTTPException(status_code=404, detail=str(exc))
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc))
+    from inference_trace import enrich_inference_traceability
+    return enrich_inference_traceability(created, stele_id=stele_id)
 
 
 @app.get('/api/steles/{stele_id}/inferences')
 async def get_glyph_inferences(stele_id: str):
     await get_stele(stele_id)
-    return [{**item, 'sourceSteleId': item.get('steleId', stele_id)} for item in list_inferences(stele_id)]
+    from inference_trace import enrich_many
+    return enrich_many(
+        [{**item, 'sourceSteleId': item.get('steleId', stele_id)} for item in list_inferences(stele_id)],
+        stele_id=stele_id,
+    )
 
 
 @app.get('/api/inferences/{inference_id}/crop')
