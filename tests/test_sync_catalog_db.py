@@ -38,53 +38,144 @@ def db(tmp_path):
     return path, verified['id'], unverified['id'], old
 
 
-def test_dry_run_is_read_only_and_follows_rules(db, capsys):
-    path, verified, unverified, old = db
-    before = _sha(path)
-    assert sync.main(['--db', str(path)]) == 0
-    out = capsys.readouterr().out
-    assert _sha(path) == before and '112.241' not in out and '30.335' not in out
+def _emit(path, out):
+    """Stand-in for check_catalog_governance.py --emit-sync-diff: same format as agent/jinshi c08_sync_diff.json."""
     diff = sync.compute_diff(path)
+    diff = {'schemaVersion': 1, 'item': 'C-08', 'option': 'A', 'decidedBy': '用户（经 Green 传达）', 'spec': 'docs/product-upgrade/C08_SYNC_SPEC.md',
+            'generator': 'scripts/check_catalog_governance.py --emit-sync-diff（SQLite mode=ro）',
+            'basis': {**diff['basis'], 'catalogueFile': 'data/catalog/steles28.json'},
+            'precondition': '执行前必须重新计算 basis 中两个 SHA-256；任一不一致则中止，并重新生成本文件',
+            'operations': diff['operations'], 'counts': diff['counts']}
+    out.write_text(json.dumps(diff, ensure_ascii=False, indent=2), 'utf-8')
+    return out
+
+
+def _token(path, diff_file):
+    return sync.confirmation_token(sync.load_diff(diff_file), _sha(path))
+
+
+def test_acceptance_1_dry_run_only_previews(db, tmp_path, capsys):
+    path, verified, unverified, old = db
+    diff_file = _emit(path, tmp_path / 'c08_sync_diff.json')
+    before = _sha(path)
+    assert sync.main(['--db', str(path), '--diff', str(diff_file)]) == 0
+    out = capsys.readouterr().out
+    assert _sha(path) == before and not list(path.parent.glob('*.bak'))
+    assert '112.241' not in out and '30.335' not in out  # unsourced coordinates never printed
+    assert _token(path, diff_file) in out
+    diff = sync.load_diff(diff_file)
     assert diff['counts'] == {'update': 1, 'hold': 1, 'set_null': 1, 'keep_row': 1, 'insert_from_catalogue': 0}
     assert {(o['op'], o['id']) for o in diff['operations']} >= {('update', verified), ('hold', unverified), ('set_null', old), ('keep_row', old)}
-    assert sync.confirmation_token(diff) in out
 
 
-def test_apply_requires_matching_token_and_rollback_restores_bytes(db):
+def test_acceptance_2_basis_sha_must_match(db, tmp_path):
+    path = db[0]
+    diff_file = _emit(path, tmp_path / 'd.json')
+    data = json.loads(diff_file.read_text('utf-8'))
+    data['basis']['catalogueSha256'] = '0' * 64
+    diff_file.write_text(json.dumps(data, ensure_ascii=False), 'utf-8')
+    with pytest.raises(SystemExit, match='basis'):
+        sync.main(['--db', str(path), '--diff', str(diff_file)])
+
+
+def test_diff_file_is_validated(db, tmp_path):
+    path = db[0]
+    diff_file = _emit(path, tmp_path / 'd.json')
+    data = json.loads(diff_file.read_text('utf-8'))
+    for bad in ({'op': 'delete', 'table': 'steles', 'id': 'x'}, {'op': 'update', 'table': 'steles', 'id': 'x', 'column': 'gis_lng', 'to': 1},
+                {'op': 'set_null', 'table': 'steles', 'id': 'x', 'columns': ['title']}):
+        broken = dict(data, operations=data['operations'] + [bad], counts=None)
+        diff_file.write_text(json.dumps(broken, ensure_ascii=False), 'utf-8')
+        with pytest.raises(SystemExit, match='差异清单校验失败'):
+            sync.load_diff(diff_file)
+    with pytest.raises(SystemExit, match='差异清单不存在'):
+        sync.load_diff(tmp_path / 'missing.json')
+
+
+def test_acceptance_3_to_7_apply_backup_postcheck_rollback(db, tmp_path):
     path, verified, unverified, old = db
+    diff_file = _emit(path, tmp_path / 'd.json')
     original = _sha(path)
     with pytest.raises(SystemExit):
-        sync.apply(path, 'wrong-token')
+        sync.apply(path, 'wrong-token', diff_path=diff_file)
     with pytest.raises(SystemExit):
-        sync.apply(path, None, interactive=False)
+        sync.apply(path, None, diff_path=diff_file, interactive=False)
     assert _sha(path) == original and not list(path.parent.glob('*.bak'))
-    token = sync.confirmation_token(sync.compute_diff(path))
-    result = sync.apply(path, token)
-    assert result['applied'] and result['backupSha256'] == original == result['beforeSha256']
-    assert result['postCheck']['update'] == result['postCheck']['set_null'] == 0 and result['postCheck']['hold'] == 1
+    result = sync.apply(path, _token(path, diff_file), diff_path=diff_file)
+    bak = Path(result['backup'])
+    assert bak.name.startswith('copy.sqlite.') and bak.name.endswith('.bak')  # <db>.<YYYYMMDD-HHMMSS>.bak
+    assert result['backupSha256'] == original == result['beforeSha256'] == _sha(bak)
+    assert result['postCheck'] == {'C08_fieldDiffs': 1, 'C08_extraInSqlite': 1, 'C08_extraWithCoordinates': 0, 'C08_missingInSqlite': 0}
+    assert result['postCheckExpected']['C08_fieldDiffs'] == 1  # the one hold stays a visible difference
     with sqlite3.connect(path) as conn:
         catalogue_author = next(r['author'] for r in load('steles28.json') if r['id'] == verified)
         assert conn.execute('SELECT author FROM steles WHERE id=?', (verified,)).fetchone()[0] == catalogue_author
         assert conn.execute('SELECT author FROM steles WHERE id=?', (unverified,)).fetchone()[0] == '某人'  # hold never written
         assert conn.execute('SELECT gis_lng, gis_lat FROM steles WHERE id=?', (old,)).fetchone() == (None, None)
         assert conn.execute('SELECT COUNT(*) FROM steles WHERE id=?', (old,)).fetchone()[0] == 1  # retired row kept
-    with pytest.raises(SystemExit):  # stale token after the DB changed
-        sync.apply(path, token)
-    restored = sync.rollback(path, Path(result['backup']))
+        assert conn.execute('SELECT COUNT(*) FROM steles').fetchone()[0] == 29  # 28 catalogue rows + 1 retired: none deleted or added
+    restored = sync.rollback(path, bak)
     assert restored['sha256'] == original == _sha(path)
 
 
-def test_external_diff_must_match(db, tmp_path):
+def test_token_void_when_diff_summary_changes(db, tmp_path):
     path = db[0]
-    diff = sync.compute_diff(path)
-    good = tmp_path / 'diff.json'; good.write_text(json.dumps(diff, ensure_ascii=False), 'utf-8')
-    sync.check_external_diff(diff, good)
-    bad = dict(diff, basis=dict(diff['basis'], sqliteSha256='0' * 64))
-    good.write_text(json.dumps(bad), 'utf-8')
-    with pytest.raises(SystemExit):
-        sync.check_external_diff(diff, good)
+    diff_file = _emit(path, tmp_path / 'd.json')
+    token = _token(path, diff_file)
+    data = json.loads(diff_file.read_text('utf-8'))
+    data['operations'] = [o for o in data['operations'] if o['op'] != 'update']
+    data['counts'] = None
+    diff_file.write_text(json.dumps(data, ensure_ascii=False), 'utf-8')
+    assert _token(path, diff_file) != token
+    with pytest.raises(SystemExit, match='确认令牌无效'):
+        sync.apply(path, token, diff_path=diff_file)
+    assert not list(path.parent.glob('*.bak'))
+
+
+def test_token_void_when_target_db_changes(db, tmp_path):
+    path = db[0]
+    diff_file = _emit(path, tmp_path / 'd.json')
+    token = _token(path, diff_file)
+    with sqlite3.connect(path) as conn:  # any byte change of the target DB, diff file untouched
+        conn.execute("UPDATE steles SET attribution='x' WHERE id=(SELECT id FROM steles LIMIT 1)")
+    assert sync.confirmation_token(sync.load_diff(diff_file), _sha(path)) != token
+    with pytest.raises(SystemExit, match='确认令牌无效'):
+        sync.apply(path, token, diff_path=diff_file)
+    assert not list(path.parent.glob('*.bak'))
+
+
+def test_failed_post_check_restores_backup(db, tmp_path, monkeypatch):
+    path = db[0]
+    diff_file = _emit(path, tmp_path / 'd.json')
+    original = _sha(path)
+    real = sync.governance_summary
+    calls = {'n': 0}
+    def fake(db_path, catalog_dir=sync.CATALOG):
+        calls['n'] += 1
+        summary = real(db_path, catalog_dir)
+        return {**summary, 'C08_extraWithCoordinates': 9} if calls['n'] == 2 else summary
+    monkeypatch.setattr(sync, 'governance_summary', fake)
+    with pytest.raises(SystemExit, match='已从备份自动恢复'):
+        sync.apply(path, _token(path, diff_file), diff_path=diff_file)
+    assert _sha(path) == original
 
 
 def test_apply_and_rollback_need_explicit_db():
     with pytest.raises(SystemExit):
         sync.main(['--apply', '--confirm', 'x'])
+
+
+def test_rollback_backs_up_current_and_refuses_when_busy(db, tmp_path):
+    path = db[0]
+    diff_file = _emit(path, tmp_path / 'd.json')
+    result = sync.apply(path, _token(path, diff_file), diff_path=diff_file)
+    after = _sha(path)
+    # simulate a -wal sidecar
+    wal = path.with_name(path.name + '-wal'); wal.write_bytes(b'x')
+    with pytest.raises(SystemExit, match='停止后端'):
+        sync.rollback(path, Path(result['backup']))
+    wal.unlink()
+    rolled = sync.rollback(path, Path(result['backup']))
+    assert rolled['sha256'] == result['beforeSha256'] == _sha(path)
+    assert Path(rolled['preRollbackBackup']).is_file()
+    assert rolled['preRollbackSha256'] == after
