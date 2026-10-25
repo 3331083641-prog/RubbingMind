@@ -48,6 +48,8 @@ export interface ExperimentRow {
   maxAbsDiff?: number | null;
   byteIdentical?: boolean | null;
   crop?: number[];
+  /** DER appliedStatusDetail：rounding / other，或 DER 长值 not-applicable-but-modified-*（E-05）；缺省不猜测。 */
+  appliedStatusDetail?: string | null;
   /** 本行状态来自哪里：DER（derived/applied_status，pixel-equal-v1）或前端兜底。由适配层写入。 */
   statusSource?: 'DER' | 'frontend';
 }
@@ -92,15 +94,28 @@ export interface BatchDetail {
 }
 
 /** /api/experiments/{id}/diagnosis：通用版 baseline-delta-v1（全部批次）与同批复测的旧启发式版 heldout-legacy-heuristic。 */
-export interface DiagnosisCase { caseId?: string; sampleId: string; split?: string | null; degradation: string; strength?: number; method?: string; negativeLift?: boolean; unchangedFromInput?: boolean; byteIdenticalToInput?: boolean | null; psnrDeltaFromInput?: number | null; fidelityAccepted?: boolean | null; cause?: string }
+export interface DiagnosisCase {
+  caseId?: string; sampleId: string; split?: string | null; degradation: string; strength?: number; seed?: number; method?: string;
+  negativeLift?: boolean; unchangedFromInput?: boolean;
+  /** SPEC §0.3 主字段；byteIdenticalToInput 为弃用别名。 */
+  byteIdentical?: boolean | null; byteIdenticalToInput?: boolean | null;
+  psnr?: number | null; baselinePsnr?: number | null; psnrDeltaFromInput?: number | null;
+  fidelityAccepted?: boolean | null; cause?: string; output?: string | null; outputSha256?: string | null;
+}
+export interface DiagnosisMethodStats {
+  n: number; negativeLift: number;
+  byteIdentical?: number; byteIdenticalToInput?: number; byteIdentityUnknown: number; unmatched: number;
+}
 export interface Diagnosis {
-  experimentId?: string; diagnosisVersion?: string; method?: string; negativeLiftCount?: number; unchangedCount?: number;
+  experimentId?: string; diagnosisVersion?: string; method?: string; baselineMethod?: string; comparison?: string;
+  negativeLiftCount?: number; unchangedCount?: number; unmatchedRowCount?: number;
   causeCounts?: Record<string, number> | null; causeBasis?: string; cases?: DiagnosisCase[]; caveat?: string; notRetuned?: string;
-  byMethod?: Record<string, { n: number; negativeLift: number; byteIdenticalToInput: number; byteIdentityUnknown: number; unmatched: number }>;
+  byMethod?: Record<string, DiagnosisMethodStats>;
+  deprecatedFields?: Record<string, string>; byteIdentityBasis?: string;
 }
 
 /* ---- agent/eval-sci 派生文件（REPORT_DATA_SPEC §0.1 DER / CI / NLC / MEC） ---- */
-export interface DerRow { rowIndex: number; sampleId: string; split: string | null; degradation: string; strength?: number; method: string; appliedStatus: AppliedStatus; isPassthrough: boolean | null; criterion: string; byteIdentical: boolean | null; changedPixelCount: number | null; totalPixelCount: number | null; changedPixelRatio: number | null; maxAbsDiff: number | null; meanAbsDiff: number | null; shaMatchesRecord?: boolean | null; undeterminedReason?: string | null }
+export interface DerRow { rowIndex: number; sampleId: string; split: string | null; degradation: string; strength?: number; method: string; appliedStatus: AppliedStatus; isPassthrough: boolean | null; criterion: string; byteIdentical: boolean | null; changedPixelCount: number | null; totalPixelCount: number | null; changedPixelRatio: number | null; maxAbsDiff: number | null; meanAbsDiff: number | null; appliedStatusDetail?: string | null; shaMatchesRecord?: boolean | null; undeterminedReason?: string | null }
 export interface DerFile { experimentId: string; batch: string; derivedAt: string; derivedBy: string; sourceResultsSha256: string; imagesAvailable: boolean; criterion: string; note?: string; rows: DerRow[] }
 export type GainSign = 'positive' | 'negative' | 'spans_zero' | 'zero';
 export interface CiGroup {

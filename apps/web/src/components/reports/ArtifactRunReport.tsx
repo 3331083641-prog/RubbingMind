@@ -8,6 +8,7 @@ import type { SteleItem } from '../../types/stele';
 import { roleText } from '../../types/stele';
 import type { GlyphEvaluation, RunInfo, RunReport, RunSelection } from './data/reportData';
 import { evaluationSummaryText, runAdaptive, runOutcome } from './data/reportData';
+import { formatGlyphBBox, mappedSourceBBox } from './data/glyphInference';
 import type { BatchDetail, Loadable } from './data/types';
 import { formatTime, shortSha } from './format';
 import { DiffStats, SyncedTriptych } from './SyncedTriptych';
@@ -119,6 +120,11 @@ export const ArtifactRunReport: React.FC<Props> = ({ stele, runs, runId, selecti
       {report?.state === 'ok' && report.data.inferenceRecords?.length ? <ul className="list-disc pl-5">{report.data.inferenceRecords.map((item, i) => <li key={item.inferenceId || i} className="mb-1">
         <p>记录 {item.inferenceId} · {item.source} · 状态 {item.status} · 人工采纳：{item.adoptedGlyph || '无'}</p>
         <p className="text-xs">候选（仅为建议，不是碑文释读结论）：{item.candidates.map(c => `${c.glyph}（${c.scoreBasis}）`).join('、') || '无可靠候选'}</p>
+        <p className="text-xs text-[#6b5a43]" data-testid="glyph-inference-r1">
+          bbox {formatGlyphBBox(item.bbox)} · mappedSourceBBox {formatGlyphBBox(mappedSourceBBox(item))}
+          {item.roi?.mappedInsideSource == null ? '' : ` · 映射在源图内=${item.roi.mappedInsideSource ? '是' : '否'}`}
+          {' · '}输入 SHA {shortSha(item.inputImageSha256)} · 裁切 SHA {shortSha(item.cropSha256)}
+        </p>
       </li>)}</ul> : <p>没有与本运行关联的残字推演记录；没有人工确认结论。</p>}
     </section>
     <section className="space-y-1 text-sm"><h4 className="font-bold">古碑识字</h4>

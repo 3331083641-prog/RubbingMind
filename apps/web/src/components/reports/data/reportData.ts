@@ -6,7 +6,8 @@
  */
 import type { AppliedStatus, BatchDetail, BatchRegistry, CiFile, CiGroup, DerFile, Derived, Diagnosis, ExperimentRow, GainSign, Grade, Loadable, MechanismIndex, NlcFile } from './types';
 import type { MetricKey } from './labels';
-import { SteleService, type ProcessingRunR1, type RunSelection, type GlyphInferenceRecord } from '../../../services/api';
+import { SteleService, type ProcessingRunR1, type RunSelection } from '../../../services/api';
+import type { GlyphInferenceRecord } from './glyphInference';
 import { parseIsoTime } from '../format';
 
 async function getJson<T>(url: string, missingMessage: string): Promise<Loadable<T>> {
@@ -44,7 +45,8 @@ async function derived<T>(experimentId: string, directory: string | undefined, n
 export const ReportApi = {
   batches: () => wrap(SteleService.listExperiments() as unknown as Promise<BatchRegistry[]>, '实验登记不可用'),
   batch: (id: string) => getJson<BatchDetail>(`/api/experiments/${encodeURIComponent(id)}`, '没有这个实验批次'),
-  diagnosis: (id: string) => wrap(SteleService.getExperimentDiagnosis(id) as unknown as Promise<Diagnosis>, '诊断接口不可用'),
+  /** 四批次均应 200；未知 ID 才 404→missing（不用 wrap+throw，以免丢失空状态）。 */
+  diagnosis: (id: string) => getJson<Diagnosis>(`/api/experiments/${encodeURIComponent(id)}/diagnosis`, '没有这份实验的失败诊断'),
   runs: (steleId: string) => wrap(SteleService.listRuns(steleId) as Promise<ProcessingRunR1[]>, '运行记录不可用'),
   selection: (steleId: string, runId?: string) => wrap(SteleService.getReportSelection(steleId, runId), '报告接口不可用'),
   /** 完整报告体（含识读建议记录、来源记录）。不走 api.ts getReport 的静态回退：后端失败要如实显示。 */
@@ -58,6 +60,7 @@ export const ReportApi = {
   exportUrl: (experimentId: string, kind: string) => `/api/experiments/${encodeURIComponent(experimentId)}/export/${kind}`,
 };
 export type { ProcessingRunR1, RunSelection };
+export type { GlyphInferenceRecord, GlyphRoi, GlyphBBox } from './glyphInference';
 
 export interface RunReport { run: ProcessingRunR1 | null; runSelection?: RunSelection | null; inferenceRecords?: GlyphInferenceRecord[]; sourceRecords?: { title: string | null; url: string | null; license: string | null }[]; reportId?: string | null; evaluation_summary?: string }
 export interface GlyphEvaluation { status: string; top1: number | null; top3: number | null; verifiedLabels: number; recordedLabels?: number; reason?: string }
@@ -73,7 +76,8 @@ const FALLBACK_NAMES: Record<string, string> = {
   'controlled-rubbings-v2-2026-10-17': '受控退化 v2（2026-10-17）',
   'controlled-rubbings-2026-10-15': '历史批次 2026-10-15（先验泄漏，仅作记录）',
 };
-export const RETEST_TITLE = '同批复测 v2.1（非留出）';
+/** SPEC §1(a)：UI 不得出现「留出/held-out/heldout」；存储 ID/目录名仅可出现在等宽路径。 */
+export const RETEST_TITLE = '同批复测 v2.1';
 export const RETEST_SHORT = '同批复测 v2.1';
 const KIND_ORDER: BatchKind[] = ['controlled', 'retest', 'historical', 'unknown'];
 
@@ -83,7 +87,8 @@ export function classifyBatch(reg: BatchRegistry): BatchInfo {
   const fallback = FALLBACK_NAMES[reg.id];
   const named = !!(reg.displayName || fallback || kind === 'retest');
   const base = reg.displayName || fallback || `${reg.id}（未命名）`;
-  const title = kind === 'retest' ? RETEST_TITLE : base;
+  // 复测优先用 REG.displayName（若无禁用词）；否则固定短标题。绝不回退到含「留出」的文案。
+  const title = kind === 'retest' ? ((reg.displayName && !/(留出|held-?out|heldout)/i.test(reg.displayName)) ? reg.displayName : RETEST_TITLE) : base;
   const shortName = kind === 'retest' ? RETEST_SHORT : base;
   return { id: reg.id, title, shortName, displayName: title, kind, hasImages: !!reg.imageComparisonAvailable && !reg.metricsOnly, registry: reg, named, isDefault: reg.defaultForReport === true };
 }
@@ -137,7 +142,7 @@ export function mergeDer(detail: BatchDetail, der: Loadable<Derived<DerFile>>): 
   const merged = rows.map((r, i) => {
     const d = byIndex.get(i);
     if (!d || d.sampleId !== r.sampleId || d.method !== r.method || d.degradation !== r.degradation) { mismatch++; return r; }
-    return { ...r, appliedStatus: d.appliedStatus, isPassthrough: d.isPassthrough, changedPixelCount: d.changedPixelCount, changedPixelRatio: d.changedPixelRatio, maxAbsDiff: d.maxAbsDiff, byteIdentical: d.byteIdentical, statusSource: 'DER' as const };
+    return { ...r, appliedStatus: d.appliedStatus, isPassthrough: d.isPassthrough, changedPixelCount: d.changedPixelCount, changedPixelRatio: d.changedPixelRatio, maxAbsDiff: d.maxAbsDiff, byteIdentical: d.byteIdentical, appliedStatusDetail: d.appliedStatusDetail ?? null, statusSource: 'DER' as const };
   });
   if (mismatch > 0 || f.rows.length !== rows.length) return { rows: rows.map(r => ({ ...r, statusSource: 'frontend' as const })), source: null, criterion: null, mismatch, problem: `DER 与批次行对不上（${mismatch} 行不一致，DER ${f.rows.length} 行 / 批次 ${rows.length} 行），未采用` };
   return { rows: merged, source: der.data.source, criterion: f.criterion, mismatch: 0, problem: null };
@@ -162,7 +167,9 @@ export function appliedStatus(row: ExperimentRow): StatusResult {
   return { status: na ? 'processed_not_applicable_label' : 'processed', criterion: '输出与输入 SHA-256 不同（前端兜底，DER 未接入）' };
 }
 export const isPassthroughStatus = (s: AppliedStatus) => s === 'passthrough' || s === 'passthrough_not_applicable';
-export const isProcessedStatus = (s: AppliedStatus) => s === 'processed' || s === 'processed_not_applicable_label';
+/** SPEC §1(b)：E-05（processed_not_applicable_label）不计入实际处理，也不计入原图返回。 */
+export const isProcessedStatus = (s: AppliedStatus) => s === 'processed';
+export const isNaChangedStatus = (s: AppliedStatus) => s === 'processed_not_applicable_label';
 
 /* ---------------- 相对输入的 Δ ---------------- */
 
@@ -186,6 +193,39 @@ export function rowDelta(row: ExperimentRow, metric: MetricKey, map: BaselineMap
   if (out == null || input == null || !Number.isFinite(out) || !Number.isFinite(input)) return null;
   return metric === 'thinStrokeMae' ? input - out : out - input;
 }
+
+/** RF-6 / P1-5：诊断 negativeLiftCount、cases 列表、本批逐行 ΔPSNR<0 三方对齐（按诊断 method 收窄；无 method 则全部方法）。 */
+export interface DiagnosisConsistency {
+  apiCount: number | null;
+  casesCount: number;
+  clientCount: number;
+  methodScope: string | null;
+  apiMatchesCases: boolean;
+  apiMatchesClient: boolean;
+  ok: boolean;
+}
+export function diagnosisNegativeCasesCount(d: Diagnosis): number {
+  const cases = d.cases || [];
+  if (d.diagnosisVersion === 'heldout-legacy-heuristic') return cases.filter(c => c.negativeLift).length;
+  return cases.length;
+}
+export function clientNegativeLiftRows(rows: ExperimentRow[], map: BaselineMap, method?: string | null): ExperimentRow[] {
+  return rows.filter(r => r.method !== 'degraded' && (!method || r.method === method))
+    .map(r => ({ r, d: rowDelta(r, 'psnr', map) }))
+    .filter(x => x.d != null && x.d < 0)
+    .sort((a, b) => (a.d! - b.d!))
+    .map(x => x.r);
+}
+export function diagnosisConsistency(d: Diagnosis, rowsAll: ExperimentRow[], map: BaselineMap): DiagnosisConsistency {
+  const methodScope = d.method || null;
+  const apiCount = typeof d.negativeLiftCount === 'number' ? d.negativeLiftCount : null;
+  const casesCount = diagnosisNegativeCasesCount(d);
+  const clientCount = clientNegativeLiftRows(rowsAll, map, methodScope).length;
+  const apiMatchesCases = apiCount != null && apiCount === casesCount;
+  const apiMatchesClient = apiCount != null && apiCount === clientCount;
+  return { apiCount, casesCount, clientCount, methodScope, apiMatchesCases, apiMatchesClient, ok: apiMatchesCases && apiMatchesClient };
+}
+
 
 /* ---------------- 按文物聚类 bootstrap（前端临时口径） ---------------- */
 
