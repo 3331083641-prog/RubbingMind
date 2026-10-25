@@ -70,10 +70,10 @@ def test_legacy_run_parameters_null_with_reason(tmp_path, monkeypatch):
 def test_compared_images_object_from_older_records_is_normalised(tmp_path, monkeypatch):
     _setup(tmp_path, monkeypatch)
     _write(tmp_path, '20261019T000001_000000aa', {'algorithmVersion': 'adaptive-rubbing-v2.1', 'isPassthrough': True,
-                                                  'passthroughCriterion': 'working-gray-pixel-equal-v1',
+                                                  'passthroughCriterion': 'gray-bt601-pixel-equal-v1',
                                                   'comparedImages': {'before': 'original', 'after': 'restored'},
                                                   'effectiveParameters': {'mode': 'adaptive'}})
     run = museum_processing.read_run(STELE, '20261019T000001_000000aa')
     assert run['comparedImages'] == ['original', 'restored']
-    assert run['passthroughCriterion'] == 'working-gray-pixel-equal-v1'  # SPEC §8: shown as recorded, never rewritten
+    assert run['passthroughCriterion'] == 'gray-bt601-pixel-equal-v1'  # SPEC §8: shown as recorded, never rewritten
     assert run['effectiveParametersSource'] == 'recorded'

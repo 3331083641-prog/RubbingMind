@@ -47,7 +47,7 @@ export interface RunChangeStatus {
   /** Green 2026-10-19 (a): working-gray reference only; never decides isPassthrough. null = undeterminable. */
   grayChangedPixelCount?: number | null;
   grayChangedPixelRatio?: number | null;
-  grayCriterion?: 'working-gray-pixel-equal-v1' | null;
+  grayCriterion?: 'gray-bt601-pixel-equal-v1' | null;
   grayCriterionRule?: string | null;
   graySource?: 'recorded' | 'computed-on-read' | null;
   effectiveParameters?: Record<string, unknown> | null;
