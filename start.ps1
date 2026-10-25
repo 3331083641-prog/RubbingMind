@@ -1,4 +1,4 @@
-﻿param(
+param(
     [int]$Port = 0
 )
 
@@ -57,14 +57,14 @@ for ($i = 0; $i -lt 25; $i++) {
     Start-Sleep -Milliseconds 500
     if ($process.HasExited) { break }
     try {
-        $health = Invoke-RestMethod "http://127.0.0.1:$port/health" -TimeoutSec 2
-        $generated = Invoke-RestMethod "http://127.0.0.1:$port/generate" -Method Post -TimeoutSec 5
-        if ($health.status -eq 'healthy' -and $generated) { $ready = $true; break }
+        # RT-011: GET /api/health only (remote-safe; do not POST generate for readiness)
+        $health = Invoke-RestMethod "http://127.0.0.1:$port/api/health" -TimeoutSec 2
+        if ($health.status -eq 'healthy' -or $health.status -eq 'degraded') { $ready = $true; break }
     } catch {}
 }
 if (-not $ready) {
     if (-not $process.HasExited) { Stop-Process -Id $process.Id -ErrorAction SilentlyContinue }
-    throw "服务未通过 /health 和 /generate 检查。查看 $errPath"
+    throw "服务未通过 /api/health 检查。查看 $errPath"
 }
 @{ pid = $process.Id; port = $port; root = $projectRoot; startedAt = (Get-Date).ToUniversalTime().ToString('o') } |
     ConvertTo-Json | Set-Content -Encoding UTF8 $statePath

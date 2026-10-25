@@ -89,9 +89,16 @@ def _source_public_url(data):
     return '/' + path.relative_to(public).as_posix()
 
 
-def review_allowed(host: str | None, token: str | None) -> bool:
-    """Local single-user writes are allowed. Any other host needs an explicit token."""
-    if (host or '') in _LOCAL_HOSTS:
+def review_allowed(host: str | None, token: str | None, headers=None) -> bool:
+    """Local single-user writes are allowed. Any other host needs an explicit token.
+    RT-009: when proxy forwarding headers are present, require review token even on loopback.
+    """
+    from runtime_guard import client_is_trusted_local
+    if headers is not None:
+        local_ok = client_is_trusted_local(host, headers)
+    else:
+        local_ok = (host or '') in _LOCAL_HOSTS
+    if local_ok:
         return True
     expected = os.environ.get('RUBBINGMIND_REVIEW_TOKEN')
     return bool(expected) and token == expected

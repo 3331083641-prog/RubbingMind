@@ -66,11 +66,16 @@ async def lifespan(app: FastAPI):
     logger.info("=== 【墨韵智考】服务正常终止 ===")
 
 
+_REMOTE_DEPLOYMENT = os.getenv('RUBBINGMIND_DEPLOYMENT', 'local') != 'local'
 app = FastAPI(
     title="墨韵智考——金石碑拓微痕修复及史料考据系统",
     description="全球校园人工智能算法精英大赛（智能文化赛道）全栈 Web 科研演示平台",
     version="2.0.0",
     lifespan=lifespan,
+    # RT-005: hide OpenAPI surface in remote/demo exposure mode
+    docs_url=None if _REMOTE_DEPLOYMENT else '/docs',
+    redoc_url=None if _REMOTE_DEPLOYMENT else '/redoc',
+    openapi_url=None if _REMOTE_DEPLOYMENT else '/openapi.json',
 )
 
 # Development clients use the same-origin proxy; limit direct CORS to local Vite.
@@ -83,8 +88,9 @@ app.add_middleware(
 )
 
 # 挂载静态资源目录
-from runtime_guard import RuntimeGuard
+from runtime_guard import RuntimeGuard, SecurityHeadersMiddleware
 app.add_middleware(RuntimeGuard)
+app.add_middleware(SecurityHeadersMiddleware)
 # R1-5: rm:rubbing:/rm:demo:/rm:retired: ids are accepted everywhere under /api/steles/
 # (outermost, so the guard and every route see the legacy id).
 from id_mapping import NamespacedSteleIdMiddleware, local_id, namespace_mismatch, split_namespace
@@ -361,7 +367,7 @@ def get_catalog_assessment_asset(stele_id: str, kind: str):
 def save_catalog_condition_review(stele_id: str, body: ConditionReviewRequest, request: Request):
     from catalog_assessment import review_allowed, save_review
     host = request.client.host if request.client else ''
-    if not review_allowed(host, request.headers.get('x-rubbingmind-review-token')):
+    if not review_allowed(host, request.headers.get('x-rubbingmind-review-token'), headers=request.headers):
         raise HTTPException(status_code=403, detail='公网请求不能写入复核意见')
     try:
         roi=None if body.roi is None else {'x': body.roi.x, 'y': body.roi.y, 'width': body.roi.width, 'height': body.roi.height}
@@ -399,7 +405,7 @@ def save_glyph_annotation(body: GlyphAnnotationRequest, request: Request):
     from catalog_assessment import review_allowed
     from glyph_annotations import save_human_annotation
     host = request.client.host if request.client else ''
-    if not review_allowed(host, request.headers.get('x-rubbingmind-review-token')):
+    if not review_allowed(host, request.headers.get('x-rubbingmind-review-token'), headers=request.headers):
         raise HTTPException(status_code=403, detail='公网请求不能写入字符标注')
     try:
         return save_human_annotation(body.model_dump())
@@ -409,14 +415,17 @@ def save_glyph_annotation(body: GlyphAnnotationRequest, request: Request):
 
 @app.get("/")
 async def root():
-    """主页优先渲染 React + Three.js 现代化数字人文大屏前端"""
+    """主页优先渲染 React 前端；无 dist 时不回退到遗留 static/index.html（RT-006）。"""
     dist_index = os.path.join(DIST_DIR, "index.html")
     if os.path.exists(dist_index):
         return FileResponse(dist_index)
-    static_index = os.path.join(STATIC_DIR, "index.html")
-    if os.path.exists(static_index):
-        return FileResponse(static_index)
-    return JSONResponse({"status": "running", "message": "墨韵智考系统服务已启动"})
+    return JSONResponse(
+        {
+            "status": "frontend_build_required",
+            "message": "请先构建前端（在 apps/web 执行 npm run build）。遗留 static/index.html 不再作为回退首页。",
+        },
+        status_code=503,
+    )
 
 
 @app.get("/health")
