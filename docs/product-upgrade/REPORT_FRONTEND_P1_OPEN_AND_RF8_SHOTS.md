@@ -161,3 +161,48 @@
 - 新增：screenshots/.../slice16/rf8_home_core_cards_1440x900.png + verify json
 - 更新：本续页
 - 不做：push、改 HomePage、关 RF-8、抬 verification
+
+---
+
+## F. 续页（RM-报告前端 · 相对 feature@bd15ce0 · 2026-10-25 19:09 Asia/Shanghai）
+
+> **docs-only**。未改 HomePage / App.tsx / api.ts / urlState.ts。**未自关 RF-8**。未 push。未抬 verification / 未声称 Phase1 或六层关闭。  
+> 对齐：worktree `agent/report-frontend` 与主仓 `feature/product-grade-upgrade` 均为 **bd15ce01fe9467bf23124ca6a4335a987874bfe1**（parent=`eba2faf505dfa4f79f0fae523d00cc5dadbc6823`）。工作区仅未跟踪 `phase1-frontend/slice{5,6,7,14,15}/`，本 tip 不纳入。
+
+### F.1 RF-8（单独；状态 = **仍开**）
+
+| 字段 | 值 |
+|---|---|
+| 状态 | **仍开** — 等用户截图确认（TASK_BOARD：合并前需用户确认；Green 19:06） |
+| 禁止 | 自关 / 改 HomePage / 把 CHECKLIST §4「用户已确认」当作当前事实 |
+| 代码现状（只读） | HomePage L245–250：`object-contain` + 纸色衬底 `bg-[#eee4d2]`；本轮**未改** |
+| 1920×1080 证据 | `screenshots/product-upgrade/phase1-frontend/slice10/rf8_home_core_cards_1920x1080.png`（及 slice7 同名副本）— **已有，不重拍** |
+| 1440×900 证据 | `screenshots/product-upgrade/phase1-frontend/slice16/rf8_home_core_cards_1440x900.png` — tip@bd15ce0 已入库；Pillow **1440×900**；旁证 `slice16-rf8-verify.json` |
+| 用户确认 | **未发生** — 证据帧齐 ≠ 关单 |
+
+> 注：正文 B.3/B.4 历史行仍写「1440 待补」；以 **E.1/E.2 + 本表** 为准（截图层已补；产品闸门仍开）。
+
+### F.2 除 RF-8 外的 P1 / RF 缺口（相对 feature@bd15ce0）
+
+| 项 | 产品闸门 | tip/feature 上证据 | 本 Agent 可否叠代码 |
+|---|---|---|---|
+| RF-2..7,9..11 | **仍开** | 既有 ReportsPage / SyncedTriptych / FailureCasesPanel / print / 文案等 | 否（证据≠关单；无新缺口） |
+| P1-1 / P1-4 / P1-5..9 / P1-11 | **仍开** | glyph 文案、MechanismPanel、打印局限/DER、首屏多分辨率截图、空指标不拼单位等 | 否 |
+| ES-3 / ES-5 | **仍开** | liftClaims UI+导出；NLC 既有 | 否 |
+| BR-09 includeDemo | CHECKLIST「待办」**过时** | EvidenceSearch checkbox + banners；API 默认 false | 否 |
+| reportStatus 全路径 | **仍开** | stele_retired / run_not_found / stele_not_found | 否 |
+| **algorithmOutputMode / AdaptiveDiagnostics** | 产品闸门可仍开 | **已合入 feature**（`reportData.ts` `algorithmOutputModeView`；ArtifactRunReport / ReportPrintLayout / ReportsPage `algorithmLayer`；契约自 arch） | **非本 tip 缺口**；CHECKLIST §2「UI 未接」**过时** |
+| **AB-8 health banner** | 架构侧已合 | `App.tsx` `health-samples-banner` + `samples_*` | **勿在报告页重复做**；非本 Agent 范围 |
+| ACCEPTANCE Phase1 全表 / 六层 | **仍开** | 多轮门禁均写「开项仍开」 | 否（禁止改矩阵为「通过」） |
+| FRONTEND_INTEGRATION_CHECKLIST 陈旧句 | 文档债 | §2 algoMode「UI 未接」、§4 RF-8「用户已确认」与 tip+Green 不一致 | 可选后续 docs 纠偏；**本 tip 不改 CHECKLIST 正文以免抢合** |
+| AB / RT（RT-006 等） | 仍开 | 归架构 / Green / 用户 | 否 |
+
+### F.3 可叠报告页代码结论
+
+**无可叠 feat。**  
+相对 bd15ce0 源码只读抽查：报告页算法层 UI、AB-8（App）、RF-8 contain 均已在树；除 RF-8 **用户确认**外，无新的可合入报告前端代码缺口。本续页仅盘点/引用证据路径。
+
+### F.4 本 tip 范围
+
+- 更新：本文件续页 F（docs-only）
+- 不做：push、改 HomePage、关 RF-8、抬 verification、声称 Phase1/六层关闭、改 CHECKLIST/ACCEPTANCE 结论行
