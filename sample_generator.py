@@ -20,6 +20,9 @@ logging.basicConfig(level=logging.INFO, format="[%(asctime)s] %(levelname)s: %(m
 logger = logging.getLogger("SampleGenerator")
 
 # 基础路径定义
+# Label shown wherever sample_4 text is displayed or retrieved (see data/catalog/core_samples.json).
+SYNTHETIC_TEXT_LABEL = "合成测试文本（sample_generator 生成，非真实释文）"
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SAMPLES_DIR = os.path.join(BASE_DIR, "static", "samples")
 
@@ -88,6 +91,8 @@ REMOTE_SAMPLE_URLS = {
     "sample_4.png": {
         "url": "http://www.yac8.com/upFiles/infoImg/201607/2016071560987609.jpg",
         "title": "北魏·建义元年重度风化墓志（河阴之变重度石花）",
+        # The lines below are generator-authored test text, not an authentic inscription.
+        "text_provenance": SYNTHETIC_TEXT_LABEL,
         "font_preference": ["simkai.ttf", "simsun.ttc", "simhei.ttf"],
         "lines": [
             "夫人諱某昌黎人也春秋五十有一以建義元年九",

@@ -24,7 +24,7 @@ export const Footer: React.FC = () => {
 
         {/* Right Epigraphic Disclaimer */}
         <div className="text-[11px] text-slate-400">
-          中华古籍碑刻微痕复原数字实验室 · 金石学与计算机视觉融合
+          中华古籍碑刻微痕增强与辅助释读数字实验室 · 金石学与计算机视觉融合
         </div>
       </div>
     </footer>

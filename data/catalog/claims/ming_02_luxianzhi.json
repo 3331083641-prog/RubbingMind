@@ -1,0 +1,593 @@
+{
+  "schemaVersion": 1,
+  "steleId": "ming_02_luxianzhi",
+  "title": "文徵明书陆献之墓志铭",
+  "curatedBy": "RM-金石史料",
+  "curatedAt": "2026-10-19（Asia/Shanghai）",
+  "selectionBasis": "目录撰文、书丹、墓主 3 项均为 verified（墓主 verified 的只有这件和曹全碑）；馆方释文 1189 字含墓主卒年与干支；两则题跋指向“作品性质”的重要差异",
+  "layers": "作品（work）≠原刻载体（stone）≠拓本（rubbing）≠影像（image）；人物、纪年、地点、书体风格、著录分列",
+  "claims": [
+    {
+      "claimId": "ming_02_luxianzhi:work:title",
+      "entity": "work",
+      "property": "title",
+      "value": "陆献之墓志铭（文徵明撰并书）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_02_luxianzhi",
+          "field": "title",
+          "value": "文徵明书陆献之墓志铭"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/ming_02_luxianzhi.json",
+          "field": "officialExtractedText",
+          "quote": "明文徵明書陸獻之墓誌銘冊"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_02_luxianzhi:work:dynasty",
+      "entity": "work",
+      "property": "dynasty",
+      "value": "明",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_02_luxianzhi",
+          "field": "dynasty",
+          "value": "明代"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_02_luxianzhi:work:objectNature",
+      "entity": "work",
+      "property": "objectNature",
+      "value": null,
+      "status": "conflict",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/ming_02_luxianzhi.json",
+          "field": "officialExtractedText",
+          "quote": "拓片"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/ming_02_luxianzhi.json",
+          "field": "officialExtractedText",
+          "quote": "此潯州知府陸君墓志草稿"
+        }
+      ],
+      "alternatives": [
+        {
+          "value": "拓片（馆方分类）",
+          "evidenceLevel": "已验证",
+          "sources": [
+            {
+              "type": "file",
+              "path": "data/catalog/evidence/ming_02_luxianzhi.json",
+              "field": "officialExtractedText",
+              "quote": "拓片"
+            }
+          ]
+        },
+        {
+          "value": "墓志草稿（题跋：“此潯州知府陸君墓志草稿”）",
+          "evidenceLevel": "有限支持",
+          "sources": [
+            {
+              "type": "file",
+              "path": "data/catalog/evidence/ming_02_luxianzhi.json",
+              "field": "officialExtractedText",
+              "quote": "此潯州知府陸君墓志草稿"
+            }
+          ]
+        }
+      ],
+      "note": "馆方分类为拓片，李葆恂题跋却称这是墓志草稿（文徵明七十余岁所书）。这直接关系到有没有“原刻载体”，也决定这件藏品是墨迹还是拓本，必须人工复核；本轮不建原石层 claim",
+      "reviewFlags": [
+        "载体性质待人工鉴定"
+      ]
+    },
+    {
+      "claimId": "ming_02_luxianzhi:stone:currentLocation",
+      "entity": "stone",
+      "property": "currentLocation",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_02_luxianzhi",
+          "field": "physicalCollectionInstitution",
+          "value": null
+        }
+      ],
+      "missingReason": "是否存在刻石尚未确定（见 work:objectNature）；目录为空",
+      "catalogueField": "physicalCollectionInstitution"
+    },
+    {
+      "claimId": "ming_02_luxianzhi:stone:originalSite",
+      "entity": "stone",
+      "property": "originalSite",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_02_luxianzhi",
+          "field": "originalLocation",
+          "value": null
+        }
+      ],
+      "missingReason": "出土地、葬地都没有来源；目录 originalLocation 为空"
+    },
+    {
+      "claimId": "ming_02_luxianzhi:rubbing:holder",
+      "entity": "rubbing",
+      "property": "holder",
+      "value": "台北故宫博物院，贈拓000385",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_02_luxianzhi",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_02_luxianzhi",
+          "field": "collectionNumber",
+          "value": "贈拓000385"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/ming_02_luxianzhi.json",
+          "field": "officialExtractedText",
+          "quote": "贈拓000385"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_02_luxianzhi:rubbing:format",
+      "entity": "rubbing",
+      "property": "format",
+      "value": "一冊：七頁（本幅七頁十面）；本幅 24×10.5 厘米；紙本",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/ming_02_luxianzhi.json",
+          "field": "officialExtractedText",
+          "quote": "一冊：七頁（本幅七頁十面）"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/ming_02_luxianzhi.json",
+          "field": "officialExtractedText",
+          "quote": "本幅24x10.5"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_02_luxianzhi:rubbing:colophons",
+      "entity": "rubbing",
+      "property": "colophon",
+      "value": "李葆恂、褚德仪题跋，均为光绪二十八年壬寅（1902）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/ming_02_luxianzhi.json",
+          "field": "officialExtractedText",
+          "quote": "光緒壬寅（西元一九０二年）嘉平。東海李葆恂獲觀題記"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/ming_02_luxianzhi.json",
+          "field": "officialExtractedText",
+          "quote": "光緒廿八年。歲在壬寅"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_02_luxianzhi:rubbing:period",
+      "entity": "rubbing",
+      "property": "period",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_02_luxianzhi",
+          "field": "rubbingPeriod",
+          "value": "未核定；不据拓印年改变朝代"
+        }
+      ],
+      "missingReason": "目录未核定；作品性质未定（见 work:objectNature），拓制年代无从谈起",
+      "catalogueField": "rubbingPeriod"
+    },
+    {
+      "claimId": "ming_02_luxianzhi:image:sourceSha256",
+      "entity": "image",
+      "property": "sourceSha256",
+      "value": "b8a8a673471246368f0215c4680508ff2b0dee988a5719d7421751835387833b",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_02_luxianzhi",
+          "field": "sourceVerification.sourceSha256",
+          "value": "b8a8a673471246368f0215c4680508ff2b0dee988a5719d7421751835387833b"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/ming_02_luxianzhi.json",
+          "field": "reviewedMetadata.source_sha256",
+          "quote": "b8a8a673471246368f0215c4680508ff2b0dee988a5719d7421751835387833b"
+        }
+      ],
+      "note": "目录与证据文件的原图 SHA-256 一致；84 张部署影像另由 ASSET_FREEZE.json 冻结核对"
+    },
+    {
+      "claimId": "ming_02_luxianzhi:image:license",
+      "entity": "image",
+      "property": "license",
+      "value": "CC BY 4.0",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_02_luxianzhi",
+          "field": "license",
+          "value": "CC BY 4.0"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_02_luxianzhi",
+          "field": "attribution",
+          "value": "文徵明书陆献之墓志铭。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_02_luxianzhi:image:derivation",
+      "entity": "image",
+      "property": "derivation",
+      "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_02_luxianzhi",
+          "field": "modifications",
+          "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+        }
+      ],
+      "note": "影像是拓本数字影像的展示派生，不是原石照片，也不是修复结果"
+    },
+    {
+      "claimId": "ming_02_luxianzhi:person:author",
+      "entity": "person",
+      "property": "author",
+      "value": "文徵明",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_02_luxianzhi",
+          "field": "author",
+          "value": "文徵明"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/ming_02_luxianzhi.json",
+          "field": "officialExtractedText",
+          "quote": "文徵明,WenZhengming"
+        }
+      ],
+      "catalogueField": "author"
+    },
+    {
+      "claimId": "ming_02_luxianzhi:person:calligrapher",
+      "entity": "person",
+      "property": "calligrapher",
+      "value": "文徵明",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_02_luxianzhi",
+          "field": "calligrapher",
+          "value": "文徵明"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/ming_02_luxianzhi.json",
+          "field": "officialExtractedText",
+          "quote": "文徵明,WenZhengming"
+        }
+      ],
+      "catalogueField": "calligrapher"
+    },
+    {
+      "claimId": "ming_02_luxianzhi:person:steleSubject",
+      "entity": "person",
+      "property": "steleSubject",
+      "value": "陆琪，字献之，苏州吴县人，浔州知府致仕",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_02_luxianzhi",
+          "field": "steleSubject",
+          "value": "陆献之"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_02_luxianzhi",
+          "field": "transcription",
+          "quote": "公諱琪。字獻之。姓陸氏"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_02_luxianzhi",
+          "field": "transcription",
+          "quote": "遂為蘇之吳縣人"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_02_luxianzhi",
+          "field": "transcription",
+          "quote": "潯州知府致仕陸公"
+        }
+      ],
+      "catalogueField": "steleSubject",
+      "note": "claim 层记录目录值并补释文出处；检索对墓主问题仍按用户要求回答“不支持”"
+    },
+    {
+      "claimId": "ming_02_luxianzhi:person:titleCalligrapher",
+      "entity": "person",
+      "property": "titleCalligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_02_luxianzhi",
+          "field": "titleCalligrapher",
+          "value": "未核定"
+        }
+      ],
+      "missingReason": "目录未核定；本轮来源未记",
+      "catalogueField": "titleCalligrapher"
+    },
+    {
+      "claimId": "ming_02_luxianzhi:person:engraver",
+      "entity": "person",
+      "property": "engraver",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_02_luxianzhi",
+          "field": "engraver",
+          "value": "未核定"
+        }
+      ],
+      "missingReason": "目录未核定；是否刻石尚未确定",
+      "catalogueField": "engraver"
+    },
+    {
+      "claimId": "ming_02_luxianzhi:date:carvingYear",
+      "entity": "date",
+      "property": "carvingYear",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_02_luxianzhi",
+          "field": "originalYear",
+          "value": "明代，确切原刻年份未核定"
+        }
+      ],
+      "missingReason": "目录 originalYear 为“明代，确切原刻年份未核定”；志文只记墓主卒年，不能当作刻石年",
+      "catalogueField": "originalYear"
+    },
+    {
+      "claimId": "ming_02_luxianzhi:date:subjectDeath",
+      "entity": "date",
+      "property": "relatedEvent",
+      "value": "墓主卒于嘉靖五年丙戌八月廿一日",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_02_luxianzhi",
+          "field": "transcription",
+          "quote": "嘉靖五年丙戌八月廿又一日潯州知府致仕陸公卒于家"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_02_luxianzhi:date:subjectDeathCrossCheck",
+      "entity": "date",
+      "property": "yearCrossCheck",
+      "value": "一致：嘉靖五年＝1526，推算 1526 年干支为丙戌，与志文自带干支相合",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_02_luxianzhi",
+          "field": "transcription",
+          "quote": "嘉靖五年丙戌"
+        }
+      ],
+      "derivation": {
+        "era": "嘉靖五年",
+        "ce": 1526,
+        "computedGanzhi": "丙戌",
+        "inscriptionGanzhi": "丙戌",
+        "method": "(ce-4) mod 60，甲子=0；年号起始年（嘉靖元年=1522）取通行年表，本轮未打开外部来源",
+        "result": "consistent"
+      },
+      "note": "互证的是墓主卒年，不是刻石年"
+    },
+    {
+      "claimId": "ming_02_luxianzhi:place:subjectHome",
+      "entity": "place",
+      "property": "subjectHome",
+      "value": "苏州吴县（释文：“元季徙蘇。遂為蘇之吳縣人”）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_02_luxianzhi",
+          "field": "transcription",
+          "quote": "元季徙蘇。遂為蘇之吳縣人"
+        }
+      ],
+      "region": {
+        "historicalName": "苏州府吴县",
+        "modernRegion": "江苏省苏州市一带（现代对应待人工复核）",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "ming_02_luxianzhi:place:rubbing",
+      "entity": "place",
+      "property": "rubbingHolder",
+      "value": "台北故宫博物院",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_02_luxianzhi",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        }
+      ],
+      "region": {
+        "modernRegion": "台北市",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "ming_02_luxianzhi:style:script",
+      "entity": "script_style",
+      "property": "script",
+      "value": "行书",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "ming_02_luxianzhi",
+          "field": "scriptType",
+          "value": "行书"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/ming_02_luxianzhi.json",
+          "field": "officialExtractedText",
+          "quote": "行書"
+        }
+      ]
+    },
+    {
+      "claimId": "ming_02_luxianzhi:style:colophon",
+      "entity": "script_style",
+      "property": "colophonComment",
+      "value": "李葆恂：“待詔書法築基吳興。以入二王之室”；褚德仪：“精神團結。始終無懈筆”",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/ming_02_luxianzhi.json",
+          "field": "officialExtractedText",
+          "quote": "待詔書法築基吳興。以入二王之室"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/ming_02_luxianzhi.json",
+          "field": "officialExtractedText",
+          "quote": "精神團結。始終無懈筆"
+        }
+      ],
+      "note": "题跋者观点"
+    },
+    {
+      "claimId": "ming_02_luxianzhi:bibliography:npm",
+      "entity": "bibliography",
+      "property": "catalogueReference",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/ming_02_luxianzhi.json",
+          "field": "officialExtractedText",
+          "quote": "明文徵明書陸獻之墓誌銘冊"
+        }
+      ],
+      "missingReason": "台北故宫资料表没有“參考資料”栏"
+    }
+  ]
+}

@@ -1,0 +1,809 @@
+{
+  "schemaVersion": 1,
+  "steleId": "yuan_02_sundeyu",
+  "title": "元重阳宫孙德彧道行碑",
+  "curatedBy": "RM-金石史料",
+  "curatedAt": "2026-10-25（Asia/Shanghai）",
+  "selectionBasis": "证据充分度次高；书丹/篆额 verified；释文含撰书篆三人与元统三年纪年；NPM 2026-10-25 实开；立碑年晚于书者卒年已在目录说明",
+  "layers": "作品（work）≠原刻载体（stone）≠拓本（rubbing）≠影像（image）；人物、纪年、地点、书体风格、著录分列",
+  "claims": [
+    {
+      "claimId": "yuan_02_sundeyu:work:title",
+      "entity": "work",
+      "property": "title",
+      "value": "元重阳宫孙德彧道行碑（碑文全题“皇元特授神仙演道大宗师…孙公道行之碑”；馆方品名“元趙孟頫書元重陽宮孫德彧道行碑墨拓本”）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "title",
+          "value": "元重阳宫孙德彧道行碑"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "transcription",
+          "quote": "孫公道行之碑"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34667&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書孫德彧道行碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名栏"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_02_sundeyu:work:dynasty",
+      "entity": "work",
+      "property": "dynasty",
+      "value": "元",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "dynasty",
+          "value": "元代"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34667&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書孫德彧道行碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "元趙孟頫書孫德彧道行碑墨拓本"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_02_sundeyu:work:content",
+      "entity": "work",
+      "property": "content",
+      "value": "全真掌教孙德彧（字用章）道行碑；赵文原撰、赵孟頫书、赵世延篆额；元统三年建",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "transcription",
+          "quote": "趙文原譔"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "transcription",
+          "quote": "趙孟頫書"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "transcription",
+          "quote": "趙世延篆額"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "transcription",
+          "quote": "元統三年"
+        }
+      ],
+      "note": "据释文摘句概括"
+    },
+    {
+      "claimId": "yuan_02_sundeyu:stone:currentLocation",
+      "entity": "stone",
+      "property": "currentLocation",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "physicalCollectionInstitution",
+          "value": null
+        }
+      ],
+      "missingReason": "目录为空；本轮未开原石现藏权威来源"
+    },
+    {
+      "claimId": "yuan_02_sundeyu:stone:originalSite",
+      "entity": "stone",
+      "property": "originalSite",
+      "value": "终南山大重阳万寿宫／重阳宫一带（区域级，待复核）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "transcription",
+          "quote": "提舉大重陽萬壽宮"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "transcription",
+          "quote": "終南山仙遊園"
+        }
+      ],
+      "note": "碑文多次出现重阳宫、终南；不输出坐标"
+    },
+    {
+      "claimId": "yuan_02_sundeyu:stone:transfer",
+      "entity": "stone",
+      "property": "transfer",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本轮未查迁徙来源"
+    },
+    {
+      "claimId": "yuan_02_sundeyu:stone:condition",
+      "entity": "stone",
+      "property": "condition",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "无原石影像"
+    },
+    {
+      "claimId": "yuan_02_sundeyu:rubbing:holder",
+      "entity": "rubbing",
+      "property": "holder",
+      "value": "台北故宫博物院（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "collectionNumber",
+          "value": "贈拓000411"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34667&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書孫德彧道行碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "贈拓000411"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_02_sundeyu:rubbing:museumTitle",
+      "entity": "rubbing",
+      "property": "museumTitle",
+      "value": "元趙孟頫書元重陽宮孫德彧道行碑墨拓本",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34667&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書孫德彧道行碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "元趙孟頫書孫德彧道行碑墨拓本"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_02_sundeyu:rubbing:format",
+      "entity": "rubbing",
+      "property": "format",
+      "value": "一件；本幅约 238×108.2 公分；纸本",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34667&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書孫德彧道行碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "典藏尺寸 238x108.2"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_02_sundeyu:rubbing:period",
+      "entity": "rubbing",
+      "property": "period",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "rubbingPeriod",
+          "value": "未核定；不据拓印年改变朝代"
+        }
+      ],
+      "missingReason": "目录未核定拓印年"
+    },
+    {
+      "claimId": "yuan_02_sundeyu:image:sourceSha256",
+      "entity": "image",
+      "property": "sourceSha256",
+      "value": "2ca6c573948002bcd457360a11ba9e80a82dde26c0c7aa3f5223b735678d0452",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "sourceVerification.sourceSha256",
+          "value": "2ca6c573948002bcd457360a11ba9e80a82dde26c0c7aa3f5223b735678d0452"
+        }
+      ],
+      "note": "本轮未改影像"
+    },
+    {
+      "claimId": "yuan_02_sundeyu:image:license",
+      "entity": "image",
+      "property": "license",
+      "value": "CC BY 4.0",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "license",
+          "value": "CC BY 4.0"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34667&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書孫德彧道行碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "元趙孟頫書孫德彧道行碑墨拓本"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_02_sundeyu:image:derivation",
+      "entity": "image",
+      "property": "derivation",
+      "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "modifications",
+          "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_02_sundeyu:person:author",
+      "entity": "person",
+      "property": "author",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "author",
+          "value": "未核定"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "authorVerification",
+          "value": "disputed"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "transcription",
+          "quote": "趙文原譔"
+        }
+      ],
+      "missingReason": "目录 author=未核定、authorVerification=disputed；释文作赵文原撰。不升为已验证，见 conflict claim",
+      "catalogueField": "author"
+    },
+    {
+      "claimId": "yuan_02_sundeyu:person:authorDispute",
+      "entity": "person",
+      "property": "authorDispute",
+      "value": "释文署赵文原譔；目录未核定且 disputed；馆方作者栏仅列赵孟頫",
+      "status": "conflict",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "transcription",
+          "quote": "趙文原譔"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34667&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書孫德彧道行碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "作者：趙孟頫"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "authorVerification",
+          "value": "disputed"
+        }
+      ],
+      "alternatives": [
+        {
+          "value": "赵文原撰（释文）",
+          "evidenceLevel": "已验证",
+          "sources": [
+            {
+              "type": "file",
+              "path": "data/catalog/steles28.json",
+              "id": "yuan_02_sundeyu",
+              "field": "transcription",
+              "quote": "趙文原譔"
+            }
+          ]
+        },
+        {
+          "value": "赵孟頫（馆方作者栏，实为书者）",
+          "evidenceLevel": "有限支持",
+          "sources": [
+            {
+              "type": "url",
+              "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34667&dep=P&mode=full",
+              "publisher": "國立故宮博物院",
+              "title": "元趙孟頫書孫德彧道行碑墨拓本",
+              "sourceKind": "official_museum",
+              "accessedAt": "2026-10-25",
+              "quote": "作者：趙孟頫"
+            }
+          ]
+        },
+        {
+          "value": "未核定／disputed（目录）",
+          "evidenceLevel": "有限支持",
+          "sources": [
+            {
+              "type": "catalogue",
+              "path": "data/catalog/steles28.json",
+              "id": "yuan_02_sundeyu",
+              "field": "authorVerification",
+              "value": "disputed"
+            }
+          ]
+        }
+      ],
+      "note": "释文署赵文原譔；馆方作者栏仅列赵孟頫（实为书者）；目录 authorVerification=disputed。并列三说待复核，不合并为单一作者"
+    },
+    {
+      "claimId": "yuan_02_sundeyu:person:calligrapher",
+      "entity": "person",
+      "property": "calligrapher",
+      "value": "赵孟頫",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "calligrapher",
+          "value": "赵孟頫"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "calligrapherVerification",
+          "value": "verified"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "transcription",
+          "quote": "趙孟頫書"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34667&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書孫德彧道行碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "元趙孟頫書孫德彧道行碑墨拓本"
+        }
+      ],
+      "note": "立碑元统三年（1335）晚于赵孟頫卒年（1322）；目录说明：原书与刊刻时间分别理解，不推定同年书丹"
+    },
+    {
+      "claimId": "yuan_02_sundeyu:person:titleCalligrapher",
+      "entity": "person",
+      "property": "titleCalligrapher",
+      "value": "赵世延",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "titleCalligrapher",
+          "value": "赵世延"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "titleCalligrapherVerification",
+          "value": "verified"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "transcription",
+          "quote": "趙世延篆額"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_02_sundeyu:person:engraver",
+      "entity": "person",
+      "property": "engraver",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "engraver",
+          "value": "未核定"
+        }
+      ],
+      "missingReason": "目录未核定"
+    },
+    {
+      "claimId": "yuan_02_sundeyu:person:steleSubject",
+      "entity": "person",
+      "property": "steleSubject",
+      "value": "孙德彧（字用章，全真掌教）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "transcription",
+          "quote": "諱德彧。字用章"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "transcription",
+          "quote": "孫公道行之碑"
+        }
+      ],
+      "note": "道行碑碑主；目录 steleSubject=未核定，故仅有限支持，不标已验证"
+    },
+    {
+      "claimId": "yuan_02_sundeyu:date:era",
+      "entity": "date",
+      "property": "era",
+      "value": "元统三年岁次乙亥九月吉日建",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "sourceVerification.dateBasis",
+          "value": "元统三年乙亥九月建，馆方释文"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "transcription",
+          "quote": "元統三年歲□乙亥九月吉□（日）建"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34667&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書孫德彧道行碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "元趙孟頫書孫德彧道行碑墨拓本"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_02_sundeyu:date:ce",
+      "entity": "date",
+      "property": "ce",
+      "value": 1335,
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "originalYearCE",
+          "value": 1335
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "originalYear",
+          "value": "1335年"
+        }
+      ],
+      "note": "元统三年通作 1335；乙亥与之相合"
+    },
+    {
+      "claimId": "yuan_02_sundeyu:date:yearCrossCheck",
+      "entity": "date",
+      "property": "yearCrossCheck",
+      "value": "一致：元统三年乙亥→1335；另记书者卒年早于立碑年",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "description",
+          "value": "真实馆藏影像派生；1335年。原拓残损保留。  馆方题名归赵孟頫，立碑1335年晚于书者卒年；原书与刊刻时间分别理解，不推定同年书丹。"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "transcription",
+          "quote": "元統三年"
+        }
+      ],
+      "note": "不据此否认赵孟頫书丹署名，只区分书与刻年"
+    },
+    {
+      "claimId": "yuan_02_sundeyu:date:dayCrossCheck",
+      "entity": "date",
+      "property": "dayCrossCheck",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "九月吉日，无干支日；未做日级历表"
+    },
+    {
+      "claimId": "yuan_02_sundeyu:date:month",
+      "entity": "date",
+      "property": "month",
+      "value": "九月",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "transcription",
+          "quote": "九月吉□（日）建"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_02_sundeyu:place:originalSite",
+      "entity": "place",
+      "property": "originalSite",
+      "value": "终南山／重阳宫一带（区域级）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "transcription",
+          "quote": "終南山"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "transcription",
+          "quote": "重陽宮"
+        }
+      ],
+      "note": "不输出坐标",
+      "region": {
+        "historicalName": "终南山重阳宫",
+        "modernRegion": "陕西省西安市",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "yuan_02_sundeyu:place:currentStone",
+      "entity": "place",
+      "property": "currentStone",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "原石现藏未核定"
+    },
+    {
+      "claimId": "yuan_02_sundeyu:place:rubbingHolder",
+      "entity": "place",
+      "property": "rubbingHolder",
+      "value": "台北（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34667&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書孫德彧道行碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "元趙孟頫書孫德彧道行碑墨拓本"
+        }
+      ],
+      "region": {
+        "modernRegion": "台北市",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "yuan_02_sundeyu:script_style:script",
+      "entity": "script_style",
+      "property": "script",
+      "value": "楷书",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "scriptType",
+          "value": "楷书"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34667&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書孫德彧道行碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "书体栏"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_02_sundeyu:script_style:styleNote",
+      "entity": "script_style",
+      "property": "styleNote",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本轮无人工书风评述"
+    },
+    {
+      "claimId": "yuan_02_sundeyu:script_style:historicalComment",
+      "entity": "script_style",
+      "property": "historicalComment",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本轮未引外部书论"
+    },
+    {
+      "claimId": "yuan_02_sundeyu:script_style:colophonComment",
+      "entity": "script_style",
+      "property": "colophonComment",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本轮未见可用题跋"
+    },
+    {
+      "claimId": "yuan_02_sundeyu:bibliography:catalogueReference",
+      "entity": "bibliography",
+      "property": "catalogueReference",
+      "value": "國立故宮博物院开放资料 id=34667；贈拓000411",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34667&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書孫德彧道行碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "元趙孟頫書孫德彧道行碑墨拓本"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_02_sundeyu",
+          "field": "collectionNumber",
+          "value": "贈拓000411"
+        }
+      ]
+    }
+  ]
+}

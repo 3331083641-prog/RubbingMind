@@ -3,6 +3,8 @@ import { SteleItem, CharacterItem, ProcessingResult, ProcessingRun, roleText } f
 import { SteleService } from '../services/api';
 import type { GlyphInferenceRecord } from '../services/api';
 import { GlyphInferencePanel } from '../components/GlyphInferencePanel';
+import { readUrlState } from '../state/urlState';
+import { writeFilters } from '../components/reports/reportFilters';
 import { 
   Sliders, 
   Layers, 
@@ -157,6 +159,17 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate,
     }
   };
 
+  // 进入时若 URL（state/urlState）指向本件的某条运行就恢复它；之后的选择通过 onRunChange 交给 App，由 App 写回 URL（R1-6）。
+  const urlHydrated = useRef(false);
+  useEffect(() => {
+    if (urlHydrated.current || !runs.length) return;
+    urlHydrated.current = true;
+    const state = readUrlState();
+    const wanted = state.steleId === stele.id && state.runId ? runs.find(item => item.runId === state.runId) : undefined;
+    if (wanted) restoreRun(wanted);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [runs, stele.id]);
+
   const restoreRun = (run: ProcessingRun) => {
     setAdaptiveDetails(run.adaptiveDiagnostics||null);
     setSelectedRunId(run.runId);
@@ -274,6 +287,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate,
               {runs.map(run=><option key={run.runId} value={run.runId}>{run.runId} · {run.algorithmParameters?.filter_type || '旧版参数'}</option>)}
             </select>
           </label>
+          {selectedRunId && <button type="button" onClick={() => { writeFilters({ view: 'artifact' }); onNavigate('reports'); }} className="ml-3 text-gold underline">在评测报告中查看此运行</button>}
           {selectedRunId && (() => { const run=runs.find(item=>item.runId===selectedRunId); return run ? <div className="space-y-1 text-slate-300">
             <p>运行 ID：{run.runId} · 算法：{run.algorithmVersion} · 耗时：{run.processing_time_ms} ms</p>
             <p>保存参数：D₀ {run.algorithmParameters?.d0}；阶数 {run.algorithmParameters?.filter_order}；NLM {run.algorithmParameters?.h_nlm}；CLAHE {run.algorithmParameters?.clahe_clip}。当前滑块：{d0} / {filterOrder} / {hNlm} / {claheClip}。</p>
@@ -463,7 +477,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate,
                       className="w-full h-full object-contain filter invert hue-rotate-[320deg] saturate-200" 
                     />
                     <div className="absolute top-4 left-4 px-2.5 py-1 rounded bg-cinnabar/80 text-white font-serif text-xs">
-                      实际算法输出 · 朱砂风格可视化（非历史拓本）
+                      算法处理结果 · 朱砂风格可视化（非历史拓本，非原刻复原）
                     </div>
                   </div>
                 </div>

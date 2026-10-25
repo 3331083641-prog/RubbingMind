@@ -1,0 +1,14 @@
+{
+  "version": "draft-2026-10-19",
+  "author": "RM-金石史料",
+  "note": "作品简称表：只收有依据的通称或简称。别名命中多件文物时，检索仍按“没有唯一对应”拒答，不合并。字形规范化（繁简、异写）见 evidence_retrieval.VARIANT_FOLD。",
+  "aliases": [
+    {"steleId": "tang_01_duobao", "alias": "多宝塔", "basis": "馆方品名“明拓唐顏真卿多寶塔墨拓本　冊”（data/catalog/evidence/tang_01_duobao.json officialExtractedText）；history 节点名“多宝塔碑”"},
+    {"steleId": "tang_01_duobao", "alias": "多宝佛塔感应碑", "basis": "碑题“大唐西京千福寺多寶佛塔感應碑文”（core_samples.json tang-duobao 释文首句）"},
+    {"steleId": "tang_02_jiucheng", "alias": "九成宫", "basis": "目录题名“九成宫醴泉铭”的通行简称；“九成宫”亦是宫名，只在作品语境下作简称"},
+    {"steleId": "tang_02_jiucheng", "alias": "醴泉铭", "basis": "目录题名“九成宫醴泉铭”后半"},
+    {"steleId": "tang_04_xuanmita", "alias": "玄秘塔", "basis": "目录题名“玄秘塔碑”"},
+    {"steleId": "han_01_caoquan", "alias": "郃阳令曹全碑", "basis": "data/history/han-caoquan.json formalName“东汉·郃阳令曹全碑”"},
+    {"steleId": "han_01_caoquan", "alias": "曹景完碑", "basis": "碑主曹全字景完（馆方释文“君諱全，字景完”）；以字称碑"}
+  ]
+}
