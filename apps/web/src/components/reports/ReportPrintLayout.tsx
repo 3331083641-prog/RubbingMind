@@ -6,7 +6,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as echarts from 'echarts/core';
 import type { GlobalModel } from './data/globalModel';
 import { caseKeyOf } from './data/globalModel';
-import { BOOTSTRAP_RESAMPLES, BOOTSTRAP_SEED, evaluationSummaryText, gainWord, glyphEvaluationText, GlyphEvaluation, mayClaimPositiveLift, RunReport, runOutcome, SCOPE_LABELS } from './data/reportData';
+import { BOOTSTRAP_RESAMPLES, BOOTSTRAP_SEED, evaluationSummaryText, gainWord, glyphEvaluationText, GlyphEvaluation, mayClaimPositiveLift, RunReport, runAlgorithmOutputModeView, runOutcome, SCOPE_LABELS } from './data/reportData';
 import type { Loadable } from './data/types';
 import { degradationLabel, methodLabel, SPLIT_LABELS } from './data/labels';
 import { buildOption } from './MethodComparisonChart';
@@ -32,6 +32,7 @@ export const ReportPrintLayout: React.FC<Props> = ({ model, stele, runId, report
   const panes = model ? triptychPanes(model, model.caseRow) : null;
   const run = report?.state === 'ok' && report.data.run?.runId === runId ? report.data.run : null;
   const outcome = run ? runOutcome(run) : null;
+  const algoMode = run ? runAlgorithmOutputModeView(run) : null;
   let fig = 0;
   return <>
     <div ref={host} aria-hidden style={{ position: 'fixed', left: -20000, top: 0, width: PRINT_W, height }} className="print:hidden" />
@@ -65,6 +66,7 @@ export const ReportPrintLayout: React.FC<Props> = ({ model, stele, runId, report
       {run && outcome ? <>
         <p><b className={outcome.mode === 'passthrough' ? 'rp-warn' : ''}>{outcome.title}</b>{outcome.mode === 'passthrough' && (run as { passthroughSource?: string | null }).passthroughSource === 'computed-on-read' ? '（读取时校验）' : ''}：{outcome.detail}{outcome.changeText ? ` ${outcome.changeText}。` : ''}{outcome.grayText ? ` ${outcome.grayText}。` : ' 灰度域改动：后端尚未返回。'}<br /><span className="rp-meta">{outcome.criterion}{outcome.source ? `；来源：${outcome.source}` : ''}。{evaluationSummaryText(run)}</span></p>
         <p className="rp-meta">运行 <code>{run.runId}</code> · {run.algorithmVersion} · 开始 {formatTime(run.startedAt)} · 结束 {formatTime(run.finishedAt)} · 输入 SHA-256 <code>{run.inputImageSha256 || '未记录'}</code></p>
+        {algoMode && <p className="rp-meta" data-testid="print-algorithm-output-mode"><b>{algoMode.title}</b>{algoMode.code ? <>（<code>{algoMode.code}</code>）</> : null}：{algoMode.detail}</p>}
         <figure><div className="rp-pair">
           {run.outputImages?.original ? <img src={run.outputImages.original} alt="工作输入" /> : <p>未保存工作输入</p>}
           {run.outputImages?.restored ? <img src={run.outputImages.restored} alt="输出" /> : <p>未保存输出</p>}
