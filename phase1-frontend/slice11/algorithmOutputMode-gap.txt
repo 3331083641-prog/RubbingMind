@@ -1,0 +1,11 @@
+﻿algorithmOutputMode gap (slice11, 2026-10-25 Asia/Shanghai)
+
+align tip: ed9f1a0b20978d5500453bdbbaa43505a6f9297d
+branch: agent/report-frontend
+api.ts path: apps/web/src/services/api.ts
+field algorithmOutputMode present: False (Select-String count=0 after FF ed9f1a0)
+field outputMode present: True (run-level only; processed|passthrough|undetermined)
+MERGE_NOTE_algorithmOutputMode.md: algorithm-layer field vs run-level outputMode
+FRONTEND_INTEGRATION_CHECKLIST: algorithmOutputMode UI waits on payload
+Action: skip UI wire; do not fabricate field. Hand to Green/arch for contract.
+No change to api.ts / App.tsx / urlState.ts / HomePage.tsx.
