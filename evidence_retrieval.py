@@ -46,7 +46,7 @@ def _work_aliases():
 
 
 def canonical_id(stele_id):
-    """Collection id that evidence is filed under (demo -> same-work rubbing, review alias -> target)."""
+    """Evidence filing id: demo stays demo (RV-AI06); review alias -> target rubbing; rubbing -> self."""
     if not stele_id:
         return stele_id
     return resolve_id(stele_id)['evidenceId']
@@ -88,10 +88,10 @@ def corpus():
         text=text.split('授權與引用')[0].split('License and attribution')[0]
         for i in range(0,len(text),500):
             if text[i:i+500].strip():add(f'{eid}:transcript:{i}',sid,r['title']+' · 馆方释文摘录',text[i:i+500],r['sourceUrl'],r['rubbingCollectionInstitution'],f"{r['sourceVerification'].get('evidenceFile')}#transcription:{i}",'archival_transcription',r['license'])
-    reverse={v:k for k,v in ALIASES.items()}
+    # RV-AI06: history/demo evidence filed under demo id, never under linked museum rubbing.
     sources={r['id']:r for r in json.loads((BASE/'data/history/sources.json').read_text('utf8'))}
     for core_id in CORE_IDS:
-        h=json.loads((BASE/'data/history'/f'{core_id}.json').read_text('utf8'));sid=reverse.get(core_id,core_id)
+        h=json.loads((BASE/'data/history'/f'{core_id}.json').read_text('utf8'));sid=core_id
         source_ids=[]
         for source_id in h['sourceIds']:
             s=sources[source_id];eid=f'history:{core_id}:{source_id}'

@@ -50,8 +50,9 @@ def resolve_id(stele_id):
         return {**target, 'requestedId': stele_id, 'kind': 'review_alias', 'aliasOf': entry['aliasOf']}
     link = entry.get('depictsSameWorkAs')
     if kind == 'demo_sample':
+        # RV-AI06: demo ids stay demo entities; depictsSameWorkAs is metadata only.
         history = stele_id
-        evidence = link['rubbingId'] if link else stele_id
+        evidence = stele_id
     else:
         history = ALIASES.get(stele_id)
         evidence = stele_id
@@ -64,16 +65,35 @@ def _demo_ids_for(rubbing_id):
             if e['kind'] == 'demo_sample' and (e.get('depictsSameWorkAs') or {}).get('rubbingId') == rubbing_id]
 
 
+
+def _core_sample(demo_id):
+    path = Path(__file__).parent / 'data' / 'catalog' / 'core_samples.json'
+    if not path.is_file():
+        return None
+    return next((r for r in json.loads(path.read_text(encoding='utf-8')) if r.get('id') == demo_id), None)
+
+
 def get_history_graph(stele_id, records):
     resolution = resolve_id(stele_id)
     canonical = resolution['historyKey']
     if canonical in CORE_IDS:
         data = deepcopy(_read(canonical))
         data['entity'] = resolution
-        if resolution['kind'] == 'demo_sample' and resolution['depictsSameWorkAs']:
-            link = resolution['depictsSameWorkAs']
-            data['identity'] = (f"演示样本 {resolution['newId']}（概念演示图）：本图谱史料描述对应作品及馆藏拓本 "
-                                f"{link['rubbingId']}，不描述演示图本身；同作品关系{link['evidenceGrade']}。" + data['identity'])
+        if resolution['kind'] == 'demo_sample':
+            # RV-AI06: keep demo identity; never surface museum rubbing image paths from shared history.
+            data['steleId'] = resolution['evidenceId']
+            for event in data.get('events', []):
+                event['steleId'] = resolution['evidenceId']
+            core = _core_sample(resolution['evidenceId'])
+            if core and core.get('raw_image'):
+                data['image'] = core['raw_image']
+                data['imageStatus'] = '演示样本图（非馆藏拓本影像）'
+            if resolution['depictsSameWorkAs']:
+                link = resolution['depictsSameWorkAs']
+                data['identity'] = (f"演示样本 {resolution['newId']}（概念演示图）：本图谱史料描述对应作品及馆藏拓本 "
+                                    f"{link['rubbingId']}，不描述演示图本身；同作品关系{link['evidenceGrade']}。" + data['identity'])
+            else:
+                data['identity'] = (f"演示样本 {resolution['newId']}（概念演示图或合成测试图，不是馆藏实物）。" + data['identity'])
         elif resolution['kind'] in ('rubbing', 'review_alias'):
             # Same history document, filed under the collection rubbing's own id.
             data['steleId'] = stele_id

@@ -61,7 +61,7 @@ def test_review_alias_and_retired_ids():
 
 def test_retrieval_reports_scope_resolution():
     result = er.query('多宝塔感应碑的书丹者是谁？', 'tang-duobao')
-    assert result['scopeSteleId'] == 'tang_01_duobao'
+    assert result['scopeSteleId'] == 'tang-duobao'
     assert result['scopeResolution']['kind'] == 'demo_sample'
     assert result['scopeResolution']['depictsSameWorkAs']['evidenceGrade'] == '待人工复核'
 
@@ -75,3 +75,25 @@ def test_rollback_without_mapping_restores_legacy_behaviour(monkeypatch, tmp_pat
         assert hg.get_history_graph('tang-duobao', [])['steleId'] == 'tang-duobao'
     finally:
         hg._mapping.cache_clear()
+
+
+@pytest.mark.parametrize('demo,rubbing', [('tang-duobao', 'tang_01_duobao'), ('han-caoquan', 'han_01_caoquan')])
+def test_rv_ai06_demo_namespace_never_collapses_to_museum(demo, rubbing):
+    """rm:demo:* and legacy demo ids resolve to demo entities; research scope stays demo."""
+    for sid in (demo, 'rm:demo:' + demo):
+        r = hg.resolve_id(sid)
+        assert r['kind'] == 'demo_sample'
+        assert r['evidenceId'] == demo
+        assert r['newId'] == 'rm:demo:' + demo
+        graph = hg.get_history_graph(sid, [])
+        assert graph['steleId'] == demo
+        assert graph['entity']['kind'] == 'demo_sample'
+        assert 'museum-rubbings/' + rubbing not in (graph.get('image') or '')
+        assert '演示样本图' in (graph.get('imageStatus') or '') or '演示样本' in graph.get('identity', '')
+    result = er.query('书丹者是谁？', 'rm:demo:' + demo)
+    assert result['scopeSteleId'] == demo
+    assert result['scopeResolution']['kind'] == 'demo_sample'
+    assert result['demoScope']['included'] is True
+    for e in result['evidence']:
+        if e['steleId'] == rubbing:
+            raise AssertionError('museum rubbing %s leaked into demo scope evidence: %s' % (rubbing, e['sourceId']))

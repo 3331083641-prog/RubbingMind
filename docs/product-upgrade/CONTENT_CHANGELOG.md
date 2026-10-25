@@ -237,3 +237,13 @@
 | ming_02 | 嘉靖元年1月1日；嘉靖5年8月21日 | 1522年1月28日（壬午）；1526年9月27日，歲次丙戌 | 一致。原先“嘉靖元年=1522 取通行年表”一句现在有了中研院查询结果 |
 
 **字段修改。** 本轮 claims 字段改动为 0。升级建议都写在 JSON 的 `findings[].suggestion/conclusion` 中，等人工确认。
+
+## 2026-10-25 · C08 令牌与后端对齐 + RV-AI06（Green）
+
+| 项 | 变更 | 依据 |
+|---|---|---|
+| C-08 确认令牌 | 改为 diffDigestSha256[:16]，即 sha256(库SHA+目录SHA+行数+操作清单)[:16]；撤回「64 位 / 不截断 / 双重绑定前缀」写法。实测示例令牌 32326a07b002522c 与后端 8a97a12 一致。BR-10 仅保留 --diff 必选与写后核退役行数。 | Green 2026-10-25；C08_SYNC_SPEC / C08_BACKEND_REVIEW / c08_sync_diff.json / check_catalog_governance.confirmation_token |
+| RV-AI06 | 
+m:demo:* 与演示 legacy id 的 evidenceId 固定为演示自身，不再落到馆藏 han_01/	ang_01；evidence_retrieval.corpus 历史证据按演示 id 入索引；图谱演示图改用 core_samples.raw_image，不再返回 museum-rubbings/ 馆藏图。depictsSameWorkAs 仅作关系元数据。 | 红队 RV-AI06；resolve_id / get_history_graph / canonical_id / tests/test_id_namespace.py |
+| B 历表核对 | 已 git am 17.patch（中研院 sinocal）：tang_01 四月朔=丁丑，乙丑待复核；字段未改。 | calendar_check_B.json |
+
