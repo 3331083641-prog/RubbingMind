@@ -6,7 +6,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as echarts from 'echarts/core';
 import type { GlobalModel } from './data/globalModel';
 import { caseKeyOf } from './data/globalModel';
-import { BOOTSTRAP_RESAMPLES, BOOTSTRAP_SEED, evaluationSummaryText, gainWord, GlyphEvaluation, RunReport, runOutcome, SCOPE_LABELS } from './data/reportData';
+import { BOOTSTRAP_RESAMPLES, BOOTSTRAP_SEED, evaluationSummaryText, gainWord, glyphEvaluationText, GlyphEvaluation, RunReport, runOutcome, SCOPE_LABELS } from './data/reportData';
 import type { Loadable } from './data/types';
 import { degradationLabel, methodLabel, SPLIT_LABELS } from './data/labels';
 import { buildOption } from './MethodComparisonChart';
@@ -50,7 +50,7 @@ export const ReportPrintLayout: React.FC<Props> = ({ model, stele, runId, report
           {(() => { const items = model.panels.find(p => p.metric.key === 'psnr')?.items || []; const st = (i: typeof items[number]) => i.scopes[i.primaryScope];
             const pos = items.filter(i => st(i).sign === 'positive' && st(i).ciReliable), neg = items.filter(i => st(i).sign === 'negative' && st(i).ciReliable);
             return `配对增益 CI 下界 > 0（可写“提升”）：${pos.map(i => methodLabel(i.method)).join('、') || '无'}；CI 上界 < 0（下降）：${neg.map(i => `${methodLabel(i.method)} ${signed(st(i).value, 2, 'dB')}`).join('、') || '无'}；其余跨 0、不可靠或无数据。负提升全部保留。`; })()}</div>
-        <div className="rp-card"><b>结论 3</b><span className="rp-grade">未评测</span><br />真实拓本修复质量：未评测（无配对参考）。古碑识字 Top-1/Top-3：{glyph.state === 'ok' ? `${glyph.data.status === 'not_evaluated' ? '未评测' : glyph.data.status}（已核验标注 ${glyph.data.verifiedLabels} 条）` : '状态不可用'}。</div>
+        <div className="rp-card"><b>结论 3</b><span className="rp-grade">未评测</span><br />真实拓本修复质量：未评测（无配对参考）。古碑识字 Top-1/Top-3：{glyph.state === 'ok' ? glyphEvaluationText(glyph.data, 'short') : '状态不可用'}。</div>
         <h2>二、算法横向比较</h2>
         <figure>{chartUrl ? <img src={chartUrl} alt="算法横向比较图" style={{ width: '100%' }} /> : <p>图表生成中…</p>}
           <figcaption>图 {++fig}　{model.batch.shortName} · {SPLIT_LABELS[model.split]} · {degradationLabel(model.degradation)}：各方法相对退化输入的配对增益。柱为主口径（{model.batch.kind === 'retest' ? '全部' : '实际处理'}）文物均值，须为按文物聚类 95% CI（{model.ci ? 'derived/ci_by_artifact.json；细笔画与耗时为前端临时口径' : `临时口径，前端计算，${BOOTSTRAP_RESAMPLES} 次，种子 ${BOOTSTRAP_SEED}`}；文物 &lt; 3 不画），点为每件文物均值；全部原图返回的方法标“未处理 N 条”；每个量纲单独一轴，轴含 0。来源：<code>/api/experiments/{model.batch.id}</code>。</figcaption></figure>
