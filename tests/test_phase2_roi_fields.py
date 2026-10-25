@@ -2,7 +2,7 @@
 
 Asserts that report/API responses expose or explicitly lack the seven skeleton fields:
 steleId / source SHA / runId / ROI / version / params / time.
-Landed R2–R6 gaps are asserted; remaining product gaps are xfail/skip with gap ids — never silent pass.
+Landed R1–R6 gaps are asserted; remaining product gaps (e.g. A24) are xfail/skip with gap ids — never silent pass.
 Does not fabricate ground-truth stele labels; uses live API + checked-in TS/source contracts.
 """
 from __future__ import annotations
@@ -92,17 +92,24 @@ def test_inference_exposes_version_and_effective_parameters_g5(client):
 
 
 def test_ts_glyph_inference_record_declares_roi_and_shas_g1():
-    """G1/R1: TS GlyphInferenceRecord must declare roi + inputImageSha256 + cropSha256."""
+    """G1/R1: TS GlyphInferenceRecord declares roi + inputImageSha256 + cropSha256 (AB-7 / feature@e9ce60e (via 08d8da8))."""
     text = API_TS.read_text(encoding="utf-8")
     m = re.search(r"export interface GlyphInferenceRecord \{([\s\S]*?)\n\}", text)
     assert m, "GlyphInferenceRecord interface missing"
     block = m.group(1)
     needed = ("roi", "inputImageSha256", "cropSha256")
-    absent = [name for name in needed if not re.search(rf"\b{name}\b", block)]
-    if absent:
-        pytest.xfail(f"G1/R1: TS GlyphInferenceRecord missing {absent} (backend already returns them)")
     for name in needed:
-        assert re.search(rf"\b{name}\b", block)
+        assert re.search(rf"\b{name}\b", block), f"G1/R1: GlyphInferenceRecord missing {name}"
+    for nested in (
+        "imageBBox",
+        "mappedSourceBBox",
+        "mappedInsideSource",
+        "cropWidth",
+        "cropHeight",
+        "scaleFromSource",
+    ):
+        assert re.search(rf"\b{nested}\b", block), f"G1/R1: roi envelope missing {nested}"
+
 
 
 def test_roi_geometry_normalized_for_export_g2(client):
