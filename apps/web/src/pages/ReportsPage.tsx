@@ -147,9 +147,25 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate, runId: sharedR
         conclusion: model.primary ? { method: model.method, primaryScope: model.primary.primaryScope, scopes: model.primary.scopes, n: model.primary.n, processedN: model.primary.processedN, passthroughN: model.primary.passthroughN, undeterminedN: model.primary.undeterminedN, grade: model.primaryGrade.grade, gradeReasons: model.primaryGrade.reasons } : null,
         deltaByMethod: model.panels.filter(p => p.metric.delta).map(p => ({ metric: p.metric.key, items: p.items.map(i => ({ method: i.method, primaryScope: i.primaryScope, all: strip(i.scopes.all), processed: strip(i.scopes.processed), passthrough: strip(i.scopes.passthrough), n: i.n, processedN: i.processedN, passthroughN: i.passthroughN, undeterminedN: i.undeterminedN, negativeProcessedN: i.negativeProcessedN })) })),
         representativeRule: model.representative.rule, limitations: model.batch.registry.limitations || [], notes: model.notes,
+        failureRetention: {
+          policy: '负提升与失败记录均保留，未抽样、未删除（D-07 / RF-6）',
+          primaryMethod: model.primary ? {
+            method: model.method,
+            negativeProcessedN: model.primary.negativeProcessedN,
+            failedN: model.primary.failedN,
+            passthroughN: model.primary.passthroughN,
+            undeterminedN: model.primary.undeterminedN,
+            processedN: model.primary.processedN,
+          } : null,
+          diagnosis: diagnosisNow.state === 'ok' ? {
+            diagnosisVersion: diagnosisNow.data.diagnosisVersion || null,
+            negativeLiftCount: diagnosisNow.data.negativeLiftCount ?? null,
+            method: diagnosisNow.data.method || null,
+          } : { state: diagnosisNow.state, message: 'message' in diagnosisNow ? diagnosisNow.message : null },
+        },
       } : null,
       glyphEvaluation: glyph.state === 'ok' ? glyph.data : null,
-      note: '无配对真值时，诊断变化量不代表修复质量；残字建议须经人工核实。',
+      note: '无配对真值时，诊断变化量不代表修复质量；残字建议须经人工核实。导出含 failureRetention，与页面失败案例列表口径一致。',
     };
     const href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
     const link = document.createElement('a'); link.href = href; link.download = `${data.reportId}-${tag}.json`.replace(/[\\/:*?"<>|\s]+/g, '_'); link.click();

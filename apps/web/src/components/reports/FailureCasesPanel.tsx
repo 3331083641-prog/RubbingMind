@@ -8,7 +8,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import type { GlobalModel } from './data/globalModel';
 import { caseKeyOf } from './data/globalModel';
-import { appliedStatus, baselineMap, diagnosisConsistency, isPassthroughStatus, ReportApi, rowDelta } from './data/reportData';
+import { appliedStatus, baselineMap, baselineOf, diagnosisConsistency, isPassthroughStatus, ReportApi, rowDelta } from './data/reportData';
 import type { Derived, Diagnosis, Loadable, NlcCase, NlcFile } from './data/types';
 import { degradationLabel, methodLabel } from './data/labels';
 import { signed } from './format';
@@ -69,6 +69,49 @@ export const FailureCasesPanel: React.FC<Props> = ({ model, diagnosis, setFilter
       <p className="text-[11px] text-slate-400" data-testid="nlc-source">测量原因（E-04）：{nlc.state === 'ok' ? `${nlc.data.file.measuredCriteriaVersion}，来源 ${nlc.data.source}` : nlc.state === 'loading' ? '读取中…' : retest ? '本批没有图像，像素级量不可测；没有 NLC 文件。' : `未接入（${nlc.message}）`}</p>
       {!model.batch.hasImages && <p className="text-[11px] text-slate-400">本批次只保存了数值，没有失败案例图像；不使用其他批次的图代替。</p>}
     </section>
+
+    {model.batch.hasImages && negatives.length > 0 && (
+      <section aria-label="负提升样例图像" className="rounded-xl border border-cinnabar/20 bg-[#0f1418] p-4 space-y-3" data-testid="failure-image-gallery">
+        <h3 className="font-serif text-cinnabar-light text-sm">负提升样例图（最差 {Math.min(6, negatives.length)} 条 · 仅本批资产）</h3>
+        <p className="text-[11px] text-slate-400">左→右：受控参考 / 退化输入 / 方法输出。图加载失败保持空位，不借用其他批次。点击卡片在总览打开该 case。</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
+          {negatives.slice(0, 6).map(({ r, d, s }) => {
+            const id = model.batch.id;
+            const base = baselineOf(r, map);
+            const inputFile = r.input || base?.output || null;
+            const panes: { key: string; label: string; file: string | null }[] = [
+              { key: 'ref', label: '参考', file: r.reference || null },
+              { key: 'in', label: '输入', file: inputFile },
+              { key: 'out', label: '输出', file: r.output && !r.error ? r.output : null },
+            ];
+            return (
+              <button type="button" key={`${caseKeyOf(r)}-${r.method}-gal`}
+                className="text-left rounded-lg border border-slate-700 hover:border-cinnabar/50 bg-[#0c1013] p-2 space-y-1"
+                data-testid={`failure-thumb-${caseKeyOf(r)}`}
+                onClick={() => open(caseKeyOf(r), r.method)}>
+                <p className="text-[10px] text-slate-300 truncate">{methodLabel(r.method)} · {r.sampleId} · {degradationLabel(r.degradation)}{r.strength != null ? ` ${r.strength}` : ''} · Δ {signed(d, 2, 'dB')}</p>
+                <div className="flex gap-1">
+                  {panes.map(p => (
+                    <figure key={p.key} className="flex-1 min-w-0">
+                      {p.file ? (
+                        <img src={ReportApi.assetUrl(id, p.file)} alt={`${p.label} ${r.sampleId}`}
+                          className="w-full aspect-square object-contain bg-[#0A0D12] rounded border border-slate-800"
+                          loading="lazy"
+                          onError={e => { const el = e.currentTarget as HTMLImageElement; el.style.opacity = '0.25'; el.alt = `${p.label}（图不可用）`; }} />
+                      ) : (
+                        <div className="w-full aspect-square rounded border border-dashed border-slate-700 flex items-center justify-center text-[9px] text-slate-500" data-testid={`failure-thumb-empty-${p.key}`}>无{p.label}</div>
+                      )}
+                      <figcaption className="text-[9px] text-center text-slate-500 mt-0.5">{p.label}</figcaption>
+                    </figure>
+                  ))}
+                </div>
+                <div className="text-[9px] text-slate-500"><StatusTag status={s} source={r.statusSource} detail={r.appliedStatusDetail} /></div>
+              </button>
+            );
+          })}
+        </div>
+      </section>
+    )}
 
     <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
       <section aria-label="负提升记录" className="xl:col-span-2 rounded-xl border border-gold/20 bg-[#0f1418] p-4 space-y-2">
