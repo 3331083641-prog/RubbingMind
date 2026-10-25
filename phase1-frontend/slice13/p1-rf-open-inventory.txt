@@ -1,0 +1,36 @@
+Phase1 / RF open inventory after align 6f25bfc (slice13, 2026-10-25 Asia/Shanghai)
+
+ALIGN:
+- Rebase: docs tip (was 21a3dc7 on 19255db) --onto 6f25bfc897f5b3c1c444e52b0e384bda84c11d83 (feature tip; eval ES-3 / R7 stamp)
+- Prior FF path still in ancestry: 5a7b20c -> 12f8883 AB-8 -> 7e080c5 merge AB-8 -> 19255db -> 6f25bfc
+- branch: agent/report-frontend
+- worktree: D:\RubbingMind\wt\rm-report-frontend
+- No App.tsx / api.ts / urlState.ts / HomePage.tsx / types contract edits this round
+- No push; did not touch 5173/8000/5180; 8720/5720 not running (nothing to stop)
+
+CODE SCAN (slice13) — no stackable report-frontend code tip:
+
+DONE-enough already on tip (evidence != product close; do not verbally close ACCEPTANCE):
+- algorithmOutputMode UI @5195b5b merged via 5a7b20c (decision-chain / print / export algorithmLayer)
+- AB-8 health samples_* : App.tsx global banner data-testid=health-samples-banner + SteleService.getHealth()
+  -> report page does NOT need a duplicate panel; App.tsx is out of this Agent scope
+- BR-09 EvidenceSearch includeDemo checkbox + banners already in tree
+- reportStatus stele_retired / run_not_found / stele_not_found paths already in reportData + ArtifactRunReport
+- RF-2..RF-7, RF-9..RF-11 prior; P1-1/4/5/6/7/8/9/11 prior evidence (product gate still open)
+
+OPEN / blocked (no frontend-codeable gap this round):
+- RF-8: awaiting user screenshot confirm; HomePage NOT modified; object-contain @L245/L250; NOT self-closed
+  shots: D:\RubbingMind\screenshots\product-upgrade\phase1-frontend\home-core-cards_{before,after}_{1920w,390w}.png
+  + slice10 rf8_home_core_cards_1920x1080.png
+  NOTE: FRONTEND_INTEGRATION_CHECKLIST.md §4 "用户已确认" is STALE vs Green/ACCEPTANCE; treat as still open
+- ACCEPTANCE_MATRIX Phase1 P1-* remain 未验证 / 验证可开 at product level (evidence != close)
+- AB-8 report-page-specific UI: not required (global App banner covers ops samples_*); do not re-implement under ReportsPage
+
+Action: docs tip only (slice13 inventory); do not pad unrelated code.
+
+Evidence paths (prior, still valid):
+- phase1-frontend/slice12/* (algoMode UI)
+- phase1-frontend/slice10/* / slice7/* / slice9/*
+- phase1-frontend/slice13/evidence.txt
+- phase1-frontend/slice13/p1-rf-open-inventory.txt
+- D:\RubbingMind\screenshots\product-upgrade\phase1-frontend\
