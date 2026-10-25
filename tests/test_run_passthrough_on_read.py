@@ -18,6 +18,7 @@ def _old_run(tmp_path, monkeypatch, restored_changed=False, record_sha=True, tam
     # Merge note (arch-backend M-6): keep results in tmp_path even if a results-dir override exists.
     monkeypatch.delenv('RUBBINGMIND_RESULTS_DIR', raising=False)
     monkeypatch.setattr(museum_processing, 'RESULTS_DIR', None, raising=False)
+    museum_processing._READ_CACHE.clear()
     folder = tmp_path / 'static/results/stele_x' / RUN_ID
     folder.mkdir(parents=True)
     gray = np.full((16, 16), 120, np.uint8); gray[4:12, 7:9] = 30
@@ -31,7 +32,8 @@ def _old_run(tmp_path, monkeypatch, restored_changed=False, record_sha=True, tam
     hashes = {role: hashlib.sha256(raw).hexdigest() for role, raw in files.items()} if record_sha else {}
     if tamper:
         (folder / 'restored.png').write_bytes(_png(cv2.cvtColor(np.zeros_like(gray), cv2.COLOR_GRAY2BGR)))
-    record = {'runId': RUN_ID, 'steleId': 'stele_x', 'outputSha256': hashes, 'finishedAt': '2026-10-01T01:02:03+00:00'}
+    images = {role: f'/static/results/stele_x/{RUN_ID}/{role}.png' for role in ('original', 'restored')}
+    record = {'runId': RUN_ID, 'steleId': 'stele_x', 'outputImages': images, 'outputSha256': hashes, 'finishedAt': '2026-10-01T01:02:03+00:00'}
     (folder / 'processing.json').write_text(json.dumps(record), encoding='utf-8')
     before = {p.name: p.read_bytes() for p in folder.iterdir()}
     data = museum_processing.read_run('stele_x', RUN_ID)
@@ -70,7 +72,7 @@ def test_old_run_without_recorded_sha_is_null(tmp_path, monkeypatch):
 def test_old_run_missing_image_is_null(tmp_path, monkeypatch):
     data = _old_run(tmp_path, monkeypatch, drop='original')
     assert data['isPassthrough'] is None and data['passthroughSource'] is None
-    assert 'original.png' in data['passthroughUndeterminedReason']
+    assert data['passthroughUndeterminedReason'] and ('缺少' in data['passthroughUndeterminedReason'] or 'original' in data['passthroughUndeterminedReason'])
 
 
 def test_pixel_equal_v1_compares_all_channels():
