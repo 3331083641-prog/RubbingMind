@@ -3,7 +3,7 @@
 - 作者：RM-评测科学家（Agent 04+05）
 - 时间：2026-10-25（Asia/Shanghai）
 - 分支：`agent/eval-sci`
-- 当前 tip（写入时）：9eb8406ba1a788a20dc88035fe2eef314afc7b9d（短写 9eb8406）。对齐 feature@c761d54（含 AB-8）后 ES-3/5 续做；NLD slim。若后续仅 docs stamp 提交，门禁以本 ES 交付 tip 或最新 HEAD 为准（见 REVIEW）。
+- 当前 tip（写入时）：4f57eb5ef57cdcb702042ccaa23904dbafcf9648（短写 4f57eb5；FF 对齐 feature@4f57eb5，含 5ba8bef 门禁合入；冒烟 742p/1xfail；R7 仍开只记证据）
 - 机制产物绑定 headCommit：`7623a52a3299b7c948031dfa1f79f04b8eb66d9e`（短写 `7623a52`）
 - 关联：`REPRESENTATIVE_CASES.md`、`REPORT_DATA_SPEC.md` §MEC / E-18、`experiments/mechanism_cases.py`
 
@@ -60,6 +60,8 @@
 
 | 2026-10-25 | 9eb8406（FF feature@c761d54 + ES-3/5 续做） | 7623a52 | tip 超前 mechanism head **135** commits；**仍不重跑** mechanism；仅记证据 |
 
+| 2026-10-25 | 4f57eb5（FF feature@4f57eb5） | 7623a52 | tip 超前 mechanism head **141** commits；**仍不重跑** mechanism；门禁合入后对齐 |
+
 ## 7. 对齐 feature@0654d13 后的开项证据（2026-10-25 13:11 Asia/Shanghai）
 
 | 项 | 值 |
@@ -84,3 +86,16 @@
 | ES-5 | negative_lift_display.json（slim：无 measuredEvidence 复本；指向 NLC） |
 | ES-4 提醒 | 图注 provenance 已挂；PNG 字节仍属旧 headCommit |
 | A24 | 仍 xfail；Phase2 schema 缺口未落地 |
+
+## 9. 对齐 feature@4f57eb5 后开项证据（2026-10-25 14:20 Asia/Shanghai）
+
+| 项 | 值 |
+| --- | --- |
+| 分支 tip | 4f57eb5ef57cdcb702042ccaa23904dbafcf9648 |
+| feature tip | 4f57eb5ef57cdcb702042ccaa23904dbafcf9648（对齐时相同） |
+| mechanism headCommit | 7623a52a3299b7c948031dfa1f79f04b8eb66d9e |
+| tip 相对 head 超前 | **141** commits（git rev-list --count 7623a52..HEAD） |
+| R7 / G7 | **仍开项** — 只记证据，未谎关；未重跑 mechanism_cases.py |
+| pytest | 742 passed / 1 xfailed / 0 failed |
+| A24 | 仍 xfail（	est_a24_export_label_recognized_forbidden_until_schema_exists）；禁伪 Top-k；未改正式 assert |
+| 铁律 | 未 push / 未合 main / 未改 museum_processing |
