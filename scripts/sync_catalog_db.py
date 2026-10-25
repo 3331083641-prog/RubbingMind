@@ -1,19 +1,28 @@
-"""C-08 option A: sync the SQLite `steles` table to the reviewed catalogue (steles28.json).
+"""C-08 option A: apply agent/jinshi's reviewed sync diff (data/catalog/c08_sync_diff.json) to SQLite.
 
-Rules and the diff format follow docs/product-upgrade/C08_SYNC_SPEC.md and
-JINSHI_GOVERNANCE_PLAN.md (RM-金石史料, agent/jinshi). Safety contract (Green 2026-10-19):
+Contract: docs/product-upgrade/C08_SYNC_SPEC.md (RM-金石史料, agent/jinshi@c358724) R1-R6 and the 7
+acceptance conditions, plus Green 2026-10-19:
 
-* Default is a DRY RUN: the database is opened with URI mode=ro and nothing is written.
-  It prints the operations, the basis SHA-256s and a confirmation token
-  (first 16 hex chars of SHA-256 over the canonical diff summary: basis + operations).
-* Writing needs BOTH --apply and confirmation: --confirm <token> (must equal the token of
-  the diff recomputed at apply time) or typing the token at an interactive prompt.
-  --apply also requires an explicit --db (no default target).
-* Before writing: the DB is copied to <db>.<YYYYMMDD-HHMMSS>.bak (Asia/Shanghai), the copy's
-  SHA-256 is verified against the original and recorded in <bak>.json.
-* Operations run in one transaction; `hold` is never executed; nothing outside the list.
-* Post-check: the recomputed diff must have no update/set_null/insert left.
-* --rollback <bak> restores a backup after verifying its recorded SHA-256.
+* INPUT is the diff file (`--diff`, default data/catalog/c08_sync_diff.json, generated read-only by
+  check_catalog_governance.py --emit-sync-diff). Only its operations are executed. The file is validated
+  (schema, op/table/column allowlist, counts) and must equal the operations recomputed by the same rules.
+* Default is a DRY RUN (SQLite opened with URI mode=ro; nothing is written). It re-checks both basis
+  SHA-256 (SPEC §3.2) and prints the operations and a confirmation token.
+* TOKEN = first 16 hex of SHA-256("C-08|" + SHA-256(canonical {basis, operations} of the diff) + "|" +
+  SHA-256(target DB file)). It is bound to BOTH the diff summary and the target DB bytes: if either
+  changes, the token is void. (SPEC §3.4 proposed the first 8 hex of basis.sqliteSha256; Green's
+  diff-summary rule is kept and extended with the DB SHA, see ARCHITECTURE_DECISIONS R2-5.)
+* --apply needs an explicit --db and --confirm <token> or the token typed interactively. Refuses when a
+  -wal/-journal file exists. Backs up to <db>.<YYYYMMDD-HHMMSS>.bak (Asia/Shanghai), verifies and records
+  the backup SHA-256 in <bak>.json, then runs every operation in ONE transaction (any failure rolls back).
+  `hold` and `keep_row` never write; nothing outside the list is touched; no delete, no schema change.
+* Post-check (SPEC §3.6): C08_fieldDiffs == number of hold ops (0 now), C08_extraWithCoordinates == 0,
+  C08_extraInSqlite unchanged (5 retired rows kept). If scripts/check_catalog_governance.py exists it is
+  also run with --summary. A failed post-check restores the verified backup automatically.
+* --rollback <bak> restores a backup after verifying its recorded SHA-256 (SPEC §3.7).
+  RV-AI01: refuses when a -wal/-journal exists or an exclusive lock cannot be taken; backs up the
+  CURRENT db bytes first (SHA recorded) before overwriting.
+  RV-AI04: ALWAYS stop the backend before --apply or --rollback.
 Coordinate values without a source are never printed.
 
 Usage:
@@ -41,6 +50,10 @@ COLUMN_MAP = {'title': 'title', 'dynasty': 'dynasty', 'dynasty_value': 'dynasty_
 REDACTED = '已屏蔽：无来源坐标，不输出数值'
 SHANGHAI = timezone(timedelta(hours=8))
 WRITE_OPS = ('update', 'set_null', 'insert_from_catalogue')
+ALL_OPS = WRITE_OPS + ('hold', 'keep_row')
+DEFAULT_DIFF = CATALOG / 'c08_sync_diff.json'
+COORD_COLUMNS = ['gis_lng', 'gis_lat']
+GOVERNANCE_SCRIPT = ROOT / 'scripts' / 'check_catalog_governance.py'
 
 
 def sha256_file(path) -> str:
@@ -99,26 +112,108 @@ def compute_diff(db: Path, catalog_dir: Path = CATALOG) -> dict:
     return {'schemaVersion': 1, 'item': 'C-08', 'option': 'A', 'basis': basis, 'operations': ops, 'counts': counts}
 
 
-def confirmation_token(diff: dict) -> str:
+def diff_digest(diff: dict) -> str:
     canonical = json.dumps({'basis': diff['basis'], 'operations': diff['operations']}, ensure_ascii=False, sort_keys=True, separators=(',', ':'))
-    return hashlib.sha256(canonical.encode('utf-8')).hexdigest()[:16]
+    return hashlib.sha256(canonical.encode('utf-8')).hexdigest()
+
+
+def confirmation_token(diff: dict, db_sha256: str) -> str:
+    """Bound to the diff summary AND the target DB bytes; either change voids the token."""
+    return hashlib.sha256(f'C-08|{diff_digest(diff)}|{db_sha256}'.encode('utf-8')).hexdigest()[:16]
+
+
+def load_diff(path: Path) -> dict:
+    """Read and validate the reviewed diff list (format of agent/jinshi data/catalog/c08_sync_diff.json)."""
+    if not Path(path).is_file():
+        raise SystemExit(f'差异清单不存在：{path}（请用 check_catalog_governance.py --emit-sync-diff 只读生成；中止，未写入）')
+    diff = _load(path)
+    problems = []
+    if diff.get('schemaVersion') != 1 or diff.get('item') != 'C-08':
+        problems.append('schemaVersion/item 不是 1 / C-08')
+    basis = diff.get('basis') or {}
+    if not basis.get('sqliteSha256') or not basis.get('catalogueSha256'):
+        problems.append('basis 缺少 sqliteSha256 或 catalogueSha256')
+    operations = diff.get('operations')
+    if not isinstance(operations, list):
+        problems.append('operations 不是列表')
+        operations = []
+    for index, op in enumerate(operations):
+        kind = op.get('op')
+        if kind not in ALL_OPS:
+            problems.append(f'第 {index} 项操作 {kind!r} 不在允许范围（不删行、不改 schema）')
+        elif op.get('table') != 'steles' or not op.get('id'):
+            problems.append(f'第 {index} 项操作的表或 id 不合法')
+        elif kind == 'update' and op.get('column') not in COLUMN_MAP:
+            problems.append(f"第 {index} 项 update 的列 {op.get('column')!r} 不在 COLUMN_MAP")
+        elif kind == 'set_null' and op.get('columns') != COORD_COLUMNS:
+            problems.append(f'第 {index} 项 set_null 只能置空 gis_lng/gis_lat')
+    counts = {kind: sum(o.get('op') == kind for o in operations) for kind in ('update', 'hold', 'set_null', 'keep_row', 'insert_from_catalogue')}
+    if diff.get('counts') is not None and diff['counts'] != counts:
+        problems.append(f"counts {diff.get('counts')} 与操作清单 {counts} 不符")
+    if problems:
+        raise SystemExit('差异清单校验失败：' + '；'.join(problems) + '（中止，未写入）')
+    return diff
+
+
+def check_preconditions(db: Path, diff: dict, catalog_dir: Path = CATALOG) -> dict:
+    """SPEC §3.2: both basis SHA-256 must match; the listed operations must equal a fresh recompute."""
+    current = compute_diff(db, catalog_dir)
+    basis, now = diff['basis'], current['basis']
+    if basis['sqliteSha256'] != now['sqliteSha256'] or basis['catalogueSha256'] != now['catalogueSha256']:
+        raise SystemExit('差异清单的 basis SHA-256 与当前 SQLite/目录不一致：请重新生成差异清单（中止，未写入）')
+    if diff['operations'] != current['operations']:
+        raise SystemExit('差异清单的操作与按同一规则重算的结果不同（中止，未写入）')
+    return current
 
 
 def check_external_diff(diff: dict, path: Path) -> None:
-    """A diff list produced by check_catalog_governance.py must describe exactly the current state."""
-    external = _load(path)
-    if external.get('basis', {}).get('sqliteSha256') != diff['basis']['sqliteSha256'] or \
-            external.get('basis', {}).get('catalogueSha256') != diff['basis']['catalogueSha256']:
+    """Back-compat helper: the external list must describe exactly the recomputed state."""
+    external = load_diff(path)
+    if external['basis'].get('sqliteSha256') != diff['basis']['sqliteSha256'] or \
+            external['basis'].get('catalogueSha256') != diff['basis']['catalogueSha256']:
         raise SystemExit('差异清单的 basis SHA-256 与当前 SQLite/目录不一致：请重新生成差异清单（中止，未写入）')
-    if external.get('operations') != diff['operations']:
+    if external['operations'] != diff['operations']:
         raise SystemExit('差异清单的操作与本脚本按同一规则重算的结果不同（中止，未写入）')
+
+
+def governance_summary(db: Path, catalog_dir: Path = CATALOG) -> dict:
+    """Same counts as check_catalog_governance.py --summary (C08_*), computed read-only."""
+    catalogue = {r['id']: r for r in _load(catalog_dir / 'steles28.json')}
+    with _ro(db) as conn:
+        conn.row_factory = sqlite3.Row
+        rows = {r['id']: dict(r) for r in conn.execute('SELECT * FROM steles')}
+    field_diffs = 0
+    for sid in set(rows) & set(catalogue):
+        for column, field in COLUMN_MAP.items():
+            if column in rows[sid] and (rows[sid].get(column) or '') != (catalogue[sid].get(field) or ''):
+                field_diffs += 1
+        if rows[sid].get('gis_lng') is not None or rows[sid].get('gis_lat') is not None:
+            field_diffs += 1
+    extra = [sid for sid in rows if sid not in catalogue]
+    return {'C08_fieldDiffs': field_diffs, 'C08_extraInSqlite': len(extra),
+            'C08_extraWithCoordinates': sum(rows[s].get('gis_lng') is not None or rows[s].get('gis_lat') is not None for s in extra),
+            'C08_missingInSqlite': len(set(catalogue) - set(rows))}
+
+
+def _external_governance_summary(db: Path):
+    if not GOVERNANCE_SCRIPT.is_file():
+        return None
+    import subprocess
+    done = subprocess.run([sys.executable, str(GOVERNANCE_SCRIPT), '--db', str(db), '--summary'], capture_output=True, text=True,
+                          encoding='utf-8', cwd=str(ROOT))
+    try:
+        return json.loads(done.stdout)
+    except ValueError:
+        return {'error': f'check_catalog_governance.py 输出无法解析（exit {done.returncode}）'}
 
 
 def _backup(db: Path) -> Path:
     stamp = datetime.now(SHANGHAI).strftime('%Y%m%d-%H%M%S')
     bak = db.with_name(f'{db.name}.{stamp}.bak')
-    if bak.exists():
-        raise SystemExit(f'备份文件已存在：{bak}（中止，未写入）')
+    n = 0
+    while bak.exists():  # same-second apply+rollback (RV-AI01 pre-backup) must not collide
+        n += 1
+        bak = db.with_name(f'{db.name}.{stamp}-{n}.bak')
     original = sha256_file(db)
     shutil.copy2(db, bak)
     copied = sha256_file(bak)
@@ -159,36 +254,66 @@ def _execute(db: Path, diff: dict, catalog_dir: Path) -> None:
         conn.close()
 
 
-def apply(db: Path, confirm: str | None, catalog_dir: Path = CATALOG, external: Path | None = None, interactive=None) -> dict:
-    for suffix in ('-wal', '-journal'):
-        if db.with_name(db.name + suffix).exists():
-            raise SystemExit(f'检测到 {db.name}{suffix}：数据库可能正被使用，请先停止后端（中止，未写入）')
-    diff = compute_diff(db, catalog_dir)
-    if external:
-        check_external_diff(diff, external)
-    token = confirmation_token(diff)
+def _restore(db: Path, bak: Path) -> None:
+    shutil.copy2(bak, db)
+    if sha256_file(db) != _load(bak.with_name(bak.name + '.json'))['sha256']:
+        raise SystemExit(f'自动恢复后 SHA-256 与备份不一致，请人工处理：{bak}')
+
+
+def apply(db: Path, confirm: str | None, catalog_dir: Path = CATALOG, diff_path: Path | None = None, interactive=None) -> dict:
+    _assert_db_idle(db)  # RV-AI01 / RV-AI04: stop the backend before apply
+    diff = load_diff(diff_path or DEFAULT_DIFF)
+    token = confirmation_token(diff, sha256_file(db))
     if confirm is None:
         interactive = sys.stdin.isatty() if interactive is None else interactive
         if not interactive:
             raise SystemExit('需要 --confirm <令牌> 或交互确认（中止，未写入）')
-        print(render(diff, token))
+        check_preconditions(db, diff, catalog_dir)
+        print(render(diff, token, governance_summary(db, catalog_dir)))
         confirm = input(f'确认写入 {db}？请输入令牌 {token}：').strip()
     if confirm != token:
-        raise SystemExit('确认令牌与当前差异不一致：差异可能已变化，请重新 dry-run（中止，未写入）')
+        raise SystemExit('确认令牌无效：差异清单或目标库已变化（令牌同时绑定差异摘要哈希与目标库 SHA-256），请重新 dry-run（中止，未写入）')
+    check_preconditions(db, diff, catalog_dir)
     if not any(op['op'] in WRITE_OPS for op in diff['operations']):
         return {'applied': False, 'reason': '没有需要写入的操作', 'token': token}
+    before = governance_summary(db, catalog_dir)
     bak = _backup(db)
     _execute(db, diff, catalog_dir)
-    after = compute_diff(db, catalog_dir)
-    leftover = {op: after['counts'][op] for op in WRITE_OPS if after['counts'].get(op)}
-    if leftover:
-        raise SystemExit(f'写后复核失败，仍有 {leftover}；请用 --rollback {bak} 恢复')
+    after = governance_summary(db, catalog_dir)
+    expected = {'C08_fieldDiffs': diff['counts']['hold'] if diff.get('counts') else sum(o['op'] == 'hold' for o in diff['operations']),
+                'C08_extraWithCoordinates': 0, 'C08_extraInSqlite': before['C08_extraInSqlite']}
+    external = _external_governance_summary(db)
+    failures = {key: after[key] for key, value in expected.items() if after[key] != value}
+    if external is not None:
+        failures.update({f'external:{key}': external.get(key) for key, value in expected.items() if external.get(key) != value})
+    if failures:
+        _restore(db, bak)
+        raise SystemExit(f'写后复核失败 {failures}（预期 {expected}）；已从备份自动恢复：{bak}')
     return {'applied': True, 'backup': str(bak), 'backupSha256': _load(bak.with_name(bak.name + '.json'))['sha256'],
             'beforeSha256': diff['basis']['sqliteSha256'], 'afterSha256': sha256_file(db), 'executed': diff['counts'],
-            'postCheck': after['counts'], 'rollback': f'python scripts/sync_catalog_db.py --db "{db}" --rollback "{bak}"'}
+            'postCheck': after, 'postCheckExpected': expected, 'externalGovernanceSummary': external,
+            'rollback': f'python scripts/sync_catalog_db.py --db "{db}" --rollback "{bak}"'}
+
+
+def _assert_db_idle(db: Path) -> None:
+    """RV-AI01: refuse to write/restore when the DB looks in use."""
+    for suffix in ('-wal', '-journal'):
+        if db.with_name(db.name + suffix).exists():
+            raise SystemExit(f'检测到 {db.name}{suffix}：数据库可能正被使用，请先停止后端（中止，未写入）')
+    # Try an exclusive lock via BEGIN EXCLUSIVE; fails if another connection holds a lock.
+    try:
+        conn = sqlite3.connect(db, timeout=0.1, isolation_level=None)
+        try:
+            conn.execute('BEGIN EXCLUSIVE')
+            conn.execute('ROLLBACK')
+        finally:
+            conn.close()
+    except sqlite3.OperationalError as exc:
+        raise SystemExit(f'无法取得数据库排他锁（{exc}）：请先停止后端（中止，未写入）')
 
 
 def rollback(db: Path, bak: Path) -> dict:
+    """Restore a verified backup. RV-AI01: idle check + pre-rollback backup of current bytes."""
     meta_path = bak.with_name(bak.name + '.json')
     if not bak.is_file() or not meta_path.is_file():
         raise SystemExit('备份或其记录文件不存在（中止）')
@@ -197,35 +322,42 @@ def rollback(db: Path, bak: Path) -> dict:
         raise SystemExit('备份文件 SHA-256 与记录不符，拒绝恢复')
     if Path(meta['database']).resolve() != db.resolve():
         raise SystemExit('该备份不属于指定的数据库，拒绝恢复')
+    _assert_db_idle(db)
+    pre = _backup(db)  # backup of CURRENT state before overwrite
     shutil.copy2(bak, db)
     restored = sha256_file(db)
     if restored != meta['sha256']:
         raise SystemExit('恢复后 SHA-256 与备份不一致')
-    return {'restored': str(db), 'sha256': restored, 'from': str(bak)}
+    return {'restored': str(db), 'sha256': restored, 'from': str(bak),
+            'preRollbackBackup': str(pre), 'preRollbackSha256': _load(pre.with_name(pre.name + '.json'))['sha256']}
 
 
-def render(diff: dict, token: str) -> str:
-    lines = [f"C-08 同步预览（dry-run，SQLite 只读）", f"basis: sqlite={diff['basis']['sqliteSha256']} catalogue={diff['basis']['catalogueSha256']}",
-             f"rows: sqlite={diff['basis']['sqliteRows']} catalogue={diff['basis']['catalogueRecords']}", f"counts: {diff['counts']}"]
+def render(diff: dict, token: str, summary: dict | None = None) -> str:
+    lines = ['C-08 同步预览（dry-run，SQLite 只读 mode=ro）', f"差异清单 basis: sqlite={diff['basis']['sqliteSha256']} catalogue={diff['basis']['catalogueSha256']}",
+             f"前置校验：basis 两个 SHA-256 与当前一致；操作清单与重算一致", f"counts: {diff.get('counts')}"]
+    if summary:
+        lines.append(f'当前治理计数: {summary}')
     for op in diff['operations']:
         if op['op'] == 'update':
             lines.append(f"  [R1 update] {op['id']}.{op['column']}: {op['from']!r} -> {op['to']!r}")
         elif op['op'] == 'hold':
-            lines.append(f"  [R2 hold]   {op['id']}.{op['column']}: 目录值核验状态 {op['catalogueVerification']}，不写入")
+            lines.append(f"  [R2 hold]   {op['id']}.{op['column']}: 目录值核验状态 {op.get('catalogueVerification')}，不写入")
         elif op['op'] == 'set_null':
             lines.append(f"  [{op['rule']} set_null] {op['id']}.gis_lng/gis_lat: {REDACTED} -> NULL")
         elif op['op'] == 'insert_from_catalogue':
             lines.append(f"  [R6 insert] {op['id']}")
         else:
             lines.append(f"  [{op['rule']} keep_row] {op['id']}")
-    lines.append(f'确认令牌: {token}   （写入需: --db <库> --apply --confirm {token}）')
+    lines.append(f'差异摘要哈希: {diff_digest(diff)}')
+    lines.append(f'确认令牌: {token}   （绑定差异摘要与目标库 SHA-256；写入需: --db <库> --apply --confirm {token}）')
     return '\n'.join(lines)
 
 
 def main(argv=None) -> int:
-    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0],
+        epilog='RV-AI04: 执行 --apply 或 --rollback 之前必须先停止后端（释放 SQLite 连接）。', formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('--db')
-    parser.add_argument('--diff', help='可选：check_catalog_governance.py --emit-sync-diff 生成的差异清单，必须与重算结果一致')
+    parser.add_argument('--diff', help='差异清单（默认 data/catalog/c08_sync_diff.json，由 check_catalog_governance.py --emit-sync-diff 生成）')
     parser.add_argument('--json', action='store_true', help='dry-run 以 JSON 输出')
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument('--apply', action='store_true')
@@ -242,14 +374,19 @@ def main(argv=None) -> int:
     if args.rollback:
         print(json.dumps(rollback(db, Path(args.rollback)), ensure_ascii=False, indent=2))
         return 0
+    diff_path = Path(args.diff) if args.diff else DEFAULT_DIFF
     if args.apply:
-        print(json.dumps(apply(db, args.confirm, external=Path(args.diff) if args.diff else None), ensure_ascii=False, indent=2))
+        print(json.dumps(apply(db, args.confirm, diff_path=diff_path), ensure_ascii=False, indent=2))
         return 0
-    diff = compute_diff(db)
-    if args.diff:
-        check_external_diff(diff, Path(args.diff))
-    token = confirmation_token(diff)
-    print(json.dumps({**diff, 'confirmationToken': token, 'dryRun': True}, ensure_ascii=False, indent=2) if args.json else render(diff, token))
+    diff = load_diff(diff_path)
+    check_preconditions(db, diff)
+    token = confirmation_token(diff, sha256_file(db))
+    summary = governance_summary(db)
+    if args.json:
+        print(json.dumps({**diff, 'diffFile': str(diff_path), 'diffDigest': diff_digest(diff), 'targetSha256': sha256_file(db),
+                          'confirmationToken': token, 'governanceSummary': summary, 'dryRun': True}, ensure_ascii=False, indent=2))
+    else:
+        print(render(diff, token, summary))
     return 0
 
 

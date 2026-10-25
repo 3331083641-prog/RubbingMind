@@ -47,7 +47,7 @@ export interface RunChangeStatus {
   /** Green 2026-10-19 (a): working-gray reference only; never decides isPassthrough. null = undeterminable. */
   grayChangedPixelCount?: number | null;
   grayChangedPixelRatio?: number | null;
-  grayCriterion?: 'working-gray-pixel-equal-v1' | null;
+  grayCriterion?: 'gray-bt601-pixel-equal-v1' | null;
   grayCriterionRule?: string | null;
   graySource?: 'recorded' | 'computed-on-read' | null;
   effectiveParameters?: Record<string, unknown> | null;
@@ -187,6 +187,13 @@ export const SteleService = {
   async getExperimentDiagnosis(experimentId: string): Promise<ExperimentDiagnosis> {
     const res = await fetch(`/api/experiments/${encodeURIComponent(experimentId)}/diagnosis`);
     if (!res.ok) throw new Error('该批次诊断不可用');
+    return res.json();
+  },
+  /** BR-08 / C-16: includeDemo defaults to false (synthetic demo samples excluded). */
+  async queryEvidence(question: string, steleId?: string, includeDemo = false): Promise<Record<string, unknown>> {
+    const res = await fetch('/api/research/query', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question, steleId: steleId || null, includeDemo }) });
+    if (!res.ok) throw new Error('检索不可用');
     return res.json();
   },
   async listRuns(id: string): Promise<ProcessingRun[]> {

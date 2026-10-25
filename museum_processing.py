@@ -5,6 +5,7 @@ from pathlib import Path
 from fastapi import HTTPException
 from catalog import BASE, METRIC_KEYS
 from degradation_analysis import VERSION as ADAPTIVE_VERSION, change_stats
+import os
 from runtime_paths import results_override
 
 # Green 2026-10-19: one criterion name for runs and experiments. pixel-equal-v1 = both
@@ -12,11 +13,39 @@ from runtime_paths import results_override
 # equal shape and every value equal. No gray conversion, no resizing.
 RUN_PASSTHROUGH_CRITERION='pixel-equal-v1'
 COMPARED_IMAGES=['original','restored']
+
+# RV-AI05: computed-on-read refuses oversized images (configurable; defaults keep typical museum runs).
+COMPUTED_ON_READ_MAX_PIXELS = int(os.environ.get('RUBBINGMIND_COMPUTED_ON_READ_MAX_PIXELS', str(40_000_000)))  # ~40 MP per image
+COMPUTED_ON_READ_MAX_BYTES = int(os.environ.get('RUBBINGMIND_COMPUTED_ON_READ_MAX_BYTES', str(128 * 1024 * 1024)))  # 128 MiB for both files
+
+
+def _oversize_reason(paths):
+    """Return an undetermined reason if either file or decoded array would exceed the limits; else None."""
+    total = 0
+    for role, path in paths.items():
+        size = path.stat().st_size
+        total += size
+        if size > COMPUTED_ON_READ_MAX_BYTES:
+            return f'读取时计算拒绝：{role} 文件 {size} 字节超过上限 {COMPUTED_ON_READ_MAX_BYTES}（RUBBINGMIND_COMPUTED_ON_READ_MAX_BYTES）'
+    if total > COMPUTED_ON_READ_MAX_BYTES:
+        return f'读取时计算拒绝：两张图合计 {total} 字节超过上限 {COMPUTED_ON_READ_MAX_BYTES}（RUBBINGMIND_COMPUTED_ON_READ_MAX_BYTES）'
+    return None
+
+
+def _oversize_pixels_reason(before, after):
+    for name, image in (('original', before), ('restored', after)):
+        if image is None: continue
+        pixels = int(image.shape[0] * image.shape[1])
+        if pixels > COMPUTED_ON_READ_MAX_PIXELS:
+            return f'读取时计算拒绝：{name} 解码后 {pixels} 像素超过上限 {COMPUTED_ON_READ_MAX_PIXELS}（RUBBINGMIND_COMPUTED_ON_READ_MAX_PIXELS）'
+    return None
+
 # Green 2026-10-19 (a): a working-gray count is reported next to pixel-equal-v1 for reference only.
 # It never decides isPassthrough / outputMode / the "本次未改动原图" wording.
-GRAY_CRITERION='working-gray-pixel-equal-v1'
-GRAY_CRITERION_RULE=('两张图各自按处理管线同一灰度化（algorithm_engine.process_rubbing 的 cv2.cvtColor(BGR→GRAY)；'
-                     '单通道图不转换，四通道先去掉 alpha）后，形状相同则逐像素比较；仅供参考，不决定 isPassthrough。')
+GRAY_CRITERION='gray-bt601-pixel-equal-v1'
+GRAY_CRITERION_RULE=('gray-bt601-pixel-equal-v1：BGR→GRAY = BT.601（OpenCV cvtColor COLOR_BGR2GRAY / COLOR_BGRA2GRAY，'
+'Y=0.299·R+0.587·G+0.114·B）；单通道原样。禁止用 IMREAD_GRAYSCALE 读图再比（AUDIT 的 644816 即此误算）。'
+'仅并列显示，不决定 isPassthrough / outputMode / “本次未改动原图”。')
 GRAY_FIELDS=('grayChangedPixelCount','grayChangedPixelRatio','grayCriterion','grayCriterionRule','graySource')
 CHANGE_FIELDS=('isPassthrough','changedPixelCount','totalPixelCount','changedPixelRatio','maxAbsDiff','meanAbsDiff',
                'passthroughCriterion','passthroughSource','passthroughUndeterminedReason')+GRAY_FIELDS
@@ -39,9 +68,12 @@ def _undetermined(reason):
 
 
 def _working_gray(image):
+    """SPEC v3.1: BT.601 via OpenCV cvtColor (not IMREAD_GRAYSCALE)."""
     import cv2
     if image.ndim==2:return image
-    if image.shape[2]==1:return image[:,:,0]
+    channels=image.shape[2]
+    if channels==1:return image[:,:,0]
+    if channels==4:return cv2.cvtColor(image,cv2.COLOR_BGRA2GRAY)
     return cv2.cvtColor(image[:,:,:3],cv2.COLOR_BGR2GRAY)
 
 
@@ -111,13 +143,21 @@ def computed_on_read_status(stele_id,run_id,data):
     paths={role:_run_file(stele_id,run_id,images.get(role)) for role in ('original','restored')}
     if None in paths.values():
         return _undetermined('该运行保存于判据引入前，本地缺少输入或输出图像')
+    limit=_oversize_reason(paths)
+    if limit:return _undetermined(limit)
     key=tuple((str(p),p.stat().st_mtime_ns,hashes[r]) for r,p in sorted(paths.items()))
     if key in _READ_CACHE:return dict(_READ_CACHE[key])
     raw={role:_verified_bytes(path,hashes[role]) for role,path in paths.items()}
     if raw['original'] is None or raw['restored'] is None:
         status=_undetermined('该运行保存于判据引入前，本地图像与记录的 SHA-256 不一致，拒绝计算')
     else:
-        status=run_change_status(raw['original'],raw['restored'],source='computed-on-read')
+        before=_decode_full(raw['original']);after=_decode_full(raw['restored'])
+        pixels=_oversize_pixels_reason(before,after)
+        if pixels:status=_undetermined(pixels)
+        elif before is None or after is None:status=_undetermined('输入或输出图像无法解码')
+        else:
+            # reuse already-decoded arrays via run_change_status on the verified bytes (decode once more is cheap vs I/O)
+            status=run_change_status(raw['original'],raw['restored'],source='computed-on-read')
     if len(_READ_CACHE)>512:_READ_CACHE.clear()
     _READ_CACHE[key]=dict(status)
     return status

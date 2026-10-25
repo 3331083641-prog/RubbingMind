@@ -23,7 +23,7 @@ def test_color_input_gray_output_full_channel_changed_gray_unchanged():
     assert status['isPassthrough'] is False and status['changedPixelCount'] == 60 and status['changedPixelRatio'] == 1.0
     assert status['passthroughCriterion'] == 'pixel-equal-v1'
     assert status['grayChangedPixelCount'] == 0 and status['grayChangedPixelRatio'] == 0
-    assert status['grayCriterion'] == 'working-gray-pixel-equal-v1' and 'BGR→GRAY' in status['grayCriterionRule']
+    assert status['grayCriterion'] == 'gray-bt601-pixel-equal-v1' and 'BGR→GRAY' in status['grayCriterionRule']
     assert status['graySource'] == 'recorded'
     assert museum_processing.output_mode(status) == 'processed'  # gray never decides the mode
 
@@ -57,3 +57,16 @@ def test_gray_computed_on_read_for_recorded_runs_without_gray(tmp_path, monkeypa
     assert run['passthroughSource'] == 'recorded' and run['changedPixelCount'] == 1
     assert run['grayChangedPixelCount'] == 1 and run['graySource'] == 'computed-on-read'
     assert (folder / 'processing.json').read_bytes() == before
+
+
+
+def test_bgra_uses_bgra2gray_formula():
+    """4-channel input: gray via COLOR_BGRA2GRAY (SPEC v3.1); full-channel compare is undetermined vs 3-ch output."""
+    bgr = np.zeros((4, 4, 3), np.uint8); bgr[:] = (10, 20, 30)
+    bgra = np.dstack([bgr, np.full((4, 4), 200, np.uint8)])
+    gray = cv2.cvtColor(bgra, cv2.COLOR_BGRA2GRAY)
+    restored = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
+    status = museum_processing.run_change_status(_enc(bgra), _enc(restored))
+    assert status['isPassthrough'] is None  # (4,4,4) vs (4,4,3)
+    assert status['grayCriterion'] == 'gray-bt601-pixel-equal-v1'
+    assert status['grayChangedPixelCount'] == 0 and status['grayChangedPixelRatio'] == 0.0
