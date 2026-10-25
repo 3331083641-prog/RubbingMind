@@ -12,6 +12,20 @@ MARKER_UNEVALUATED = "未评测"
 STATUS_NOT_EVALUATED = "not_evaluated"
 
 
+def has_paired_reference(group: Mapping[str, Any], metric: str = "psnr") -> bool:
+    """True when GainValueN shows a paired degraded/reference measurement exists.
+
+    ES-3 / iron rule: without a paired reference, do not report PSNR/SSIM gain claims.
+    """
+    n = group.get(f"{metric}GainValueN")
+    if n is None:
+        return False
+    try:
+        return int(n) > 0
+    except (TypeError, ValueError):
+        return False
+
+
 def may_claim_positive_lift(
     *,
     ci_low: float | None,
@@ -37,9 +51,11 @@ def lift_claim_label(group: Mapping[str, Any], metric: str = "psnr") -> str:
     low = group.get(f"{metric}GainCI95Low")
     reliable = group.get("ciReliable")
     n = group.get("artifactN")
+    if not has_paired_reference(group, metric):
+        return MARKER_UNEVALUATED
     if may_claim_positive_lift(ci_low=low, ci_reliable=reliable, artifact_n=n):
         return "positive_lift_ci_excludes_zero"
-    if low is None or group.get(f"{metric}GainValueN") in (0, None):
+    if low is None:
         return MARKER_UNEVALUATED
     return "no_positive_lift_claim"
 
@@ -99,8 +115,11 @@ def annotate_ci_lift_claims(ci_payload: Mapping[str, Any], metric: str = "psnr")
     out = dict(ci_payload)
     out["groups"] = annotated
     out["liftClaimSummary"] = summarize_lift_claims({"groups": annotated}, metric)
+    out["liftClaimMetric"] = metric
     out["liftClaimRule"] = (
-        "only claim lift when CI lower bound > 0 and ciReliable and artifactN>=minReliable"
+        "only claim lift when paired reference exists and CI lower bound > 0 "
+        "and ciReliable and artifactN>=minReliable; primary export metric is psnr "
+        "(SSIM CI alone must not invent positive lift)"
     )
     return out
 

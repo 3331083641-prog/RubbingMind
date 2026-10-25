@@ -63,3 +63,25 @@
 - pytest：python -m pytest tests/ -q --tb=no → **747 passed / 1 xfailed / 0 failed**；XFAIL = A24 export label
 - ES-3/4/5 契约测试仍绿；bootstrap **未**重算；R7/A24 **勿谎关**
 - slice13 随 feature 带入（evidence + p1-rf-open-inventory；RF-8 仍开，评测侧不关）
+
+
+## 对齐 feature@46c7ded 后 ES-3/4/5 实质续做（2026-10-25 17:40 Asia/Shanghai）
+
+- 对齐基线：feature/product-grade-upgrade@46c7ded94c7244a8fd410501a672f9a7c28cc963（窄冒烟绿；本 tip parent=46c7ded）
+- 本 tip 相对 mechanism head `7623a52` 超前：**188** commits（`git rev-list --count 7623a52..HEAD` = tip HEAD 实测；与文档一致）
+- **非 stamp**：契约/测试实质改动，非纯 lag 续记
+
+### 本轮落地
+
+| ID | 本轮 | 仍开 |
+|---|---|---|
+| ES-3 | `has_paired_reference`；无配对参考不得报 PSNR/SSIM 正提升；`lift_claim_label` 先查配对；`annotate_ci_lift_claims` 记 `liftClaimMetric=psnr`；冻结 claimCounts（v2: 35/197/92；v2-text: 35/191/98）与 bootstrap=1000/seed=20261019/artifactN=14/groups=324；summary 必须等于 PSNR 计数且 **≠** SSIM 计数（禁 SSIM 顶替提升口径） | bootstrap **未**重算；数据层仍进行中 |
+| ES-4 | 全量 case（非抽样）图注字段 + PNG 存在性断言；`captionProvenance.pngBytesUntouched=true` 再核 | R7 机制未重跑；head 仍 7623a52 |
+| ES-5 | display 行与 NLC **1:1**（caseId/method/split/degradation/psnrDelta/primaryMeasuredCauses）；rule 仅次列；slim 无 measuredEvidence 本体 | 口径伴生已挂；不伪关 |
+| A24 | 仍 xfail + schema 缺口证据测试 | **勿假关**；禁伪绿 Top-k/拒识 |
+| R7 | 只记账 lag=188；未重跑 `mechanism_cases.py` | **仍开** |
+
+### 禁令（维持）
+
+- 无配对参考不报 PSNR/SSIM 增益结论；spans_zero/negative/不可靠 CI 不得写成正提升
+- 不改 museum_processing / 馆藏与实验原始数据；不 push；不合 main；不作废 tip 续写

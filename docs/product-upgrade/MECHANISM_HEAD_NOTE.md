@@ -70,6 +70,7 @@
 
 | 2026-10-25 | 6f25bfc（parent=19255db） | 7623a52 | tip 超前 mechanism head **185** commits；**仍不重跑** mechanism；见 §16 |
 | 2026-10-25 | （本 tip，parent=bd7303e） | 7623a52 | tip 超前 mechanism head **187** commits；**仍不重跑** mechanism；见 §17；取代误标186的 fa5bf1c |
+| 2026-10-25 | （本 tip，parent=46c7ded）| 7623a52 | tip 超前 mechanism head **188** commits；**仍不重跑** mechanism；见 §18；ES 配对门禁/全量断言 |
 
 ## 7. 对齐 feature@0654d13 后的开项证据（2026-10-25 13:11 Asia/Shanghai）
 
@@ -222,3 +223,17 @@ egative_lift_display.json 仍在；规则次级口径维持 |
 | ES-4 | 图注 provenance 已挂；pngBytesUntouched；head 落后 tip |
 | ES-5 | negative_lift_display 口径再核；measured 主 / rule 次 |
 | 铁律 | 未 push / 未改 main / 未碰 museum_processing / 未改馆藏影像与实验原始数据 / 不作废 tip 续写 |
+
+
+## 18. 对齐 feature@46c7ded 后开项（2026-10-25 17:40 Asia/Shanghai）
+
+| 项 | 值 |
+| --- | --- |
+| 对齐基线 tip | 46c7ded94c7244a8fd410501a672f9a7c28cc963（feature 窄冒烟绿；本 tip parent） |
+| 本 tip | agent/eval-sci HEAD（parent=46c7ded94c7244a8fd410501a672f9a7c28cc963；以 git rev-parse HEAD 为准） |
+| mechanism headCommit | 7623a52a3299b7c948031dfa1f79f04b8eb66d9e |
+| tip 相对 head 超前 | **188** commits（git rev-list --count 7623a52..HEAD = tip HEAD 实测） |
+| R7 / G7 | **仍开着** — 只记证据，勿假关；未重跑 mechanism_cases.py；不得宣称机制 PNG 与 tip 字节一致 |
+| A24 | 仍 xfail；禁伪绿 Top-k |
+| ES-3/4/5 | 本 tip 落地配对参考门禁 + 全量图注/NLC 对齐测试；bootstrap 未重算 |
+| 铁律 | 未 push / 未改 main / 未碰 museum_processing / 非纯 stamp |

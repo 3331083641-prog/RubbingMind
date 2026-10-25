@@ -12,7 +12,9 @@ import pytest
 
 from experiments.eval_export_contract import (
     MARKER_UNRECORDED,
+    MARKER_UNEVALUATED,
     STATUS_NOT_EVALUATED,
+    has_paired_reference,
     lift_claim_label,
     may_claim_positive_lift,
     negative_lift_display,
@@ -351,3 +353,150 @@ def test_a24_schema_still_absent_keep_xfail_evidence():
         if any(n in text for n in needles):
             hits.append(p.name)
     assert hits == [], f"A24 schema markers unexpectedly present: {hits}"
+
+
+# ----- ES-3/4/5 continuation gates (2026-10-25; no bootstrap recompute) -----
+
+# Frozen claimCounts from ES_EVAL_PROGRESS (read-only derived; do not invent).
+ES3_CLAIM_COUNTS = {
+    "2026-10-17-v2": {
+        "positive_lift_ci_excludes_zero": 35,
+        "no_positive_lift_claim": 197,
+        MARKER_UNEVALUATED: 92,
+    },
+    "2026-10-17-v2-text": {
+        "positive_lift_ci_excludes_zero": 35,
+        "no_positive_lift_claim": 191,
+        MARKER_UNEVALUATED: 98,
+    },
+}
+
+
+@pytest.mark.parametrize("batch", BATCHES)
+def test_es3_claim_counts_frozen_against_progress_table(batch):
+    """ES-3: live summarize + lift_claim_summary.json must match documented claimCounts."""
+    ci = json.loads(_ci_path(batch).read_text(encoding="utf-8"))
+    summary = json.loads((_ci_path(batch).parent / "lift_claim_summary.json").read_text(encoding="utf-8"))
+    expected = ES3_CLAIM_COUNTS[batch]
+    live = summarize_lift_claims(ci, "psnr")
+    assert live == expected
+    assert summary.get("claimCounts") == expected
+    assert ci.get("bootstrap") == 1000
+    assert ci.get("seed") == 20261019
+    assert ci.get("artifactN") == 14
+    assert ci.get("minReliableArtifacts") == 3
+    assert len(ci.get("groups") or []) == 324
+
+
+@pytest.mark.parametrize("batch", BATCHES)
+def test_es3_unpaired_groups_never_claim_psnr_or_ssim_lift(batch):
+    """Iron rule: no paired reference => do not report PSNR/SSIM positive lift."""
+    ci = json.loads(_ci_path(batch).read_text(encoding="utf-8"))
+    min_reliable = ci.get("minReliableArtifacts") or 3
+    unpaired = 0
+    for g in ci["groups"]:
+        for metric in ("psnr", "ssim"):
+            paired = has_paired_reference(g, metric)
+            label = lift_claim_label(g, metric)
+            if not paired:
+                unpaired += 1
+                assert label == MARKER_UNEVALUATED
+                assert label != "positive_lift_ci_excludes_zero"
+                # Even if CI fields were polluted, gate + paired check must block
+                assert not (
+                    paired
+                    and may_claim_positive_lift(
+                        ci_low=g.get(f"{metric}GainCI95Low"),
+                        ci_reliable=g.get("ciReliable"),
+                        artifact_n=g.get("artifactN"),
+                        min_reliable=min_reliable,
+                    )
+                )
+            else:
+                if label == "positive_lift_ci_excludes_zero":
+                    assert may_claim_positive_lift(
+                        ci_low=g.get(f"{metric}GainCI95Low"),
+                        ci_reliable=g.get("ciReliable"),
+                        artifact_n=g.get("artifactN"),
+                        min_reliable=min_reliable,
+                    )
+    assert unpaired > 0
+
+
+def test_es3_export_summary_is_psnr_primary_not_ssim_invented():
+    """ES-3 export companion counts PSNR only; SSIM must not replace PSNR as 提升口径."""
+    from experiments.eval_export_contract import annotate_ci_lift_claims
+
+    for batch in BATCHES:
+        ci = json.loads(_ci_path(batch).read_text(encoding="utf-8"))
+        summary = json.loads((_ci_path(batch).parent / "lift_claim_summary.json").read_text(encoding="utf-8"))
+        body = annotate_ci_lift_claims(ci, "psnr")
+        assert body.get("liftClaimMetric") == "psnr"
+        psnr_counts = summarize_lift_claims(ci, "psnr")
+        ssim_counts = summarize_lift_claims(ci, "ssim")
+        assert summary.get("claimCounts") == body["liftClaimSummary"] == psnr_counts
+        # Negative control: SSIM-gated counts differ (subset); export must not silently switch metric
+        assert ssim_counts != psnr_counts
+        assert ssim_counts.get("positive_lift_ci_excludes_zero", 0) < psnr_counts.get(
+            "positive_lift_ci_excludes_zero", 0
+        )
+        assert "ssim" not in json.dumps(summary.get("claimCounts"), ensure_ascii=False).lower()
+
+
+@pytest.mark.parametrize("batch", BATCHES)
+def test_es4_all_mechanism_cases_have_caption_fields(batch):
+    """ES-4: every case (not just a sample) carries caption provenance fields."""
+    index = json.loads(_mech_index(batch).read_text(encoding="utf-8"))
+    stamp = index.get("captionProvenance") or {}
+    assert stamp.get("pngBytesUntouched") is True
+    root = ROOT / "experiments" / "results" / batch
+    checked = 0
+    for case in index.get("cases") or []:
+        mech_path = root / case["directory"] / "mechanism.json"
+        assert mech_path.is_file(), mech_path
+        data = json.loads(mech_path.read_text(encoding="utf-8"))
+        assert data.get("headCommit") == MECH_HEAD
+        assert data.get("caseId") == case["caseId"]
+        images = data.get("images") or []
+        assert images, case["caseId"]
+        for entry in images:
+            rel = entry.get("file")
+            if rel in (None, "", MARKER_UNRECORDED):
+                assert entry.get("description") or entry.get("unavailableReason") or rel == MARKER_UNRECORDED
+                continue
+            for key in ("batch", "caseId", "derivedAt", "headCommit", "sourcePath", "captionNote"):
+                assert entry.get(key), f"{case['caseId']} missing {key}"
+            assert entry["batch"] == batch
+            assert entry["caseId"] == case["caseId"]
+            assert entry["headCommit"] == MECH_HEAD
+            img_path = mech_path.parent / Path(str(rel)).name
+            if not img_path.is_file():
+                img_path = mech_path.parent / str(rel)
+            assert img_path.is_file(), f"{case['caseId']} missing image {rel}"
+        checked += 1
+    assert checked == len(index.get("cases") or [])
+    assert checked >= 1
+
+
+@pytest.mark.parametrize("batch", BATCHES)
+def test_es5_display_rows_align_one_to_one_with_nlc(batch):
+    """ES-5: display companion rows align 1:1 with NLC; measured primary / rule secondary."""
+    nlc = json.loads(_nl_path(batch).read_text(encoding="utf-8"))
+    disp = json.loads((_nl_path(batch).parent / "negative_lift_display.json").read_text(encoding="utf-8"))
+    cases = nlc.get("cases") or []
+    rows = disp.get("rows") or []
+    assert disp.get("rowCount") == len(cases) == len(rows)
+    assert disp.get("negativeLiftN") == nlc.get("negativeLiftN") == len(cases)
+    for case, row in zip(cases, rows):
+        assert row.get("caseId") == case.get("caseId")
+        assert row.get("method") == case.get("method")
+        assert row.get("split") == case.get("split")
+        assert row.get("degradation") == case.get("degradation")
+        assert row.get("psnrDelta") == case.get("psnrDelta")
+        assert case.get("psnrDelta") is not None and case["psnrDelta"] < 0
+        assert row.get("primaryMeasuredCauses") == case.get("measuredCauses")
+        sec = row.get("secondaryRuleInferred") or {}
+        assert sec.get("cause") == case.get("ruleInferredCause")
+        assert "ruleInferred" in str(row.get("forbidden")) or "ruleInferredCause" in str(row.get("forbidden"))
+        assert "measuredEvidence" not in row
+        assert row.get("measuredEvidenceCount") == len(case.get("measuredEvidence") or [])
