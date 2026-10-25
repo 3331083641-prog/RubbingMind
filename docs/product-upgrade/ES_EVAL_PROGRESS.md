@@ -2,7 +2,7 @@
 
 - 作者：RM-评测科学家（Agent 04+05）
 - 时间：2026-10-25 13:42 Asia/Shanghai
-- 分支 tip：9782d42（9782d42e9d7ad6a52536e48759a065fd9e043f08）— FF feature@c761d54 + ES-3/5 续做（NLD slim）
+- 分支 tip：9eb8406（9eb8406ba1a788a20dc88035fe2eef314afc7b9d）— FF feature@c761d54 + ES-3/5 续做（NLD slim）
 - 对齐：fast-forward eature/product-grade-upgrade@c761d54（含 reports MechanismPanel / claims 台账）
 - TASK_BOARD 真源：D:\RubbingMind\docs\product-upgrade\TASK_BOARD.md（worktree 外）；本文件为 worktree 内进度镜像，供 Green 监工。
 
@@ -20,7 +20,7 @@ egative_lift_display.json 伴生导出（measured 主列 / ruleInferred 次列�
 
 | ID | 状态 | 证据 |
 |---|---|---|
-| **R7 / G7** | 开 | tip 9782d42 超前 mechanism head 7623a52 **135** commits；见 MECHANISM_HEAD_NOTE §8 |
+| **R7 / G7** | 开 | tip 9eb8406 超前 mechanism head 7623a52 **135** commits；见 MECHANISM_HEAD_NOTE §8 |
 | **A24** | xfail 保持 | 	est_a24_export_label_recognized_forbidden_until_schema_exists；产品/schema 缺口（AB-8 未落地 export label）；勿伪绿；另有 	est_a24_schema_still_absent_keep_xfail_evidence |
 
 ## 明确未做

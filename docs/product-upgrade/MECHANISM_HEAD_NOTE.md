@@ -3,7 +3,7 @@
 - 作者：RM-评测科学家（Agent 04+05）
 - 时间：2026-10-25（Asia/Shanghai）
 - 分支：`agent/eval-sci`
-- 当前 tip（写入时）：9782d42e9d7ad6a52536e48759a065fd9e043f08（短写 9782d42）。对齐 feature@c761d54（含 AB-8）后继续 ES-3/5；本 tip 含 lift_claim_summary / negative_lift_display（slim）。
+- 当前 tip（写入时）：9eb8406ba1a788a20dc88035fe2eef314afc7b9d（短写 9eb8406）。对齐 feature@c761d54（含 AB-8）后 ES-3/5 续做；NLD slim。若后续仅 docs stamp 提交，门禁以本 ES 交付 tip 或最新 HEAD 为准（见 REVIEW）。
 - 机制产物绑定 headCommit：`7623a52a3299b7c948031dfa1f79f04b8eb66d9e`（短写 `7623a52`）
 - 关联：`REPRESENTATIVE_CASES.md`、`REPORT_DATA_SPEC.md` §MEC / E-18、`experiments/mechanism_cases.py`
 
@@ -58,7 +58,7 @@
 | 2026-10-25 | 0f20bf1（7b54e2+） | 7623a52 | merge feature@9d8428e + ROI 核对文档；**仍不重跑** mechanism；禁令保持 |
 | 2026-10-25 | 0654d13（fast-forward feature@0654d13） | 7623a52 | tip 超前 mechanism head **125** commits；**仍不重跑** mechanism；ES-4 仅 JSON 图注 enrichment（pngBytesUntouched） |
 
-| 2026-10-25 | 9782d42（FF feature@c761d54 + ES-3/5 续做） | 7623a52 | tip 超前 mechanism head **135** commits；**仍不重跑** mechanism；仅记证据 |
+| 2026-10-25 | 9eb8406（FF feature@c761d54 + ES-3/5 续做） | 7623a52 | tip 超前 mechanism head **135** commits；**仍不重跑** mechanism；仅记证据 |
 
 ## 7. 对齐 feature@0654d13 后的开项证据（2026-10-25 13:11 Asia/Shanghai）
 
@@ -75,7 +75,7 @@
 
 | 项 | 值 |
 | --- | --- |
-| 分支 tip | 9782d42e9d7ad6a52536e48759a065fd9e043f08 |
+| 分支 tip | 9eb8406ba1a788a20dc88035fe2eef314afc7b9d |
 | 父提交 | c761d546794c428a29c1a1e0f73c55c464d092cf（feature tip / FF 点） |
 | mechanism headCommit | 7623a52a3299b7c948031dfa1f79f04b8eb66d9e |
 | tip 相对 head 超前 | **135** commits（git rev-list --count 7623a52..HEAD） |
