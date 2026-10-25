@@ -137,7 +137,7 @@ export function mergeDer(detail: BatchDetail, der: Loadable<Derived<DerFile>>): 
   const merged = rows.map((r, i) => {
     const d = byIndex.get(i);
     if (!d || d.sampleId !== r.sampleId || d.method !== r.method || d.degradation !== r.degradation) { mismatch++; return r; }
-    return { ...r, appliedStatus: d.appliedStatus, isPassthrough: d.isPassthrough, changedPixelCount: d.changedPixelCount, changedPixelRatio: d.changedPixelRatio, maxAbsDiff: d.maxAbsDiff, byteIdentical: d.byteIdentical, statusSource: 'DER' as const };
+    return { ...r, appliedStatus: d.appliedStatus, isPassthrough: d.isPassthrough, changedPixelCount: d.changedPixelCount, changedPixelRatio: d.changedPixelRatio, maxAbsDiff: d.maxAbsDiff, byteIdentical: d.byteIdentical, appliedStatusDetail: d.appliedStatusDetail ?? null, statusSource: 'DER' as const };
   });
   if (mismatch > 0 || f.rows.length !== rows.length) return { rows: rows.map(r => ({ ...r, statusSource: 'frontend' as const })), source: null, criterion: null, mismatch, problem: `DER 与批次行对不上（${mismatch} 行不一致，DER ${f.rows.length} 行 / 批次 ${rows.length} 行），未采用` };
   return { rows: merged, source: der.data.source, criterion: f.criterion, mismatch: 0, problem: null };
@@ -162,7 +162,9 @@ export function appliedStatus(row: ExperimentRow): StatusResult {
   return { status: na ? 'processed_not_applicable_label' : 'processed', criterion: '输出与输入 SHA-256 不同（前端兜底，DER 未接入）' };
 }
 export const isPassthroughStatus = (s: AppliedStatus) => s === 'passthrough' || s === 'passthrough_not_applicable';
-export const isProcessedStatus = (s: AppliedStatus) => s === 'processed' || s === 'processed_not_applicable_label';
+/** SPEC §1(b)：E-05（processed_not_applicable_label）不计入实际处理，也不计入原图返回。 */
+export const isProcessedStatus = (s: AppliedStatus) => s === 'processed';
+export const isNaChangedStatus = (s: AppliedStatus) => s === 'processed_not_applicable_label';
 
 /* ---------------- 相对输入的 Δ ---------------- */
 

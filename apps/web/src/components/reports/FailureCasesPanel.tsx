@@ -69,7 +69,7 @@ export const FailureCasesPanel: React.FC<Props> = ({ model, diagnosis, setFilter
             <tbody>{negatives.map(({ r, d, s }) => { const c = nlcByRow?.get(rowIndex.get(r) ?? -1); const ev = c?.measuredEvidence.filter(e => e.triggered) || [];
               const old = c?.ruleInferredCause || legacyCause.get(`${r.sampleId}|${r.degradation}|${r.method}`);
               return <tr key={`${caseKeyOf(r)}-${r.method}`} onClick={() => model.batch.hasImages && open(caseKeyOf(r), r.method)} className={`border-t border-slate-800 align-top ${model.batch.hasImages ? 'cursor-pointer hover:bg-gold/5' : ''}`}>
-              <td className="pr-2">{methodLabel(r.method)}</td><td className="pr-2">{r.sampleId}</td><td className="pr-2">{degradationLabel(r.degradation)}</td><td className="pr-2">{r.strength ?? '—'}</td><td className="pr-2 text-cinnabar-light">{signed(d, 3, 'dB')}</td><td className="pr-2"><StatusTag status={s} source={r.statusSource} /></td>
+              <td className="pr-2">{methodLabel(r.method)}</td><td className="pr-2">{r.sampleId}</td><td className="pr-2">{degradationLabel(r.degradation)}</td><td className="pr-2">{r.strength ?? '—'}</td><td className="pr-2 text-cinnabar-light">{signed(d, 3, 'dB')}</td><td className="pr-2"><StatusTag status={s} source={r.statusSource} detail={r.appliedStatusDetail} /></td>
               <td className="pr-2">{c ? (ev.length ? ev.map(e => <span key={e.cause} className="block">{e.cause}（{e.value == null ? '—' : e.value.toFixed(3)} {e.comparator} {e.threshold}）</span>) : '未定位到测量原因（待人工复核）') : nlc.state === 'ok' ? '无对应记录' : '未接入'}</td>
               <td className="pr-2 text-slate-400">{old ? `${old}（规则推断）` : '—'}</td></tr>; })}</tbody></table></div>}
       </section>

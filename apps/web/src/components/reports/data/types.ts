@@ -48,6 +48,8 @@ export interface ExperimentRow {
   maxAbsDiff?: number | null;
   byteIdentical?: boolean | null;
   crop?: number[];
+  /** DER appliedStatusDetail：rounding / other，或 DER 长值 not-applicable-but-modified-*（E-05）；缺省不猜测。 */
+  appliedStatusDetail?: string | null;
   /** 本行状态来自哪里：DER（derived/applied_status，pixel-equal-v1）或前端兜底。由适配层写入。 */
   statusSource?: 'DER' | 'frontend';
 }
@@ -100,7 +102,7 @@ export interface Diagnosis {
 }
 
 /* ---- agent/eval-sci 派生文件（REPORT_DATA_SPEC §0.1 DER / CI / NLC / MEC） ---- */
-export interface DerRow { rowIndex: number; sampleId: string; split: string | null; degradation: string; strength?: number; method: string; appliedStatus: AppliedStatus; isPassthrough: boolean | null; criterion: string; byteIdentical: boolean | null; changedPixelCount: number | null; totalPixelCount: number | null; changedPixelRatio: number | null; maxAbsDiff: number | null; meanAbsDiff: number | null; shaMatchesRecord?: boolean | null; undeterminedReason?: string | null }
+export interface DerRow { rowIndex: number; sampleId: string; split: string | null; degradation: string; strength?: number; method: string; appliedStatus: AppliedStatus; isPassthrough: boolean | null; criterion: string; byteIdentical: boolean | null; changedPixelCount: number | null; totalPixelCount: number | null; changedPixelRatio: number | null; maxAbsDiff: number | null; meanAbsDiff: number | null; appliedStatusDetail?: string | null; shaMatchesRecord?: boolean | null; undeterminedReason?: string | null }
 export interface DerFile { experimentId: string; batch: string; derivedAt: string; derivedBy: string; sourceResultsSha256: string; imagesAvailable: boolean; criterion: string; note?: string; rows: DerRow[] }
 export type GainSign = 'positive' | 'negative' | 'spans_zero' | 'zero';
 export interface CiGroup {
