@@ -175,7 +175,7 @@ export interface MechanismDetail {
     changeStats?: { isPassthrough?: boolean | null; changedPixelCount?: number | null; changedPixelRatio?: number | null; maxAbsDiff?: number | null; passthroughCriterion?: string | null };
     notchApplied?: boolean;
   };
-  images?: { file: string; description?: string; sha256?: string }[];
+  images?: { file: string; description?: string; sha256?: string; batch?: string; caseId?: string; derivedAt?: string; headCommit?: string; sourcePath?: string; captionNote?: string }[];
   parameters?: Record<string, unknown>;
 }
 /** 派生文件的来源：本地开发时从 agent/eval-sci 只读取出（git show），以后改为后端 API。 */

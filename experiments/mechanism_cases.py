@@ -23,6 +23,8 @@ Binding: each batch writes headCommit into derived/mechanism/index.json.
 If that headCommit lags the branch tip, reports must NOT claim mechanism PNGs
 are byte-identical to the current tip; see docs/product-upgrade/MECHANISM_HEAD_NOTE.md.
 Do not delete experiment raw data; re-run only when intentionally refreshing mechanism.
+ES-4 captions: each images[] entry should carry batch/caseId/derivedAt/headCommit/sourcePath
+(see experiments/enrich_mechanism_captions.py for JSON-only enrichment without PNG rewrite).
 """
 from __future__ import annotations
 
@@ -163,12 +165,15 @@ def heat(diff):
     return cv2.applyColorMap(np.clip(diff / scale * 255, 0, 255).astype(np.uint8), cv2.COLORMAP_INFERNO), scale
 
 
-def write_png(folder: Path, name, image, description, manifest):
+def write_png(folder: Path, name, image, description, manifest, *, provenance=None):
     ok, data = cv2.imencode('.png', image)
     if not ok:
         raise ValueError(name)
     (folder / name).write_bytes(data.tobytes())
-    manifest.append({'file': name, 'description': description, 'shape': list(image.shape), 'bytes': len(data), 'sha256': sha(data.tobytes())})
+    entry = {'file': name, 'description': description, 'shape': list(image.shape), 'bytes': len(data), 'sha256': sha(data.tobytes())}
+    if provenance:
+        entry.update(provenance)
+    manifest.append(entry)
 
 
 def run_case(batch_dir: Path, out_root: Path, row, base_row, notch_row, pick, versions, engines, head_commit):

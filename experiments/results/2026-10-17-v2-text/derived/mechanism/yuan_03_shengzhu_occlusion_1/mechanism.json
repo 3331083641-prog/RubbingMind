@@ -315,7 +315,13 @@
         3
       ],
       "bytes": 143892,
-      "sha256": "c27b3f38ce500014d26c9528654143e24d792ab94fae93278a15eb3dd45e1b74"
+      "sha256": "c27b3f38ce500014d26c9528654143e24d792ab94fae93278a15eb3dd45e1b74",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "yuan_03_shengzhu_occlusion_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/yuan_03_shengzhu_occlusion_1/spectrum_input.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "spectrum_output.png",
@@ -326,7 +332,13 @@
         3
       ],
       "bytes": 143844,
-      "sha256": "00158330733f2b4eda1b0788928de1f7a83b918e8fcd33b5e65185194dbd497f"
+      "sha256": "00158330733f2b4eda1b0788928de1f7a83b918e8fcd33b5e65185194dbd497f",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "yuan_03_shengzhu_occlusion_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/yuan_03_shengzhu_occlusion_1/spectrum_output.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "foreground_reference.png",
@@ -336,7 +348,13 @@
         256
       ],
       "bytes": 8347,
-      "sha256": "ce37097fd680a14760a3bcecabdf2c349625f87759b0ff11ef534fab309e814f"
+      "sha256": "ce37097fd680a14760a3bcecabdf2c349625f87759b0ff11ef534fab309e814f",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "yuan_03_shengzhu_occlusion_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/yuan_03_shengzhu_occlusion_1/foreground_reference.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "skeleton_reference.png",
@@ -346,7 +364,13 @@
         256
       ],
       "bytes": 7838,
-      "sha256": "0bcae85a78f83cf5bc27b8f989add8ac3a10718f79b77e81a2d5060b2c40b85d"
+      "sha256": "0bcae85a78f83cf5bc27b8f989add8ac3a10718f79b77e81a2d5060b2c40b85d",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "yuan_03_shengzhu_occlusion_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/yuan_03_shengzhu_occlusion_1/skeleton_reference.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "edges_reference.png",
@@ -356,7 +380,13 @@
         256
       ],
       "bytes": 11365,
-      "sha256": "ecab67cb9af72573abc7a8e65d3e346c74a017a7bd9b058d87ad41664370606c"
+      "sha256": "ecab67cb9af72573abc7a8e65d3e346c74a017a7bd9b058d87ad41664370606c",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "yuan_03_shengzhu_occlusion_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/yuan_03_shengzhu_occlusion_1/edges_reference.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "foreground_input.png",
@@ -366,7 +396,13 @@
         256
       ],
       "bytes": 8233,
-      "sha256": "6cd0c56b7468daa1790f8108007601c23df5ff54e8d1bfffc3c9edefcff39ef7"
+      "sha256": "6cd0c56b7468daa1790f8108007601c23df5ff54e8d1bfffc3c9edefcff39ef7",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "yuan_03_shengzhu_occlusion_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/yuan_03_shengzhu_occlusion_1/foreground_input.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "skeleton_input.png",
@@ -376,7 +412,13 @@
         256
       ],
       "bytes": 7745,
-      "sha256": "54922b62d03dadbba75ee87b7d687a5bd94002edd70324f4b3d725927d08374f"
+      "sha256": "54922b62d03dadbba75ee87b7d687a5bd94002edd70324f4b3d725927d08374f",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "yuan_03_shengzhu_occlusion_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/yuan_03_shengzhu_occlusion_1/skeleton_input.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "edges_input.png",
@@ -386,7 +428,13 @@
         256
       ],
       "bytes": 11159,
-      "sha256": "1d006e2e1602ff8f158ff931d0a036993c479040ad87e0eda1e61faf1ff3eadd"
+      "sha256": "1d006e2e1602ff8f158ff931d0a036993c479040ad87e0eda1e61faf1ff3eadd",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "yuan_03_shengzhu_occlusion_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/yuan_03_shengzhu_occlusion_1/edges_input.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "foreground_output.png",
@@ -396,7 +444,13 @@
         256
       ],
       "bytes": 8228,
-      "sha256": "f5b59082224709dd8d03575397dc842c90f07518a28cd6ad904c31bba729833a"
+      "sha256": "f5b59082224709dd8d03575397dc842c90f07518a28cd6ad904c31bba729833a",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "yuan_03_shengzhu_occlusion_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/yuan_03_shengzhu_occlusion_1/foreground_output.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "skeleton_output.png",
@@ -406,7 +460,13 @@
         256
       ],
       "bytes": 7740,
-      "sha256": "a00640e7b36194f848c1e8201f293bf588e189241c66e4cb0a56c89b887b4ba8"
+      "sha256": "a00640e7b36194f848c1e8201f293bf588e189241c66e4cb0a56c89b887b4ba8",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "yuan_03_shengzhu_occlusion_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/yuan_03_shengzhu_occlusion_1/skeleton_output.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "edges_output.png",
@@ -416,7 +476,13 @@
         256
       ],
       "bytes": 10941,
-      "sha256": "0b919dbd883bae1696460424c3deaa4fb56b210ecfe6f4cd10b93f1f465903ec"
+      "sha256": "0b919dbd883bae1696460424c3deaa4fb56b210ecfe6f4cd10b93f1f465903ec",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "yuan_03_shengzhu_occlusion_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/yuan_03_shengzhu_occlusion_1/edges_output.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "diff_output_input.png",
@@ -427,7 +493,13 @@
         3
       ],
       "bytes": 33383,
-      "sha256": "b054148a029ca597ccd9281f80de8538da66fc6270de4959235b1dd07f54006c"
+      "sha256": "b054148a029ca597ccd9281f80de8538da66fc6270de4959235b1dd07f54006c",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "yuan_03_shengzhu_occlusion_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/yuan_03_shengzhu_occlusion_1/diff_output_input.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "diff_head_vs_stored.png",
@@ -438,7 +510,13 @@
         3
       ],
       "bytes": 38338,
-      "sha256": "a555f5a1b7e7c7f914ed97f5a563ca296da6adeb78cf53965a022a405f098e2b"
+      "sha256": "a555f5a1b7e7c7f914ed97f5a563ca296da6adeb78cf53965a022a405f098e2b",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "yuan_03_shengzhu_occlusion_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/yuan_03_shengzhu_occlusion_1/diff_head_vs_stored.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     }
   ]
 }
