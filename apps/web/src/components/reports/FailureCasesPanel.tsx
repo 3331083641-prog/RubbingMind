@@ -1,8 +1,8 @@
 /**
  * L5 失败案例与不确定性（独立入口 panel=failures）。只用真实数据：
  * - 诊断：SteleService.getExperimentDiagnosis（四个批次都返回 200；未知 ID 才 404）。
- * - 负提升原因：以 NLC（derived/negative_lift_causes）的 measuredCauses 为主，每条附测量值与阈值；
- *   诊断接口里的旧 cause 只放在“旧规则推断”一栏。
+ * - ES-5: NLC measuredCauses/measuredEvidence = primary column; ruleInferredCause = secondary labelled column only.
+ *   No dedicated negative_lift_display API route; formatting mirrors eval_export_contract.negative_lift_display.
  * - 负提升列表全部列出（不抽样、不删除）；原图返回单独一栏“未处理”；无法判定单独计数；运行失败单独列。
  */
 import React, { useEffect, useMemo, useState } from 'react';
@@ -118,13 +118,13 @@ export const FailureCasesPanel: React.FC<Props> = ({ model, diagnosis, setFilter
         <h3 className="font-serif text-gold text-sm" data-testid="negative-lift-heading">负提升记录（ΔPSNR &lt; 0，当前筛选下全部 {negatives.length} 条{consistency ? `；本批同口径 ${consistency.clientCount} 条` : ''}{filtersActive ? '，已应用筛选' : ''}）</h3>
         <p className="text-[11px] text-slate-400">按方法：{byMethod(negatives.map(x => x.r)).map(([m, n]) => `${methodLabel(m)} ${n}`).join(' · ') || '无'}。列表条数须等于上表「当前筛选」计数；与诊断核对见上方「计数核对」。{model.batch.hasImages ? '点击一行在视觉对照中打开。' : ''}</p>
         {negatives.length === 0 ? <p className="text-sm text-slate-400" data-testid="negative-lift-empty">当前筛选下没有 ΔPSNR&lt;0 的记录{passthrough.length ? `；另有未处理 ${passthrough.length} 条（原图返回，不算“无负提升”）` : ''}{consistency && consistency.clientCount > 0 ? `（本批另有 ${consistency.clientCount} 条负提升，被当前筛选挡住）` : ''}{diagnosis.state === 'ok' && (diagnosis.data.negativeLiftCount ?? 0) === 0 ? '；诊断接口亦报告 0 条。' : ''}。</p> :
-          <div className="max-h-96 overflow-auto"><table className="w-full text-[11px] text-left" data-testid="negative-lift-table"><thead className="text-slate-400 sticky top-0 bg-[#0f1418]"><tr>{['方法', '文物', '退化', '强度', 'ΔPSNR', '状态', '测量原因（值 / 阈值）', '旧规则推断'].map(h => <th key={h} className="py-1 pr-2 font-normal">{h}</th>)}</tr></thead>
+          <div className="max-h-96 overflow-auto"><table className="w-full text-[11px] text-left" data-testid="negative-lift-table"><thead className="text-slate-400 sticky top-0 bg-[#0f1418]"><tr>{['方法', '文物', '退化', '强度', 'ΔPSNR', '状态', '测量原因（主列）', '旧规则推断（次列）'].map(h => <th key={h} className="py-1 pr-2 font-normal">{h}</th>)}</tr></thead>
             <tbody>{negatives.map(({ r, d, s }) => { const c = nlcByRow?.get(rowIndex.get(r) ?? -1); const ev = c?.measuredEvidence.filter(e => e.triggered) || [];
-              const old = c?.ruleInferredCause || legacyCause.get(`${r.sampleId}|${r.degradation}|${r.method}`);
+              const old = c?.ruleInferredCause || legacyCause.get(`${r.sampleId}|${r.degradation}|${r.method}`); const oldBasis = c?.ruleInferredBasis || '规则推断（按退化类型）'; const oldLabel = old ? `旧规则推断 · ${oldBasis}：${old}` : null;
               return <tr key={`${caseKeyOf(r)}-${r.method}`} onClick={() => model.batch.hasImages && open(caseKeyOf(r), r.method)} className={`border-t border-slate-800 align-top ${model.batch.hasImages ? 'cursor-pointer hover:bg-gold/5' : ''}`}>
               <td className="pr-2">{methodLabel(r.method)}</td><td className="pr-2">{r.sampleId}</td><td className="pr-2">{degradationLabel(r.degradation)}</td><td className="pr-2">{r.strength ?? '—'}</td><td className="pr-2 text-cinnabar-light">{signed(d, 3, 'dB')}</td><td className="pr-2"><StatusTag status={s} source={r.statusSource} detail={r.appliedStatusDetail} /></td>
-              <td className="pr-2">{c ? (ev.length ? ev.map(e => <span key={e.cause} className="block">{e.cause}（{e.value == null ? '—' : e.value.toFixed(3)} {e.comparator} {e.threshold}）</span>) : '未定位到测量原因（待人工复核）') : nlc.state === 'ok' ? '无对应记录' : '未接入'}</td>
-              <td className="pr-2 text-slate-400">{old ? `${old}（规则推断）` : '—'}</td></tr>; })}</tbody></table></div>}
+              <td className="pr-2" data-testid="nlc-measured-primary">{c ? (ev.length ? ev.map(e => <span key={e.cause} className="block">{e.cause}（{e.value == null ? '—' : e.value.toFixed(3)} {e.comparator} {e.threshold}）</span>) : '未定位到测量原因（待人工复核）') : nlc.state === 'ok' ? '无对应记录' : '未接入'}</td>
+              <td className="pr-2 text-slate-400">{oldLabel ? <span data-testid="nlc-rule-inferred" className="block text-slate-400">{oldLabel}</span> : <span className="text-slate-600">—</span>}</td></tr>; })}</tbody></table></div>}
       </section>
       <section aria-label="原图返回与失败" className="rounded-xl border border-slate-700 bg-[#0c1013] p-4 space-y-2 text-[11px]">
         {retest ? <>
