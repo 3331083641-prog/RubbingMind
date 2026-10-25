@@ -5,6 +5,7 @@ import type { GlyphInferenceRecord } from '../services/api';
 import { GlyphInferencePanel } from '../components/GlyphInferencePanel';
 import { readUrlState } from '../state/urlState';
 import { writeFilters } from '../components/reports/reportFilters';
+import { num, signed } from '../components/reports/format';
 import { 
   Sliders, 
   Layers, 
@@ -505,26 +506,34 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate,
             {/* Bottom Floating HUD Metrics Bar (Single Row) */}
             <div className="h-14 bg-[#0A0D11]/90 backdrop-blur-md border-t border-gold/25 px-4 flex items-center justify-between text-xs select-none">
               <div className="flex items-center space-x-4 md:space-x-6 overflow-x-auto no-scrollbar">
-                <div className="flex items-baseline space-x-1.5">
+                <div className="flex items-baseline space-x-1.5" data-testid="wb-metric-psnr">
                   <span className="text-slate-400 font-serif text-[11px]">峰值信噪比 PSNR:</span>
-                  <span className="font-mono font-bold text-gold-light text-sm">{metrics.psnr ?? '未评测'} dB</span>
-                  <span className="text-[10px] text-celadon-light font-mono">(+{metrics.snr_gain ?? '未评测'}dB)</span>
+                  <span className="font-mono font-bold text-gold-light text-sm">{num(metrics.psnr, 2, 'dB')}</span>
+                  {metrics.snr_gain != null && Number.isFinite(metrics.snr_gain) ? (
+                    <span className="text-[10px] text-celadon-light font-mono">({signed(metrics.snr_gain, 2, 'dB')})</span>
+                  ) : null}
                 </div>
 
-                <div className="flex items-baseline space-x-1.5">
+                <div className="flex items-baseline space-x-1.5" data-testid="wb-metric-ssim">
                   <span className="text-slate-400 font-serif text-[11px]">结构相似度 SSIM:</span>
-                  <span className="font-mono font-bold text-gold-light text-sm">{metrics.ssim ?? '未评测'}</span>
+                  <span className="font-mono font-bold text-gold-light text-sm">{num(metrics.ssim, 3)}</span>
                 </div>
 
-                <div className="flex items-baseline space-x-1.5">
+                <div className="flex items-baseline space-x-1.5" data-testid="wb-metric-glyph">
                   <span className="text-slate-400 font-serif text-[11px]">字形骨架完整度:</span>
-                  <span className="font-mono font-bold text-celadon-light text-sm">{metrics.glyph_completeness ?? '未评测'}%</span>
+                  <span className="font-mono font-bold text-celadon-light text-sm">{num(metrics.glyph_completeness, 1, '%')}</span>
                 </div>
 
-                <div className="flex items-baseline space-x-1.5">
-                  <span className="text-slate-400 font-serif text-[11px]">字符识别率:</span>
-                  <span className="font-mono font-bold text-cinnabar-light text-sm">{metrics.character_accuracy ?? '未评测'}%</span>
-                </div>
+                {metrics.character_accuracy != null && Number.isFinite(metrics.character_accuracy) ? (
+                  <div className="flex items-baseline space-x-1.5" data-testid="wb-metric-ocr">
+                    <span className="text-slate-400 font-serif text-[11px]">字符识别率:</span>
+                    <span className="font-mono font-bold text-cinnabar-light text-sm">{num(metrics.character_accuracy, 1, '%')}</span>
+                  </div>
+                ) : (
+                  <div className="flex items-baseline space-x-1.5" data-testid="wb-metric-ocr-empty">
+                    <span className="text-slate-500 font-serif text-[11px]">识字评测：未评测</span>
+                  </div>
+                )}
               </div>
 
               <div className="hidden sm:flex items-center space-x-2 text-[11px] text-slate-400">

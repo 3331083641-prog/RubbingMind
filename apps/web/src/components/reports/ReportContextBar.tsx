@@ -11,7 +11,7 @@ import type { ReportFilters } from './reportFilters';
 interface Props {
   stele: SteleItem;
   view: 'global' | 'artifact';
-  panel: 'overview' | 'failures';
+  panel: 'overview' | 'failures' | 'mechanism';
   runs: Loadable<RunInfo[]>;
   runId: string;
   selection: Loadable<{ runSelection: RunSelection | null; runId: string }>;
@@ -41,6 +41,7 @@ export const ReportContextBar: React.FC<Props> = ({ stele, view, panel, runs, ru
       </div>
       {view === 'global' && <div role="tablist" aria-label="全局评测栏目" className="flex gap-1">
         <button role="tab" aria-selected={panel === 'overview'} className={tab(panel === 'overview')} onClick={() => setFilters({ panel: 'overview' })}>总览与对照</button>
+        <button role="tab" aria-selected={panel === 'mechanism'} className={tab(panel === 'mechanism')} onClick={() => setFilters({ panel: 'mechanism' })} data-testid="panel-mechanism">消融与机制</button>
         <button role="tab" aria-selected={panel === 'failures'} className={`${tab(panel === 'failures')} ${panel !== 'failures' ? 'border-cinnabar/50 text-cinnabar-light' : ''}`} onClick={() => setFilters({ panel: 'failures' })}>失败案例与不确定性</button>
       </div>}
       <div className="ml-auto flex items-center gap-2">

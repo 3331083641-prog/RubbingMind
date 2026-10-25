@@ -4,7 +4,7 @@
  * - api.ts 没有的读取（批次明细、完整报告体、识字评测、DER/CI/NLC/MEC 派生文件）在这里用只读 GET 实现。
  * 规则：不伪造；拿不到就返回 missing / error，由界面显示真实空状态。
  */
-import type { AppliedStatus, BatchDetail, BatchRegistry, CiFile, CiGroup, DerFile, Derived, Diagnosis, ExperimentRow, GainSign, Grade, Loadable, MechanismIndex, NlcFile } from './types';
+import type { AppliedStatus, BatchDetail, BatchRegistry, CiFile, CiGroup, DerFile, Derived, Diagnosis, ExperimentRow, GainSign, Grade, Loadable, MechanismDetail, MechanismIndex, NlcFile } from './types';
 import type { MetricKey } from './labels';
 import { SteleService, type ProcessingRunR1, type RunSelection } from '../../../services/api';
 import type { GlyphInferenceRecord } from './glyphInference';
@@ -56,6 +56,17 @@ export const ReportApi = {
   ciByArtifact: (id: string, dir?: string) => derived<CiFile>(id, dir, 'ci_by_artifact.json'),
   negativeLiftCauses: (id: string, dir?: string) => derived<NlcFile>(id, dir, 'negative_lift_causes.json'),
   mechanismIndex: (id: string, dir?: string) => derived<MechanismIndex>(id, dir, 'mechanism/index.json'),
+  /** 单案 mechanism.json；404 → missing，不伪造决策链。 */
+  mechanismCase: (id: string, dir: string | undefined, caseId: string) =>
+    derived<MechanismDetail>(id, dir, `mechanism/${caseId}/mechanism.json`),
+  /** 机制层 PNG（与 index 同目录树）；无 DERIVED_BASE 时走 /.cache，否则走 API derived。 */
+  mechanismAssetUrl: (experimentId: string, directory: string | undefined, caseId: string, file: string) => {
+    if (!directory) return '';
+    const rel = `mechanism/${caseId}/${file}`;
+    return DERIVED_BASE
+      ? `${DERIVED_BASE}/${encodeURIComponent(directory)}/derived/${rel}`
+      : `/api/experiments/${encodeURIComponent(experimentId)}/derived/${rel}`;
+  },
   assetUrl: (experimentId: string, file: string) => `/api/experiments/${encodeURIComponent(experimentId)}/assets/${encodeURIComponent(file)}`,
   exportUrl: (experimentId: string, kind: string) => `/api/experiments/${encodeURIComponent(experimentId)}/export/${kind}`,
 };

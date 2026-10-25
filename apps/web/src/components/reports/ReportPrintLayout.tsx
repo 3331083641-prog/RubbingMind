@@ -76,6 +76,7 @@ export const ReportPrintLayout: React.FC<Props> = ({ model, stele, runId, report
         {model?.batch.kind === 'retest' && <li>同批复测：样本参与过 v2.1 的误差分析，不是独立验证，结论最高为“有限支持”。</li>}
         {model && !model.splitAvailable && <li>本批未划分 dev/test。</li>}
         {model?.notes.map(n => <li key={n}>{n}</li>)}
+        {model && <li data-testid="print-failure-retention">负提升与运行失败记录均保留在失败案例页与 JSON 导出（failureRetention），未抽样删除。</li>}
         {(model?.batch.registry.limitations || []).map(t => <li key={t}>{t}</li>)}
         <li>原图返回判定：{model?.der.source ? `DER ${model.der.criterion}（${model.der.source}）` : '输出与输入文件 SHA-256 相同（前端兜底，DER 未接入）'}；“无法判定”的行单独计数。口径依 REPORT_DATA_SPEC v2 与评测科学家 2026-10-19 裁定。</li>
         <li>图像变清晰不等于恢复原刻文字；候选字只是建议，不是碑文释读结论。</li>
