@@ -6,7 +6,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as echarts from 'echarts/core';
 import type { GlobalModel } from './data/globalModel';
 import { caseKeyOf } from './data/globalModel';
-import { BOOTSTRAP_RESAMPLES, BOOTSTRAP_SEED, evaluationSummaryText, gainWord, glyphEvaluationText, GlyphEvaluation, RunReport, runOutcome, SCOPE_LABELS } from './data/reportData';
+import { BOOTSTRAP_RESAMPLES, BOOTSTRAP_SEED, evaluationSummaryText, gainWord, glyphEvaluationText, GlyphEvaluation, mayClaimPositiveLift, RunReport, runOutcome, SCOPE_LABELS } from './data/reportData';
 import type { Loadable } from './data/types';
 import { degradationLabel, methodLabel, SPLIT_LABELS } from './data/labels';
 import { buildOption } from './MethodComparisonChart';
@@ -48,7 +48,7 @@ export const ReportPrintLayout: React.FC<Props> = ({ model, stele, runId, report
           <span className="rp-meta">分级依据：{model.primaryGrade.reasons.join('；')}。</span></div>
         <div className="rp-card"><b>结论 2</b><span className="rp-grade">有限支持</span><br />
           {(() => { const items = model.panels.find(p => p.metric.key === 'psnr')?.items || []; const st = (i: typeof items[number]) => i.scopes[i.primaryScope];
-            const pos = items.filter(i => st(i).sign === 'positive' && st(i).ciReliable), neg = items.filter(i => st(i).sign === 'negative' && st(i).ciReliable);
+            const pos = items.filter(i => mayClaimPositiveLift(st(i))), neg = items.filter(i => st(i).sign === 'negative' && st(i).ciReliable && !mayClaimPositiveLift(st(i)));
             return `配对增益 CI 下界 > 0（可写“提升”）：${pos.map(i => methodLabel(i.method)).join('、') || '无'}；CI 上界 < 0（下降）：${neg.map(i => `${methodLabel(i.method)} ${signed(st(i).value, 2, 'dB')}`).join('、') || '无'}；其余跨 0、不可靠或无数据。负提升全部保留。`; })()}</div>
         <div className="rp-card"><b>结论 3</b><span className="rp-grade">未评测</span><br />真实拓本修复质量：未评测（无配对参考）。古碑识字 Top-1/Top-3：{glyph.state === 'ok' ? glyphEvaluationText(glyph.data, 'short') : '状态不可用'}。</div>
         <h2>二、算法横向比较</h2>
