@@ -6,7 +6,8 @@
  */
 import type { AppliedStatus, BatchDetail, BatchRegistry, CiFile, CiGroup, DerFile, Derived, Diagnosis, ExperimentRow, GainSign, Grade, Loadable, MechanismIndex, NlcFile } from './types';
 import type { MetricKey } from './labels';
-import { SteleService, type ProcessingRunR1, type RunSelection, type GlyphInferenceRecord } from '../../../services/api';
+import { SteleService, type ProcessingRunR1, type RunSelection } from '../../../services/api';
+import type { GlyphInferenceRecord } from './glyphInference';
 import { parseIsoTime } from '../format';
 
 async function getJson<T>(url: string, missingMessage: string): Promise<Loadable<T>> {
@@ -59,6 +60,7 @@ export const ReportApi = {
   exportUrl: (experimentId: string, kind: string) => `/api/experiments/${encodeURIComponent(experimentId)}/export/${kind}`,
 };
 export type { ProcessingRunR1, RunSelection };
+export type { GlyphInferenceRecord, GlyphRoi, GlyphBBox } from './glyphInference';
 
 export interface RunReport { run: ProcessingRunR1 | null; runSelection?: RunSelection | null; inferenceRecords?: GlyphInferenceRecord[]; sourceRecords?: { title: string | null; url: string | null; license: string | null }[]; reportId?: string | null; evaluation_summary?: string }
 export interface GlyphEvaluation { status: string; top1: number | null; top3: number | null; verifiedLabels: number; recordedLabels?: number; reason?: string }
