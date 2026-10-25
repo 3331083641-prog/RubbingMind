@@ -15,6 +15,7 @@
 | 项 | 值 |
 |---|---|
 | `feature/product-grade-upgrade` | `e9ce60e945ffe4d561cc26434b6d5f000c69ccf1` |
+| eval-sci tip | 4609890 (460989029b44d2e1814e469643825b0fd6ce66da) |
 | 合入路径 | `d081808` → merge `08d8da8` → `3ac23d4` → merge `e9ce60e` → `1026e69` + 本 REVIEW/测试 commit |
 | AB-7 证据文件 | `apps/web/src/services/api.ts`（`GlyphInferenceRecord.roi` + 两 SHA）；报告侧 `apps/web/src/components/reports/data/glyphInference.ts` 等 |
 
