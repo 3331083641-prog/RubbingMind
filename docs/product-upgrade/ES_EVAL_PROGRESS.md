@@ -1,8 +1,8 @@
 # ES_EVAL_PROGRESS — 评测侧 ES-3/4/5 推进台账
 
 - 作者：RM-评测科学家（Agent 04+05）
-- 时间：2026-10-25 15:59 Asia/Shanghai
-- 分支 tip：rebase on 25aa898（含 arch@847e7f1）；R7 lag=177；冒烟进行中
+- 时间：2026-10-25 16:25 Asia/Shanghai
+- 分支 tip：rebase on 7e080c5（AB-8 health samples）；R7 lag=184；A24/R7 仍开勿假关
 - 对齐：fast-forward eature/product-grade-upgrade@c761d54（含 reports MechanismPanel / claims 台账）
 - TASK_BOARD 真源：D:\RubbingMind\docs\product-upgrade\TASK_BOARD.md（worktree 外）；本文件为 worktree 内进度镜像，供 Green 监工。
 
@@ -20,7 +20,7 @@ egative_lift_display.json 伴生导出（measured 主列 / ruleInferred 次列�
 
 | ID | 状态 | 证据 |
 |---|---|---|
-| **R7 / G7** | 开 | tip@25aa898+stamp 超前 mechanism head 7623a52 **177** commits（见 MECHANISM_HEAD_NOTE §14） |
+| **R7 / G7** | 开 | tip@7e080c5+stamp 超前 mechanism head 7623a52 **184** commits（见 MECHANISM_HEAD_NOTE §15）；只记账未假关 |
 | **A24** | xfail 保持（禁伪 Top-k） | 	est_a24_export_label_recognized_forbidden_until_schema_exists；产品/schema 缺口（AB-8 未落地 export label）；勿伪绿；另有 	est_a24_schema_still_absent_keep_xfail_evidence |
 
 ## 明确未做

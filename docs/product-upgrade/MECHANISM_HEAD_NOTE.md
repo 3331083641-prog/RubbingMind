@@ -3,7 +3,7 @@
 - 作者：RM-评测科学家（Agent 04+05）
 - 时间：2026-10-25（Asia/Shanghai）
 - 分支：`agent/eval-sci`
-- 当前 tip（写入时）：rebase 于 feature@25aa898 之上（短写见提交；含 arch@847e7f1；R7 lag=177；冒烟进行中）
+- 当前 tip（写入时）：rebase 于 feature@7e080c5 之上（含 AB-8 health samples banner；R7 lag=184；勿用旧 tip c6de56e/802d51d）
 - 机制产物绑定 headCommit：`7623a52a3299b7c948031dfa1f79f04b8eb66d9e`（短写 `7623a52`）
 - 关联：`REPRESENTATIVE_CASES.md`、`REPORT_DATA_SPEC.md` §MEC / E-18、`experiments/mechanism_cases.py`
 
@@ -98,7 +98,7 @@
 | 项 | 值 |
 | --- | --- |
 | 分支 tip | 4f57eb5ef57cdcb702042ccaa23904dbafcf9648 |
-| feature tip | 4f57eb5ef57cdcb702042ccaa23904dbafcf9648（对齐时相同） |
+| feature tip | 4f57eb5ef57cdcb702042ccaa23904dbafcf9648（对齐基线；含 AB-8 arch merge←5a7b20c；其上为本证据戳） |
 | mechanism headCommit | 7623a52a3299b7c948031dfa1f79f04b8eb66d9e |
 | tip 相对 head 超前 | **141** commits（git rev-list --count 7623a52..HEAD） |
 | R7 / G7 | **仍开项** — 只记证据，未谎关；未重跑 mechanism_cases.py |
@@ -111,7 +111,7 @@
 | 项 | 值 |
 | --- | --- |
 | 分支 tip | b60d55697d741682d28af5f28319e2b84aca8230 |
-| feature tip | b60d55697d741682d28af5f28319e2b84aca8230（对齐时相同） |
+| feature tip | b60d55697d741682d28af5f28319e2b84aca8230（对齐基线；含 AB-8 arch merge←5a7b20c；其上为本证据戳） |
 | mechanism headCommit | 7623a52a3299b7c948031dfa1f79f04b8eb66d9e |
 | tip 相对 head 超前 | **145** commits（git rev-list --count 7623a52..HEAD） |
 | R7 / G7 | **仍开项** — 只记证据，未谎关；未重跑 mechanism_cases.py；无空转宣称 |
@@ -149,7 +149,7 @@
 | 项 | 值 |
 | --- | --- |
 | 分支 tip | ed9f1a0b20978d5500453bdbbaa43505a6f9297d |
-| feature tip | ed9f1a0b20978d5500453bdbbaa43505a6f9297d（对齐时相同） |
+| feature tip | ed9f1a0b20978d5500453bdbbaa43505a6f9297d（对齐基线；含 AB-8 arch merge←5a7b20c；其上为本证据戳） |
 | mechanism headCommit | 7623a52a3299b7c948031dfa1f79f04b8eb66d9e |
 | tip 相对 head 超前 | **169** commits（git rev-list --count 7623a52..HEAD） |
 | R7 / G7 | **仍开项** — 只记证据，未谎关；未重跑大批量 mechanism |
@@ -171,4 +171,17 @@ egative_lift_display.json 仍在；规则次级口径维持 |
 | tip 相对 head 超前 | **177** commits（git rev-list --count 7623a52..HEAD） |
 | R7 / G7 | **仍开项** — 只记证据，未谎关；未重跑大批量 mechanism |
 | A24 | 仍 xfail；禁伪 Top-k |
+| 铁律 | 未 push / 未合 main / 未改 museum_processing |
+
+## 15. 对齐 feature@7e080c5 后开项（rebase 自 c6de56e）（2026-10-25 16:12 Asia/Shanghai）
+
+| 项 | 值 |
+| --- | --- |
+| 分支 tip | 7e080c5d670af123408b34a17bc072984e93fb5d |
+| feature tip | 7e080c5d670af123408b34a17bc072984e93fb5d（对齐基线；含 AB-8 arch merge←5a7b20c；其上为本证据戳） |
+| mechanism headCommit | 7623a52a3299b7c948031dfa1f79f04b8eb66d9e |
+| tip 相对 head 超前 | **184** commits（git rev-list --count 7623a52..HEAD） |
+| R7 / G7 | **仍开项** — 只记账，未假关；未重跑 mechanism |
+| A24 | 仍 xfail；禁伪 Top-k |
+| ES-3/4/5 | 契约维持；续核随 tip |
 | 铁律 | 未 push / 未合 main / 未改 museum_processing |
