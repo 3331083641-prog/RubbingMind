@@ -59,6 +59,78 @@
 | authorDispute | 1 |
 | authorFieldConflict | 1 |
 
+## 冲突并列一览（JS-4 · status=conflict）
+
+> 异文两侧并列，**不定论、不合并、不关闭**。共 **20** 条（与统计摘要 conflict 一致）。
+> 用途：人工对照馆方页／碑面／目录时，一眼看到两侧主张；关闭须有新证据并改对应 claims JSON。
+
+| # | claimId | 作品 | 字段 | 侧 A | 侧 B／更多 | 建议人工动作 |
+|---:|---|---|---|---|---|---|
+| 1 | `han_02_yiying:person:calligrapher` | han_02_yiying | person.calligrapher | 后汉钟太尉书（传统题记；张稚圭按图题记） | 未核定（目录 calligrapher） | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+| 2 | `wei_02_wugaoli:date:dayCrossCheck` | wei_02_wugaoli | date.dayCrossCheck | 碑面作“癸申”（非六十甲子合法干支，疑泐误） | 若丙午朔第13日推算为 戊午 | 对照碑面纪年／干支与历表（或馆方 Dates 字段）复核；只核验一致性，不改写目录。 |
+| 3 | `tang_01_duobao:date:dayCrossCheck` | tang_01_duobao | date.dayCrossCheck | 廿二日戊戌（释文作“戊戍”） | 按“乙丑朔”顺推，廿二日应为丙戌 | 对照碑面纪年／干支与历表（或馆方 Dates 字段）复核；只核验一致性，不改写目录。 |
+| 4 | `tang_02_jiucheng:date:visitYear` | tang_02_jiucheng | date.eventDate | 貞觀六年孟夏之月（碑文） | 贞观七年四月（故宫介绍文字） | 对照碑面纪年／干支与历表（或馆方 Dates 字段）复核；只核验一致性，不改写目录。 |
+| 5 | `tang_02_jiucheng:stone:currentLocation` | tang_02_jiucheng | stone.currentLocation | 原石在陕西宝鸡麟游（九成宫原地） | 原碑今存于陕西省西安市碑林博物馆 | 对照多家馆方现藏／迁徙说明与尺寸著录；多源异文并列。 |
+| 6 | `tang_03_yanjiamiao:date:ce` | tang_03_yanjiamiao | date.ce | 780 | 779 | 对照碑面纪年／干支与历表（或馆方 Dates 字段）复核；只核验一致性，不改写目录。 |
+| 7 | `tang_03_yanjiamiao:date:yearCrossCheck` | tang_03_yanjiamiao | date.yearCrossCheck | 780 | 779 | 对照碑面纪年／干支与历表（或馆方 Dates 字段）复核；只核验一致性，不改写目录。 |
+| 8 | `tang_04_xuanmita:stone:transfer` | tang_04_xuanmita | stone.transfer | 宋元祐年间移入碑林 | 1103 年西安碑林建立之初就移入碑林 | 对照多家馆方现藏／迁徙说明与尺寸著录；多源异文并列。 |
+| 9 | `tang_04_xuanmita:style:script` | tang_04_xuanmita | script_style.script | 楷书 | 小楷书（台北故宫品名、封签） | 对照馆方书体栏、释文标注与目录 scriptType；异文保持并列。 |
+| 10 | `song_01_yuanyou:script_style:script` | song_01_yuanyou | script_style.script | 楷书（馆方书体栏；目录 scriptType） | 隶书（馆方释文对标题的书体标注） | 对照馆方书体栏、释文标注与目录 scriptType；异文保持并列。 |
+| 11 | `song_02_wenxuan:person:authorEraConflict` | song_02_wenxuan | person.authorEraConflict | 宋太宗（馆方题名／目录） | 大中祥符诏令语境属真宗朝（释文） | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+| 12 | `yuan_01_yufu:style:script` | yuan_01_yufu | script_style.script | 行楷书（目录、馆方书体栏） | 小楷书（馆方品名） | 对照馆方书体栏、释文标注与目录 scriptType；异文保持并列。 |
+| 13 | `yuan_02_sundeyu:person:authorDispute` | yuan_02_sundeyu | person.authorDispute | 赵文原撰（释文） | 赵孟頫（馆方作者栏，实为书者） ｜ 未核定／disputed（目录） | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+| 14 | `yuan_03_shengzhu:bibliography:authorFieldConflict` | yuan_03_shengzhu | bibliography.authorFieldConflict | 赵孟頫（馆方作者栏） | 王思廉撰 / 赵孟頫书（释文） | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+| 15 | `ming_02_luxianzhi:work:objectNature` | ming_02_luxianzhi | work.objectNature | 拓片（馆方分类） | 墓志草稿（题跋：“此潯州知府陸君墓志草稿”） | 对照馆方分类与题跋原文，必要时目验拓本／墨迹载体；确认是否存在原刻层。 |
+| 16 | `ming_03_wugou:script_style:script` | ming_03_wugou | script_style.script | 篆额 + 楷书正文（目录 scriptType） | 篆书（馆方书体栏单值） | 对照馆方书体栏、释文标注与目录 scriptType；异文保持并列。 |
+| 17 | `ming_04_tongdian:person:calligrapher` | ming_04_tongdian | person.calligrapher | 集王羲之书（吴士瑞集字；非王羲之亲书） | 未核定（目录 calligrapher） | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+| 18 | `qing_02_wushi_reerection:person:engraver` | qing_02_wushi_reerection | person.engraver | 郑之宗 / Zheng Zhizong（馆方 carver；目录说明亦称郑之宗刻） | 未核定（目录 engraver） | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+| 19 | `qing_02_wushi_reerection:work:dynasty` | qing_02_wushi_reerection | work.dynasty | 清代（目录；1787年翁方纲新刻记文，非东汉画像石） | 东汉（馆方页面时期标签 Eastern Han dynasty, 25–220 CE） | 对照馆方 Period/Culture 标签与刻石纪年、作者生卒；区分遗迹语境标签与本件新刻朝代。 |
+| 20 | `qing_04_ayuwang_reliquary:person:engraver` | qing_04_ayuwang_reliquary | person.engraver | 授轮、圆伦、谛受、道修（馆方 carving agent／碑阴署仝募刊；募刊≠传统刻工身份待复核） | 未核定（目录 engraver） | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+
+## 待人工复核工作清单（JS-5）
+
+> 供人工逐条勾选；**脚本与台账不自动关闭**。去重 claimId 共 **36** 条仍开放。
+> 含 `evidenceLevel=待人工复核`、目录 `*Verification=pending_review` 未抬升、`reviewFlags`。勾选仅表示人工已看过，关闭开项仍须改 claims JSON 并有证据。
+
+| ☐ | claimId | 作品 | 类型摘要 | 建议人工动作 |
+|---|---|---|---|---|
+| ☐ | `han_02_yiying:person:calligrapher` | han_02_yiying | conflict、待人工复核 | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+| ☐ | `han_02_yiying:person:steleSubject` | han_02_yiying | 目录pending_review未抬升 | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+| ☐ | `wei_02_wugaoli:date:dayCrossCheck` | wei_02_wugaoli | conflict、待人工复核 | 对照碑面纪年／干支与历表（或馆方 Dates 字段）复核；只核验一致性，不改写目录。 |
+| ☐ | `wei_04_wangsong:person:author` | wei_04_wangsong | 目录pending_review未抬升 | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+| ☐ | `tang_01_duobao:date:dayCrossCheck` | tang_01_duobao | conflict、待人工复核 | 对照碑面纪年／干支与历表（或馆方 Dates 字段）复核；只核验一致性，不改写目录。 |
+| ☐ | `tang_02_jiucheng:date:visitYear` | tang_02_jiucheng | conflict、待人工复核 | 对照碑面纪年／干支与历表（或馆方 Dates 字段）复核；只核验一致性，不改写目录。 |
+| ☐ | `tang_02_jiucheng:stone:currentLocation` | tang_02_jiucheng | conflict、待人工复核 | 对照多家馆方现藏／迁徙说明与尺寸著录；多源异文并列。 |
+| ☐ | `tang_03_yanjiamiao:date:ce` | tang_03_yanjiamiao | conflict、待人工复核 | 对照碑面纪年／干支与历表（或馆方 Dates 字段）复核；只核验一致性，不改写目录。 |
+| ☐ | `tang_03_yanjiamiao:date:yearCrossCheck` | tang_03_yanjiamiao | conflict、待人工复核 | 对照碑面纪年／干支与历表（或馆方 Dates 字段）复核；只核验一致性，不改写目录。 |
+| ☐ | `tang_04_xuanmita:stone:transfer` | tang_04_xuanmita | conflict、待人工复核 | 对照多家馆方现藏／迁徙说明与尺寸著录；多源异文并列。 |
+| ☐ | `tang_04_xuanmita:style:script` | tang_04_xuanmita | conflict、待人工复核 | 对照馆方书体栏、释文标注与目录 scriptType；异文保持并列。 |
+| ☐ | `tang_02_jiucheng:stone:dimensions` | tang_02_jiucheng | 待人工复核 | 对照多家馆方现藏／迁徙说明与尺寸著录；多源异文并列。 |
+| ☐ | `tang_04_xuanmita:date:gregorianDay` | tang_04_xuanmita | 待人工复核 | 对照碑面纪年／干支与历表（或馆方 Dates 字段）复核；只核验一致性，不改写目录。 |
+| ☐ | `tang_04_xuanmita:rubbing:sourceStoneIdentity` | tang_04_xuanmita | 待人工复核 | 对照多家馆方现藏／迁徙说明与尺寸著录；多源异文并列。 |
+| ☐ | `song_01_yuanyou:script_style:script` | song_01_yuanyou | conflict、待人工复核 | 对照馆方书体栏、释文标注与目录 scriptType；异文保持并列。 |
+| ☐ | `song_02_wenxuan:person:authorEraConflict` | song_02_wenxuan | conflict、待人工复核 | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+| ☐ | `song_03_daguan:person:author` | song_03_daguan | 目录pending_review未抬升 | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+| ☐ | `yuan_01_yufu:style:script` | yuan_01_yufu | conflict、待人工复核 | 对照馆方书体栏、释文标注与目录 scriptType；异文保持并列。 |
+| ☐ | `yuan_02_sundeyu:person:authorDispute` | yuan_02_sundeyu | conflict、待人工复核 | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+| ☐ | `yuan_03_shengzhu:bibliography:authorFieldConflict` | yuan_03_shengzhu | conflict、待人工复核 | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+| ☐ | `yuan_03_shengzhu:person:titleCalligrapher` | yuan_03_shengzhu | 目录pending_review未抬升 | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+| ☐ | `yuan_04_jingyuanchang:person:calligrapher` | yuan_04_jingyuanchang | 目录pending_review未抬升、待人工复核 | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+| ☐ | `yuan_04_jingyuanchang:person:steleSubject` | yuan_04_jingyuanchang | 目录pending_review未抬升、待人工复核 | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+| ☐ | `ming_02_luxianzhi:work:objectNature` | ming_02_luxianzhi | conflict、待人工复核、reviewFlag（载体性质待人工鉴定） | 对照馆方分类与题跋原文，必要时目验拓本／墨迹载体；确认是否存在原刻层。 |
+| ☐ | `ming_03_wugou:script_style:script` | ming_03_wugou | conflict、待人工复核 | 对照馆方书体栏、释文标注与目录 scriptType；异文保持并列。 |
+| ☐ | `ming_04_tongdian:person:calligrapher` | ming_04_tongdian | conflict、待人工复核 | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+| ☐ | `ming_03_wugou:person:steleSubject` | ming_03_wugou | 目录pending_review未抬升 | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+| ☐ | `ming_04_tongdian:person:engraver` | ming_04_tongdian | 目录pending_review未抬升 | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+| ☐ | `qing_02_wushi_reerection:person:engraver` | qing_02_wushi_reerection | conflict、待人工复核 | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+| ☐ | `qing_02_wushi_reerection:work:dynasty` | qing_02_wushi_reerection | conflict、待人工复核 | 对照馆方 Period/Culture 标签与刻石纪年、作者生卒；区分遗迹语境标签与本件新刻朝代。 |
+| ☐ | `qing_04_ayuwang_reliquary:person:engraver` | qing_04_ayuwang_reliquary | conflict、待人工复核 | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+| ☐ | `qing_01_qianlong_heart_sutra:person:calligrapher` | qing_01_qianlong_heart_sutra | 目录pending_review未抬升、待人工复核 | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+| ☐ | `qing_02_wushi_reerection:person:author` | qing_02_wushi_reerection | 目录pending_review未抬升、待人工复核 | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+| ☐ | `qing_02_wushi_reerection:person:calligrapher` | qing_02_wushi_reerection | 目录pending_review未抬升、待人工复核 | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+| ☐ | `qing_03_sanxitang_preface:person:author` | qing_03_sanxitang_preface | 目录pending_review未抬升、待人工复核 | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+| ☐ | `qing_03_sanxitang_preface:person:calligrapher` | qing_03_sanxitang_preface | 目录pending_review未抬升、待人工复核 | 对照馆方 Maker／作者栏、碑面署款与目录角色字段／Verification；pending_review 勿升已验证。 |
+
 ## 明细
 
 说明：同一 claim 可同时属于多种开项类型（如 conflict 且待人工复核）。
@@ -210,6 +282,5 @@
 2. 关闭条件须人工确认；脚本不自动消除 conflict／待人工复核。
 3. C-08 主库禁止 `--apply`；本台账不触发目录或 SQLite 写回。
 4. 用语：写「claim 文件 28/28，开项 N 条」；勿写「收官关闭／冲突全部关闭」。
-5. JS-4／JS-5：功能已闭环（claim 文件 28/28 + 本开项台账／--check）；仓库内无对应独立文档缺口，不另开补档。
-
+5. JS-4／JS-5：本文件「冲突并列一览」与「待人工复核工作清单」为呈现与人工排期用；claim 文件 28/28 + 开项台账/--check 已闭环功能，但开项仍开放（不等于史实定论关闭）。
 

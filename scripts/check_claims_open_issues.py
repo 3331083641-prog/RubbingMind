@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """Scan claims open issues; --check vs CLAIMS_OPEN_ISSUES.md; --write regenerate ledger.
 
 Open kinds:
@@ -210,6 +210,79 @@ def render(rows):
     for key, n in by_prop.most_common():
         add(f'| {key} | {n} |')
     add('')
+    # --- JS-4: conflict parallel listing ---
+    conflicts = [r for r in rows if 'conflict' in r['kinds']]
+    conflicts.sort(key=lambda item: (
+        DYNASTY_ORDER.index(item['dynasty']) if item['dynasty'] in DYNASTY_ORDER else 99,
+        item['claimId'],
+    ))
+    add('## 冲突并列一览（JS-4 · status=conflict）')
+    add('')
+    add(f'> 异文两侧并列，**不定论、不合并、不关闭**。共 **{len(conflicts)}** 条（与统计摘要 conflict 一致）。')
+    add('> 用途：人工对照馆方页／碑面／目录时，一眼看到两侧主张；关闭须有新证据并改对应 claims JSON。')
+    add('')
+    add('| # | claimId | 作品 | 字段 | 侧 A | 侧 B／更多 | 建议人工动作 |')
+    add('|---:|---|---|---|---|---|---|')
+    for i, row in enumerate(conflicts, 1):
+        alts = row['alternatives'] or []
+        if len(alts) >= 2:
+            side_a = str(alts[0]).replace('|', '\\|').replace('\n', ' ')
+            side_b = ' ｜ '.join(str(x).replace('|', '\\|').replace('\n', ' ') for x in alts[1:4])
+        else:
+            side_a = (row['sides'] or '—').replace('|', '\\|').replace('\n', ' ')
+            side_b = '—'
+        if len(side_a) > 100:
+            side_a = side_a[:100] + '…'
+        if len(side_b) > 120:
+            side_b = side_b[:120] + '…'
+        add(
+            f"| {i} | `{row['claimId']}` | {row['steleId']} | "
+            f"{row['entity']}.{row['property']} | {side_a} | {side_b} | {row['suggest']} |"
+        )
+    add('')
+    # --- JS-5: human review checklist ---
+    review_rows = [
+        r for r in rows
+        if ('pending_human' in r['kinds']
+            or 'catalogue_pending_review' in r['kinds']
+            or 'review_flag' in r['kinds'])
+    ]
+    seen = set()
+    checklist = []
+    for row in sorted(
+        review_rows,
+        key=lambda item: (
+            DYNASTY_ORDER.index(item['dynasty']) if item['dynasty'] in DYNASTY_ORDER else 99,
+            0 if 'conflict' in item['kinds'] else 1,
+            item['claimId'],
+        ),
+    ):
+        cid = row['claimId']
+        if cid in seen:
+            continue
+        seen.add(cid)
+        checklist.append(row)
+    kind_label_short = {
+        'conflict': 'conflict',
+        'pending_human': '待人工复核',
+        'review_flag': 'reviewFlag',
+        'catalogue_pending_review': '目录pending_review未抬升',
+    }
+    add('## 待人工复核工作清单（JS-5）')
+    add('')
+    add(f'> 供人工逐条勾选；**脚本与台账不自动关闭**。去重 claimId 共 **{len(checklist)}** 条仍开放。')
+    add('> 含 `evidenceLevel=待人工复核`、目录 `*Verification=pending_review` 未抬升、`reviewFlags`。勾选仅表示人工已看过，关闭开项仍须改 claims JSON 并有证据。')
+    add('')
+    add('| ☐ | claimId | 作品 | 类型摘要 | 建议人工动作 |')
+    add('|---|---|---|---|---|')
+    for row in checklist:
+        kinds = '、'.join(kind_label_short[k] for k in row['kinds'])
+        if row['reviewFlags']:
+            kinds += '（' + '；'.join(row['reviewFlags']) + '）'
+        add(
+            f"| ☐ | `{row['claimId']}` | {row['steleId']} | {kinds} | {row['suggest']} |"
+        )
+    add('')
     add('## 明细')
     add('')
     add('说明：同一 claim 可同时属于多种开项类型（如 conflict 且待人工复核）。')
@@ -251,6 +324,7 @@ def render(rows):
     add('2. 关闭条件须人工确认；脚本不自动消除 conflict／待人工复核。')
     add('3. C-08 主库禁止 `--apply`；本台账不触发目录或 SQLite 写回。')
     add('4. 用语：写「claim 文件 28/28，开项 N 条」；勿写「收官关闭／冲突全部关闭」。')
+    add('5. JS-4／JS-5：本文件「冲突并列一览」与「待人工复核工作清单」为呈现与人工排期用；claim 文件 28/28 + 开项台账/--check 已闭环功能，但开项仍开放（不等于史实定论关闭）。')
     add('')
     return '\n'.join(lines) + '\n', stats
 
@@ -297,6 +371,10 @@ def check(rows):
         errors.append('ledger missing claim 文件 N/28 row')
     elif int(files_stat.group(1)) != stats['claimFiles']:
         errors.append(f'claim files mismatch: ledger={files_stat.group(1)} scan={stats["claimFiles"]}')
+    if '## 冲突并列一览' not in text:
+        errors.append('ledger missing JS-4 section: ## 冲突并列一览')
+    if '## 待人工复核工作清单' not in text:
+        errors.append('ledger missing JS-5 section: ## 待人工复核工作清单')
     if '不等于开项关闭' not in text and '开项仍' not in text:
         errors.append('ledger must state claim files ≠ open-item closure')
     if errors:

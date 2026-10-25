@@ -433,3 +433,12 @@ m:demo:* 与演示 legacy id 的 evidenceId 固定为演示自身，不再落到
 - 扫描摘要（生成时）：开项 36 条；conflict 20；待人工复核 30；reviewFlags 1；目录 pending_review 未抬升 13。
 - 不改 claims 史实判定；不改已审证据；C-08 未 `--apply`；未 push。
 
+## 2026-10-25（Asia/Shanghai）· JS-4/JS-5 台账呈现增强（无史实改动）
+
+- 增强 scripts/check_claims_open_issues.py：--write 现生成
+  - **JS-4**「冲突并列一览」：20 条 status=conflict，侧 A｜侧 B 并列（不定论、不合并、不关闭）
+  - **JS-5**「待人工复核工作清单」：去重 claimId 勾选表（脚本不自动关闭）
+- 重生 docs/product-upgrade/CLAIMS_OPEN_ISSUES.md；--check 增验上述两节标题。
+- **开项仍开放（未关闭）：** claim 文件 28/28；开项行 36；conflict 20；待人工复核 30；reviewFlags 1；目录 pending_review 未抬升 13。
+- 不改 data/catalog/claims/*.json 史实判定；不改已审证据／馆藏原文与影像；C-08 未 --apply；未 push。
+
