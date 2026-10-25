@@ -7,7 +7,7 @@ import React, { useCallback, useState } from 'react';
 import type { SteleItem } from '../../types/stele';
 import { roleText } from '../../types/stele';
 import type { GlyphEvaluation, RunInfo, RunReport, RunSelection } from './data/reportData';
-import { evaluationSummaryText, glyphEvaluationText, runAdaptive, runOutcome } from './data/reportData';
+import { evaluationSummaryText, glyphEvaluationText, runAdaptive, runAlgorithmOutputModeView, runOutcome } from './data/reportData';
 import { formatGlyphBBox, mappedSourceBBox } from './data/glyphInference';
 import type { BatchDetail, Loadable } from './data/types';
 import { formatTime, shortSha } from './format';
@@ -41,6 +41,7 @@ export const ArtifactRunReport: React.FC<Props> = ({ stele, runs, runId, selecti
   const eff = run?.effectiveParameters as (Record<string, unknown> & { ignoredRequestParameters?: string[] }) | null | undefined;
   const effMissing = !eff && (run as { effectiveParametersUnavailableReason?: string | null } | null)?.effectiveParametersUnavailableReason;
   const adaptive = run ? runAdaptive(run) : null;
+  const algoMode = run ? runAlgorithmOutputModeView(run) : null;
   const features = (adaptive?.features || {}) as Record<string, unknown>;
   const gate = (adaptive?.fidelityGate || null) as Record<string, unknown> | null;
   const inBatch = batchDetail ? batchDetail.rows.filter(r => r.sampleId === stele.id) : [];
@@ -105,6 +106,11 @@ export const ArtifactRunReport: React.FC<Props> = ({ stele, runs, runId, selecti
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 text-sm">
           <div><p className="font-bold text-xs mb-1">决策链（真实执行记录）</p>
+            {algoMode && <div className={`rounded border p-2 mb-2 text-xs ${algoMode.provided && algoMode.mode === 'processed' ? 'border-[#3E8E7E]/50 bg-[#3E8E7E]/10' : algoMode.provided ? 'border-[#C83C23]/50 bg-[#C83C23]/10' : 'border-[#937d5d]/60'}`} data-testid="algorithm-output-mode" data-mode={algoMode.code || ''} data-provided={algoMode.provided ? 'true' : 'false'}>
+              <p className="font-bold">{algoMode.title}{algoMode.code ? <> · <code>{algoMode.code}</code></> : null}</p>
+              <p className="mt-0.5 text-[#5d4c35]">{algoMode.detail}</p>
+              {adaptive?.selectedOutput != null && adaptive.selectedOutput !== '' && <p className="mt-0.5 text-[#5d4c35]">选定输出：<code>{String(adaptive.selectedOutput)}</code>（算法层 selectedOutput，非运行级 outputMode）</p>}
+            </div>}
             {adaptive?.decisions?.length ? <ol className="list-decimal pl-5 space-y-0.5">{adaptive.decisions.map((d, i) => <li key={i}><code>{d.operator}</code>{d.reason ? `：${d.reason}` : ''}</li>)}</ol> : <p className="text-[#6b5a43]">该运行没有记录自适应决策（固定参数路径或旧版运行）。</p>}
             {gate && <p className="text-xs mt-1">保真门控：{gate.accepted === true ? '通过' : gate.accepted === false ? '拒绝' : '—'}；强边缘保留 {typeof gate.strongEdgeRetention === 'number' ? gate.strongEdgeRetention.toFixed(3) : '—'}；平均改动 {typeof gate.meanAbsoluteChange === 'number' ? gate.meanAbsoluteChange.toFixed(3) : '—'}。{String(gate.basis || '')}（启发式规则，不是统计检验）</p>}
           </div>

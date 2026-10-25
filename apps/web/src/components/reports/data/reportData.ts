@@ -6,7 +6,7 @@
  */
 import type { AppliedStatus, BatchDetail, BatchRegistry, CiFile, CiGroup, DerFile, Derived, Diagnosis, ExperimentRow, GainSign, Grade, Loadable, MechanismDetail, MechanismIndex, NlcFile } from './types';
 import type { MetricKey } from './labels';
-import { SteleService, type ProcessingRunR1, type RunSelection } from '../../../services/api';
+import { SteleService, type AdaptiveDiagnostics, type AlgorithmOutputMode, type ProcessingRunR1, type RunSelection } from '../../../services/api';
 import type { GlyphInferenceRecord } from './glyphInference';
 import { parseIsoTime } from '../format';
 
@@ -508,8 +508,9 @@ type RunExtras = ProcessingRunR1 & {
   grayMeanAbsDiff?: number | null;
   grayPassthroughCriterion?: string | null;
   engineDiagnosticMetrics?: Record<string, number | null>;
-  adaptiveDiagnostics?: { version?: string; features?: Record<string, unknown>; decisions?: { operator: string; reason?: string }[]; fidelityGate?: Record<string, unknown>; selectedOutput?: string; algorithmOutputMode?: 'processed' | 'identity_no_evidence' | 'gate_fallback_original'; changeStats?: Record<string, unknown>; limitations?: string } | null;
-  frequencyDetails?: { mode?: string; notchApplied?: boolean; adaptive?: RunExtras['adaptiveDiagnostics'] } | null;
+  /** ADR R2-12：与 ProcessingRunR1.AdaptiveRunFields 对齐，消费 AdaptiveDiagnostics（含 algorithmOutputMode）。 */
+  adaptiveDiagnostics?: AdaptiveDiagnostics | null;
+  frequencyDetails?: { mode?: string; notchApplied?: boolean; adaptive?: AdaptiveDiagnostics | null } | null;
 };
 export type RunOutputMode = 'passthrough' | 'processed' | 'undetermined';
 export interface RunOutcome { mode: RunOutputMode; title: string; detail: string; criterion: string; source: string | null; changeText: string | null; grayText: string | null }
@@ -517,6 +518,55 @@ export interface RunOutcome { mode: RunOutputMode; title: string; detail: string
 export function runAdaptive(run: ProcessingRunR1) {
   const r = run as RunExtras;
   return r.adaptiveDiagnostics || r.frequencyDetails?.adaptive || null;
+}
+
+/** 算法层 algorithmOutputMode（ADR R2-12）。与运行级 outputMode / isPassthrough 同名不同义，仅用于决策链展示。 */
+export interface AlgorithmOutputModeView {
+  mode: AlgorithmOutputMode | null;
+  provided: boolean;
+  title: string;
+  detail: string;
+  code: string | null;
+}
+const ALGO_MODE_COPY: Record<AlgorithmOutputMode, { title: string; detail: string }> = {
+  processed: {
+    title: '算法层：已产出处理结果',
+    detail: '自适应路径选定处理后候选作为输出（algorithmOutputMode=processed）。这是算法决策层记录，不等于运行级「是否改动原图」判定。',
+  },
+  identity_no_evidence: {
+    title: '算法层：无充分证据，保持恒等输出',
+    detail: '算法判断缺少改图证据，输出与输入内容恒等（algorithmOutputMode=identity_no_evidence）。勿与运行级「本次未改动原图」（isPassthrough / outputMode=passthrough）混称；运行级仍以像素判据为准。',
+  },
+  gate_fallback_original: {
+    title: '算法层：保真门控回退原图',
+    detail: '保真门控拒绝候选，回退输出原图（algorithmOutputMode=gate_fallback_original）。这是算法决策层记录，不是运行级 outputMode。',
+  },
+};
+export function algorithmOutputModeView(adaptive: AdaptiveDiagnostics | null | undefined): AlgorithmOutputModeView {
+  const raw = adaptive?.algorithmOutputMode;
+  if (raw == null) {
+    return {
+      mode: null,
+      provided: false,
+      title: '算法层输出模式未提供',
+      detail: '本运行未写入 adaptiveDiagnostics.algorithmOutputMode（旧运行、非自适应路径，或后端尚未返回）。不据此推断处理成功；运行级「是否改动」仍只读 isPassthrough / outputMode。',
+      code: null,
+    };
+  }
+  if (!(raw in ALGO_MODE_COPY)) {
+    return {
+      mode: null,
+      provided: true,
+      title: `算法层：未识别取值（${String(raw)}）`,
+      detail: '收到未在契约 {processed, identity_no_evidence, gate_fallback_original} 中列出的 algorithmOutputMode；原样展示，不解释为处理成功。',
+      code: String(raw),
+    };
+  }
+  const known = ALGO_MODE_COPY[raw];
+  return { mode: raw, provided: true, title: known.title, detail: known.detail, code: raw };
+}
+export function runAlgorithmOutputModeView(run: ProcessingRunR1): AlgorithmOutputModeView {
+  return algorithmOutputModeView(runAdaptive(run));
 }
 export function ratioText(ratio: number | null | undefined) {
   if (ratio == null) return '无法判定';

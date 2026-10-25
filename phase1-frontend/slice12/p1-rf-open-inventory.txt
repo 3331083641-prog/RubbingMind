@@ -1,0 +1,26 @@
+Phase1 / RF open inventory after align 25aa898 (slice12, 2026-10-25 Asia/Shanghai)
+
+ALIGN:
+- FF-only: ac8f83c -> 25aa898ee882221bbd5affbdda20deceeb7058bc (merge arch@847e7f1 algorithmOutputMode)
+- branch: agent/report-frontend
+- worktree: D:\RubbingMind\wt\rm-report-frontend
+- Confirmed HEAD contains 847e7f1 (AlgorithmOutputMode / AdaptiveDiagnostics in types/stele.ts + api.ts)
+- No App.tsx / api.ts / urlState.ts / HomePage.tsx / types contract edits this round
+- No push; did not touch 5173/8000/5180
+
+DONE this round (algoMode UI):
+- reportData.ts: RunExtras consumes AdaptiveDiagnostics; algorithmOutputModeView / runAlgorithmOutputModeView
+  distinguishes algorithm-layer {processed, identity_no_evidence, gate_fallback_original} from run-level outputMode
+- ArtifactRunReport: decision-chain panel data-testid=algorithm-output-mode (real empty when field absent)
+- ReportPrintLayout: print-algorithm-output-mode line
+- ReportsPage export: algorithmLayer { algorithmOutputMode, selectedOutput, note } beside adaptiveDiagnostics
+- npm run build: GREEN (tsc && vite build)
+
+OPEN / blocked:
+- RF-8: awaiting user screenshot confirm; HomePage NOT modified; NOT self-closed
+  shots: D:\RubbingMind\screenshots\product-upgrade\phase1-frontend\home-core-cards_{before,after}_{1920w,390w}.png
+  + slice10 rf8_home_core_cards_1920x1080.png
+- ACCEPTANCE_MATRIX Phase1 P1-* remain 待验证 at product level (evidence != close)
+- AB-8 health samples_* report UI: ops field; not this agent
+
+Evidence: phase1-frontend/slice12/*
