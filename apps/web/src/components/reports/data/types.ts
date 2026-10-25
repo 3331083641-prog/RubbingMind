@@ -118,11 +118,21 @@ export interface Diagnosis {
 export interface DerRow { rowIndex: number; sampleId: string; split: string | null; degradation: string; strength?: number; method: string; appliedStatus: AppliedStatus; isPassthrough: boolean | null; criterion: string; byteIdentical: boolean | null; changedPixelCount: number | null; totalPixelCount: number | null; changedPixelRatio: number | null; maxAbsDiff: number | null; meanAbsDiff: number | null; appliedStatusDetail?: string | null; shaMatchesRecord?: boolean | null; undeterminedReason?: string | null }
 export interface DerFile { experimentId: string; batch: string; derivedAt: string; derivedBy: string; sourceResultsSha256: string; imagesAvailable: boolean; criterion: string; note?: string; rows: DerRow[] }
 export type GainSign = 'positive' | 'negative' | 'spans_zero' | 'zero';
+/** ES-3 / eval_export_contract.lift_claim_label values (backend annotate_ci_lift_claims). */
+export type LiftClaimLabel = 'positive_lift_ci_excludes_zero' | 'no_positive_lift_claim' | '未评测' | string;
 export interface CiGroup {
   split: string; method: string; degradation: string; scope: 'all' | 'processed' | 'passthrough'; rowN: number; artifactN: number; seed: number; bootstrap: number; ciReliable: boolean; ciNote: string | null;
+  /** Annotated by /api/.../ci-by-artifact (ES-3); absent on raw derived JSON. */
+  liftClaimLabel?: LiftClaimLabel;
+  mayClaimPositiveLift?: boolean;
   [key: string]: unknown;
 }
-export interface CiFile { batch: string; experimentId: string; derivedAt: string; seed: number; bootstrap: number; percentiles: number[]; minReliableArtifacts: number; rngRule: string; gainDefinition: string; appliedStatusSha256?: string; groups: CiGroup[] }
+export interface CiFile {
+  batch: string; experimentId: string; derivedAt: string; seed: number; bootstrap: number; percentiles: number[]; minReliableArtifacts: number; rngRule: string; gainDefinition: string; appliedStatusSha256?: string; groups: CiGroup[];
+  /** Top-level ES-3 summary from annotate_ci_lift_claims (API only). */
+  liftClaimSummary?: Record<string, number>;
+  liftClaimRule?: string;
+}
 export interface NlcEvidence { cause: string; measure: string; value: number | null; comparator: string; threshold: number; available: boolean; triggered: boolean; unavailableReason: string | null }
 export interface NlcCase { rowIndex: number; sampleId: string; split: string | null; caseId?: string; degradation: string; strength?: number; method: string; psnrDelta: number; ruleInferredCause?: string; ruleInferredBasis?: string; measuredCauses: string[]; measuredEvidence: NlcEvidence[] }
 export interface NlcFile { batch: string; derivedAt: string; measuredCriteriaVersion: string; note?: string; negativeLiftN: number; cases: NlcCase[] }

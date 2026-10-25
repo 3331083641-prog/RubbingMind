@@ -6,7 +6,7 @@
 import React, { useState } from 'react';
 import type { GlobalModel } from './data/globalModel';
 import { caseKeyOf } from './data/globalModel';
-import { appliedStatus, BatchInfo, BOOTSTRAP_RESAMPLES, BOOTSTRAP_SEED, gainWord, GAIN_SIGN_TEXT, GlyphEvaluation, isPassthroughStatus, MethodAggregate, ReportApi, ScopeStat, SCOPE_LABELS, glyphEvaluationText } from './data/reportData';
+import { appliedStatus, BatchInfo, BOOTSTRAP_RESAMPLES, BOOTSTRAP_SEED, gainWord, GAIN_SIGN_TEXT, GlyphEvaluation, isPassthroughStatus, mayClaimPositiveLift, MethodAggregate, ReportApi, ScopeStat, SCOPE_LABELS, glyphEvaluationText } from './data/reportData';
 import type { ExperimentRow, Loadable } from './data/types';
 import { APPLIED_LABELS, degradationLabel, methodLabel, SPLIT_LABELS } from './data/labels';
 import { signed, shortSha } from './format';
@@ -47,10 +47,10 @@ export const ScopeTriple: React.FC<{ it: MethodAggregate; unit?: string; retest?
   const main = it.scopes[it.primaryScope];
   const pt = it.scopes.passthrough;
   return <div className="space-y-1" data-testid="scope-triple">
-    <p className="font-serif text-2xl" style={{ color: main.value == null ? '#94a3b8' : main.sign === 'negative' ? '#EE5C42' : main.sign === 'positive' && main.ciReliable ? '#85D3C3' : '#F5D46E' }}>
+    <p className="font-serif text-2xl" style={{ color: main.value == null ? '#94a3b8' : main.sign === 'negative' && main.ciReliable ? '#EE5C42' : mayClaimPositiveLift(main) ? '#85D3C3' : '#F5D46E' }}>
       {main.value == null ? (it.passthroughN > 0 && it.processedN === 0 ? `未处理 ${it.passthroughN} 条` : '无数据') : signed(main.value, 2, unit)}
       {main.value != null && <><span className="text-sm text-slate-300 ml-2">{ciText(main)}</span>
-      <span className="text-xs ml-2 rounded border border-slate-600 px-1 py-0.5 text-slate-300">{gainWord(main)}</span></>}
+      <span className="text-xs ml-2 rounded border border-slate-600 px-1 py-0.5 text-slate-300" data-testid="lift-claim-label" data-lift-claim={main.liftClaimLabel || ''}>{gainWord(main)}</span></>}
     </p>
     <p className="text-[11px] text-slate-300">主口径 <b>{SCOPE_LABELS[it.primaryScope]}</b>：文物 {main.nArtifacts} 件 · {main.nRecords} 行（n = {it.n}）{main.sign ? ` · ${GAIN_SIGN_TEXT[main.sign]}` : ''}</p>
     <ul className="text-[11px] text-slate-400 grid grid-cols-1 sm:grid-cols-3 gap-x-3">
@@ -75,8 +75,8 @@ export const GlobalEvaluation: React.FC<Props> = ({ model, batches, glyph, filte
   const retest = batch.kind === 'retest';
   const psnrPanel = model.panels.find(p => p.metric.key === 'psnr');
   const items = psnrPanel?.items || [];
-  const neg = items.filter(i => { const s = i.scopes[i.primaryScope]; return s.sign === 'negative' && s.ciReliable; });
-  const pos = items.filter(i => { const s = i.scopes[i.primaryScope]; return s.sign === 'positive' && s.ciReliable; });
+  const neg = items.filter(i => { const s = i.scopes[i.primaryScope]; return s.sign === 'negative' && s.ciReliable && !mayClaimPositiveLift(s); });
+  const pos = items.filter(i => { const s = i.scopes[i.primaryScope]; return mayClaimPositiveLift(s); });
   const panes = triptychPanes(model, caseRow);
   const [showAbs, setShowAbs] = useState(false);
   const filterText = `${SPLIT_LABELS[model.split]} · ${degradationLabel(model.degradation)}${model.sample ? ` · 仅 ${model.sample}` : ''}`;
@@ -96,9 +96,14 @@ export const GlobalEvaluation: React.FC<Props> = ({ model, batches, glyph, filte
         </article>
         <article className="rounded-lg border border-slate-700/80 bg-black/20 p-3 space-y-1" data-testid="conclusion-negative">
           <div className="flex items-center justify-between gap-2"><p className="text-xs text-slate-400">结论 2 · 各方法相对输入的配对增益（主口径）</p><GradeBadge grade={items.length ? '有限支持' : '未评测'} reasons={['受控退化；逐方法见图中 CI']} /></div>
-          {items.length ? <p className="text-sm">CI 下界 &gt; 0（可写“提升”）：<span className="text-celadon-light">{pos.length ? pos.map(i => methodLabel(i.method)).join('、') : '无'}</span>；CI 上界 &lt; 0（下降）：<span className="text-cinnabar-light font-bold">{neg.length ? neg.map(i => methodLabel(i.method)).join('、') : '无'}</span>；其余为 CI 跨 0、不可靠或无数据。</p> : <p className="text-sm">当前筛选没有可比记录。</p>}
+          {items.length ? <p className="text-sm">仅当后端 liftClaimLabel=positive_lift_ci_excludes_zero（CI 下界&gt;0 且可靠且文物数≥3）才写「提升」：<span className="text-celadon-light">{pos.length ? pos.map(i => methodLabel(i.method)).join('、') : '无'}</span>；CI 上界&lt;0（下降）：<span className="text-cinnabar-light font-bold">{neg.length ? neg.map(i => methodLabel(i.method)).join('、') : '无'}</span>；其余为跨 0 / 不可靠 / 未评测。</p> : <p className="text-sm">当前筛选没有可比记录。</p>}
           <p className="text-[11px] text-slate-500">负提升全部保留；不跨批次求均值。跨批次比较见下方“跨批次对照”，并逐条检查 C1–C4。</p>
         </article>
+        {model.ci?.file.liftClaimSummary && <article className="rounded-lg border border-slate-700/80 bg-black/20 p-3 space-y-1" data-testid="lift-claim-summary">
+          <p className="text-xs text-slate-400">ES-3 lift 声明汇总（后端 annotate_ci_lift_claims）</p>
+          <p className="text-sm flex flex-wrap gap-2">{Object.entries(model.ci.file.liftClaimSummary).map(([k, n]) => <span key={k} className="rounded border border-slate-600 px-2 py-0.5 text-[11px] text-slate-300" data-testid={`lift-claim-count-${k}`}>{k === 'positive_lift_ci_excludes_zero' ? '可写提升' : k === 'no_positive_lift_claim' ? '不可写提升' : k === '未评测' ? '未评测' : k} · {n}</span>)}</p>
+          {model.ci.file.liftClaimRule && <p className="text-[10px] text-slate-500" data-testid="lift-claim-rule">{model.ci.file.liftClaimRule}</p>}
+        </article>}
         <article className="rounded-lg border border-slate-700/80 bg-black/20 p-3 space-y-1" data-testid="conclusion-unevaluated">
           <div className="flex items-center justify-between gap-2"><p className="text-xs text-slate-400">结论 3 · 未评测项</p><GradeBadge grade="未评测" /></div>
           <p className="text-sm">真实拓本修复质量：未评测（无配对参考，不报告 PSNR/SSIM）。</p>
