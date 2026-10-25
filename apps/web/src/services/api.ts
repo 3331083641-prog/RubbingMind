@@ -1,4 +1,5 @@
-import { SteleItem, ProcessingResult, ProcessingRun, CharacterItem, GraphNode, GraphLink, GISWaypoint, AblationMetric } from '../types/stele';
+import { SteleItem, ProcessingResult, ProcessingRun, CharacterItem, GraphNode, GraphLink, GISWaypoint, AblationMetric, AlgorithmOutputMode, AdaptiveDiagnostics } from '../types/stele';
+export type { AlgorithmOutputMode, AdaptiveDiagnostics };
 import STILES_28_DATA from '../data/steles28.json';
 import { CORE_SAMPLES, resolveSelected } from '../data/catalogSelection';
 export const FALLBACK_STELES = STILES_28_DATA as unknown as SteleItem[];
@@ -56,6 +57,7 @@ export interface RunChangeStatus {
   passthroughUndeterminedReason?: string | null;
   /** [before, after]; currently always ['original', 'restored'] */
   comparedImages?: string[];
+  /** Run-level only ({processed|passthrough|undetermined}). Algorithm-layer mode is adaptiveDiagnostics.algorithmOutputMode. */
   outputMode?: 'processed' | 'passthrough' | 'undetermined';
   /** Green 2026-10-19 (a): working-gray reference only; never decides isPassthrough. null = undeterminable. */
   grayChangedPixelCount?: number | null;
@@ -69,7 +71,16 @@ export interface RunChangeStatus {
   effectiveParametersUnavailableReason?: string | null;
 }
 export interface RunKindFields { legacy?: boolean; runKind?: 'processing' | 'legacy_unverified'; sortTimestamp?: string | null; sourceSteleId?: string }
-export type ProcessingRunR1 = ProcessingRun & RunChangeStatus & RunKindFields;
+export interface AdaptiveRunFields {
+  adaptiveDiagnostics?: AdaptiveDiagnostics | null;
+  frequencyDetails?: {
+    mode?: string;
+    notchApplied?: boolean;
+    adaptive?: AdaptiveDiagnostics | null;
+  } | null;
+}
+/** Run-level outputMode stays on RunChangeStatus; algorithmOutputMode lives under adaptiveDiagnostics (ADR R2-12). */
+export type ProcessingRunR1 = ProcessingRun & RunChangeStatus & RunKindFields & AdaptiveRunFields;
 export interface ExperimentBatchMeta {
   /** authoritative experimentId; `batch` is its readable one-to-one alias (results directory) */
   id: string; directory: string; batch?: string; rowCount: number; sampleCount: number; displayName?: string; heldOut?: boolean | null;

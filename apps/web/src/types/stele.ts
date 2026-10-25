@@ -95,6 +95,21 @@ export interface SteleItem {
   inferenceDemo?: {transcript:string;characters:CharacterItem[];damaged_summary:string};
 }
 
+/** ADR R2-12: algorithm-layer only; do not confuse with run-level outputMode. */
+export type AlgorithmOutputMode = 'processed' | 'identity_no_evidence' | 'gate_fallback_original';
+
+/** AdaptiveRubbingRestorer.restore / V22 meta nested under adaptiveDiagnostics. */
+export interface AdaptiveDiagnostics {
+  version?: string;
+  features?: Record<string, unknown>;
+  decisions?: Array<{ operator: string; reason?: string; pixels?: number }>;
+  fidelityGate?: Record<string, unknown> | null;
+  selectedOutput?: 'original' | 'candidate' | string;
+  algorithmOutputMode?: AlgorithmOutputMode;
+  changeStats?: Record<string, unknown>;
+  limitations?: string;
+}
+
 export interface ProcessingParams {
   d0: number; // 截止频率
   filter_order: number; // 滤波器阶数
@@ -109,7 +124,7 @@ export interface ProcessingResult {
   algorithmVersion: string;
   evaluationStatus: 'unassessed' | 'paired_reference';
   outputImages: Record<string, string>;
-  adaptiveDiagnostics?: Record<string, unknown> | null;
+  adaptiveDiagnostics?: AdaptiveDiagnostics | null;
   engineDiagnosticMetrics?: Record<string, number | null>;
   restored_image: string;
   fft_spectrum?: string;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { SteleItem, CharacterItem, ProcessingResult, ProcessingRun, roleText } from '../types/stele';
+import { SteleItem, CharacterItem, ProcessingResult, ProcessingRun, roleText, AdaptiveDiagnostics } from '../types/stele';
 import { SteleService } from '../services/api';
 import type { GlyphInferenceRecord } from '../services/api';
 import { GlyphInferencePanel } from '../components/GlyphInferencePanel';
@@ -48,7 +48,7 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({ stele, onNavigate,
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [runs, setRuns] = useState<ProcessingRun[]>([]);
   const [selectedRunId, setSelectedRunId] = useState('');
-  const [adaptiveDetails,setAdaptiveDetails]=useState<Record<string,unknown>|null>(null);
+  const [adaptiveDetails,setAdaptiveDetails]=useState<AdaptiveDiagnostics|null>(null);
 
   // Dynamic Image URLs & Metrics
   const [restoredImageUrl, setRestoredImageUrl] = useState<string>('');
