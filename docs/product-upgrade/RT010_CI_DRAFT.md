@@ -36,3 +36,17 @@
 
 暂缓：RT-008 tailwind v4；RT-006 / RF-8 仍等用户。
 
+## Green scope 2026-10-25 18:40（Asia/Shanghai）
+
+空档续做：仅扩 `ci-feature.draft.yml`；仍禁改 `.github/workflows/ci.yml`。
+
+本 tip 相对 `d6f434d` / `0c1ac0c` 基线新增草稿 job：
+
+- `draft-catalogue-gis`：`validate_history_gis.py` **硬门**（无 `continue-on-error`）
+- `draft-eval-contracts`：`pytest tests/test_es_derived_contracts.py -v`
+- `draft-repository-validation`：关键产物存在性检查（含 draft 自身与 validate 脚本）
+- `browser-extended-draft`：增加 loopback `vite preview :4173` 就绪等待后再跑 browser 脚本
+- `concurrency` 组：同 ref 取消进行中的草稿 run
+
+并行：`RT006_USER_DECISION_BRIEF.md` docs-only，供用户 A/B/C widget；**不执行**删除/归档。
+
