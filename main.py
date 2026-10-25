@@ -144,19 +144,39 @@ class CalendarRequest(BaseModel):
 class EvidenceQueryRequest(BaseModel):
     question: str = Field(min_length=2,max_length=500)
     steleId: Optional[str] = Field(default=None,max_length=100)
+    includeDemo: bool = False
+
+
+def _resolve_stele_for_api(stele_id: str):
+    """Resolve bare / rm:demo:<id> / rm:rubbing:<id> to a stele record.
+
+    Demo namespace never folds to museum rubbing (RV-AI06). Returns (item_or_None, resolve_id dict).
+    """
+    from history_graph import resolve_id
+    resolved = resolve_id(stele_id)
+    kind = resolved.get('kind')
+    if kind in ('demo_sample', 'rubbing'):
+        item = museum_manager.get_stele_by_id(resolved['evidenceId'])
+        return item, resolved
+    item = museum_manager.get_stele_by_id(stele_id)
+    return item, resolved
 
 
 @app.post('/api/research/query')
 def query_evidence(request: EvidenceQueryRequest):
     from evidence_retrieval import query
-    if request.steleId and not museum_manager.get_stele_by_id(request.steleId):
-        raise HTTPException(status_code=404,detail='文物不存在')
-    return query(request.question,request.steleId)
+    if request.steleId:
+        item, _resolved = _resolve_stele_for_api(request.steleId)
+        if not item:
+            raise HTTPException(status_code=404,detail='文物不存在')
+    return query(request.question, request.steleId, include_demo=request.includeDemo)
 
 
 @app.get('/api/research/steles/{stele_id}')
 def get_research_graph(stele_id: str):
-    if not museum_manager.get_stele_by_id(stele_id):raise HTTPException(status_code=404,detail='文物不存在')
+    item, _resolved = _resolve_stele_for_api(stele_id)
+    if not item:
+        raise HTTPException(status_code=404,detail='文物不存在')
     from evidence_retrieval import artifact_graph
     return artifact_graph(stele_id)
 
@@ -336,11 +356,14 @@ async def get_steles():
 
 @app.get("/api/steles/{stele_id}")
 async def get_stele(stele_id: str):
-    item = museum_manager.get_stele_by_id(stele_id)
-    if item: return item
-    if stele_id in museum_manager.retired:
-        mapping = museum_manager.retired[stele_id]
-        raise HTTPException(status_code=410, detail={"message":"原记录已下架，推荐查看新馆藏（不同文物）", "oldId":stele_id,"recommendedId":mapping["newId"]})
+    item, resolved = _resolve_stele_for_api(stele_id)
+    if item:
+        return item
+    bare = resolved.get('evidenceId') or stele_id
+    if stele_id in museum_manager.retired or bare in museum_manager.retired:
+        key = stele_id if stele_id in museum_manager.retired else bare
+        mapping = museum_manager.retired[key]
+        raise HTTPException(status_code=410, detail={"message":"原记录已下架，推荐查看新馆藏（不同文物）", "oldId":key,"recommendedId":mapping["newId"]})
     raise HTTPException(status_code=404, detail="未找到该文物，不自动切换样本")
 
 

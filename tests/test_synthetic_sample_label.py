@@ -47,7 +47,9 @@ def test_api_record_and_inference_carry_label():
 
 def test_history_graph_carries_label():
     graph = get_history_graph('wei-jianyi', [])
-    assert graph['textProvenance']['label'] == LABEL and graph['identity'].startswith(LABEL)
+    assert graph['textProvenance']['label'] == LABEL
+    # RV-AI06: demo identity is prefixed with 演示样本 rm:demo:…; synthetic label remains in the string
+    assert graph['identity'].startswith('演示样本') and LABEL in graph['identity']
     assert LABEL in next(n for n in graph['nodes'] if n['id'] == 'wei-jianyi')['desc']
 
 
