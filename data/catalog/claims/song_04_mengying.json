@@ -31,7 +31,12 @@
         },
         {
           "type": "url",
-          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full"
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋釋夢英十八體書碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "宋釋夢英十八體書碑墨拓本"
         }
       ]
     },
@@ -52,7 +57,12 @@
         },
         {
           "type": "url",
-          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full"
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋釋夢英十八體書碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "宋釋夢英十八體書碑墨拓本"
         }
       ]
     },
@@ -93,7 +103,8 @@
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_04_mengying",
-          "field": "physicalCollectionInstitution"
+          "field": "physicalCollectionInstitution",
+          "value": null
         }
       ],
       "missingReason": "目录为空"
@@ -107,16 +118,13 @@
       "evidenceLevel": "有限支持",
       "sources": [
         {
-          "type": "file",
-          "path": "data/catalog/steles28.json",
-          "id": "song_04_mengying",
-          "field": "transcription",
-          "quote": "丁卯年於長安集"
-        },
-        {
           "type": "url",
           "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full",
-          "note": "释文：丁卯年於長安集"
+          "publisher": "國立故宮博物院",
+          "title": "宋釋夢英十八體書碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "释文：丁卯年於長安集"
         }
       ],
       "note": "不输出坐标；长安为集字/刊刻地线索"
@@ -153,7 +161,8 @@
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_04_mengying",
-          "field": "rubbingCollectionInstitution"
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
         },
         {
           "type": "catalogue",
@@ -164,7 +173,12 @@
         },
         {
           "type": "url",
-          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full"
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋釋夢英十八體書碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "宋釋夢英十八體書碑墨拓本"
         }
       ]
     },
@@ -179,13 +193,18 @@
         {
           "type": "url",
           "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full",
-          "note": "品名栏"
+          "publisher": "國立故宮博物院",
+          "title": "宋釋夢英十八體書碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名栏"
         },
         {
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_04_mengying",
-          "field": "attribution"
+          "field": "attribution",
+          "value": "释梦英十八体书碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw"
         }
       ]
     },
@@ -200,7 +219,11 @@
         {
           "type": "url",
           "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full",
-          "note": "数量一轴；本幅130.8x81.6；全幅218x84；质地纸"
+          "publisher": "國立故宮博物院",
+          "title": "宋釋夢英十八體書碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "数量一轴；本幅130.8x81.6；全幅218x84；质地纸"
         }
       ]
     },
@@ -216,7 +239,8 @@
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_04_mengying",
-          "field": "rubbingPeriod"
+          "field": "rubbingPeriod",
+          "value": "未核定；不据拓印年改变朝代"
         }
       ],
       "missingReason": "目录未核定"
@@ -233,7 +257,8 @@
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_04_mengying",
-          "field": "sourceVerification.sourceSha256"
+          "field": "sourceVerification.sourceSha256",
+          "value": "b613403e0c03ac4c815e71a5734d3397a81b2d21d1072b3e28a178305c539532"
         }
       ],
       "note": "本轮未改影像"
@@ -250,11 +275,17 @@
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_04_mengying",
-          "field": "license"
+          "field": "license",
+          "value": "CC BY 4.0"
         },
         {
           "type": "url",
-          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full"
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋釋夢英十八體書碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "宋釋夢英十八體書碑墨拓本"
         }
       ]
     },
@@ -270,7 +301,8 @@
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_04_mengying",
-          "field": "modifications"
+          "field": "modifications",
+          "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
         }
       ]
     },
@@ -330,7 +362,12 @@
         },
         {
           "type": "url",
-          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full"
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋釋夢英十八體書碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "宋釋夢英十八體書碑墨拓本"
         }
       ]
     },
@@ -346,7 +383,8 @@
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_04_mengying",
-          "field": "titleCalligrapher"
+          "field": "titleCalligrapher",
+          "value": "未核定"
         }
       ],
       "missingReason": "目录未核定"
@@ -362,7 +400,11 @@
         {
           "type": "url",
           "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full",
-          "note": "前攝鎮國軍節度巡官安文㻮刋"
+          "publisher": "國立故宮博物院",
+          "title": "宋釋夢英十八體書碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "前攝鎮國軍節度巡官安文㻮刋"
         }
       ],
       "note": "目录 engraver 未核定；据释文刊字，不升为已验证"
@@ -379,7 +421,8 @@
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_04_mengying",
-          "field": "steleSubject"
+          "field": "steleSubject",
+          "value": "未核定"
         }
       ],
       "missingReason": "非墓碑碑主"
@@ -402,7 +445,11 @@
         {
           "type": "url",
           "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full",
-          "note": "丁卯年於長安集；乾德五年於（璎珞篆则）"
+          "publisher": "國立故宮博物院",
+          "title": "宋釋夢英十八體書碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "丁卯年於長安集；乾德五年於（璎珞篆则）"
         }
       ]
     },
@@ -449,7 +496,11 @@
         {
           "type": "url",
           "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full",
-          "note": "丁卯年於長安集"
+          "publisher": "國立故宮博物院",
+          "title": "宋釋夢英十八體書碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "丁卯年於長安集"
         }
       ]
     },
@@ -484,10 +535,19 @@
         {
           "type": "url",
           "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full",
-          "note": "丁卯年於長安集"
+          "publisher": "國立故宮博物院",
+          "title": "宋釋夢英十八體書碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "丁卯年於長安集"
         }
       ],
-      "note": "不输出坐标"
+      "note": "不输出坐标",
+      "region": {
+        "historicalName": "长安",
+        "modernRegion": "陕西省西安市",
+        "precision": "region"
+      }
     },
     {
       "claimId": "song_04_mengying:place:currentStone",
@@ -511,13 +571,23 @@
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_04_mengying",
-          "field": "rubbingCollectionInstitution"
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
         },
         {
           "type": "url",
-          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full"
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋釋夢英十八體書碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "宋釋夢英十八體書碑墨拓本"
         }
-      ]
+      ],
+      "region": {
+        "modernRegion": "台北市",
+        "precision": "region"
+      }
     },
     {
       "claimId": "song_04_mengying:script_style:script",
@@ -550,7 +620,12 @@
         },
         {
           "type": "url",
-          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full"
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋釋夢英十八體書碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "宋釋夢英十八體書碑墨拓本"
         }
       ]
     },
@@ -601,13 +676,19 @@
       "sources": [
         {
           "type": "url",
-          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full"
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34721&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "宋釋夢英十八體書碑墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "宋釋夢英十八體書碑墨拓本"
         },
         {
           "type": "catalogue",
           "path": "data/catalog/steles28.json",
           "id": "song_04_mengying",
-          "field": "collectionNumber"
+          "field": "collectionNumber",
+          "value": "購拓000259"
         }
       ]
     }
