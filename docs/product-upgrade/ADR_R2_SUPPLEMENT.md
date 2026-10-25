@@ -46,3 +46,10 @@
 - 运行级继续叫 `outputMode` ∈ `{processed, passthrough, undetermined}`，由 `isPassthrough` 导出。
 - 两层同名不同义：报告页的“是否改动”只读运行级；算法层只用于决策链展示。本分支不改 eval-sci 大面积文件；合并说明要求 eval-sci 侧完成改名，本分支任何引用与 ADR/审查文档使用 `algorithmOutputMode`。
 - 灰度判据最终名：`gray-bt601-pixel-equal-v1`（不要再用 working-gray-pixel-equal-v1）。
+
+## RT residual batch (arch tip, post-4f57eb5)
+
+- **RT-008**：vite → `^6.4.5` + `server/preview.host=127.0.0.1`；`npm audit --omit=dev` 仍为 0；dev 依赖若仍有 moderate（tailwind/postcss-selector-parser / esbuild via 旧链）书面接受为仅 `npm run dev` 暴露，见 tip 说明。
+- **RT-010**：草案 `RT010_CI_DRAFT.md` + `ci-feature.draft.yml`；正式 `ci.yml` 仅扩 `feature/**` 触发。
+- **RT-013**：`museum_processing.delete_run` 改为 soft-delete → `data/runtime/trash/runs/`；字形推理仍引用则 409；`restore_run` 可恢复。**最小补丁，产品单不关。**
+- **RT-006 剩余**：全删 `static/index.html` 见 `RT006_STATIC_INDEX_DECISION.md`，等 Green。

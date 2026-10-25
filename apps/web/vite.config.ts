@@ -37,11 +37,14 @@ export default defineConfig(({ command }) => {
     optimizeDeps: {
       include: ['katex', 'maplibre-gl', 'echarts/core', 'echarts/charts', 'echarts/components', 'echarts/renderers'],
     },
+    // RT-008: bind loopback only (dev-server vulns are localhost-scoped).
     server: {
+      host: '127.0.0.1',
       port: 5173,
       proxy,
     },
     preview: {
+      host: '127.0.0.1',
       port: 4173,
       proxy,
     },
