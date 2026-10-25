@@ -224,8 +224,17 @@ class AdaptiveRubbingRestorer:
         if not gate['accepted']:
             decisions.append({'operator':'fallback_identity','reason':'; '.join(gate['reasons'])})
             result=image.copy()
+        change = change_stats(image, result)
+        if not gate['accepted']:
+            output_mode = 'gate_fallback_original'
+        elif change['isPassthrough']:
+            output_mode = 'identity_no_evidence'
+        else:
+            output_mode = 'processed'
         return result, {'version':self.version,'features':features,'decisions':decisions,'fidelityGate':gate,
-                        'selectedOutput':'candidate' if gate['accepted'] else 'original',
+                        # A byte-equal output is the original image, even when the gate accepted it.
+                        'selectedOutput':'original' if change['isPassthrough'] else 'candidate',
+                        'algorithmOutputMode':output_mode,'changeStats':change,
                         'limitations':'不补全遮挡/剥落，不识别或重绘缺失笔画；无真值不计算修复准确率。'}
 
 
@@ -265,6 +274,8 @@ class AdaptiveRubbingRestorerV22(AdaptiveRubbingRestorer):
                 }],
                 'fidelityGate': {'accepted': False, 'reasons': ['平坦区域拒绝修改'], 'basis': '常数块检测，不是历史真值'},
                 'selectedOutput': 'original',
+                'algorithmOutputMode': 'gate_fallback_original',
+                'changeStats': change_stats(image, image),
                 'limitations': '只拒绝模拟器式的精确平坦块。没有把它评成博物馆拓片上的通用遮挡检测，也不替换 v2.1 默认算法。',
             }
         result, meta = super().restore(image, strength=strength, notch_width=notch_width)
