@@ -1,0 +1,41 @@
+# Phase1 frontend slice10 - export liftClaims + P1-9 1366/390 + audits
+Date: 2026-10-25 Asia/Shanghai
+Worktree: D:\RubbingMind\wt\rm-report-frontend (agent/report-frontend)
+Base: feature@3b0c47b (merge tip c8e52ef atop 21cb82b/732ef69; prior align e53929f)
+Forbidden untouched: App.tsx, api.ts, urlState.ts, HomePage.tsx (RF-8), no push, no feature edit, no main merge
+
+## Build
+cd apps/web && npm run build -> tsc && vite build OK (exit 0) after liftClaims patch
+ReportsPage chunk: dist/assets/ReportsPage-e8S6O9Um.js
+
+## vite / ports
+- Agent verify: RUBBINGMIND_API_TARGET=http://127.0.0.1:8720 + vite --port 5720 --host 127.0.0.1
+- Own 8720/5720 started with tmp DB/runtime/uploads/results under rm-report-frontend-tmp (NOT main DB)
+- Did NOT touch 5180/8000/5173 (left listening as found)
+- Own 8720/5720 stopped at end of slice
+
+## Code change this round
+1. feat(report): export JSON liftClaims align on-screen ES-3
+   - ReportsPage exportJson: add experiment.liftClaims { summary, rule, primaryScopeLabel, note }
+   - strip() now includes liftClaimLabel so deltaByMethod scopes match screen lift-claim badges
+   - export note mentions failureRetention + liftClaims screen alignment
+   - Does NOT edit api.ts / App.tsx / urlState.ts / HomePage.tsx
+
+## Evidence captures (Playwright Edge headless, steleId=tang-duobao)
+See p1-9-firstscreen-evidence.txt and screenshots under
+D:\RubbingMind\screenshots\product-upgrade\phase1-frontend\slice10\
+- p1-9_reports_firstscreen_1366x768.png
+- p1-9_reports_firstscreen_390x844.png
+- rf8_home_core_cards_1920x1080.png
+- slice10-verify.json (ok=true)
+
+## Audits (no product close)
+- C1-C4: CrossBatchComparison already emits all four codes with SPEC-aligned copy; no code change. See c1-c4-warnings-audit.txt
+- mechanism R7 head lag: mechanism-head-lag-note already present (prior tips); verified still in MechanismPanel; no change
+- algorithmOutputMode: still absent from api.ts -> gap only, no fake UI. See algorithmOutputMode-gap.txt
+- RF-8: HomePage NOT modified; object-contain@L245/L250; ticket NOT closed. See rf8-audit-evidence.txt
+
+## Skipped
+- algorithmOutputMode UI (no api field)
+- RF-8 self-close
+- App.tsx / api.ts / urlState.ts edits

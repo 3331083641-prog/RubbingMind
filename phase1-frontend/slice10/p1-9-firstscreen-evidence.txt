@@ -1,0 +1,17 @@
+P1-9 report first-screen evidence (slice10, 2026-10-25 Asia/Shanghai)
+
+align tip: e53929f1f5e9281427dc11d244f6c78bb0dde3a7
+servers: API 8720 + Vite 5720 (RUBBINGMIND_API_TARGET=http://127.0.0.1:8720)
+tmp: D:\RubbingMind\wt\rm-report-frontend-tmp (isolated DB; not main)
+steleId: tang-duobao
+tool: Playwright Edge headless
+
+Prior (slice7): 1920x1080 + 1440x900 PASS
+This round supplements:
+- EXISTS D:\RubbingMind\screenshots\product-upgrade\phase1-frontend\slice10\p1-9_reports_firstscreen_1366x768.png size=498572
+- EXISTS D:\RubbingMind\screenshots\product-upgrade\phase1-frontend\slice10\p1-9_reports_firstscreen_390x844.png size=116073
+
+verify json: D:\RubbingMind\screenshots\product-upgrade\phase1-frontend\slice10\slice10-verify.json
+ok=true; conclusion text + visual nodes pass for both viewports.
+
+Acceptance note: evidence only. Do NOT claim Phase1 / P1-9 product acceptance closed (QA matrix still open).

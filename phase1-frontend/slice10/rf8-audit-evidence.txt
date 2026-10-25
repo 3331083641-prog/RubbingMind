@@ -1,0 +1,18 @@
+RF-8 audit evidence (slice10, 2026-10-25 Asia/Shanghai) - renew; do NOT self-close
+
+HomePage.tsx:
+- object-cover count=0
+- object-contain count=2; lines L245 (comment), L250 (core card className)
+- HomePage.tsx NOT modified this round (git status clean for HomePage)
+
+Screenshot paths (pre-existing; still awaiting user confirm):
+- EXISTS D:\RubbingMind\screenshots\product-upgrade\phase1-frontend\home-core-cards_before_1920w.png size=511002
+- EXISTS D:\RubbingMind\screenshots\product-upgrade\phase1-frontend\home-core-cards_before_390w.png size=601080
+- EXISTS D:\RubbingMind\screenshots\product-upgrade\phase1-frontend\home-core-cards_after_1920w.png size=306065
+- EXISTS D:\RubbingMind\screenshots\product-upgrade\phase1-frontend\home-core-cards_after_390w.png size=363466
+
+Renew capture this round (audit only, not acceptance close):
+- EXISTS D:\RubbingMind\screenshots\product-upgrade\phase1-frontend\slice10\rf8_home_core_cards_1920x1080.png
+- live DOM audit via Playwright: contain=4 cover=0 imgs=4 (pass)
+
+RF-8 remains open pending user confirm. No push. Phase1 not closed.

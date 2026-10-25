@@ -1,0 +1,14 @@
+C1-C4 cross-batch warning completeness audit (slice10, 2026-10-25 Asia/Shanghai)
+
+Source: apps/web/src/components/reports/CrossBatchComparison.tsx crossBatchWarnings()
+Spec: docs/product-upgrade/REPORT_DATA_SPEC.md section 1(c)
+
+| Code | Present | Hit text aligns SPEC gist | Non-hit text |
+|------|---------|---------------------------|--------------|
+| C1 | Yes | different set: overlap x/y + optional crop note + sample-vs-algo; same+retest: independent-validation warning | same set non-retest: batches identical |
+| C2 | Yes | degradation generator differ -> PSNR abs not comparable, relative gain only; B15 flagged via directory 2026-10-15 | types/strength/seed consistent |
+| C3 | Yes | method version differ: A vs B versions | versions same |
+| C4 | Yes | summary口径不同 with unify-recalc note (pairing gain, artifact cluster) | 口径一致 + recalc note |
+
+UI: data-testid=cross-batch-warnings; yellow hit / muted non-hit; grade capped at 有限支持.
+Action this round: no code change (already complete vs SPEC). Documented for inventory.

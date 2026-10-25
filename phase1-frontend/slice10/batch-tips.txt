@@ -1,0 +1,11 @@
+slice10 batch tips (ASCII)
+feature base: 3b0c47bb41351d37fe77d125ca9b84b111e8e7e0
+stable tips relative to 3b0c47b:
+  21cb82b feat(report): export JSON liftClaims align on-screen ES-3
+  732ef69 docs(report): phase1 slice10 evidence P1-9 RF-8 algoMode
+  c8e52ef merge(feature): product-grade-upgrade@3b0c47b into report-frontend
+plus docs tip(s) atop c8e52ef for batch-tips/evidence base realign (no code)
+gate batch suggestion: 21cb82b..c8e52ef (or 3b0c47b..HEAD including docs tip)
+RF-8: open (not self-closed)
+algorithmOutputMode: skipped (no api.ts field)
+no push

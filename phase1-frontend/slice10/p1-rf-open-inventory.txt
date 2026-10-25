@@ -1,0 +1,21 @@
+Phase1 / RF open inventory after align e53929f (slice10, 2026-10-25 Asia/Shanghai)
+
+DONE-enough for evidence (prior tips + this round; do not verbally close ACCEPTANCE):
+- RF-2..RF-7, RF-9..RF-11 prior
+- RF-3 global disclaimer on ReportsPage
+- P1-1 not_evaluated / glyphEvaluationText
+- P1-4 mechanism head lag + captionNote
+- P1-5/6/7/8 partial + print limitations / DER v3.3
+- P1-9: prior 1920/1440 + this round 1366x768 / 390x844 first-screen evidence
+- P1-11 empty metrics / print PSNR empty without unit
+- ES-3 liftClaim UI (slice8) + this round export JSON liftClaims align screen
+- ES-5 NLC columns (slice8)
+- C1-C4 warning texts: audited complete (no change)
+
+OPEN / blocked:
+- RF-8: awaiting user screenshot confirm; HomePage not modified; NOT self-closed
+- algorithmOutputMode UI: api.ts still has no field -> gap only
+- ACCEPTANCE_MATRIX Phase1 P1-* remain 待验证 at product level (evidence != close)
+- AB-8 health samples_* report UI: ops field; not this slice
+
+No App.tsx / api.ts / urlState.ts / HomePage.tsx edits this round.
