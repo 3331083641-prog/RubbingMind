@@ -1,0 +1,278 @@
+{
+  "schemaVersion": 1,
+  "schema": "data/catalog/claims/schema.json",
+  "batch": "Phase 3 深化第 2 批（12/28；yuan_03/song_03/yuan_02/tang_03/song_04/song_02）",
+  "curatedBy": "RM-金石史料",
+  "curatedAt": "2026-10-25（Asia/Shanghai）",
+  "selectionRule": "tang_01、han_01 为 Green 指定必选（C-05 跨源差异涉及）；其余 4 件按以下顺序挑选：①目录角色字段为 verified 的项数；②仓库内馆方释文长度（含署名与纪年）；③本轮能打开的官方来源数。tang_04（4 项 verified）、yuan_01（3 项）、ming_02（3 项，含墓主）、tang_02（2 项，释文最长，另有 3 个官方页面）。yuan_03（2 项）和 song_03（2 项）留到下一批；2026-10-25 第 2 批完成 Green 指定优先的 yuan_03、song_03（NPM 页实开）；同日续做 yuan_02、tang_03、song_04、song_02",
+  "remaining": 16,
+  "works": [
+    {
+      "steleId": "tang_01_duobao",
+      "title": "多宝塔感应碑",
+      "file": "data/catalog/claims/tang_01_duobao.json",
+      "selectionBasis": "必选（Green 指定：C-05 跨源差异涉及文物）；另：目录撰文/书丹/篆额/刻工 4 项均为 verified，馆方释文 2548 字含纪年与干支，碑林官网有条目",
+      "claimCount": 32,
+      "evidenceLevels": {
+        "已验证": 18,
+        "待人工复核": 1,
+        "有限支持": 12,
+        "未评测": 1
+      },
+      "statuses": {
+        "asserted": 30,
+        "conflict": 1,
+        "missing": 1
+      }
+    },
+    {
+      "steleId": "han_01_caoquan",
+      "title": "曹全碑",
+      "file": "data/catalog/claims/han_01_caoquan.json",
+      "selectionBasis": "必选（Green 指定：C-05 跨源差异涉及文物）；碑主 verified，馆方释文 1103 字含纪年，碑林官网有条目",
+      "claimCount": 32,
+      "evidenceLevels": {
+        "已验证": 16,
+        "有限支持": 10,
+        "未评测": 6
+      },
+      "statuses": {
+        "asserted": 26,
+        "missing": 6
+      }
+    },
+    {
+      "steleId": "tang_02_jiucheng",
+      "title": "九成宫醴泉铭",
+      "file": "data/catalog/claims/tang_02_jiucheng.json",
+      "selectionBasis": "目录撰文、书丹均为 verified；馆方释文 1413 字含撰书署名与纪年；故宫博物院、国家博物馆、宝鸡市文物局 3 个官方页面可开，原石现藏地有可列出的异说",
+      "claimCount": 30,
+      "evidenceLevels": {
+        "已验证": 14,
+        "待人工复核": 3,
+        "有限支持": 9,
+        "未评测": 4
+      },
+      "statuses": {
+        "asserted": 24,
+        "conflict": 2,
+        "missing": 4
+      }
+    },
+    {
+      "steleId": "tang_04_xuanmita",
+      "title": "玄秘塔碑",
+      "file": "data/catalog/claims/tang_04_xuanmita.json",
+      "selectionBasis": "目录撰文/书丹/篆额/刻工 4 项均为 verified；馆方释文 1620 字含撰书刻署名与纪年；西安碑林有两个官方条目，且它们之间、它们与台北故宫品名之间都有可列出的差异",
+      "claimCount": 34,
+      "evidenceLevels": {
+        "已验证": 16,
+        "待人工复核": 4,
+        "有限支持": 11,
+        "未评测": 3
+      },
+      "statuses": {
+        "asserted": 29,
+        "conflict": 2,
+        "missing": 3
+      }
+    },
+    {
+      "steleId": "yuan_01_yufu",
+      "title": "大元敕藏御服之碑",
+      "file": "data/catalog/claims/yuan_01_yufu.json",
+      "selectionBasis": "目录撰文/书丹/篆额 3 项均为 verified；馆方释文 1502 字含撰书篆三人署名与纪年；馆方品名和书体栏之间有可列出的书体差异",
+      "claimCount": 26,
+      "evidenceLevels": {
+        "已验证": 13,
+        "待人工复核": 1,
+        "有限支持": 5,
+        "未评测": 7
+      },
+      "statuses": {
+        "asserted": 18,
+        "conflict": 1,
+        "missing": 7
+      }
+    },
+    {
+      "steleId": "ming_02_luxianzhi",
+      "title": "文徵明书陆献之墓志铭",
+      "file": "data/catalog/claims/ming_02_luxianzhi.json",
+      "selectionBasis": "目录撰文、书丹、墓主 3 项均为 verified（墓主 verified 的只有这件和曹全碑）；馆方释文 1189 字含墓主卒年与干支；两则题跋指向“作品性质”的重要差异",
+      "claimCount": 25,
+      "evidenceLevels": {
+        "已验证": 15,
+        "待人工复核": 1,
+        "有限支持": 2,
+        "未评测": 7
+      },
+      "statuses": {
+        "asserted": 17,
+        "conflict": 1,
+        "missing": 7
+      }
+    },
+    {
+      "steleId": "yuan_03_shengzhu",
+      "title": "圣主本命长生之碑",
+      "file": "data/catalog/claims/yuan_03_shengzhu.json",
+      "selectionBasis": "Green 指定优先；目录撰文/书丹 verified；馆方释文含王思廉撰、赵孟頫书并篆题与延祐四年十一月纪年；NPM 开放资料页 2026-10-25 实开核对",
+      "claimCount": 33,
+      "evidenceLevels": {
+        "已验证": 16,
+        "有限支持": 2,
+        "未评测": 14,
+        "待人工复核": 1
+      },
+      "statuses": {
+        "asserted": 18,
+        "missing": 14,
+        "conflict": 1
+      }
+    },
+    {
+      "steleId": "song_03_daguan",
+      "title": "大观圣作碑",
+      "file": "data/catalog/claims/song_03_daguan.json",
+      "selectionBasis": "Green 指定优先；目录书丹/篆额 verified；馆方释文含李时雍摹写、蔡京题额与大观元/二年纪年；NPM 开放资料页 2026-10-25 实开核对",
+      "claimCount": 32,
+      "evidenceLevels": {
+        "已验证": 16,
+        "有限支持": 3,
+        "未评测": 13
+      },
+      "statuses": {
+        "asserted": 19,
+        "missing": 13
+      }
+    },
+    {
+      "steleId": "yuan_02_sundeyu",
+      "title": "元重阳宫孙德彧道行碑",
+      "file": "data/catalog/claims/yuan_02_sundeyu.json",
+      "selectionBasis": "证据充分度次高；书丹/篆额 verified；释文含撰书篆三人与元统三年纪年；NPM 2026-10-25 实开；立碑年晚于书者卒年已在目录说明",
+      "claimCount": 33,
+      "evidenceLevels": {
+        "已验证": 16,
+        "有限支持": 5,
+        "未评测": 11,
+        "待人工复核": 1
+      },
+      "statuses": {
+        "asserted": 21,
+        "missing": 11,
+        "conflict": 1
+      }
+    },
+    {
+      "steleId": "tang_03_yanjiamiao",
+      "title": "颜氏家庙碑",
+      "file": "data/catalog/claims/tang_03_yanjiamiao.json",
+      "selectionBasis": "书丹 verified；NPM 页含长题跋可核地点与书年异文；2026-10-25 实开",
+      "claimCount": 32,
+      "evidenceLevels": {
+        "已验证": 12,
+        "有限支持": 8,
+        "未评测": 10,
+        "待人工复核": 2
+      },
+      "statuses": {
+        "asserted": 20,
+        "missing": 10,
+        "conflict": 2
+      }
+    },
+    {
+      "steleId": "song_04_mengying",
+      "title": "释梦英十八体书碑",
+      "file": "data/catalog/claims/song_04_mengying.json",
+      "selectionBasis": "书丹 verified；乾德五年／967；NPM 2026-10-25 实开",
+      "claimCount": 32,
+      "evidenceLevels": {
+        "已验证": 15,
+        "有限支持": 5,
+        "未评测": 12
+      },
+      "statuses": {
+        "asserted": 20,
+        "missing": 12
+      }
+    },
+    {
+      "steleId": "song_02_wenxuan",
+      "title": "宋太宗御制至圣文宣王赞碑",
+      "file": "data/catalog/claims/song_02_wenxuan.json",
+      "selectionBasis": "目录作者 verified 但与释文真宗纪年矛盾，适合做 conflict 样例；NPM 2026-10-25 实开",
+      "claimCount": 33,
+      "evidenceLevels": {
+        "已验证": 11,
+        "有限支持": 5,
+        "未评测": 16,
+        "待人工复核": 1
+      },
+      "statuses": {
+        "asserted": 16,
+        "missing": 16,
+        "conflict": 1
+      }
+    }
+  ],
+  "openedUrls": [
+    {
+      "url": "http://wwj.baoji.gov.cn/col1896/col1884/202308/t20230801_824609.html",
+      "publisher": "宝鸡市文物局",
+      "title": "我市5通碑刻入选全国第一批古代名碑名刻文物名录",
+      "accessedAt": "2026-10-19",
+      "how": "WebFetch 打开并读取正文"
+    },
+    {
+      "url": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+      "publisher": "西安碑林博物馆",
+      "title": "曹全碑",
+      "accessedAt": "2026-10-19",
+      "how": "WebFetch 打开并读取正文"
+    },
+    {
+      "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+      "publisher": "西安碑林博物馆",
+      "title": "多宝塔感应碑",
+      "accessedAt": "2026-10-19",
+      "how": "WebFetch 打开并读取正文"
+    },
+    {
+      "url": "https://www.beilin-museum.com/index.php?a=index&aid=148&c=View&m=home",
+      "publisher": "西安碑林博物馆",
+      "title": "玄秘塔碑（国宝名碑条目）",
+      "accessedAt": "2026-10-19",
+      "how": "WebFetch 打开并读取正文"
+    },
+    {
+      "url": "https://www.beilin-museum.com/index.php?a=index&aid=2998&c=View&lang=en&m=home",
+      "publisher": "西安碑林博物馆",
+      "title": "玄秘塔碑（藏品介绍条目）",
+      "accessedAt": "2026-10-19",
+      "how": "WebFetch 打开并读取正文"
+    },
+    {
+      "url": "https://www.chnmuseum.cn/zp/zpml/gjwxbt/201912/t20191211_179521.shtml",
+      "publisher": "中国国家博物馆",
+      "title": "九成宫醴泉铭拓本",
+      "accessedAt": "2026-10-19",
+      "how": "WebFetch 打开并读取正文"
+    },
+    {
+      "url": "https://www.dpm.org.cn/collection/impres/234546.html",
+      "publisher": "故宫博物院",
+      "title": "宋拓唐九成宫醴泉铭",
+      "accessedAt": "2026-10-19",
+      "how": "WebFetch 打开并读取正文"
+    }
+  ],
+  "notOpened": [
+    {
+      "url": "https://wwj.shaanxi.gov.cn/wbxx/bkydww/wwbhdw/index_14.html",
+      "reason": "2026-10-19 WebFetch 返回 504，curl 返回空页；未引用"
+    }
+  ]
+}

@@ -10,6 +10,7 @@
 """
 
 import os
+import re
 import json
 import logging
 from typing import Dict, Any, List, Optional
@@ -22,6 +23,31 @@ logger = logging.getLogger("KnowledgeAgent")
 TIANGAN = ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"]
 DIZHI = ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"]
 GANZHI_60 = [f"{TIANGAN[i % 10]}{DIZHI[i % 12]}" for i in range(60)]
+
+
+_CN_DIGITS = {"〇": 0, "一": 1, "二": 2, "三": 3, "四": 4, "五": 5, "六": 6, "七": 7, "八": 8, "九": 9}
+
+
+def _parse_era_number(text: str) -> Optional[int]:
+    """Parse an era year ordinal: 元 / 1-99 in Arabic or Chinese (十一、二十、廿一、卅). None if invalid."""
+    if text == "元":
+        return 1
+    if text.isdigit():
+        return int(text) if int(text) > 0 else None
+    text = text.replace("廿", "二十").replace("卅", "三十")
+    if text in _CN_DIGITS:
+        return _CN_DIGITS[text] or None
+    m = re.fullmatch(r"([一二三四五六七八九]?)十([一二三四五六七八九]?)", text)
+    if not m:
+        return None
+    tens = _CN_DIGITS[m.group(1)] if m.group(1) else 1
+    ones = _CN_DIGITS[m.group(2)] if m.group(2) else 0
+    return tens * 10 + ones
+
+
+def _unsupported_year(input_clean: str, message: str) -> Dict[str, Any]:
+    return {"type": "unsupported", "input": input_clean, "supported": False, "solar_year": None,
+            "ganzhi": None, "note": message}
 
 # 历史常见朝代年号字典
 ERA_DATABASE = [
@@ -46,9 +72,9 @@ AUTHENTIC_RUBBING_DATABASE: Dict[str, Dict[str, Any]] = {
         "author_essay": "岑勋（撰文，南阳）",
         "author_header": "徐浩（题额，东海）",
         "host": "楚金禅师（千福寺主持）",
-        "location_now": "西安碑林博物馆第一室",
+        "location_now": "西安碑林博物馆（陈列室号未核实）",
         "historical_era": "大唐天宝十一载岁次壬辰四月乙丑朔",
-        "era_converted": "公元 752 年 5 月（唐玄宗时期）",
+        "era_converted": "公元 752 年（唐天宝十一载；馆方记“四月建”，公历月日未核实）",
         "dynasty_badge": "唐代楷书",
         "weathering_badge": "轻度石花",
         "weathering_level": "轻度石花（局部漫漶与结晶析出）",
@@ -124,9 +150,9 @@ AUTHENTIC_RUBBING_DATABASE: Dict[str, Dict[str, Any]] = {
             "categories": [{"name": "文物碑刻"}, {"name": "书法家"}, {"name": "撰文人"}, {"name": "题额人"}, {"name": "佛寺主持"}, {"name": "历史古迹"}],
         },
         "gis_timeline": [
-            {"time": "天宝元载 (742)", "place": "西京长安千福寺", "coord": [108.93, 34.23], "event": "楚金禅师感通多宝佛塔踊现，发愿鸠工营建"},
-            {"time": "天宝三载 (744)", "place": "东都洛阳", "coord": [112.45, 34.62], "event": "玄宗敕赐钱五十万助修多宝塔"},
-            {"time": "天宝十一载 (752)", "place": "长安安定坊", "coord": [108.91, 34.25], "event": "塔成立碑，岑勋撰文、颜真卿书丹、徐浩题额"},
+            {"time": "天宝元载 (742)", "place": "西京长安千福寺", "coord": None, "verification": "unverified", "event": "楚金禅师感通多宝佛塔踊现，发愿鸠工营建（年份未核实）"},
+            {"time": "天宝三载 (744)", "place": "地点未核实", "coord": None, "verification": "unverified", "event": "玄宗敕赐钱助修多宝塔（年份、地点、数额均未核实）"},
+            {"time": "天宝十一载 (752) 四月", "place": "长安千福寺（安定坊）", "coord": None, "verification": "confirmed", "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home", "event": "建碑；岑勋撰文、颜真卿书丹、徐浩题额"},
         ],
     },
     "sample_2.png": {
@@ -134,18 +160,18 @@ AUTHENTIC_RUBBING_DATABASE: Dict[str, Dict[str, Any]] = {
         "title": "东汉·郃阳令曹全碑",
         "dynasty": "东汉·中平二年（公元185年）",
         "script_style": "汉隶极则（秀美飞动、长波大磔）",
-        "author_calligraphy": "汉代书吏（无名氏，典型东汉八分书）",
+        "author_calligraphy": "未核实（书写者未见馆方著录）",
         "author_essay": "郃阳县门生故吏",
         "author_header": "汉代官刻篆额（碑额已佚）",
         "host": "曹全（字景完，郃阳令）",
-        "location_now": "西安碑林博物馆第三室",
+        "location_now": "西安碑林博物馆（陈列室号未核实）",
         "historical_era": "东汉中平二年十月丙辰造",
         "era_converted": "公元 185 年（汉灵帝中平二年）",
         "dynasty_badge": "汉代隶书",
         "weathering_badge": "中度漫漶",
         "weathering_level": "中度漫漶（裂纹横贯与局部石花）",
-        "summary": "汉隶极则之国宝名碑。碑主曹全字景完，曾率军出玉门关平定西域疏勒国叛乱，后拜郃阳令。中平二年门生故吏感其德政而出资勒石立碑，结体飞动秀丽，长波大磔。",
-        "translation": "郃阳令曹君，名全，字景完，敦煌郡效谷县人氏。其先祖为周朝王室后裔，周武王伐纣克殷封叔振铎于曹国。建宁二年曹君举孝廉除郎中，拜西域戊部司马，率兵出玉门关平定叛乱，后迁郃阳令抚恤百姓……",
+        "summary": "汉隶极则之国宝名碑。碑主曹全字景完，曾以西域戊部司马兴师征讨疏勒王和德，后转拜郃阳令。中平二年门生故吏感其德政而出资勒石立碑，结体飞动秀丽，长波大磔。",
+        "translation": "郃阳令曹君，名全，字景完，敦煌郡效谷县人氏。其先祖为周朝王室后裔，周武王伐纣克殷封叔振铎于曹国。建宁二年曹君举孝廉除郎中，拜西域戊部司马，兴师征讨疏勒；光和七年拜酒泉禄福长，张角起兵后转拜郃阳令……",
         "calligraphy_appreciation": "汉代八分书成熟期典范，笔致飘逸，波磔分明，舒展飞动，有‘汉隶中之赵孟頫’美誉，清丽圆润，骨肉停匀。",
         "ablation_experiments": [
             {"method": "原始风化拓片", "psnr": 19.5, "ssim": 0.68, "noise_sup": 0.0, "edge_gain": 0.0, "ocr_acc": 62.1},
@@ -186,7 +212,7 @@ AUTHENTIC_RUBBING_DATABASE: Dict[str, Dict[str, Any]] = {
                 {"id": "c1", "name": "曹全", "category": "碑主", "symbolSize": 55, "info": "字景完，敦煌效谷人，东汉名臣，官至郃阳令"},
                 {"id": "c2", "name": "曹全碑", "category": "石刻国宝", "symbolSize": 60, "info": "汉隶顶峰之作，明万历初合阳莘里村出土"},
                 {"id": "c3", "name": "敦煌郡效谷县", "category": "籍贯地", "symbolSize": 45, "info": "汉武帝设河西四郡之要冲，丝路起点"},
-                {"id": "c4", "name": "西域戊部司马", "category": "边防官职", "symbolSize": 45, "info": "率兵出玉门关，平定西域疏勒国叛乱"},
+                {"id": "c4", "name": "西域戊部司马", "category": "边防官职", "symbolSize": 45, "info": "兴师征讨疏勒王和德（碑文）"},
                 {"id": "c5", "name": "郃阳县", "category": "任职地", "symbolSize": 45, "info": "今陕西合阳，治水劝农，威惠并行"},
             ],
             "links": [
@@ -198,10 +224,12 @@ AUTHENTIC_RUBBING_DATABASE: Dict[str, Dict[str, Any]] = {
             "categories": [{"name": "碑主"}, {"name": "石刻国宝"}, {"name": "籍贯地"}, {"name": "边防官职"}, {"name": "任职地"}],
         },
         "gis_timeline": [
-            {"time": "建宁二年 (169)", "place": "敦煌效谷", "coord": [94.66, 40.14], "event": "举孝廉，除郎中，入京侍卫"},
-            {"time": "熹平五年 (176)", "place": "西域疏勒国", "coord": [75.98, 39.47], "event": "拜西域戊部司马，率兵出敦煌击退疏勒反贼"},
-            {"time": "光和六年 (183)", "place": "陕西郃阳", "coord": [110.15, 35.24], "event": "迁郃阳令，值黄巾起义，抚恤百姓、修缮学舍"},
-            {"time": "中平二年 (185)", "place": "合阳莘里", "coord": [110.20, 35.28], "event": "合阳门生故吏感其恩德，出资勒石立碑"},
+            {"time": "建宁二年 (169)", "place": "地点碑文未记（曹全籍贯敦煌效谷）", "coord": None, "verification": "confirmed", "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P", "event": "举孝廉，除郎中，拜西域戊部司马（碑文：建寧二年。舉孝廉。除郎中。拜西域戊部司馬）"},
+            {"time": "建宁二年后（碑文未记具体年份）", "place": "西域疏勒国", "coord": None, "verification": "confirmed", "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P", "event": "兴师征讨疏勒王和德（碑文：時疏勒國王和德。弒父篡位……君興師征討）"},
+            {"time": "光和六年 (183)", "place": "地点碑文未记", "coord": None, "verification": "confirmed", "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P", "event": "复举孝廉（碑文：光和六年。復舉孝廉）"},
+            {"time": "光和七年 (184) 三月", "place": "酒泉禄福", "coord": None, "verification": "confirmed", "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P", "event": "除郎中，拜酒泉禄福长（碑文：七年三月。除郎中。拜酒泉祿福長）"},
+            {"time": "张角起兵后（碑文未记具体年份）", "place": "郃阳", "coord": None, "verification": "confirmed", "sourceUrl": "https://digitalarchive.npm.gov.tw/Collection/Detail/34589?dep=P", "event": "转拜郃阳令（碑文：訞賊張角。起兵幽冀……轉拜郃陽令）"},
+            {"time": "中平二年 (185)", "place": "郃阳", "coord": None, "verification": "confirmed", "sourceUrl": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home", "event": "立碑（馆方：灵帝中平二年(185)立）；王敞等门生故吏刊石纪功"},
         ],
     },
     "sample_3.png": {
@@ -209,17 +237,17 @@ AUTHENTIC_RUBBING_DATABASE: Dict[str, Dict[str, Any]] = {
         "title": "北魏·广平王元怀墓志铭",
         "dynasty": "北魏·熙平二年（公元517年）",
         "script_style": "洛阳魏碑体（峻拔雄奇、结体端整）",
-        "author_calligraphy": "北魏宗室御用书家",
+        "author_calligraphy": "未核实（二手资料称志石“无撰书人乡名”）",
         "author_essay": "门下省录事",
         "author_header": "魏故侍中太保領司徒公廣平王墓志銘",
-        "host": "元怀（孝文帝第四子，广平王）",
-        "location_now": "开封市博物馆（1925年洛阳邙山出土）",
+        "host": "元怀（孝文帝之子，广平王；志文作第四子，另说第五子，两说并列）",
+        "location_now": "未核实：现藏有开封市博物馆（百度百科）／河南博物院（搜狐转述1996年调拨）两说；出土地有孟津县张阳村／洛阳张羊村等写法",
         "historical_era": "北魏熙平二年三月廿六日丁亥",
-        "era_converted": "公元 517 年 4 月 27 日（北魏孝明帝时期）",
+        "era_converted": "公元 517 年（志文记熙平二年三月廿六日丁亥薨；公历月日未核实）",
         "dynasty_badge": "北魏墓志",
         "weathering_badge": "轻度微痕",
         "weathering_level": "轻度微痕（字痕深峻，边缘微花）",
-        "summary": "北魏孝文帝第四子广平王元怀之墓志铭。元怀生前历任侍中、太保、领司徒公，薨逝后朝廷追崇使持节、假黄钺、都督中外诸军事、太师、太尉公之最高殊礼，书法峻拔端整。",
+        "summary": "北魏孝文帝之子（志文作第四子，另说第五子）广平王元怀之墓志铭。元怀生前历任侍中、太保、领司徒公，薨逝后朝廷追崇使持节、假黄钺、都督中外诸军事、太师、太尉公之最高殊礼，书法峻拔端整。",
         "translation": "北魏故侍中、太保、领司徒公广平王，姓元，名怀，字宣义，河南洛阳乘轩里人。献文皇帝之孙，高祖孝文皇帝第四子，宣武皇帝同母弟，今皇上之叔父。天资聪睿，承秉日月贞晖，享年三十岁薨逝，朝廷特追赠殊礼假黄钺……",
         "calligraphy_appreciation": "洛阳北魏宗室墓志巅峰之作，方峻雄强，结体茂密，刀锋毕现，于端庄庄穆中见奇崛险绝之势。",
         "ablation_experiments": [
@@ -259,14 +287,14 @@ AUTHENTIC_RUBBING_DATABASE: Dict[str, Dict[str, Any]] = {
         ],
         "knowledge_graph": {
             "nodes": [
-                {"id": "w1", "name": "元怀", "category": "墓志主人", "symbolSize": 55, "info": "孝文帝第四子，孝明帝亲叔，官至太保领司徒公"},
+                {"id": "w1", "name": "元怀", "category": "墓志主人", "symbolSize": 55, "info": "孝文帝之子（志文作第四子，另说第五子），孝明帝亲叔，官至太保领司徒公"},
                 {"id": "w2", "name": "孝文帝元宏", "category": "皇考", "symbolSize": 50, "info": "北魏改革家，迁都洛阳，改汉姓鲜卑拓跋为元"},
                 {"id": "w3", "name": "宣武帝元恪", "category": "同母兄", "symbolSize": 45, "info": "北魏世宗，高照容所生"},
-                {"id": "w4", "name": "元修 (孝武帝)", "category": "亲子", "symbolSize": 45, "info": "元怀平阳王时期所生第三子，后继北魏帝位"},
+                {"id": "w4", "name": "元修 (孝武帝)", "category": "亲子", "symbolSize": 45, "info": "元怀第三子，后即位为孝武帝（百度百科引《魏书》，有限支持）"},
                 {"id": "w5", "name": "洛阳乘轩里", "category": "居所", "symbolSize": 40, "info": "北魏洛阳城内贵族宅邸里坊"},
             ],
             "links": [
-                {"source": "w2", "target": "w1", "relation": "第四子"},
+                {"source": "w2", "target": "w1", "relation": "父子（志文作第四子，另说第五子）"},
                 {"source": "w3", "target": "w1", "relation": "同母兄弟"},
                 {"source": "w1", "target": "w4", "relation": "父子世系"},
                 {"source": "w1", "target": "w5", "relation": "洛阳第宅"},
@@ -274,21 +302,22 @@ AUTHENTIC_RUBBING_DATABASE: Dict[str, Dict[str, Any]] = {
             "categories": [{"name": "墓志主人"}, {"name": "皇考"}, {"name": "同母兄"}, {"name": "亲子"}, {"name": "居所"}],
         },
         "gis_timeline": [
-            {"time": "太和十二年 (488)", "place": "平城（大同）", "coord": [113.30, 40.08], "event": "元怀降诞于北魏故都平城宫中"},
-            {"time": "太和十八年 (494)", "place": "洛阳乘轩里", "coord": [112.45, 34.62], "event": "随孝文帝南迁洛阳，改拓跋为元氏"},
-            {"time": "熙平二年 (517)", "place": "洛阳邙山陵区", "coord": [112.42, 34.71], "event": "三月廿六日丁亥薨逝，葬于邙山之巅勒石入圹"},
+            {"time": "约太和十二年 (488)", "place": "出生地未核实", "coord": None, "verification": "unverified", "event": "元怀生年（据享年三十推算；百度百科作488年，有限支持）"},
+            {"time": "太和十八年 (494)", "place": "洛阳", "coord": None, "verification": "unverified", "event": "北魏迁都洛阳（元怀个人行迹未核实）"},
+            {"time": "熙平二年 (517)", "place": "洛阳（窆于西郊之兆）", "coord": None, "verification": "confirmed", "sourceUrl": "https://www.sohu.com/a/818047024_121124391", "event": "志文：熙平二年三月廿六日丁亥薨；秋八月廿日窆于西郊之兆（二手转录，有限支持）"},
         ],
     },
     "sample_4.png": {
         "id": "sample_4",
-        "title": "北魏·建义元年重度风化墓志",
+        "title": "北魏·建义元年重度风化墓志（合成测试样本）",
+        "text_provenance": "合成测试文本（sample_generator 生成，非真实释文）",
         "dynasty": "北魏·建义/永安元年（公元528年）",
         "script_style": "洛阳魏碑体（漫漶风化重灾区）",
-        "author_calligraphy": "北朝民间刻工",
+        "author_calligraphy": "无（合成测试样本）",
         "author_essay": "嗣子述德",
         "author_header": "魏故夫人墓志銘",
-        "host": "昌黎韩氏夫人（五十一岁卒）",
-        "location_now": "洛阳古墓博物馆石刻馆",
+        "host": "无（合成测试样本；“昌黎夫人”为生成器文本中的虚构人物）",
+        "location_now": "无（合成测试样本，不对应真实文物）",
         "historical_era": "建义元年九月廿一日终 / 永安元年十一月二十日葬",
         "era_converted": "公元 528 年（北魏孝庄帝建义元年，河阴之变同年）",
         "dynasty_badge": "北魏墓志",
@@ -361,9 +390,7 @@ AUTHENTIC_RUBBING_DATABASE: Dict[str, Dict[str, Any]] = {
             "categories": [{"name": "碑主"}, {"name": "重大纪年"}, {"name": "改元纪年"}, {"name": "望族郡望"}, {"name": "埋葬地"}],
         },
         "gis_timeline": [
-            {"time": "太和二年 (478)", "place": "辽西昌黎", "coord": [121.15, 41.13], "event": "夫人生于昌黎名门"},
-            {"time": "建义元年 (528) 九月", "place": "洛阳府邸", "coord": [112.45, 34.62], "event": "河阴之变五月后，夫人于洛阳府邸溘然长逝"},
-            {"time": "永安元年 (528) 十一月", "place": "洛阳西陵", "coord": [112.38, 34.66], "event": "时局稍安，嗣子立碑勒铭，葬于洛阳西陵"},
+            {"time": "建义元年 (528)", "place": "无", "coord": None, "verification": "synthetic", "event": "合成测试文本中的纪年标签；不对应真实人物或事件"},
         ],
     },
 }
@@ -433,7 +460,7 @@ class KnowledgeAgentEngine:
                 "categories": [{"name": "石刻拓片"}, {"name": "学术考据"}],
             },
             "gis_timeline": [
-                {"time": "古代历年", "place": "洛阳/长安/金陵", "coord": [108.93, 34.23], "event": "摩崖勒石"}
+                {"time": "未知", "place": "未知", "coord": None, "verification": "unverified", "event": "自定义样本没有史料时间轴"}
             ],
         }
 
@@ -470,32 +497,29 @@ class KnowledgeAgentEngine:
                 "matched_eras": matched_eras if matched_eras else ["暂无匹配主政年号（可对照《中国历史纪年表》）"],
             }
 
-        # 2. 如果包含已知年号关键字
+        # 2. 年号纪年：只接受“年号 + 有效年次 + 年/载”，年次超出年号范围即不支持（C-17）
+        import re
         for era in ERA_DATABASE:
-            if era["era"] in input_clean:
-                # 尝试提取后面的年数（如天宝十一载）
-                diff_year = 1
-                import re
-                m = re.search(r"([一二三四五六七八九十百元]+|[0-9]+)", input_clean.replace(era["era"], ""))
-                if m:
-                    num_str = m.group(1)
-                    zh_num = {"元": 1, "一": 1, "二": 2, "三": 3, "四": 4, "五": 5, "六": 6, "七": 7, "八": 8, "九": 9, "十": 10, "十一": 11, "十二": 12}
-                    if num_str.isdigit():
-                        diff_year = int(num_str)
-                    elif num_str in zh_num:
-                        diff_year = zh_num[num_str]
-                solar_y = era["start_year"] + diff_year - 1
-                offset = (solar_y - 4) % 60
-                gz = GANZHI_60[offset]
-                return {
-                    "type": "era_to_year",
-                    "input": input_clean,
-                    "solar_year": solar_y,
-                    "ganzhi": f"岁次{gz}年",
-                    "dynasty": era["dynasty"],
-                    "emperor": era["emperor"],
-                    "note": f"{era['dynasty']}{era['emperor']}{era['era']}{diff_year}年折合公元 {solar_y} 年",
-                }
+            if era["era"] not in input_clean:
+                continue
+            m = re.fullmatch(rf"(?:{era['dynasty'].rstrip('朝')}朝?)?{era['era']}([元〇一二三四五六七八九十廿卅0-9]+)(?:年|载)?", input_clean)
+            diff_year = _parse_era_number(m.group(1)) if m else None
+            span = era["end_year"] - era["start_year"] + 1
+            if diff_year is None or not 1 <= diff_year <= span:
+                return _unsupported_year(input_clean, f"{era['era']}年号共 {span} 年（公元{era['start_year']}–{era['end_year']}），输入年次无效或无法解析")
+            solar_y = era["start_year"] + diff_year - 1
+            offset = (solar_y - 4) % 60
+            gz = GANZHI_60[offset]
+            return {
+                "type": "era_to_year",
+                "input": input_clean,
+                "supported": True,
+                "solar_year": solar_y,
+                "ganzhi": f"岁次{gz}年",
+                "dynasty": era["dynasty"],
+                "emperor": era["emperor"],
+                "note": f"{era['dynasty']}{era['emperor']}{era['era']}{diff_year}年折合公元 {solar_y} 年（年度对应，不推算朔闰与公历月日）",
+            }
 
         # 3. 如果是干支名（如壬辰、丙辰、戊申）
         for i, gz in enumerate(GANZHI_60):
@@ -512,14 +536,8 @@ class KnowledgeAgentEngine:
                     "note": f"干支序数第{i+1}位，汉魏隋唐循环年如：{', '.join(map(str, sample_years[:4]))}年",
                 }
 
-        # 兜底默认折算
-        return {
-            "type": "generic",
-            "input": input_clean,
-            "solar_year": 752,
-            "ganzhi": "岁次壬辰年",
-            "note": "输入未识别，推荐格式：‘天宝十一载’、‘中平二年’、‘752’或‘壬辰’",
-        }
+        # 无法识别：不再返回默认的 752 / 壬辰（C-17）
+        return _unsupported_year(input_clean, "输入未识别，推荐格式：‘天宝十一载’、‘中平二年’、‘752’或‘壬辰’")
 
     async def deduce_character_llm(self, image_crop_b64: str, context_text: str) -> Dict[str, Any]:
         """Delegate an actual crop to the configured visual model or labelled context rule."""

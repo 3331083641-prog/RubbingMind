@@ -18,7 +18,8 @@ def isolated_index(tmp_path,monkeypatch):
     ('北魏建义元年演示样本是否已经确认真实文物身份？',['未确认','测试标签']),
 ])
 def test_sourced_queries(question,required):
-    result=er.query(question)
+    # C-16: the synthetic sample is only retrieved on explicit demo selection.
+    result=er.query(question,include_demo='建义' in question)
     assert result['status']=='evidence_found'
     text=result['answer']+' '.join(e['text'] for e in result['evidence'])
     for phrase in required:assert phrase in text

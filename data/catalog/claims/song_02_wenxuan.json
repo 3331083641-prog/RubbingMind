@@ -1,0 +1,663 @@
+{
+  "schemaVersion": 1,
+  "steleId": "song_02_wenxuan",
+  "title": "宋太宗御制至圣文宣王赞碑",
+  "curatedBy": "RM-金石史料",
+  "curatedAt": "2026-10-25（Asia/Shanghai）",
+  "selectionBasis": "目录作者 verified 但与释文真宗纪年矛盾，适合做 conflict 样例；NPM 2026-10-25 实开",
+  "layers": "作品（work）≠原刻载体（stone）≠拓本（rubbing）≠影像（image）；人物、纪年、地点、书体风格、著录分列",
+  "claims": [
+    {
+      "claimId": "song_02_wenxuan:work:title",
+      "entity": "work",
+      "property": "title",
+      "value": "宋太宗御制至圣文宣王赞碑（碑额“御製至聖文宣王贊”；馆方品名同系）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "title",
+          "value": "宋太宗御制至圣文宣王赞碑"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "transcription",
+          "quote": "（碑額）御製至聖文宣王贊"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full"
+        }
+      ]
+    },
+    {
+      "claimId": "song_02_wenxuan:work:dynasty",
+      "entity": "work",
+      "property": "dynasty",
+      "value": "宋",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "dynasty",
+          "value": "宋代"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full"
+        }
+      ]
+    },
+    {
+      "claimId": "song_02_wenxuan:work:content",
+      "entity": "work",
+      "property": "content",
+      "value": "御制文宣王赞并加号诏；释文含大中祥符元年东封谒曲阜、五年改谥至圣等",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "transcription",
+          "quote": "玄聖文宣王贊并序。御製"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "transcription",
+          "quote": "大中祥符元年"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "transcription",
+          "quote": "改諡曰至聖文宣王"
+        }
+      ]
+    },
+    {
+      "claimId": "song_02_wenxuan:stone:currentLocation",
+      "entity": "stone",
+      "property": "currentLocation",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "physicalCollectionInstitution"
+        }
+      ],
+      "missingReason": "目录为空"
+    },
+    {
+      "claimId": "song_02_wenxuan:stone:originalSite",
+      "entity": "stone",
+      "property": "originalSite",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "originalLocation"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "transcription",
+          "quote": "諸道州府軍監各於玄聖文宣王廟刻御製贊并詔"
+        }
+      ],
+      "missingReason": "诏令各地庙学刻石，本拓具体原石地点未核定；不输出坐标"
+    },
+    {
+      "claimId": "song_02_wenxuan:stone:transfer",
+      "entity": "stone",
+      "property": "transfer",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "未查迁徙"
+    },
+    {
+      "claimId": "song_02_wenxuan:stone:condition",
+      "entity": "stone",
+      "property": "condition",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "无原石影像"
+    },
+    {
+      "claimId": "song_02_wenxuan:rubbing:holder",
+      "entity": "rubbing",
+      "property": "holder",
+      "value": "台北故宫博物院（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "rubbingCollectionInstitution"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "collectionNumber",
+          "value": "購拓000260"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full"
+        }
+      ]
+    },
+    {
+      "claimId": "song_02_wenxuan:rubbing:museumTitle",
+      "entity": "rubbing",
+      "property": "museumTitle",
+      "value": "宋太宗御製至聖文宣王贊碑墨拓本軸",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full",
+          "note": "姓名标示／品名"
+        }
+      ]
+    },
+    {
+      "claimId": "song_02_wenxuan:rubbing:format",
+      "entity": "rubbing",
+      "property": "format",
+      "value": "一轴（馆方）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full",
+          "note": "品名含軸"
+        }
+      ]
+    },
+    {
+      "claimId": "song_02_wenxuan:rubbing:period",
+      "entity": "rubbing",
+      "property": "period",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "rubbingPeriod"
+        }
+      ],
+      "missingReason": "目录未核定"
+    },
+    {
+      "claimId": "song_02_wenxuan:image:sourceSha256",
+      "entity": "image",
+      "property": "sourceSha256",
+      "value": "dcdcefe1d35e87b62da1dedaae9f652e3b07142fac75e5290b548c715e30a174",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "sourceVerification.sourceSha256"
+        }
+      ],
+      "note": "本轮未改影像"
+    },
+    {
+      "claimId": "song_02_wenxuan:image:license",
+      "entity": "image",
+      "property": "license",
+      "value": "CC BY 4.0",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "license"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full"
+        }
+      ]
+    },
+    {
+      "claimId": "song_02_wenxuan:image:derivation",
+      "entity": "image",
+      "property": "derivation",
+      "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "modifications"
+        }
+      ]
+    },
+    {
+      "claimId": "song_02_wenxuan:person:author",
+      "entity": "person",
+      "property": "author",
+      "value": "宋太宗（目录 verified；与纪年矛盾见 conflict）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "author",
+          "value": "宋太宗"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "authorVerification",
+          "value": "verified"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "transcription",
+          "quote": "御製"
+        }
+      ],
+      "note": "目录已 verified；同时列出与真宗纪年的冲突，不擅自改名"
+    },
+    {
+      "claimId": "song_02_wenxuan:person:authorEraConflict",
+      "entity": "person",
+      "property": "authorEraConflict",
+      "value": "馆方题名／目录作者为宋太宗；释文纪年为大中祥符（真宗朝，1008/1012）",
+      "status": "conflict",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "author",
+          "value": "宋太宗"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "transcription",
+          "quote": "大中祥符元年"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "transcription",
+          "quote": "五年八月廿二日"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "description"
+        }
+      ],
+      "alternatives": [
+        {
+          "value": "宋太宗（馆方题名／目录）",
+          "source": "steles28 + NPM 品名"
+        },
+        {
+          "value": "大中祥符诏令语境属真宗朝（释文）",
+          "source": "transcription"
+        }
+      ],
+      "note": "目录说明已写矛盾；claims 并列，不改目录"
+    },
+    {
+      "claimId": "song_02_wenxuan:person:calligrapher",
+      "entity": "person",
+      "property": "calligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "calligrapher",
+          "value": "未核定"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "calligrapherVerification",
+          "value": "unknown"
+        }
+      ],
+      "missingReason": "目录未核定"
+    },
+    {
+      "claimId": "song_02_wenxuan:person:titleCalligrapher",
+      "entity": "person",
+      "property": "titleCalligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "titleCalligrapher"
+        }
+      ],
+      "missingReason": "目录未核定；碑额篆书书者未见署名"
+    },
+    {
+      "claimId": "song_02_wenxuan:person:engraver",
+      "entity": "person",
+      "property": "engraver",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "engraver"
+        }
+      ],
+      "missingReason": "目录未核定"
+    },
+    {
+      "claimId": "song_02_wenxuan:person:steleSubject",
+      "entity": "person",
+      "property": "steleSubject",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "steleSubject"
+        }
+      ],
+      "missingReason": "赞碑非墓碑碑主"
+    },
+    {
+      "claimId": "song_02_wenxuan:date:era",
+      "entity": "date",
+      "property": "era",
+      "value": "释文含大中祥符元年（东封／加号）与五年八月廿二日（令诸路刻石）、十一月改谥；实际刊刻年未独立核定",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "transcription",
+          "quote": "大中祥符元年"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "transcription",
+          "quote": "五年八月廿二日奉敕"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "originalYear"
+        }
+      ],
+      "note": "目录 originalYearCE=null；不编造刊刻年"
+    },
+    {
+      "claimId": "song_02_wenxuan:date:ce",
+      "entity": "date",
+      "property": "ce",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "originalYearCE"
+        }
+      ],
+      "missingReason": "目录 originalYearCE 为空；1008/1012 为诏令年，不等于已核定刊刻年"
+    },
+    {
+      "claimId": "song_02_wenxuan:date:yearCrossCheck",
+      "entity": "date",
+      "property": "yearCrossCheck",
+      "value": "诏令年可对应 1008（大中祥符元年）与 1012（五年）；刊刻年仍缺失",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "transcription",
+          "quote": "大中祥符元年"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "transcription",
+          "quote": "五年八月廿二日"
+        }
+      ]
+    },
+    {
+      "claimId": "song_02_wenxuan:date:dayCrossCheck",
+      "entity": "date",
+      "property": "dayCrossCheck",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "未做历表日核"
+    },
+    {
+      "claimId": "song_02_wenxuan:date:month",
+      "entity": "date",
+      "property": "month",
+      "value": "八月（五年奉敕刻石句）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "transcription",
+          "quote": "五年八月廿二日奉敕"
+        }
+      ]
+    },
+    {
+      "claimId": "song_02_wenxuan:place:originalSite",
+      "entity": "place",
+      "property": "originalSite",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "transcription",
+          "quote": "諸道州府軍監"
+        }
+      ],
+      "missingReason": "多地摹刻；本拓地点未知；不输出坐标"
+    },
+    {
+      "claimId": "song_02_wenxuan:place:currentStone",
+      "entity": "place",
+      "property": "currentStone",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "原石现藏未核定"
+    },
+    {
+      "claimId": "song_02_wenxuan:place:rubbingHolder",
+      "entity": "place",
+      "property": "rubbingHolder",
+      "value": "台北（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "rubbingCollectionInstitution"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full"
+        }
+      ]
+    },
+    {
+      "claimId": "song_02_wenxuan:script_style:script",
+      "entity": "script_style",
+      "property": "script",
+      "value": "行楷书（碑文）；碑额篆书",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "scriptType",
+          "value": "行楷书"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "transcription",
+          "quote": "（篆書。）"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "transcription",
+          "quote": "（行楷書。）"
+        }
+      ]
+    },
+    {
+      "claimId": "song_02_wenxuan:script_style:styleNote",
+      "entity": "script_style",
+      "property": "styleNote",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本轮无书风评述"
+    },
+    {
+      "claimId": "song_02_wenxuan:script_style:historicalComment",
+      "entity": "script_style",
+      "property": "historicalComment",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "未引外部书论"
+    },
+    {
+      "claimId": "song_02_wenxuan:script_style:colophonComment",
+      "entity": "script_style",
+      "property": "colophonComment",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "未见题跋"
+    },
+    {
+      "claimId": "song_02_wenxuan:bibliography:catalogueReference",
+      "entity": "bibliography",
+      "property": "catalogueReference",
+      "value": "國立故宮博物院开放资料 id=34722；購拓000260",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34722&dep=P&mode=full"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "song_02_wenxuan",
+          "field": "collectionNumber"
+        }
+      ]
+    }
+  ]
+}

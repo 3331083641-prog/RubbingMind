@@ -1,0 +1,854 @@
+{
+  "schemaVersion": 1,
+  "steleId": "tang_01_duobao",
+  "title": "多宝塔感应碑",
+  "curatedBy": "RM-金石史料",
+  "curatedAt": "2026-10-19（Asia/Shanghai）",
+  "selectionBasis": "必选（Green 指定：C-05 跨源差异涉及文物）；另：目录撰文/书丹/篆额/刻工 4 项均为 verified，馆方释文 2548 字含纪年与干支，碑林官网有条目",
+  "layers": "作品（work）≠原刻载体（stone）≠拓本（rubbing）≠影像（image）；人物、纪年、地点、书体风格、著录分列",
+  "claims": [
+    {
+      "claimId": "tang_01_duobao:work:title",
+      "entity": "work",
+      "property": "title",
+      "value": "多宝塔感应碑（碑文首题“大唐西京千福寺多寳佛塔感應碑文”）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "title",
+          "value": "多宝塔感应碑"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "transcription",
+          "quote": "大唐西京千福寺多寳佛塔感應碑文"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "多宝塔感应碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "多宝塔感应碑"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_01_duobao:work:dynasty",
+      "entity": "work",
+      "property": "dynasty",
+      "value": "唐",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "dynasty",
+          "value": "唐代"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "多宝塔感应碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "唐天宝十一年（752）"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_01_duobao:work:content",
+      "entity": "work",
+      "property": "content",
+      "value": "记长安龙兴寺（碑文作“西京龍興寺”）楚金禅师建多宝佛塔事",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "多宝塔感应碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "碑文记载长安龙兴寺楚金和尚修建多宝佛塔事迹"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "transcription",
+          "quote": "有禪師。法号楚金"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_01_duobao:stone:currentLocation",
+      "entity": "stone",
+      "property": "currentLocation",
+      "value": "西安碑林博物馆（陕西省西安市）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "多宝塔感应碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "北宋崇宁二年（1103）移存西安碑林"
+        },
+        {
+          "type": "file",
+          "path": "data/history/tang-duobao.json",
+          "field": "originalStoneCollection",
+          "quote": "西安碑林博物馆"
+        }
+      ],
+      "catalogueField": "physicalCollectionInstitution",
+      "catalogueValue": null,
+      "note": "目录 physicalCollectionInstitution 为空（未核定），按规则不升为已验证；检索按 C-05 两说并列。陈列室号未核实，不写",
+      "region": {
+        "modernRegion": "陕西省西安市",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "tang_01_duobao:stone:originalSite",
+      "entity": "stone",
+      "property": "originalSite",
+      "value": "唐长安城千福寺（安定坊东南隅）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "多宝塔感应碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "千福寺在唐长安城安定坊之东南隅（大致在今天西安西站西南）"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "transcription",
+          "quote": "大唐西京千福寺"
+        }
+      ],
+      "region": {
+        "historicalName": "唐长安城（碑文作“西京”）安定坊",
+        "modernRegion": "陕西省西安市（馆方：大致在今西安西站西南）",
+        "precision": "region"
+      },
+      "note": "原址无已核实坐标，不给点位"
+    },
+    {
+      "claimId": "tang_01_duobao:stone:transfer",
+      "entity": "stone",
+      "property": "transfer",
+      "value": "北宋崇宁二年（1103）移存西安碑林",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "多宝塔感应碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "北宋崇宁二年（1103）移存西安碑林"
+        }
+      ],
+      "note": "单一馆方来源"
+    },
+    {
+      "claimId": "tang_01_duobao:stone:condition",
+      "entity": "stone",
+      "property": "condition",
+      "value": "清人题跋称“康熙中石損缺去十餘字。近來石經磨洗”",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_01_duobao.json",
+          "field": "officialExtractedText",
+          "quote": "康熙中石損缺去十餘字。近來石經磨洗"
+        }
+      ],
+      "note": "题跋者个人记述（咸丰九年张德容），不是原石检测"
+    },
+    {
+      "claimId": "tang_01_duobao:rubbing:holder",
+      "entity": "rubbing",
+      "property": "holder",
+      "value": "台北故宫博物院，贈拓000365",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "collectionNumber",
+          "value": "贈拓000365"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_01_duobao.json",
+          "field": "officialExtractedText",
+          "quote": "贈拓000365"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_01_duobao:rubbing:museumTitle",
+      "entity": "rubbing",
+      "property": "museumTitle",
+      "value": "明拓唐顏真卿多寶塔墨拓本　冊",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_01_duobao.json",
+          "field": "officialExtractedText",
+          "quote": "明拓唐顏真卿多寶塔墨拓本　冊"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_01_duobao:rubbing:format",
+      "entity": "rubbing",
+      "property": "format",
+      "value": "一冊：三十四開（本幅三十三開六十六幅；後副葉一開兩幅）；本幅 22.7×12 厘米；紙本",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_01_duobao.json",
+          "field": "officialExtractedText",
+          "quote": "一冊：三十四開（本幅三十三開六十六幅；後副葉一開兩幅）"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_01_duobao.json",
+          "field": "officialExtractedText",
+          "quote": "22.7x12"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_01_duobao:rubbing:period",
+      "entity": "rubbing",
+      "property": "period",
+      "value": "明拓（馆方品名；题跋称“的為朙拓無疑”）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_01_duobao.json",
+          "field": "officialExtractedText",
+          "quote": "明拓唐顏真卿多寶塔墨拓本"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_01_duobao.json",
+          "field": "officialExtractedText",
+          "quote": "的為朙拓無疑"
+        },
+        {
+          "type": "file",
+          "path": "data/history/tang-duobao.json",
+          "field": "rubbingPeriod",
+          "quote": "明拓"
+        }
+      ],
+      "catalogueField": "rubbingPeriod",
+      "catalogueValue": "未核定；不据拓印年改变朝代",
+      "note": "目录拓本年代为“未核定”，按规则不升为已验证；检索按 C-05 两说并列。封签“□（明）拓”首字残缺"
+    },
+    {
+      "claimId": "tang_01_duobao:image:sourceSha256",
+      "entity": "image",
+      "property": "sourceSha256",
+      "value": "009ad313197fad46b0ac0cea7048f15b012b2a9f83f58fe7d3cc74f7435eace9",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "sourceVerification.sourceSha256",
+          "value": "009ad313197fad46b0ac0cea7048f15b012b2a9f83f58fe7d3cc74f7435eace9"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_01_duobao.json",
+          "field": "reviewedMetadata.source_sha256",
+          "quote": "009ad313197fad46b0ac0cea7048f15b012b2a9f83f58fe7d3cc74f7435eace9"
+        }
+      ],
+      "note": "目录与证据文件的原图 SHA-256 一致；84 张部署影像另由 ASSET_FREEZE.json 冻结核对"
+    },
+    {
+      "claimId": "tang_01_duobao:image:license",
+      "entity": "image",
+      "property": "license",
+      "value": "CC BY 4.0",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "license",
+          "value": "CC BY 4.0"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "attribution",
+          "value": "多宝塔感应碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_01_duobao:image:derivation",
+      "entity": "image",
+      "property": "derivation",
+      "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "modifications",
+          "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+        }
+      ],
+      "note": "影像是拓本数字影像的展示派生，不是原石照片，也不是修复结果"
+    },
+    {
+      "claimId": "tang_01_duobao:person:author",
+      "entity": "person",
+      "property": "author",
+      "value": "岑勋（碑文作“南陽岑勛撰”）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "author",
+          "value": "岑勋"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "transcription",
+          "quote": "南陽岑勛撰"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "多宝塔感应碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "岑勋撰 颜真卿书 徐浩题额"
+        }
+      ],
+      "catalogueField": "author"
+    },
+    {
+      "claimId": "tang_01_duobao:person:calligrapher",
+      "entity": "person",
+      "property": "calligrapher",
+      "value": "颜真卿",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "calligrapher",
+          "value": "颜真卿"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "transcription",
+          "quote": "琅邪顏真卿書"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "多宝塔感应碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "岑勋撰 颜真卿书 徐浩题额"
+        }
+      ],
+      "catalogueField": "calligrapher"
+    },
+    {
+      "claimId": "tang_01_duobao:person:titleCalligrapher",
+      "entity": "person",
+      "property": "titleCalligrapher",
+      "value": "徐浩（碑额隶书）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "titleCalligrapher",
+          "value": "徐浩"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "transcription",
+          "quote": "東海徐浩題額"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "多宝塔感应碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "此碑额题“大唐多宝塔感应碑”，隶书，出徐浩之手"
+        }
+      ],
+      "catalogueField": "titleCalligrapher"
+    },
+    {
+      "claimId": "tang_01_duobao:person:engraver",
+      "entity": "person",
+      "property": "engraver",
+      "value": "史华（碑文作“河南史華刻”）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "engraver",
+          "value": "史华"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_01_duobao.json",
+          "field": "officialExtractedText",
+          "quote": "河南史華刻"
+        }
+      ],
+      "catalogueField": "engraver"
+    },
+    {
+      "claimId": "tang_01_duobao:person:steleSubject",
+      "entity": "person",
+      "property": "steleSubject",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "steleSubject",
+          "value": "未核定"
+        }
+      ],
+      "missingReason": "目录 steleSubject 未核定；碑文记楚金禅师建塔事，但寺院功德碑是否适用“碑主”需人工判断；检索对碑主问题一律回答“不支持”",
+      "catalogueField": "steleSubject"
+    },
+    {
+      "claimId": "tang_01_duobao:date:era",
+      "entity": "date",
+      "property": "era",
+      "value": "天寶十一載，歲次壬辰，四月乙丑朔廿二日（释文作“戊戍”）建",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "transcription",
+          "quote": "天寳十一載（西元七五二年）。歲次壬辰。四月乙丑朔廿二日戊戍建"
+        }
+      ],
+      "note": "“戊戍”按干支应为“戊戌”，属释文用字，原样保留"
+    },
+    {
+      "claimId": "tang_01_duobao:date:ce",
+      "entity": "date",
+      "property": "ce",
+      "value": 752,
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "originalYearCE",
+          "value": 752
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "transcription",
+          "quote": "天寳十一載（西元七五二年）"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "多宝塔感应碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "唐天宝十一年（752）"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_01_duobao:date:yearCrossCheck",
+      "entity": "date",
+      "property": "yearCrossCheck",
+      "value": "一致：天宝十一载＝752；752 年干支为壬辰，与碑文“歲次壬辰”相合",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "transcription",
+          "quote": "歲次壬辰"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "originalYearCE",
+          "value": 752
+        }
+      ],
+      "derivation": {
+        "era": "天宝十一载",
+        "ce": 752,
+        "computedGanzhi": "壬辰",
+        "inscriptionGanzhi": "壬辰",
+        "method": "(ce-4) mod 60，甲子=0",
+        "result": "consistent"
+      }
+    },
+    {
+      "claimId": "tang_01_duobao:date:dayCrossCheck",
+      "entity": "date",
+      "property": "dayCrossCheck",
+      "value": null,
+      "status": "conflict",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "transcription",
+          "quote": "四月乙丑朔廿二日戊戍建"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "transcription",
+          "quote": "四月乙丑朔"
+        }
+      ],
+      "alternatives": [
+        {
+          "value": "廿二日戊戌（释文作“戊戍”）",
+          "evidenceLevel": "已验证",
+          "sources": [
+            {
+              "type": "file",
+              "path": "data/catalog/steles28.json",
+              "id": "tang_01_duobao",
+              "field": "transcription",
+              "quote": "四月乙丑朔廿二日戊戍建"
+            }
+          ],
+          "note": "碑文原文"
+        },
+        {
+          "value": "按“乙丑朔”顺推，廿二日应为丙戌",
+          "evidenceLevel": "待人工复核",
+          "sources": [
+            {
+              "type": "file",
+              "path": "data/catalog/steles28.json",
+              "id": "tang_01_duobao",
+              "field": "transcription",
+              "quote": "四月乙丑朔"
+            }
+          ],
+          "note": "干支序推算：乙丑序 1，加 21 日得序 22"
+        }
+      ],
+      "note": "碑文所记朔日与日干支互证不上，相差 12 日。可能是释文、碑文或推算口径的问题，需用历表（如《二十史朔闰表》）人工复核；未改任何字段",
+      "derivation": {
+        "newMoonGanzhi": "乙丑",
+        "day": 22,
+        "computedDayGanzhi": "丙戌",
+        "inscriptionDayGanzhi": "戊戌",
+        "result": "inconsistent"
+      }
+    },
+    {
+      "claimId": "tang_01_duobao:date:month",
+      "entity": "date",
+      "property": "month",
+      "value": "四月（公历月日未换算）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "多宝塔感应碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "唐天宝十一年(752)四月建"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "transcription",
+          "quote": "四月乙丑朔"
+        }
+      ],
+      "note": "公历月日需历表换算，本轮未做"
+    },
+    {
+      "claimId": "tang_01_duobao:place:originalSite",
+      "entity": "place",
+      "property": "originalSite",
+      "value": "唐长安城千福寺",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "多宝塔感应碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "千福寺在唐长安城安定坊之东南隅（大致在今天西安西站西南）"
+        }
+      ],
+      "region": {
+        "historicalName": "唐长安城安定坊千福寺",
+        "modernRegion": "陕西省西安市",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "tang_01_duobao:place:currentStone",
+      "entity": "place",
+      "property": "currentStone",
+      "value": "西安碑林博物馆",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "多宝塔感应碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "移存西安碑林"
+        }
+      ],
+      "region": {
+        "modernRegion": "陕西省西安市",
+        "precision": "region"
+      },
+      "catalogueField": "physicalCollectionInstitution",
+      "catalogueValue": null
+    },
+    {
+      "claimId": "tang_01_duobao:place:rubbing",
+      "entity": "place",
+      "property": "rubbingHolder",
+      "value": "台北故宫博物院",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        }
+      ],
+      "region": {
+        "modernRegion": "台北市",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "tang_01_duobao:style:script",
+      "entity": "script_style",
+      "property": "script",
+      "value": "楷书（正文）；碑额隶书",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_01_duobao",
+          "field": "scriptType",
+          "value": "楷书"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_01_duobao.json",
+          "field": "officialExtractedText",
+          "quote": "楷書"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "多宝塔感应碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "此碑额题“大唐多宝塔感应碑”，隶书"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_01_duobao:style:museumNote",
+      "entity": "script_style",
+      "property": "styleNote",
+      "value": "“颜碑石存今最早者，点画圆整，端庄劲秀，已有个人独特面目”",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "多宝塔感应碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "该碑是颜碑石存今最早者，点画圆整，端庄劲秀，已有个人独特面目"
+        }
+      ],
+      "note": "馆方评述"
+    },
+    {
+      "claimId": "tang_01_duobao:style:historicalComment",
+      "entity": "script_style",
+      "property": "historicalComment",
+      "value": "明孙鑛《书画跋》：“此是鲁公最匀稳书，亦尽秀媚多姿，第微带俗”",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=147&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "多宝塔感应碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "此是鲁公最匀稳书，亦尽秀媚多姿，第微带俗"
+        }
+      ],
+      "note": "馆方转引，未核原书"
+    },
+    {
+      "claimId": "tang_01_duobao:style:colophon",
+      "entity": "script_style",
+      "property": "colophonComment",
+      "value": "张德容题跋（咸丰九年）：“此碑法度森嚴。筆意沈著”",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_01_duobao.json",
+          "field": "officialExtractedText",
+          "quote": "此碑法度森嚴。筆意沈著"
+        }
+      ],
+      "note": "题跋者观点，与孙鑛评价并存"
+    },
+    {
+      "claimId": "tang_01_duobao:bibliography:npm",
+      "entity": "bibliography",
+      "property": "catalogueReference",
+      "value": "《院藏碑帖特展目錄》，頁338-339、369（台北故宫著录）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_01_duobao.json",
+          "field": "officialExtractedText",
+          "quote": "院藏碑帖特展目錄，頁338-339、369"
+        }
+      ]
+    }
+  ]
+}

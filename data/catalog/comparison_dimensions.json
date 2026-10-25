@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "purpose": "跨作品比较的分组维度。维度定义放在数据里，界面不写死；构建脚本 scripts/build_comparison_groups.py 读取本文件，输出 comparison_groups.json",
+  "catalogueFile": "data/catalog/steles28.json",
+  "objectLevelNote": "作品 ≠ 原石 ≠ 拓本。各维度都写明比较的是哪一层",
+  "dimensions": [
+    {
+      "id": "calligrapher",
+      "label": "同书家",
+      "objectLevel": "作品（书丹者）",
+      "field": "calligrapher",
+      "verificationField": "calligrapherVerification",
+      "acceptVerification": ["verified"],
+      "rejectValues": ["未核定"],
+      "normalize": {},
+      "basis": "只用目录中 calligrapherVerification=verified 的书家；unknown、pending_review、disputed 不参与分组"
+    },
+    {
+      "id": "dynasty",
+      "label": "同朝代",
+      "objectLevel": "作品（刻立或书写年代，不按拓印年代）",
+      "field": "dynasty",
+      "verificationField": null,
+      "acceptVerification": [],
+      "rejectValues": ["未核定"],
+      "normalize": {},
+      "basis": "目录字段，用户已批准用于项目（C-06A）；没有单独的核定标记"
+    },
+    {
+      "id": "scriptType",
+      "label": "同书体",
+      "objectLevel": "作品（正文书体）",
+      "field": "scriptType",
+      "verificationField": null,
+      "acceptVerification": [],
+      "rejectValues": ["未核定"],
+      "normalize": {
+        "楷书（赵孟頫墓碣铭）": "楷书",
+        "楷书（图文碑）": "楷书",
+        "篆额、楷书正文": "楷书"
+      },
+      "normalizeBasis": "只去掉括注，或取“正文”书体；行楷书不并入楷书或行书。原值保留在 rawValue",
+      "basis": "目录字段，用户已批准用于项目（C-06A）；没有单独的核定标记"
+    },
+    {
+      "id": "rubbingCollectionInstitution",
+      "label": "同收藏机构（拓本）",
+      "objectLevel": "拓本（不是原石的现藏地）",
+      "field": "rubbingCollectionInstitution",
+      "verificationField": null,
+      "acceptVerification": [],
+      "rejectValues": ["未核定"],
+      "normalize": {},
+      "basis": "目录字段，来自馆方开放数据页（sourceUrl），用户已批准（C-06A）；原石藏地另见 claims，不在此分组"
+    }
+  ]
+}

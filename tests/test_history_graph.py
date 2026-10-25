@@ -96,12 +96,28 @@ def test_health_then_generate():
 
 @pytest.mark.parametrize('core,museum', [('han-caoquan', 'han_01_caoquan'), ('tang-duobao', 'tang_01_duobao')])
 def test_graph_images_use_reviewed_rubbings(core, museum):
+    """馆藏实体用已审影像；演示 id（含 rm:demo:）永不回落馆藏图（RV-AI06）。"""
     from catalog import museum_records
-    record = next(r for r in museum_records() if r['id'] == museum)
-    offline = json.loads((ROOT / 'data/history' / f'{core}.json').read_text(encoding='utf-8'))
-    online = client.get(f'/api/steles/{core}/graph').json()
-    assert offline['image'] == online['image'] == record['imageAssets']['readable']
-    assert record['collectionNumber'].replace('購', '购').replace('贈', '赠') in online['collectionNumber']
+    import history_graph as hg
+    records = museum_records()
+    record = next(r for r in records if r['id'] == museum)
+    museum_graph = hg.get_history_graph(museum, records)
+    assert museum_graph['image'] == record['imageAssets']['readable']
+    assert 'museum-rubbings' in museum_graph['image']
+    assert record['collectionNumber'].replace('購', '购').replace('贈', '赠') in museum_graph['collectionNumber']
+    core_row = hg._core_sample(core)
+    assert core_row and core_row.get('raw_image')
+    # 裸演示 id：HTTP 图谱
+    demo_http = client.get(f'/api/steles/{core}/graph').json()
+    assert demo_http['image'] == core_row['raw_image']
+    assert 'museum-rubbings' not in demo_http['image']
+    assert demo_http.get('imageStatus', '').startswith('演示样本图')
+    # rm:demo:*：路由尚未接受冒号（后端 BR）；经 resolve/get_history_graph 校验永不回落馆藏图
+    demo_ns = hg.get_history_graph(f'rm:demo:{core}', records)
+    assert demo_ns['image'] == core_row['raw_image']
+    assert 'museum-rubbings' not in demo_ns['image']
+    assert demo_ns['entity']['kind'] == 'demo_sample'
+    assert demo_ns['entity']['evidenceId'] == core
 
 def test_admin_region_containment():
     from scripts.validate_history_gis import validate
