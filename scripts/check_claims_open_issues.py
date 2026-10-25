@@ -142,6 +142,68 @@ def suggest(row):
     return '对照馆方页与目录字段；保持开项，不臆断合并。'
 
 
+def evidence_gap(row):
+    """Describe what evidence is still missing; never closes or resolves the open item."""
+    kinds = set(row.get('kinds') or [])
+    sources = row.get('sources') or []
+    has_url = any(s.startswith('url:') for s in sources)
+    has_cat = any(s.startswith('cat:') for s in sources)
+    has_file = any(s.startswith('file:') for s in sources)
+    prop = row.get('property') or ''
+    gaps = []
+    if 'conflict' in kinds:
+        if len(row.get('alternatives') or []) < 2 and row.get('value') is None:
+            gaps.append('冲突两侧著录不完整（缺并列异文）')
+        else:
+            gaps.append('异文并存，尚无足以定论的单源权威')
+    if 'pending_human' in kinds:
+        gaps.append('evidenceLevel 仍为「待人工复核」，缺人工签核记录')
+    if 'catalogue_pending_review' in kinds:
+        field = row.get('catalogueField') or prop
+        gaps.append(f'目录 {field}Verification=pending_review，claims 未抬升为已验证')
+    if 'review_flag' in kinds:
+        flags = '；'.join(row.get('reviewFlags') or []) or '未注明'
+        gaps.append(f'reviewFlags 待消解（{flags}）')
+    if not has_url:
+        gaps.append('缺馆方／公开网页 URL 来源')
+    if not has_cat and prop in (
+        'calligrapher', 'author', 'engraver', 'titleCalligrapher', 'steleSubject',
+        'authorDispute', 'authorFieldConflict', 'authorEraConflict', 'script', 'dynasty',
+    ):
+        gaps.append('缺目录字段对照源')
+    if prop in ('dayCrossCheck', 'yearCrossCheck', 'ce', 'gregorianDay', 'eventDate') and not has_file:
+        gaps.append('缺碑面／释文文件源做干支历表交叉')
+    if not gaps:
+        gaps.append('来源已列，仍须人工目验后才能关闭')
+    return '；'.join(gaps)
+
+
+def next_check(row):
+    """One concrete next verification step for human queueing."""
+    kinds = set(row.get('kinds') or [])
+    prop = row.get('property') or ''
+    sid = row.get('steleId') or ''
+    if 'review_flag' in kinds:
+        return f'先按 reviewFlags 目验 {sid} 载体／鉴定，再决定是否维持 conflict'
+    if 'conflict' in kinds and prop in ('dayCrossCheck', 'yearCrossCheck', 'ce', 'gregorianDay', 'eventDate'):
+        return f'打开 {sid} 馆方 Dates 与碑面纪年／干支，只核验两侧一致性并记录证据缺口'
+    if 'conflict' in kinds and prop == 'script':
+        return f'打开 {sid} 馆方书体栏与目录 scriptType，两侧异文继续并列登记'
+    if 'conflict' in kinds and prop in ('currentLocation', 'transfer', 'dimensions', 'sourceStone'):
+        return f'核对 {sid} 现藏／迁徙／尺寸多家著录，异文并列不合并'
+    if 'conflict' in kinds and prop in (
+        'calligrapher', 'author', 'engraver', 'titleCalligrapher', 'steleSubject',
+        'authorDispute', 'authorFieldConflict', 'authorEraConflict', 'dynasty', 'objectNature',
+    ):
+        return f'打开 {sid} 馆方 Maker／分类页，对照目录角色字段；不定论、不升 Verification'
+    if 'catalogue_pending_review' in kinds:
+        field = row.get('catalogueField') or prop
+        return f'核目录 {sid}.{field} Verification=pending_review；无新证据勿抬升为已验证'
+    if 'pending_human' in kinds:
+        return f'按「建议人工动作」复核 {sid}.{prop}，补证据后再议是否改 claims JSON'
+    return f'对照馆方页与目录后保持开项：{sid}.{prop}'
+
+
 def counts(rows):
     return {
         'openRows': len({r['claimId'] for r in rows}),
@@ -158,6 +220,8 @@ def render(rows):
         row['severity'] = severity(row)
         row['sides'] = sides(row)
         row['suggest'] = suggest(row)
+        row['evidence_gap'] = evidence_gap(row)
+        row['next_check'] = next_check(row)
     stats = counts(rows)
     by_dynasty = Counter(r['dynasty'] for r in rows)
     by_sev = Counter(r['severity'] for r in rows)
@@ -210,6 +274,49 @@ def render(rows):
     for key, n in by_prop.most_common():
         add(f'| {key} | {n} |')
     add('')
+    # --- Human review tips by queue (JS-6) ---
+    add('## 人工复核提示（按核对队列）')
+    add('')
+    add('> 仅排期提示：**不定论、不合并异文、不自动关闭开项、不 C-08 --apply**。')
+    add('> 每条给出「下一步核对动作」与「证据缺口」；关闭须另有新证据并改对应 claims JSON。')
+    add('')
+    queues = [
+        ('Q1 · conflict 异文并列', [r for r in rows if 'conflict' in r['kinds']]),
+        ('Q2 · 待人工复核（非 conflict）', [
+            r for r in rows
+            if 'pending_human' in r['kinds'] and 'conflict' not in r['kinds']
+        ]),
+        ('Q3 · 目录 pending_review 未抬升（无 conflict）', [
+            r for r in rows
+            if 'catalogue_pending_review' in r['kinds'] and 'conflict' not in r['kinds']
+        ]),
+        ('Q4 · 含 reviewFlags', [r for r in rows if 'review_flag' in r['kinds']]),
+    ]
+    for title, items in queues:
+        items = sorted(items, key=lambda item: (
+            DYNASTY_ORDER.index(item['dynasty']) if item['dynasty'] in DYNASTY_ORDER else 99,
+            item['claimId'],
+        ))
+        add(f'### {title}（{len(items)}）')
+        add('')
+        if not items:
+            add('（本队列暂无条目）')
+            add('')
+            continue
+        add('| claimId | 作品 | 字段 | 下一步核对动作 | 证据缺口 |')
+        add('|---|---|---|---|---|')
+        for row in items:
+            gap = (row['evidence_gap'] or '—').replace('|', '\\|').replace('\n', ' ')
+            nxt = (row['next_check'] or '—').replace('|', '\\|').replace('\n', ' ')
+            if len(gap) > 140:
+                gap = gap[:140] + '…'
+            if len(nxt) > 120:
+                nxt = nxt[:120] + '…'
+            add(
+                f"| `{row['claimId']}` | {row['steleId']} | "
+                f"{row['entity']}.{row['property']} | {nxt} | {gap} |"
+            )
+        add('')
     # --- JS-4: conflict parallel listing ---
     conflicts = [r for r in rows if 'conflict' in r['kinds']]
     conflicts.sort(key=lambda item: (
@@ -221,8 +328,8 @@ def render(rows):
     add(f'> 异文两侧并列，**不定论、不合并、不关闭**。共 **{len(conflicts)}** 条（与统计摘要 conflict 一致）。')
     add('> 用途：人工对照馆方页／碑面／目录时，一眼看到两侧主张；关闭须有新证据并改对应 claims JSON。')
     add('')
-    add('| # | claimId | 作品 | 字段 | 侧 A | 侧 B／更多 | 建议人工动作 |')
-    add('|---:|---|---|---|---|---|---|')
+    add('| # | claimId | 作品 | 字段 | 侧 A | 侧 B／更多 | 建议人工动作 | 证据缺口 |')
+    add('|---:|---|---|---|---|---|---|---|')
     for i, row in enumerate(conflicts, 1):
         alts = row['alternatives'] or []
         if len(alts) >= 2:
@@ -235,9 +342,12 @@ def render(rows):
             side_a = side_a[:100] + '…'
         if len(side_b) > 120:
             side_b = side_b[:120] + '…'
+        gap = (row['evidence_gap'] or '—').replace('|', '\\|').replace('\n', ' ')
+        if len(gap) > 100:
+            gap = gap[:100] + '…'
         add(
             f"| {i} | `{row['claimId']}` | {row['steleId']} | "
-            f"{row['entity']}.{row['property']} | {side_a} | {side_b} | {row['suggest']} |"
+            f"{row['entity']}.{row['property']} | {side_a} | {side_b} | {row['suggest']} | {gap} |"
         )
     add('')
     # --- JS-5: human review checklist ---
@@ -273,14 +383,20 @@ def render(rows):
     add(f'> 供人工逐条勾选；**脚本与台账不自动关闭**。去重 claimId 共 **{len(checklist)}** 条仍开放。')
     add('> 含 `evidenceLevel=待人工复核`、目录 `*Verification=pending_review` 未抬升、`reviewFlags`。勾选仅表示人工已看过，关闭开项仍须改 claims JSON 并有证据。')
     add('')
-    add('| ☐ | claimId | 作品 | 类型摘要 | 建议人工动作 |')
-    add('|---|---|---|---|---|')
+    add('| ☐ | claimId | 作品 | 类型摘要 | 建议人工动作 | 下一步核对 | 证据缺口 |')
+    add('|---|---|---|---|---|---|---|')
     for row in checklist:
         kinds = '、'.join(kind_label_short[k] for k in row['kinds'])
         if row['reviewFlags']:
             kinds += '（' + '；'.join(row['reviewFlags']) + '）'
+        gap = (row['evidence_gap'] or '—').replace('|', '\\|').replace('\n', ' ')
+        nxt = (row['next_check'] or '—').replace('|', '\\|').replace('\n', ' ')
+        if len(gap) > 100:
+            gap = gap[:100] + '…'
+        if len(nxt) > 90:
+            nxt = nxt[:90] + '…'
         add(
-            f"| ☐ | `{row['claimId']}` | {row['steleId']} | {kinds} | {row['suggest']} |"
+            f"| ☐ | `{row['claimId']}` | {row['steleId']} | {kinds} | {row['suggest']} | {nxt} | {gap} |"
         )
     add('')
     add('## 明细')
@@ -305,17 +421,20 @@ def render(rows):
     for _rank, sid, items in ordered:
         add(f'### {sid} · {items[0]["title"]}（{items[0]["dynasty"]}）')
         add('')
-        add('| claimId | 字段 | 类型 | 两侧／主张摘要 | 来源 | 证据等级 | 建议人工动作 |')
-        add('|---|---|---|---|---|---|---|')
+        add('| claimId | 字段 | 类型 | 两侧／主张摘要 | 来源 | 证据等级 | 建议人工动作 | 证据缺口 |')
+        add('|---|---|---|---|---|---|---|---|')
         for row in sorted(items, key=lambda item: (0 if 'conflict' in item['kinds'] else 1, item['claimId'])):
             kinds = '、'.join(kind_label[k] for k in row['kinds'])
             if row['reviewFlags']:
                 kinds += f"（{'；'.join(row['reviewFlags'])}）"
             src = '；'.join(row['sources'][:6]) or '—'
             sides_text = (row['sides'] or '—').replace('|', '\\|').replace('\n', ' ')
+            gap = (row['evidence_gap'] or '—').replace('|', '\\|').replace('\n', ' ')
+            if len(gap) > 100:
+                gap = gap[:100] + '…'
             add(
                 f"| `{row['claimId']}` | {row['entity']}.{row['property']} | {kinds} | "
-                f"{sides_text} | {src} | {row['evidenceLevel']} | {row['suggest']} |"
+                f"{sides_text} | {src} | {row['evidenceLevel']} | {row['suggest']} | {gap} |"
             )
         add('')
     add('## 维护约定')
@@ -325,6 +444,7 @@ def render(rows):
     add('3. C-08 主库禁止 `--apply`；本台账不触发目录或 SQLite 写回。')
     add('4. 用语：写「claim 文件 28/28，开项 N 条」；勿写「收官关闭／冲突全部关闭」。')
     add('5. JS-4／JS-5：本文件「冲突并列一览」与「待人工复核工作清单」为呈现与人工排期用；claim 文件 28/28 + 开项台账/--check 已闭环功能，但开项仍开放（不等于史实定论关闭）。')
+    add('6. 「人工复核提示（按核对队列）」为排期队列（Q1–Q4）：只提示下一步核对与证据缺口，不关闭、不定论、不合并异文。')
     add('')
     return '\n'.join(lines) + '\n', stats
 
@@ -375,6 +495,10 @@ def check(rows):
         errors.append('ledger missing JS-4 section: ## 冲突并列一览')
     if '## 待人工复核工作清单' not in text:
         errors.append('ledger missing JS-5 section: ## 待人工复核工作清单')
+    if '## 人工复核提示（按核对队列）' not in text:
+        errors.append('ledger missing human-review tips section: ## 人工复核提示（按核对队列）')
+    if '证据缺口' not in text:
+        errors.append('ledger missing 证据缺口 column/tips')
     if '不等于开项关闭' not in text and '开项仍' not in text:
         errors.append('ledger must state claim files ≠ open-item closure')
     if errors:
