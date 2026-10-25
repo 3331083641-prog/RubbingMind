@@ -395,3 +395,33 @@ m:demo:* 与演示 legacy id 的 evidenceId 固定为演示自身，不再落到
 
 **规则：** 红队①–⑤；place 仅 region+modernRegion；未核定不升已验证；既有 ming_04/ming_03 conflict 未改。
 
+## 2026-10-25（Asia/Shanghai）· 第 5 批逐件深化：qing_01、qing_02、qing_03、qing_04（28/28 收官）
+
+增量文件（不覆盖原目录著录；不改已审证据文件；不改既有 ming_03/ming_04/han_02/wei_02/song_01 conflict 与 yuan_04 待人工复核判定）：
+- `data/catalog/claims/qing_01_qianlong_heart_sutra.json`（29）
+- `data/catalog/claims/qing_02_wushi_reerection.json`（29）
+- `data/catalog/claims/qing_03_sanxitang_preface.json`（29）
+- `data/catalog/claims/qing_04_ayuwang_reliquary.json`（29）
+- `data/catalog/claims/index.json` 更新为 28/28（remaining=0）；openedUrls 25→29（+3 Princeton +1 Met）
+- `tests/test_catalog_claims.py`：WORKS 24→28、remaining 4→0
+
+**挑选：** Green 指定本批收官剩余 4 件清代作品。
+
+**来源（均实开）：**
+- qing_01：https://artmuseum.princeton.edu/art/collections/objects/57606
+- qing_02：https://artmuseum.princeton.edu/art/collections/objects/57837
+- qing_03：https://www.metmuseum.org/art/collection/search/36142（Collection API objects/36142 实开）
+- qing_04：https://artmuseum.princeton.edu/art/collections/objects/57684
+
+**要点／冲突（并列待复核，不臆断）：**
+| 作品 | 已验证／有限支持要点 | 缺失／冲突 |
+|---|---|---|
+| qing_01 乾隆御书心经 | 1744 石刻；乾隆甲子年干支一致；拓本普林斯顿 y1958-220；法源寺区域级地点 | calligrapher pending_review→待人工复核；原石现藏 missing |
+| qing_02 重立武氏祠石记 | 1787 新刻；拓本普林斯顿 y1957-139 b；嘉祥武宅山区域级 | **dynasty** 馆方 Eastern Han 标签 vs 目录清代 → conflict；author/calligrapher pending_review；**engraver** 郑之宗 vs 未核定 → conflict |
+| qing_03 三希堂御序 | Met 全套 1984.496.1–.32；清乾隆时段；CC0 | author/calligrapher pending_review；刊刻 CE null→yearCrossCheck missing；原立地点 missing |
+| qing_04 阿育王寺舍利塔碑 | 光绪十年→1884；拓本普林斯顿 y1958-279；宁波阿育王寺区域级 | **engraver** 授轮等募刊/carving agent vs 未核定 → conflict；撰书人 missing |
+
+**规则：** 红队①–⑤；place 仅 region+modernRegion；未核定／pending_review 不升已验证；conflict 含 alternatives+note；既有冲突与 yuan_04 待复核未改。
+
+**测试：** `tests/test_catalog_claims.py` 全绿；`scripts/validate_museum_v3.py` 28/84 SHA 全过。主库 C-08 仅 dry-run，未 `--apply`；未 push。
+

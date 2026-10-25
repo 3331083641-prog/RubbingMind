@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "schema": "data/catalog/claims/schema.json",
-  "batch": "Phase 3 深化第 4 批（24/28；han_02/han_04/wei_02/wei_03/song_01/yuan_04）",
+  "batch": "Phase 3 深化第 5 批（28/28；qing_01/qing_02/qing_03/qing_04）",
   "curatedBy": "RM-金石史料",
-  "curatedAt": "2026-10-25（Asia/Shanghai）",
+  "curatedAt": "2026-10-25T13:00:00+08:00",
   "selectionRule": "tang_01、han_01 为 Green 指定必选（C-05 跨源差异涉及）；其余 4 件按以下顺序挑选：①目录角色字段为 verified 的项数；②仓库内馆方释文长度（含署名与纪年）；③本轮能打开的官方来源数。tang_04（4 项 verified）、yuan_01（3 项）、ming_02（3 项，含墓主）、tang_02（2 项，释文最长，另有 3 个官方页面）。yuan_03（2 项）和 song_03（2 项）留到下一批；2026-10-25 第 2 批完成 Green 指定优先的 yuan_03、song_03（NPM 页实开）；同日续做 yuan_02、tang_03、song_04、song_02；2026-10-25 第 3 批按 ①verified 角色数 ②释文长度 ③可开官方来源：ming_04（1 verified）+ wei_01/wei_04/ming_01/ming_03/han_03；2026-10-25 第 4 批按 Green 指定优先：han_02/han_04/wei_02/wei_03/song_01/yuan_04（清 4 件留第 5 批）",
-  "remaining": 4,
+  "remaining": 0,
   "works": [
     {
       "steleId": "tang_01_duobao",
@@ -419,6 +419,76 @@
         "asserted": 15,
         "missing": 14
       }
+    },
+    {
+      "steleId": "qing_01_qianlong_heart_sutra",
+      "title": "乾隆御书般若波罗蜜多心经",
+      "file": "data/catalog/claims/qing_01_qianlong_heart_sutra.json",
+      "selectionBasis": "Green 指定第5批收官；普林斯顿官页实开；calligrapher pending_review→待人工复核；甲子年干支一致；2026-10-25",
+      "claimCount": 29,
+      "evidenceLevels": {
+        "已验证": 15,
+        "未评测": 10,
+        "待人工复核": 1,
+        "有限支持": 3
+      },
+      "statuses": {
+        "asserted": 19,
+        "missing": 10
+      }
+    },
+    {
+      "steleId": "qing_02_wushi_reerection",
+      "title": "重立武氏祠石记",
+      "file": "data/catalog/claims/qing_02_wushi_reerection.json",
+      "selectionBasis": "Green 指定第5批；普林斯顿官页实开；dynasty 东汉标签 vs 清代新刻 conflict；author/calligrapher pending_review；engraver 郑之宗 vs 未核定 conflict；2026-10-25",
+      "claimCount": 29,
+      "evidenceLevels": {
+        "已验证": 14,
+        "待人工复核": 4,
+        "未评测": 9,
+        "有限支持": 2
+      },
+      "statuses": {
+        "asserted": 18,
+        "conflict": 2,
+        "missing": 9
+      }
+    },
+    {
+      "steleId": "qing_03_sanxitang_preface",
+      "title": "御刻三希堂石渠宝笈法帖·乾隆御序",
+      "file": "data/catalog/claims/qing_03_sanxitang_preface.json",
+      "selectionBasis": "Green 指定第5批；Met 网页 429 风险下以 Collection API objects/36142 实开；author/calligrapher pending_review；刊刻 CE 未核定；2026-10-25",
+      "claimCount": 29,
+      "evidenceLevels": {
+        "已验证": 12,
+        "未评测": 13,
+        "待人工复核": 2,
+        "有限支持": 2
+      },
+      "statuses": {
+        "asserted": 16,
+        "missing": 13
+      }
+    },
+    {
+      "steleId": "qing_04_ayuwang_reliquary",
+      "title": "阿育王寺舍利塔碑",
+      "file": "data/catalog/claims/qing_04_ayuwang_reliquary.json",
+      "selectionBasis": "Green 指定第5批收官；普林斯顿官页实开；engraver 募刊四人 vs 未核定 conflict；宁波阿育王寺区域级地点；2026-10-25",
+      "claimCount": 29,
+      "evidenceLevels": {
+        "已验证": 15,
+        "未评测": 10,
+        "待人工复核": 1,
+        "有限支持": 3
+      },
+      "statuses": {
+        "asserted": 18,
+        "missing": 10,
+        "conflict": 1
+      }
     }
   ],
   "openedUrls": [
@@ -596,12 +666,35 @@
       "title": "元趙孟頫書元故太常博士敬元長墓碣銘墨拓本",
       "accessedAt": "2026-10-25",
       "how": "WebFetch 实开 NPM Collection Detail 页并读取品名/作者/数量/尺寸栏（2026-10-25）"
+    },
+    {
+      "url": "https://artmuseum.princeton.edu/art/collections/objects/57606",
+      "publisher": "Princeton University Art Museum",
+      "title": "Heart Sutra of the Perfection of Wisdom (Panruo boluomiduo xin jing般若波羅蜜多心經)",
+      "accessedAt": "2026-10-25",
+      "how": "WebFetch 实开普林斯顿藏品页并读取 Title/Dates/Maker/Medium/Inscription/Description（2026-10-25）"
+    },
+    {
+      "url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+      "publisher": "Princeton University Art Museum",
+      "title": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+      "accessedAt": "2026-10-25",
+      "how": "WebFetch 实开普林斯顿藏品页并读取 Title/Dates/Maker/Period(Eastern Han 标签)/Place Made（2026-10-25）"
+    },
+    {
+      "url": "https://www.metmuseum.org/art/collection/search/36142",
+      "publisher": "The Metropolitan Museum of Art",
+      "title": "Model Calligraphies from the “Hall of Three Rarities” (Sanxitang) and the \"Collected Treasures of the Stony Moat” (Shiqu Baoji)",
+      "accessedAt": "2026-10-25",
+      "how": "网页可能 429；改以 Met Collection API /public/collection/v1/objects/36142 实开并核对 title/period/objectDate/accession/repository/isPublicDomain（2026-10-25）"
+    },
+    {
+      "url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+      "publisher": "Princeton University Art Museum",
+      "title": "Stele of the Ayuwang Temple Śarīra Reliquary",
+      "accessedAt": "2026-10-25",
+      "how": "WebFetch 实开普林斯顿藏品页并读取 Title/Dates/Maker/Inscription/Description（2026-10-25）"
     }
   ],
-  "notOpened": [
-    {
-      "url": "https://wwj.shaanxi.gov.cn/wbxx/bkydww/wwbhdw/index_14.html",
-      "reason": "2026-10-19 WebFetch 返回 504，curl 返回空页；未引用"
-    }
-  ]
+  "notOpened": []
 }
