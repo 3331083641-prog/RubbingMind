@@ -150,6 +150,17 @@ def test_rm_demo_path_query_api_match_bare_demo():
     assert q2.json()['demoScope']['included'] is True
 
 
+
+def test_rm_demo_query_param_matches_path_via_testclient():
+    """Regression: query-param rm:demo must resolve like path (middleware only rewrites /api/steles/)."""
+    path_r = client.get('/api/steles/rm:demo:han-caoquan')
+    gen_r = client.get('/generate', params={'stele_id': 'rm:demo:han-caoquan'})
+    assert path_r.status_code == 200 and gen_r.status_code == 200
+    assert path_r.json()['id'] == gen_r.json()['steleId'] == 'han-caoquan'
+    # Percent-encoded path (ASGI may present decoded form; both must not 404)
+    enc = client.get('/api/steles/rm%3Ademo%3Ahan-caoquan')
+    assert enc.status_code == 200 and enc.json()['id'] == 'han-caoquan'
+
 def test_admin_region_containment():
     from scripts.validate_history_gis import validate
     assert len(validate())==12

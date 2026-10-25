@@ -436,11 +436,16 @@ async def get_steles():
 
 @app.get("/api/steles/{stele_id}")
 async def get_stele(stele_id: str):
-    item = museum_manager.get_stele_by_id(stele_id)
+    # Path /api/steles/rm:demo:… is rewritten by NamespacedSteleIdMiddleware; query-param
+    # callers (e.g. GET /generate?stele_id=rm:demo:…) bypass that rewrite — resolve here so
+    # TestClient and live uvicorn share one boundary (jinshi _resolve_stele_for_api 口径).
+    lookup = _lookup_stele_id(stele_id)
+    item = museum_manager.get_stele_by_id(lookup)
     if item: return item
-    if stele_id in museum_manager.retired:
-        mapping = museum_manager.retired[stele_id]
-        raise HTTPException(status_code=410, detail={"message":"原记录已下架，推荐查看新馆藏（不同文物）", "oldId":stele_id,"recommendedId":mapping["newId"]})
+    for key in (stele_id, lookup):
+        if key in museum_manager.retired:
+            mapping = museum_manager.retired[key]
+            raise HTTPException(status_code=410, detail={"message":"原记录已下架，推荐查看新馆藏（不同文物）", "oldId":key,"recommendedId":mapping["newId"]})
     raise HTTPException(status_code=404, detail="未找到该文物，不自动切换样本")
 
 
