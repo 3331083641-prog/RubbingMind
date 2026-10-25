@@ -6,7 +6,7 @@
   "script": "示范魏碑字形",
   "image": "/assets/stele/rubbings/stele_wei_jianyi_fragment.png",
   "imageStatus": "算法演示图·身份待核",
-  "identity": "未确认与王诵墓志同一；528是测试标签，非本图已核实纪年",
+  "identity": "合成测试文本（sample_generator 生成，非真实释文）；未确认与王诵墓志同一；528是测试标签，非本图已核实纪年",
   "rubbingPeriod": "年代待考",
   "collectionNumber": "未核实",
   "originalStoneCollection": "待考",
@@ -22,7 +22,7 @@
       "id": "wei-jianyi",
       "name": "建义退化测试样本",
       "category": "stele",
-      "desc": "未确认与王诵墓志同一；528是测试标签，非本图已核实纪年",
+      "desc": "合成测试文本（sample_generator 生成，非真实释文）；未确认与王诵墓志同一；528是测试标签，非本图已核实纪年",
       "sourceIds": [
         "local-audit"
       ],
@@ -99,5 +99,12 @@
     }
   ],
   "routes": [],
-  "aliases": []
+  "aliases": [],
+  "textProvenance": {
+    "kind": "synthetic_test_text",
+    "label": "合成测试文本（sample_generator 生成，非真实释文）",
+    "isAuthenticInscription": false,
+    "generator": "sample_generator.py · SAMPLE_SOURCES[\"sample_4.png\"].lines",
+    "note": "该段文字由项目样本生成器写入，用于退化与修复算法测试；不对应任何已核实的真实墓志释文，不得作为史料引用。"
+  }
 }

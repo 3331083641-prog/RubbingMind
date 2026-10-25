@@ -80,7 +80,8 @@ from runtime_guard import RuntimeGuard
 app.add_middleware(RuntimeGuard)
 # R1-5: rm:rubbing:/rm:demo:/rm:retired: ids are accepted everywhere under /api/steles/
 # (outermost, so the guard and every route see the legacy id).
-from id_mapping import NamespacedSteleIdMiddleware
+from id_mapping import NamespacedSteleIdMiddleware, local_id, namespace_mismatch, split_namespace
+from history_graph import resolve_id as resolve_history_id
 app.add_middleware(NamespacedSteleIdMiddleware)
 PROCESS_LOCK=threading.Lock()
 os.makedirs(STATIC_DIR, exist_ok=True)
@@ -155,6 +156,28 @@ class CalendarRequest(BaseModel):
     query: str
 
 
+
+def _lookup_stele_id(stele_id: str) -> str:
+    """Map rm:demo:/rm:rubbing:/rm:retired: to legacy id for museum_manager lookup.
+
+    Rejects rm:work: and wrong-kind namespaces (same rules as NamespacedSteleIdMiddleware).
+    """
+    if not stele_id:
+        return stele_id
+    if stele_id.startswith('rm:'):
+        err = namespace_mismatch(stele_id)
+        if err:
+            raise HTTPException(status_code=404, detail=err)
+        prefix, kind, local = split_namespace(stele_id)
+        if prefix is None:
+            return stele_id
+        resolved = resolve_history_id(stele_id)
+        if resolved.get('evidenceId'):
+            return resolved['evidenceId']
+        return local_id(stele_id) or local
+    return stele_id
+
+
 class EvidenceQueryRequest(BaseModel):
     question: str = Field(min_length=2,max_length=500)
     steleId: Optional[str] = Field(default=None,max_length=100)
@@ -165,26 +188,20 @@ class EvidenceQueryRequest(BaseModel):
 @app.post('/api/research/query')
 def query_evidence(request: EvidenceQueryRequest):
     from evidence_retrieval import query
-    import inspect
-    if request.steleId and not museum_manager.get_stele_by_id(request.steleId):
-        # rm:demo:<id> is accepted once jinshi's resolver is merged; until then only known ids pass.
-        raise HTTPException(status_code=404,detail='文物不存在')
-    params = inspect.signature(query).parameters
-    if 'include_demo' in params:
-        return query(request.question, request.steleId, include_demo=request.includeDemo)
-    # Compatible call: this branch's evidence_retrieval has no include_demo yet (merge takes jinshi's).
-    result = query(request.question, request.steleId)
-    if isinstance(result, dict):
-        note = '本分支 evidence_retrieval 尚未实现 include_demo；合并时以 agent/jinshi 的实现为准（ARCHITECTURE_DECISIONS R2）。'
-        scope = dict(result.get('demoScope') or {})
-        scope.update({'requested': bool(request.includeDemo), 'honoured': False, 'compatNote': note})
-        result = {**result, 'demoScope': scope}
-    return result
+    scope_id = request.steleId
+    if scope_id:
+        lookup = _lookup_stele_id(scope_id)
+        if not museum_manager.get_stele_by_id(lookup):
+            raise HTTPException(status_code=404, detail='文物不存在')
+        # Pass original id so demo_opt_in / resolve_id see rm:demo: and kind=demo_sample.
+    return query(request.question, scope_id, include_demo=request.includeDemo)
 
 
 @app.get('/api/research/steles/{stele_id}')
 def get_research_graph(stele_id: str):
-    if not museum_manager.get_stele_by_id(stele_id):raise HTTPException(status_code=404,detail='文物不存在')
+    lookup = _lookup_stele_id(stele_id)
+    if not museum_manager.get_stele_by_id(lookup):
+        raise HTTPException(status_code=404, detail='文物不存在')
     from evidence_retrieval import artifact_graph
     return artifact_graph(stele_id)
 

@@ -1,0 +1,763 @@
+{
+  "schemaVersion": 1,
+  "steleId": "han_01_caoquan",
+  "title": "曹全碑",
+  "curatedBy": "RM-金石史料",
+  "curatedAt": "2026-10-19（Asia/Shanghai）",
+  "selectionBasis": "必选（Green 指定：C-05 跨源差异涉及文物）；碑主 verified，馆方释文 1103 字含纪年，碑林官网有条目",
+  "layers": "作品（work）≠原刻载体（stone）≠拓本（rubbing）≠影像（image）；人物、纪年、地点、书体风格、著录分列",
+  "claims": [
+    {
+      "claimId": "han_01_caoquan:work:title",
+      "entity": "work",
+      "property": "title",
+      "value": "曹全碑（碑文首称“君諱全。字景完”）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "title",
+          "value": "曹全碑"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "transcription",
+          "quote": "君諱全。字景完"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "曹全碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "曹全碑"
+        }
+      ]
+    },
+    {
+      "claimId": "han_01_caoquan:work:dynasty",
+      "entity": "work",
+      "property": "dynasty",
+      "value": "东汉",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "dynasty",
+          "value": "东汉"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "曹全碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "东汉中平二年（185）"
+        }
+      ]
+    },
+    {
+      "claimId": "han_01_caoquan:work:content",
+      "entity": "work",
+      "property": "content",
+      "value": "郃阳县门生故吏为县令曹全“刊石纪功”",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "transcription",
+          "quote": "乃共刊石紀"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "曹全碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "曹全在郃阳的门生故吏因共同出资，为其“刊石纪功”"
+        }
+      ]
+    },
+    {
+      "claimId": "han_01_caoquan:stone:currentLocation",
+      "entity": "stone",
+      "property": "currentLocation",
+      "value": "西安碑林博物馆（陕西省西安市）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "曹全碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "1956年移存西安碑林"
+        },
+        {
+          "type": "file",
+          "path": "data/history/han-caoquan.json",
+          "field": "originalStoneCollection",
+          "quote": "西安碑林博物馆"
+        }
+      ],
+      "catalogueField": "physicalCollectionInstitution",
+      "catalogueValue": null,
+      "note": "目录 physicalCollectionInstitution 为空（未核定），按规则不升为已验证；检索按 C-05 两说并列",
+      "region": {
+        "modernRegion": "陕西省西安市",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "han_01_caoquan:stone:excavation",
+      "entity": "stone",
+      "property": "excavation",
+      "value": "明万历年间（1573–1620）出土于陕西合阳莘里村",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "曹全碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "明万历年间(1573--1620)出土于陕西合阳莘里村"
+        }
+      ],
+      "note": "只知道年号区间，不写具体出土年份"
+    },
+    {
+      "claimId": "han_01_caoquan:stone:transfer",
+      "entity": "stone",
+      "property": "transfer",
+      "value": "1956 年移存西安碑林",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "曹全碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "1956年移存西安碑林"
+        }
+      ]
+    },
+    {
+      "claimId": "han_01_caoquan:stone:dimensions",
+      "entity": "stone",
+      "property": "height",
+      "value": "高 272 厘米",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "曹全碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "高272厘米"
+        }
+      ],
+      "note": "单一馆方来源，宽厚未见"
+    },
+    {
+      "claimId": "han_01_caoquan:stone:condition",
+      "entity": "stone",
+      "property": "condition",
+      "value": "“碑石质坚润,刻刊精良,为汉碑中保存最为完好者”",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "曹全碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "碑石质坚润,刻刊精良,为汉碑中保存最为完好者"
+        }
+      ],
+      "note": "馆方评述，不是原石检测；原石风化等级仍不评定"
+    },
+    {
+      "claimId": "han_01_caoquan:rubbing:holder",
+      "entity": "rubbing",
+      "property": "holder",
+      "value": "台北故宫博物院，購拓000033",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "collectionNumber",
+          "value": "購拓000033"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/han_01_caoquan.json",
+          "field": "officialExtractedText",
+          "quote": "購拓000033"
+        }
+      ]
+    },
+    {
+      "claimId": "han_01_caoquan:rubbing:museumTitle",
+      "entity": "rubbing",
+      "property": "museumTitle",
+      "value": "漢曹全碑墨拓本軸",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/han_01_caoquan.json",
+          "field": "officialExtractedText",
+          "quote": "漢曹全碑墨拓本軸"
+        }
+      ]
+    },
+    {
+      "claimId": "han_01_caoquan:rubbing:format",
+      "entity": "rubbing",
+      "property": "format",
+      "value": "一軸；本幅 176×76.2 厘米，全幅 238×77.5 厘米；紙本",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/han_01_caoquan.json",
+          "field": "officialExtractedText",
+          "quote": "一軸"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/han_01_caoquan.json",
+          "field": "officialExtractedText",
+          "quote": "本幅176x76.2"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/han_01_caoquan.json",
+          "field": "officialExtractedText",
+          "quote": "全幅238x77.5"
+        }
+      ]
+    },
+    {
+      "claimId": "han_01_caoquan:rubbing:period",
+      "entity": "rubbing",
+      "property": "period",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "rubbingPeriod",
+          "value": "未核定；不据拓印年改变朝代"
+        },
+        {
+          "type": "file",
+          "path": "data/history/han-caoquan.json",
+          "field": "rubbingPeriod",
+          "quote": "年代待考"
+        }
+      ],
+      "missingReason": "目录为“未核定”，史料图谱为“年代待考”，两者都没有给出拓制年代，不算冲突；馆方记录无题跋可据",
+      "catalogueField": "rubbingPeriod"
+    },
+    {
+      "claimId": "han_01_caoquan:image:sourceSha256",
+      "entity": "image",
+      "property": "sourceSha256",
+      "value": "cec4baf0e69c24ca164246faf8cbc64a429c4eb46a1a3c3d119f12f450bf0e3b",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "sourceVerification.sourceSha256",
+          "value": "cec4baf0e69c24ca164246faf8cbc64a429c4eb46a1a3c3d119f12f450bf0e3b"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/han_01_caoquan.json",
+          "field": "reviewedMetadata.source_sha256",
+          "quote": "cec4baf0e69c24ca164246faf8cbc64a429c4eb46a1a3c3d119f12f450bf0e3b"
+        }
+      ],
+      "note": "目录与证据文件的原图 SHA-256 一致；84 张部署影像另由 ASSET_FREEZE.json 冻结核对"
+    },
+    {
+      "claimId": "han_01_caoquan:image:license",
+      "entity": "image",
+      "property": "license",
+      "value": "CC BY 4.0",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "license",
+          "value": "CC BY 4.0"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "attribution",
+          "value": "曹全碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw"
+        }
+      ]
+    },
+    {
+      "claimId": "han_01_caoquan:image:derivation",
+      "entity": "image",
+      "property": "derivation",
+      "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "modifications",
+          "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+        }
+      ],
+      "note": "影像是拓本数字影像的展示派生，不是原石照片，也不是修复结果"
+    },
+    {
+      "claimId": "han_01_caoquan:person:author",
+      "entity": "person",
+      "property": "author",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "author",
+          "value": "未核定"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "transcription",
+          "quote": "門下掾王敞"
+        }
+      ],
+      "missingReason": "目录 author 未核定；碑文列门下掾王敞等共同刊石，但没有明确的“撰”文署名",
+      "catalogueField": "author"
+    },
+    {
+      "claimId": "han_01_caoquan:person:calligrapher",
+      "entity": "person",
+      "property": "calligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "calligrapher",
+          "value": "未核定"
+        }
+      ],
+      "missingReason": "目录 calligrapher 未核定；碑文无书丹署名",
+      "catalogueField": "calligrapher"
+    },
+    {
+      "claimId": "han_01_caoquan:person:titleCalligrapher",
+      "entity": "person",
+      "property": "titleCalligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "titleCalligrapher",
+          "value": "未核定"
+        }
+      ],
+      "missingReason": "目录未核定；本轮未见碑额资料",
+      "catalogueField": "titleCalligrapher"
+    },
+    {
+      "claimId": "han_01_caoquan:person:engraver",
+      "entity": "person",
+      "property": "engraver",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "engraver",
+          "value": "未核定"
+        }
+      ],
+      "missingReason": "目录未核定；碑文无刻工署名",
+      "catalogueField": "engraver"
+    },
+    {
+      "claimId": "han_01_caoquan:person:steleSubject",
+      "entity": "person",
+      "property": "steleSubject",
+      "value": "曹全，字景完，敦煌效穀人",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "steleSubject",
+          "value": "曹全"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "transcription",
+          "quote": "君諱全。字景完。敦煌效穀人也"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "曹全碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "碑主曹全"
+        }
+      ],
+      "catalogueField": "steleSubject",
+      "note": "claim 层记录目录值；检索对碑主问题仍按用户要求回答“不支持”"
+    },
+    {
+      "claimId": "han_01_caoquan:person:commissioners",
+      "entity": "person",
+      "property": "commissioners",
+      "value": "门下掾王敞、录事掾王毕、主簿王历、户曹掾秦尚、功曹史王颙等",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "transcription",
+          "quote": "門下掾王敞。錄事掾王畢。主薄王歷。戶曹掾秦尚。功曹史王顓等"
+        }
+      ],
+      "note": "释文作“主薄”“王顓”，原样保留；这些人是刊石发起者，不等于撰文或书丹者"
+    },
+    {
+      "claimId": "han_01_caoquan:date:era",
+      "entity": "date",
+      "property": "era",
+      "value": "中平二年十月丙辰造",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "transcription",
+          "quote": "中平二年十月丙辰造"
+        }
+      ]
+    },
+    {
+      "claimId": "han_01_caoquan:date:ce",
+      "entity": "date",
+      "property": "ce",
+      "value": 185,
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "originalYearCE",
+          "value": 185
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "曹全碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "灵帝中平二年(185)立"
+        }
+      ]
+    },
+    {
+      "claimId": "han_01_caoquan:date:yearCrossCheck",
+      "entity": "date",
+      "property": "yearCrossCheck",
+      "value": "部分互证：中平二年＝185（馆方与目录一致）；碑文没有写年干支，推算 185 年为乙丑，无从对照",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "transcription",
+          "quote": "中平二年"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "曹全碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "灵帝中平二年(185)立"
+        }
+      ],
+      "derivation": {
+        "era": "中平二年",
+        "ce": 185,
+        "computedGanzhi": "乙丑",
+        "inscriptionGanzhi": null,
+        "method": "(ce-4) mod 60，甲子=0",
+        "result": "partial"
+      }
+    },
+    {
+      "claimId": "han_01_caoquan:date:dayCrossCheck",
+      "entity": "date",
+      "property": "dayCrossCheck",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "transcription",
+          "quote": "十月丙辰"
+        }
+      ],
+      "missingReason": "碑文只记“十月丙辰”，没有朔日，无法推算日序；需历表人工复核"
+    },
+    {
+      "claimId": "han_01_caoquan:place:originalSite",
+      "entity": "place",
+      "property": "originalSite",
+      "value": "郃阳（出土于陕西合阳莘里村）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "曹全碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "出土于陕西合阳莘里村"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "transcription",
+          "quote": "郃陽"
+        }
+      ],
+      "region": {
+        "historicalName": "东汉郃阳县",
+        "modernRegion": "陕西省合阳县",
+        "precision": "region"
+      },
+      "note": "出土点无已核实坐标，不给点位"
+    },
+    {
+      "claimId": "han_01_caoquan:place:subjectOrigin",
+      "entity": "place",
+      "property": "subjectOrigin",
+      "value": "敦煌效穀",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "transcription",
+          "quote": "敦煌效穀人也"
+        }
+      ],
+      "region": {
+        "historicalName": "敦煌郡效穀县",
+        "modernRegion": "甘肃省敦煌市一带（现代对应待人工复核）",
+        "precision": "region"
+      },
+      "note": "碑文原文已验证；古今地名对应本轮未另找来源"
+    },
+    {
+      "claimId": "han_01_caoquan:place:currentStone",
+      "entity": "place",
+      "property": "currentStone",
+      "value": "西安碑林博物馆",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "曹全碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "1956年移存西安碑林"
+        }
+      ],
+      "region": {
+        "modernRegion": "陕西省西安市",
+        "precision": "region"
+      },
+      "catalogueField": "physicalCollectionInstitution",
+      "catalogueValue": null
+    },
+    {
+      "claimId": "han_01_caoquan:place:rubbing",
+      "entity": "place",
+      "property": "rubbingHolder",
+      "value": "台北故宫博物院",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        }
+      ],
+      "region": {
+        "modernRegion": "台北市",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "han_01_caoquan:style:script",
+      "entity": "script_style",
+      "property": "script",
+      "value": "隶书",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "han_01_caoquan",
+          "field": "scriptType",
+          "value": "隶书"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/han_01_caoquan.json",
+          "field": "officialExtractedText",
+          "quote": "隸書"
+        }
+      ]
+    },
+    {
+      "claimId": "han_01_caoquan:style:historicalComment",
+      "entity": "script_style",
+      "property": "historicalComment",
+      "value": "康有为认为此碑“以风神逸宕胜”，是汉隶中“秀韵”一路代表",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=145&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "曹全碑",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "康有为认为此碑“以风神逸宕胜”，是汉隶中“秀韵”一路代表"
+        }
+      ],
+      "note": "馆方转引，未核原书"
+    },
+    {
+      "claimId": "han_01_caoquan:bibliography:npm",
+      "entity": "bibliography",
+      "property": "catalogueReference",
+      "value": "《院藏碑帖特展目錄》，頁30-32、367（台北故宫著录）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/han_01_caoquan.json",
+          "field": "officialExtractedText",
+          "quote": "院藏碑帖特展目錄，頁30-32、367"
+        }
+      ]
+    }
+  ]
+}

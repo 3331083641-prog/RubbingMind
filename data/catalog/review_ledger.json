@@ -1,0 +1,733 @@
+{
+  "schemaVersion": 1,
+  "purpose": "C-06 复核台账：并列记录“目录已批准”和“证据复核”两个状态，不改原目录和 28 份证据文件",
+  "decision": {
+    "item": "C-06",
+    "option": "A",
+    "decidedBy": "用户（经 Green 传达）",
+    "recordedAt": "2026-10-19 12:35 Asia/Shanghai",
+    "recordedBy": "RM-金石史料"
+  },
+  "manifestBasis": {
+    "file": "data/catalog/review_manifest.json",
+    "approval": "用户明确确认第三轮28件可正式用于项目",
+    "count": 28,
+    "reviewerOrDateRecorded": false
+  },
+  "userApprovalFields": {
+    "approvedBy": "批准人",
+    "approvedAt": "批准日期（Asia/Shanghai）",
+    "approvalScope": "批准范围，例如：影像可用 / 许可 / 著录字段",
+    "rule": "只能由用户本人填写，Agent 不代填；三项都填后 status 变为 filled_by_user"
+  },
+  "records": [
+    {
+      "id": "han_01_caoquan",
+      "title": "曹全碑",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验，待第三轮独立复核",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/han_01_caoquan.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "cec4baf0e69c24ca164246faf8cbc64a429c4eb46a1a3c3d119f12f450bf0e3b",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "han_02_yiying",
+      "title": "乙瑛碑",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验；原件阅读受限",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/han_02_yiying.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "1ee71af3b141f4afe5c74f03ebec00d40dfe08867ae1a385542c8d9c56314fd3",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "han_03_liqi",
+      "title": "礼器碑",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验；原件阅读受限",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/han_03_liqi.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "a3352bdc7fea877021b4bf41a3225a4dc9774ccd818013c22eb5b5acb103ef97",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "han_04_shichen",
+      "title": "史晨碑",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验，待第三轮独立复核",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/han_04_shichen.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "082a8bfcf47f4d3e90555f262afadda436a80887943de1b5f3130d23f61f522d",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "wei_01_zhangmenglong",
+      "title": "张猛龙碑",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验，待第三轮独立复核",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/wei_01_zhangmenglong.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "1d9f6b1e442fb54f769b2c553f7c044822eb5eeae60872425225df3b241ba46d",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "wei_02_wugaoli",
+      "title": "吴高黎墓志",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验，待第三轮独立复核",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/wei_02_wugaoli.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "e2010873451d08dbac1cf399c046be9110874a31fbaf2f138b7f41c6530493cb",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "wei_03_kouyan",
+      "title": "寇演墓志",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验，待第三轮独立复核",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/wei_03_kouyan.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "153cc74cd90a67a9985261f67845e4714afdd7bcee8bf8f38cbeedaa5be59759",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "wei_04_wangsong",
+      "title": "建义元年王诵墓志",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验，待第三轮独立复核",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/wei_04_wangsong.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "0f5f655d30fdd4d93348c809eed6a808b943ce9432a0bf5079c02cb8e45679b8",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "tang_01_duobao",
+      "title": "多宝塔感应碑",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验，待第三轮独立复核",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/tang_01_duobao.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "009ad313197fad46b0ac0cea7048f15b012b2a9f83f58fe7d3cc74f7435eace9",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "tang_02_jiucheng",
+      "title": "九成宫醴泉铭",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验，待第三轮独立复核",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/tang_02_jiucheng.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "957bd964c1ca5e9b3c012d4e0588b0d913042ab9a49e96741c305b1f7b6869f8",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "tang_03_yanjiamiao",
+      "title": "颜氏家庙碑",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验，待第三轮独立复核",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/tang_03_yanjiamiao.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "1db357191b9d9fd5fc6a395cdfaac68150a7f4aa632ef12f8e427d9902ca28fd",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "tang_04_xuanmita",
+      "title": "玄秘塔碑",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验，待第三轮独立复核",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/tang_04_xuanmita.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "d0ea8c9212bd7e49ba0b48f1b77adc621470946ade1dbcebb489f4012dc92569",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "song_01_yuanyou",
+      "title": "元祐党籍碑",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验；原件阅读受限",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/song_01_yuanyou.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "7700c8e3336dcf483a91903d0c49145c1880e5c71367d8aea5c714f88e9ed43d",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "song_02_wenxuan",
+      "title": "宋太宗御制至圣文宣王赞碑",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验，待第三轮独立复核",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/song_02_wenxuan.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "dcdcefe1d35e87b62da1dedaae9f652e3b07142fac75e5290b548c715e30a174",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "song_03_daguan",
+      "title": "大观圣作碑",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验；原件阅读受限",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/song_03_daguan.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "7daed181c0ba9b8feb30a8d383712834ae1e67c9c017d753d8b99c9cde731d21",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "song_04_mengying",
+      "title": "释梦英十八体书碑",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验，待第三轮独立复核",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/song_04_mengying.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "b613403e0c03ac4c815e71a5734d3397a81b2d21d1072b3e28a178305c539532",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "yuan_01_yufu",
+      "title": "大元敕藏御服之碑",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验，待第三轮独立复核",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/yuan_01_yufu.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "03fd0e11841b4f519c9ed1c9676f09d1e7415d544af7109f55b83af06f1f09c6",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "yuan_02_sundeyu",
+      "title": "元重阳宫孙德彧道行碑",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验，待第三轮独立复核",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/yuan_02_sundeyu.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "2ca6c573948002bcd457360a11ba9e80a82dde26c0c7aa3f5223b735678d0452",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "yuan_03_shengzhu",
+      "title": "圣主本命长生之碑",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验，待第三轮独立复核",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/yuan_03_shengzhu.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "d818483a2f71930f41fe27018022499217dd25f5566e24144ad93509c09b5ed5",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "yuan_04_jingyuanchang",
+      "title": "赵孟頫书敬元长墓碣铭",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验，待第三轮独立复核",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/yuan_04_jingyuanchang.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "24f8c82a46d8b7882675cb21a4218bf775e308351440fd19636e2107716f8b23",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "ming_01_xianfu",
+      "title": "明弘治八年西安府学题名碑",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验，待第三轮独立复核",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/ming_01_xianfu.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "f957e8226bf1729c2d0ce387f73581435bd313ec03754929614c5e24744768b2",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "ming_02_luxianzhi",
+      "title": "文徵明书陆献之墓志铭",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验，待第三轮独立复核",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/ming_02_luxianzhi.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "b8a8a673471246368f0215c4680508ff2b0dee988a5719d7421751835387833b",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": [
+        {
+          "flag": "载体性质待人工鉴定",
+          "claimId": "ming_02_luxianzhi:work:objectNature",
+          "status": "conflict",
+          "evidenceLevel": "待人工复核",
+          "file": "data/catalog/claims/ming_02_luxianzhi.json"
+        }
+      ]
+    },
+    {
+      "id": "ming_03_wugou",
+      "title": "无垢子何君墓志铭",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验；原件阅读受限",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/ming_03_wugou.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "0d8152e57832ffa9b2580ba8be856efb077f52d423c4b742803e5cb3c60bd3dc",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "ming_04_tongdian",
+      "title": "大峨山永明华藏寺新建铜殿记碑",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验；原件阅读受限",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/ming_04_tongdian.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "cc9e7e63a3d187e8655998d501860ceba7c8a7bd6ea1b8b69d5d6e5936ce4c92",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "qing_01_qianlong_heart_sutra",
+      "title": "乾隆御书般若波罗蜜多心经",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验，待第三轮独立复核",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/qing_01_qianlong_heart_sutra.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "504851fefe45202105241d4590793e32df14ee552d9c4e42a6bcb846b6259dec",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "qing_02_wushi_reerection",
+      "title": "重立武氏祠石记",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验，待第三轮独立复核",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/qing_02_wushi_reerection.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "948ac3c851bcb84bdb6dafa4856db3c79f0ea4342a31527bcbbf5972295e3ded",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "qing_03_sanxitang_preface",
+      "title": "御刻三希堂石渠宝笈法帖·乾隆御序",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验，待第三轮独立复核",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/qing_03_sanxitang_preface.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "3d007db7a35d1a74c7562584cf9ad391f39e38fe89ecec969dbe3ceee97ed7dd",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    },
+    {
+      "id": "qing_04_ayuwang_reliquary",
+      "title": "阿育王寺舍利塔碑",
+      "catalogueApproval": {
+        "status": "approved_by_user",
+        "field": "data/catalog/steles28.json#sourceVerification.status",
+        "label": "已批准（用户确认可用于项目）"
+      },
+      "evidenceReview": {
+        "humanReviewStatus": "pending_third_round_user_ChatGPT_review",
+        "qualityStatus": "通过制作核验，待第三轮独立复核",
+        "candidateStatus": "prepared_for_third_review",
+        "evidenceFile": "data/catalog/evidence/qing_04_ayuwang_reliquary.json",
+        "label": "证据待第三轮复核"
+      },
+      "sourceSha256": "336b48bb4babbd1c6c10b193df45791f6ff349bc68cd846af268a75f82a565ed",
+      "sourceSha256MatchesEvidence": true,
+      "userApproval": {
+        "approvedBy": null,
+        "approvedAt": null,
+        "approvalScope": null,
+        "status": "待用户填写"
+      },
+      "contentFlags": []
+    }
+  ]
+}

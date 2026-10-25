@@ -92,7 +92,17 @@ export interface SteleItem {
   rubbingCollectionInstitution?: string;
   physicalCollectionInstitution?: string | null;
   evaluationStatus?: string;
-  inferenceDemo?: {transcript:string;characters:CharacterItem[];damaged_summary:string};
+  inferenceDemo?: {transcript:string;characters:CharacterItem[];damaged_summary:string;textProvenance?:TextProvenance};
+  textProvenance?: TextProvenance;
+}
+
+/** Marks generator-made text so it can never be read as an authentic inscription. */
+export interface TextProvenance {
+  kind: 'synthetic_test_text' | string;
+  label: string;
+  isAuthenticInscription: boolean;
+  generator?: string;
+  note?: string;
 }
 
 export interface ProcessingParams {
@@ -150,6 +160,7 @@ export interface CharacterItem {
   radical?: string;
   pinyin?: string;
   variant_of?: string;
+  textKind?: 'synthetic_test_text' | string;
   explanation?: string;
   damage_level?: number;
   inferred_candidates?: InferredCandidate[];
