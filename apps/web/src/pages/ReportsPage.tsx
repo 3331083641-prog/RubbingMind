@@ -147,6 +147,12 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate, runId: sharedR
         conclusion: model.primary ? { method: model.method, primaryScope: model.primary.primaryScope, scopes: model.primary.scopes, n: model.primary.n, processedN: model.primary.processedN, passthroughN: model.primary.passthroughN, undeterminedN: model.primary.undeterminedN, grade: model.primaryGrade.grade, gradeReasons: model.primaryGrade.reasons } : null,
         deltaByMethod: model.panels.filter(p => p.metric.delta).map(p => ({ metric: p.metric.key, items: p.items.map(i => ({ method: i.method, primaryScope: i.primaryScope, all: strip(i.scopes.all), processed: strip(i.scopes.processed), passthrough: strip(i.scopes.passthrough), n: i.n, processedN: i.processedN, passthroughN: i.passthroughN, undeterminedN: i.undeterminedN, negativeProcessedN: i.negativeProcessedN })) })),
         representativeRule: model.representative.rule, limitations: model.batch.registry.limitations || [], notes: model.notes,
+        liftClaims: {
+          summary: model.ci?.file.liftClaimSummary || null,
+          rule: model.ci?.file.liftClaimRule || null,
+          primaryScopeLabel: model.primary?.scopes[model.primary.primaryScope]?.liftClaimLabel ?? null,
+          note: 'ES-3: matches on-screen lift-claim-label / lift-claim-summary (annotate_ci_lift_claims); absent when CI raw/unannotated.',
+        },
         failureRetention: {
           policy: '负提升与失败记录均保留，未抽样、未删除（D-07 / RF-6）',
           primaryMethod: model.primary ? {
@@ -165,7 +171,7 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate, runId: sharedR
         },
       } : null,
       glyphEvaluation: glyph.state === 'ok' ? glyph.data : null,
-      note: '无配对真值时，诊断变化量不代表修复质量；残字建议须经人工核实。导出含 failureRetention，与页面失败案例列表口径一致。',
+      note: 'Values and change criteria follow this JSON; print layout may differ slightly after manual pagination. Includes failureRetention (aligned with on-screen failure gallery) and liftClaims (ES-3, aligned with on-screen lift-claim badges).',
     };
     const href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
     const link = document.createElement('a'); link.href = href; link.download = `${data.reportId}-${tag}.json`.replace(/[\\/:*?"<>|\s]+/g, '_'); link.click();
@@ -197,4 +203,4 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate, runId: sharedR
 };
 
 const caseIdOf = (r: { caseId?: string; sampleId: string; degradation: string; strength?: number }) => r.caseId || `${r.sampleId}|${r.degradation}|${r.strength ?? ''}`;
-const strip = (s: { value: number | null; ci: [number, number] | null; ciReliable: boolean; sign: unknown; nArtifacts: number; nRecords: number; ciSource: string; ciNote: string | null }) => ({ value: s.value, ci95: s.ci, ciReliable: s.ciReliable, sign: s.sign, nArtifacts: s.nArtifacts, nRecords: s.nRecords, ciSource: s.ciSource, ciNote: s.ciNote });
+const strip = (s: { value: number | null; ci: [number, number] | null; ciReliable: boolean; sign: unknown; nArtifacts: number; nRecords: number; ciSource: string; ciNote: string | null; liftClaimLabel?: string | null }) => ({ value: s.value, ci95: s.ci, ciReliable: s.ciReliable, sign: s.sign, nArtifacts: s.nArtifacts, nRecords: s.nRecords, ciSource: s.ciSource, ciNote: s.ciNote, liftClaimLabel: s.liftClaimLabel ?? null });
