@@ -62,3 +62,29 @@ def require_unevaluated_metrics(payload: Mapping[str, Any], metric_keys: tuple[s
         if isinstance(val, (int, float)) and not isinstance(val, bool):
             bad.append(key)
     return bad
+
+
+def summarize_lift_claims(ci_payload: Mapping[str, Any], metric: str = "psnr") -> dict[str, int]:
+    """ES-3: count claim labels over ci_by_artifact groups (no recomputation)."""
+    counts: dict[str, int] = {}
+    for group in ci_payload.get("groups") or []:
+        label = lift_claim_label(group, metric)
+        counts[label] = counts.get(label, 0) + 1
+    return counts
+
+
+def negative_lift_display(case: Mapping[str, Any]) -> dict[str, Any]:
+    """ES-5口径: measuredCauses primary; rule-inferred only as secondary labelled column."""
+    basis = case.get("ruleInferredBasis") or "规则推断（按退化类型）"
+    return {
+        "primaryMeasuredCauses": list(case.get("measuredCauses") or []),
+        "measuredEvidence": list(case.get("measuredEvidence") or []),
+        "secondaryRuleInferred": {
+            "cause": case.get("ruleInferredCause"),
+            "basis": basis,
+            "displayLabel": f"旧规则推断 · {basis}",
+        },
+        "psnrDelta": case.get("psnrDelta"),
+        "forbidden": "不得把 ruleInferredCause 写成测量结论",
+    }
+

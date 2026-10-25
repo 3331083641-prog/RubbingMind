@@ -15,7 +15,9 @@ from experiments.eval_export_contract import (
     STATUS_NOT_EVALUATED,
     lift_claim_label,
     may_claim_positive_lift,
+    negative_lift_display,
     require_unevaluated_metrics,
+    summarize_lift_claims,
 )
 from experiments.roi_compare_session_contract import (
     empty_session,
@@ -138,7 +140,17 @@ def test_es4_mechanism_case_files_mark_missing_as_unrecorded(batch):
             if not img_path.is_file():
                 img_path = mech_path.parent / str(rel)
             assert img_path.is_file(), f"missing image file for {entry.get('description')}: {rel}"
-            # ES-4: provenance fields on the case itself
+        # ES-4: 图注 provenance (batch / derivedAt / sourcePath); PNG may stay at stale headCommit
+        for entry in images:
+            if not entry.get("file") or entry.get("file") == MARKER_UNRECORDED:
+                continue
+            for key in ("batch", "caseId", "derivedAt", "headCommit", "sourcePath", "captionNote"):
+                assert entry.get(key), f"missing caption field {key} on {entry.get('file')}"
+            assert entry["batch"] == batch
+            assert entry["caseId"] == case["caseId"]
+            assert entry["headCommit"] == MECH_HEAD
+            assert str(entry["sourcePath"]).endswith(Path(str(entry["file"])).name)
+        # ES-4: provenance fields on the case itself
         assert data.get("caseId") and data.get("batch")
         assert data.get("headCommit") == MECH_HEAD
         checked += 1
@@ -154,7 +166,7 @@ def test_es4_r7_ban_note_forbids_tip_byte_identity():
     assert "不得" in note
     tip = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], cwd=ROOT, text=True).strip()
     # Note must acknowledge tip has moved (short hash of current tip or a7b54e2/0f20bf1 era)
-    assert any(h in note for h in (tip, "0f20bf1", "a7b54e2", "65f7815", "tip")), (
+    assert any(h in note for h in (tip, "0654d13", "01dd3be", "0f20bf1", "a7b54e2", "65f7815", "tip")), (
         "MECHANISM_HEAD_NOTE must name current tip or state tip has moved"
     )
 
@@ -226,3 +238,38 @@ def test_roi_compare_session_contract_rejects_fake_pair():
     forged_crop = dict(ok)
     forged_crop["beforeCropSha256"] = "a" * 64
     assert validate_roi_compare_session(forged_crop), "crop without image pair must fail"
+
+
+def test_es3_summarize_lift_claims_matches_gate():
+    path = _ci_path("2026-10-17-v2")
+    data = json.loads(path.read_text(encoding="utf-8"))
+    counts = summarize_lift_claims(data, "psnr")
+    assert sum(counts.values()) == len(data["groups"])
+    # positive claims only when gate allows
+    for g in data["groups"]:
+        if lift_claim_label(g, "psnr") == "positive_lift_ci_excludes_zero":
+            assert may_claim_positive_lift(
+                ci_low=g.get("psnrGainCI95Low"),
+                ci_reliable=g.get("ciReliable"),
+                artifact_n=g.get("artifactN"),
+                min_reliable=data.get("minReliableArtifacts") or 3,
+            )
+
+
+def test_es5_negative_lift_display_keeps_rule_secondary():
+    path = _nl_path("2026-10-17-v2")
+    case = json.loads(path.read_text(encoding="utf-8"))["cases"][0]
+    view = negative_lift_display(case)
+    assert view["primaryMeasuredCauses"] == case["measuredCauses"]
+    assert view["secondaryRuleInferred"]["cause"] == case["ruleInferredCause"]
+    assert "规则" in view["secondaryRuleInferred"]["displayLabel"] or "推断" in view["secondaryRuleInferred"]["displayLabel"]
+    assert "ruleInferredCause" in view["forbidden"]
+
+
+def test_es4_index_records_caption_provenance_stamp():
+    for batch in BATCHES:
+        index = json.loads(_mech_index(batch).read_text(encoding="utf-8"))
+        stamp = index.get("captionProvenance") or {}
+        assert stamp.get("pngBytesUntouched") is True
+        assert "enrich_mechanism_captions.py" in str(stamp.get("enrichedBy"))
+        assert "sourcePath" in (stamp.get("fields") or [])

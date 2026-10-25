@@ -305,7 +305,13 @@
         3
       ],
       "bytes": 137412,
-      "sha256": "6df543bd29a6161ab0606670145c739fa56bdc4871ac8c54529bb58d5a6a8164"
+      "sha256": "6df543bd29a6161ab0606670145c739fa56bdc4871ac8c54529bb58d5a6a8164",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_blur_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_blur_0/spectrum_input.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "spectrum_output.png",
@@ -316,7 +322,13 @@
         3
       ],
       "bytes": 137412,
-      "sha256": "6df543bd29a6161ab0606670145c739fa56bdc4871ac8c54529bb58d5a6a8164"
+      "sha256": "6df543bd29a6161ab0606670145c739fa56bdc4871ac8c54529bb58d5a6a8164",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_blur_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_blur_0/spectrum_output.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "foreground_reference.png",
@@ -326,7 +338,13 @@
         256
       ],
       "bytes": 13059,
-      "sha256": "b621cf9a64e5d16d2ffe76e9c7c0ef8d556316d10a900282af09a0e04a123f86"
+      "sha256": "b621cf9a64e5d16d2ffe76e9c7c0ef8d556316d10a900282af09a0e04a123f86",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_blur_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_blur_0/foreground_reference.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "skeleton_reference.png",
@@ -336,7 +354,13 @@
         256
       ],
       "bytes": 12806,
-      "sha256": "b04624aa95f573645a9ccb4cf597a0c453a98ca09825c00555c9d957638e76d1"
+      "sha256": "b04624aa95f573645a9ccb4cf597a0c453a98ca09825c00555c9d957638e76d1",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_blur_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_blur_0/skeleton_reference.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "edges_reference.png",
@@ -346,7 +370,13 @@
         256
       ],
       "bytes": 14263,
-      "sha256": "c1593bd5f98eaea2baa445aa90742d9182cb727e70b486a497fcbee4705e4bd8"
+      "sha256": "c1593bd5f98eaea2baa445aa90742d9182cb727e70b486a497fcbee4705e4bd8",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_blur_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_blur_0/edges_reference.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "foreground_input.png",
@@ -356,7 +386,13 @@
         256
       ],
       "bytes": 8184,
-      "sha256": "55cec80e2173783c48220e350ac512ea5c1f8ee64e7d62c4ba66531234f1ea7b"
+      "sha256": "55cec80e2173783c48220e350ac512ea5c1f8ee64e7d62c4ba66531234f1ea7b",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_blur_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_blur_0/foreground_input.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "skeleton_input.png",
@@ -366,7 +402,13 @@
         256
       ],
       "bytes": 7810,
-      "sha256": "2f649bfdf596e95cd02a10736f6c29819089d851c556376bff23a02903d81dc2"
+      "sha256": "2f649bfdf596e95cd02a10736f6c29819089d851c556376bff23a02903d81dc2",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_blur_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_blur_0/skeleton_input.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "edges_input.png",
@@ -376,7 +418,13 @@
         256
       ],
       "bytes": 4992,
-      "sha256": "05d7f4ba6aee7f109454871150e4c87edc0ddecbe4da4ecdeaeb7f565dd99c34"
+      "sha256": "05d7f4ba6aee7f109454871150e4c87edc0ddecbe4da4ecdeaeb7f565dd99c34",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_blur_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_blur_0/edges_input.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "foreground_output.png",
@@ -386,7 +434,13 @@
         256
       ],
       "bytes": 8184,
-      "sha256": "55cec80e2173783c48220e350ac512ea5c1f8ee64e7d62c4ba66531234f1ea7b"
+      "sha256": "55cec80e2173783c48220e350ac512ea5c1f8ee64e7d62c4ba66531234f1ea7b",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_blur_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_blur_0/foreground_output.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "skeleton_output.png",
@@ -396,7 +450,13 @@
         256
       ],
       "bytes": 7810,
-      "sha256": "2f649bfdf596e95cd02a10736f6c29819089d851c556376bff23a02903d81dc2"
+      "sha256": "2f649bfdf596e95cd02a10736f6c29819089d851c556376bff23a02903d81dc2",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_blur_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_blur_0/skeleton_output.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "edges_output.png",
@@ -406,7 +466,13 @@
         256
       ],
       "bytes": 4992,
-      "sha256": "05d7f4ba6aee7f109454871150e4c87edc0ddecbe4da4ecdeaeb7f565dd99c34"
+      "sha256": "05d7f4ba6aee7f109454871150e4c87edc0ddecbe4da4ecdeaeb7f565dd99c34",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_blur_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_blur_0/edges_output.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     }
   ]
 }

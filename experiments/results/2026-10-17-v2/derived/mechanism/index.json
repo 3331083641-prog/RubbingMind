@@ -189,5 +189,18 @@
       "imageBytes": 673131,
       "directory": "derived/mechanism/wei_02_wugaoli_periodic_1"
     }
-  ]
+  ],
+  "captionProvenance": {
+    "enrichedBy": "experiments/enrich_mechanism_captions.py",
+    "fields": [
+      "batch",
+      "caseId",
+      "derivedAt",
+      "headCommit",
+      "sourcePath",
+      "captionNote"
+    ],
+    "pngBytesUntouched": true,
+    "note": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
+  }
 }

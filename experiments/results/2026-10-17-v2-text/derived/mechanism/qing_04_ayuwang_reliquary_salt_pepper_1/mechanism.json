@@ -322,7 +322,13 @@
         3
       ],
       "bytes": 154186,
-      "sha256": "e9acebe715e095948f50fbba4c3b01544dc679f935ed91af346eb25a2dd29471"
+      "sha256": "e9acebe715e095948f50fbba4c3b01544dc679f935ed91af346eb25a2dd29471",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "qing_04_ayuwang_reliquary_salt_pepper_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/qing_04_ayuwang_reliquary_salt_pepper_1/spectrum_input.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "spectrum_output.png",
@@ -333,7 +339,13 @@
         3
       ],
       "bytes": 149690,
-      "sha256": "979d0099b933f50af82947fd024bb0e33cf6a0947e7375da656ba7c887a01399"
+      "sha256": "979d0099b933f50af82947fd024bb0e33cf6a0947e7375da656ba7c887a01399",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "qing_04_ayuwang_reliquary_salt_pepper_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/qing_04_ayuwang_reliquary_salt_pepper_1/spectrum_output.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "foreground_reference.png",
@@ -343,7 +355,13 @@
         256
       ],
       "bytes": 6398,
-      "sha256": "b5f238586bb7a81531071b6ee24a2f01b8e19d24b86799d4f835e35c97b20849"
+      "sha256": "b5f238586bb7a81531071b6ee24a2f01b8e19d24b86799d4f835e35c97b20849",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "qing_04_ayuwang_reliquary_salt_pepper_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/qing_04_ayuwang_reliquary_salt_pepper_1/foreground_reference.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "skeleton_reference.png",
@@ -353,7 +371,13 @@
         256
       ],
       "bytes": 5543,
-      "sha256": "f56d7954adccbd2de3ee525815ed6916b45931cf6f3b1c39860b30849e728295"
+      "sha256": "f56d7954adccbd2de3ee525815ed6916b45931cf6f3b1c39860b30849e728295",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "qing_04_ayuwang_reliquary_salt_pepper_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/qing_04_ayuwang_reliquary_salt_pepper_1/skeleton_reference.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "edges_reference.png",
@@ -363,7 +387,13 @@
         256
       ],
       "bytes": 8940,
-      "sha256": "12e5caa701b4b5ad3ddfb4b9fb216c77e6325f0580372895d28abec462d274e2"
+      "sha256": "12e5caa701b4b5ad3ddfb4b9fb216c77e6325f0580372895d28abec462d274e2",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "qing_04_ayuwang_reliquary_salt_pepper_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/qing_04_ayuwang_reliquary_salt_pepper_1/edges_reference.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "foreground_input.png",
@@ -373,7 +403,13 @@
         256
       ],
       "bytes": 7875,
-      "sha256": "29091d418837a45f86bb18261797894a020939aeb2706144096c9bcd6534acf0"
+      "sha256": "29091d418837a45f86bb18261797894a020939aeb2706144096c9bcd6534acf0",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "qing_04_ayuwang_reliquary_salt_pepper_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/qing_04_ayuwang_reliquary_salt_pepper_1/foreground_input.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "skeleton_input.png",
@@ -383,7 +419,13 @@
         256
       ],
       "bytes": 7125,
-      "sha256": "55b37e6fe8dff342e5324c1a0bc90c6e0b50dfd8af1b00de93a539918558211a"
+      "sha256": "55b37e6fe8dff342e5324c1a0bc90c6e0b50dfd8af1b00de93a539918558211a",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "qing_04_ayuwang_reliquary_salt_pepper_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/qing_04_ayuwang_reliquary_salt_pepper_1/skeleton_input.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "edges_input.png",
@@ -393,7 +435,13 @@
         256
       ],
       "bytes": 12491,
-      "sha256": "b33c45f4ebf446851ca1630f8e3a71462c9dff61630da7184745c96e22427e6e"
+      "sha256": "b33c45f4ebf446851ca1630f8e3a71462c9dff61630da7184745c96e22427e6e",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "qing_04_ayuwang_reliquary_salt_pepper_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/qing_04_ayuwang_reliquary_salt_pepper_1/edges_input.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "foreground_output.png",
@@ -403,7 +451,13 @@
         256
       ],
       "bytes": 6523,
-      "sha256": "5f16659a34e0132e84af50b0b5812eb0ecb4f558066da9f6939c2cd8dd0b4699"
+      "sha256": "5f16659a34e0132e84af50b0b5812eb0ecb4f558066da9f6939c2cd8dd0b4699",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "qing_04_ayuwang_reliquary_salt_pepper_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/qing_04_ayuwang_reliquary_salt_pepper_1/foreground_output.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "skeleton_output.png",
@@ -413,7 +467,13 @@
         256
       ],
       "bytes": 5674,
-      "sha256": "dac1ff5e8d59ccbcd108a68ab78e0866534d6ea8ac23f2c547443e4b27a60033"
+      "sha256": "dac1ff5e8d59ccbcd108a68ab78e0866534d6ea8ac23f2c547443e4b27a60033",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "qing_04_ayuwang_reliquary_salt_pepper_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/qing_04_ayuwang_reliquary_salt_pepper_1/skeleton_output.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "edges_output.png",
@@ -423,7 +483,13 @@
         256
       ],
       "bytes": 9890,
-      "sha256": "2bc5dcf9a809f167f70c314202c53dc1b5cc177df1a43a720905ed48d2cbce42"
+      "sha256": "2bc5dcf9a809f167f70c314202c53dc1b5cc177df1a43a720905ed48d2cbce42",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "qing_04_ayuwang_reliquary_salt_pepper_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/qing_04_ayuwang_reliquary_salt_pepper_1/edges_output.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "diff_output_input.png",
@@ -434,7 +500,13 @@
         3
       ],
       "bytes": 20549,
-      "sha256": "32b0f744d3d1d687985cd2ac8d4d012533f528c72c47d9041fee5131ff73a35e"
+      "sha256": "32b0f744d3d1d687985cd2ac8d4d012533f528c72c47d9041fee5131ff73a35e",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "qing_04_ayuwang_reliquary_salt_pepper_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/qing_04_ayuwang_reliquary_salt_pepper_1/diff_output_input.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     },
     {
       "file": "diff_head_vs_stored.png",
@@ -445,7 +517,13 @@
         3
       ],
       "bytes": 70187,
-      "sha256": "e75921cff5be1d495d11cd87622ca3a62134104992fa568f245d17a53b972003"
+      "sha256": "e75921cff5be1d495d11cd87622ca3a62134104992fa568f245d17a53b972003",
+      "batch": "2026-10-17-v2-text",
+      "caseId": "qing_04_ayuwang_reliquary_salt_pepper_1",
+      "derivedAt": "2026-10-19T04:27:29.538864+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/qing_04_ayuwang_reliquary_salt_pepper_1/diff_head_vs_stored.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
     }
   ]
 }
