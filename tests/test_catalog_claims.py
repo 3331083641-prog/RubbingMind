@@ -87,8 +87,8 @@ def all_sources(claim):
 
 
 def test_batch_is_six_and_includes_required_works():
-    assert len(WORKS) == 12 and {'tang_01_duobao', 'han_01_caoquan'} <= set(WORKS)
-    assert INDEX['remaining'] == 16 and all(w['selectionBasis'] for w in INDEX['works'])
+    assert len(WORKS) == 28 and {'tang_01_duobao', 'han_01_caoquan'} <= set(WORKS)
+    assert INDEX['remaining'] == 0 and all(w['selectionBasis'] for w in INDEX['works'])
     assert sorted(p.stem for p in CLAIMS.glob('*.json') if p.stem not in ('schema', 'index')) == sorted(WORKS)
 
 

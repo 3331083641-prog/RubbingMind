@@ -1,0 +1,688 @@
+{
+  "schemaVersion": 1,
+  "steleId": "qing_04_ayuwang_reliquary",
+  "title": "阿育王寺舍利塔碑",
+  "curatedBy": "agent/jinshi",
+  "curatedAt": "2026-10-25T13:00:00+08:00",
+  "selectionBasis": "Green 指定第5批收官；普林斯顿官页实开；engraver 募刊四人 vs 未核定 conflict；宁波阿育王寺区域级地点；2026-10-25",
+  "layers": "作品（work）≠原刻载体（stone）≠拓本（rubbing）≠影像（image）；人物、纪年、地点、书体风格、著录分列",
+  "claims": [
+    {
+      "claimId": "qing_04_ayuwang_reliquary:work:title",
+      "entity": "work",
+      "property": "title",
+      "value": "阿育王寺舍利塔碑（馆方 Stele of the Ayuwang Temple Śarīra Reliquary）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_04_ayuwang_reliquary",
+          "field": "title",
+          "value": "阿育王寺舍利塔碑"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+          "publisher": "Princeton University Art Museum",
+          "title": "Stele of the Ayuwang Temple Śarīra Reliquary",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Stele of the Ayuwang Temple Śarīra Reliquary"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:work:dynasty",
+      "entity": "work",
+      "property": "dynasty",
+      "value": "清代",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_04_ayuwang_reliquary",
+          "field": "dynasty",
+          "value": "清代"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+          "publisher": "Princeton University Art Museum",
+          "title": "Stele of the Ayuwang Temple Śarīra Reliquary",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Qing dynasty, 1644–1912"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:work:content",
+      "entity": "work",
+      "property": "content",
+      "value": "清光绪十年（1884）舍利塔图文碑；宁波鄞县鄮山阿育王寺藏碑；释子授轮等仝募刊",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_04_ayuwang_reliquary",
+          "field": "description",
+          "value": "清1884年舍利塔图文碑；保留图像和文字全貌，封面为下部图文区域。"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+          "publisher": "Princeton University Art Museum",
+          "title": "Stele of the Ayuwang Temple Śarīra Reliquary",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "大清光緒十年[1884]小春吉旦，釋子授輪、圓倫、諦受、道修仝募刊。"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+          "publisher": "Princeton University Art Museum",
+          "title": "Stele of the Ayuwang Temple Śarīra Reliquary",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "寧波府鄞邑鄮山阿育王寺藏碑"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:stone:currentLocation",
+      "entity": "stone",
+      "property": "currentLocation",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "馆方称阿育王寺藏碑，但现石是否仍在该寺本批未另核；不抬升为已验证现藏"
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:stone:originalSite",
+      "entity": "stone",
+      "property": "originalSite",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "原立/刊刻地点改记于 place:originalSite"
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:stone:transfer",
+      "entity": "stone",
+      "property": "transfer",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批未核迁移史"
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:stone:condition",
+      "entity": "stone",
+      "property": "condition",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "无原石现况官方评测"
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:rubbing:holder",
+      "entity": "rubbing",
+      "property": "holder",
+      "value": "普林斯顿大学艺术博物馆（Princeton University Art Museum）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_04_ayuwang_reliquary",
+          "field": "rubbingCollectionInstitution",
+          "value": "普林斯顿大学艺术博物馆"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_04_ayuwang_reliquary",
+          "field": "collectionNumber",
+          "value": "y1958-279"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+          "publisher": "Princeton University Art Museum",
+          "title": "Stele of the Ayuwang Temple Śarīra Reliquary",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Object Number y1958-279"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:rubbing:museumTitle",
+      "entity": "rubbing",
+      "property": "museumTitle",
+      "value": "Stele of the Ayuwang Temple Śarīra Reliquary",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+          "publisher": "Princeton University Art Museum",
+          "title": "Stele of the Ayuwang Temple Śarīra Reliquary",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Stele of the Ayuwang Temple Śarīra Reliquary"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:rubbing:format",
+      "entity": "rubbing",
+      "property": "format",
+      "value": "立轴；纸本墨拓（Hanging scroll; ink rubbing on paper）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+          "publisher": "Princeton University Art Museum",
+          "title": "Stele of the Ayuwang Temple Śarīra Reliquary",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Hanging scroll; ink rubbing on paper"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_04_ayuwang_reliquary",
+          "field": "artifactType",
+          "value": "碑刻拓本"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:rubbing:period",
+      "entity": "rubbing",
+      "property": "period",
+      "value": "late 19th to first half of 20th century（拓印年代≠1884原刻）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_04_ayuwang_reliquary",
+          "field": "rubbingPeriod",
+          "value": "late 19th to first half of 20th century"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+          "publisher": "Princeton University Art Museum",
+          "title": "Stele of the Ayuwang Temple Śarīra Reliquary",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "1884 (stone); late 19th to first half of 20th century (rubbing)"
+        }
+      ],
+      "catalogueField": "rubbingPeriod",
+      "catalogueValue": "late 19th to first half of 20th century",
+      "note": "拓印年代≠原刻年。"
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:image:sourceSha256",
+      "entity": "image",
+      "property": "sourceSha256",
+      "value": "336b48bb4babbd1c6c10b193df45791f6ff349bc68cd846af268a75f82a565ed",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_04_ayuwang_reliquary",
+          "field": "sourceVerification.sourceSha256",
+          "value": "336b48bb4babbd1c6c10b193df45791f6ff349bc68cd846af268a75f82a565ed"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:image:license",
+      "entity": "image",
+      "property": "license",
+      "value": "Public Domain",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_04_ayuwang_reliquary",
+          "field": "license",
+          "value": "Public Domain"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_04_ayuwang_reliquary",
+          "field": "licenseUrl",
+          "value": "https://artmuseum.princeton.edu/art/our-collections/image-use-and-access"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+          "publisher": "Princeton University Art Museum",
+          "title": "Stele of the Ayuwang Temple Śarīra Reliquary",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Princeton University Art Museum supports free access to images of works in the Public Domain."
+        }
+      ]
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:image:derivation",
+      "entity": "image",
+      "property": "derivation",
+      "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_04_ayuwang_reliquary",
+          "field": "modifications",
+          "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:person:author",
+      "entity": "person",
+      "property": "author",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定；馆方 Maker 均为 carving agent，非撰文人",
+      "catalogueField": "author",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:person:calligrapher",
+      "entity": "person",
+      "property": "calligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定；馆方未列 calligrapher",
+      "catalogueField": "calligrapher",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:person:titleCalligrapher",
+      "entity": "person",
+      "property": "titleCalligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定",
+      "catalogueField": "titleCalligrapher",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:person:engraver",
+      "entity": "person",
+      "property": "engraver",
+      "value": null,
+      "status": "conflict",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_04_ayuwang_reliquary",
+          "field": "engraver",
+          "value": "未核定"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+          "publisher": "Princeton University Art Museum",
+          "title": "Stele of the Ayuwang Temple Śarīra Reliquary",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Shoulun 授輪, carving agent"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+          "publisher": "Princeton University Art Museum",
+          "title": "Stele of the Ayuwang Temple Śarīra Reliquary",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "大清光緒十年[1884]小春吉旦，釋子授輪、圓倫、諦受、道修仝募刊。"
+        }
+      ],
+      "alternatives": [
+        {
+          "value": "授轮、圆伦、谛受、道修（馆方 carving agent／碑阴署仝募刊；募刊≠传统刻工身份待复核）",
+          "evidenceLevel": "有限支持",
+          "sources": [
+            {
+              "type": "url",
+              "url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+              "publisher": "Princeton University Art Museum",
+              "title": "Stele of the Ayuwang Temple Śarīra Reliquary",
+              "sourceKind": "official_museum",
+              "accessedAt": "2026-10-25",
+              "quote": "Shoulun 授輪, carving agent"
+            },
+            {
+              "type": "url",
+              "url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+              "publisher": "Princeton University Art Museum",
+              "title": "Stele of the Ayuwang Temple Śarīra Reliquary",
+              "sourceKind": "official_museum",
+              "accessedAt": "2026-10-25",
+              "quote": "釋子授輪、圓倫、諦受、道修仝募刊"
+            }
+          ]
+        },
+        {
+          "value": "未核定（目录 engraver）",
+          "evidenceLevel": "有限支持",
+          "sources": [
+            {
+              "type": "catalogue",
+              "path": "data/catalog/steles28.json",
+              "id": "qing_04_ayuwang_reliquary",
+              "field": "engraver",
+              "value": "未核定"
+            }
+          ]
+        }
+      ],
+      "note": "馆方 Maker 列四名 carving agent，碑文署仝募刊；目录 engraver=未核定。募刊人是否等于刻工待复核，并列不抬升。",
+      "catalogueField": "engraver",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:person:steleSubject",
+      "entity": "person",
+      "property": "steleSubject",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "舍利塔图文功德碑，无单一墓主；目录未核定",
+      "catalogueField": "steleSubject",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:date:era",
+      "entity": "date",
+      "property": "era",
+      "value": "大清光绪十年小春吉旦（馆方 Inscription；1884）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+          "publisher": "Princeton University Art Museum",
+          "title": "Stele of the Ayuwang Temple Śarīra Reliquary",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "大清光緒十年[1884]小春吉旦"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_04_ayuwang_reliquary",
+          "field": "originalYear",
+          "value": "1884年"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:date:ce",
+      "entity": "date",
+      "property": "ce",
+      "value": 1884,
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_04_ayuwang_reliquary",
+          "field": "originalYearCE",
+          "value": 1884
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+          "publisher": "Princeton University Art Museum",
+          "title": "Stele of the Ayuwang Temple Śarīra Reliquary",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "1884 (stone); late 19th to first half of 20th century (rubbing)"
+        }
+      ],
+      "catalogueField": "originalYearCE",
+      "catalogueValue": 1884
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:date:yearCrossCheck",
+      "entity": "date",
+      "property": "yearCrossCheck",
+      "value": "一致：光绪十年→1884（碑面无年干支；推算 甲申）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+          "publisher": "Princeton University Art Museum",
+          "title": "Stele of the Ayuwang Temple Śarīra Reliquary",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "大清光緒十年[1884]小春吉旦"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_04_ayuwang_reliquary",
+          "field": "originalYearCE",
+          "value": 1884
+        }
+      ],
+      "catalogueField": "originalYearCE",
+      "catalogueValue": 1884,
+      "derivation": {
+        "ce": 1884,
+        "inscriptionGanzhi": null,
+        "computedGanzhi": "甲申",
+        "result": "partial"
+      }
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:date:dayCrossCheck",
+      "entity": "date",
+      "property": "dayCrossCheck",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "小春吉旦无日干支可核"
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:place:originalSite",
+      "entity": "place",
+      "property": "originalSite",
+      "value": "宁波鄞县鄮山阿育王寺一带（区域级；馆方 Inscription／Description）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+          "publisher": "Princeton University Art Museum",
+          "title": "Stele of the Ayuwang Temple Śarīra Reliquary",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "寧波府鄞邑鄮山阿育王寺藏碑"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+          "publisher": "Princeton University Art Museum",
+          "title": "Stele of the Ayuwang Temple Śarīra Reliquary",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Ayuwang Si 阿育王寺 (Ashoka) temple in Ningbo 寧波, Zhejiang province"
+        }
+      ],
+      "region": {
+        "historicalName": "鄞邑鄮山阿育王寺",
+        "modernRegion": "浙江省宁波市一带（现代对应待人工复核）",
+        "precision": "region"
+      },
+      "note": "区域级；目录 originalLocation=null；不下坐标。"
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:place:currentStone",
+      "entity": "place",
+      "property": "currentStone",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "“藏碑”表述不自动等于现藏核实；本批不抬升"
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:place:rubbingHolder",
+      "entity": "place",
+      "property": "rubbingHolder",
+      "value": "美国新泽西州普林斯顿（Princeton University Art Museum）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_04_ayuwang_reliquary",
+          "field": "rubbingCollectionInstitution",
+          "value": "普林斯顿大学艺术博物馆"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+          "publisher": "Princeton University Art Museum",
+          "title": "Stele of the Ayuwang Temple Śarīra Reliquary",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Princeton University Art Museum"
+        }
+      ],
+      "region": {
+        "modernRegion": "美国新泽西州普林斯顿",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:script_style:script",
+      "entity": "script_style",
+      "property": "script",
+      "value": "楷书（图文碑）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_04_ayuwang_reliquary",
+          "field": "scriptType",
+          "value": "楷书（图文碑）"
+        }
+      ],
+      "catalogueField": "scriptType",
+      "catalogueValue": "楷书（图文碑）",
+      "note": "馆方本页未单列书体；依目录 scriptType。"
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:script_style:historicalComment",
+      "entity": "script_style",
+      "property": "historicalComment",
+      "value": "图文碑：中为舍利塔图，左右陀罗尼，下部长记；封面取下部图文区域",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_04_ayuwang_reliquary",
+          "field": "description",
+          "value": "清1884年舍利塔图文碑；保留图像和文字全貌，封面为下部图文区域。"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+          "publisher": "Princeton University Art Museum",
+          "title": "Stele of the Ayuwang Temple Śarīra Reliquary",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "At the center is a Buddhist reliquary in the shape of a stupa"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_04_ayuwang_reliquary:bibliography:catalogueReference",
+      "entity": "bibliography",
+      "property": "catalogueReference",
+      "value": "Princeton y1958-279；Gift of George Rowley；Record of the Art Museum 18/1 (1959) p.40",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_04_ayuwang_reliquary",
+          "field": "collectionNumber",
+          "value": "y1958-279"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_04_ayuwang_reliquary",
+          "field": "sourceUrl",
+          "value": "https://artmuseum.princeton.edu/art/collections/objects/57684"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57684",
+          "publisher": "Princeton University Art Museum",
+          "title": "Stele of the Ayuwang Temple Śarīra Reliquary",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Object Number y1958-279"
+        }
+      ]
+    }
+  ]
+}

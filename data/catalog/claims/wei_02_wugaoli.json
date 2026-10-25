@@ -1,0 +1,690 @@
+{
+  "schemaVersion": 1,
+  "steleId": "wei_02_wugaoli",
+  "title": "吴高黎墓志",
+  "curatedBy": "RM-金石史料",
+  "curatedAt": "2026-10-25（Asia/Shanghai）",
+  "selectionBasis": "释文含孝昌二年正月刊记；日干支“癸申”非法干支→conflict；NPM 2026-10-25 实开",
+  "layers": "作品（work）≠原刻载体（stone）≠拓本（rubbing）≠影像（image）；人物、纪年、地点、书体风格、著录分列",
+  "claims": [
+    {
+      "claimId": "wei_02_wugaoli:work:title",
+      "entity": "work",
+      "property": "title",
+      "value": "吴高黎墓志（馆方品名“北魏故士吳高黎墓誌銘墨拓本”）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_02_wugaoli",
+          "field": "title",
+          "value": "吴高黎墓志"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故士吳高黎墓誌銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名：北魏故士吳高黎墓誌銘墨拓本"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_02_wugaoli",
+          "field": "transcription",
+          "quote": "君諱高黎"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_02_wugaoli:work:dynasty",
+      "entity": "work",
+      "property": "dynasty",
+      "value": "北魏",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_02_wugaoli",
+          "field": "dynasty",
+          "value": "北魏"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故士吳高黎墓誌銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名冠“北魏”"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_02_wugaoli:work:content",
+      "entity": "work",
+      "property": "content",
+      "value": "魏故士吴高黎墓志；正始间卒于洛阳，孝昌二年正月权殡刊记",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_02_wugaoli",
+          "field": "transcription",
+          "quote": "魏故士吳君之墓誌"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_02_wugaoli",
+          "field": "transcription",
+          "quote": "孝昌二年正月丙午十三日癸申權殯於北□。刊召立記"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故士吳高黎墓誌銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "孝昌二年正月丙午十三日癸申權殯"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_02_wugaoli:stone:currentLocation",
+      "entity": "stone",
+      "property": "currentLocation",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批所开馆方页与目录均未给出原石现藏地"
+    },
+    {
+      "claimId": "wei_02_wugaoli:stone:originalSite",
+      "entity": "stone",
+      "property": "originalSite",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批所开馆方页与目录均未给出原立地点的可核坐标或馆方确认地址"
+    },
+    {
+      "claimId": "wei_02_wugaoli:stone:transfer",
+      "entity": "stone",
+      "property": "transfer",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "未见可核的原石流转记述"
+    },
+    {
+      "claimId": "wei_02_wugaoli:stone:condition",
+      "entity": "stone",
+      "property": "condition",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "无原石影像；目录 stoneWeathering 不评定原石"
+    },
+    {
+      "claimId": "wei_02_wugaoli:rubbing:holder",
+      "entity": "rubbing",
+      "property": "holder",
+      "value": "台北故宫博物院（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_02_wugaoli",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_02_wugaoli",
+          "field": "collectionNumber",
+          "value": "購拓000064"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故士吳高黎墓誌銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "文物統一編號：購拓000064"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_02_wugaoli:rubbing:museumTitle",
+      "entity": "rubbing",
+      "property": "museumTitle",
+      "value": "北魏故士吳高黎墓誌銘墨拓本",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故士吳高黎墓誌銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名栏"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_02_wugaoli:rubbing:format",
+      "entity": "rubbing",
+      "property": "format",
+      "value": "一幅；纸本（尺寸栏本批页未完整返回，以数量栏为准）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故士吳高黎墓誌銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "数量：一幅"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_02_wugaoli:rubbing:period",
+      "entity": "rubbing",
+      "property": "period",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录 rubbingPeriod 为未核定；本批馆方页未提供可核的拓印年代",
+      "catalogueField": "rubbingPeriod",
+      "catalogueValue": "未核定；不据拓印年改变朝代"
+    },
+    {
+      "claimId": "wei_02_wugaoli:image:sourceSha256",
+      "entity": "image",
+      "property": "sourceSha256",
+      "value": "e2010873451d08dbac1cf399c046be9110874a31fbaf2f138b7f41c6530493cb",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_02_wugaoli",
+          "field": "sourceVerification.sourceSha256",
+          "value": "e2010873451d08dbac1cf399c046be9110874a31fbaf2f138b7f41c6530493cb"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_02_wugaoli:image:license",
+      "entity": "image",
+      "property": "license",
+      "value": "CC BY 4.0",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_02_wugaoli",
+          "field": "license",
+          "value": "CC BY 4.0"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故士吳高黎墓誌銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "授權條款 CC BY 4.0"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_02_wugaoli:image:derivation",
+      "entity": "image",
+      "property": "derivation",
+      "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_02_wugaoli",
+          "field": "modifications",
+          "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_02_wugaoli:person:author",
+      "entity": "person",
+      "property": "author",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定；释文未见撰人",
+      "catalogueField": "author",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "wei_02_wugaoli:person:calligrapher",
+      "entity": "person",
+      "property": "calligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定；释文未见书丹人",
+      "catalogueField": "calligrapher",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "wei_02_wugaoli:person:titleCalligrapher",
+      "entity": "person",
+      "property": "titleCalligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定",
+      "catalogueField": "titleCalligrapher",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "wei_02_wugaoli:person:engraver",
+      "entity": "person",
+      "property": "engraver",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定",
+      "catalogueField": "engraver",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "wei_02_wugaoli:person:steleSubject",
+      "entity": "person",
+      "property": "steleSubject",
+      "value": "吴高黎（徐州琅琊郡治下里人）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_02_wugaoli",
+          "field": "transcription",
+          "quote": "君諱高黎。徐州瑯琊郡治下里人也"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故士吳高黎墓誌銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "君諱高黎"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_02_wugaoli",
+          "field": "steleSubject",
+          "value": "未核定"
+        }
+      ],
+      "catalogueField": "steleSubject",
+      "catalogueValue": "未核定",
+      "note": "目录 steleSubject 未核定；碑面墓主信息作有限支持，不升格。"
+    },
+    {
+      "claimId": "wei_02_wugaoli:date:era",
+      "entity": "date",
+      "property": "era",
+      "value": "孝昌二年正月权殡刊记（卒：正始□年冬十月十五日；妻亡正光五年十二月六日）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_02_wugaoli",
+          "field": "transcription",
+          "quote": "孝昌二年正月丙午十三日癸申權殯於北□。刊召立記"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故士吳高黎墓誌銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "孝昌二年正月丙午十三日癸申權殯"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_02_wugaoli",
+          "field": "originalYear",
+          "value": "526年"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_02_wugaoli",
+          "field": "sourceVerification.dateBasis",
+          "value": "孝昌二年正月葬/刊记，馆方释文"
+        }
+      ]
+    },
+    {
+      "claimId": "wei_02_wugaoli:date:ce",
+      "entity": "date",
+      "property": "ce",
+      "value": 526,
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_02_wugaoli",
+          "field": "originalYearCE",
+          "value": 526
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故士吳高黎墓誌銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "孝昌二年"
+        }
+      ],
+      "catalogueField": "originalYearCE",
+      "catalogueValue": 526
+    },
+    {
+      "claimId": "wei_02_wugaoli:date:yearCrossCheck",
+      "entity": "date",
+      "property": "yearCrossCheck",
+      "value": "一致：孝昌二年→526（碑面无年干支；推算 丙午）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_02_wugaoli",
+          "field": "transcription",
+          "quote": "孝昌二年正月"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_02_wugaoli",
+          "field": "originalYearCE",
+          "value": 526
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故士吳高黎墓誌銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "孝昌二年"
+        }
+      ],
+      "catalogueField": "originalYearCE",
+      "catalogueValue": 526,
+      "derivation": {
+        "ce": 526,
+        "inscriptionGanzhi": null,
+        "computedGanzhi": "丙午",
+        "result": "partial"
+      }
+    },
+    {
+      "claimId": "wei_02_wugaoli:date:dayCrossCheck",
+      "entity": "date",
+      "property": "dayCrossCheck",
+      "value": null,
+      "status": "conflict",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_02_wugaoli",
+          "field": "transcription",
+          "quote": "正月丙午十三日癸申"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故士吳高黎墓誌銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "正月丙午十三日癸申"
+        }
+      ],
+      "derivation": {
+        "newMoonGanzhi": "丙午",
+        "day": 13,
+        "inscriptionDayGanzhi": "癸申",
+        "computedDayGanzhi": "戊午",
+        "result": "inconsistent"
+      },
+      "alternatives": [
+        {
+          "value": "碑面作“癸申”（非六十甲子合法干支，疑泐误）",
+          "evidenceLevel": "有限支持",
+          "sources": [
+            {
+              "type": "file",
+              "path": "data/catalog/steles28.json",
+              "id": "wei_02_wugaoli",
+              "field": "transcription",
+              "quote": "癸申"
+            }
+          ]
+        },
+        {
+          "value": "若丙午朔第13日推算为 戊午",
+          "evidenceLevel": "已验证",
+          "sources": [
+            {
+              "type": "file",
+              "path": "data/catalog/steles28.json",
+              "id": "wei_02_wugaoli",
+              "field": "transcription",
+              "quote": "正月丙午十三日"
+            },
+            {
+              "type": "url",
+              "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full",
+              "publisher": "國立故宮博物院",
+              "title": "北魏故士吳高黎墓誌銘墨拓本",
+              "sourceKind": "official_museum",
+              "accessedAt": "2026-10-25",
+              "quote": "正月丙午十三日"
+            }
+          ]
+        }
+      ],
+      "note": "“癸申”不是合法干支组合；与朔日推算不一致。并列待人工复核，不臆改释文。"
+    },
+    {
+      "claimId": "wei_02_wugaoli:place:originalSite",
+      "entity": "place",
+      "property": "originalSite",
+      "value": "洛阳一带权殡地（区域级；释文“权殡于北□”）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_02_wugaoli",
+          "field": "transcription",
+          "quote": "卒於洛陽"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_02_wugaoli",
+          "field": "transcription",
+          "quote": "權殯於北□"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故士吳高黎墓誌銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "卒於洛陽"
+        }
+      ],
+      "region": {
+        "historicalName": "洛阳",
+        "modernRegion": "河南省洛阳市一带（现代对应待人工复核）",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "wei_02_wugaoli:place:currentStone",
+      "entity": "place",
+      "property": "currentStone",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "未见原石现藏的可核记述"
+    },
+    {
+      "claimId": "wei_02_wugaoli:place:rubbingHolder",
+      "entity": "place",
+      "property": "rubbingHolder",
+      "value": "台北（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_02_wugaoli",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故士吳高黎墓誌銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "國立故宮博物院"
+        }
+      ],
+      "region": {
+        "modernRegion": "台北市",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "wei_02_wugaoli:script_style:script",
+      "entity": "script_style",
+      "property": "script",
+      "value": "楷书",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_02_wugaoli",
+          "field": "scriptType",
+          "value": "楷书"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "北魏故士吳高黎墓誌銘墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "書體：楷書"
+        }
+      ],
+      "catalogueField": "scriptType",
+      "catalogueValue": "楷书"
+    },
+    {
+      "claimId": "wei_02_wugaoli:script_style:historicalComment",
+      "entity": "script_style",
+      "property": "historicalComment",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批未采独立书评材料"
+    },
+    {
+      "claimId": "wei_02_wugaoli:bibliography:catalogueReference",
+      "entity": "bibliography",
+      "property": "catalogueReference",
+      "value": "國立故宮博物院开放资料 id=33674；購拓000064",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_02_wugaoli",
+          "field": "sourceUrl",
+          "value": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33674&dep=P&mode=full"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "wei_02_wugaoli",
+          "field": "collectionNumber",
+          "value": "購拓000064"
+        }
+      ]
+    }
+  ]
+}

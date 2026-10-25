@@ -1,0 +1,784 @@
+{
+  "schemaVersion": 1,
+  "steleId": "qing_02_wushi_reerection",
+  "title": "重立武氏祠石记",
+  "curatedBy": "agent/jinshi",
+  "curatedAt": "2026-10-25T13:00:00+08:00",
+  "selectionBasis": "Green 指定第5批；普林斯顿官页实开；dynasty 东汉标签 vs 清代新刻 conflict；author/calligrapher pending_review；engraver 郑之宗 vs 未核定 conflict；2026-10-25",
+  "layers": "作品（work）≠原刻载体（stone）≠拓本（rubbing）≠影像（image）；人物、纪年、地点、书体风格、著录分列",
+  "claims": [
+    {
+      "claimId": "qing_02_wushi_reerection:work:title",
+      "entity": "work",
+      "property": "title",
+      "value": "重立武氏祠石记（馆方 Chong li Wushi Ci shi ji 重立武氏祠石記）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "title",
+          "value": "重立武氏祠石记"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+          "publisher": "Princeton University Art Museum",
+          "title": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Chong li Wushi Ci shi ji 重立武氏祠石記"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:work:dynasty",
+      "entity": "work",
+      "property": "dynasty",
+      "value": null,
+      "status": "conflict",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "dynasty",
+          "value": "清代"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "description",
+          "quote": "馆方时代标签沿用东汉"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+          "publisher": "Princeton University Art Museum",
+          "title": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Eastern Han dynasty, 25–220 CE"
+        }
+      ],
+      "alternatives": [
+        {
+          "value": "清代（目录；1787年翁方纲新刻记文，非东汉画像石）",
+          "evidenceLevel": "有限支持",
+          "sources": [
+            {
+              "type": "catalogue",
+              "path": "data/catalog/steles28.json",
+              "id": "qing_02_wushi_reerection",
+              "field": "dynasty",
+              "value": "清代"
+            },
+            {
+              "type": "catalogue",
+              "path": "data/catalog/steles28.json",
+              "id": "qing_02_wushi_reerection",
+              "field": "originalYearCE",
+              "value": 1787
+            },
+            {
+              "type": "file",
+              "path": "data/catalog/steles28.json",
+              "id": "qing_02_wushi_reerection",
+              "field": "description",
+              "quote": "不是东汉画像石"
+            }
+          ]
+        },
+        {
+          "value": "东汉（馆方页面时期标签 Eastern Han dynasty, 25–220 CE）",
+          "evidenceLevel": "有限支持",
+          "sources": [
+            {
+              "type": "url",
+              "url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+              "publisher": "Princeton University Art Museum",
+              "title": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+              "sourceKind": "official_museum",
+              "accessedAt": "2026-10-25",
+              "quote": "Eastern Han dynasty, 25–220 CE"
+            },
+            {
+              "type": "file",
+              "path": "data/catalog/steles28.json",
+              "id": "qing_02_wushi_reerection",
+              "field": "description",
+              "quote": "Eastern Han"
+            }
+          ]
+        }
+      ],
+      "note": "馆方时期标签沿用东汉（武氏祠遗迹语境），但 Maker/纪年为翁方纲 1787 新刻。目录归清代。并列待复核，不臆断改馆方标签。"
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:work:content",
+      "entity": "work",
+      "property": "content",
+      "value": "翁方纲撰书、郑之宗刻，1787年重建武氏祠的新刻记文；不是东汉画像石",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "description",
+          "value": "翁方纲撰书，郑之宗刻，1787年重建武氏祠的新刻记文；不是东汉画像石。馆方时代标签沿用东汉，本文依明确石刻纪年、作者生卒及影像文字将本件归清代。  馆方显示1787年新刻、翁方纲撰书；Eastern Han类目指相关武氏祠遗迹，不改变本件清代新刻身份。"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+          "publisher": "Princeton University Art Museum",
+          "title": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Weng Fanggang 翁方綱, author and calligrapher, 1733–1818"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+          "publisher": "Princeton University Art Museum",
+          "title": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Zheng Zhizong, carver, active ca. 1787"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:stone:currentLocation",
+      "entity": "stone",
+      "property": "currentLocation",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批未核原石现藏机构官方页"
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:stone:originalSite",
+      "entity": "stone",
+      "property": "originalSite",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "原立地点改记于 place:originalSite"
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:stone:transfer",
+      "entity": "stone",
+      "property": "transfer",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批未核迁移史"
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:stone:condition",
+      "entity": "stone",
+      "property": "condition",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "无原石现况官方评测"
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:rubbing:holder",
+      "entity": "rubbing",
+      "property": "holder",
+      "value": "普林斯顿大学艺术博物馆（Princeton University Art Museum）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "rubbingCollectionInstitution",
+          "value": "普林斯顿大学艺术博物馆"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "collectionNumber",
+          "value": "y1957-139 b"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+          "publisher": "Princeton University Art Museum",
+          "title": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Object Number y1957-139 b"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:rubbing:museumTitle",
+      "entity": "rubbing",
+      "property": "museumTitle",
+      "value": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+          "publisher": "Princeton University Art Museum",
+          "title": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Record on Rebuilding the \"Wu Family Shrine\" Stones"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:rubbing:format",
+      "entity": "rubbing",
+      "property": "format",
+      "value": "单纸；纸本墨拓（Sheet; ink rubbing on paper）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+          "publisher": "Princeton University Art Museum",
+          "title": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Sheet; ink rubbing on paper"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "artifactType",
+          "value": "碑刻拓本"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:rubbing:period",
+      "entity": "rubbing",
+      "property": "period",
+      "value": "19th-early 20th century（rubbings；拓印年代≠1787原刻）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "rubbingPeriod",
+          "value": " 19th-early 20th century (rubbings)"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+          "publisher": "Princeton University Art Museum",
+          "title": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "1787 (stones), late 19th-early 20th century (rubbings)"
+        }
+      ],
+      "catalogueField": "rubbingPeriod",
+      "catalogueValue": " 19th-early 20th century (rubbings)",
+      "note": "拓印年代≠原刻年。目录 rubbingPeriod 含前导空格，catalogueValue 照录。"
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:image:sourceSha256",
+      "entity": "image",
+      "property": "sourceSha256",
+      "value": "948ac3c851bcb84bdb6dafa4856db3c79f0ea4342a31527bcbbf5972295e3ded",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "sourceVerification.sourceSha256",
+          "value": "948ac3c851bcb84bdb6dafa4856db3c79f0ea4342a31527bcbbf5972295e3ded"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:image:license",
+      "entity": "image",
+      "property": "license",
+      "value": "Public Domain",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "license",
+          "value": "Public Domain"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "licenseUrl",
+          "value": "https://artmuseum.princeton.edu/art/our-collections/image-use-and-access"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+          "publisher": "Princeton University Art Museum",
+          "title": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Princeton University Art Museum supports free access to images of works in the Public Domain."
+        }
+      ]
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:image:derivation",
+      "entity": "image",
+      "property": "derivation",
+      "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "modifications",
+          "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:person:author",
+      "entity": "person",
+      "property": "author",
+      "value": "翁方纲（馆方 author and calligrapher；目录 pending_review）",
+      "status": "asserted",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "author",
+          "value": "翁方纲"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "authorVerification",
+          "value": "pending_review"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+          "publisher": "Princeton University Art Museum",
+          "title": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Weng Fanggang 翁方綱, author and calligrapher, 1733–1818"
+        }
+      ],
+      "catalogueField": "author",
+      "catalogueValue": "翁方纲",
+      "note": "目录 authorVerification=pending_review。保持待人工复核，不升已验证。"
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:person:calligrapher",
+      "entity": "person",
+      "property": "calligrapher",
+      "value": "翁方纲（馆方 author and calligrapher；目录 pending_review）",
+      "status": "asserted",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "calligrapher",
+          "value": "翁方纲"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "calligrapherVerification",
+          "value": "pending_review"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+          "publisher": "Princeton University Art Museum",
+          "title": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Weng Fanggang 翁方綱, author and calligrapher, 1733–1818"
+        }
+      ],
+      "catalogueField": "calligrapher",
+      "catalogueValue": "翁方纲",
+      "note": "目录 calligrapherVerification=pending_review。保持待人工复核，不升已验证。"
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:person:titleCalligrapher",
+      "entity": "person",
+      "property": "titleCalligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定",
+      "catalogueField": "titleCalligrapher",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:person:engraver",
+      "entity": "person",
+      "property": "engraver",
+      "value": null,
+      "status": "conflict",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "engraver",
+          "value": "未核定"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+          "publisher": "Princeton University Art Museum",
+          "title": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Zheng Zhizong, carver, active ca. 1787"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "description",
+          "quote": "郑之宗刻"
+        }
+      ],
+      "alternatives": [
+        {
+          "value": "郑之宗 / Zheng Zhizong（馆方 carver；目录说明亦称郑之宗刻）",
+          "evidenceLevel": "有限支持",
+          "sources": [
+            {
+              "type": "url",
+              "url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+              "publisher": "Princeton University Art Museum",
+              "title": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+              "sourceKind": "official_museum",
+              "accessedAt": "2026-10-25",
+              "quote": "Zheng Zhizong, carver, active ca. 1787"
+            },
+            {
+              "type": "file",
+              "path": "data/catalog/steles28.json",
+              "id": "qing_02_wushi_reerection",
+              "field": "description",
+              "quote": "郑之宗刻"
+            }
+          ]
+        },
+        {
+          "value": "未核定（目录 engraver）",
+          "evidenceLevel": "有限支持",
+          "sources": [
+            {
+              "type": "catalogue",
+              "path": "data/catalog/steles28.json",
+              "id": "qing_02_wushi_reerection",
+              "field": "engraver",
+              "value": "未核定"
+            }
+          ]
+        }
+      ],
+      "note": "馆方 Maker 列 Zheng Zhizong, carver；目录 engraver=未核定。并列待复核，不抬升。",
+      "catalogueField": "engraver",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:person:steleSubject",
+      "entity": "person",
+      "property": "steleSubject",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "记文碑，非墓志受主；目录未核定",
+      "catalogueField": "steleSubject",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:date:era",
+      "entity": "date",
+      "property": "era",
+      "value": "清乾隆五十二年／1787年（馆方 Dates：1787 (stones)）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "originalYear",
+          "value": "1787年"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+          "publisher": "Princeton University Art Museum",
+          "title": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "1787 (stones), late 19th-early 20th century (rubbings)"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:date:ce",
+      "entity": "date",
+      "property": "ce",
+      "value": 1787,
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "originalYearCE",
+          "value": 1787
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+          "publisher": "Princeton University Art Museum",
+          "title": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "1787 (stones)"
+        }
+      ],
+      "catalogueField": "originalYearCE",
+      "catalogueValue": 1787
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:date:yearCrossCheck",
+      "entity": "date",
+      "property": "yearCrossCheck",
+      "value": "一致：1787 CE（馆方 stones；碑面年干支本批未核→推算 丁未）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "originalYearCE",
+          "value": 1787
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+          "publisher": "Princeton University Art Museum",
+          "title": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "1787 (stones)"
+        }
+      ],
+      "catalogueField": "originalYearCE",
+      "catalogueValue": 1787,
+      "derivation": {
+        "ce": 1787,
+        "inscriptionGanzhi": null,
+        "computedGanzhi": "丁未",
+        "result": "partial"
+      }
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:date:dayCrossCheck",
+      "entity": "date",
+      "property": "dayCrossCheck",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批未核日干支"
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:place:originalSite",
+      "entity": "place",
+      "property": "originalSite",
+      "value": "山东嘉祥武宅山武氏祠一带（区域级）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "originalLocation",
+          "value": "山东嘉祥武宅山武氏祠"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+          "publisher": "Princeton University Art Museum",
+          "title": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Place Made Asia, China, Shandong province, Wuzhaishan 武宅山 village"
+        }
+      ],
+      "region": {
+        "historicalName": "武宅山武氏祠",
+        "modernRegion": "山东省济宁市嘉祥县一带（现代对应待人工复核）",
+        "precision": "region"
+      },
+      "catalogueField": "originalLocation",
+      "catalogueValue": "山东嘉祥武宅山武氏祠",
+      "note": "区域级；不下坐标。"
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:place:currentStone",
+      "entity": "place",
+      "property": "currentStone",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批未核原石现址官方页"
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:place:rubbingHolder",
+      "entity": "place",
+      "property": "rubbingHolder",
+      "value": "美国新泽西州普林斯顿（Princeton University Art Museum）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "rubbingCollectionInstitution",
+          "value": "普林斯顿大学艺术博物馆"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+          "publisher": "Princeton University Art Museum",
+          "title": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Princeton University Art Museum"
+        }
+      ],
+      "region": {
+        "modernRegion": "美国新泽西州普林斯顿",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:script_style:script",
+      "entity": "script_style",
+      "property": "script",
+      "value": "楷书",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "scriptType",
+          "value": "楷书"
+        }
+      ],
+      "catalogueField": "scriptType",
+      "catalogueValue": "楷书",
+      "note": "馆方本页未单列书体；依目录 scriptType。"
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:script_style:historicalComment",
+      "entity": "script_style",
+      "property": "historicalComment",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批未核额外书风评述官方来源"
+    },
+    {
+      "claimId": "qing_02_wushi_reerection:bibliography:catalogueReference",
+      "entity": "bibliography",
+      "property": "catalogueReference",
+      "value": "Princeton y1957-139 b；Gift of George Rowley；Record of the Art Museum 17/1 (1958) p.41",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "collectionNumber",
+          "value": "y1957-139 b"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_02_wushi_reerection",
+          "field": "sourceUrl",
+          "value": "https://artmuseum.princeton.edu/art/collections/objects/57837"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+          "publisher": "Princeton University Art Museum",
+          "title": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Object Number y1957-139 b"
+        },
+        {
+          "type": "url",
+          "url": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+          "publisher": "Princeton University Art Museum",
+          "title": "Record on Rebuilding the \"Wu Family Shrine\" Stones (Chong li Wushi Ci shi ji 重立武氏祠石記)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "Frances Follin Jones, \"Recent aquisitions of Ancient Art\", Record of the Art Museum, Princeton University, 17, no. 1 (1958): p. 41–43."
+        }
+      ]
+    }
+  ]
+}
