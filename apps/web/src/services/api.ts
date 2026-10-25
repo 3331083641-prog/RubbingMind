@@ -189,6 +189,13 @@ export const SteleService = {
     if (!res.ok) throw new Error('该批次诊断不可用');
     return res.json();
   },
+  /** BR-08 / C-16: includeDemo defaults to false (synthetic demo samples excluded). */
+  async queryEvidence(question: string, steleId?: string, includeDemo = false): Promise<Record<string, unknown>> {
+    const res = await fetch('/api/research/query', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question, steleId: steleId || null, includeDemo }) });
+    if (!res.ok) throw new Error('检索不可用');
+    return res.json();
+  },
   async listRuns(id: string): Promise<ProcessingRun[]> {
     const res = await fetch(`/api/steles/${encodeURIComponent(id)}/runs`);
     if (!res.ok) throw new Error('处理历史不可用');

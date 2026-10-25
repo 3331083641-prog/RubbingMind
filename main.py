@@ -158,14 +158,28 @@ class CalendarRequest(BaseModel):
 class EvidenceQueryRequest(BaseModel):
     question: str = Field(min_length=2,max_length=500)
     steleId: Optional[str] = Field(default=None,max_length=100)
+    # BR-08 / C-16: default excludes synthetic demo samples; jinshi owns include_demo in evidence_retrieval.
+    includeDemo: bool = False
 
 
 @app.post('/api/research/query')
 def query_evidence(request: EvidenceQueryRequest):
     from evidence_retrieval import query
+    import inspect
     if request.steleId and not museum_manager.get_stele_by_id(request.steleId):
+        # rm:demo:<id> is accepted once jinshi's resolver is merged; until then only known ids pass.
         raise HTTPException(status_code=404,detail='文物不存在')
-    return query(request.question,request.steleId)
+    params = inspect.signature(query).parameters
+    if 'include_demo' in params:
+        return query(request.question, request.steleId, include_demo=request.includeDemo)
+    # Compatible call: this branch's evidence_retrieval has no include_demo yet (merge takes jinshi's).
+    result = query(request.question, request.steleId)
+    if isinstance(result, dict):
+        note = '本分支 evidence_retrieval 尚未实现 include_demo；合并时以 agent/jinshi 的实现为准（ARCHITECTURE_DECISIONS R2）。'
+        scope = dict(result.get('demoScope') or {})
+        scope.update({'requested': bool(request.includeDemo), 'honoured': False, 'compatNote': note})
+        result = {**result, 'demoScope': scope}
+    return result
 
 
 @app.get('/api/research/steles/{stele_id}')
@@ -224,6 +238,24 @@ def experiment_diagnosis(experiment_id: str):
     if data is None:
         raise HTTPException(status_code=404, detail='实验批次不存在')
     return diagnose_batch(data, experiment_id)
+
+
+@app.get('/api/experiments/{experiment_id}/mechanism')
+def experiment_mechanism_index(experiment_id: str):
+    from experiment_derived import mechanism_index
+    body=mechanism_index(experiment_id)
+    if body is None:raise HTTPException(status_code=404,detail='实验批次不存在')
+    return body
+
+
+@app.get('/api/experiments/{experiment_id}/mechanism-assets/{asset_path:path}')
+def experiment_mechanism_asset(experiment_id: str, asset_path: str):
+    from experiment_derived import resolve_mechanism_png
+    path, reason = resolve_mechanism_png(experiment_id, asset_path)
+    if path is None:
+        raise HTTPException(status_code=404 if '不存在' in (reason or '') and '越界' not in (reason or '') and '不合法' not in (reason or '') else 400,
+                            detail=reason or '不可用')
+    return FileResponse(path, media_type='image/png')
 
 
 @app.get('/api/experiments/{experiment_id}/applied-status')

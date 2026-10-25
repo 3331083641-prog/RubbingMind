@@ -116,3 +116,75 @@ def ci_by_artifact(experiment_id: str, filters: dict | None = None):
         groups = [group for group in groups if all(str(group.get(key)) == value for key, value in active.items())]
     return {**out, 'available': True, 'status': 'ok', **{key: data.get(key) for key in CI_KEYS},
             'filters': active, 'groupCount': len(groups), 'groups': groups}
+
+
+# --- mechanism layer PNGs (eval-sci derived/mechanism/, ~253 PNGs) ---
+MECHANISM_DIR = 'mechanism'
+MECHANISM_INDEX = 'index.json'
+
+
+def mechanism_root(entry: dict) -> Path:
+    return experiment_registry.RESULTS / entry['directory'] / 'derived' / MECHANISM_DIR
+
+
+def mechanism_index(experiment_id: str):
+    entry = registry_entry(experiment_id)
+    if entry is None:
+        return None
+    root = mechanism_root(entry)
+    index_path = root / MECHANISM_INDEX
+    out = {'experimentId': entry['id'], 'batch': entry['directory'],
+           'root': f"experiments/results/{entry['directory']}/derived/mechanism",
+           'available': index_path.is_file() or root.is_dir(),
+           'servedBy': '只读转发评测科学家 mechanism 层 PNG；路径经 resolve 后必须落在白名单根目录内'}
+    if not out['available']:
+        return {**out, 'status': 'missing', 'reason': '本批次没有 derived/mechanism/（由评测科学家 experiments/mechanism_cases.py 生成）', 'cases': []}
+    cases = []
+    if index_path.is_file():
+        try:
+            data = json.loads(index_path.read_text('utf-8'))
+            cases = data if isinstance(data, list) else data.get('cases') or data.get('items') or []
+        except ValueError:
+            cases = []
+    if not cases and root.is_dir():
+        cases = [{'caseId': p.name} for p in sorted(root.iterdir()) if p.is_dir()]
+    return {**out, 'status': 'ok', 'cases': cases}
+
+
+def resolve_mechanism_png(experiment_id: str, relative: str):
+    """Return a Path inside derived/mechanism/ for a .png, or (None, reason).
+
+    Rejects .., absolute paths, URL encoding tricks, and symlink escapes: the resolved path
+    must stay under the mechanism root (Path.is_relative_to).
+    """
+    entry = registry_entry(experiment_id)
+    if entry is None:
+        return None, '实验批次不存在'
+    if not relative or relative.startswith('/') or '\\' in relative:
+        return None, '路径不合法'
+    # decode once; reject encoded separators and parent refs after decoding
+    from urllib.parse import unquote
+    decoded = unquote(relative)
+    if decoded != relative and ('..' in decoded or decoded.startswith('/') or '\\' in decoded):
+        return None, '路径不合法（编码穿越）'
+    if '..' in relative.split('/'):
+        return None, '路径不合法（含 ..）'
+    if not decoded.lower().endswith('.png'):
+        return None, '只允许 .png'
+    root = mechanism_root(entry).resolve()
+    if not root.is_dir():
+        return None, '本批次没有 mechanism 目录'
+    try:
+        target = (root / decoded).resolve()
+    except (OSError, ValueError):
+        return None, '路径无法解析'
+    try:
+        target.relative_to(root)
+    except ValueError:
+        return None, '路径越界：解析后不在 mechanism 根目录内'
+    if target.is_symlink():
+        # even if resolve() followed it inside, refuse symlinks as a defense in depth
+        return None, '拒绝符号链接'
+    if not target.is_file():
+        return None, '文件不存在'
+    return target, None
