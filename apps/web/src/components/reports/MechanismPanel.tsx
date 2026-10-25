@@ -198,7 +198,7 @@ export const MechanismPanel: React.FC<Props> = ({ model, filters, setFilters }) 
                     <img src={src} alt={img.description || img.file} loading="lazy"
                       className="w-36 h-36 object-contain bg-[#0A0D12] rounded border border-slate-800"
                       onError={e => { (e.currentTarget as HTMLImageElement).style.opacity = '0.25'; (e.currentTarget as HTMLImageElement).alt = `${img.file}（图不可用）`; }} />
-                    <figcaption className="text-[10px] text-center text-slate-400 mt-1">{img.description || img.file}{img.batch ? ` · ${img.batch}` : ''}{img.derivedAt ? ` · ${img.derivedAt.slice(0, 10)}` : ''}{img.sourcePath ? ` · ${img.sourcePath}` : ''}{img.sha256 ? ` · SHA ${shortSha(img.sha256)}` : ''}{img.headCommit ? ` · head ${shortSha(img.headCommit)}` : ''}</figcaption>
+                    <figcaption className="text-[10px] text-center text-slate-400 mt-1">{img.description || img.file}{img.batch ? ` · ${img.batch}` : ''}{img.derivedAt ? ` · ${img.derivedAt.slice(0, 10)}` : ''}{img.sourcePath ? ` · ${img.sourcePath}` : ''}{img.sha256 ? ` · SHA ${shortSha(img.sha256)}` : ''}{img.headCommit ? ` · head ${shortSha(img.headCommit)}` : ''}{img.captionNote ? ` · ${img.captionNote}` : ''}</figcaption>
                   </figure>;
                 })}
               </div>
