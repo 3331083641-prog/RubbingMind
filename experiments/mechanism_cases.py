@@ -18,6 +18,11 @@ Each replay output is compared pixel by pixel with the stored adaptive_joint PNG
 The fixed 'notch' baseline is also replayed with the batch's snapshot algorithm_engine
 and with this tree's algorithm_engine (E-05 fix) against the stored notch PNG.
 Mechanism images are drawn with the head code.
+
+Binding: each batch writes headCommit into derived/mechanism/index.json.
+If that headCommit lags the branch tip, reports must NOT claim mechanism PNGs
+are byte-identical to the current tip; see docs/product-upgrade/MECHANISM_HEAD_NOTE.md.
+Do not delete experiment raw data; re-run only when intentionally refreshing mechanism.
 """
 from __future__ import annotations
 

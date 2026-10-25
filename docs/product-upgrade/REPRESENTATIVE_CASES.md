@@ -2,7 +2,7 @@
 
 - 作者：RM-评测科学家（Agent 04+05）
 - 时间：2026-10-19（Asia/Shanghai）
-- 分支 / 代码：`agent/eval-sci`，机制图与 head 重算基于 commit `7623a52a3299b7c948031dfa1f79f04b8eb66d9e`；对照基线 `f0c5886a9d4c8b47d64640e1f7eaeac44be3c388`
+- 分支 / 代码：`agent/eval-sci`，机制图与 head 重算基于 commit `7623a52a3299b7c948031dfa1f79f04b8eb66d9e`；对照基线 `f0c5886a9d4c8b47d64640e1f7eaeac44be3c388`；**相对当前 tip 已落后，见 §7 与 MECHANISM_HEAD_NOTE.md**
 - 生成脚本：`experiments/mechanism_cases.py`（只读历史结果，只写 `derived/mechanism/`）
 - 运行环境：Python 3.12.4，numpy 2.4.4，OpenCV 5.0.0，scipy 1.18.0，scikit-image 0.26.0。与两批结果记录的 Python、numpy、OpenCV、scikit-image 版本一致
 - 前端用途：报告第 4 层“消融与机制”和第 5 层“失败案例与不确定性”。字段契约见 `REPORT_DATA_SPEC.md` §5、§6
@@ -163,3 +163,11 @@
 - 原图返回和门控拒绝两类样本，标题必须是“原图返回（未处理）”或“门控拒绝，原样返回”，不得叫“算法输出”。
 - 本样本集只用于说明机制，不用于统计结论。统计结论用 `derived/ci_by_artifact.json`。
 - v2-text 的 14 件文物与“同批复测 v2.1”相同（E-01），v2-text 中的机制样本不能当作独立验证。
+
+## 7. headCommit 与分支 tip（2026-10-25）
+
+- 机制产物生成时写入的 headCommit 仍为 7623a52a3299b7c948031dfa1f79f04b8eb66d9e。
+- 当前分支 tip 已前移（写作时 65f78159a87ddee5895eb2d8d7b49fdbd1325028）。**在重跑 mechanism_cases.py 并更新 derived/mechanism/index.json 之前，报告不得宣称机制 PNG 与当前 tip 字节一致。**
+- 约束全文：MECHANISM_HEAD_NOTE.md。pplied_status.json 的 sourceResultsSha256 与各批 
+esults.json 仍一致，本期不重生 derived。
+

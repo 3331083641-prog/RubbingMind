@@ -1,6 +1,7 @@
 # REPORT_DATA_SPEC — 评测报告六层数据契约
 
 - 版本：v3.3 定稿（2026-10-19，RM-评测科学家。**Green 定稿**：`grayCriterion = gray-bt601-pixel-equal-v1`（不要用 `working-gray-pixel-equal-v1`）；灰度字段集仍为后端五元组；算法/诊断层字段名定稿为 `algorithmOutputMode`，运行级仍为 `outputMode`。v3.2 → v3.3：落实上述定稿（废止 v3.2 中间稿的 working-gray 命名，以及「是否改名尚未确定」的措辞）。v3.1 → v3.2：Rule/Source、旧运行 effectiveParameters、museum_processing 归属后端。更早见 git 历史。）
+- 机制层 headCommit 约束：MECHANISM_HEAD_NOTE.md（产物 headCommit=7623a52 落后 tip 时，报告不得宣称机制图与 tip 字节一致）
 - 基线：`feature/product-grade-upgrade` @ `f0c5886`。配套实现：分支 `agent/eval-sci`（未合并），代码在 `f21ceaa`、`7623a52` 和其后的提交（`git log f0c5886..agent/eval-sci`），派生数据见同分支
 - 依据：`docs/product-upgrade/AUDIT_EVALUATION.md`（E-01 … E-12）
 - 适用对象：报告前端（ReportsPage / ExperimentExplorer 的继任页面）和架构后端（main.py / API）
@@ -19,7 +20,7 @@
 | DER | `experiments/results/<批次>/derived/applied_status.{csv,json}` | 派生标注（由 `experiments/derive_applied_status.py` 生成；E-05 细分标签由 `experiments/notch_na_changes.py` 写入同一文件） | 不适用 |
 | CI | `experiments/results/{2026-10-17-v2,2026-10-17-v2-text}/derived/ci_by_artifact.{csv,json}` | 按文物聚类 bootstrap CI（`experiments/ci_by_artifact.py`） | 不适用 |
 | NLC | `experiments/results/{2026-10-15,2026-10-17-v2,2026-10-17-v2-text}/derived/negative_lift_causes.{csv,json}` | 负提升的测量原因（E-04，`experiments/derive_negative_lift_causes.py`） | 不适用 |
-| MEC | `experiments/results/{2026-10-17-v2,2026-10-17-v2-text}/derived/mechanism/` | 机制层代表样本（E-18，`experiments/mechanism_cases.py`；说明见 `REPRESENTATIVE_CASES.md`） | 派生 PNG |
+| MEC | `experiments/results/{2026-10-17-v2,2026-10-17-v2-text}/derived/mechanism/` | 机制层代表样本（E-18，`experiments/mechanism_cases.py`；说明见 `REPRESENTATIVE_CASES.md；headCommit 与 tip 关系见 MECHANISM_HEAD_NOTE.md`） | 派生 PNG |
 | DGC | `experiments/results/{2026-10-15,2026-10-17-v2,2026-10-17-v2-text}/derived/degradation_check.json` | 退化生成器核对（`experiments/verify_degradation_params.py`） | 不适用 |
 | RUN | `static/results/<stele>/<run>/processing.json` + PNG | 馆藏运行记录（本地，gitignore） | 有 |
 | REG | `GET /api/experiments`（`experiment_registry.batches()`） | 批次清单、限制说明 | — |
@@ -220,7 +221,7 @@
 | 决策链分布 | BV2/BVT `diagnostics.decisions`、`selectedOutput`、`fidelityGate`；BRT `diagnosticsOperators`、`fidelityAccepted` | 按算子组合计数。v2.1 新运行有 `outputMode`（`processed` / `identity_no_evidence` / `gate_fallback_original`）；历史行由 DER 的 `isPassthrough` 覆盖 `selectedOutput`（E-02：历史上 identity 分支即使输出等于输入也记为 `candidate`） | — |
 | v2.0 → v2.1 | BRT | 只能写“同批复测下的差异”，等级 ≤ 有限支持 | — |
 | 门控说明 | 固定文案：fidelity gate 是启发式规则，不是统计检验 | — | — |
-| 机制样本（E-18） | MEC：`derived/mechanism/index.json` 和 `<caseId>/mechanism.json` + PNG，字段见 `REPRESENTATIVE_CASES.md` | 每批每个划分 5 类（提升 / 负提升 / 原图返回 / 门控拒绝 / 陷波），按中位位次选取。与前端临时规则（同批次、划分、方法、退化下取实际处理的 ΔPSNR 中位数和最小值各一条，再取一条原图返回）的差异和对照文件 `derived/representative_temp_rule.json` 见 `REPRESENTATIVE_CASES.md`。机制图属于 v2.1（head 重算），已存指标属于 v2.0，必须分别标注 | 目录或 PNG 不存在：显示“该样本未生成机制图”。当前 PNG 还没有 API 路由，需要后端补 |
+| 机制样本（E-18） | MEC：`derived/mechanism/index.json` 和 `<caseId>/mechanism.json` + PNG，字段见 `REPRESENTATIVE_CASES.md；**headCommit 落后 tip 时不得宣称机制图与当前 tip 字节一致**（MECHANISM_HEAD_NOTE.md）` | 每批每个划分 5 类（提升 / 负提升 / 原图返回 / 门控拒绝 / 陷波），按中位位次选取。与前端临时规则（同批次、划分、方法、退化下取实际处理的 ΔPSNR 中位数和最小值各一条，再取一条原图返回）的差异和对照文件 `derived/representative_temp_rule.json` 见 `REPRESENTATIVE_CASES.md；**headCommit 落后 tip 时不得宣称机制图与当前 tip 字节一致**（MECHANISM_HEAD_NOTE.md）`。机制图属于 v2.1（head 重算），已存指标属于 v2.0，必须分别标注 | 目录或 PNG 不存在：显示“该样本未生成机制图”。当前 PNG 还没有 API 路由，需要后端补 |
 | 参数机制 | §8 `effectiveParameters`（E-10） | 必须显示**实际生效**的参数；`ignoredRequestParameters` 里的参数要标“本路径未使用” | 旧运行：“未记录实际生效参数” |
 
 ## 6. 第 5 层：失败案例与不确定性
