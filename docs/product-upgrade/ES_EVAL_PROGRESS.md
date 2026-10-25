@@ -2,7 +2,7 @@
 
 - 作者：RM-评测科学家（Agent 04+05）
 - 时间：2026-10-25 13:11 Asia/Shanghai
-- 分支 tip：0654d13（0654d1307f849f5dadbfaca87fd96f2ce3b56c41）
+- 分支 tip：3e08545（3e085451373f8d1679ffd2d33a0af6405ab7dcdc）；含 feature@0654d13 + ES-3/4/5
 - 对齐：fast-forward `feature/product-grade-upgrade@0654d13`（含 reports MechanismPanel / claims 台账）
 - TASK_BOARD 本体在 D:\RubbingMind\docs\product-upgrade\TASK_BOARD.md（worktree 外）；本文件为 worktree 内进度镜像，供 Green 勾板。
 
@@ -18,7 +18,7 @@
 
 | ID | 状态 | 证据 |
 |---|---|---|
-| **R7 / G7** | 开 | tip `0654d13` 超前 mechanism head `7623a52` **122** commits；见 MECHANISM_HEAD_NOTE §7 |
+| **R7 / G7** | 开 | tip `3e08545` 超前 mechanism head `7623a52` **125** commits；见 MECHANISM_HEAD_NOTE §7 |
 | **A24** | xfail 保留 | `test_a24_export_label_recognized_forbidden_until_schema_exists`；产品缺口，勿伪绿 |
 
 ## 明确未做

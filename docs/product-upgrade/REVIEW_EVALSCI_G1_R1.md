@@ -52,11 +52,11 @@
 | 项 | 值 |
 |---|---|
 | feature tip | `0654d1307f849f5dadbfaca87fd96f2ce3b56c41` |
-| eval-sci tip（ff） | `0654d1307f849f5dadbfaca87fd96f2ce3b56c41`（原 `01dd3be` fast-forward） |
+| eval-sci tip | `3e085451373f8d1679ffd2d33a0af6405ab7dcdc`（原 `01dd3be` fast-forward） |
 | pytest | **709 passed, 1 xfailed (A24), 0 failed** |
 | G1 | 仍正式绿（本 tip 未回退） |
 | A24 | 仍 xfail，勿伪绿 |
-| R7 | tip 超前 head `7623a52` 122 commits；未重跑；MECHANISM_HEAD_NOTE §7 |
+| R7 | tip 超前 head `7623a52` 125 commits；未重跑；MECHANISM_HEAD_NOTE §7 |
 | 本轮增量 | ES-4 图注 provenance；ES-3 `summarize_lift_claims`；ES-5 `negative_lift_display` |
 | 门禁请求 | 可门禁（未 push）；请红队复核 tip 与开项台账 |
 
