@@ -1,0 +1,9 @@
+slice9 batch tips (ASCII)
+base: be5e43d
+8626c64 fix(report): print case PSNR empty without unit splice
+da7f4bf feat(report): declare print interactive limitations (P1-8)
+8da414c fix(report): DER criterion copy cites REPORT_DATA_SPEC v3.3
++ docs(report): phase1 slice9 evidence (this tip)
+gate: 32195ce..HEAD inclusive (32195ce ES-3/ES-5 NOT on feature@b60d556; prior 32195ce gate is subset; re-gate through latest tip)
+RF-8: open (not self-closed)
+algorithmOutputMode: skipped (no api.ts field)

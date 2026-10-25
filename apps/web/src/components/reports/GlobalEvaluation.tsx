@@ -148,7 +148,7 @@ export const GlobalEvaluation: React.FC<Props> = ({ model, batches, glyph, filte
       </header>
       <MethodComparisonChart testId="method-comparison-chart" panels={model.panels} methods={model.methods} selectedMethod={model.method}
         onSelectMethod={m => setFilters({ method: m, case: '' })} onSelectSample={(s, m) => setFilters({ method: m, sample: s, case: '' })} height={Math.max(250, 44 + model.methods.length * 26)} />
-      <p className="text-[11px] text-slate-500">原图返回判据：{model.der.source ? `DER ${model.der.criterion}（${model.der.source}）` : '前端兜底：输出与输入 SHA-256 相同（DER 未接入）'}；“无法判定”的行单独计数，不归入任何一类。CI：{model.ci ? `${model.ci.source}（未按单件文物筛选时以文件为准；细笔画误差与耗时无文件，用前端临时口径）` : '临时口径，前端计算，待替换为 derived/ci_by_artifact'}。仅同批内比较。</p>
+      <p className="text-[11px] text-slate-500" data-testid="der-criterion-note">原图返回判据：{model.der.source ? `DER ${model.der.criterion}（${model.der.source}）` : '前端兜底：输出与输入 SHA-256 相同（DER 未接入）'}；“无法判定”的行单独计数，不归入任何一类。口径依 REPORT_DATA_SPEC v3.3。CI：{model.ci ? `${model.ci.source}（未按单件文物筛选时以文件为准；细笔画误差与耗时无文件，用前端临时口径）` : '临时口径，前端计算，待替换为 derived/ci_by_artifact'}。仅同批内比较。</p>
       <button type="button" onClick={() => setShowAbs(v => !v)} className="text-[11px] text-gold underline print:hidden">{showAbs ? '收起' : '展开'}与历史 summary 对照的数值（MeanAll 口径）</button>
       {showAbs && <AbsoluteTable model={model} />}
     </section>

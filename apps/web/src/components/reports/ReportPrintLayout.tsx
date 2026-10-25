@@ -11,7 +11,7 @@ import type { Loadable } from './data/types';
 import { degradationLabel, methodLabel, SPLIT_LABELS } from './data/labels';
 import { buildOption } from './MethodComparisonChart';
 import { triptychPanes, REFERENCE_NOTE } from './GlobalEvaluation';
-import { formatTime, shortSha, signed } from './format';
+import { formatTime, num, shortSha, signed } from './format';
 import type { SteleItem } from '../../types/stele';
 import './reportPrint.css';
 
@@ -57,7 +57,7 @@ export const ReportPrintLayout: React.FC<Props> = ({ model, stele, runId, report
         <h2>三、视觉对照</h2>
         {panes == null ? <p>本批次只保存了数值，没有保存对比图像；不使用其他批次的图代替。</p> : model.caseRow && panes.length ? <figure>
           <div className="rp-triptych">{panes.map(p => <div key={p.key}>{p.src ? <img src={p.src} alt={p.label} /> : <p>{p.emptyReason}</p>}<div className="rp-meta">{p.label}{p.sha ? ` · SHA ${shortSha(p.sha)}` : ''}</div></div>)}</div>
-          <figcaption>图 {++fig}　{model.batch.shortName} · case <code>{caseKeyOf(model.caseRow)}</code>（{model.caseKind === 'median' ? '中位案例' : model.caseKind === 'worst' ? '最差一条' : model.caseKind === 'passthrough' ? '原图返回样例' : '手动选择'}） · {methodLabel(model.caseRow.method)}（{model.caseRow.algorithmVersion || '版本未记录'}）· seed {model.caseRow.seed ?? '未记录'}。PSNR {model.caseRow.psnr?.toFixed(2) ?? '未评测'} dB（输入 {model.caseBaseline?.psnr?.toFixed(2) ?? '—'}）。图像按 contain 完整显示，未裁切。</figcaption>
+          <figcaption>图 {++fig}　{model.batch.shortName} · case <code>{caseKeyOf(model.caseRow)}</code>（{model.caseKind === 'median' ? '中位案例' : model.caseKind === 'worst' ? '最差一条' : model.caseKind === 'passthrough' ? '原图返回样例' : '手动选择'}） · {methodLabel(model.caseRow.method)}（{model.caseRow.algorithmVersion || '版本未记录'}）· seed {model.caseRow.seed ?? '未记录'}。PSNR {num(model.caseRow.psnr, 2, 'dB')}（输入 {num(model.caseBaseline?.psnr, 2, 'dB', '—')}）。图像按 contain 完整显示，未裁切。</figcaption>
         </figure> : <p>当前筛选下没有记录。</p>}
       </>}
       {!model && <p>实验批次数据未载入，本页不含全局评测。</p>}
@@ -78,7 +78,8 @@ export const ReportPrintLayout: React.FC<Props> = ({ model, stele, runId, report
         {model?.notes.map(n => <li key={n}>{n}</li>)}
         {model && <li data-testid="print-failure-retention">负提升与运行失败记录均保留在失败案例页与 JSON 导出（failureRetention），未抽样删除。</li>}
         {(model?.batch.registry.limitations || []).map(t => <li key={t}>{t}</li>)}
-        <li>原图返回判定：{model?.der.source ? `DER ${model.der.criterion}（${model.der.source}）` : '输出与输入文件 SHA-256 相同（前端兜底，DER 未接入）'}；“无法判定”的行单独计数。口径依 REPORT_DATA_SPEC v2 与评测科学家 2026-10-19 裁定。</li>
+        <li data-testid="print-limitations-interactive">屏幕交互（滑块对照、缩放、ROI 同步、差分热图切换）仅在页面可用；本 PDF / 打印稿为静态图与文字，不含上述交互。</li>
+        <li data-testid="print-der-criterion">原图返回判定：{model?.der.source ? `DER ${model.der.criterion}（${model.der.source}）` : '输出与输入文件 SHA-256 相同（前端兜底，DER 未接入）'}；“无法判定”的行单独计数。口径依 REPORT_DATA_SPEC v3.3 与评测科学家 2026-10-19 裁定。</li>
         <li>图像变清晰不等于恢复原刻文字；候选字只是建议，不是碑文释读结论。</li>
       </ul>
       {model && <p className="rp-meta">数据导出：<code>/api/experiments/{model.batch.id}/export/results.csv</code>、<code>summary.csv</code>；结果目录 <code>experiments/results/{model.batch.registry.directory}</code>；代码提交 <code>{String(model.detail.environment?.gitSha || model.detail.candidateCommit || '未记录')}</code>。</p>}
