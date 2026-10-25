@@ -74,7 +74,8 @@ const FALLBACK_NAMES: Record<string, string> = {
   'controlled-rubbings-v2-2026-10-17': '受控退化 v2（2026-10-17）',
   'controlled-rubbings-2026-10-15': '历史批次 2026-10-15（先验泄漏，仅作记录）',
 };
-export const RETEST_TITLE = '同批复测 v2.1（非留出）';
+/** SPEC §1(a)：UI 不得出现「留出/held-out/heldout」；存储 ID/目录名仅可出现在等宽路径。 */
+export const RETEST_TITLE = '同批复测 v2.1';
 export const RETEST_SHORT = '同批复测 v2.1';
 const KIND_ORDER: BatchKind[] = ['controlled', 'retest', 'historical', 'unknown'];
 
@@ -84,7 +85,8 @@ export function classifyBatch(reg: BatchRegistry): BatchInfo {
   const fallback = FALLBACK_NAMES[reg.id];
   const named = !!(reg.displayName || fallback || kind === 'retest');
   const base = reg.displayName || fallback || `${reg.id}（未命名）`;
-  const title = kind === 'retest' ? RETEST_TITLE : base;
+  // 复测优先用 REG.displayName（若无禁用词）；否则固定短标题。绝不回退到含「留出」的文案。
+  const title = kind === 'retest' ? ((reg.displayName && !/(留出|held-?out|heldout)/i.test(reg.displayName)) ? reg.displayName : RETEST_TITLE) : base;
   const shortName = kind === 'retest' ? RETEST_SHORT : base;
   return { id: reg.id, title, shortName, displayName: title, kind, hasImages: !!reg.imageComparisonAvailable && !reg.metricsOnly, registry: reg, named, isDefault: reg.defaultForReport === true };
 }
