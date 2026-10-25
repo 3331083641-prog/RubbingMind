@@ -1,8 +1,8 @@
 # ES_EVAL_PROGRESS — 评测侧 ES-3/4/5 推进台账
 
 - 作者：RM-评测科学家（Agent 04+05）
-- 时间：2026-10-25 14:20 Asia/Shanghai
-- 分支 tip：4f57eb5（4f57eb5ef57cdcb702042ccaa23904dbafcf9648）；FF 对齐 feature@4f57eb5；pytest 742p/1xfail
+- 时间：2026-10-25 14:51 Asia/Shanghai
+- 分支 tip：b60d556（b60d55697d741682d28af5f28319e2b84aca8230）；FF 对齐 feature@b60d556；pytest 747p/1xfail
 - 对齐：fast-forward eature/product-grade-upgrade@c761d54（含 reports MechanismPanel / claims 台账）
 - TASK_BOARD 真源：D:\RubbingMind\docs\product-upgrade\TASK_BOARD.md（worktree 外）；本文件为 worktree 内进度镜像，供 Green 监工。
 
@@ -20,7 +20,7 @@ egative_lift_display.json 伴生导出（measured 主列 / ruleInferred 次列�
 
 | ID | 状态 | 证据 |
 |---|---|---|
-| **R7 / G7** | 开 | tip 4f57eb5 超前 mechanism head 7623a52 **141** commits（见 MECHANISM_HEAD_NOTE §9） |
+| **R7 / G7** | 开 | tip b60d556 超前 mechanism head 7623a52 **145** commits（见 MECHANISM_HEAD_NOTE §10） |
 | **A24** | xfail 保持（禁伪 Top-k） | 	est_a24_export_label_recognized_forbidden_until_schema_exists；产品/schema 缺口（AB-8 未落地 export label）；勿伪绿；另有 	est_a24_schema_still_absent_keep_xfail_evidence |
 
 ## 明确未做
