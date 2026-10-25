@@ -12,6 +12,19 @@ export interface GlyphInferenceRecord {
   originalGlyph: string | null;
   originalStatus: string | null;
   bbox: {x:number;y:number;w:number;h:number};
+  /** Phase2 R1/G1 / AB-7: backend _map_roi envelope (always present on new inferences). */
+  roi: {
+    imageBBox: {x:number;y:number;w:number;h:number};
+    mappedSourceBBox: {x:number;y:number;w:number;h:number};
+    mappedInsideSource: boolean | null;
+    cropWidth: number;
+    cropHeight: number;
+    scaleFromSource: number;
+  };
+  inputImageSha256: string;
+  cropSha256: string;
+  /** Often also under imageProvenance.selectedImageSha256 */
+  selectedImageSha256?: string;
   context: string;
   cropUrl: string;
   source: 'vision_model' | 'context_rule' | 'unavailable' | 'model_unavailable' | 'local_shape_retrieval';
