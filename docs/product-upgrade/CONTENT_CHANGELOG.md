@@ -425,3 +425,11 @@ m:demo:* 与演示 legacy id 的 evidenceId 固定为演示自身，不再落到
 
 **测试：** `tests/test_catalog_claims.py` 全绿；`scripts/validate_museum_v3.py` 28/84 SHA 全过。主库 C-08 仅 dry-run，未 `--apply`；未 push。
 
+## 2026-10-25（Asia/Shanghai）· Claims 开项台账（无史实改动）
+
+- 新增 `docs/product-upgrade/CLAIMS_OPEN_ISSUES.md`：从 `data/catalog/claims/*.json` 扫描汇总开项（只汇总、不定论）。
+- 新增 `scripts/check_claims_open_issues.py`（`--check` / `--write`）与 `tests/test_claims_open_issues.py`。
+- **口径：** claim 文件 28/28 ≠ 开项关闭；conflict 异文并列与待人工复核仍为开项。
+- 扫描摘要（生成时）：开项 36 条；conflict 20；待人工复核 30；reviewFlags 1；目录 pending_review 未抬升 13。
+- 不改 claims 史实判定；不改已审证据；C-08 未 `--apply`；未 push。
+
