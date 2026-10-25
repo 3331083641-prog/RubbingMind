@@ -47,7 +47,7 @@ def test_adaptive_identity_branch_is_recorded_as_original():
     assert np.array_equal(output, image)
     assert meta['changeStats']['isPassthrough'] is True
     assert meta['selectedOutput'] == 'original'
-    assert meta['outputMode'] in ('identity_no_evidence', 'gate_fallback_original')
+    assert meta['algorithmOutputMode'] in ('identity_no_evidence', 'gate_fallback_original')
 
 
 def test_adaptive_processed_output_is_not_passthrough():
@@ -57,7 +57,7 @@ def test_adaptive_processed_output_is_not_passthrough():
     output, meta = AdaptiveRubbingRestorer().restore(image)
     assert meta['changeStats']['isPassthrough'] is bool(np.array_equal(output, image))
     if not meta['changeStats']['isPassthrough']:
-        assert meta['selectedOutput'] == 'candidate' and meta['outputMode'] == 'processed'
+        assert meta['selectedOutput'] == 'candidate' and meta['algorithmOutputMode'] == 'processed'
 
 
 def test_compare_v21_exclusion_list_includes_v2_text_batch():

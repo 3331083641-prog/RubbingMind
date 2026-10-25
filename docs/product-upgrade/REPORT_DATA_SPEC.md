@@ -1,6 +1,6 @@
 # REPORT_DATA_SPEC — 评测报告六层数据契约
 
-- 版本：v3.2 定稿（2026-10-19，RM-评测科学家。v3.1 → v3.2：灰度口径与 `agent/arch-backend` @ `9ba3a57`/`49fca00` 逐字段对齐——判据名改为 `working-gray-pixel-equal-v1`，补 `grayCriterionRule` / `graySource`；旧运行 `effectiveParameters` 改为读取时推导或 null+reason；写明 `museum_processing` 的 run_change_status / effective_parameters / 灰度字段由架构后端实现。更早：v3 → v3.1 见下；v1 → v2：填入聚类 CI、B15 退化参数核对、E-04 测量原因、E-05 修复状态、机制层文件；v2 → v3：判据统一为 `pixel-equal-v1`，新增 `passthroughSource`，`comparedImages` 定为数组，旧运行改为读取时计算（§8）；notch“不适用却改了像素”按原因逐行核实（§1(b)）；禁止报告同批复测 v2.1 的处理率 / 原图返回率（§1(a)）；原图返回按方法拆分（§1(b)）；CI 与前端对账规则（§0.3））
+- 版本：v3.3 定稿（2026-10-19，RM-评测科学家。**Green 定稿**：`grayCriterion = gray-bt601-pixel-equal-v1`（不要用 `working-gray-pixel-equal-v1`）；灰度字段集仍为后端五元组；算法/诊断层字段名定稿为 `algorithmOutputMode`，运行级仍为 `outputMode`。v3.2 → v3.3：落实上述定稿（废止 v3.2 中间稿的 working-gray 命名，以及「是否改名尚未确定」的措辞）。v3.1 → v3.2：Rule/Source、旧运行 effectiveParameters、museum_processing 归属后端。更早见 git 历史。）
 - 基线：`feature/product-grade-upgrade` @ `f0c5886`。配套实现：分支 `agent/eval-sci`（未合并），代码在 `f21ceaa`、`7623a52` 和其后的提交（`git log f0c5886..agent/eval-sci`），派生数据见同分支
 - 依据：`docs/product-upgrade/AUDIT_EVALUATION.md`（E-01 … E-12）
 - 适用对象：报告前端（ReportsPage / ExperimentExplorer 的继任页面）和架构后端（main.py / API）
@@ -260,7 +260,7 @@
 | `passthroughUndeterminedReason` | `string \| null` | 为什么是 null | 只有 `isPassthrough=null` 时非空 | 原样显示 |
 | `grayChangedPixelCount` | `int \| null` | **灰度口径**，只用于并列显示，**不参与** passthrough 判定：两张图按处理管线同一方式灰度化后，值不同的像素数（H·W） | 两张图任一缺失、无法解码或灰度化后形状/位深不同时为 null。**可以**在 `isPassthrough=null`（例如全通道形状不同）时仍有值 | 与 `changedPixelCount` 并列：“灰度口径：改动 N 像素” |
 | `grayChangedPixelRatio` | `float \| null`，范围 [0, 1] | `grayChangedPixelCount / (H·W)` | 同上 | 百分比 |
-| `grayCriterion` | `string \| null` | 当前为 `working-gray-pixel-equal-v1`（科学口径 2026-10-19：命名对齐处理管线的工作灰度，不再用 `gray-bt601-pixel-equal-v1`） | 同上 | 详情：“灰度口径：working-gray-pixel-equal-v1” |
+| `grayCriterion` | `string \| null` | **Green 定稿**：`gray-bt601-pixel-equal-v1`（不要用 `working-gray-pixel-equal-v1`；后端正从 working-gray 改过来） | 同上 | 详情：“灰度口径：gray-bt601-pixel-equal-v1” |
 | `grayCriterionRule` | `string \| null` | 人读规则，与实现一致：两张图各自按 `algorithm_engine.process_rubbing` 的灰度化——`cv2.cvtColor(BGR→GRAY)`（单通道不转换；四通道先去掉 alpha）；形状相同则逐像素比较。OpenCV 该转换的权重即 BT.601（Y≈0.299R+0.587G+0.114B，定点四舍五入）。**禁止**用 `IMREAD_GRAYSCALE` 代替（解码器灰度与 cvtColor 不同，见 AUDIT 勘误 644816） | 与 `grayCriterion` 同生同灭 | 详情展示规则原文 |
 | `graySource` | `"recorded" \| "computed-on-read" \| null` | 与 `passthroughSource` 同语义，但只描述灰度字段的来源 | 灰度字段无法计算时为 null | 详情：“灰度来源：运行时记录 / 读取时计算” |
 | `comparedImages` | `string[]`（数组，当前固定为 `["original", "restored"]`） | 参与比较的图像角色，顺序为 [比较前, 比较后]；`original` 是工作输入（有风化掩码时为合成退化图），`restored` 是算法输出 | 不为 null。旧版本写成对象 `{before, after}` 的记录，读取时规范为数组 | 详情 |
@@ -284,9 +284,9 @@
 
 - `run_v2.py` 和 `compare_v21.py` 的每行增加 `isPassthrough`、`changedPixelCount`、`changedPixelRatio`、`maxAbsDiff`、`passthroughCriterion`；输出未改动时，`applicability` 记为 `passthrough`，不再记为 applicable。
 - summary 增加 `processedN`、`passthroughN`、`undeterminedN` 和 `*MeanProcessed`、`*MeanPassthrough`；`applicableN` 不再计入原图返回行。
-- `AdaptiveRubbingRestorer.restore` 的诊断增加 `changeStats` 和 `outputMode`；输出未改动时，`selectedOutput` 为 `original`。
+- `AdaptiveRubbingRestorer.restore` 的诊断增加 `changeStats` 和 `algorithmOutputMode`；输出未改动时，`selectedOutput` 为 `original`。
   - `selectedOutput` 的新含义（架构后端 D-2）：`original` = 最终输出与输入逐像素相同（门控拒绝回退，或门控接受但候选恰好等于输入）；`candidate` = 最终输出至少有 1 个像素不同于输入。旧含义（“门控是否接受了候选”）不再成立。需要门控结论时读 `fidelityGate.accepted`，不要用 `selectedOutput` 推断。历史批次的 `selectedOutput` 仍是旧含义，由 DER 的 `isPassthrough` 覆盖显示。
-  - 两层 `outputMode`（架构后端 D-3）：算法诊断层 `diagnostics.outputMode ∈ {processed, identity_no_evidence, gate_fallback_original}`（实验行和 `adaptiveDiagnostics` 里），运行层 `outputMode ∈ {processed, passthrough, undetermined}`（`processing.json` 顶层，§8）。两者同名、取值不同，前端必须按路径区分：报告页的“是否改动”只读顶层 `outputMode`，算法诊断层只用于决策链展示。字段暂不改名，以免改动已存实验数据；如果以后改名，算法层用 `algorithmOutputMode`。`VERSION` 未改（仍为 v2.1）。新数据要用新批次目录，不要覆盖历史结果。
+  - **Green 定稿（D-3）**：算法/诊断层字段名为 `algorithmOutputMode ∈ {processed, identity_no_evidence, gate_fallback_original}`（`AdaptiveRubbingRestorer` 诊断 dict、实验行 `diagnostics` / `adaptiveDiagnostics`）；运行级仍为 `outputMode ∈ {processed, passthrough, undetermined}`（`processing.json` 顶层，§8）。前端按路径区分：报告页“是否改动”只读顶层 `outputMode`；决策链读 `algorithmOutputMode`。历史批次若仍写 `diagnostics.outputMode`，视为 `algorithmOutputMode` 旧名（只读兼容），新运行不得再写旧名。`VERSION` 未改（仍为 v2.1）。新数据要用新批次目录，不要覆盖历史结果。
 
 ## 10. B15（2026-10-15）与 v2 系列的退化参数逐项核对
 

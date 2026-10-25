@@ -232,7 +232,7 @@ def run_case(batch_dir: Path, out_root: Path, row, base_row, notch_row, pick, ve
         'replays': replays, 'notchBaselineReplay': notch_replay,
         'mechanism': {
             'code': 'head', 'features': {k: head_meta['features'][k] for k in ('noiseSigmaMAD', 'impulseFraction', 'periodicPeaks', 'thinStrokeRisk', 'highFrequencyEnergyFraction')},
-            'decisions': head_meta['decisions'], 'fidelityGate': head_meta['fidelityGate'], 'outputMode': head_meta.get('outputMode'),
+            'decisions': head_meta['decisions'], 'fidelityGate': head_meta['fidelityGate'], 'algorithmOutputMode': head_meta.get('algorithmOutputMode', head_meta.get('outputMode')),
             'changeStats': head_meta.get('changeStats'), 'notchApplied': notch_applied, 'peaksOutput': peaks_out,
             'diffScaleP99': diff_scale, 'headVsStoredScaleP99': mismatch_scale,
             'measures': measure_case(reference, damaged, head_out),
