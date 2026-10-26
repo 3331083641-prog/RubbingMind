@@ -14,10 +14,13 @@ from experiments.eval_export_contract import (
     MARKER_UNRECORDED,
     MARKER_UNEVALUATED,
     STATUS_NOT_EVALUATED,
+    TOPK_UNEVALUATED_KEYS,
+    forbid_numeric_topk_without_ground_truth,
     has_paired_reference,
     lift_claim_label,
     may_claim_positive_lift,
     negative_lift_display,
+    recognition_metrics_unevaluated_payload,
     require_unevaluated_metrics,
     summarize_lift_claims,
 )
@@ -500,3 +503,43 @@ def test_es5_display_rows_align_one_to_one_with_nlc(batch):
         assert "ruleInferred" in str(row.get("forbidden")) or "ruleInferredCause" in str(row.get("forbidden"))
         assert "measuredEvidence" not in row
         assert row.get("measuredEvidenceCount") == len(case.get("measuredEvidence") or [])
+
+
+def test_r7_mechanism_head_still_lags_tip_open():
+    """R7 remains open: mechanism headCommit stays at 7623a52; tip lag is tip HEAD measured."""
+    lag = int(
+        subprocess.check_output(
+            ["git", "rev-list", "--count", "7623a52..HEAD"],
+            cwd=ROOT,
+            text=True,
+        ).strip()
+    )
+    assert lag >= 188, lag
+    tip = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+    for batch in BATCHES:
+        index = json.loads(_mech_index(batch).read_text(encoding="utf-8"))
+        assert index.get("headCommit") == MECH_HEAD, batch
+        assert tip != MECH_HEAD
+        stamp = index.get("captionProvenance") or {}
+        assert stamp.get("pngBytesUntouched") is True
+    # Do not claim mechanism PNG matches tip bytes while lag > 0
+    assert tip.startswith(MECH_HEAD[:7]) is False
+
+
+def test_a24_topk_reject_remain_unevaluated_without_ground_truth():
+    """A24 companion: Top-k / reject-rate stay 未评测; numeric values under not_evaluated are forbidden."""
+    payload = recognition_metrics_unevaluated_payload()
+    assert payload["evaluationStatus"] == STATUS_NOT_EVALUATED
+    for key in TOPK_UNEVALUATED_KEYS:
+        assert payload[key] == MARKER_UNEVALUATED
+    assert forbid_numeric_topk_without_ground_truth(payload) == []
+    polluted = dict(payload)
+    polluted["top1Accuracy"] = 0.87
+    polluted["rejectRate"] = 0.12
+    bad = forbid_numeric_topk_without_ground_truth(polluted)
+    assert "top1Accuracy" in bad and "rejectRate" in bad
+    # Mirror require_unevaluated_metrics direct path
+    assert require_unevaluated_metrics(
+        {"status": STATUS_NOT_EVALUATED, "top3Accuracy": 0.5},
+        TOPK_UNEVALUATED_KEYS,
+    ) == ["top3Accuracy"]

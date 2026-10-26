@@ -11,6 +11,32 @@ MARKER_UNRECORDED = "未记录"
 MARKER_UNEVALUATED = "未评测"
 STATUS_NOT_EVALUATED = "not_evaluated"
 
+# A24 / recognition export: without independent ground truth these stay unevaluated.
+TOPK_UNEVALUATED_KEYS = ("top1Accuracy", "top3Accuracy", "rejectRate")
+
+
+def recognition_metrics_unevaluated_payload() -> dict[str, object]:
+    """Export companion when Top-k / reject-rate have no ground truth (A24 still open)."""
+    return {
+        "evaluationStatus": STATUS_NOT_EVALUATED,
+        "top1Accuracy": MARKER_UNEVALUATED,
+        "top3Accuracy": MARKER_UNEVALUATED,
+        "rejectRate": MARKER_UNEVALUATED,
+        "note": "no independent ground truth; Top-k and reject-rate remain unevaluated (A24 schema gap)",
+    }
+
+
+def forbid_numeric_topk_without_ground_truth(payload: Mapping[str, Any]) -> list[str]:
+    """Return keys that illegally carry numbers while status is not_evaluated / unevaluated."""
+    return require_unevaluated_metrics(
+        {
+            "status": payload.get("status") or payload.get("evaluationStatus"),
+            **{k: payload.get(k) for k in TOPK_UNEVALUATED_KEYS},
+        },
+        TOPK_UNEVALUATED_KEYS,
+    )
+
+
 
 def has_paired_reference(group: Mapping[str, Any], metric: str = "psnr") -> bool:
     """True when GainValueN shows a paired degraded/reference measurement exists.
