@@ -21,13 +21,13 @@ def run(url,output):
             expect(page.get_by_test_id('museum-card')).to_have_count(28)
             before=[]
             for r in rows:
-                card=page.locator(f'[data-stele-id="{r["id"]}"]');card.scroll_into_view_if_needed()
+                card=page.locator(f'[data-testid="museum-card"][data-stele-id="{r["id"]}"]');card.scroll_into_view_if_needed()
                 expect(card.get_by_role('heading',name=r['title'],exact=True)).to_be_visible()
                 for field in ['year','rubbingPeriod','collectionInstitution','collectionNumber','artifactType']:
                     assert r[field] in card.inner_text(),(r['id'],field)
                 img=card.get_by_test_id('museum-cover')
                 expect(img).to_have_attribute('src',r['imageAssets']['cover'])
-                page.wait_for_function('(id)=>{const i=document.querySelector(`[data-stele-id="${id}"] img`);return i && i.complete && i.naturalWidth===1100 && i.naturalHeight===1420}',arg=r['id'])
+                page.wait_for_function('(id)=>{const i=document.querySelector(`[data-testid="museum-card"][data-stele-id="${id}"] img`);return i && i.complete && i.naturalWidth===1100 && i.naturalHeight===1420}',arg=r['id'])
                 assert card.get_by_role('link',name='查看馆藏来源',exact=True).get_attribute('href')==r['sourceUrl']
                 before.append(r['id'])
             results[mode]['verifiedCards']=before
@@ -42,7 +42,7 @@ def run(url,output):
             page.get_by_role('button',name=re.compile(r'^元代\s*4$')).click()
             search=page.get_by_placeholder('搜索碑名、书家、撰文者、馆藏号、地望...')
             search.fill('贈拓000412');expect(page.get_by_test_id('museum-card')).to_have_count(1)
-            grade=page.locator('[data-stele-id="yuan_04_jingyuanchang"]').get_attribute('data-image-condition')
+            grade=page.locator('[data-testid="museum-card"][data-stele-id="yuan_04_jingyuanchang"]').get_attribute('data-image-condition')
             page.get_by_role('button',name=grade,exact=True).click();expect(page.get_by_test_id('museum-card')).to_have_count(1)
             page.get_by_role('button',name='严重漫漶',exact=True).click();expect(page.get_by_test_id('museum-card')).to_have_count(0)
             page.get_by_role('button',name='重置所有筛选条件').click();expect(page.get_by_test_id('museum-card')).to_have_count(28)
@@ -50,7 +50,7 @@ def run(url,output):
             replacements=[r for r in rows if r['id'] in {x['newId'] for x in load('replacement_mapping.json')}]
             inspect=[rows[0],rows[4],rows[8],rows[12],rows[20],*replacements]
             for r in inspect:
-                card=page.locator(f'[data-stele-id="{r["id"]}"]')
+                card=page.locator(f'[data-testid="museum-card"][data-stele-id="{r["id"]}"]')
                 for role,label in [('readable','查看高清拓本'),('archive','查看完整档案')]:
                     card.get_by_role('button',name=label,exact=True).click();dialog=page.get_by_role('dialog')
                     expect(dialog.get_by_test_id('archive-image')).to_have_attribute('src',r['imageAssets'][role])
@@ -69,14 +69,14 @@ def run(url,output):
             # Fail a cover explicitly: verify failure/retry, never another rubbing.
             page.get_by_role('button',name=re.compile(r'^全部\s*28$')).click()
             first=rows[0];page.route('**/'+first['id']+'_cover.jpg*',lambda route:route.abort())
-            page.evaluate('(id)=>{const img=document.querySelector(`[data-stele-id="${id}"] img`);img.src=img.src+"&acceptance_failure=1"}',first['id'])
-            firstcard=page.locator(f'[data-stele-id="{first["id"]}"]');expect(firstcard.get_by_text('本件图像加载失败')).to_be_visible()
+            page.evaluate('(id)=>{const img=document.querySelector(`[data-testid="museum-card"][data-stele-id="${id}"] img`);img.src=img.src+"&acceptance_failure=1"}',first['id'])
+            firstcard=page.locator(f'[data-testid="museum-card"][data-stele-id="{first["id"]}"]');expect(firstcard.get_by_text('本件图像加载失败')).to_be_visible()
             assert firstcard.locator('img').count()==0
             page.unroute('**/'+first['id']+'_cover.jpg*');firstcard.get_by_role('button',name='重试').click()
             expect(firstcard.get_by_test_id('museum-cover')).to_be_visible();results[mode]['failureRetryNoSubstitution']=True
             # Every museum action resolves the same artifact in the workbench.
             for r in rows:
-                page.locator(f'[data-stele-id="{r["id"]}"]').get_by_role('button',name='微痕修复').click()
+                page.locator(f'[data-testid="museum-card"][data-stele-id="{r["id"]}"]').get_by_role('button',name='微痕修复').click()
                 expect(page.locator('header').first.locator('select')).to_have_value(r['id'])
                 expect(page.get_by_text('当前文物输入图像 · 尚未生成算法修复结果')).to_be_visible()
                 assert page.locator(f'img[src="{r["imageAssets"]["readable"]}"]').count()>0
@@ -97,13 +97,16 @@ def run(url,output):
             expect(page.get_by_role('heading',name='重立武氏祠石记 · 馆藏资料关联')).to_be_visible()
             assert '翁方纲' in page.inner_text('main');results[mode]['verifiedMuseumGraph']=True
             page.get_by_role('button',name='算法评测报告').click()
-            expect(page.get_by_role('heading',name='墨韵智考·金石数字化实验报告').last).to_be_visible()
-            page.get_by_role('combobox',name='选择报告运行记录').select_option('')
-            expect(page.get_by_text('尚未执行处理。没有真实运行输出或配对真值评测。')).to_be_visible()
+            expect(page.get_by_test_id('report-context-bar')).to_be_visible()
+            page.get_by_role('tab',name='本件处理报告',exact=True).click()
+            if offline:
+                expect(page.get_by_role('alert').filter(has_text='后端不可用，无法读取运行记录')).to_be_visible()
+            else:
+                expect(page.get_by_text('本件尚未执行处理',exact=False)).to_be_visible()
             with page.expect_download() as info:page.get_by_role('button',name='导出 JSON').click()
             download=info.value;dest=output/(mode+'_报告.json');download.save_as(dest)
-            report=json.loads(dest.read_text('utf-8'));assert report['stele']['id']=='qing_02_wushi_reerection' and report['stele']['title']=='重立武氏祠石记' and report['evaluationStatus']=='not_run'
-            page.evaluate('window.print=()=>window.__printCalled=true');page.get_by_role('button',name='打印 / 保存 PDF').click();assert page.evaluate('window.__printCalled')
+            report=json.loads(dest.read_text('utf-8'));assert report['stele']['id']=='qing_02_wushi_reerection' and report['stele']['title']=='重立武氏祠石记' and report['evaluationStatus']==('unavailable' if offline else 'not_run')
+            page.evaluate('window.print=()=>window.__printCalled=true');page.get_by_role('button',name='打印 / 保存 PDF').click();page.wait_for_function('window.__printCalled===true')
             if not offline:page.pdf(path=str(output/'14_实际网页报告.pdf'),format='A4',print_background=True)
             results[mode]['jsonAndPrintPdf']=True
             # Second required viewport.

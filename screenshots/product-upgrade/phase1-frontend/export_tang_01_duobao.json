@@ -1,0 +1,703 @@
+{
+  "reportId": "RM-tang_01_duobao-20261018T082526_4728b9df",
+  "exportedAt": "2026-10-19T12:34:15+08:00",
+  "view": "artifact",
+  "url": "http://127.0.0.1:5720/?tab=reports&steleId=tang_01_duobao&runId=20261018T082526_4728b9df&experimentId=heldout-v20-v21-2026-10-18&view=artifact&method=adaptive_joint&batch=2026-10-18-v21-heldout&panel=overview",
+  "stele": {
+    "id": "tang_01_duobao",
+    "title": "多宝塔感应碑",
+    "dynasty": "唐代",
+    "originalYear": "752年",
+    "rubbingPeriod": "未核定；不据拓印年改变朝代",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "贈拓000365",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+    "license": "CC BY 4.0"
+  },
+  "runId": "20261018T082526_4728b9df",
+  "algorithmVersion": "adaptive-rubbing-v2.1",
+  "inputImageSha256": "e59f12e90d4804a08e9db63523725223478986c9148b4a62c6012db0610971c2",
+  "workingImage": {
+    "sourceShape": [
+      1646,
+      1874
+    ],
+    "workingShape": [
+      1185,
+      1349
+    ],
+    "scale": 0.7202118829332675,
+    "interpolation": "INTER_AREA"
+  },
+  "randomSeed": 0,
+  "outputSha256": {
+    "original": "5532e85185cb30680e916770e609e5a56adcbe2e6e16a114b4653b986acbc6c3",
+    "restored": "5532e85185cb30680e916770e609e5a56adcbe2e6e16a114b4653b986acbc6c3",
+    "frequency_spectrum": "c1c313dfd30cd4df41fae915c1ea1693866c9332b54947c9659ca71a06c924f9",
+    "character_skeleton": "bfceb40378ce9a848538ff981f6f605757cd77c024fd12f8d3e0afc877d24f49",
+    "binary_skeleton": "b64d7578994d25cf6257035273eeb20e339f2c713bef0cb167c7845261855e3c",
+    "contour": "85a678223b04b7d07fddc7b295e69dd06657981007b9ae1bde1c0f9ecda2aa7f",
+    "cinnabar_rubbing": "52e5bcad12ac997c7cd8b39aad181cce3c6a4812889fe81edfeda03dd2f3449c"
+  },
+  "imageRoles": {
+    "source": "immutable_source",
+    "original": "working_input",
+    "restored": "algorithm_output",
+    "cinnabar_rubbing": "artistic_display_not_evaluated"
+  },
+  "adaptiveDiagnostics": {
+    "version": "adaptive-rubbing-v2.1",
+    "features": {
+      "noiseSigmaMAD": 2.2239034175872803,
+      "residualMAD": 2,
+      "impulseFraction": 0,
+      "periodicPeaks": [],
+      "highFrequencyEnergyFraction": 0.00806000642478466,
+      "localContrastRMS": 20.336429595947266,
+      "gradientMean": 40.49921417236328,
+      "laplacianVariance": 47.032447814941406,
+      "darkFraction": 0.002586069380976063,
+      "brightFraction": 0.026851582513066408,
+      "dynamicRange": 178,
+      "thinStrokeRisk": 0.20140079637868197,
+      "note": "无参考诊断；噪声、模糊和笔画风险可能受真实石花/纸纹影响，不是修复准确率。"
+    },
+    "decisions": [
+      {
+        "operator": "skip_notch",
+        "reason": "未检出符合阈值的周期峰；不强行陷波"
+      },
+      {
+        "operator": "identity",
+        "reason": "残差证据弱；不锐化、不强制CLAHE/形态学"
+      }
+    ],
+    "fidelityGate": {
+      "accepted": true,
+      "strongEdgeRetention": 1,
+      "meanAbsoluteChange": 0,
+      "contrastRatio": 1,
+      "reasons": [],
+      "basis": "输入输出启发式保真门控，非质量真值"
+    },
+    "selectedOutput": "candidate",
+    "limitations": "不补全遮挡/剥落，不识别或重绘缺失笔画；无真值不计算修复准确率。"
+  },
+  "algorithmParameters": {
+    "stele_id": "tang_01_duobao",
+    "sample_id": null,
+    "d0": 45,
+    "filter_order": 2,
+    "filter_type": "adaptive",
+    "h_nlm": 10,
+    "clahe_clip": 2.5,
+    "morph_kernel": 3,
+    "cinnabar_style": "cinnabar",
+    "random_seed": 0
+  },
+  "startedAt": "2026-10-18T08:25:23.481762+00:00",
+  "finishedAt": "2026-10-18T08:25:26.553444+00:00",
+  "processingTimeMs": 2025.4,
+  "outputImages": {
+    "original": "/static/results/tang_01_duobao/20261018T082526_4728b9df/original.png",
+    "restored": "/static/results/tang_01_duobao/20261018T082526_4728b9df/restored.png",
+    "frequency_spectrum": "/static/results/tang_01_duobao/20261018T082526_4728b9df/frequency_spectrum.png",
+    "character_skeleton": "/static/results/tang_01_duobao/20261018T082526_4728b9df/character_skeleton.png",
+    "binary_skeleton": "/static/results/tang_01_duobao/20261018T082526_4728b9df/binary_skeleton.png",
+    "contour": "/static/results/tang_01_duobao/20261018T082526_4728b9df/contour.png",
+    "cinnabar_rubbing": "/static/results/tang_01_duobao/20261018T082526_4728b9df/cinnabar_rubbing.png"
+  },
+  "evaluationStatus": "unassessed",
+  "evaluationMetrics": {
+    "psnr": null,
+    "ssim": null
+  },
+  "diagnosticMetrics": {
+    "isolated_bright_pixel_change_percent": 0,
+    "tenengrad_change_percent": 0,
+    "input_output_mean_absolute_difference": 0
+  },
+  "inferenceRecords": [
+    {
+      "inferenceId": "cf252ac78a7c46c7a6da2d17d7c9ebdb",
+      "steleId": "tang_01_duobao",
+      "runId": "20261018T082526_4728b9df",
+      "characterId": "c12",
+      "originalGlyph": "感",
+      "originalStatus": "clear",
+      "bbox": {
+        "x": 337,
+        "y": 296,
+        "w": 203,
+        "h": 237
+      },
+      "roi": {
+        "imageBBox": {
+          "x": 337,
+          "y": 296,
+          "w": 203,
+          "h": 237
+        },
+        "mappedSourceBBox": {
+          "x": 468,
+          "y": 411,
+          "w": 282,
+          "h": 329
+        },
+        "mappedInsideSource": true,
+        "cropWidth": 203,
+        "cropHeight": 237,
+        "scaleFromSource": 1.3891771682727947
+      },
+      "context": "",
+      "inputImageSha256": "e59f12e90d4804a08e9db63523725223478986c9148b4a62c6012db0610971c2",
+      "selectedImageSha256": "5532e85185cb30680e916770e609e5a56adcbe2e6e16a114b4653b986acbc6c3",
+      "imageProvenance": {
+        "imageSource": "restored",
+        "steleId": "tang_01_duobao",
+        "runId": "20261018T082526_4728b9df",
+        "sourceRole": "algorithm_output",
+        "inputImageSha256": "e59f12e90d4804a08e9db63523725223478986c9148b4a62c6012db0610971c2",
+        "selectedImageSha256": "5532e85185cb30680e916770e609e5a56adcbe2e6e16a114b4653b986acbc6c3",
+        "outputImageSha256": "5532e85185cb30680e916770e609e5a56adcbe2e6e16a114b4653b986acbc6c3",
+        "imageWidth": 1349,
+        "imageHeight": 1185,
+        "scaleFromSource": 0.7202118829332675,
+        "sourceShape": [
+          1646,
+          1874
+        ],
+        "workingShape": [
+          1185,
+          1349
+        ],
+        "interpolation": "INTER_AREA",
+        "runOwnership": "verified",
+        "algorithmVersion": "adaptive-rubbing-v2.1",
+        "coordinateSpace": "selected_image_pixels"
+      },
+      "cropSha256": "4e6cbc4c3fea8b67393f5e63bb03d5b7a6725d9d4bc0c66df5338e715348522c",
+      "cropUrl": "/api/inferences/cf252ac78a7c46c7a6da2d17d7c9ebdb/crop",
+      "source": "unavailable",
+      "model": null,
+      "candidates": [],
+      "note": "无可核实候选；请提供更充分的上下文或配置可选视觉模型。",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+      "status": "human_rejected",
+      "adoptedGlyph": null,
+      "decisions": [
+        {
+          "action": "reject",
+          "glyph": null,
+          "at": "2026-10-18T08:25:27.577115+00:00",
+          "actor": "local_user"
+        }
+      ],
+      "createdAt": "2026-10-18T08:25:27.504926+00:00",
+      "visualAnalysis": {
+        "version": "glyph-shape-v2.1",
+        "foregroundPolarity": "bright",
+        "contentBox": [
+          0,
+          0,
+          203,
+          237
+        ],
+        "characterRegion": [
+          104,
+          38,
+          77,
+          102
+        ],
+        "largestComponentFraction": 0.41998468606431855,
+        "foregroundFraction": 0.10858223691047786,
+        "componentCount": 10,
+        "skeletonPixels": 684,
+        "endpointCount": 34,
+        "branchCount": 53,
+        "localGapCount": 1,
+        "horizontalStrokeDistribution": [
+          0.01016399575980545,
+          0.01802082683793727,
+          0.014466546112115732
+        ],
+        "borderForegroundFraction": 0.14772727272727273,
+        "noisePixelCount": 13,
+        "rejectRecognition": false,
+        "warnings": [
+          "前景触及选区边缘，可能裁断字符或包含邻字",
+          "字迹包围盒内存在局部空缺，不能把空缺补成笔画"
+        ],
+        "identityStatus": "未识别；骨架、连通域和空缺只描述选区结构，不是汉字身份或完整度真值。"
+      },
+      "analysisImages": {
+        "gray": "/api/inferences/cf252ac78a7c46c7a6da2d17d7c9ebdb/analysis/gray",
+        "foreground": "/api/inferences/cf252ac78a7c46c7a6da2d17d7c9ebdb/analysis/foreground",
+        "skeleton": "/api/inferences/cf252ac78a7c46c7a6da2d17d7c9ebdb/analysis/skeleton",
+        "noise": "/api/inferences/cf252ac78a7c46c7a6da2d17d7c9ebdb/analysis/noise"
+      },
+      "retrievalCandidates": []
+    }
+  ],
+  "sourceRecords": [
+    {
+      "title": "多宝塔感应碑",
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+      "license": "CC BY 4.0"
+    }
+  ],
+  "experiment": {
+    "experimentId": "heldout-v20-v21-2026-10-18",
+    "displayName": "同批复测 v2.1（v2.0 对照，2026-10-18）",
+    "directory": "2026-10-18-v21-heldout",
+    "kind": "retest",
+    "filters": {
+      "split": "none",
+      "degradation": "all",
+      "method": "adaptive_v21",
+      "sample": null,
+      "caseId": null
+    },
+    "conclusion": {
+      "method": "adaptive_v21",
+      "deltaPsnr": 4.636513418122177,
+      "ci95": [
+        3.35868891400945,
+        5.675373288985854
+      ],
+      "nArtifacts": 14,
+      "scope": "all",
+      "grade": "有限支持",
+      "gradeReasons": [
+        "只在受控退化上成立（参考图是可读 JPG 裁切，不是碑石真值）",
+        "样本参与过 v2.1 的误差分析（同批复测）",
+        "本批未划分 dev/test",
+        "无法判定原图返回，主数字含全部记录"
+      ]
+    },
+    "deltaByMethod": [
+      {
+        "metric": "psnr",
+        "items": [
+          {
+            "method": "gaussian_lowpass",
+            "value": -1.280012579875401,
+            "ci95": [
+              -1.9409187941058104,
+              -0.5602159118538461
+            ],
+            "nArtifacts": 14,
+            "nRecords": 70,
+            "n": 70,
+            "processedN": 0,
+            "passthroughN": 0,
+            "undeterminedN": 70,
+            "negativeN": 44,
+            "meanAllIncludingPassthrough": -1.280012579875401
+          },
+          {
+            "method": "butterworth_lowpass",
+            "value": -1.7893348012242025,
+            "ci95": [
+              -2.556858776355478,
+              -0.9188442049919802
+            ],
+            "nArtifacts": 14,
+            "nRecords": 70,
+            "n": 70,
+            "processedN": 0,
+            "passthroughN": 0,
+            "undeterminedN": 70,
+            "negativeN": 48,
+            "meanAllIncludingPassthrough": -1.7893348012242025
+          },
+          {
+            "method": "notch",
+            "value": 1.9326665919167938,
+            "ci95": [
+              0.88315380019587,
+              2.87025234742597
+            ],
+            "nArtifacts": 14,
+            "nRecords": 70,
+            "n": 70,
+            "processedN": 0,
+            "passthroughN": 0,
+            "undeterminedN": 70,
+            "negativeN": 34,
+            "meanAllIncludingPassthrough": 1.9326665919167938
+          },
+          {
+            "method": "fast_nlm",
+            "value": -0.858013953490984,
+            "ci95": [
+              -1.3683440944027123,
+              -0.4347849530444322
+            ],
+            "nArtifacts": 14,
+            "nRecords": 70,
+            "n": 70,
+            "processedN": 0,
+            "passthroughN": 0,
+            "undeterminedN": 70,
+            "negativeN": 39,
+            "meanAllIncludingPassthrough": -0.858013953490984
+          },
+          {
+            "method": "adaptive_v20",
+            "value": 2.998284577684045,
+            "ci95": [
+              1.255384864058596,
+              4.658342947555483
+            ],
+            "nArtifacts": 14,
+            "nRecords": 70,
+            "n": 70,
+            "processedN": 0,
+            "passthroughN": 0,
+            "undeterminedN": 70,
+            "negativeN": 15,
+            "meanAllIncludingPassthrough": 2.998284577684045
+          },
+          {
+            "method": "adaptive_v21",
+            "value": 4.636513418122177,
+            "ci95": [
+              3.35868891400945,
+              5.675373288985854
+            ],
+            "nArtifacts": 14,
+            "nRecords": 70,
+            "n": 70,
+            "processedN": 0,
+            "passthroughN": 0,
+            "undeterminedN": 70,
+            "negativeN": 16,
+            "meanAllIncludingPassthrough": 4.636513418122177
+          }
+        ]
+      },
+      {
+        "metric": "ssim",
+        "items": [
+          {
+            "method": "gaussian_lowpass",
+            "value": -0.026995143114983106,
+            "ci95": [
+              -0.058039646765562704,
+              0.004137280586125783
+            ],
+            "nArtifacts": 14,
+            "nRecords": 70,
+            "n": 70,
+            "processedN": 0,
+            "passthroughN": 0,
+            "undeterminedN": 70,
+            "negativeN": 53,
+            "meanAllIncludingPassthrough": -0.026995143114983106
+          },
+          {
+            "method": "butterworth_lowpass",
+            "value": -0.051442528179045606,
+            "ci95": [
+              -0.09113731239085747,
+              -0.011012612604969028
+            ],
+            "nArtifacts": 14,
+            "nRecords": 70,
+            "n": 70,
+            "processedN": 0,
+            "passthroughN": 0,
+            "undeterminedN": 70,
+            "negativeN": 56,
+            "meanAllIncludingPassthrough": -0.051442528179045606
+          },
+          {
+            "method": "notch",
+            "value": 0.058388035213236114,
+            "ci95": [
+              0.04247091661950299,
+              0.07761131576539566
+            ],
+            "nArtifacts": 14,
+            "nRecords": 70,
+            "n": 70,
+            "processedN": 0,
+            "passthroughN": 0,
+            "undeterminedN": 70,
+            "negativeN": 37,
+            "meanAllIncludingPassthrough": 0.058388035213236114
+          },
+          {
+            "method": "fast_nlm",
+            "value": -0.03937756106270985,
+            "ci95": [
+              -0.05377640063280676,
+              -0.02772394339628278
+            ],
+            "nArtifacts": 14,
+            "nRecords": 70,
+            "n": 70,
+            "processedN": 0,
+            "passthroughN": 0,
+            "undeterminedN": 70,
+            "negativeN": 53,
+            "meanAllIncludingPassthrough": -0.03937756106270985
+          },
+          {
+            "method": "adaptive_v20",
+            "value": 0.07169783433053313,
+            "ci95": [
+              -0.005376854587130759,
+              0.14584568669640935
+            ],
+            "nArtifacts": 14,
+            "nRecords": 70,
+            "n": 70,
+            "processedN": 0,
+            "passthroughN": 0,
+            "undeterminedN": 70,
+            "negativeN": 22,
+            "meanAllIncludingPassthrough": 0.07169783433053313
+          },
+          {
+            "method": "adaptive_v21",
+            "value": 0.11626739945638455,
+            "ci95": [
+              0.07601347848075614,
+              0.16279857615697618
+            ],
+            "nArtifacts": 14,
+            "nRecords": 70,
+            "n": 70,
+            "processedN": 0,
+            "passthroughN": 0,
+            "undeterminedN": 70,
+            "negativeN": 15,
+            "meanAllIncludingPassthrough": 0.11626739945638455
+          }
+        ]
+      },
+      {
+        "metric": "edgeF1",
+        "items": [
+          {
+            "method": "gaussian_lowpass",
+            "value": -0.05168754362579638,
+            "ci95": [
+              -0.07231050940832794,
+              -0.027455729568439603
+            ],
+            "nArtifacts": 14,
+            "nRecords": 70,
+            "n": 70,
+            "processedN": 0,
+            "passthroughN": 0,
+            "undeterminedN": 70,
+            "negativeN": 60,
+            "meanAllIncludingPassthrough": -0.05168754362579638
+          },
+          {
+            "method": "butterworth_lowpass",
+            "value": -0.07585165534160662,
+            "ci95": [
+              -0.10334168198546147,
+              -0.044478587127852666
+            ],
+            "nArtifacts": 14,
+            "nRecords": 70,
+            "n": 70,
+            "processedN": 0,
+            "passthroughN": 0,
+            "undeterminedN": 70,
+            "negativeN": 61,
+            "meanAllIncludingPassthrough": -0.07585165534160662
+          },
+          {
+            "method": "notch",
+            "value": 0.05457337732155099,
+            "ci95": [
+              0.03830706273072644,
+              0.07185600310305953
+            ],
+            "nArtifacts": 14,
+            "nRecords": 70,
+            "n": 70,
+            "processedN": 0,
+            "passthroughN": 0,
+            "undeterminedN": 70,
+            "negativeN": 45,
+            "meanAllIncludingPassthrough": 0.05457337732155099
+          },
+          {
+            "method": "fast_nlm",
+            "value": -0.02511758022470828,
+            "ci95": [
+              -0.04008440405412753,
+              -0.008896202780407312
+            ],
+            "nArtifacts": 14,
+            "nRecords": 70,
+            "n": 70,
+            "processedN": 0,
+            "passthroughN": 0,
+            "undeterminedN": 70,
+            "negativeN": 46,
+            "meanAllIncludingPassthrough": -0.02511758022470828
+          },
+          {
+            "method": "adaptive_v20",
+            "value": 0.08420163742913081,
+            "ci95": [
+              0.005111944948258875,
+              0.16421771914089706
+            ],
+            "nArtifacts": 14,
+            "nRecords": 70,
+            "n": 70,
+            "processedN": 0,
+            "passthroughN": 0,
+            "undeterminedN": 70,
+            "negativeN": 21,
+            "meanAllIncludingPassthrough": 0.08420163742913081
+          },
+          {
+            "method": "adaptive_v21",
+            "value": 0.1260366810653414,
+            "ci95": [
+              0.0848925592821361,
+              0.1727655580945903
+            ],
+            "nArtifacts": 14,
+            "nRecords": 70,
+            "n": 70,
+            "processedN": 0,
+            "passthroughN": 0,
+            "undeterminedN": 70,
+            "negativeN": 14,
+            "meanAllIncludingPassthrough": 0.1260366810653414
+          }
+        ]
+      },
+      {
+        "metric": "thinStrokeMae",
+        "items": [
+          {
+            "method": "gaussian_lowpass",
+            "value": -5.068522846033531,
+            "ci95": [
+              -6.442280392135892,
+              -3.6514553555952647
+            ],
+            "nArtifacts": 14,
+            "nRecords": 70,
+            "n": 70,
+            "processedN": 0,
+            "passthroughN": 0,
+            "undeterminedN": 70,
+            "negativeN": 60,
+            "meanAllIncludingPassthrough": -5.068522846033531
+          },
+          {
+            "method": "butterworth_lowpass",
+            "value": -6.415159822548076,
+            "ci95": [
+              -8.094804220114437,
+              -4.724254628590175
+            ],
+            "nArtifacts": 14,
+            "nRecords": 70,
+            "n": 70,
+            "processedN": 0,
+            "passthroughN": 0,
+            "undeterminedN": 70,
+            "negativeN": 64,
+            "meanAllIncludingPassthrough": -6.415159822548076
+          },
+          {
+            "method": "notch",
+            "value": 1.9518173420269576,
+            "ci95": [
+              1.1085135861166886,
+              2.586759947878974
+            ],
+            "nArtifacts": 14,
+            "nRecords": 70,
+            "n": 70,
+            "processedN": 0,
+            "passthroughN": 0,
+            "undeterminedN": 70,
+            "negativeN": 48,
+            "meanAllIncludingPassthrough": 1.9518173420269576
+          },
+          {
+            "method": "fast_nlm",
+            "value": -0.849595500076456,
+            "ci95": [
+              -1.1722406195476653,
+              -0.5633576886994497
+            ],
+            "nArtifacts": 14,
+            "nRecords": 70,
+            "n": 70,
+            "processedN": 0,
+            "passthroughN": 0,
+            "undeterminedN": 70,
+            "negativeN": 53,
+            "meanAllIncludingPassthrough": -0.849595500076456
+          },
+          {
+            "method": "adaptive_v20",
+            "value": 1.8005507567099162,
+            "ci95": [
+              0.4434292601687568,
+              3.011284579549517
+            ],
+            "nArtifacts": 14,
+            "nRecords": 70,
+            "n": 70,
+            "processedN": 0,
+            "passthroughN": 0,
+            "undeterminedN": 70,
+            "negativeN": 20,
+            "meanAllIncludingPassthrough": 1.8005507567099162
+          },
+          {
+            "method": "adaptive_v21",
+            "value": 3.0789137738091603,
+            "ci95": [
+              2.3846796478543966,
+              3.6484446729932523
+            ],
+            "nArtifacts": 14,
+            "nRecords": 70,
+            "n": 70,
+            "processedN": 0,
+            "passthroughN": 0,
+            "undeterminedN": 70,
+            "negativeN": 15,
+            "meanAllIncludingPassthrough": 3.0789137738091603
+          }
+        ]
+      }
+    ],
+    "psnrPanelPresent": true,
+    "limitations": [
+      "每个朝代按馆藏清单取最后两件，中心 256 裁切，强度 1.0。清单在计分前确定，不按分数替换。",
+      "2026-10-17 v2 使用每朝代前两件。本批使用后两件，但仍是同一批 28 件阅读图，不是新的外部隐藏集。",
+      "配对对象是受控退化前的阅读图局部，不是原石真值。",
+      "本批次已保留真实数值，部分图像对比不可用"
+    ],
+    "notes": [],
+    "method": "Δ = 输出 − 同 case 退化输入（thinStrokeMae 取 输入 − 输出）；先按文物平均再跨文物平均；CI 为文物 bootstrap 1000 次，种子 20261019；原图返回判据：输出与输入 SHA-256 相同（前端兜底）。"
+  },
+  "glyphEvaluation": {
+    "status": "not_evaluated",
+    "top1": null,
+    "top3": null,
+    "verifiedLabels": 0,
+    "recordedLabels": 0,
+    "reason": "没有按碑刻分开的人工核验测试标注，不计算识别准确率。已记录的人工标注也不自动升为真值。"
+  },
+  "note": "无配对真值时，诊断变化量不代表修复质量；残字建议须经人工核实。"
+}

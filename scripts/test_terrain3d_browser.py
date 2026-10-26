@@ -21,6 +21,7 @@ import requests
 from playwright.sync_api import sync_playwright, expect
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 BACKEND_URL = os.environ.get('GRAPH_BACKEND_URL', '')
 FRONTEND_URL = os.environ.get('GRAPH_FRONTEND_URL', '')
 from scripts.browser_target import assert_safe_target
@@ -223,12 +224,12 @@ def main() -> int:
 
         page.get_by_role('button', name='图层', exact=True).click()
         page.get_by_label('省级行政边界', exact=True).uncheck()
-        page.get_by_label('真实主要水系', exact=True).uncheck()
+        page.get_by_label('主要河流水系', exact=True).uncheck()
         page.wait_for_timeout(900)
         expect(map_el).to_have_attribute('data-terrain-ready', 'true')
         page.locator('.map-region').screenshot(path=str(OUT / '06_关闭边界与水系.png'))
         page.get_by_label('省级行政边界', exact=True).check()
-        page.get_by_label('真实主要水系', exact=True).check()
+        page.get_by_label('主要河流水系', exact=True).check()
         page.get_by_label('地形垂直夸张').select_option('16')
         page.wait_for_timeout(900)
         assert abs(float(stats(page).get('exaggeration', 0)) - 16) < 0.6

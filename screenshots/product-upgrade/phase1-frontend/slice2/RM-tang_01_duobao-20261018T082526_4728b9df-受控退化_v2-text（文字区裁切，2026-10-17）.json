@@ -1,0 +1,1553 @@
+{
+  "reportId": "RM-tang_01_duobao-20261018T082526_4728b9df",
+  "exportedAt": "2026-10-19T13:09:36+08:00",
+  "view": "artifact",
+  "url": "http://127.0.0.1:5720/?tab=reports&steleId=tang_01_duobao&view=artifact&runId=20261018T082526_4728b9df&experimentId=controlled-rubbings-v2-text-2026-10-17&batch=2026-10-17-v2-text",
+  "stele": {
+    "id": "tang_01_duobao",
+    "title": "多宝塔感应碑",
+    "dynasty": "唐代",
+    "originalYear": "752年",
+    "rubbingPeriod": "未核定；不据拓印年改变朝代",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "贈拓000365",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+    "license": "CC BY 4.0"
+  },
+  "runId": "20261018T082526_4728b9df",
+  "runSelection": {
+    "rule": "explicit",
+    "runId": "20261018T082526_4728b9df",
+    "legacyRunCount": 0
+  },
+  "algorithmVersion": "adaptive-rubbing-v2.1",
+  "inputImageSha256": "e59f12e90d4804a08e9db63523725223478986c9148b4a62c6012db0610971c2",
+  "workingImage": {
+    "sourceShape": [
+      1646,
+      1874
+    ],
+    "workingShape": [
+      1185,
+      1349
+    ],
+    "scale": 0.7202118829332675,
+    "interpolation": "INTER_AREA"
+  },
+  "randomSeed": 0,
+  "outputSha256": {
+    "original": "5532e85185cb30680e916770e609e5a56adcbe2e6e16a114b4653b986acbc6c3",
+    "restored": "5532e85185cb30680e916770e609e5a56adcbe2e6e16a114b4653b986acbc6c3",
+    "frequency_spectrum": "c1c313dfd30cd4df41fae915c1ea1693866c9332b54947c9659ca71a06c924f9",
+    "character_skeleton": "bfceb40378ce9a848538ff981f6f605757cd77c024fd12f8d3e0afc877d24f49",
+    "binary_skeleton": "b64d7578994d25cf6257035273eeb20e339f2c713bef0cb167c7845261855e3c",
+    "contour": "85a678223b04b7d07fddc7b295e69dd06657981007b9ae1bde1c0f9ecda2aa7f",
+    "cinnabar_rubbing": "52e5bcad12ac997c7cd8b39aad181cce3c6a4812889fe81edfeda03dd2f3449c"
+  },
+  "imageRoles": {
+    "source": "immutable_source",
+    "original": "working_input",
+    "restored": "algorithm_output",
+    "cinnabar_rubbing": "artistic_display_not_evaluated"
+  },
+  "changeStatus": {
+    "isPassthrough": true,
+    "changedPixelCount": 0,
+    "changedPixelRatio": 0,
+    "maxAbsDiff": 0,
+    "passthroughCriterion": "pixel-equal-v1",
+    "passthroughSource": "computed-on-read",
+    "effectiveParameters": null
+  },
+  "evaluationSummary": "本次未改动原图：算法判断无需处理，输出与输入逐像素相同；没有配对真值，配对质量未评测。",
+  "adaptiveDiagnostics": {
+    "version": "adaptive-rubbing-v2.1",
+    "features": {
+      "noiseSigmaMAD": 2.2239034175872803,
+      "residualMAD": 2,
+      "impulseFraction": 0,
+      "periodicPeaks": [],
+      "highFrequencyEnergyFraction": 0.00806000642478466,
+      "localContrastRMS": 20.336429595947266,
+      "gradientMean": 40.49921417236328,
+      "laplacianVariance": 47.032447814941406,
+      "darkFraction": 0.002586069380976063,
+      "brightFraction": 0.026851582513066408,
+      "dynamicRange": 178,
+      "thinStrokeRisk": 0.20140079637868197,
+      "note": "无参考诊断；噪声、模糊和笔画风险可能受真实石花/纸纹影响，不是修复准确率。"
+    },
+    "decisions": [
+      {
+        "operator": "skip_notch",
+        "reason": "未检出符合阈值的周期峰；不强行陷波"
+      },
+      {
+        "operator": "identity",
+        "reason": "残差证据弱；不锐化、不强制CLAHE/形态学"
+      }
+    ],
+    "fidelityGate": {
+      "accepted": true,
+      "strongEdgeRetention": 1,
+      "meanAbsoluteChange": 0,
+      "contrastRatio": 1,
+      "reasons": [],
+      "basis": "输入输出启发式保真门控，非质量真值"
+    },
+    "selectedOutput": "candidate",
+    "limitations": "不补全遮挡/剥落，不识别或重绘缺失笔画；无真值不计算修复准确率。"
+  },
+  "algorithmParameters": {
+    "stele_id": "tang_01_duobao",
+    "sample_id": null,
+    "d0": 45,
+    "filter_order": 2,
+    "filter_type": "adaptive",
+    "h_nlm": 10,
+    "clahe_clip": 2.5,
+    "morph_kernel": 3,
+    "cinnabar_style": "cinnabar",
+    "random_seed": 0
+  },
+  "startedAt": "2026-10-18T08:25:23.481762+00:00",
+  "finishedAt": "2026-10-18T08:25:26.553444+00:00",
+  "processingTimeMs": 2025.4,
+  "outputImages": {
+    "original": "/static/results/tang_01_duobao/20261018T082526_4728b9df/original.png",
+    "restored": "/static/results/tang_01_duobao/20261018T082526_4728b9df/restored.png",
+    "frequency_spectrum": "/static/results/tang_01_duobao/20261018T082526_4728b9df/frequency_spectrum.png",
+    "character_skeleton": "/static/results/tang_01_duobao/20261018T082526_4728b9df/character_skeleton.png",
+    "binary_skeleton": "/static/results/tang_01_duobao/20261018T082526_4728b9df/binary_skeleton.png",
+    "contour": "/static/results/tang_01_duobao/20261018T082526_4728b9df/contour.png",
+    "cinnabar_rubbing": "/static/results/tang_01_duobao/20261018T082526_4728b9df/cinnabar_rubbing.png"
+  },
+  "evaluationStatus": "unassessed",
+  "evaluationMetrics": {
+    "psnr": null,
+    "ssim": null
+  },
+  "diagnosticMetrics": {
+    "isolated_bright_pixel_change_percent": 0,
+    "tenengrad_change_percent": 0,
+    "input_output_mean_absolute_difference": 0
+  },
+  "inferenceRecords": [
+    {
+      "inferenceId": "cf252ac78a7c46c7a6da2d17d7c9ebdb",
+      "steleId": "tang_01_duobao",
+      "runId": "20261018T082526_4728b9df",
+      "characterId": "c12",
+      "originalGlyph": "感",
+      "originalStatus": "clear",
+      "bbox": {
+        "x": 337,
+        "y": 296,
+        "w": 203,
+        "h": 237
+      },
+      "roi": {
+        "imageBBox": {
+          "x": 337,
+          "y": 296,
+          "w": 203,
+          "h": 237
+        },
+        "mappedSourceBBox": {
+          "x": 468,
+          "y": 411,
+          "w": 282,
+          "h": 329
+        },
+        "mappedInsideSource": true,
+        "cropWidth": 203,
+        "cropHeight": 237,
+        "scaleFromSource": 1.3891771682727947
+      },
+      "context": "",
+      "inputImageSha256": "e59f12e90d4804a08e9db63523725223478986c9148b4a62c6012db0610971c2",
+      "selectedImageSha256": "5532e85185cb30680e916770e609e5a56adcbe2e6e16a114b4653b986acbc6c3",
+      "imageProvenance": {
+        "imageSource": "restored",
+        "steleId": "tang_01_duobao",
+        "runId": "20261018T082526_4728b9df",
+        "sourceRole": "algorithm_output",
+        "inputImageSha256": "e59f12e90d4804a08e9db63523725223478986c9148b4a62c6012db0610971c2",
+        "selectedImageSha256": "5532e85185cb30680e916770e609e5a56adcbe2e6e16a114b4653b986acbc6c3",
+        "outputImageSha256": "5532e85185cb30680e916770e609e5a56adcbe2e6e16a114b4653b986acbc6c3",
+        "imageWidth": 1349,
+        "imageHeight": 1185,
+        "scaleFromSource": 0.7202118829332675,
+        "sourceShape": [
+          1646,
+          1874
+        ],
+        "workingShape": [
+          1185,
+          1349
+        ],
+        "interpolation": "INTER_AREA",
+        "runOwnership": "verified",
+        "algorithmVersion": "adaptive-rubbing-v2.1",
+        "coordinateSpace": "selected_image_pixels"
+      },
+      "cropSha256": "4e6cbc4c3fea8b67393f5e63bb03d5b7a6725d9d4bc0c66df5338e715348522c",
+      "cropUrl": "/api/inferences/cf252ac78a7c46c7a6da2d17d7c9ebdb/crop",
+      "source": "unavailable",
+      "model": null,
+      "candidates": [],
+      "note": "无可核实候选；请提供更充分的上下文或配置可选视觉模型。",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+      "status": "human_rejected",
+      "adoptedGlyph": null,
+      "decisions": [
+        {
+          "action": "reject",
+          "glyph": null,
+          "at": "2026-10-18T08:25:27.577115+00:00",
+          "actor": "local_user"
+        }
+      ],
+      "createdAt": "2026-10-18T08:25:27.504926+00:00",
+      "visualAnalysis": {
+        "version": "glyph-shape-v2.1",
+        "foregroundPolarity": "bright",
+        "contentBox": [
+          0,
+          0,
+          203,
+          237
+        ],
+        "characterRegion": [
+          104,
+          38,
+          77,
+          102
+        ],
+        "largestComponentFraction": 0.41998468606431855,
+        "foregroundFraction": 0.10858223691047786,
+        "componentCount": 10,
+        "skeletonPixels": 684,
+        "endpointCount": 34,
+        "branchCount": 53,
+        "localGapCount": 1,
+        "horizontalStrokeDistribution": [
+          0.01016399575980545,
+          0.01802082683793727,
+          0.014466546112115732
+        ],
+        "borderForegroundFraction": 0.14772727272727273,
+        "noisePixelCount": 13,
+        "rejectRecognition": false,
+        "warnings": [
+          "前景触及选区边缘，可能裁断字符或包含邻字",
+          "字迹包围盒内存在局部空缺，不能把空缺补成笔画"
+        ],
+        "identityStatus": "未识别；骨架、连通域和空缺只描述选区结构，不是汉字身份或完整度真值。"
+      },
+      "analysisImages": {
+        "gray": "/api/inferences/cf252ac78a7c46c7a6da2d17d7c9ebdb/analysis/gray",
+        "foreground": "/api/inferences/cf252ac78a7c46c7a6da2d17d7c9ebdb/analysis/foreground",
+        "skeleton": "/api/inferences/cf252ac78a7c46c7a6da2d17d7c9ebdb/analysis/skeleton",
+        "noise": "/api/inferences/cf252ac78a7c46c7a6da2d17d7c9ebdb/analysis/noise"
+      },
+      "retrievalCandidates": [],
+      "sourceSteleId": "tang_01_duobao"
+    }
+  ],
+  "sourceRecords": [
+    {
+      "title": "多宝塔感应碑",
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+      "license": "CC BY 4.0"
+    }
+  ],
+  "experiment": {
+    "experimentId": "controlled-rubbings-v2-text-2026-10-17",
+    "name": "受控退化 v2-text（文字区裁切，2026-10-17）",
+    "directory": "2026-10-17-v2-text",
+    "kind": "controlled",
+    "filters": {
+      "split": "test",
+      "degradation": "all",
+      "method": "adaptive_joint",
+      "sample": null,
+      "caseId": "wei_04_wangsong_gaussian_1",
+      "caseSelection": "median"
+    },
+    "appliedStatusSource": "agent/eval-sci 只读副本：experiments/results/2026-10-17-v2-text/derived/applied_status.json",
+    "ciSource": "agent/eval-sci 只读副本：experiments/results/2026-10-17-v2-text/derived/ci_by_artifact.json",
+    "conclusion": {
+      "method": "adaptive_joint",
+      "primaryScope": "processed",
+      "scopes": {
+        "all": {
+          "scope": "all",
+          "value": 2.0932144447462178,
+          "ci": [
+            0.780616436847621,
+            3.484169358331826
+          ],
+          "ciReliable": true,
+          "sign": "positive",
+          "nArtifacts": 7,
+          "nRecords": 70,
+          "ciSource": "ci_by_artifact",
+          "ciNote": null,
+          "points": [
+            {
+              "sampleId": "han_04_shichen",
+              "value": 5.270009952479167
+            },
+            {
+              "sampleId": "wei_04_wangsong",
+              "value": 1.071277110905466
+            },
+            {
+              "sampleId": "tang_04_xuanmita",
+              "value": 4.201925470126659
+            },
+            {
+              "sampleId": "song_04_mengying",
+              "value": 1.1539677173127825
+            },
+            {
+              "sampleId": "yuan_04_jingyuanchang",
+              "value": -0.14966784579172804
+            },
+            {
+              "sampleId": "ming_04_tongdian",
+              "value": 2.3081951662865468
+            },
+            {
+              "sampleId": "qing_04_ayuwang_reliquary",
+              "value": 0.7967935419046299
+            }
+          ]
+        },
+        "processed": {
+          "scope": "processed",
+          "value": 3.533995926783443,
+          "ci": [
+            1.1136944407551312,
+            6.361223357777938
+          ],
+          "ciReliable": true,
+          "sign": "positive",
+          "nArtifacts": 7,
+          "nRecords": 47,
+          "ciSource": "ci_by_artifact",
+          "ciNote": null,
+          "points": [
+            {
+              "sampleId": "han_04_shichen",
+              "value": 10.540019904958333
+            },
+            {
+              "sampleId": "wei_04_wangsong",
+              "value": 1.5303958727220943
+            },
+            {
+              "sampleId": "tang_04_xuanmita",
+              "value": 7.003209116877765
+            },
+            {
+              "sampleId": "song_04_mengying",
+              "value": 1.442459646640978
+            },
+            {
+              "sampleId": "yuan_04_jingyuanchang",
+              "value": -0.21381120827389719
+            },
+            {
+              "sampleId": "ming_04_tongdian",
+              "value": 3.2974216661236384
+            },
+            {
+              "sampleId": "qing_04_ayuwang_reliquary",
+              "value": 1.1382764884351855
+            }
+          ]
+        },
+        "passthrough": {
+          "scope": "passthrough",
+          "value": 0,
+          "ci": [
+            0,
+            0
+          ],
+          "ciReliable": true,
+          "sign": "zero",
+          "nArtifacts": 7,
+          "nRecords": 23,
+          "ciSource": "ci_by_artifact",
+          "ciNote": null,
+          "points": [
+            {
+              "sampleId": "han_04_shichen",
+              "value": 0
+            },
+            {
+              "sampleId": "wei_04_wangsong",
+              "value": 0
+            },
+            {
+              "sampleId": "tang_04_xuanmita",
+              "value": 0
+            },
+            {
+              "sampleId": "song_04_mengying",
+              "value": 0
+            },
+            {
+              "sampleId": "yuan_04_jingyuanchang",
+              "value": 0
+            },
+            {
+              "sampleId": "ming_04_tongdian",
+              "value": 0
+            },
+            {
+              "sampleId": "qing_04_ayuwang_reliquary",
+              "value": 0
+            }
+          ]
+        }
+      },
+      "n": 70,
+      "processedN": 47,
+      "passthroughN": 23,
+      "undeterminedN": 0,
+      "grade": "有限支持",
+      "gradeReasons": [
+        "只在受控退化上成立（参考图是可读 JPG 裁切，不是碑石真值）",
+        "n_文物=7<10"
+      ]
+    },
+    "deltaByMethod": [
+      {
+        "metric": "psnr",
+        "items": [
+          {
+            "method": "gaussian_lowpass",
+            "primaryScope": "processed",
+            "all": {
+              "value": -1.3846988176795365,
+              "ci95": [
+                -2.42499633759464,
+                -0.29301775249787926
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "processed": {
+              "value": -1.3846988176795365,
+              "ci95": [
+                -2.42499633759464,
+                -0.29301775249787926
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "passthrough": {
+              "value": null,
+              "ci95": null,
+              "ciReliable": false,
+              "sign": null,
+              "nArtifacts": 0,
+              "nRecords": 0,
+              "ciSource": "ci_by_artifact",
+              "ciNote": "空组"
+            },
+            "n": 70,
+            "processedN": 70,
+            "passthroughN": 0,
+            "undeterminedN": 0,
+            "negativeProcessedN": 43
+          },
+          {
+            "method": "butterworth_lowpass",
+            "primaryScope": "processed",
+            "all": {
+              "value": -1.951045203367839,
+              "ci95": [
+                -3.167103519089711,
+                -0.6838339009915163
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "processed": {
+              "value": -1.951045203367839,
+              "ci95": [
+                -3.167103519089711,
+                -0.6838339009915163
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "passthrough": {
+              "value": null,
+              "ci95": null,
+              "ciReliable": false,
+              "sign": null,
+              "nArtifacts": 0,
+              "nRecords": 0,
+              "ciSource": "ci_by_artifact",
+              "ciNote": "空组"
+            },
+            "n": 70,
+            "processedN": 70,
+            "passthroughN": 0,
+            "undeterminedN": 0,
+            "negativeProcessedN": 49
+          },
+          {
+            "method": "notch",
+            "primaryScope": "processed",
+            "all": {
+              "value": 2.547696638949414,
+              "ci95": [
+                1.665146903516361,
+                3.2193288350746685
+              ],
+              "ciReliable": true,
+              "sign": "positive",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "processed": {
+              "value": 2.547696638949414,
+              "ci95": [
+                1.665146903516361,
+                3.2193288350746685
+              ],
+              "ciReliable": true,
+              "sign": "positive",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "passthrough": {
+              "value": null,
+              "ci95": null,
+              "ciReliable": false,
+              "sign": null,
+              "nArtifacts": 0,
+              "nRecords": 0,
+              "ciSource": "ci_by_artifact",
+              "ciNote": "空组"
+            },
+            "n": 70,
+            "processedN": 70,
+            "passthroughN": 0,
+            "undeterminedN": 0,
+            "negativeProcessedN": 33
+          },
+          {
+            "method": "fast_nlm",
+            "primaryScope": "processed",
+            "all": {
+              "value": -0.9024803072642404,
+              "ci95": [
+                -1.301889780765157,
+                -0.4725006401334105
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "processed": {
+              "value": -0.9024803072642404,
+              "ci95": [
+                -1.301889780765157,
+                -0.4725006401334105
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "passthrough": {
+              "value": null,
+              "ci95": null,
+              "ciReliable": false,
+              "sign": null,
+              "nArtifacts": 0,
+              "nRecords": 0,
+              "ciSource": "ci_by_artifact",
+              "ciNote": "空组"
+            },
+            "n": 70,
+            "processedN": 70,
+            "passthroughN": 0,
+            "undeterminedN": 0,
+            "negativeProcessedN": 44
+          },
+          {
+            "method": "morphology",
+            "primaryScope": "processed",
+            "all": {
+              "value": -6.088115781723973,
+              "ci95": [
+                -7.854445092556445,
+                -4.255667756287892
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "processed": {
+              "value": -6.088115781723973,
+              "ci95": [
+                -7.854445092556445,
+                -4.255667756287892
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "passthrough": {
+              "value": null,
+              "ci95": null,
+              "ciReliable": false,
+              "sign": null,
+              "nArtifacts": 0,
+              "nRecords": 0,
+              "ciSource": "ci_by_artifact",
+              "ciNote": "空组"
+            },
+            "n": 70,
+            "processedN": 70,
+            "passthroughN": 0,
+            "undeterminedN": 0,
+            "negativeProcessedN": 64
+          },
+          {
+            "method": "nlm_clahe",
+            "primaryScope": "processed",
+            "all": {
+              "value": -7.748952046040279,
+              "ci95": [
+                -8.71615634651093,
+                -6.928969735238676
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "processed": {
+              "value": -7.748952046040279,
+              "ci95": [
+                -8.71615634651093,
+                -6.928969735238676
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "passthrough": {
+              "value": null,
+              "ci95": null,
+              "ciReliable": false,
+              "sign": null,
+              "nArtifacts": 0,
+              "nRecords": 0,
+              "ciSource": "ci_by_artifact",
+              "ciNote": "空组"
+            },
+            "n": 70,
+            "processedN": 70,
+            "passthroughN": 0,
+            "undeterminedN": 0,
+            "negativeProcessedN": 70
+          },
+          {
+            "method": "joint",
+            "primaryScope": "processed",
+            "all": {
+              "value": -5.875389538796072,
+              "ci95": [
+                -7.023874806001598,
+                -4.6288492791780245
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "processed": {
+              "value": -5.875389538796072,
+              "ci95": [
+                -7.023874806001598,
+                -4.6288492791780245
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "passthrough": {
+              "value": null,
+              "ci95": null,
+              "ciReliable": false,
+              "sign": null,
+              "nArtifacts": 0,
+              "nRecords": 0,
+              "ciSource": "ci_by_artifact",
+              "ciNote": "空组"
+            },
+            "n": 70,
+            "processedN": 70,
+            "passthroughN": 0,
+            "undeterminedN": 0,
+            "negativeProcessedN": 60
+          },
+          {
+            "method": "adaptive_joint",
+            "primaryScope": "processed",
+            "all": {
+              "value": 2.0932144447462178,
+              "ci95": [
+                0.780616436847621,
+                3.484169358331826
+              ],
+              "ciReliable": true,
+              "sign": "positive",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "processed": {
+              "value": 3.533995926783443,
+              "ci95": [
+                1.1136944407551312,
+                6.361223357777938
+              ],
+              "ciReliable": true,
+              "sign": "positive",
+              "nArtifacts": 7,
+              "nRecords": 47,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "passthrough": {
+              "value": 0,
+              "ci95": [
+                0,
+                0
+              ],
+              "ciReliable": true,
+              "sign": "zero",
+              "nArtifacts": 7,
+              "nRecords": 23,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "n": 70,
+            "processedN": 47,
+            "passthroughN": 23,
+            "undeterminedN": 0,
+            "negativeProcessedN": 16
+          }
+        ]
+      },
+      {
+        "metric": "ssim",
+        "items": [
+          {
+            "method": "gaussian_lowpass",
+            "primaryScope": "processed",
+            "all": {
+              "value": -0.023869821509065907,
+              "ci95": [
+                -0.05393493549769007,
+                0.005609221114607232
+              ],
+              "ciReliable": true,
+              "sign": "spans_zero",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "processed": {
+              "value": -0.023869821509065907,
+              "ci95": [
+                -0.05393493549769007,
+                0.005609221114607232
+              ],
+              "ciReliable": true,
+              "sign": "spans_zero",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "passthrough": {
+              "value": null,
+              "ci95": null,
+              "ciReliable": false,
+              "sign": null,
+              "nArtifacts": 0,
+              "nRecords": 0,
+              "ciSource": "ci_by_artifact",
+              "ciNote": "空组"
+            },
+            "n": 70,
+            "processedN": 70,
+            "passthroughN": 0,
+            "undeterminedN": 0,
+            "negativeProcessedN": 48
+          },
+          {
+            "method": "butterworth_lowpass",
+            "primaryScope": "processed",
+            "all": {
+              "value": -0.048926082458785505,
+              "ci95": [
+                -0.08738631813475949,
+                -0.01095410309785184
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "processed": {
+              "value": -0.048926082458785505,
+              "ci95": [
+                -0.08738631813475949,
+                -0.01095410309785184
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "passthrough": {
+              "value": null,
+              "ci95": null,
+              "ciReliable": false,
+              "sign": null,
+              "nArtifacts": 0,
+              "nRecords": 0,
+              "ciSource": "ci_by_artifact",
+              "ciNote": "空组"
+            },
+            "n": 70,
+            "processedN": 70,
+            "passthroughN": 0,
+            "undeterminedN": 0,
+            "negativeProcessedN": 55
+          },
+          {
+            "method": "notch",
+            "primaryScope": "processed",
+            "all": {
+              "value": 0.0629430346047778,
+              "ci95": [
+                0.0489722971795516,
+                0.07920706698015166
+              ],
+              "ciReliable": true,
+              "sign": "positive",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "processed": {
+              "value": 0.0629430346047778,
+              "ci95": [
+                0.0489722971795516,
+                0.07920706698015166
+              ],
+              "ciReliable": true,
+              "sign": "positive",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "passthrough": {
+              "value": null,
+              "ci95": null,
+              "ciReliable": false,
+              "sign": null,
+              "nArtifacts": 0,
+              "nRecords": 0,
+              "ciSource": "ci_by_artifact",
+              "ciNote": "空组"
+            },
+            "n": 70,
+            "processedN": 70,
+            "passthroughN": 0,
+            "undeterminedN": 0,
+            "negativeProcessedN": 38
+          },
+          {
+            "method": "fast_nlm",
+            "primaryScope": "processed",
+            "all": {
+              "value": -0.057048530063590876,
+              "ci95": [
+                -0.08031483247697666,
+                -0.03717543380115378
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "processed": {
+              "value": -0.057048530063590876,
+              "ci95": [
+                -0.08031483247697666,
+                -0.03717543380115378
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "passthrough": {
+              "value": null,
+              "ci95": null,
+              "ciReliable": false,
+              "sign": null,
+              "nArtifacts": 0,
+              "nRecords": 0,
+              "ciSource": "ci_by_artifact",
+              "ciNote": "空组"
+            },
+            "n": 70,
+            "processedN": 70,
+            "passthroughN": 0,
+            "undeterminedN": 0,
+            "negativeProcessedN": 55
+          },
+          {
+            "method": "morphology",
+            "primaryScope": "processed",
+            "all": {
+              "value": -0.23286790388184705,
+              "ci95": [
+                -0.3308382708378899,
+                -0.12842077609502364
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "processed": {
+              "value": -0.23286790388184705,
+              "ci95": [
+                -0.3308382708378899,
+                -0.12842077609502364
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "passthrough": {
+              "value": null,
+              "ci95": null,
+              "ciReliable": false,
+              "sign": null,
+              "nArtifacts": 0,
+              "nRecords": 0,
+              "ciSource": "ci_by_artifact",
+              "ciNote": "空组"
+            },
+            "n": 70,
+            "processedN": 70,
+            "passthroughN": 0,
+            "undeterminedN": 0,
+            "negativeProcessedN": 64
+          },
+          {
+            "method": "nlm_clahe",
+            "primaryScope": "processed",
+            "all": {
+              "value": -0.14020718806070653,
+              "ci95": [
+                -0.1578235846084035,
+                -0.12312170360674703
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "processed": {
+              "value": -0.14020718806070653,
+              "ci95": [
+                -0.1578235846084035,
+                -0.12312170360674703
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "passthrough": {
+              "value": null,
+              "ci95": null,
+              "ciReliable": false,
+              "sign": null,
+              "nArtifacts": 0,
+              "nRecords": 0,
+              "ciSource": "ci_by_artifact",
+              "ciNote": "空组"
+            },
+            "n": 70,
+            "processedN": 70,
+            "passthroughN": 0,
+            "undeterminedN": 0,
+            "negativeProcessedN": 67
+          },
+          {
+            "method": "joint",
+            "primaryScope": "processed",
+            "all": {
+              "value": -0.21869861801502077,
+              "ci95": [
+                -0.29356105522816045,
+                -0.14734416481074436
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "processed": {
+              "value": -0.21869861801502077,
+              "ci95": [
+                -0.29356105522816045,
+                -0.14734416481074436
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "passthrough": {
+              "value": null,
+              "ci95": null,
+              "ciReliable": false,
+              "sign": null,
+              "nArtifacts": 0,
+              "nRecords": 0,
+              "ciSource": "ci_by_artifact",
+              "ciNote": "空组"
+            },
+            "n": 70,
+            "processedN": 70,
+            "passthroughN": 0,
+            "undeterminedN": 0,
+            "negativeProcessedN": 64
+          },
+          {
+            "method": "adaptive_joint",
+            "primaryScope": "processed",
+            "all": {
+              "value": 0.05878784867706122,
+              "ci95": [
+                0.015600734485625866,
+                0.1057118003795911
+              ],
+              "ciReliable": true,
+              "sign": "positive",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "processed": {
+              "value": 0.10203539213580168,
+              "ci95": [
+                0.021317894997963802,
+                0.19897692905287376
+              ],
+              "ciReliable": true,
+              "sign": "positive",
+              "nArtifacts": 7,
+              "nRecords": 47,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "passthrough": {
+              "value": 0,
+              "ci95": [
+                0,
+                0
+              ],
+              "ciReliable": true,
+              "sign": "zero",
+              "nArtifacts": 7,
+              "nRecords": 23,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "n": 70,
+            "processedN": 47,
+            "passthroughN": 23,
+            "undeterminedN": 0,
+            "negativeProcessedN": 18
+          }
+        ]
+      },
+      {
+        "metric": "edgeF1",
+        "items": [
+          {
+            "method": "gaussian_lowpass",
+            "primaryScope": "processed",
+            "all": {
+              "value": -0.05312913448181873,
+              "ci95": [
+                -0.07710682505371706,
+                -0.02999011890061199
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "processed": {
+              "value": -0.05312913448181873,
+              "ci95": [
+                -0.07710682505371706,
+                -0.02999011890061199
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "passthrough": {
+              "value": null,
+              "ci95": null,
+              "ciReliable": false,
+              "sign": null,
+              "nArtifacts": 0,
+              "nRecords": 0,
+              "ciSource": "ci_by_artifact",
+              "ciNote": "空组"
+            },
+            "n": 70,
+            "processedN": 70,
+            "passthroughN": 0,
+            "undeterminedN": 0,
+            "negativeProcessedN": 52
+          },
+          {
+            "method": "butterworth_lowpass",
+            "primaryScope": "processed",
+            "all": {
+              "value": -0.0843818024495693,
+              "ci95": [
+                -0.11362504781930734,
+                -0.05651678423707697
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "processed": {
+              "value": -0.0843818024495693,
+              "ci95": [
+                -0.11362504781930734,
+                -0.05651678423707697
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "passthrough": {
+              "value": null,
+              "ci95": null,
+              "ciReliable": false,
+              "sign": null,
+              "nArtifacts": 0,
+              "nRecords": 0,
+              "ciSource": "ci_by_artifact",
+              "ciNote": "空组"
+            },
+            "n": 70,
+            "processedN": 70,
+            "passthroughN": 0,
+            "undeterminedN": 0,
+            "negativeProcessedN": 54
+          },
+          {
+            "method": "notch",
+            "primaryScope": "processed",
+            "all": {
+              "value": 0.06636694088007071,
+              "ci95": [
+                0.04955560832901139,
+                0.08600855663694833
+              ],
+              "ciReliable": true,
+              "sign": "positive",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "processed": {
+              "value": 0.06636694088007071,
+              "ci95": [
+                0.04955560832901139,
+                0.08600855663694833
+              ],
+              "ciReliable": true,
+              "sign": "positive",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "passthrough": {
+              "value": null,
+              "ci95": null,
+              "ciReliable": false,
+              "sign": null,
+              "nArtifacts": 0,
+              "nRecords": 0,
+              "ciSource": "ci_by_artifact",
+              "ciNote": "空组"
+            },
+            "n": 70,
+            "processedN": 70,
+            "passthroughN": 0,
+            "undeterminedN": 0,
+            "negativeProcessedN": 44
+          },
+          {
+            "method": "fast_nlm",
+            "primaryScope": "processed",
+            "all": {
+              "value": -0.020035072781489978,
+              "ci95": [
+                -0.04088977412525892,
+                0.00190526553563119
+              ],
+              "ciReliable": true,
+              "sign": "spans_zero",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "processed": {
+              "value": -0.020035072781489978,
+              "ci95": [
+                -0.04088977412525892,
+                0.00190526553563119
+              ],
+              "ciReliable": true,
+              "sign": "spans_zero",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "passthrough": {
+              "value": null,
+              "ci95": null,
+              "ciReliable": false,
+              "sign": null,
+              "nArtifacts": 0,
+              "nRecords": 0,
+              "ciSource": "ci_by_artifact",
+              "ciNote": "空组"
+            },
+            "n": 70,
+            "processedN": 70,
+            "passthroughN": 0,
+            "undeterminedN": 0,
+            "negativeProcessedN": 45
+          },
+          {
+            "method": "morphology",
+            "primaryScope": "processed",
+            "all": {
+              "value": -0.24270756824404255,
+              "ci95": [
+                -0.3134425988395601,
+                -0.17139385187213624
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "processed": {
+              "value": -0.24270756824404255,
+              "ci95": [
+                -0.3134425988395601,
+                -0.17139385187213624
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "passthrough": {
+              "value": null,
+              "ci95": null,
+              "ciReliable": false,
+              "sign": null,
+              "nArtifacts": 0,
+              "nRecords": 0,
+              "ciSource": "ci_by_artifact",
+              "ciNote": "空组"
+            },
+            "n": 70,
+            "processedN": 70,
+            "passthroughN": 0,
+            "undeterminedN": 0,
+            "negativeProcessedN": 62
+          },
+          {
+            "method": "nlm_clahe",
+            "primaryScope": "processed",
+            "all": {
+              "value": -0.10017306976842635,
+              "ci95": [
+                -0.11813019692455984,
+                -0.07948017336147752
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "processed": {
+              "value": -0.10017306976842635,
+              "ci95": [
+                -0.11813019692455984,
+                -0.07948017336147752
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "passthrough": {
+              "value": null,
+              "ci95": null,
+              "ciReliable": false,
+              "sign": null,
+              "nArtifacts": 0,
+              "nRecords": 0,
+              "ciSource": "ci_by_artifact",
+              "ciNote": "空组"
+            },
+            "n": 70,
+            "processedN": 70,
+            "passthroughN": 0,
+            "undeterminedN": 0,
+            "negativeProcessedN": 64
+          },
+          {
+            "method": "joint",
+            "primaryScope": "processed",
+            "all": {
+              "value": -0.28350164982369386,
+              "ci95": [
+                -0.3479327871226451,
+                -0.22346426249173393
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "processed": {
+              "value": -0.28350164982369386,
+              "ci95": [
+                -0.3479327871226451,
+                -0.22346426249173393
+              ],
+              "ciReliable": true,
+              "sign": "negative",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "passthrough": {
+              "value": null,
+              "ci95": null,
+              "ciReliable": false,
+              "sign": null,
+              "nArtifacts": 0,
+              "nRecords": 0,
+              "ciSource": "ci_by_artifact",
+              "ciNote": "空组"
+            },
+            "n": 70,
+            "processedN": 70,
+            "passthroughN": 0,
+            "undeterminedN": 0,
+            "negativeProcessedN": 65
+          },
+          {
+            "method": "adaptive_joint",
+            "primaryScope": "processed",
+            "all": {
+              "value": 0.07624701758405486,
+              "ci95": [
+                0.02065044303337757,
+                0.13189967570664074
+              ],
+              "ciReliable": true,
+              "sign": "positive",
+              "nArtifacts": 7,
+              "nRecords": 70,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "processed": {
+              "value": 0.12950571830402727,
+              "ci95": [
+                0.027419597044916946,
+                0.24039638397300817
+              ],
+              "ciReliable": true,
+              "sign": "positive",
+              "nArtifacts": 7,
+              "nRecords": 47,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "passthrough": {
+              "value": 0,
+              "ci95": [
+                0,
+                0
+              ],
+              "ciReliable": true,
+              "sign": "zero",
+              "nArtifacts": 7,
+              "nRecords": 23,
+              "ciSource": "ci_by_artifact",
+              "ciNote": null
+            },
+            "n": 70,
+            "processedN": 47,
+            "passthroughN": 23,
+            "undeterminedN": 0,
+            "negativeProcessedN": 15
+          }
+        ]
+      }
+    ],
+    "representativeRule": "临时规则（评测科学家 2026-10-19）：在当前批次、划分、方法与退化类型下，把“实际处理”的行按配对 ΔPSNR（输出 − 同 case 退化输入）升序排序（并列按 caseId），取中位位次 ⌊n/2⌋ 作默认；另给“最差一条（负提升）”与“原图返回样例”（按 caseId 排序取中位位次）。将来改读 REPRESENTATIVE_CASES.md 与 derived/mechanism/<样本>/。",
+    "limitations": [
+      "图像字迹筛选不等于逐字人工真值标注；后续人工盲评仍需补充",
+      "独立测试仅七件文物，每朝代一件，不支持总体优势结论",
+      "真实石花与残损仍留在受控参考中",
+      "中心采样的空白失败批次完整保留，未据性能删除或改写"
+    ],
+    "notes": [
+      "notch：46 条为“标为不适用但有改动”——历史批次：不适用分支仍有轻微像素改动（E-05，已在新代码修复）。"
+    ]
+  },
+  "glyphEvaluation": {
+    "status": "not_evaluated",
+    "top1": null,
+    "top3": null,
+    "verifiedLabels": 0,
+    "recordedLabels": 0,
+    "reason": "没有按碑刻分开的人工核验测试标注，不计算识别准确率。已记录的人工标注也不自动升为真值。"
+  },
+  "note": "无配对真值时，诊断变化量不代表修复质量；残字建议须经人工核实。"
+}

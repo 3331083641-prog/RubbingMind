@@ -128,6 +128,8 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate, runId: sharedR
   const exportJson = () => {
     const at = nowShanghaiIso(); setExportedAt(at);
     const run = report?.state === 'ok' ? report.data.run : null;
+    const evaluationStatus = run?.evaluationStatus || (runs.state === 'error' || runs.state === 'missing' ? 'unavailable' : runs.state === 'ok' && runs.data.length === 0 ? 'not_run' : 'not_loaded');
+    const evaluationSummary = run || evaluationStatus === 'not_run' ? evaluationSummaryText(run) : evaluationStatus === 'unavailable' ? '运行数据不可用，无法判断是否执行过处理；未填写评测数值。' : '当前视图未载入本件运行报告，不能据此判断是否执行过处理。';
     const tag = model ? `${model.batch.shortName}` : '未选批次';
     const data = {
       reportId: run ? `RM-${stele.id}-${run.runId}` : `RM-${stele.id}-未选择运行`, exportedAt: at, view, url: window.location.href,
@@ -135,10 +137,11 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate, runId: sharedR
       runId: run?.runId || null, runSelection: selection.state === 'ok' ? selection.data.runSelection : null, algorithmVersion: run?.algorithmVersion || null, inputImageSha256: run?.inputImageSha256 || null,
       workingImage: run?.workingImage || null, randomSeed: run?.randomSeed ?? null, outputSha256: run?.outputSha256 || null, imageRoles: run?.imageRoles || null,
       changeStatus: run ? { isPassthrough: run.isPassthrough ?? null, changedPixelCount: run.changedPixelCount ?? null, changedPixelRatio: run.changedPixelRatio ?? null, maxAbsDiff: run.maxAbsDiff ?? null, passthroughCriterion: run.passthroughCriterion ?? null, passthroughSource: run.passthroughSource ?? null, comparedImages: run.comparedImages ?? null, grayChangedPixelCount: run.grayChangedPixelCount ?? null, grayChangedPixelRatio: run.grayChangedPixelRatio ?? null, grayCriterion: run.grayCriterion ?? null, grayCriterionRule: run.grayCriterionRule ?? null, graySource: run.graySource ?? null, effectiveParameters: run.effectiveParameters ?? null, effectiveParametersSource: run.effectiveParametersSource ?? null, effectiveParametersUnavailableReason: run.effectiveParametersUnavailableReason ?? null } : null,
-      evaluationSummary: evaluationSummaryText(run),
+      evaluationSummary,
+      reportDataStatus: { runs: runs.state, selection: selection.state, report: report?.state || 'not_requested' },
       adaptiveDiagnostics: run?.adaptiveDiagnostics || null, algorithmLayer: run ? { algorithmOutputMode: run.adaptiveDiagnostics?.algorithmOutputMode ?? null, selectedOutput: run.adaptiveDiagnostics?.selectedOutput ?? null, note: 'ADR R2-12 algorithm-layer only; do not confuse with run-level outputMode / isPassthrough' } : null, algorithmParameters: run?.algorithmParameters || null,
       startedAt: run?.startedAt || null, finishedAt: run?.finishedAt || null, processingTimeMs: run?.processing_time_ms ?? null, outputImages: run?.outputImages || null,
-      evaluationStatus: run?.evaluationStatus || 'not_run', evaluationMetrics: run?.evaluationMetrics || null, diagnosticMetrics: run?.diagnosticMetrics || null,
+      evaluationStatus, evaluationMetrics: run?.evaluationMetrics || null, diagnosticMetrics: run?.diagnosticMetrics || null,
       inferenceRecords: report?.state === 'ok' ? report.data.inferenceRecords || [] : [], sourceRecords: report?.state === 'ok' ? report.data.sourceRecords || [] : [],
       experiment: model ? {
         experimentId: model.batch.id, name: model.batch.shortName, directory: model.batch.registry.directory, kind: model.batch.kind,

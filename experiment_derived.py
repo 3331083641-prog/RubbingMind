@@ -195,3 +195,69 @@ def resolve_mechanism_png(experiment_id: str, relative: str):
     if not target.is_file():
         return None, '文件不存在'
     return target, None
+
+
+def resolve_report_derived(experiment_id: str, relative: str):
+    """Compatibility reader for the report's existing /derived/ URLs.
+
+    Only registered result derivatives and listed mechanism images are exposed.
+    Frozen files are never rewritten or silently upgraded to current evidence.
+    Returns (path, HTTP status, reason).
+    """
+    from urllib.parse import unquote
+
+    entry = registry_entry(experiment_id)
+    if entry is None:
+        return None, 404, '实验批次不存在'
+    decoded = unquote(relative)
+    parts = relative.split('/')
+    if (not relative or decoded != relative or relative.startswith('/')
+            or '\\' in relative or ':' in relative or any(p in ('', '.', '..') for p in parts)):
+        return None, 400, '派生文件路径不合法'
+    names = (APPLIED_STATUS, CI_BY_ARTIFACT, 'negative_lift_causes.json')
+    is_root = len(parts) == 1 and relative in names
+    is_index = parts == ['mechanism', 'index.json']
+    is_case = (len(parts) == 3 and parts[0] == 'mechanism'
+               and (parts[2] == 'mechanism.json' or parts[2].endswith('.png')))
+    if not (is_root or is_index or is_case):
+        return None, 404, '未登记的报告派生文件'
+    root = (experiment_registry.RESULTS / entry['directory'] / 'derived').resolve()
+    path = (root / relative).resolve()
+    if not path.is_relative_to(root):
+        return None, 400, '派生文件路径越界'
+    if not path.is_file():
+        return None, 404, '本批次没有这份派生文件'
+    if is_root:
+        if relative in (APPLIED_STATUS, CI_BY_ARTIFACT):
+            checked = (applied_status(experiment_id, include_rows=True)
+                       if relative == APPLIED_STATUS else ci_by_artifact(experiment_id))
+            if not checked['available']:
+                return None, 409 if checked['status'] == 'stale' else 404, checked['reason']
+        else:
+            data = json.loads(path.read_text('utf-8'))
+            problems = _check_identity(entry, data, _sha(experiment_registry.RESULTS / entry['directory'] / 'results.json'))
+            if problems:
+                return None, 409, '；'.join(problems)
+    if is_index or is_case:
+        index_path = root / 'mechanism' / 'index.json'
+        if not index_path.is_file() or not index_path.resolve().is_relative_to(root):
+            return None, 404, '机制案例登记不存在'
+        index = json.loads(index_path.read_text('utf-8'))
+        if index.get('batch') != entry['directory']:
+            return None, 409, '机制案例登记与批次不一致'
+        if is_case:
+            if parts[1] not in {c.get('caseId') for c in index.get('cases', [])}:
+                return None, 404, '未登记的机制案例'
+            detail_path = root / 'mechanism' / parts[1] / 'mechanism.json'
+            if not detail_path.is_file() or not detail_path.resolve().is_relative_to(root):
+                return None, 404, '机制案例内容不存在'
+            detail = json.loads(detail_path.read_text('utf-8'))
+            if detail.get('caseId') != parts[1] or detail.get('batch') != entry['directory']:
+                return None, 409, '机制案例内容与登记不一致'
+            if parts[2].endswith('.png'):
+                image = next((i for i in detail.get('images', []) if i.get('file') == parts[2]), None)
+                if not image or not image.get('sha256'):
+                    return None, 404, '未登记的机制影像'
+                if _sha(path) != image['sha256']:
+                    return None, 409, '机制影像 SHA-256 不匹配'
+    return path, 200, None

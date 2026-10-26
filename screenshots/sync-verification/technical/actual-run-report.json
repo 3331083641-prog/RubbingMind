@@ -1,0 +1,334 @@
+{
+  "reportId": "RM-tang_01_duobao-20261026T141846_34499e4d",
+  "exportedAt": "2026-10-26T22:18:53+08:00",
+  "view": "artifact",
+  "url": "http://127.0.0.1:5740/?tab=reports&steleId=tang_01_duobao&view=artifact&runId=20261026T141846_34499e4d",
+  "stele": {
+    "id": "tang_01_duobao",
+    "title": "多宝塔感应碑",
+    "dynasty": "唐代",
+    "originalYear": "752年",
+    "rubbingPeriod": "未核定；不据拓印年改变朝代",
+    "collectionInstitution": "台北故宫博物院",
+    "collectionNumber": "贈拓000365",
+    "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+    "license": "CC BY 4.0"
+  },
+  "runId": "20261026T141846_34499e4d",
+  "runSelection": {
+    "rule": "latest_non_legacy",
+    "runId": "20261026T141846_34499e4d",
+    "legacyRunCount": 0
+  },
+  "algorithmVersion": "adaptive-rubbing-v2.1",
+  "inputImageSha256": "e59f12e90d4804a08e9db63523725223478986c9148b4a62c6012db0610971c2",
+  "workingImage": {
+    "sourceShape": [
+      1646,
+      1874
+    ],
+    "workingShape": [
+      1185,
+      1349
+    ],
+    "scale": 0.7202118829332675,
+    "interpolation": "INTER_AREA"
+  },
+  "randomSeed": 0,
+  "outputSha256": {
+    "original": "5532e85185cb30680e916770e609e5a56adcbe2e6e16a114b4653b986acbc6c3",
+    "restored": "5532e85185cb30680e916770e609e5a56adcbe2e6e16a114b4653b986acbc6c3",
+    "frequency_spectrum": "c1c313dfd30cd4df41fae915c1ea1693866c9332b54947c9659ca71a06c924f9",
+    "character_skeleton": "bfceb40378ce9a848538ff981f6f605757cd77c024fd12f8d3e0afc877d24f49",
+    "binary_skeleton": "b64d7578994d25cf6257035273eeb20e339f2c713bef0cb167c7845261855e3c",
+    "contour": "85a678223b04b7d07fddc7b295e69dd06657981007b9ae1bde1c0f9ecda2aa7f",
+    "cinnabar_rubbing": "52e5bcad12ac997c7cd8b39aad181cce3c6a4812889fe81edfeda03dd2f3449c"
+  },
+  "imageRoles": {
+    "source": "immutable_source",
+    "original": "working_input",
+    "restored": "algorithm_output",
+    "cinnabar_rubbing": "artistic_display_not_evaluated"
+  },
+  "changeStatus": {
+    "isPassthrough": true,
+    "changedPixelCount": 0,
+    "changedPixelRatio": 0,
+    "maxAbsDiff": 0,
+    "passthroughCriterion": "pixel-equal-v1",
+    "passthroughSource": "recorded",
+    "comparedImages": [
+      "original",
+      "restored"
+    ],
+    "grayChangedPixelCount": 0,
+    "grayChangedPixelRatio": 0,
+    "grayCriterion": "gray-bt601-pixel-equal-v1",
+    "grayCriterionRule": "gray-bt601-pixel-equal-v1：BGR→GRAY = BT.601（OpenCV cvtColor COLOR_BGR2GRAY / COLOR_BGRA2GRAY，Y=0.299·R+0.587·G+0.114·B）；单通道原样。禁止用 IMREAD_GRAYSCALE 读图再比（AUDIT 的 644816 即此误算）。仅并列显示，不决定 isPassthrough / outputMode / “本次未改动原图”。",
+    "graySource": "recorded",
+    "effectiveParameters": {
+      "mode": "adaptive",
+      "strength": 1,
+      "notchWidth": 0.75,
+      "derivedFrom": {
+        "strength": "max(0.1, h_nlm/10)",
+        "notchWidth": "max(0.5, d0/60)"
+      },
+      "ignoredRequestParameters": [
+        "filter_order",
+        "clahe_clip",
+        "morph_kernel"
+      ],
+      "note": "NLM 实际 h 与是否陷波由自适应决策决定，见 adaptiveDiagnostics.decisions。"
+    },
+    "effectiveParametersSource": "recorded",
+    "effectiveParametersUnavailableReason": null
+  },
+  "evaluationSummary": "本次未改动原图：算法判断无需处理，输出与输入逐像素相同；没有配对真值，配对质量未评测。",
+  "adaptiveDiagnostics": {
+    "version": "adaptive-rubbing-v2.1",
+    "features": {
+      "noiseSigmaMAD": 2.2239034175872803,
+      "residualMAD": 2,
+      "impulseFraction": 0,
+      "periodicPeaks": [],
+      "highFrequencyEnergyFraction": 0.00806000642478466,
+      "localContrastRMS": 20.336429595947266,
+      "gradientMean": 40.49921417236328,
+      "laplacianVariance": 47.032447814941406,
+      "darkFraction": 0.002586069380976063,
+      "brightFraction": 0.026851582513066408,
+      "dynamicRange": 178,
+      "thinStrokeRisk": 0.20140079637868197,
+      "note": "无参考诊断；噪声、模糊和笔画风险可能受真实石花/纸纹影响，不是修复准确率。"
+    },
+    "decisions": [
+      {
+        "operator": "skip_notch",
+        "reason": "未检出符合阈值的周期峰；不强行陷波"
+      },
+      {
+        "operator": "identity",
+        "reason": "残差证据弱；不锐化、不强制CLAHE/形态学"
+      }
+    ],
+    "fidelityGate": {
+      "accepted": true,
+      "strongEdgeRetention": 1,
+      "meanAbsoluteChange": 0,
+      "contrastRatio": 1,
+      "reasons": [],
+      "basis": "输入输出启发式保真门控，非质量真值"
+    },
+    "selectedOutput": "original",
+    "algorithmOutputMode": "identity_no_evidence",
+    "changeStats": {
+      "isPassthrough": true,
+      "changedPixelCount": 0,
+      "totalPixelCount": 1598565,
+      "changedPixelRatio": 0,
+      "maxAbsDiff": 0,
+      "meanAbsDiff": 0,
+      "passthroughCriterion": "pixel-equal-v1"
+    },
+    "limitations": "不补全遮挡/剥落，不识别或重绘缺失笔画；无真值不计算修复准确率。"
+  },
+  "algorithmLayer": {
+    "algorithmOutputMode": "identity_no_evidence",
+    "selectedOutput": "original",
+    "note": "ADR R2-12 algorithm-layer only; do not confuse with run-level outputMode / isPassthrough"
+  },
+  "algorithmParameters": {
+    "stele_id": "tang_01_duobao",
+    "sample_id": null,
+    "d0": 45,
+    "filter_order": 2,
+    "filter_type": "adaptive",
+    "h_nlm": 10,
+    "clahe_clip": 2.5,
+    "morph_kernel": 3,
+    "cinnabar_style": "cinnabar",
+    "random_seed": 0
+  },
+  "startedAt": "2026-10-26T14:18:43.236384+00:00",
+  "finishedAt": "2026-10-26T14:18:47.130462+00:00",
+  "processingTimeMs": 2586.2,
+  "outputImages": {
+    "original": "/static/results/tang_01_duobao/20261026T141846_34499e4d/original.png",
+    "restored": "/static/results/tang_01_duobao/20261026T141846_34499e4d/restored.png",
+    "frequency_spectrum": "/static/results/tang_01_duobao/20261026T141846_34499e4d/frequency_spectrum.png",
+    "character_skeleton": "/static/results/tang_01_duobao/20261026T141846_34499e4d/character_skeleton.png",
+    "binary_skeleton": "/static/results/tang_01_duobao/20261026T141846_34499e4d/binary_skeleton.png",
+    "contour": "/static/results/tang_01_duobao/20261026T141846_34499e4d/contour.png",
+    "cinnabar_rubbing": "/static/results/tang_01_duobao/20261026T141846_34499e4d/cinnabar_rubbing.png"
+  },
+  "evaluationStatus": "unassessed",
+  "evaluationMetrics": {
+    "psnr": null,
+    "ssim": null
+  },
+  "diagnosticMetrics": {
+    "isolated_bright_pixel_change_percent": 0,
+    "tenengrad_change_percent": 0,
+    "input_output_mean_absolute_difference": 0
+  },
+  "inferenceRecords": [
+    {
+      "inferenceId": "d0eeb5fd44b240dc82844b51a568bf80",
+      "steleId": "tang_01_duobao",
+      "runId": "20261026T141846_34499e4d",
+      "characterId": "c12",
+      "originalGlyph": "感",
+      "originalStatus": "clear",
+      "bbox": {
+        "x": 337,
+        "y": 296,
+        "w": 203,
+        "h": 237
+      },
+      "roi": {
+        "imageBBox": {
+          "x": 337,
+          "y": 296,
+          "w": 203,
+          "h": 237
+        },
+        "mappedSourceBBox": {
+          "x": 468,
+          "y": 411,
+          "w": 282,
+          "h": 329
+        },
+        "mappedInsideSource": true,
+        "cropWidth": 203,
+        "cropHeight": 237,
+        "scaleFromSource": 1.3891771682727947
+      },
+      "context": "",
+      "inputImageSha256": "e59f12e90d4804a08e9db63523725223478986c9148b4a62c6012db0610971c2",
+      "selectedImageSha256": "5532e85185cb30680e916770e609e5a56adcbe2e6e16a114b4653b986acbc6c3",
+      "imageProvenance": {
+        "imageSource": "restored",
+        "steleId": "tang_01_duobao",
+        "runId": "20261026T141846_34499e4d",
+        "sourceRole": "algorithm_output",
+        "inputImageSha256": "e59f12e90d4804a08e9db63523725223478986c9148b4a62c6012db0610971c2",
+        "selectedImageSha256": "5532e85185cb30680e916770e609e5a56adcbe2e6e16a114b4653b986acbc6c3",
+        "outputImageSha256": "5532e85185cb30680e916770e609e5a56adcbe2e6e16a114b4653b986acbc6c3",
+        "imageWidth": 1349,
+        "imageHeight": 1185,
+        "scaleFromSource": 0.7202118829332675,
+        "sourceShape": [
+          1646,
+          1874
+        ],
+        "workingShape": [
+          1185,
+          1349
+        ],
+        "interpolation": "INTER_AREA",
+        "runOwnership": "verified",
+        "algorithmVersion": "adaptive-rubbing-v2.1",
+        "coordinateSpace": "selected_image_pixels"
+      },
+      "cropSha256": "4e6cbc4c3fea8b67393f5e63bb03d5b7a6725d9d4bc0c66df5338e715348522c",
+      "cropUrl": "/api/inferences/d0eeb5fd44b240dc82844b51a568bf80/crop",
+      "source": "unavailable",
+      "model": null,
+      "candidates": [],
+      "note": "无可核实候选；请提供更充分的上下文或配置可选视觉模型。",
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+      "status": "human_rejected",
+      "adoptedGlyph": null,
+      "decisions": [
+        {
+          "action": "reject",
+          "glyph": null,
+          "at": "2026-10-26T14:18:48.209797+00:00",
+          "actor": "local_user"
+        }
+      ],
+      "createdAt": "2026-10-26T14:18:48.117491+00:00",
+      "visualAnalysis": {
+        "version": "glyph-shape-v2.1",
+        "foregroundPolarity": "bright",
+        "contentBox": [
+          0,
+          0,
+          203,
+          237
+        ],
+        "characterRegion": [
+          104,
+          38,
+          77,
+          102
+        ],
+        "largestComponentFraction": 0.41998468606431855,
+        "foregroundFraction": 0.10858223691047786,
+        "componentCount": 10,
+        "skeletonPixels": 684,
+        "endpointCount": 34,
+        "branchCount": 53,
+        "localGapCount": 1,
+        "horizontalStrokeDistribution": [
+          0.01016399575980545,
+          0.01802082683793727,
+          0.014466546112115732
+        ],
+        "borderForegroundFraction": 0.14772727272727273,
+        "noisePixelCount": 13,
+        "rejectRecognition": false,
+        "warnings": [
+          "前景触及选区边缘，可能裁断字符或包含邻字",
+          "字迹包围盒内存在局部空缺，不能把空缺补成笔画"
+        ],
+        "identityStatus": "未识别；骨架、连通域和空缺只描述选区结构，不是汉字身份或完整度真值。"
+      },
+      "analysisImages": {
+        "gray": "/api/inferences/d0eeb5fd44b240dc82844b51a568bf80/analysis/gray",
+        "foreground": "/api/inferences/d0eeb5fd44b240dc82844b51a568bf80/analysis/foreground",
+        "skeleton": "/api/inferences/d0eeb5fd44b240dc82844b51a568bf80/analysis/skeleton",
+        "noise": "/api/inferences/d0eeb5fd44b240dc82844b51a568bf80/analysis/noise"
+      },
+      "retrievalCandidates": [],
+      "sourceSteleId": "tang_01_duobao",
+      "algorithmVersion": "adaptive-rubbing-v2.1",
+      "effectiveParameters": {
+        "mode": "adaptive",
+        "strength": 1,
+        "notchWidth": 0.75,
+        "derivedFrom": {
+          "strength": "max(0.1, h_nlm/10)",
+          "notchWidth": "max(0.5, d0/60)"
+        },
+        "ignoredRequestParameters": [
+          "filter_order",
+          "clahe_clip",
+          "morph_kernel"
+        ],
+        "note": "NLM 实际 h 与是否陷波由自适应决策决定，见 adaptiveDiagnostics.decisions。"
+      },
+      "effectiveParametersSource": "recorded",
+      "effectiveParametersUnavailableReason": null
+    }
+  ],
+  "sourceRecords": [
+    {
+      "title": "多宝塔感应碑",
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+      "license": "CC BY 4.0"
+    }
+  ],
+  "experiment": null,
+  "glyphEvaluation": {
+    "status": "not_evaluated",
+    "top1": null,
+    "top3": null,
+    "rejectionRate": null,
+    "verifiedLabels": 0,
+    "recordedLabels": 0,
+    "reason": "没有按碑刻分开的人工核验测试标注，不计算识别准确率。已记录的人工标注也不自动升为真值。"
+  },
+  "note": "Values and change criteria follow this JSON; print layout may differ slightly after manual pagination. Includes failureRetention (aligned with on-screen failure gallery) and liftClaims (ES-3, aligned with on-screen lift-claim badges)."
+}

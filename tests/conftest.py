@@ -50,4 +50,16 @@ def _rt004_isolate_mutable_state(tmp_path_factory, monkeypatch):
     except Exception:
         pass
 
+    # Both modules capture their paths at import time. Updating only the env
+    # would leave report selection reading real runs from static/results.
+    import museum_processing
+    import glyph_inference
+    import glyph_annotations
+    import catalog_assessment
+
+    monkeypatch.setattr(museum_processing, "RESULTS_DIR", results)
+    monkeypatch.setattr(glyph_inference, "INFERENCE_DIR", runtime / "glyph-inferences")
+    monkeypatch.setattr(glyph_annotations, "RUNTIME_DIR", runtime / "glyph-annotations")
+    monkeypatch.setattr(catalog_assessment, "REVIEWS", runtime / "condition-reviews")
+
     yield root

@@ -19,6 +19,7 @@ import requests
 from playwright.sync_api import sync_playwright, expect
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 BACKEND_URL = os.environ.get('GRAPH_BACKEND_URL', '')
 FRONTEND_URL = os.environ.get('GRAPH_FRONTEND_URL', '')
 from scripts.browser_target import assert_safe_target

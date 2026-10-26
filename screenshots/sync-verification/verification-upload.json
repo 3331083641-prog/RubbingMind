@@ -1,0 +1,146 @@
+{
+  "checks": [
+    "five pages at all three requested desktop viewports; real video and GLB",
+    "real triptych, chart, failure records, mechanism PNGs, JSON and print PDF",
+    "UI upload persisted original bytes and executed real processing without adding authoritative catalogue records"
+  ],
+  "viewports": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "page": "home",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "page": "museum",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "page": "workbench",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "page": "graph",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "page": "reports",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "page": "home",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "page": "museum",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "page": "workbench",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "page": "graph",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "page": "reports",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "page": "home",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "page": "museum",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "page": "workbench",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "page": "graph",
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "page": "reports",
+      "horizontalOverflow": false
+    }
+  ],
+  "pageErrors": [],
+  "screenshots": [
+    "1920x1080/01-home.png",
+    "1920x1080/02-museum.png",
+    "1920x1080/03-workbench.png",
+    "1920x1080/04-graph.png",
+    "1920x1080/05-reports.png",
+    "1440x900/01-home.png",
+    "1440x900/02-museum.png",
+    "1440x900/03-workbench.png",
+    "1440x900/04-graph.png",
+    "1440x900/05-reports.png",
+    "1366x768/01-home.png",
+    "1366x768/02-museum.png",
+    "1366x768/03-workbench.png",
+    "1366x768/04-graph.png",
+    "1366x768/05-reports.png",
+    "reports/01-global-full.png",
+    "reports/02-real-image-comparison.png",
+    "reports/03-method-chart.png",
+    "reports/04-failure-cases.png",
+    "reports/05-mechanism.png",
+    "upload/01-real-upload-processing.png",
+    "mobile/01-home-390.png"
+  ],
+  "privateDataUsed": false,
+  "homeMedia": {
+    "modelReady": true,
+    "meshes": 7,
+    "triangles": 319276,
+    "videoTime": 1.4775,
+    "videoReady": 4
+  },
+  "globalReport": {
+    "experimentId": "controlled-rubbings-v2-text-2026-10-17",
+    "appliedStatusSource": "API /api/experiments/controlled-rubbings-v2-text-2026-10-17/derived/applied_status.json",
+    "ciSource": "前端临时口径",
+    "glyphAccuracyEvaluated": false
+  },
+  "upload": {
+    "id": "upload-1259d807fa5f49878c866a0dda107903",
+    "runId": "20261026T142555_c8ebc5ff",
+    "source": "public controlled-degradation fixture",
+    "catalogueCountUnchanged": 28,
+    "originalShaMatches": true
+  },
+  "status": "passed"
+}

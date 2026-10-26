@@ -1,0 +1,48 @@
+{
+  "batches": [
+    {
+      "batch": "2026-10-17-v2",
+      "rows": 1260,
+      "imageFilesVerified": 1414,
+      "sourceImagesVerified": 14,
+      "metricsRecomputed": 1260,
+      "maximumAbsoluteMetricDelta": {
+        "psnr": 0.0,
+        "ssim": 0.0,
+        "edgeF1": 0.0
+      },
+      "errors": [],
+      "selectionRule": "minimum SHA256(caseId|method) per artifact and method; no performance selection",
+      "snapshotReplay": {
+        "checked": 126,
+        "equal": 126,
+        "mismatches": []
+      },
+      "ok": true
+    },
+    {
+      "batch": "2026-10-17-v2-text",
+      "rows": 1260,
+      "imageFilesVerified": 1414,
+      "sourceImagesVerified": 14,
+      "metricsRecomputed": 1260,
+      "maximumAbsoluteMetricDelta": {
+        "psnr": 0.0,
+        "ssim": 0.0,
+        "edgeF1": 0.0
+      },
+      "errors": [],
+      "selectionRule": "minimum SHA256(caseId|method) per artifact and method; no performance selection",
+      "snapshotReplay": {
+        "checked": 126,
+        "equal": 126,
+        "mismatches": []
+      },
+      "ok": true
+    }
+  ],
+  "historicalResultsRewritten": false,
+  "runtimeTimingReproduced": false,
+  "scope": "stored-file provenance, paired metric recomputation, selected historical-code pixel replay; not ancient-glyph accuracy",
+  "ok": true
+}

@@ -1,0 +1,28 @@
+{
+  "pageErrors": [],
+  "checks": [
+    "28 covers native width and seven dynasty filters",
+    "archived assessment comparison is served without a local results directory",
+    "official input adaptive processing, real crop, visual analysis and durable rejection",
+    "real evidence retrieval, sourced expansion, unverified identity refusal and museum research",
+    "selected real run report JSON/PDF, source-linked experiment images and API/UI numeric equality",
+    "API unavailable: 28-item fallback retained and research reports failure"
+  ],
+  "screenshots": [
+    "01-home.png",
+    "02-museum.png",
+    "03-adaptive-workbench.png",
+    "04-actual-glyph-analysis.png",
+    "05-evidence-graphrag.png",
+    "06-unverified-identity.png",
+    "07-museum-unified-research.png",
+    "08-experiment-explorer.png",
+    "08b-failure-retention.png",
+    "08c-mechanism-provenance.png",
+    "09-reports-1440.png",
+    "10-graph-1440.png",
+    "11-workbench-1440.png"
+  ],
+  "runId": "20261026T141846_34499e4d",
+  "inferenceId": "d0eeb5fd44b240dc82844b51a568bf80"
+}

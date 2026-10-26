@@ -1,0 +1,58 @@
+{
+  "steleId": "tang-duobao",
+  "api": {
+    "omit": {
+      "http": 200,
+      "demoScope": {
+        "requested": false,
+        "honoured": false,
+        "compatNote": "本分支 evidence_retrieval 尚未实现 include_demo；合并时以 agent/jinshi 的实现为准（ARCHITECTURE_DECISIONS R2）。"
+      },
+      "requested": false,
+      "included": null,
+      "honoured": false
+    },
+    "false": {
+      "http": 200,
+      "demoScope": {
+        "requested": false,
+        "honoured": false,
+        "compatNote": "本分支 evidence_retrieval 尚未实现 include_demo；合并时以 agent/jinshi 的实现为准（ARCHITECTURE_DECISIONS R2）。"
+      },
+      "requested": false,
+      "included": null,
+      "honoured": false
+    },
+    "true": {
+      "http": 200,
+      "demoScope": {
+        "requested": true,
+        "honoured": false,
+        "compatNote": "本分支 evidence_retrieval 尚未实现 include_demo；合并时以 agent/jinshi 的实现为准（ARCHITECTURE_DECISIONS R2）。"
+      },
+      "requested": true,
+      "included": null,
+      "honoured": false
+    }
+  },
+  "ui_default_checked": false,
+  "requests_off": [
+    {
+      "question": "多宝塔碑撰文者",
+      "steleId": "tang-duobao",
+      "includeDemo": false
+    }
+  ],
+  "requests_on": [
+    {
+      "question": "多宝塔碑撰文者",
+      "steleId": "tang-duobao",
+      "includeDemo": true
+    }
+  ],
+  "shots": [
+    "D:\\RubbingMind\\screenshots\\product-upgrade\\phase1-frontend\\br09\\01_include_demo_off_1920.png",
+    "D:\\RubbingMind\\screenshots\\product-upgrade\\phase1-frontend\\br09\\02_include_demo_on_warning_1920.png",
+    "D:\\RubbingMind\\screenshots\\product-upgrade\\phase1-frontend\\br09\\03_include_demo_on_result_banner_1920.png"
+  ]
+}

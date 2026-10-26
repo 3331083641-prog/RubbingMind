@@ -1,0 +1,264 @@
+{
+ "nonGet": [],
+ "http404": [],
+ "consoleErrors": [
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 实际处理 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 原图返回 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 实际处理 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 原图返回 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 实际处理 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 原图返回 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 实际处理 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 原图返回 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 实际处理 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 原图返回 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 实际处理 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 原图返回 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 实际处理 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 原图返回 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 实际处理 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 原图返回 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 实际处理 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 原图返回 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 实际处理 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 原图返回 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 实际处理 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 原图返回 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 实际处理 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 原图返回 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 实际处理 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 原图返回 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 实际处理 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 原图返回 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 实际处理 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 原图返回 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 实际处理 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 原图返回 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 实际处理 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 原图返回 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 实际处理 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 原图返回 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 实际处理 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 原图返回 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 实际处理 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 原图返回 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 实际处理 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 原图返回 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 实际处理 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 原图返回 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 实际处理 \n    at tr\n    at ",
+  "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 原图返回 \n    at tr\n    at "
+ ],
+ "pageErrors": [],
+ "shots": [
+  "01_global_default_v2-text_1920x1080.png",
+  "02_global_default_v2-text_fullpage_1920.png",
+  "01_global_default_v2-text_1440x900.png",
+  "03_case_median_v2_adaptive_joint_1920.png",
+  "03_case_worst_v2_adaptive_joint_1920.png",
+  "03_case_passthrough_v2_adaptive_joint_1920.png",
+  "05_v2_blur_adaptive_joint_passthrough_1920.png",
+  "06_v2_comparison_chart_1920.png",
+  "06b_v2_comparison_chart_blur_unprocessed_1920.png",
+  "07_experiment_explorer_records_v2-text_1920.png",
+  "08_cross_batch_C1-C4_1920.png",
+  "09_failures_v2_1920.png",
+  "09b_failures_v2-text_blur_1920.png",
+  "10_retest_v21_overview_1920.png",
+  "10b_retest_v21_comparison_1920.png",
+  "10c_retest_v21_failures_1920.png",
+  "16b_print_retest_v21_A4.pdf",
+  "11_alias_batch_to_experimentId_1920.png",
+  "11b_alias_conflict_experimentId_wins_1920.png",
+  "12_unknown_experimentId_empty_1920.png",
+  "13_artifact_tang_01_duobao_passthrough_1920x1080.png",
+  "13b_artifact_tang_01_duobao_fullpage_1920.png",
+  "16c_print_artifact_tang_01_duobao_A4.pdf",
+  "13_artifact_tang_01_duobao_passthrough_1440x900.png",
+  "14_artifact_tang-duobao_latest_non_legacy_1920.png",
+  "14b_artifact_unknown_runId_1920.png",
+  "16a_print_global_v2-text_A4.pdf",
+  "15_workbench_to_report_runId_1920.png"
+ ],
+ "checks": {
+  "default_url_1920": "http://127.0.0.1:5720/?tab=reports&steleId=tang-duobao&view=global&runId=20261018T072201_13772747&experimentId=controlled-rubbings-v2-text-2026-10-17&batch=2026-10-17-v2-text",
+  "default_batch_1920": "controlled-rubbings-v2-text-2026-10-17",
+  "scope_triple_1920": "+3.53 dB95% CI +1.11 ~ +6.36提升\n\n主口径 实际处理：文物 7 件 · 47 行（n = 70） · 提升（CI 下界 > 0）\n\n全部：+2.09 dB（70 行）\n实际处理：47 条，其中负提升 16\n原图返回：未处理 23 条\n\nCI 来源：derived/ci_by_artifact.json",
+  "case_rule_1920": "当前为“中位案例（默认）”。临时规则（评测科学家 2026-10-19）：在当前批次、划分、方法与退化类型下，把“实际处理”的行按配对 ΔPSNR（输出 − 同 case 退化输入）升序排序（并列按 caseId），取中位位次 ⌊n/2⌋ 作默认；另给“最差一条（负提升）”与“原图返回样例”（按 caseId 排序取中位位次）。将来改读 REPRESENTATIVE_CASES.md 与 derived/mechanism/<样本>/。（本筛选实际处理 47 条）",
+  "imgfit_1920": [
+   "contain"
+  ],
+  "default_url_1440": "http://127.0.0.1:5720/?tab=reports&steleId=tang-duobao&view=global&runId=20261018T072201_13772747&experimentId=controlled-rubbings-v2-text-2026-10-17&batch=2026-10-17-v2-text",
+  "default_batch_1440": "controlled-rubbings-v2-text-2026-10-17",
+  "scope_triple_1440": "+3.53 dB95% CI +1.11 ~ +6.36提升\n\n主口径 实际处理：文物 7 件 · 47 行（n = 70） · 提升（CI 下界 > 0）\n\n全部：+2.09 dB（70 行）\n实际处理：47 条，其中负提升 16\n原图返回：未处理 23 条\n\nCI 来源：derived/ci_by_artifact.json",
+  "case_rule_1440": "当前为“中位案例（默认）”。临时规则（评测科学家 2026-10-19）：在当前批次、划分、方法与退化类型下，把“实际处理”的行按配对 ΔPSNR（输出 − 同 case 退化输入）升序排序（并列按 caseId），取中位位次 ⌊n/2⌋ 作默认；另给“最差一条（负提升）”与“原图返回样例”（按 caseId 排序取中位位次）。将来改读 REPRESENTATIVE_CASES.md 与 derived/mechanism/<样本>/。（本筛选实际处理 47 条）",
+  "imgfit_1440": [
+   "contain"
+  ],
+  "case_median_enabled": true,
+  "case_median": {
+   "url": "http://127.0.0.1:5720/?tab=reports&experimentId=controlled-rubbings-v2-2026-10-17&split=test&method=adaptive_joint&steleId=tang-duobao&view=global&runId=20261018T072201_13772747&batch=2026-10-17-v2",
+   "rule": "当前为“中位案例（默认）”。临时规则（评测科学家 2026-10-19）：在当前批次、划分、方法与退化类型下，把“实际处理”的行按配对 ΔPSNR（输出 − 同 case 退化输入）升序排序（并列按 caseId），取中位位次 ⌊n/2⌋ 作默认；另给“最差一条（负提升）”与“原图返回样例”（按 caseId 排序取中位位次）。将来改读 REPRESENTATIVE_CASES.md 与 derived/mechanism/<样本>/。（本筛选实际处理 39 条）",
+   "diff": "改动 81.83% 像素，最大差 182（浏览器逐像素比较 53,630/65,536，平均 15.50）；热图 H = |输出 − 输入|，按 P99 = 69 归一化（clip(H / max(1, P99))，单色：深 = 无变化，亮 = 变化大）。",
+   "status": "实际处理"
+  },
+  "case_worst_enabled": true,
+  "case_worst": {
+   "url": "http://127.0.0.1:5720/?tab=reports&experimentId=controlled-rubbings-v2-2026-10-17&split=test&method=adaptive_joint&steleId=tang-duobao&view=global&runId=20261018T072201_13772747&batch=2026-10-17-v2&case=%40worst",
+   "rule": "当前为“最差一条（负提升）”。临时规则（评测科学家 2026-10-19）：在当前批次、划分、方法与退化类型下，把“实际处理”的行按配对 ΔPSNR（输出 − 同 case 退化输入）升序排序（并列按 caseId），取中位位次 ⌊n/2⌋ 作默认；另给“最差一条（负提升）”与“原图返回样例”（按 caseId 排序取中位位次）。将来改读 REPRESENTATIVE_CASES.md 与 derived/mechanism/<样本>/。（本筛选实际处理 39 条）",
+   "diff": "改动 90.39% 像素，最大差 95（浏览器逐像素比较 59,238/65,536，平均 11.72）；热图 H = |输出 − 输入|，按 P99 = 45 归一化（clip(H / max(1, P99))，单色：深 = 无变化，亮 = 变化大）。",
+   "status": "实际处理"
+  },
+  "case_passthrough_enabled": true,
+  "case_passthrough": {
+   "url": "http://127.0.0.1:5720/?tab=reports&experimentId=controlled-rubbings-v2-2026-10-17&split=test&method=adaptive_joint&steleId=tang-duobao&view=global&runId=20261018T072201_13772747&batch=2026-10-17-v2&case=%40passthrough",
+   "rule": "当前为“原图返回样例”。临时规则（评测科学家 2026-10-19）：在当前批次、划分、方法与退化类型下，把“实际处理”的行按配对 ΔPSNR（输出 − 同 case 退化输入）升序排序（并列按 caseId），取中位位次 ⌊n/2⌋ 作默认；另给“最差一条（负提升）”与“原图返回样例”（按 caseId 排序取中位位次）。将来改读 REPRESENTATIVE_CASES.md 与 derived/mechanism/<样本>/。（本筛选实际处理 39 条）",
+   "diff": "浏览器逐像素比较：输出与输入 0 像素不同（256×256）——未修改输入。",
+   "status": "原图返回（未处理）"
+  },
+  "05": {
+   "scope": "未处理 14 条无数据无数据\n\n主口径 实际处理：文物 0 件 · 0 行（n = 14）\n\n全部：±0.00 dB（14 行）\n实际处理：0 条\n原图返回：未处理 14 条\n\nCI 来源：derived/ci_by_artifact.json",
+   "case_rule": "当前为“原图返回样例”。临时规则（评测科学家 2026-10-19）：在当前批次、划分、方法与退化类型下，把“实际处理”的行按配对 ΔPSNR（输出 − 同 case 退化输入）升序排序（并列按 caseId），取中位位次 ⌊n/2⌋ 作默认；另给“最差一条（负提升）”与“原图返回样例”（按 caseId 排序取中位位次）。将来改读 REPRESENTATIVE_CASES.md 与 derived/mechanism/<样本>/。（本筛选实际处理 0 条）",
+   "diff": "浏览器逐像素比较：输出与输入 0 像素不同（256×256）——未修改输入。",
+   "no_case": null,
+   "heatmap_canvases": 0,
+   "notes": "全部：±0.00 dB（14 行）\n实际处理：0 条\n原图返回：未处理 14 条"
+  },
+  "06_chart_canvas": 1,
+  "explorer_table": "方法\tn\t实际处理\t原图返回\t无法判定\tPSNR (dB) · 全部\t实际处理\t原图返回\n高斯低通\t70\t70\t0\t0\t23.320\t23.320\t—\n巴特沃斯低通\t70\t70\t0\t0\t22.754\t22.754\t—\n陷波\t70\t70\t0\t0\t27.252\t27.252\t—\n快速 NLM\t70\t70\t0\t0\t23.802\t23.802\t—\n形态学\t70\t70\t0\t0\t18.617\t18.617\t—\nNLM+CLAHE\t70\t70\t0\t0\t16.956\t16.956\t—\n固定联合\t70\t70\t0\t0\t18.829\t18.829\t—\n自适应联合 v2.0\t70\t47\t未处理 23\t0\t26.798\t28.466\t23.388",
+  "status_tags_in_records": 60,
+  "status_tag_texts": [
+   "原图返回（未处理）",
+   "实际处理",
+   "输入基线"
+  ],
+  "cross_batch_warnings": [],
+  "cross_batch_table": null,
+  "09_failures_v2_1920.png": {
+   "diag": "baseline-delta-v1",
+   "by_method": "方法\tn\t负提升\t输出与输入字节相同\t无法判定字节\t未配对\n自适应联合 v2.0\t140\t32\t55\t0\t0\n巴特沃斯低通\t140\t98\t0\t0\t0\n快速 NLM\t140\t78\t4\t0\t0\n高斯低通\t140\t89\t0\t0\t0\n固定联合\t140\t124\t0\t0\t0\n形态学\t140\t130\t0\t0\t0\nNLM+CLAHE\t140\t139\t0\t0\t0\n陷波\t140\t57\t6\t0\t0",
+   "nlc": "测量原因（E-04）：measured-causes-v1，来源 agent/eval-sci 只读副本：experiments/results/2026-10-17-v2/derived/negative_lift_causes.json",
+   "neg_rows": 376,
+   "first_neg": "固定联合\ttang_02_jiucheng\t遮挡\t0.65\t−24.846 dB\t实际处理\t\n边缘保真下降（-0.727 < -0.02）\n细笔画误差增大（10.107 > 0.5）\n结构相似度下降（-0.282 < -0.01）\n改动幅度超过输入误差（187.620 > 1）\n强边缘被削弱（0.808 < 0.85）\n\t本身信息不可恢复（规则推断）",
+   "side": "原图返回 · 未处理 38 条\n\n单独一栏：不算成功，也不算失败。判据：DER pixel-equal-v1。\n\n陷波 · 未处理 6 条\n快速 NLM · 未处理 1 条\n自适应联合 v2.0 · 未处理 31 条\n运行失败 · 0 条\n\n当前筛选下没有运行失败的记录。\n\n不确定性\n\n比较图中的须为按文物聚类 bootstrap 的 95% CI；文物 < 3 标“CI 不可靠”、不画误差线；n_文物 < 10 时结论自动降为“有限支持”。\n\n待人工复核\n\n待人工复核 E-09（V22 interior_constant_block）、E-12（两个 glyph schema 不一致）。"
+  },
+  "09b_failures_v2-text_blur_1920.png": {
+   "diag": "baseline-delta-v1",
+   "by_method": "方法\tn\t负提升\t输出与输入字节相同\t无法判定字节\t未配对\n自适应联合 v2.0\t140\t33\t45\t0\t0\n巴特沃斯低通\t140\t96\t0\t0\t0\n快速 NLM\t140\t82\t2\t0\t0\n高斯低通\t140\t88\t0\t0\t0\n固定联合\t140\t123\t0\t0\t0\n形态学\t140\t128\t0\t0\t0\nNLM+CLAHE\t140\t140\t0\t0\t0\n陷波\t140\t64\t0\t0\t0",
+   "nlc": "测量原因（E-04）：measured-causes-v1，来源 agent/eval-sci 只读副本：experiments/results/2026-10-17-v2-text/derived/negative_lift_causes.json",
+   "neg_rows": 90,
+   "first_neg": "固定联合\than_04_shichen\t模糊\t0.65\t−5.419 dB\t实际处理\t\n边缘保真下降（-0.313 < -0.02）\n细笔画误差增大（11.647 > 0.5）\n结构相似度下降（-0.173 < -0.01）\n改动幅度超过输入误差（1.715 > 1）\n对比度被放大（1.155 > 1.1）\n\t输入影像质量限制（规则推断）",
+   "side": "原图返回 · 未处理 14 条\n\n单独一栏：不算成功，也不算失败。判据：DER pixel-equal-v1。\n\n自适应联合 v2.0 · 未处理 14 条\n\n自适应方法对模糊不做处理：这些行计为“未处理”，禁止计入提升。\n\n运行失败 · 0 条\n\n当前筛选下没有运行失败的记录。\n\n不确定性\n\n比较图中的须为按文物聚类 bootstrap 的 95% CI；文物 < 3 标“CI 不可靠”、不画误差线；n_文物 < 10 时结论自动降为“有限支持”。\n\n待人工复核\n\n待人工复核 E-09（V22 interior_constant_block）、E-12（两个 glyph schema 不一致）。"
+  },
+  "retest": {
+   "url": "http://127.0.0.1:5720/?tab=reports&experimentId=heldout-v20-v21-2026-10-18&steleId=tang-duobao&view=global&runId=20261018T072201_13772747&batch=2026-10-18-v21-heldout",
+   "option": "同批复测 v2.1（非留出） · 仅数值",
+   "title": "研究总览 · 同批复测 v2.1（非留出）",
+   "split": "本批未划分",
+   "noimages": "本批次只保存了数值，没有保存对比图像；不使用其他批次的图代替，也不从本批选取对照案例。可在“失败案例与不确定性”中查看逐条数值。",
+   "scope": "+4.64 dB95% CI +3.36 ~ +5.67提升\n\n主口径 全部：文物 14 件 · 70 行（n = 70） · 提升（CI 下界 > 0）\n\n全部：+4.64 dB（70 行）\n无法判定 70 条（本批没有图像，不区分实际处理与原图返回）\n\n临时口径：前端计算，待替换为 derived/ci_by_artifact（文物 bootstrap 1000 次，种子 20261019）",
+   "forbidden": {
+    "text": [
+     "heldout"
+    ],
+    "attrs": []
+   },
+   "downloads": [
+    "同批复测 v2.1-results.json",
+    "同批复测 v2.1-results.csv",
+    "同批复测 v2.1-summary.csv"
+   ]
+  },
+  "retest_table": "方法\tn\tPSNR\tSSIM\t边缘 F1\t细笔画误差\tΔPSNR（全部）\t负提升\t指示量：ΔPSNR=0\t指示量：仅复制算子\n退化输入（基线）\t70\t24.34\t0.699\t0.608\t11.55\t输入基线\t—\t—\t—\n高斯低通\t70\t23.06\t0.672\t0.556\t16.62\t−1.280 dB\t44/70\t0\t0\n巴特沃斯低通\t70\t22.56\t0.647\t0.532\t17.97\t−1.789 dB\t48/70\t0\t0\n陷波\t70\t26.28\t0.757\t0.663\t9.60\t+1.933 dB\t34/70\t0\t0\n快速 NLM\t70\t23.49\t0.659\t0.583\t12.40\t−0.858 dB\t39/70\t2\t0\n自适应 v2.0\t70\t27.34\t0.770\t0.692\t9.75\t+2.998 dB\t15/70\t21\t19\n自适应 v2.1\t70\t28.98\t0.815\t0.734\t8.47\t+4.637 dB\t16/70\t21\t19",
+  "retest_failures": {
+   "diag": "heldout-legacy-heuristic",
+   "text": "诊断版本 heldout-legacy-heuristic：负提升 16 条（方法 自适应 v2.1），全部保留。“输出未改动” 21 条为旧启发式判断，未经像素验证。\n\n旧规则推断：\n本身信息不可恢复 · 9\n算子或参数不适合该噪声 · 5\n频谱检测不可靠 · 2\n\n受控退化下的 PSNR、SSIM 和边缘保真变化，不等于历史碑刻原字已经被复原。",
+   "side": "无法判定 · 420 条\n\n本批没有图像，isPassthrough = null；不判断是否改动，不显示原图返回率。\n\n运行失败 · 0 条\n\n当前筛选下没有运行失败的记录。\n\n不确定性\n\n比较图中的须为按文物聚类 bootstrap 的 95% CI；文物 < 3 标“CI 不可靠”、不画误差线；n_文物 < 10 时结论自动降为“有限支持”。\n\n待人工复核\n\n待人工复核 E-09（V22 interior_constant_block）、E-12（两个 glyph schema 不一致）。",
+   "forbidden": {
+    "text": [
+     "heldout"
+    ],
+    "attrs": []
+   }
+  },
+  "retest_print_text_forbidden": {
+   "hasShort": true,
+   "forbidden": [
+    "heldout"
+   ]
+  },
+  "alias_batch_only": {
+   "url": "http://127.0.0.1:5720/?tab=reports&batch=2026-10-17-v2&steleId=tang-duobao&view=global&runId=20261018T072201_13772747&experimentId=controlled-rubbings-v2-2026-10-17",
+   "batch_select": "controlled-rubbings-v2-2026-10-17"
+  },
+  "alias_conflict": {
+   "url": "http://127.0.0.1:5720/?tab=reports&experimentId=controlled-rubbings-v2-text-2026-10-17&batch=2026-10-17-v2-text&steleId=tang-duobao&view=global&runId=20261018T072201_13772747",
+   "batch_select": "controlled-rubbings-v2-text-2026-10-17",
+   "bar": "算法评测报告\n全局评测\n本件处理报告\n总览与对照\n失败案例与不确定性\n复制链接\n导出 JSON\n打印 / 保存 PDF\n文物：《唐·多宝塔感应碑（核心实验样本）》 tang-duobao\n本件运行\n未选择\n20261018T072201_13772747 · 2026-10-18 15:22:01（UTC+8）\n20261017T093048_6fc67e99 · 2026-10-17 17:30:48（UTC+8）\n［legacy 旧版未验证］20261015T013329_809b9df4 · 未记录（无可解析时间）\n［legacy 旧版未验证］20261014T165542_5fc44fba · 未记录（无可解析时间）\n指定运行 · legacy 2 条不作默认\n前往工作台\n实验批次\n受控退化 v2-text（文字区裁切，2026-10-17） · 默认\n受控退化 v2（2026-10-17）\n同批复测 v2.1（非留出） · 仅数值\n历史批次 2026-10-15（先验泄漏，仅作记录）\n划分\n测试组 test\n开发组 development\n全部退化\n高斯噪声\n椒盐噪声\n周期噪声\n模糊\n遮挡\n方法\n高斯低通\n巴特沃斯低通\n陷波\n快速 NLM\n形态学\nNLM+CLAHE\n固定联合\n自适应联合 v2.0\n文物\n全部（7 件）\nhan_04_shichen\nming_04_ton"
+  },
+  "unknown_experiment": {
+   "url": "http://127.0.0.1:5720/?tab=reports&experimentId=no-such-experiment&steleId=tang-duobao&view=global&runId=20261018T072201_13772747",
+   "text": "没有登记 实验 ID no-such-experiment 的实验批次。不会改用其他批次；请在上方“实验批次”中选择。",
+   "triptych": 0
+  },
+  "unknown_batch": {
+   "url": "http://127.0.0.1:5720/?tab=reports&batch=no-such-batch&steleId=tang-duobao&view=global&runId=20261018T072201_13772747",
+   "text": "没有登记 批次别名 no-such-batch 的实验批次。不会改用其他批次；请在上方“实验批次”中选择。"
+  },
+  "artifact_1920": {
+   "url": "http://127.0.0.1:5720/?tab=reports&steleId=tang_01_duobao&view=artifact&runId=20261018T082526_4728b9df&experimentId=controlled-rubbings-v2-text-2026-10-17&batch=2026-10-17-v2-text",
+   "run": "20261018T082526_4728b9df",
+   "outcome": "passthrough",
+   "source": "computed-on-read",
+   "text": "本次未改动原图读取时校验\n\n算法判断无需处理，输出与输入逐像素相同。 改动 0 像素（0.00%），最大灰度差 0。\n\n判据：pixel-equal-v1；比较对象 original / restored；来源：读取时校验（旧运行，原图与输出 SHA-256 与记录一致后在读取时逐像素比较，未回写）\n\n浏览器逐像素补充确认：0 像素不同（1349×1185）。\n\n评测说明：本次未改动原图：算法判断无需处理，输出与输入逐像素相同；没有配对真值，配对质量未评测。",
+   "computedOnRead": 1,
+   "rule": "指定运行",
+   "effective": "未记录实际生效参数（effectiveParameters 为空）。",
+   "heatmap_canvases": 0
+  },
+  "export_json": "RM-tang_01_duobao-20261018T082526_4728b9df-受控退化_v2-text（文字区裁切，2026-10-17）.json",
+  "artifact_1440": {
+   "url": "http://127.0.0.1:5720/?tab=reports&steleId=tang_01_duobao&view=artifact&runId=20261018T082526_4728b9df&experimentId=controlled-rubbings-v2-text-2026-10-17&batch=2026-10-17-v2-text",
+   "run": "20261018T082526_4728b9df",
+   "outcome": "passthrough",
+   "source": "computed-on-read",
+   "text": "本次未改动原图读取时校验\n\n算法判断无需处理，输出与输入逐像素相同。 改动 0 像素（0.00%），最大灰度差 0。\n\n判据：pixel-equal-v1；比较对象 original / restored；来源：读取时校验（旧运行，原图与输出 SHA-256 与记录一致后在读取时逐像素比较，未回写）\n\n浏览器逐像素补充确认：0 像素不同（1349×1185）。\n\n评测说明：本次未改动原图：算法判断无需处理，输出与输入逐像素相同；没有配对真值，配对质量未评测。",
+   "computedOnRead": 1,
+   "rule": "指定运行",
+   "effective": "未记录实际生效参数（effectiveParameters 为空）。",
+   "heatmap_canvases": 0
+  },
+  "tangduobao": {
+   "url": "http://127.0.0.1:5720/?tab=reports&steleId=tang-duobao&view=artifact&runId=20261018T072201_13772747&experimentId=controlled-rubbings-v2-text-2026-10-17&batch=2026-10-17-v2-text",
+   "run": "20261018T072201_13772747",
+   "rule": "指定运行 · legacy 2 条不作默认",
+   "options": [
+    "未选择",
+    "20261018T072201_13772747 · 2026-10-18 15:22:01（UTC+8）",
+    "20261017T093048_6fc67e99 · 2026-10-17 17:30:48（UTC+8）",
+    "［legacy 旧版未验证］20261015T013329_809b9df4 · 未记录（无可解析时间）",
+    "［legacy 旧版未验证］20261014T165542_5fc44fba · 未记录（无可解析时间）"
+   ]
+  },
+  "unknown_run": {
+   "url": "http://127.0.0.1:5720/?tab=reports&steleId=tang_01_duobao&runId=no-such-run&view=artifact&experimentId=controlled-rubbings-v2-text-2026-10-17&batch=2026-10-17-v2-text",
+   "text": "URL 中的 runId no-such-run 不在《多宝塔感应碑》的运行记录中。不会改用其他运行；请在上方“本件运行”中选择。"
+  },
+  "global_print_head": "墨韵智考·算法评测报告\n\n导出于 2026-10-19 13:09:58（UTC+8）· 当前分层：全局评测 · 文物 tang-duobao《唐·多宝塔感应碑（核心实验样本）》 · 运行 20261018T072201_13772747\n\n实验批次：受控退化 v2-text（文字区裁切，2026-10-17）（controlled-rubbings-v2-text-2026-10-17）· 划分：测试组 test · 退化：全部退化 · 方法：自适应联合 v2.0 · 文物筛选：全部\n\n一、研究结论（分级）\n结论 1有限支持\n自适应联合 v2.0 相对退化输入的配对 ΔPSNR，主口径「实际处理」：+3.53 dB（95% CI +1.11 ~ +6.36；提升）；文物 7 件、47 行（n = 70）。全部：+2.09 dB；实际处理 47 条、原图返回未处理 23 条。CI 来源：derived/ci_by_artifact.json。\n分级依据：只在受控退化上成立（参考图是可读 JPG 裁切，不是碑石真值）；n_文物=7<10。\n结论 2有限支持\n配对增益 CI 下界 > 0（可写“提升”）：陷波、自适应联合 v2.0；CI 上界 < 0（下降）：高斯低通 −1.38 dB、巴特沃斯低通 −1.95 dB、快速 NLM −0.90 dB、形态学 −6.09 dB、NLM+CLAHE −7.75 dB、固定联合 −5.88 dB；其余跨 0、不可靠或无数据。负提升全部保留。\n结论 3未评测\n真实拓本修复质量：未评测（无配对参考）。古碑识字 Top-1/Top-3：未评测（已核验标注 0 条）。\n二、算法横向比较\n图 1　受控退化 v2-text（文字区裁切，2026-10-17） · 测试组 test · 全部退化：各方法相对退化输入的配对增益。柱为主口径（实际处理）文物均值，须为按文物聚类 95% CI（derived/ci_by_artifact.json；细笔画与耗时为前端临时口径；文物 < 3 不画），点为每件文物均值；全部原图返回的方法标“未处理 N 条”；每个量纲单独一轴，轴含 0。来源：/api/experiments/controlled-rubbings-v2-text-2026-10-17。\n三、视觉对照\n受控参考（退化前裁切） · SHA 89baacb16af4…\n退化输入 · 高斯噪声 1.3 · SHA ee3af2ccb061…\n本方法输出 · 自适应联合 v2.0 · SHA 144048510244…\n图 2　受控退化 v2-text（文字区裁切，2026-10-17） · case wei_04_wangsong_gaussian_1（中位案例） · 自适应联合 v2.0（adaptive-rubbing-v2.0）· seed 20261319。PSNR 24.13 dB（输入 21.01）。图像按 contain 完整显示，未裁切。\n四、本件处理记录\n\n运行报告未载入。\n\n五、来源与局限\n参考图 = 馆藏可读 JPG 的 256×256 裁切，经受控退化后再处理；它不是碑石真值，结论只对受控退化成立。\nnotch：46 条为“标为不适用但有改动”——历史批次：不适用分支仍有轻微像素改动（E-05，已在新代码修复）。\n图像字迹筛选不等于逐字人工真值标注；后续人工盲评仍需补充\n独立测试仅七件文物，每朝代一件，不支持总体优势结论\n真实石花与残损仍留在受控参考中\n中心采样的空白失败批次完整保留，未据性能删除或",
+  "global_forbidden": {
+   "text": [],
+   "attrs": []
+  },
+  "wb_to_report": {
+   "selected": "20261017T095714_4c9e66e5",
+   "wb_url": "http://127.0.0.1:5720/?tab=workbench&steleId=tang_01_duobao&runId=20261017T095714_4c9e66e5",
+   "report_run": "20261017T095714_4c9e66e5",
+   "url": "http://127.0.0.1:5720/?tab=reports&steleId=tang_01_duobao&runId=20261017T095714_4c9e66e5&view=artifact&experimentId=controlled-rubbings-v2-text-2026-10-17&batch=2026-10-17-v2-text"
+  },
+  "deeplink_newtab": {
+   "url": "http://127.0.0.1:5720/?tab=reports&steleId=tang_01_duobao&runId=20261017T095714_4c9e66e5&view=artifact&experimentId=controlled-rubbings-v2-text-2026-10-17&batch=2026-10-17-v2-text",
+   "run": "20261017T095714_4c9e66e5"
+  }
+ },
+ "errors": []
+}

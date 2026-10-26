@@ -15,7 +15,7 @@ from typing import Optional, List, Dict, Any, Literal
 
 from fastapi import FastAPI, File, UploadFile, Form, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse, JSONResponse, Response
+from fastapi.responses import FileResponse, JSONResponse, Response, RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from PIL import Image, UnidentifiedImageError
@@ -105,6 +105,14 @@ from runtime_paths import describe as describe_runtime_paths, results_override
 if results_override() is not None:
     os.makedirs(results_override(), exist_ok=True)
     app.mount("/static/results", StaticFiles(directory=str(results_override())), name="static-results")
+
+
+@app.get('/static/index.html', include_in_schema=False)
+async def legacy_frontend_bookmark():
+    """Retain old bookmarks without exposing the obsolete API-key entry page."""
+    return RedirectResponse('/', status_code=308)
+
+
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 if describe_runtime_paths()['overridden']:
     logger.warning('RubbingMind 数据路径已重定向: %s', describe_runtime_paths())
@@ -277,6 +285,15 @@ def experiment_mechanism_index(experiment_id: str):
     body=mechanism_index(experiment_id)
     if body is None:raise HTTPException(status_code=404,detail='实验批次不存在')
     return body
+
+
+@app.get('/api/experiments/{experiment_id}/derived/{relative:path}')
+def report_derived_file(experiment_id: str, relative: str):
+    from experiment_derived import resolve_report_derived
+    path, status, reason = resolve_report_derived(experiment_id, relative)
+    if path is None:
+        raise HTTPException(status_code=status, detail=reason)
+    return FileResponse(path, media_type='image/png' if path.suffix == '.png' else 'application/json')
 
 
 @app.get('/api/experiments/{experiment_id}/mechanism-assets/{asset_path:path}')

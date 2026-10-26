@@ -117,7 +117,11 @@ def run(url=URL):
                     open_page(page, '时空图谱中心', 'graph')
                     expect(page.get_by_test_id('stele-tang-duobao')).to_be_visible(timeout=20000)
                     open_page(page, '算法评测报告', 'reports')
-                    expect(page.get_by_role('heading', name='墨韵智考·金石数字化实验报告').last).to_be_visible(timeout=20000)
+                    expect(page.get_by_test_id('report-context-bar')).to_be_visible(timeout=20000)
+                    if not offline:
+                        expect(page.get_by_test_id('global-evaluation')).to_be_visible(timeout=20000)
+                    else:
+                        expect(page.get_by_role('alert').filter(has_text='实验数据读取失败')).to_be_visible(timeout=20000)
                     assert not page_errors, page_errors
                     context.tracing.stop()
                 except Exception as exc:

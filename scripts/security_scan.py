@@ -6,6 +6,7 @@
 import os
 import re
 import sys
+import subprocess
 
 PATTERNS = [
     (re.compile(r"sk-[a-zA-Z0-9_-]{20,}"), "OpenAI / LLM API Key (sk-...)"),
@@ -27,19 +28,47 @@ IGNORED_FILES = {
 }
 TEXT_EXTENSIONS = {'.py', '.ts', '.tsx', '.js', '.json', '.md', '.txt', '.yaml', '.yml',
                    '.ps1', '.bat', '.toml', '.ini', '.css', '.html', '.sh', '.csv'}
+TEXT_FILENAMES = {'.env.example', '.gitignore', '.gitattributes'}
+
+
+def repository_files(root_dir):
+    """Inspect delivery candidates, without traversing local worktrees/private data."""
+    try:
+        result = subprocess.run(
+            ['git', '-C', os.path.abspath(root_dir), 'ls-files', '-z',
+             '--cached', '--others', '--exclude-standard'],
+            capture_output=True, check=True,
+        )
+        names = result.stdout.decode('utf-8').split('\0')
+        for name in sorted(set(filter(None, names))):
+            if any(part in IGNORED_DIRS or part.startswith('node_modules.partial-')
+                   for part in name.split('/')):
+                continue
+            yield os.path.join(root_dir, name)
+        return
+    except (OSError, subprocess.CalledProcessError):
+        pass
+    for root, dirs, files in os.walk(root_dir):
+        dirs[:] = [d for d in dirs if d not in IGNORED_DIRS and not d.startswith('node_modules.partial-')]
+        for name in files:
+            yield os.path.join(root, name)
 
 def scan_repository(root_dir="."):
     findings = []
     print(f"[*] 开始扫描敏感信息与安全风险: {os.path.abspath(root_dir)}")
     
     file_count = 0
-    for root, dirs, files in os.walk(root_dir):
-        dirs[:] = [d for d in dirs if d not in IGNORED_DIRS and not d.startswith('node_modules.partial-')]
-        for f in files:
-            if f in IGNORED_FILES or os.path.splitext(f)[1].lower() not in TEXT_EXTENSIONS:
+    for filepath in repository_files(root_dir):
+        f = os.path.basename(filepath)
+        if os.path.isfile(filepath):
+            if ((f.startswith('.env') and f != '.env.example')
+                    or f in {'credentials.json', 'secrets.json', 'token.json'}
+                    or os.path.splitext(f)[1].lower() in {'.key', '.pem'}):
+                findings.append({'file': filepath, 'line': 0, 'desc': 'Credential file in Git delivery candidates'})
+                continue
+            if f in IGNORED_FILES or (f not in TEXT_FILENAMES and os.path.splitext(f)[1].lower() not in TEXT_EXTENSIONS):
                 continue
             
-            filepath = os.path.join(root, f)
             file_count += 1
             try:
                 with open(filepath, "r", encoding="utf-8", errors="ignore") as fp:
@@ -57,7 +86,6 @@ def scan_repository(root_dir="."):
                                     "file": filepath,
                                     "line": line_idx,
                                     "desc": desc,
-                                    "snippet": line.strip()[:100]
                                 })
             except Exception as e:
                 print(f"[!] 读取文件异常 {filepath}: {e}")

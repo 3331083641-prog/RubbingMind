@@ -1,0 +1,47 @@
+{
+  "ok": true,
+  "shots": [
+    {
+      "path": "D:\\RubbingMind\\screenshots\\product-upgrade\\phase1-frontend\\slice7\\p1-9_reports_firstscreen_1920x1080.png",
+      "size": 789166,
+      "viewport": "1920x1080"
+    },
+    {
+      "path": "D:\\RubbingMind\\screenshots\\product-upgrade\\phase1-frontend\\slice7\\p1-9_reports_firstscreen_1440x900.png",
+      "size": 578028,
+      "viewport": "1440x900"
+    },
+    {
+      "path": "D:\\RubbingMind\\screenshots\\product-upgrade\\phase1-frontend\\slice7\\rf8_home_core_cards_1920x1080.png",
+      "size": 1988319,
+      "viewport": "home-1920"
+    }
+  ],
+  "checks": [
+    {
+      "name": "shot-1920x1080-exists",
+      "pass": true,
+      "detail": "size=789166"
+    },
+    {
+      "name": "shot-1440x900-exists",
+      "pass": true,
+      "detail": "size=578028"
+    },
+    {
+      "name": "shot-1440x900-has-conclusion-text",
+      "pass": true,
+      "detail": "len=12897"
+    },
+    {
+      "name": "shot-1440x900-has-visual-nodes",
+      "pass": true,
+      "detail": "count=97"
+    },
+    {
+      "name": "rf8-home-object-contain-present",
+      "pass": true,
+      "detail": "contain=4 cover=0"
+    }
+  ]
+}

@@ -31,7 +31,7 @@ def image_bytes(format='PNG', size=(64, 64)):
     return output.getvalue()
 
 
-@pytest.mark.parametrize('format,mime', [('PNG','image/png'), ('JPEG','image/jpeg')])
+@pytest.mark.parametrize('format,mime', [('PNG','image/png'), ('JPEG','image/jpeg'), ('WEBP','image/webp')])
 def test_upload_persists_reload_and_processes_real_image(isolated, format, mime):
     tmp_path, client = isolated
     payload = image_bytes(format)

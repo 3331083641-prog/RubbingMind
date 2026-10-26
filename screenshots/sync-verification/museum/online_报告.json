@@ -1,0 +1,59 @@
+{
+  "reportId": "RM-qing_02_wushi_reerection-未选择运行",
+  "exportedAt": "2026-10-26T23:02:30+08:00",
+  "view": "artifact",
+  "url": "http://127.0.0.1:5740/?tab=reports&steleId=qing_02_wushi_reerection&view=artifact",
+  "stele": {
+    "id": "qing_02_wushi_reerection",
+    "title": "重立武氏祠石记",
+    "dynasty": "清代",
+    "originalYear": "1787年",
+    "rubbingPeriod": " 19th-early 20th century (rubbings)",
+    "collectionInstitution": "普林斯顿大学艺术博物馆",
+    "collectionNumber": "y1957-139 b",
+    "sourceUrl": "https://artmuseum.princeton.edu/art/collections/objects/57837",
+    "license": "Public Domain"
+  },
+  "runId": null,
+  "runSelection": {
+    "rule": "none",
+    "runId": null,
+    "legacyRunCount": 0
+  },
+  "algorithmVersion": null,
+  "inputImageSha256": null,
+  "workingImage": null,
+  "randomSeed": null,
+  "outputSha256": null,
+  "imageRoles": null,
+  "changeStatus": null,
+  "evaluationSummary": "尚未选择运行记录。",
+  "reportDataStatus": {
+    "runs": "ok",
+    "selection": "ok",
+    "report": "not_requested"
+  },
+  "adaptiveDiagnostics": null,
+  "algorithmLayer": null,
+  "algorithmParameters": null,
+  "startedAt": null,
+  "finishedAt": null,
+  "processingTimeMs": null,
+  "outputImages": null,
+  "evaluationStatus": "not_run",
+  "evaluationMetrics": null,
+  "diagnosticMetrics": null,
+  "inferenceRecords": [],
+  "sourceRecords": [],
+  "experiment": null,
+  "glyphEvaluation": {
+    "status": "not_evaluated",
+    "top1": null,
+    "top3": null,
+    "rejectionRate": null,
+    "verifiedLabels": 0,
+    "recordedLabels": 0,
+    "reason": "没有按碑刻分开的人工核验测试标注，不计算识别准确率。已记录的人工标注也不自动升为真值。"
+  },
+  "note": "Values and change criteria follow this JSON; print layout may differ slightly after manual pagination. Includes failureRetention (aligned with on-screen failure gallery) and liftClaims (ES-3, aligned with on-screen lift-claim badges)."
+}

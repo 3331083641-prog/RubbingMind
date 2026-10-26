@@ -1,0 +1,32 @@
+# Phase1 frontend slice9 — print empty/limitations + DER口径 v3.3
+Date: 2026-10-25 Asia/Shanghai
+Worktree: D:\RubbingMind\wt\rm-report-frontend (agent/report-frontend)
+Merge base: be5e43d = merge(feature): product-grade-upgrade@b60d556 into report-frontend
+HEAD after this batch: see batch-tips.txt
+Forbidden untouched: App.tsx, api.ts, urlState.ts, HomePage.tsx (RF-8), no push, no feature edit
+
+## Build
+cd apps/web && npm run build → tsc && vite build OK (exit 0)
+ReportsPage chunk: dist/assets/ReportsPage-B9rDsmzj.js
+
+## vite / ports (merge RT-008)
+- vite.config.ts server.port default = 5173, host 127.0.0.1
+- DEFAULT_API_TARGET = http://127.0.0.1:8000 with loud warn when RUBBINGMIND_API_TARGET unset
+- Agent verify (if serving): $env:RUBBINGMIND_API_TARGET='http://127.0.0.1:8720'; npm run dev -- --port 5720 --host 127.0.0.1
+- Did NOT start own servers this round (build-only). Did not touch 5180/8000.
+
+## Commits this round (relative to be5e43d; also retain pre-merge tips 6ec5723..32195ce)
+1. 8626c64 fix(report): print case PSNR empty without unit splice
+   - ReportPrintLayout case figcaption: num(psnr, 2, 'dB') so null →「未评测」without trailing dB
+2. da7f4bf feat(report): declare print interactive limitations (P1-8)
+   - data-testid=print-limitations-interactive: slider/zoom/ROI/diff are screen-only
+3. 8da414c fix(report): DER criterion copy cites REPORT_DATA_SPEC v3.3
+   - print-der-criterion + GlobalEvaluation der-criterion-note cite v3.3 (was v2 in print)
+
+## Skipped
+- algorithmOutputMode UI: api.ts still has no algorithmOutputMode (only run-level outputMode). See algorithmOutputMode-gap.txt
+- RF-8: HomePage NOT modified; object-contain @ L245/L250; ticket NOT closed (user screenshot confirm still required). See rf8-audit-evidence.txt
+- AB-8 health samples_* report UI: ops field; not this slice
+
+## Gate batch suggestion
+Include **32195ce..HEAD** (32195ce ES-3/ES-5 UI was NOT yet on feature@b60d556; merge be5e43d kept those commits diverged). Prior Green report of 32195ce batch predates feature merge — re-gate from 32195ce through latest tip including this slice9 trio.

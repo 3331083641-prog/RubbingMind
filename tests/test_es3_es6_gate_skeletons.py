@@ -127,9 +127,8 @@ def test_es6_missing_evidence_must_not_pass():
 
 def test_es6_task_board_external_still_in_progress_readonly():
     """Read-only: external TASK_BOARD ES-6 row must still say 进行中 (no fake-green)."""
-    board = Path(r"D:\RubbingMind\docs\product-upgrade\TASK_BOARD.md")
-    if not board.is_file():
-        return  # soft-skip if host path absent
+    board = ROOT / "docs/product-upgrade/TASK_BOARD.md"
+    assert board.is_file(), "Tracked task board is required in the delivery checkout"
     text = board.read_text(encoding="utf-8")
     rows = [ln for ln in text.splitlines() if ln.startswith("| ES-6 |")]
     assert rows, "TASK_BOARD missing ES-6 row"
