@@ -27,6 +27,7 @@ export const App: React.FC = () => {
   const [selectedSteleId, setSelectedSteleId] = useState<string>(initialUrl.steleId || 'tang-duobao');
   // Shared run / experiment selection: the workbench writes it, the report page reads it.
   const [activeRunId, setActiveRunIdState] = useState<string | null>(initialUrl.runId || null);
+  const [rejectedRunId, setRejectedRunId] = useState<string | null>(null);
   // experimentId is authoritative; a `batch` alias is resolved below and never kept in state or URL.
   const [activeExperimentId, setActiveExperimentId] = useState<string | null>(initialUrl.experimentId || null);
   const [experimentStatus, setExperimentStatus] = useState<'none' | 'resolving' | 'ok' | 'unknown' | 'unavailable'>(
@@ -79,7 +80,7 @@ export const App: React.FC = () => {
 
   // User-driven setters: only these make the URL writable.
   const setCurrentTab = useCallback((tab: string) => { userChanged.current = true; setCurrentTabState(tab); }, []);
-  const setActiveRunId = useCallback((runId: string | null) => { userChanged.current = true; setActiveRunIdState(runId); }, []);
+  const setActiveRunId = useCallback((runId: string | null) => { userChanged.current = true; setRejectedRunId(null); setActiveRunIdState(runId); }, []);
 
   // Normalise a URL that came with parameters (drop invalid values and the batch alias) without
   // adding any default value. Skipped once the user has changed state (the effect below writes then).
@@ -121,6 +122,7 @@ export const App: React.FC = () => {
     SteleService.listRuns(initialUrl.steleId || selectedSteleId).then(items => {
       if (!live || userChanged.current || items.some(item => item.runId === runId)) return;
       setActiveRunIdState(null);
+      setRejectedRunId(runId);
       addNotice(`链接中的运行 ${runId} 不属于当前文物或已不存在，已从地址中移除，未替换为其他运行`);
       normaliseInitialUrl({ runId: undefined });
     }).catch(() => undefined);
@@ -134,6 +136,7 @@ export const App: React.FC = () => {
 
   const handleSelectStele = (id: string) => {
     userChanged.current = true;
+    setRejectedRunId(null);
     // A runId belongs to one artifact; never carry it over to another one.
     if (id !== selectedSteleId) setActiveRunIdState(null);
     setSelectedSteleId(id);
@@ -231,6 +234,7 @@ export const App: React.FC = () => {
             stele={currentStele}
             onNavigate={setCurrentTab}
             runId={activeRunId}
+            invalidRunId={rejectedRunId}
             onRunChange={setActiveRunId}
             experimentId={activeExperimentId}
             experimentStatus={experimentStatus}

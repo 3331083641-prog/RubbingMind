@@ -112,7 +112,8 @@ def run(url,ci=False):
         capture(page,'07-museum-unified-research.png')
         result['checks'].append('real evidence retrieval, sourced expansion, unverified identity refusal and museum research')
         page.locator('header select').first.select_option('tang_01_duobao');nav(page,'算法评测报告')
-        page.get_by_label('选择报告运行记录').select_option(run['runId'])
+        page.get_by_role('tab',name='本件处理报告',exact=True).click()
+        page.get_by_label('本件运行',exact=True).select_option(run['runId'])
         expect(page.get_by_test_id('run-outcome')).to_be_visible()
         expect(page.get_by_text(run['runId'],exact=True).first).to_be_visible()
         with page.expect_download() as download:page.get_by_role('button',name='导出 JSON',exact=True).click()
@@ -122,8 +123,10 @@ def run(url,ci=False):
         assert any(i['inferenceId']==inference['inferenceId'] and i['status']=='human_rejected' for i in report['inferenceRecords'])
         page.pdf(path=str(OUT/'actual-run-report.pdf'),format='A4',print_background=True)
         page.get_by_role('tab',name='全局评测',exact=True).click()
-        page.get_by_role('tab',name='总览与对照',exact=True).click()
+        page.get_by_test_id('studio-module-overview').click()
         page.get_by_label('实验批次').select_option('heldout-v20-v21-2026-10-18')
+        page.get_by_test_id('studio-secondary-records').click()
+        page.get_by_text('跨批次可比性与同批复测',exact=True).click()
         retest=page.get_by_test_id('retest-comparison')
         expect(retest).to_contain_text('不是独立验证')
         expect(retest).to_contain_text('负提升')
@@ -133,15 +136,19 @@ def run(url,ci=False):
         expect(retest.get_by_test_id('retest-table').locator('tbody tr')).to_have_count(retest_method_n)
         page.get_by_label('实验批次').select_option(BATCH)
         expect(page.get_by_label('实验批次')).to_have_value(BATCH)
+        page.get_by_text('筛选与实验上下文',exact=True).click()
         page.get_by_label('实验样本',exact=True).select_option('han_04_shichen')
-        page.get_by_test_id('report-context-bar').get_by_role('button',name='高斯噪声',exact=True).click()
+        page.get_by_label('退化类型筛选',exact=True).select_option('gaussian')
         page.get_by_label('处理方法',exact=True).select_option('adaptive_joint')
+        page.get_by_test_id('studio-secondary-records').click()
         experiment=page.get_by_test_id('experiment-explorer')
         api=page.request.get(url.rstrip('/')+'/api/experiments/'+BATCH).json()
         values=[r for r in api['rows'] if r['sampleId']=='han_04_shichen' and r['degradation']=='gaussian' and r['method']=='adaptive_joint' and r['split']=='test']
         expected=f"{sum(r['psnr'] for r in values)/len(values):.3f}"
         method_row=experiment.get_by_test_id('experiment-table').locator('tbody tr').filter(has=page.get_by_role('cell',name='自适应联合 v2.0',exact=True))
         expect(method_row.locator('td').nth(5)).to_have_text(expected)
+        page.get_by_test_id('studio-module-images').click()
+        expect(page.get_by_test_id('experiment-triptych')).to_be_visible()
         for img in page.get_by_test_id('experiment-triptych').locator('img').all():
             img.scroll_into_view_if_needed();img.evaluate('(i)=>i.decode()');assert img.evaluate('(i)=>i.naturalWidth')==256
         capture(page,'08-experiment-explorer.png')
@@ -150,12 +157,12 @@ def run(url,ci=False):
         capture(page,'08b-failure-retention.png')
         page.get_by_role('tab',name='消融与机制',exact=True).click()
         mechanism=page.get_by_test_id('mechanism-panel')
-        expect(mechanism).to_contain_text('headCommit')
+        expect(mechanism.get_by_test_id('mechanism-head-lag-note')).to_contain_text('最新交付代码')
         expect(mechanism.locator('img').first).to_be_visible()
-        for img in mechanism.locator('img').all():
+        for img in mechanism.locator('img:visible').all():
             img.evaluate('(i)=>i.decode()');assert img.evaluate('(i)=>i.naturalWidth')>0
         capture(page,'08c-mechanism-provenance.png')
-        page.get_by_role('tab',name='总览与对照',exact=True).click()
+        page.get_by_test_id('studio-module-overview').click()
         result['checks'].append('selected real run report JSON/PDF, source-linked experiment images and API/UI numeric equality')
         for width,height in ([(1920,1080),(1440,900),(1366,768)] if not ci else [(1440,900)]):
             page.set_viewport_size({'width':width,'height':height})

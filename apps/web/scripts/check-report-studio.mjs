@@ -1,0 +1,31 @@
+// Test calculation invariants; synthetic fixtures are never delivered as experimental results.
+import { build } from 'esbuild';
+import { fileURLToPath } from 'node:url';
+import { dirname, resolve } from 'node:path';
+import assert from 'node:assert/strict';
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const bundled = await build({ entryPoints: [resolve(root, 'src/components/reports/data/studioData.ts')], bundle: true, write: false, platform: 'node', format: 'esm', logLevel: 'silent' });
+const { artifactMean, studioEvidence } = await import('data:text/javascript;base64,' + Buffer.from(bundled.outputFiles[0].text).toString('base64'));
+let checks = 0; const test = fn => { fn(); checks++; };
+const input = (sampleId, caseId) => ({ sampleId, caseId, method:'degraded', degradation:'gaussian', psnr:10, split:'test' });
+const output = (sampleId, caseId, psnr, appliedStatus='processed', extra={}) => ({ sampleId, caseId, method:'joint', degradation:'gaussian', psnr, split:'test', appliedStatus, ...extra });
+const a = output('A','a',20), a2 = output('A','a2',40), b = output('B','b',0);
+const bases = [input('A','a'),input('A','a2'),input('B','b')];
+test(() => assert.equal(artifactMean([a,a2,b], [...bases,a,a2,b], 'psnr').value, 5)); // artifact means 20 and -10; not record mean 10.
+test(() => assert.equal(artifactMean([output('X','x',null)],[], 'psnr').value, null));
+const rows = [...bases,a,a2,b, input('C','c'),output('C','c',10),output('D','d',10,'passthrough'),output('E','e',11,'processed_not_applicable_label'),output('F','f',null,'undetermined'),output('G','g',null,'failed',{error:'fixture'})];
+const model = { rows, rowsAll:rows, methods:['joint'], degradations:['gaussian','occlusion'], primary:{primaryScope:'processed'}, panels:[], detail:{} };
+const data = studioEvidence(model,'psnr');
+test(() => assert.deepEqual(data.distribution[0].counts,[2,1,1,1,2,1]));
+test(() => assert.equal(data.distribution[0].total,rows.filter(r=>r.method==='joint').length));
+test(() => assert.equal(data.heatmap[0].value,(20-10+0)/3));
+test(() => assert.equal(data.heatmap[1].value,null));
+test(() => assert.deepEqual(data.timing,[]));
+test(() => assert.equal(data.environmentRecorded,false));
+const pairedRows = [input('A','a'),input('A','a2'),input('B','b'), {...a,processingMs:10}, {...a2,processingMs:null}, {...b,processingMs:30}, output('D','d',10,'passthrough',{processingMs:500})];
+const paired = studioEvidence({ ...model, rows:pairedRows, rowsAll:pairedRows, detail:{environment:{python:'fixture'}}, panels:[{metric:{key:'psnr'},items:[{method:'joint',primaryScope:'processed'}]}] }, 'processingMs');
+test(() => assert.equal(paired.outcomeMetric,'psnr'));
+test(() => assert.equal(paired.timing[0].milliseconds,20));
+test(() => assert.equal(paired.timing[0].quality,0));
+test(() => assert.equal(paired.timing[0].rows,2));
+console.log(`Report studio calculation checks passed: ${checks}`);

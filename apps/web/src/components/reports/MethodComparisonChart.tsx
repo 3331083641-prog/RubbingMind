@@ -12,6 +12,7 @@ import { GridComponent, TooltipComponent, TitleComponent, MarkLineComponent } fr
 import { CanvasRenderer } from 'echarts/renderers';
 import { GAIN_SIGN_TEXT, liftClaimDisplay, mayClaimPositiveLift, SCOPE_LABELS, type MethodAggregate, type Scope } from './data/reportData';
 import { MetricDef, directionText, methodLabel } from './data/labels';
+import { useQuietMotion } from './studioMotion';
 
 echarts.use([BarChart, ScatterChart, CustomChart, GridComponent, TooltipComponent, TitleComponent, MarkLineComponent, CanvasRenderer]);
 
@@ -30,7 +31,7 @@ interface Props {
 }
 
 const C = {
-  screen: { text: '#cbd5e1', sub: '#94a3b8', axis: '#334155', pos: '#3E8E7E', neg: '#C83C23', sel: '#D4AF37', point: 'rgba(245,212,110,0.85)', ci: '#e2e8f0', zero: '#F5D46E', bg: 'transparent', neutral: '#64748b' },
+  screen: { text: '#cbd2c8', sub: '#a4b1a6', axis: '#3b4840', pos: '#79ad9d', neg: '#c47c6d', sel: '#c0ad7d', point: 'rgba(207,190,142,0.85)', ci: '#dde4d9', zero: '#aaa88e', bg: 'transparent', neutral: '#708078' },
   print: { text: '#1f2937', sub: '#4b5563', axis: '#9ca3af', pos: '#2f6f62', neg: '#b3321b', sel: '#8a6d12', point: 'rgba(60,60,60,0.75)', ci: '#111827', zero: '#111827', bg: '#ffffff', neutral: '#9ca3af' },
 };
 
@@ -49,7 +50,7 @@ export function extent(items: MethodAggregate[]) {
   return { min, max, step };
 }
 
-export function buildOption(panels: ChartPanel[], methods: string[], selected: string | undefined, layout: 'row' | 'column', theme: 'screen' | 'print', containerWidth: number) {
+export function buildOption(panels: ChartPanel[], methods: string[], selected: string | undefined, layout: 'row' | 'column', theme: 'screen' | 'print', containerWidth: number, motion = true) {
   const col = C[theme]; const N = panels.length || 1;
   const leftLabel = 112; const gapPx = 22;
   const pw = Math.max(80, (containerWidth - leftLabel - 16 - gapPx * (N - 1)) / N);
@@ -58,8 +59,8 @@ export function buildOption(panels: ChartPanel[], methods: string[], selected: s
     ? { left: leftOf(i), width: pw, top: 46, bottom: 26 }
     : { left: leftLabel, right: 16, top: `${(100 / N) * i + 7}%`, height: `${100 / N - 13}%` });
   const option: echarts.EChartsCoreOption = {
-    backgroundColor: col.bg, animation: theme === 'screen',
-    textStyle: { fontFamily: '"Noto Serif SC","Source Han Serif SC","SimSun",serif' },
+    backgroundColor: col.bg, animation: theme === 'screen' && motion, animationDuration: 620, animationDurationUpdate: motion ? 320 : 0,
+    textStyle: { fontFamily: 'system-ui,sans-serif' },
     tooltip: { trigger: 'item', confine: true, backgroundColor: 'rgba(10,13,18,0.94)', borderColor: '#D4AF37', textStyle: { color: '#e2e8f0', fontSize: 12 } },
     title: panels.map((p, i) => ({
       text: `${p.metric.title}${p.metric.unit ? `（${p.metric.unit}）` : ''}`, subtext: `${directionText(p.metric.direction)}${p.metric.note ? ` · ${p.metric.note}` : ''}`,
@@ -69,7 +70,7 @@ export function buildOption(panels: ChartPanel[], methods: string[], selected: s
     grid: grids,
     xAxis: panels.map((p, i) => { const e = extent(p.items); return {
       type: 'value', gridIndex: i, scale: false, min: e.min, max: e.max, interval: e.step,
-      axisLabel: { color: col.sub, fontSize: 10, formatter: (v: number) => Math.abs(v) >= 100 ? v.toFixed(0) : Math.abs(v) >= 1 ? v.toFixed(1) : v.toFixed(2) },
+      axisLabel: { color: col.sub, fontSize: 11, formatter: (v: number) => Math.abs(v) >= 100 ? v.toFixed(0) : Math.abs(v) >= 1 ? v.toFixed(1) : v.toFixed(2) },
       splitLine: { lineStyle: { color: col.axis, opacity: 0.35 } }, axisLine: { show: false },
     }; }),
     yAxis: panels.map((_, i) => ({
@@ -128,6 +129,7 @@ export function buildOption(panels: ChartPanel[], methods: string[], selected: s
 }
 
 export const MethodComparisonChart: React.FC<Props> = ({ panels, methods, selectedMethod, onSelectMethod, onSelectSample, layout = 'row', theme = 'screen', height = 300, width, testId }) => {
+  const quiet = useQuietMotion();
   const ref = useRef<HTMLDivElement>(null);
   const chart = useRef<echarts.ECharts | null>(null);
   const [w, setW] = useState(width || 0);
@@ -146,6 +148,6 @@ export const MethodComparisonChart: React.FC<Props> = ({ panels, methods, select
     ro?.observe(ref.current);
     return () => { ro?.disconnect(); c.dispose(); chart.current = null; };
   }, [width, height]);
-  useEffect(() => { const cw = width || ref.current?.clientWidth || w || 1200; chart.current?.setOption(buildOption(panels, methods, selectedMethod, layout, theme, cw), true); }, [panels, methods, selectedMethod, layout, theme, w, width]);
+  useEffect(() => { const cw = width || ref.current?.clientWidth || w || 1200; chart.current?.setOption(buildOption(panels, methods, selectedMethod, layout, theme, cw, !quiet), true); }, [panels, methods, selectedMethod, layout, theme, w, width, quiet]);
   return <div ref={ref} data-testid={testId} role="img" aria-label={`算法横向比较图：${panels.map(p => p.metric.title).join('、')}`} style={{ width: width ? `${width}px` : '100%', height }} />;
 };

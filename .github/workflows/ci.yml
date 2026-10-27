@@ -79,6 +79,7 @@ jobs:
         working-directory: apps/web
         run: |
           npm run test:url
+          npm run test:studio
           npm run build
 
   repository-validation:
@@ -151,6 +152,8 @@ jobs:
         run: python scripts/test_home_ambient_video_browser.py --ci
       - name: Verify adaptive workflow, evidence retrieval and real experiment UI
         run: python scripts/test_technical_v2_browser.py --ci --url http://127.0.0.1:4173
+      - name: Verify interactive report studio and real-data export
+        run: python scripts/test_report_redesign_browser.py --url http://127.0.0.1:4173 --exercise-run --output screenshots/report-redesign/ci
       - name: Collect service logs
         if: always()
         run: |
@@ -165,5 +168,6 @@ jobs:
           path: |
             screenshots/ci-smoke/
             screenshots/technical-v2/
+            screenshots/report-redesign/ci/
           if-no-files-found: warn
           retention-days: 7

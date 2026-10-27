@@ -83,11 +83,13 @@ def run(url,backend,out,exercise_upload=False):
 
         page.set_viewport_size({'width':1920,'height':1080});open_tab('reports')
         capture('reports/01-global-full.png',full=True)
+        capture('reports/03-method-chart.png',locator=page.get_by_test_id('method-comparison-chart'))
+        page.get_by_test_id('studio-module-images').click()
         triptych=page.get_by_test_id('experiment-triptych')
+        expect(triptych).to_be_visible()
         for img in triptych.locator('img').all():
             img.evaluate('(i)=>i.decode()');assert img.evaluate('(i)=>i.naturalWidth')==256
         capture('reports/02-real-image-comparison.png',locator=triptych)
-        capture('reports/03-method-chart.png',locator=page.get_by_test_id('method-comparison-chart'))
         with page.expect_download() as download:page.get_by_role('button',name='导出 JSON',exact=True).click()
         download.value.save_as(out/'reports/global-export.json')
         exported=json.loads((out/'reports/global-export.json').read_text(encoding='utf-8'))
@@ -104,7 +106,7 @@ def run(url,backend,out,exercise_upload=False):
         page.get_by_role('tab',name='消融与机制',exact=True).click()
         mechanism=page.get_by_test_id('mechanism-panel')
         expect(mechanism.locator('img').first).to_be_visible()
-        for img in mechanism.locator('img').all():
+        for img in mechanism.locator('img:visible').all():
             img.evaluate('(i)=>i.decode()');assert img.evaluate('(i)=>i.naturalWidth')>0
         expect(mechanism.get_by_test_id('mechanism-head-lag-note')).to_be_visible()
         capture('reports/05-mechanism.png',full=True)

@@ -1,0 +1,52 @@
+{
+  "skills": [
+    {
+      "name": "design-taste-frontend",
+      "path": "D:\\Codex\\.codex\\skills\\design-taste-frontend\\SKILL.md",
+      "commit": "12af471f627f866411b4bd785b19646d3672784c",
+      "sha256": "3435ed963b15a1b6447746ec8844ab2cd38d8d2e8ead3451937f42df01e408c4",
+      "manifestMatches": true,
+      "readmePackaged": true
+    },
+    {
+      "name": "high-end-visual-design",
+      "path": "D:\\Codex\\.codex\\skills\\high-end-visual-design\\SKILL.md",
+      "commit": "5e08c9383dc4ad7fc0df70e1ac8cfa09ec356305",
+      "sha256": "b981812482285acffba3a8d4d762c2af3d3e7b88350cb6816fdbd583e825e973",
+      "manifestMatches": true,
+      "readmePackaged": false
+    },
+    {
+      "name": "minimalist-ui",
+      "path": "D:\\Codex\\.codex\\skills\\minimalist-ui\\SKILL.md",
+      "commit": "5e08c9383dc4ad7fc0df70e1ac8cfa09ec356305",
+      "sha256": "5746722f8f0e70154790123247efc3f4711c301cbfc1bf2400d5c6d7ab042f99",
+      "manifestMatches": true,
+      "readmePackaged": false
+    },
+    {
+      "name": "imagegen-frontend-web",
+      "path": "D:\\Codex\\.codex\\skills\\imagegen-frontend-web\\SKILL.md",
+      "commit": "beb16b0d0f4dae9a6f5cb04ea41e97b93a54ab8e",
+      "sha256": "6b5c2256522fdba1e3313eafa3d743b960a7b13ec029d3e6586e04b23327c1f8",
+      "manifestMatches": true,
+      "readmePackaged": false
+    },
+    {
+      "name": "image-to-code",
+      "path": "D:\\Codex\\.codex\\skills\\image-to-code\\SKILL.md",
+      "commit": "beb16b0d0f4dae9a6f5cb04ea41e97b93a54ab8e",
+      "sha256": "4c060a8064a8b13380bc2ef3d6e6a1d0b1e316aa093cd9807d0ce9e4eeb037fa",
+      "manifestMatches": true,
+      "readmePackaged": false
+    }
+  ],
+  "tools": [
+    "draw.mjs --app (seed 477876836)",
+    "inspect.mjs --app baseline and production",
+    "lint.mjs --app",
+    "image_gen.imagegen layout-only reference",
+    "Playwright Edge / Chromium screenshots and recording"
+  ],
+  "gptTaste": "read and evaluated, not applied: AIDA/GSAP marketing structure conflicts with research app"
+}

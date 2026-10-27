@@ -12,7 +12,7 @@
 | 时空图谱中心 | Three.js + MapLibre + 真实 DEM，国界 / 省界独立图层、地形贴地标记、史料关系、纪年换算和有来源的全文检索 |
 | 算法评测报告 | 批次总览和本件运行报告，实际实验筛选、PSNR / SSIM / 边缘 F1、方法图表、同步图像对照、失败与负提升、机制证据、JSON / PDF 导出 |
 
-以下截图来自 2026-10-26 的本地实际运行。完整的 1920×1080、1440×900、1366×768 证据和核验记录位于 [screenshots/sync-verification](screenshots/sync-verification/)。
+前四页截图来自 2026-10-26 的本地实际运行；报告页截图来自 2026-10-27 的视觉重构验收。完整的 1920×1080、1440×900、1366×768 证据和核验记录位于 [screenshots/sync-verification](screenshots/sync-verification/)。
 
 ### 首页门户
 
@@ -32,9 +32,11 @@
 
 ### 算法评测报告
 
-![最新报告总览](screenshots/sync-verification/1920x1080/05-reports.png)
+![最新报告总览](screenshots/report-redesign/final/overview-1920.png)
 
-[真实图像对照](screenshots/sync-verification/reports/02-real-image-comparison.png) · [多方法图表](screenshots/sync-verification/reports/03-method-chart.png) · [失败案例](screenshots/sync-verification/reports/04-failure-cases.png) · [机制图与历史提交来源](screenshots/sync-verification/reports/05-mechanism.png)
+[真实图像对照](screenshots/report-redesign/final/images-expanded.png) · [退化热力图](screenshots/report-redesign/final/heatmap-expanded.png) · [失败案例](screenshots/report-redesign/final/failure-case-expanded.png) · [机制步骤](screenshots/report-redesign/final/mechanism-flow-expanded.png) · [真实交互录屏](screenshots/report-redesign/final/interaction-demo.webm)
+
+报告采用大型分析舞台与证据图窗：切换单一评价指标，点击方法与退化联动，支持专注查看、ESC 恢复及减少动态效果。新增热力图、处理状态分布与同批历史质量／耗时图；图表、JSON 和 PDF 附表来自同一计算层。正差不等于修复成功，原图返回单列。设计审查与实际 Skills 使用见 [report-redesign](docs/report-redesign/IMPLEMENTATION_REPORT.md)。
 
 ## 馆藏、史料与图像来源
 
@@ -62,7 +64,7 @@
 - 旧 2026-10-15 joint 使用生成器退化标签选陷波，存在先验泄漏，仅保留为历史记录；当前生产决策不接收退化标签或参考图。
 - 机制 PNG 和重放链绑定历史提交 `7623a52`，不宣称已经按当前交付 HEAD 全量重算。
 - 部分历史 CI 派生文件的来源哈希已过期，服务端明确拒绝。前端临时 bootstrap 会标注来源、种子与限制，不伪称后端已核验统计。
-- 完整 ROI 局部对照闭环仍有已知待办 A24。已有人工操作记录不等于独立标注集；古碑残字 Top-1 / Top-3 为未评测。
+- A24 专指候选 / 人工采纳字形的导出标签 schema 尚未实现；选区局部处理到报告的完整跨页闭环也仍待独立开发。已有人工操作记录不等于独立标注集；古碑残字 Top-1 / Top-3 为未评测。
 
 ## 三维地图架构
 
@@ -128,6 +130,7 @@ cd apps/web
 npm ci
 npm run build
 npm run test:url
+npm run test:studio
 npm audit
 ```
 

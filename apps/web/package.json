@@ -10,7 +10,8 @@
     "dev": "vite --host 127.0.0.1",
     "build": "tsc && vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "test:url": "node scripts/check-url-state.mjs"
+    "test:url": "node scripts/check-url-state.mjs",
+    "test:studio": "node scripts/check-report-studio.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",
