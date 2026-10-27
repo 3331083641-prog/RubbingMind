@@ -1,3 +1,4 @@
+import os
 """Browser check for the 28-work authorship and image-condition release."""
 import argparse
 import re
@@ -120,6 +121,8 @@ def run(url):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--url', default='http://127.0.0.1:5180/')
+    parser.add_argument('--url', default=os.environ.get('RUBBINGMIND_FRONTEND_URL') or '')
     args = parser.parse_args()
+    from scripts.browser_target import assert_safe_target
+    args.url = assert_safe_target(args.url, label='--url / RUBBINGMIND_FRONTEND_URL')
     print('\n'.join(run(args.url)))

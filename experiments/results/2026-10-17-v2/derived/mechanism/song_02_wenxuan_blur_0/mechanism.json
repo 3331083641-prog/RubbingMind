@@ -1,0 +1,478 @@
+{
+  "batch": "2026-10-17-v2",
+  "split": "test",
+  "sampleId": "song_02_wenxuan",
+  "caseId": "song_02_wenxuan_blur_0",
+  "degradation": "blur",
+  "strength": 0.65,
+  "category": "passthrough",
+  "selection": {
+    "rank": 8,
+    "candidateN": 18,
+    "sortKey": "caseId"
+  },
+  "storedFiles": {
+    "reference": "song_02_wenxuan_reference.png",
+    "input": "song_02_wenxuan_blur_0_input.png",
+    "output": "song_02_wenxuan_blur_0_adaptive_joint.png",
+    "notchOutput": "song_02_wenxuan_blur_0_notch.png"
+  },
+  "inputSha256": "10f2227d7c052bb2b8c5e901a08cb1dcb2240a3fd9489c6c64eff3fdf94a9c96",
+  "inputSha256Recorded": "10f2227d7c052bb2b8c5e901a08cb1dcb2240a3fd9489c6c64eff3fdf94a9c96",
+  "inputShaMatches": true,
+  "storedOutputSha256": "10f2227d7c052bb2b8c5e901a08cb1dcb2240a3fd9489c6c64eff3fdf94a9c96",
+  "storedOutputShaMatches": true,
+  "storedMetrics": {
+    "psnrInput": 21.517332306384947,
+    "psnrOutput": 21.517332306384947,
+    "psnrGain": 0.0,
+    "ssimGain": 0.0,
+    "edgeF1Gain": 0.0
+  },
+  "storedDiagnostics": {
+    "algorithmVersion": "adaptive-rubbing-v2.0",
+    "operators": [
+      "skip_notch",
+      "identity"
+    ],
+    "decisions": [
+      {
+        "operator": "skip_notch",
+        "reason": "未检出符合阈值的周期峰；不强行陷波"
+      },
+      {
+        "operator": "identity",
+        "reason": "残差证据弱；不锐化、不强制CLAHE/形态学"
+      }
+    ],
+    "fidelityGate": {
+      "accepted": true,
+      "strongEdgeRetention": 1.0,
+      "meanAbsoluteChange": 0.0,
+      "contrastRatio": 1.0,
+      "reasons": [],
+      "basis": "输入输出启发式保真门控，非质量真值"
+    },
+    "selectedOutput": "candidate"
+  },
+  "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+  "parameters": {
+    "strength": 1.0,
+    "notch_width": 0.8,
+    "canny": [
+      80,
+      160
+    ],
+    "spectrum": "log1p(|fftshift(fft2(x - mean(x)))|), min-max to 0..255, VIRIDIS",
+    "foreground": "Otsu, minority class (degradation_analysis.analyze_degradation)",
+    "skeleton": "AlgorithmEngine.extract_stroke_skeleton (Otsu + skimage skeletonize)",
+    "diff": "|out - in|, scaled by max(1, P99) to 0..255, INFERNO"
+  },
+  "replays": {
+    "historical": {
+      "code": {
+        "source": "experiments/results/2026-10-17-v2/source_snapshot/degradation_analysis.py",
+        "sha256": "14f172c0f775b2101c8a628d18a409dd372585f84d634dad08cd82dae72682f1",
+        "recordedCodeSha256": "14f172c0f775b2101c8a628d18a409dd372585f84d634dad08cd82dae72682f1"
+      },
+      "operators": [
+        "skip_notch",
+        "identity"
+      ],
+      "gateAccepted": true,
+      "versionString": "adaptive-rubbing-v2.0",
+      "vsStoredOutput": {
+        "pixelEqual": true,
+        "changedPixelCount": 0,
+        "maxAbsDiff": 0,
+        "meanAbsDiff": 0.0
+      },
+      "vsInput": {
+        "pixelEqual": true,
+        "changedPixelCount": 0,
+        "maxAbsDiff": 0,
+        "meanAbsDiff": 0.0
+      },
+      "operatorsMatchStored": true
+    },
+    "base": {
+      "code": {
+        "source": "git f0c5886a9d4c8b47d64640e1f7eaeac44be3c388:degradation_analysis.py",
+        "sha256": "24c1edaf982862a7354bf78e6c322ab3465ae42068d1801ad817096d56f657c6"
+      },
+      "operators": [
+        "skip_notch",
+        "identity"
+      ],
+      "gateAccepted": true,
+      "versionString": "adaptive-rubbing-v2.1",
+      "vsStoredOutput": {
+        "pixelEqual": true,
+        "changedPixelCount": 0,
+        "maxAbsDiff": 0,
+        "meanAbsDiff": 0.0
+      },
+      "vsInput": {
+        "pixelEqual": true,
+        "changedPixelCount": 0,
+        "maxAbsDiff": 0,
+        "meanAbsDiff": 0.0
+      }
+    },
+    "head": {
+      "code": {
+        "source": "working tree degradation_analysis.py",
+        "commit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+        "uncommittedChanges": false,
+        "sha256": "24af3c3b96f52f0c77de09342de543d898da2c327c5451632e8e90819527c962"
+      },
+      "operators": [
+        "skip_notch",
+        "identity"
+      ],
+      "gateAccepted": true,
+      "versionString": "adaptive-rubbing-v2.1",
+      "vsStoredOutput": {
+        "pixelEqual": true,
+        "changedPixelCount": 0,
+        "maxAbsDiff": 0,
+        "meanAbsDiff": 0.0
+      },
+      "vsInput": {
+        "pixelEqual": true,
+        "changedPixelCount": 0,
+        "maxAbsDiff": 0,
+        "meanAbsDiff": 0.0
+      },
+      "vsBase": {
+        "pixelEqual": true,
+        "changedPixelCount": 0,
+        "maxAbsDiff": 0,
+        "meanAbsDiff": 0.0
+      }
+    }
+  },
+  "notchBaselineReplay": {
+    "storedApplicability": "not_applicable",
+    "historicalEngine": {
+      "code": {
+        "source": "experiments/results/2026-10-17-v2/source_snapshot/algorithm_engine.py",
+        "sha256": "0ce77c1e8862e8cb94c510dd003c456ddd58f79d2b42a60a3bd0390a0d07e2fe"
+      },
+      "applicability": "not_applicable",
+      "vsStoredNotch": {
+        "pixelEqual": true,
+        "changedPixelCount": 0,
+        "maxAbsDiff": 0,
+        "meanAbsDiff": 0.0
+      },
+      "vsInput": {
+        "pixelEqual": false,
+        "changedPixelCount": 8,
+        "maxAbsDiff": 1,
+        "meanAbsDiff": 0.0001220703125
+      }
+    },
+    "headEngine": {
+      "code": {
+        "source": "working tree algorithm_engine.py (E-05 fix)",
+        "commit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+        "uncommittedChanges": false,
+        "sha256": "f45c7ceaaa35ff76784ad7981ba5fe8e3e5d06096fc94b27409aeb3ea4c0f8aa"
+      },
+      "applicability": "not_applicable",
+      "vsStoredNotch": {
+        "pixelEqual": false,
+        "changedPixelCount": 8,
+        "maxAbsDiff": 1,
+        "meanAbsDiff": 0.0001220703125
+      },
+      "vsInput": {
+        "pixelEqual": true,
+        "changedPixelCount": 0,
+        "maxAbsDiff": 0,
+        "meanAbsDiff": 0.0
+      }
+    }
+  },
+  "mechanism": {
+    "code": "head",
+    "features": {
+      "noiseSigmaMAD": 1.4826022386550903,
+      "impulseFraction": 0.0,
+      "periodicPeaks": [],
+      "thinStrokeRisk": 0.5487134549510078,
+      "highFrequencyEnergyFraction": 0.02909708581864834
+    },
+    "decisions": [
+      {
+        "operator": "skip_notch",
+        "reason": "未检出符合阈值的周期峰；不强行陷波"
+      },
+      {
+        "operator": "identity",
+        "reason": "残差证据弱；不锐化、不强制CLAHE/形态学"
+      }
+    ],
+    "fidelityGate": {
+      "accepted": true,
+      "strongEdgeRetention": 1.0,
+      "meanAbsoluteChange": 0.0,
+      "contrastRatio": 1.0,
+      "reasons": [],
+      "basis": "输入输出启发式保真门控，非质量真值"
+    },
+    "outputMode": "identity_no_evidence",
+    "changeStats": {
+      "isPassthrough": true,
+      "changedPixelCount": 0,
+      "totalPixelCount": 65536,
+      "changedPixelRatio": 0.0,
+      "maxAbsDiff": 0,
+      "meanAbsDiff": 0.0,
+      "passthroughCriterion": "pixel-equal-v1"
+    },
+    "notchApplied": false,
+    "peaksOutput": [],
+    "diffScaleP99": null,
+    "headVsStoredScaleP99": null,
+    "measures": {
+      "changedPixelRatio": 0.0,
+      "changedPixelCount": 0,
+      "meanAbsChange": 0.0,
+      "maxAbsChange": 0,
+      "inputMeanAbsError": 16.284286499023438,
+      "changeToInputErrorRatio": 0.0,
+      "psnrInput": 21.517332306384947,
+      "psnrOutput": 21.517332306384947,
+      "psnrDelta": 0.0,
+      "edgeF1Input": 0.2591995308605776,
+      "edgeF1Output": 0.2591995308605776,
+      "edgeF1Delta": 0.0,
+      "thinStrokeMaeInput": 15.70592212677002,
+      "thinStrokeMaeOutput": 15.70592212677002,
+      "thinStrokeMaeDelta": 0.0,
+      "foregroundLossInput": 0.28984877455240743,
+      "foregroundLossOutput": 0.28984877455240743,
+      "foregroundLossDelta": 0.0,
+      "periodicEnergyInput": 0.0,
+      "periodicPeaksInput": 0,
+      "periodicEnergyOutput": 0.0,
+      "periodicPeaksOutput": 0,
+      "periodicEnergyRatio": null,
+      "missingMaskPixels": 0,
+      "changedInMissingFraction": 0.0,
+      "strongEdgeRetention": 1.0,
+      "contrastRatio": 1.0
+    },
+    "measuresStoredOutput": {
+      "changedPixelRatio": 0.0,
+      "changedPixelCount": 0,
+      "meanAbsChange": 0.0,
+      "maxAbsChange": 0,
+      "inputMeanAbsError": 16.284286499023438,
+      "changeToInputErrorRatio": 0.0,
+      "psnrInput": 21.517332306384947,
+      "psnrOutput": 21.517332306384947,
+      "psnrDelta": 0.0,
+      "edgeF1Input": 0.2591995308605776,
+      "edgeF1Output": 0.2591995308605776,
+      "edgeF1Delta": 0.0,
+      "thinStrokeMaeInput": 15.70592212677002,
+      "thinStrokeMaeOutput": 15.70592212677002,
+      "thinStrokeMaeDelta": 0.0,
+      "foregroundLossInput": 0.28984877455240743,
+      "foregroundLossOutput": 0.28984877455240743,
+      "foregroundLossDelta": 0.0,
+      "periodicEnergyInput": 0.0,
+      "periodicPeaksInput": 0,
+      "periodicEnergyOutput": 0.0,
+      "periodicPeaksOutput": 0,
+      "periodicEnergyRatio": null,
+      "missingMaskPixels": 0,
+      "changedInMissingFraction": 0.0,
+      "strongEdgeRetention": 1.0,
+      "contrastRatio": 1.0
+    }
+  },
+  "images": [
+    {
+      "file": "spectrum_input.png",
+      "description": "输入 log 幅度谱；红圈为检出的共轭周期峰",
+      "shape": [
+        256,
+        256,
+        3
+      ],
+      "bytes": 137412,
+      "sha256": "6df543bd29a6161ab0606670145c739fa56bdc4871ac8c54529bb58d5a6a8164",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_blur_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_blur_0/spectrum_input.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
+    },
+    {
+      "file": "spectrum_output.png",
+      "description": "head 重算输出的 log 幅度谱；红圈为残留峰",
+      "shape": [
+        256,
+        256,
+        3
+      ],
+      "bytes": 137412,
+      "sha256": "6df543bd29a6161ab0606670145c739fa56bdc4871ac8c54529bb58d5a6a8164",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_blur_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_blur_0/spectrum_output.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
+    },
+    {
+      "file": "foreground_reference.png",
+      "description": "reference 二值前景（Otsu 少数类）",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 13059,
+      "sha256": "b621cf9a64e5d16d2ffe76e9c7c0ef8d556316d10a900282af09a0e04a123f86",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_blur_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_blur_0/foreground_reference.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
+    },
+    {
+      "file": "skeleton_reference.png",
+      "description": "reference 骨架",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 12806,
+      "sha256": "b04624aa95f573645a9ccb4cf597a0c453a98ca09825c00555c9d957638e76d1",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_blur_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_blur_0/skeleton_reference.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
+    },
+    {
+      "file": "edges_reference.png",
+      "description": "reference Canny(80,160) 边缘",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 14263,
+      "sha256": "c1593bd5f98eaea2baa445aa90742d9182cb727e70b486a497fcbee4705e4bd8",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_blur_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_blur_0/edges_reference.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
+    },
+    {
+      "file": "foreground_input.png",
+      "description": "input 二值前景（Otsu 少数类）",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 8184,
+      "sha256": "55cec80e2173783c48220e350ac512ea5c1f8ee64e7d62c4ba66531234f1ea7b",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_blur_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_blur_0/foreground_input.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
+    },
+    {
+      "file": "skeleton_input.png",
+      "description": "input 骨架",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 7810,
+      "sha256": "2f649bfdf596e95cd02a10736f6c29819089d851c556376bff23a02903d81dc2",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_blur_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_blur_0/skeleton_input.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
+    },
+    {
+      "file": "edges_input.png",
+      "description": "input Canny(80,160) 边缘",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 4992,
+      "sha256": "05d7f4ba6aee7f109454871150e4c87edc0ddecbe4da4ecdeaeb7f565dd99c34",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_blur_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_blur_0/edges_input.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
+    },
+    {
+      "file": "foreground_output.png",
+      "description": "output 二值前景（Otsu 少数类）",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 8184,
+      "sha256": "55cec80e2173783c48220e350ac512ea5c1f8ee64e7d62c4ba66531234f1ea7b",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_blur_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_blur_0/foreground_output.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
+    },
+    {
+      "file": "skeleton_output.png",
+      "description": "output 骨架",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 7810,
+      "sha256": "2f649bfdf596e95cd02a10736f6c29819089d851c556376bff23a02903d81dc2",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_blur_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_blur_0/skeleton_output.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
+    },
+    {
+      "file": "edges_output.png",
+      "description": "output Canny(80,160) 边缘",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 4992,
+      "sha256": "05d7f4ba6aee7f109454871150e4c87edc0ddecbe4da4ecdeaeb7f565dd99c34",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_blur_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_blur_0/edges_output.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
+    }
+  ]
+}

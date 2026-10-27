@@ -13,7 +13,7 @@ ROOT=Path(__file__).resolve().parents[1]
 ASSETS=ROOT/'apps/web/public/assets/stele/model3d/final'
 MODEL=ASSETS/'stele-final.glb'
 
-def run():
+def run(report_path=None):
     raw=MODEL.read_bytes(); magic,version,length=struct.unpack_from('<III',raw)
     assert magic==0x46546c67 and version==2 and length==len(raw)
     jl,jt=struct.unpack_from('<II',raw,12); assert jt==0x4e4f534a
@@ -52,8 +52,13 @@ def run():
         image=Image.open(io.BytesIO(payload)); image.verify()
         images.append({'mime':item['mimeType'],'pixels':list(image.size),'bytes':len(payload)})
     report={'pass':True,'model':MODEL.relative_to(ROOT).as_posix(),'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest(),'triangles':total,'primitives':results,'embedded_images':images,'external_image_uris':0}
-    (ROOT/'screenshots/stele-final/asset-validation.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
-    print(json.dumps(report,indent=2))
+    if report_path is not None:
+        out = Path(report_path)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        # LF-only JSON so CI/pytest never dirty tracked CRLF/LF on Windows
+        out.write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8', newline='\n')
+    print(json.dumps(report, indent=2))
     return report
 
-if __name__=='__main__': run()
+if __name__ == '__main__':
+    run(ROOT / 'screenshots/stele-final/asset-validation.json')

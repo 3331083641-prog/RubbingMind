@@ -1,0 +1,13 @@
+slice12 algorithmOutputMode UI evidence (2026-10-25 Asia/Shanghai)
+
+align: 25aa898ee882221bbd5affbdda20deceeb7058bc (includes 847e7f1)
+files:
+- apps/web/src/components/reports/data/reportData.ts (AdaptiveDiagnostics + algorithmOutputModeView)
+- apps/web/src/components/reports/ArtifactRunReport.tsx (data-testid=algorithm-output-mode)
+- apps/web/src/components/reports/ReportPrintLayout.tsx (data-testid=print-algorithm-output-mode)
+- apps/web/src/pages/ReportsPage.tsx (export algorithmLayer)
+forbidden untouched: App.tsx, urlState.ts, HomePage.tsx, api.ts, types/stele.ts
+build: npm run build GREEN
+copy: processed / identity_no_evidence / gate_fallback_original; missing field = real empty, no fake success
+layering: run-level isPassthrough/outputMode unchanged in run-outcome box; algo mode only in decision chain
+RF-8: still open, not self-closed

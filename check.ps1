@@ -10,11 +10,11 @@ if (Test-Path $statePath) {
     $state = Get-Content -Raw -Encoding UTF8 $statePath | ConvertFrom-Json
     if ($state.root -eq $projectRoot) {
         try {
-            $health = Invoke-RestMethod "http://127.0.0.1:$($state.port)/health" -TimeoutSec 3
-            if ($health.status -ne 'healthy') { $failures += '/health' }
-            $null = Invoke-RestMethod "http://127.0.0.1:$($state.port)/generate" -Method Post -TimeoutSec 5
+            # RT-011: GET health only (remote-safe)
+            $health = Invoke-RestMethod "http://127.0.0.1:$($state.port)/api/health" -TimeoutSec 3
+            if ($health.status -ne 'healthy' -and $health.status -ne 'degraded') { $failures += '/api/health' }
             Write-Host "服务：http://127.0.0.1:$($state.port)"
-        } catch { $failures += 'Backend health/generate' }
+        } catch { $failures += 'Backend /api/health' }
     } else { $failures += 'Server PID record' }
 } else { Write-Host '服务未由 start.ps1 启动。' }
 if ($failures.Count) {

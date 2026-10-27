@@ -1,0 +1,35 @@
+{
+  "omit": {
+    "http": 200,
+    "demoScope": {
+      "requested": false,
+      "honoured": false,
+      "compatNote": "本分支 evidence_retrieval 尚未实现 include_demo；合并时以 agent/jinshi 的实现为准（ARCHITECTURE_DECISIONS R2）。"
+    },
+    "requested": false,
+    "included": null,
+    "honoured": false
+  },
+  "false": {
+    "http": 200,
+    "demoScope": {
+      "requested": false,
+      "honoured": false,
+      "compatNote": "本分支 evidence_retrieval 尚未实现 include_demo；合并时以 agent/jinshi 的实现为准（ARCHITECTURE_DECISIONS R2）。"
+    },
+    "requested": false,
+    "included": null,
+    "honoured": false
+  },
+  "true": {
+    "http": 200,
+    "demoScope": {
+      "requested": true,
+      "honoured": false,
+      "compatNote": "本分支 evidence_retrieval 尚未实现 include_demo；合并时以 agent/jinshi 的实现为准（ARCHITECTURE_DECISIONS R2）。"
+    },
+    "requested": true,
+    "included": null,
+    "honoured": false
+  }
+}

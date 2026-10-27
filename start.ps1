@@ -1,4 +1,8 @@
-﻿$ErrorActionPreference = 'Stop'
+﻿param(
+    [int]$Port = 0
+)
+
+$ErrorActionPreference = 'Stop'
 $projectRoot = $PSScriptRoot
 $webRoot = Join-Path $projectRoot 'apps/web'
 $distIndex = Join-Path $webRoot 'dist/index.html'
@@ -34,9 +38,17 @@ if ($needsBuild) {
     finally { Pop-Location }
 }
 New-Item -ItemType Directory -Path $runtime -Force | Out-Null
-$port = 8000
-while (Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinue) { $port++ }
-if ($port -gt 8100) { throw '8000–8100 端口均已占用。' }
+# RT-003: honor -Port when provided (e.g. start.ps1 -Port 8740)
+if ($Port -gt 0) {
+    $port = $Port
+    if (Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinue) {
+        throw "端口 $port 已被占用，请换一个 -Port。"
+    }
+} else {
+    $port = 8000
+    while (Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinue) { $port++ }
+    if ($port -gt 8100) { throw '8000–8100 端口均已占用。请使用 start.ps1 -Port <端口>。' }
+}
 $logPath = Join-Path $runtime 'server.log'
 $errPath = Join-Path $runtime 'server-error.log'
 $process = Start-Process python -ArgumentList @('-m','uvicorn','main:app','--app-dir',"`"$projectRoot`"",'--host','127.0.0.1','--port',"$port") -WorkingDirectory $projectRoot -RedirectStandardOutput $logPath -RedirectStandardError $errPath -PassThru -WindowStyle Hidden
@@ -45,14 +57,14 @@ for ($i = 0; $i -lt 25; $i++) {
     Start-Sleep -Milliseconds 500
     if ($process.HasExited) { break }
     try {
-        $health = Invoke-RestMethod "http://127.0.0.1:$port/health" -TimeoutSec 2
-        $generated = Invoke-RestMethod "http://127.0.0.1:$port/generate" -Method Post -TimeoutSec 5
-        if ($health.status -eq 'healthy' -and $generated) { $ready = $true; break }
+        # RT-011: GET /api/health only (remote-safe; do not POST generate for readiness)
+        $health = Invoke-RestMethod "http://127.0.0.1:$port/api/health" -TimeoutSec 2
+        if ($health.status -eq 'healthy' -or $health.status -eq 'degraded') { $ready = $true; break }
     } catch {}
 }
 if (-not $ready) {
     if (-not $process.HasExited) { Stop-Process -Id $process.Id -ErrorAction SilentlyContinue }
-    throw "服务未通过 /health 和 /generate 检查。查看 $errPath"
+    throw "服务未通过 /api/health 检查。查看 $errPath"
 }
 @{ pid = $process.Id; port = $port; root = $projectRoot; startedAt = (Get-Date).ToUniversalTime().ToString('o') } |
     ConvertTo-Json | Set-Content -Encoding UTF8 $statePath

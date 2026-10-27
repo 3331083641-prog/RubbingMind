@@ -10,37 +10,43 @@ from playwright.sync_api import sync_playwright
 OUT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "screenshots")
 os.makedirs(OUT_DIR, exist_ok=True)
 
+from scripts.browser_target import assert_safe_target
+BASE = assert_safe_target(
+    os.environ.get("RUBBINGMIND_FRONTEND_URL", ""),
+    label="RUBBINGMIND_FRONTEND_URL",
+).rstrip("/")
+
 TARGETS = [
     {
-        "url": "http://127.0.0.1:8000/#/",
+        "url_path": "#/",
         "output": "01_home_portal_3d.png",
         "wait_selector": "canvas",
         "delay": 3.0,
         "name": "首页三维数字展陈门户"
     },
     {
-        "url": "http://127.0.0.1:8000/#/museum",
+        "url_path": "#/museum",
         "output": "02_digital_museum.png",
         "wait_selector": "text=中华贞石数字典藏馆",
         "delay": 2.5,
         "name": "中华贞石数字典藏馆"
     },
     {
-        "url": "http://127.0.0.1:8000/#/workbench",
+        "url_path": "#/workbench",
         "output": "03_restoration_workbench.png",
         "wait_selector": "text=频空域微痕修复工作台",
         "delay": 2.5,
         "name": "频空域微痕修复工作台"
     },
     {
-        "url": "http://127.0.0.1:8000/#/graph",
+        "url_path": "#/graph",
         "output": "04_graphrag_gis.png",
         "wait_selector": "text=时空考据",
         "delay": 3.0,
         "name": "GraphRAG 与 GIS 时空图谱"
     },
     {
-        "url": "http://127.0.0.1:8000/#/reports",
+        "url_path": "#/reports",
         "output": "05_ablation_reports.png",
         "wait_selector": "text=算法评测",
         "delay": 2.5,
@@ -63,7 +69,7 @@ def capture_all():
             out_path = os.path.join(OUT_DIR, item["output"])
             print(f"[*] 正在捕获: {item['name']} -> {item['output']}")
             try:
-                page.goto(item["url"], wait_until="domcontentloaded", timeout=30000)
+                page.goto(BASE + item["url_path"], wait_until="domcontentloaded", timeout=30000)
                 try:
                     page.wait_for_selector(item["wait_selector"], timeout=10000)
                 except Exception:

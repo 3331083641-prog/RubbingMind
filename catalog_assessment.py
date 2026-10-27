@@ -15,7 +15,9 @@ from PIL import Image
 from catalog import BASE, load
 
 ASSESS = BASE / 'data/catalog/assessments'
-REVIEWS = BASE / 'data/runtime/condition-reviews'
+from runtime_paths import runtime_dir
+
+REVIEWS = runtime_dir() / 'condition-reviews'
 _REVIEW_LOCK = threading.Lock()
 _LOCAL_HOSTS = {'127.0.0.1', '::1', 'localhost', 'testclient'}
 ID_RE = re.compile(r'^[a-z][a-z0-9_]*$')
@@ -87,9 +89,16 @@ def _source_public_url(data):
     return '/' + path.relative_to(public).as_posix()
 
 
-def review_allowed(host: str | None, token: str | None) -> bool:
-    """Local single-user writes are allowed. Any other host needs an explicit token."""
-    if (host or '') in _LOCAL_HOSTS:
+def review_allowed(host: str | None, token: str | None, headers=None) -> bool:
+    """Local single-user writes are allowed. Any other host needs an explicit token.
+    RT-009: when proxy forwarding headers are present, require review token even on loopback.
+    """
+    from runtime_guard import client_is_trusted_local
+    if headers is not None:
+        local_ok = client_is_trusted_local(host, headers)
+    else:
+        local_ok = (host or '') in _LOCAL_HOSTS
+    if local_ok:
         return True
     expected = os.environ.get('RUBBINGMIND_REVIEW_TOKEN')
     return bool(expected) and token == expected
@@ -147,6 +156,42 @@ def _authorship(stele_id: str):
     }
 
 
+
+def attach_processing_run_link(record: dict) -> dict:
+    """Phase2 R4: expose ProcessingRun linkage or explicit null + reason.
+
+    Assessment batch runIds (e.g. assess28-...) live in a different namespace from
+    live ProcessingRun.runId (YYYYMMDDTHHMMSS_hex). Never silently treat them as equal.
+    """
+    stele_id = record.get("steleId")
+    run_id = record.get("runId") or record.get("processingRunId")
+    if not run_id:
+        record["runLink"] = None
+        record["runLinkUnavailableReason"] = (
+            "assessment 未记录 runId / processingRunId，无法关联 ProcessingRun"
+        )
+        return record
+    try:
+        from museum_processing import read_run
+        matched = read_run(stele_id, run_id) if stele_id else None
+    except Exception:
+        matched = None
+    if matched is not None:
+        record["runLink"] = {
+            "processingRunId": matched.get("runId"),
+            "matched": True,
+            "algorithmVersion": matched.get("algorithmVersion"),
+        }
+        record["runLinkUnavailableReason"] = None
+        return record
+    record["runLink"] = None
+    record["runLinkUnavailableReason"] = (
+        f"assessment.runId={run_id!r} 无法在 GET /api/steles/{stele_id}/runs 命中 "
+        f"（馆藏归档批次 id 与 live ProcessingRun.runId 不同命名空间）；不静默混比"
+    )
+    return record
+
+
 def public_record(stele_id: str):
     data = load_assessment(stele_id)
     if data is None:
@@ -157,7 +202,7 @@ def public_record(stele_id: str):
     history = review_history(stele_id)
     source_url = _source_public_url(data)
     region = _region(stele_id)
-    return {
+    payload = {
         'steleId': data['steleId'],
         'title': data.get('title'),
         'runId': data.get('runId'),
@@ -204,6 +249,7 @@ def public_record(stele_id: str):
             '原石风化没有原石影像或保护记录时不评定。',
         ],
     }
+    return attach_processing_run_link(payload)
 
 
 def _analysis_geometry(width: int, height: int, long_side: int = 900):

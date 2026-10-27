@@ -1,0 +1,7 @@
+algorithmOutputMode UI (slice12)
+mode labels:
+- processed -> 算法层：已产出处理结果
+- identity_no_evidence -> 算法层：无充分证据，保持恒等输出
+- gate_fallback_original -> 算法层：保真门控回退原图
+- missing -> 算法层输出模式未提供 (provided=false)
+do not confuse with run-level outputMode {processed,passthrough,undetermined}

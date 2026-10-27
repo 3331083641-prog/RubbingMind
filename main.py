@@ -5,6 +5,7 @@
 """
 
 import os
+import json
 import sys
 import logging
 import io
@@ -14,12 +15,12 @@ from typing import Optional, List, Dict, Any, Literal
 
 from fastapi import FastAPI, File, UploadFile, Form, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse, JSONResponse, Response
+from fastapi.responses import FileResponse, JSONResponse, Response, RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from PIL import Image, UnidentifiedImageError
 
-from sample_generator import ensure_samples, SAMPLES_DIR, BASE_DIR
+from sample_generator import ensure_samples, check_samples, SAMPLES_DIR, BASE_DIR
 from algorithm_engine import algorithm_engine, safe_read_image, mat_to_base64
 from knowledge_agent import knowledge_agent, AUTHENTIC_RUBBING_DATABASE
 from museum_manager import museum_manager
@@ -48,22 +49,34 @@ STELE_REVERSE_MAP = {v: k for k, v in STELE_MAP.items()}
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """服务启动时生命周期事件：确保 4 张核心碑拓样本就绪"""
+    """服务启动时生命周期事件：检查核心碑拓样本（RT-002：不下载/不合成）"""
     logger.info("=== 正在启动【墨韵智考】系统 ===")
     try:
-        samples_status = ensure_samples()
-        logger.info(f"碑刻拓片样本库检查完毕，可用样本数: {len(samples_status)}")
+        report = check_samples()
+        if report["ok"]:
+            logger.info("碑刻拓片样本库检查完毕，可用样本数: %s", len(report["present"]))
+        else:
+            logger.error(
+                "RT-002: samples degraded missing=%s sha_mismatch=%s (no auto-fetch)",
+                report["missing"],
+                [m["key"] for m in report["sha_mismatch"]],
+            )
     except Exception as e:
         logger.error(f"样本库初始化异常: {e}")
     yield
     logger.info("=== 【墨韵智考】服务正常终止 ===")
 
 
+_REMOTE_DEPLOYMENT = os.getenv('RUBBINGMIND_DEPLOYMENT', 'local') != 'local'
 app = FastAPI(
     title="墨韵智考——金石碑拓微痕修复及史料考据系统",
     description="全球校园人工智能算法精英大赛（智能文化赛道）全栈 Web 科研演示平台",
     version="2.0.0",
     lifespan=lifespan,
+    # RT-005: hide OpenAPI surface in remote/demo exposure mode
+    docs_url=None if _REMOTE_DEPLOYMENT else '/docs',
+    redoc_url=None if _REMOTE_DEPLOYMENT else '/redoc',
+    openapi_url=None if _REMOTE_DEPLOYMENT else '/openapi.json',
 )
 
 # Development clients use the same-origin proxy; limit direct CORS to local Vite.
@@ -76,18 +89,42 @@ app.add_middleware(
 )
 
 # 挂载静态资源目录
-from runtime_guard import RuntimeGuard
+from runtime_guard import RuntimeGuard, SecurityHeadersMiddleware
 app.add_middleware(RuntimeGuard)
+app.add_middleware(SecurityHeadersMiddleware)
+# R1-5: rm:rubbing:/rm:demo:/rm:retired: ids are accepted everywhere under /api/steles/
+# (outermost, so the guard and every route see the legacy id).
+from id_mapping import NamespacedSteleIdMiddleware, local_id, namespace_mismatch, split_namespace
+from history_graph import resolve_id as resolve_history_id
+app.add_middleware(NamespacedSteleIdMiddleware)
 PROCESS_LOCK=threading.Lock()
 os.makedirs(STATIC_DIR, exist_ok=True)
+# R1-7: when RUBBINGMIND_RESULTS_DIR relocates run storage, serve it under the
+# unchanged URL prefix /static/results (mounted first so it wins over /static).
+from runtime_paths import describe as describe_runtime_paths, results_override
+if results_override() is not None:
+    os.makedirs(results_override(), exist_ok=True)
+    app.mount("/static/results", StaticFiles(directory=str(results_override())), name="static-results")
+
+
+@app.get('/static/index.html', include_in_schema=False)
+async def legacy_frontend_bookmark():
+    """Retain old bookmarks without exposing the obsolete API-key entry page."""
+    return RedirectResponse('/', status_code=308)
+
+
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+if describe_runtime_paths()['overridden']:
+    logger.warning('RubbingMind 数据路径已重定向: %s', describe_runtime_paths())
 
 app.mount("/assets", StaticFiles(directory=DIST_ASSETS_DIR if os.path.exists(DIST_ASSETS_DIR) else os.path.join(BASE_DIR,"apps","web","public","assets")), name="assets")
 
 
 # Pydantic 请求数据模型
 class ProcessRequest(BaseModel):
-    stele_id: Optional[str] = "tang-duobao"
+    # RT-014: no silent default artifact. Callers must name stele_id (or a built-in sample_id);
+    # a missing id is a 422, never a run filed under tang-duobao.
+    stele_id: Optional[str] = None
     sample_id: Optional[str] = None
     image_base64: Optional[str] = Field(default=None,max_length=17_000_000)
     d0: float = Field(default=45.0, ge=1, le=500)
@@ -141,22 +178,52 @@ class CalendarRequest(BaseModel):
     query: str
 
 
+
+def _lookup_stele_id(stele_id: str) -> str:
+    """Map rm:demo:/rm:rubbing:/rm:retired: to legacy id for museum_manager lookup.
+
+    Rejects rm:work: and wrong-kind namespaces (same rules as NamespacedSteleIdMiddleware).
+    """
+    if not stele_id:
+        return stele_id
+    if stele_id.startswith('rm:'):
+        err = namespace_mismatch(stele_id)
+        if err:
+            raise HTTPException(status_code=404, detail=err)
+        prefix, kind, local = split_namespace(stele_id)
+        if prefix is None:
+            return stele_id
+        resolved = resolve_history_id(stele_id)
+        if resolved.get('evidenceId'):
+            return resolved['evidenceId']
+        return local_id(stele_id) or local
+    return stele_id
+
+
 class EvidenceQueryRequest(BaseModel):
     question: str = Field(min_length=2,max_length=500)
     steleId: Optional[str] = Field(default=None,max_length=100)
+    # BR-08 / C-16: default excludes synthetic demo samples; jinshi owns include_demo in evidence_retrieval.
+    includeDemo: bool = False
 
 
 @app.post('/api/research/query')
 def query_evidence(request: EvidenceQueryRequest):
     from evidence_retrieval import query
-    if request.steleId and not museum_manager.get_stele_by_id(request.steleId):
-        raise HTTPException(status_code=404,detail='文物不存在')
-    return query(request.question,request.steleId)
+    scope_id = request.steleId
+    if scope_id:
+        lookup = _lookup_stele_id(scope_id)
+        if not museum_manager.get_stele_by_id(lookup):
+            raise HTTPException(status_code=404, detail='文物不存在')
+        # Pass original id so demo_opt_in / resolve_id see rm:demo: and kind=demo_sample.
+    return query(request.question, scope_id, include_demo=request.includeDemo)
 
 
 @app.get('/api/research/steles/{stele_id}')
 def get_research_graph(stele_id: str):
-    if not museum_manager.get_stele_by_id(stele_id):raise HTTPException(status_code=404,detail='文物不存在')
+    lookup = _lookup_stele_id(stele_id)
+    if not museum_manager.get_stele_by_id(lookup):
+        raise HTTPException(status_code=404, detail='文物不存在')
     from evidence_retrieval import artifact_graph
     return artifact_graph(stele_id)
 
@@ -165,6 +232,21 @@ def get_research_graph(stele_id: str):
 def list_experiments():
     from experiment_registry import batches
     return batches()
+
+
+@app.get('/api/experiments/batch-index')
+def experiment_batch_index():
+    # experimentId is authoritative; batch (results directory) is a readable alias, one-to-one.
+    from experiment_derived import batch_index
+    return batch_index()
+
+
+@app.get('/api/experiments/resolve')
+def resolve_experiment_batch(batch: str):
+    from experiment_derived import resolve_batch
+    item=resolve_batch(batch)
+    if item is None:raise HTTPException(status_code=404,detail='没有这个实验批次（batch）；不会回落到其他批次')
+    return item
 
 
 @app.get('/api/experiments/{experiment_id}')
@@ -186,10 +268,59 @@ def get_experiment_asset(experiment_id: str,filename: str):
 
 @app.get('/api/experiments/{experiment_id}/diagnosis')
 def experiment_diagnosis(experiment_id: str):
-    if experiment_id != 'heldout-v20-v21-2026-10-18':
-        raise HTTPException(status_code=404, detail='没有这份实验的失败诊断')
-    from restoration_diagnosis import diagnose
-    return diagnose()
+    # R1-4: every registered batch has a diagnosis; only unknown batches are 404.
+    from restoration_diagnosis import diagnose, diagnose_batch
+    if experiment_id == 'heldout-v20-v21-2026-10-18':
+        return {**diagnose(), 'diagnosisVersion': 'heldout-legacy-heuristic'}
+    from experiment_registry import batch
+    data = batch(experiment_id)
+    if data is None:
+        raise HTTPException(status_code=404, detail='实验批次不存在')
+    return diagnose_batch(data, experiment_id)
+
+
+@app.get('/api/experiments/{experiment_id}/mechanism')
+def experiment_mechanism_index(experiment_id: str):
+    from experiment_derived import mechanism_index
+    body=mechanism_index(experiment_id)
+    if body is None:raise HTTPException(status_code=404,detail='实验批次不存在')
+    return body
+
+
+@app.get('/api/experiments/{experiment_id}/derived/{relative:path}')
+def report_derived_file(experiment_id: str, relative: str):
+    from experiment_derived import resolve_report_derived
+    path, status, reason = resolve_report_derived(experiment_id, relative)
+    if path is None:
+        raise HTTPException(status_code=status, detail=reason)
+    return FileResponse(path, media_type='image/png' if path.suffix == '.png' else 'application/json')
+
+
+@app.get('/api/experiments/{experiment_id}/mechanism-assets/{asset_path:path}')
+def experiment_mechanism_asset(experiment_id: str, asset_path: str):
+    from experiment_derived import resolve_mechanism_png
+    path, reason = resolve_mechanism_png(experiment_id, asset_path)
+    if path is None:
+        raise HTTPException(status_code=404 if '不存在' in (reason or '') and '越界' not in (reason or '') and '不合法' not in (reason or '') else 400,
+                            detail=reason or '不可用')
+    return FileResponse(path, media_type='image/png')
+
+
+@app.get('/api/experiments/{experiment_id}/applied-status')
+def experiment_applied_status(experiment_id: str, rows: bool = False):
+    from experiment_derived import applied_status
+    body=applied_status(experiment_id, include_rows=rows)
+    if body is None:raise HTTPException(status_code=404,detail='实验批次不存在')
+    return body
+
+
+@app.get('/api/experiments/{experiment_id}/ci-by-artifact')
+def experiment_ci_by_artifact(experiment_id: str, split: Optional[str] = None, method: Optional[str] = None,
+                              degradation: Optional[str] = None, scope: Optional[str] = None):
+    from experiment_derived import ci_by_artifact
+    body=ci_by_artifact(experiment_id, {'split':split,'method':method,'degradation':degradation,'scope':scope})
+    if body is None:raise HTTPException(status_code=404,detail='实验批次不存在')
+    return body
 
 
 @app.get('/api/experiments/{experiment_id}/export/{kind}')
@@ -254,7 +385,7 @@ def get_catalog_assessment_asset(stele_id: str, kind: str):
 def save_catalog_condition_review(stele_id: str, body: ConditionReviewRequest, request: Request):
     from catalog_assessment import review_allowed, save_review
     host = request.client.host if request.client else ''
-    if not review_allowed(host, request.headers.get('x-rubbingmind-review-token')):
+    if not review_allowed(host, request.headers.get('x-rubbingmind-review-token'), headers=request.headers):
         raise HTTPException(status_code=403, detail='公网请求不能写入复核意见')
     try:
         roi=None if body.roi is None else {'x': body.roi.x, 'y': body.roi.y, 'width': body.roi.width, 'height': body.roi.height}
@@ -282,6 +413,7 @@ def glyph_evaluation_status():
     measured=evaluate()
     status='not_evaluated' if measured.get('evaluationStatus')!='measured' else 'measured'
     return {'status':status,'top1':measured.get('top1'),'top3':measured.get('top3'),
+        'rejectionRate':measured.get('rejectionRate'),
         'verifiedLabels':measured.get('verifiedLabels'),'recordedLabels':measured.get('recordedLabels'),
         'reason':measured.get('reason')}
 
@@ -291,7 +423,7 @@ def save_glyph_annotation(body: GlyphAnnotationRequest, request: Request):
     from catalog_assessment import review_allowed
     from glyph_annotations import save_human_annotation
     host = request.client.host if request.client else ''
-    if not review_allowed(host, request.headers.get('x-rubbingmind-review-token')):
+    if not review_allowed(host, request.headers.get('x-rubbingmind-review-token'), headers=request.headers):
         raise HTTPException(status_code=403, detail='公网请求不能写入字符标注')
     try:
         return save_human_annotation(body.model_dump())
@@ -301,25 +433,33 @@ def save_glyph_annotation(body: GlyphAnnotationRequest, request: Request):
 
 @app.get("/")
 async def root():
-    """主页优先渲染 React + Three.js 现代化数字人文大屏前端"""
+    """主页优先渲染 React 前端；无 dist 时不回退到遗留 static/index.html（RT-006）。"""
     dist_index = os.path.join(DIST_DIR, "index.html")
     if os.path.exists(dist_index):
         return FileResponse(dist_index)
-    static_index = os.path.join(STATIC_DIR, "index.html")
-    if os.path.exists(static_index):
-        return FileResponse(static_index)
-    return JSONResponse({"status": "running", "message": "墨韵智考系统服务已启动"})
+    return JSONResponse(
+        {
+            "status": "frontend_build_required",
+            "message": "请先构建前端（在 apps/web 执行 npm run build）。遗留 static/index.html 不再作为回退首页。",
+        },
+        status_code=503,
+    )
 
 
 @app.get("/health")
 @app.get("/api/health")
 async def health_check():
-    """系统运行健康状态"""
+    """系统运行健康状态（RT-002: expose samples_missing / sha mismatch）"""
+    report = check_samples()
+    status = "healthy" if report["ok"] else "degraded"
     return {
-        "status": "healthy",
+        "status": status,
         "system": "墨韵智考",
         "version": "2.0.0",
-        "samples_available": [k for k in AUTHENTIC_RUBBING_DATABASE.keys()],
+        "samples_available": sorted(report["present"].keys()),
+        "samples_missing": list(report["missing"]),
+        "samples_sha_mismatch": list(report["sha_mismatch"]),
+        "catalog_keys": [k for k in AUTHENTIC_RUBBING_DATABASE.keys()],
     }
 
 
@@ -336,11 +476,16 @@ async def get_steles():
 
 @app.get("/api/steles/{stele_id}")
 async def get_stele(stele_id: str):
-    item = museum_manager.get_stele_by_id(stele_id)
+    # Path /api/steles/rm:demo:… is rewritten by NamespacedSteleIdMiddleware; query-param
+    # callers (e.g. GET /generate?stele_id=rm:demo:…) bypass that rewrite — resolve here so
+    # TestClient and live uvicorn share one boundary (jinshi _resolve_stele_for_api 口径).
+    lookup = _lookup_stele_id(stele_id)
+    item = museum_manager.get_stele_by_id(lookup)
     if item: return item
-    if stele_id in museum_manager.retired:
-        mapping = museum_manager.retired[stele_id]
-        raise HTTPException(status_code=410, detail={"message":"原记录已下架，推荐查看新馆藏（不同文物）", "oldId":stele_id,"recommendedId":mapping["newId"]})
+    for key in (stele_id, lookup):
+        if key in museum_manager.retired:
+            mapping = museum_manager.retired[key]
+            raise HTTPException(status_code=410, detail={"message":"原记录已下架，推荐查看新馆藏（不同文物）", "oldId":key,"recommendedId":mapping["newId"]})
     raise HTTPException(status_code=404, detail="未找到该文物，不自动切换样本")
 
 
@@ -352,13 +497,103 @@ async def get_stele_inference(stele_id: str):
 @app.get("/api/steles/{stele_id}/graph")
 async def get_stele_graph(stele_id: str):
     verified = await get_stele(stele_id)
+    from id_mapping import resolve as resolve_entity
     if verified.get("source_kind") == "verified_review_v3":
-        return catalog_graph(verified)
+        # R1-5 / BR-03: collection graphs now carry their steleId and entity classification.
+        return {**catalog_graph(verified), 'steleId': verified['id'], 'entity': resolve_entity(stele_id)}
     from history_graph import get_history_graph
     graph = get_history_graph(stele_id, museum_manager.get_all_steles())
     if graph is None:
         raise HTTPException(status_code=404, detail="Historical record not found")
+    graph.setdefault('entity', resolve_entity(stele_id))
     return graph
+
+
+@app.get('/api/id-mapping')
+def get_id_mapping():
+    from id_mapping import mapping_overview
+    return mapping_overview()
+
+
+@app.get('/api/id-mapping/{raw_id}')
+def get_id_mapping_entry(raw_id: str):
+    from id_mapping import namespace_mismatch, resolve
+    error = namespace_mismatch(raw_id)
+    if error:
+        raise HTTPException(status_code=404, detail=error)
+    return resolve(raw_id)
+
+
+@app.get('/api/roi-geometry/normalize')
+def normalize_roi_geometry(x: int, y: int, w: int = None, h: int = None, width: int = None, height: int = None, schema: str = None):
+    """Phase2 R2: normalize dual ROI schemas to canonical glyph-bbox {x,y,w,h}."""
+    from roi_geometry import RoiGeometryError, normalize_roi
+    box = {'x': x, 'y': y}
+    if w is not None:
+        box['w'] = w
+    if h is not None:
+        box['h'] = h
+    if width is not None:
+        box['width'] = width
+    if height is not None:
+        box['height'] = height
+    try:
+        return normalize_roi(box, source_schema=schema)
+    except RoiGeometryError as exc:
+        raise HTTPException(status_code=422, detail=str(exc))
+
+
+@app.get('/api/steles/{stele_id}/roi-compare')
+async def get_roi_compare_session(
+    stele_id: str,
+    runId: Optional[str] = None,
+    x: Optional[int] = None,
+    y: Optional[int] = None,
+    w: Optional[int] = None,
+    h: Optional[int] = None,
+    width: Optional[int] = None,
+    height: Optional[int] = None,
+    schema: Optional[str] = None,
+):
+    """Phase2 R3: paired before/after ROI compare session (never fabricates SHA)."""
+    await get_stele(stele_id)
+    from roi_compare import build_roi_compare_session
+    bbox = None
+    if x is not None and y is not None and (w is not None or width is not None):
+        bbox = {'x': x, 'y': y}
+        if w is not None:
+            bbox['w'] = w
+        if h is not None:
+            bbox['h'] = h
+        if width is not None:
+            bbox['width'] = width
+        if height is not None:
+            bbox['height'] = height
+    return build_roi_compare_session(stele_id, runId, bbox, source_schema=schema)
+
+
+@app.get('/api/case-stele-mapping')
+def get_case_stele_mapping():
+    """Phase2 R6: experiment caseId <-> product steleId mapping overview."""
+    from case_stele_mapping import mapping_overview
+    return mapping_overview()
+
+
+@app.get('/api/case-stele-mapping/{case_id}')
+def get_case_stele_mapping_entry(case_id: str):
+    from case_stele_mapping import resolve_case
+    return resolve_case(case_id)
+
+
+@app.get('/api/case-stele-mapping/{case_id}/claim/{stele_id}')
+def claim_case_same_artifact(case_id: str, stele_id: str):
+    """Gate: refuse same-artifact claim without human_reviewed mapping."""
+    from case_stele_mapping import assert_same_artifact_claim
+    result = assert_same_artifact_claim(case_id, stele_id)
+    if not result['allowed']:
+        raise HTTPException(status_code=409, detail=result['reason'])
+    return result
+
 
 
 @app.get("/generate")
@@ -372,14 +607,33 @@ async def generate_historical_graph(stele_id: str = "tang-duobao"):
 async def get_stele_report(stele_id: str, run_id: Optional[str] = None):
     record=await get_stele(stele_id)
     result=catalog_report(record)
-    runs=list_runs(stele_id)
-    selected=read_run(stele_id,run_id) if run_id else (runs[0] if runs else None)
+    from museum_processing import select_report_run
+    selected,run_selection=select_report_run(stele_id,run_id)
     if run_id and not selected:
         raise HTTPException(status_code=404,detail='处理记录不存在')
     result['run']=selected
-    result['inferenceRecords']=[item for item in list_inferences(stele_id) if not selected or item.get('runId')==selected['runId']]
+    result['runSelection']=run_selection
+    from inference_trace import enrich_many
+    from roi_compare import report_roi_compare_stub
+    result['inferenceRecords']=enrich_many(
+        [{**item,'sourceSteleId':item.get('steleId',stele_id)} for item in list_inferences(stele_id) if not selected or item.get('runId')==selected['runId']],
+        stele_id=stele_id,
+    )
+    result['roiCompareSession']=report_roi_compare_stub(stele_id, selected)
     result['sourceRecords']=[{'title':record['title'],'url':record.get('sourceUrl'),'license':record.get('license')}]
-    result['evaluation_summary']='实际处理已执行，但没有配对真值；配对质量未评测。' if selected else '尚未执行处理；配对质量未评测。'
+    mode=(selected or {}).get('outputMode')
+    if selected and mode=='passthrough':
+        # REPORT_DATA_SPEC §8: an unchanged output must never be described as "actually processed".
+        result['evaluation_summary']='本次未改动原图：算法判断无需处理，输出与输入逐像素相同；没有配对真值，配对质量未评测。'
+    elif selected and mode=='undetermined':
+        reason=selected.get('passthroughUndeterminedReason') or '原因未记录'
+        result['evaluation_summary']=f'未能判定是否改动原图（{reason}）；没有配对真值，配对质量未评测。'
+    elif selected:
+        result['evaluation_summary']='实际处理已执行，但没有配对真值；配对质量未评测。'
+    elif run_selection['legacyRunCount']:
+        result['evaluation_summary']='只有旧版未核验运行，默认不选用（可在运行历史中显式打开）；配对质量未评测。'
+    else:
+        result['evaluation_summary']='尚未执行处理；配对质量未评测。'
     result['reportId']=f"RM-{stele_id}-{selected['runId']}" if selected else None
     return result
 
@@ -392,12 +646,26 @@ async def get_processing_runs(stele_id: str):
 
 @app.delete('/api/steles/{stele_id}/runs/{run_id}')
 async def remove_processing_run(stele_id: str, run_id: str, confirm: bool = False):
+    """RT-013: confirm-gated soft-delete into runtime trash; 409 if referenced."""
     await get_stele(stele_id)
     if not confirm:
         raise HTTPException(status_code=400,detail='删除单次处理记录需要明确确认')
-    if not delete_run(stele_id,run_id):
+    try:
+        result = delete_run(stele_id, run_id)
+    except ValueError as exc:
+        msg = str(exc)
+        if msg.startswith('run_referenced:'):
+            refs = json.loads(msg.split(':', 1)[1])
+            raise HTTPException(
+                status_code=409,
+                detail={'error': 'run_referenced', 'message': 'run is referenced by glyph inferences; refuse delete', 'references': refs},
+            )
+        raise HTTPException(status_code=400, detail=msg)
+    if not result:
         raise HTTPException(status_code=404,detail='处理记录不存在')
-    return {'deleted':run_id,'steleId':stele_id}
+    if isinstance(result, dict):
+        return result
+    return {'deleted': run_id, 'steleId': stele_id}
 
 
 @app.post("/api/process")
@@ -471,17 +739,23 @@ async def create_glyph_inference(stele_id: str, request: GlyphInferenceRequest):
     if request.runId and not read_run(stele_id, request.runId):
         raise HTTPException(status_code=404, detail='关联的处理运行不存在')
     try:
-        return await infer_crop(record, request.bbox.model_dump(), request.context, request.characterId, request.originalGlyph, request.originalStatus, request.runId, request.imageSource)
+        created = await infer_crop(record, request.bbox.model_dump(), request.context, request.characterId, request.originalGlyph, request.originalStatus, request.runId, request.imageSource)
     except LookupError as exc:
         raise HTTPException(status_code=404, detail=str(exc))
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc))
+    from inference_trace import enrich_inference_traceability
+    return enrich_inference_traceability(created, stele_id=stele_id)
 
 
 @app.get('/api/steles/{stele_id}/inferences')
 async def get_glyph_inferences(stele_id: str):
     await get_stele(stele_id)
-    return list_inferences(stele_id)
+    from inference_trace import enrich_many
+    return enrich_many(
+        [{**item, 'sourceSteleId': item.get('steleId', stele_id)} for item in list_inferences(stele_id)],
+        stele_id=stele_id,
+    )
 
 
 @app.get('/api/inferences/{inference_id}/crop')

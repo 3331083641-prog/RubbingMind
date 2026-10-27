@@ -1,0 +1,1 @@
+slice8: no live UI screenshots this round (API/web ports not healthy). Code evidence in worktree phase1-frontend/slice8/evidence.txt. RF-8 object-contain still HomePage L245/L250 — awaiting user confirm.

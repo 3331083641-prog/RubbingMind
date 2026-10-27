@@ -96,3 +96,17 @@ screenshots/terrain3d-final/regression/
 # V2.2 开发期临时截图
 screenshots/terrain3d-v22-dev/
 screenshots/terrain3d-v22/regression/
+
+# Local development worktrees, recovery copies and raw acquisition workspace.
+# Runtime deliverables are the attributed assets under apps/web/public and data/.
+/wt/
+/.work/
+/_merge_bak_*/
+/rubbings-review-v3/
+/rubbings-workspace/
+/墨韵智考_真实碑拓28件高清成品/
+/docs/product-upgrade/acl-recovery/
+/user_prompt_10.txt
+/graph-current-ui-2026-10-15.png
+# Generated after the final remote commit/Actions check; includes its exact SHA.
+/docs/sync-audit/FINAL_SYNC_REPORT.md

@@ -1,0 +1,523 @@
+{
+  "batch": "2026-10-17-v2",
+  "split": "test",
+  "sampleId": "song_02_wenxuan",
+  "caseId": "song_02_wenxuan_gaussian_0",
+  "degradation": "gaussian",
+  "strength": 0.65,
+  "category": "gate_reject",
+  "selection": {
+    "rank": 6,
+    "candidateN": 13,
+    "sortKey": "caseId"
+  },
+  "storedFiles": {
+    "reference": "song_02_wenxuan_reference.png",
+    "input": "song_02_wenxuan_gaussian_0_input.png",
+    "output": "song_02_wenxuan_gaussian_0_adaptive_joint.png",
+    "notchOutput": "song_02_wenxuan_gaussian_0_notch.png"
+  },
+  "inputSha256": "ed1c8a78c431fd42dfce962cd0ff91c1e57b0304025a7b48c547466462ebadea",
+  "inputSha256Recorded": "ed1c8a78c431fd42dfce962cd0ff91c1e57b0304025a7b48c547466462ebadea",
+  "inputShaMatches": true,
+  "storedOutputSha256": "ed1c8a78c431fd42dfce962cd0ff91c1e57b0304025a7b48c547466462ebadea",
+  "storedOutputShaMatches": true,
+  "storedMetrics": {
+    "psnrInput": 26.769846624691507,
+    "psnrOutput": 26.769846624691507,
+    "psnrGain": 0.0,
+    "ssimGain": 0.0,
+    "edgeF1Gain": 0.0
+  },
+  "storedDiagnostics": {
+    "algorithmVersion": "adaptive-rubbing-v2.0",
+    "operators": [
+      "skip_notch",
+      "nlm",
+      "fallback_identity"
+    ],
+    "decisions": [
+      {
+        "operator": "skip_notch",
+        "reason": "未检出符合阈值的周期峰；不强行陷波"
+      },
+      {
+        "operator": "nlm",
+        "h": 19.53328495025635,
+        "reason": "高通MAD显示随机残差；保留强边缘"
+      },
+      {
+        "operator": "fallback_identity",
+        "reason": "强结构梯度损失超过30%"
+      }
+    ],
+    "fidelityGate": {
+      "accepted": false,
+      "strongEdgeRetention": 0.6727622747421265,
+      "meanAbsoluteChange": 15.402420043945312,
+      "contrastRatio": 0.6000738832299003,
+      "reasons": [
+        "强结构梯度损失超过30%"
+      ],
+      "basis": "输入输出启发式保真门控，非质量真值"
+    },
+    "selectedOutput": "original"
+  },
+  "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+  "parameters": {
+    "strength": 1.0,
+    "notch_width": 0.8,
+    "canny": [
+      80,
+      160
+    ],
+    "spectrum": "log1p(|fftshift(fft2(x - mean(x)))|), min-max to 0..255, VIRIDIS",
+    "foreground": "Otsu, minority class (degradation_analysis.analyze_degradation)",
+    "skeleton": "AlgorithmEngine.extract_stroke_skeleton (Otsu + skimage skeletonize)",
+    "diff": "|out - in|, scaled by max(1, P99) to 0..255, INFERNO"
+  },
+  "replays": {
+    "historical": {
+      "code": {
+        "source": "experiments/results/2026-10-17-v2/source_snapshot/degradation_analysis.py",
+        "sha256": "14f172c0f775b2101c8a628d18a409dd372585f84d634dad08cd82dae72682f1",
+        "recordedCodeSha256": "14f172c0f775b2101c8a628d18a409dd372585f84d634dad08cd82dae72682f1"
+      },
+      "operators": [
+        "skip_notch",
+        "nlm",
+        "fallback_identity"
+      ],
+      "gateAccepted": false,
+      "versionString": "adaptive-rubbing-v2.0",
+      "vsStoredOutput": {
+        "pixelEqual": true,
+        "changedPixelCount": 0,
+        "maxAbsDiff": 0,
+        "meanAbsDiff": 0.0
+      },
+      "vsInput": {
+        "pixelEqual": true,
+        "changedPixelCount": 0,
+        "maxAbsDiff": 0,
+        "meanAbsDiff": 0.0
+      },
+      "operatorsMatchStored": true
+    },
+    "base": {
+      "code": {
+        "source": "git f0c5886a9d4c8b47d64640e1f7eaeac44be3c388:degradation_analysis.py",
+        "sha256": "24c1edaf982862a7354bf78e6c322ab3465ae42068d1801ad817096d56f657c6"
+      },
+      "operators": [
+        "skip_notch",
+        "thin_stroke_nlm"
+      ],
+      "gateAccepted": true,
+      "versionString": "adaptive-rubbing-v2.1",
+      "vsStoredOutput": {
+        "pixelEqual": false,
+        "changedPixelCount": 422,
+        "maxAbsDiff": 7,
+        "meanAbsDiff": 0.007965087890625
+      },
+      "vsInput": {
+        "pixelEqual": false,
+        "changedPixelCount": 422,
+        "maxAbsDiff": 7,
+        "meanAbsDiff": 0.007965087890625
+      }
+    },
+    "head": {
+      "code": {
+        "source": "working tree degradation_analysis.py",
+        "commit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+        "uncommittedChanges": false,
+        "sha256": "24af3c3b96f52f0c77de09342de543d898da2c327c5451632e8e90819527c962"
+      },
+      "operators": [
+        "skip_notch",
+        "thin_stroke_nlm"
+      ],
+      "gateAccepted": true,
+      "versionString": "adaptive-rubbing-v2.1",
+      "vsStoredOutput": {
+        "pixelEqual": false,
+        "changedPixelCount": 422,
+        "maxAbsDiff": 7,
+        "meanAbsDiff": 0.007965087890625
+      },
+      "vsInput": {
+        "pixelEqual": false,
+        "changedPixelCount": 422,
+        "maxAbsDiff": 7,
+        "meanAbsDiff": 0.007965087890625
+      },
+      "vsBase": {
+        "pixelEqual": true,
+        "changedPixelCount": 0,
+        "maxAbsDiff": 0,
+        "meanAbsDiff": 0.0
+      }
+    }
+  },
+  "notchBaselineReplay": {
+    "storedApplicability": "not_applicable",
+    "historicalEngine": {
+      "code": {
+        "source": "experiments/results/2026-10-17-v2/source_snapshot/algorithm_engine.py",
+        "sha256": "0ce77c1e8862e8cb94c510dd003c456ddd58f79d2b42a60a3bd0390a0d07e2fe"
+      },
+      "applicability": "not_applicable",
+      "vsStoredNotch": {
+        "pixelEqual": true,
+        "changedPixelCount": 0,
+        "maxAbsDiff": 0,
+        "meanAbsDiff": 0.0
+      },
+      "vsInput": {
+        "pixelEqual": false,
+        "changedPixelCount": 1103,
+        "maxAbsDiff": 1,
+        "meanAbsDiff": 0.0168304443359375
+      }
+    },
+    "headEngine": {
+      "code": {
+        "source": "working tree algorithm_engine.py (E-05 fix)",
+        "commit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+        "uncommittedChanges": false,
+        "sha256": "f45c7ceaaa35ff76784ad7981ba5fe8e3e5d06096fc94b27409aeb3ea4c0f8aa"
+      },
+      "applicability": "not_applicable",
+      "vsStoredNotch": {
+        "pixelEqual": false,
+        "changedPixelCount": 1103,
+        "maxAbsDiff": 1,
+        "meanAbsDiff": 0.0168304443359375
+      },
+      "vsInput": {
+        "pixelEqual": true,
+        "changedPixelCount": 0,
+        "maxAbsDiff": 0,
+        "meanAbsDiff": 0.0
+      }
+    }
+  },
+  "mechanism": {
+    "code": "head",
+    "features": {
+      "noiseSigmaMAD": 22.980335235595703,
+      "impulseFraction": 0.000244140625,
+      "periodicPeaks": [],
+      "thinStrokeRisk": 0.9809978104472944,
+      "highFrequencyEnergyFraction": 0.5936712026596069
+    },
+    "decisions": [
+      {
+        "operator": "skip_notch",
+        "reason": "未检出符合阈值的周期峰；不强行陷波"
+      },
+      {
+        "operator": "thin_stroke_nlm",
+        "h": 8.789978227615357,
+        "thinStrokeRisk": 0.9809978104472944,
+        "reason": "细笔画占比高，降低 NLM 强度，避免抹断或粘连"
+      }
+    ],
+    "fidelityGate": {
+      "accepted": true,
+      "strongEdgeRetention": 0.9999978542327881,
+      "meanAbsoluteChange": 0.007965087890625,
+      "contrastRatio": 0.9998167148831864,
+      "reasons": [],
+      "basis": "输入输出启发式保真门控，非质量真值"
+    },
+    "outputMode": "processed",
+    "changeStats": {
+      "isPassthrough": false,
+      "changedPixelCount": 422,
+      "totalPixelCount": 65536,
+      "changedPixelRatio": 0.006439208984375,
+      "maxAbsDiff": 7,
+      "meanAbsDiff": 0.007965087890625,
+      "passthroughCriterion": "pixel-equal-v1"
+    },
+    "notchApplied": false,
+    "peaksOutput": [],
+    "diffScaleP99": 1.0,
+    "headVsStoredScaleP99": 1.0,
+    "measures": {
+      "changedPixelRatio": 0.006439208984375,
+      "changedPixelCount": 422,
+      "meanAbsChange": 0.007965087890625,
+      "maxAbsChange": 7,
+      "inputMeanAbsError": 9.335952758789062,
+      "changeToInputErrorRatio": 0.0008531628315199537,
+      "psnrInput": 26.769846624691507,
+      "psnrOutput": 26.77376820055043,
+      "psnrDelta": 0.0039215758589215,
+      "edgeF1Input": 0.6859212114561615,
+      "edgeF1Output": 0.6859814314874564,
+      "edgeF1Delta": 6.0220031294910825e-05,
+      "thinStrokeMaeInput": 9.303572654724121,
+      "thinStrokeMaeOutput": 9.300063133239746,
+      "thinStrokeMaeDelta": -0.003509521484375,
+      "foregroundLossInput": 0.12502172779419432,
+      "foregroundLossOutput": 0.125065183382583,
+      "foregroundLossDelta": 4.345558838866892e-05,
+      "periodicEnergyInput": 0.0,
+      "periodicPeaksInput": 0,
+      "periodicEnergyOutput": 0.0,
+      "periodicPeaksOutput": 0,
+      "periodicEnergyRatio": null,
+      "missingMaskPixels": 0,
+      "changedInMissingFraction": 0.0,
+      "strongEdgeRetention": 0.9999978542327881,
+      "contrastRatio": 0.9998167148831864
+    },
+    "measuresStoredOutput": {
+      "changedPixelRatio": 0.0,
+      "changedPixelCount": 0,
+      "meanAbsChange": 0.0,
+      "maxAbsChange": 0,
+      "inputMeanAbsError": 9.335952758789062,
+      "changeToInputErrorRatio": 0.0,
+      "psnrInput": 26.769846624691507,
+      "psnrOutput": 26.769846624691507,
+      "psnrDelta": 0.0,
+      "edgeF1Input": 0.6859212114561615,
+      "edgeF1Output": 0.6859212114561615,
+      "edgeF1Delta": 0.0,
+      "thinStrokeMaeInput": 9.303572654724121,
+      "thinStrokeMaeOutput": 9.303572654724121,
+      "thinStrokeMaeDelta": 0.0,
+      "foregroundLossInput": 0.12502172779419432,
+      "foregroundLossOutput": 0.12502172779419432,
+      "foregroundLossDelta": 0.0,
+      "periodicEnergyInput": 0.0,
+      "periodicPeaksInput": 0,
+      "periodicEnergyOutput": 0.0,
+      "periodicPeaksOutput": 0,
+      "periodicEnergyRatio": null,
+      "missingMaskPixels": 0,
+      "changedInMissingFraction": 0.0,
+      "strongEdgeRetention": 1.0,
+      "contrastRatio": 1.0
+    }
+  },
+  "images": [
+    {
+      "file": "spectrum_input.png",
+      "description": "输入 log 幅度谱；红圈为检出的共轭周期峰",
+      "shape": [
+        256,
+        256,
+        3
+      ],
+      "bytes": 165457,
+      "sha256": "5e9e86aedcf793bedc7d0d5368520f362aa0036329d7698a41cf9e3da2b469a8",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_gaussian_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_gaussian_0/spectrum_input.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
+    },
+    {
+      "file": "spectrum_output.png",
+      "description": "head 重算输出的 log 幅度谱；红圈为残留峰",
+      "shape": [
+        256,
+        256,
+        3
+      ],
+      "bytes": 165434,
+      "sha256": "1c263f0878ddcb47658d4b16bd9a6033dbc5b31e9ba9e1d53da4c36735ac6545",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_gaussian_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_gaussian_0/spectrum_output.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
+    },
+    {
+      "file": "foreground_reference.png",
+      "description": "reference 二值前景（Otsu 少数类）",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 13059,
+      "sha256": "b621cf9a64e5d16d2ffe76e9c7c0ef8d556316d10a900282af09a0e04a123f86",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_gaussian_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_gaussian_0/foreground_reference.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
+    },
+    {
+      "file": "skeleton_reference.png",
+      "description": "reference 骨架",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 12806,
+      "sha256": "b04624aa95f573645a9ccb4cf597a0c453a98ca09825c00555c9d957638e76d1",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_gaussian_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_gaussian_0/skeleton_reference.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
+    },
+    {
+      "file": "edges_reference.png",
+      "description": "reference Canny(80,160) 边缘",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 14263,
+      "sha256": "c1593bd5f98eaea2baa445aa90742d9182cb727e70b486a497fcbee4705e4bd8",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_gaussian_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_gaussian_0/edges_reference.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
+    },
+    {
+      "file": "foreground_input.png",
+      "description": "input 二值前景（Otsu 少数类）",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 13687,
+      "sha256": "4e5a80ebbd0909634cc0bbb8f89a8171272b78beea666a33763e931f8b7032dc",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_gaussian_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_gaussian_0/foreground_input.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
+    },
+    {
+      "file": "skeleton_input.png",
+      "description": "input 骨架",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 13437,
+      "sha256": "5023c6ef413d8089b33deb4908736db5680e2d90752516fd126a3f976e322f96",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_gaussian_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_gaussian_0/skeleton_input.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
+    },
+    {
+      "file": "edges_input.png",
+      "description": "input Canny(80,160) 边缘",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 14563,
+      "sha256": "f2396a2818aa5ee9c69491fe6c3b5ea404665a6e571ca6352a48910351905c4e",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_gaussian_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_gaussian_0/edges_input.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
+    },
+    {
+      "file": "foreground_output.png",
+      "description": "output 二值前景（Otsu 少数类）",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 13685,
+      "sha256": "b8a14475a2cd393247fb428e51fda29b6cc68e9a21244910e4fe407af69c1071",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_gaussian_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_gaussian_0/foreground_output.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
+    },
+    {
+      "file": "skeleton_output.png",
+      "description": "output 骨架",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 13435,
+      "sha256": "18312ec5c0d25c07d2521a96b36433e73a272dd4403a8f01fbbf474ec4721584",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_gaussian_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_gaussian_0/skeleton_output.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
+    },
+    {
+      "file": "edges_output.png",
+      "description": "output Canny(80,160) 边缘",
+      "shape": [
+        256,
+        256
+      ],
+      "bytes": 14560,
+      "sha256": "3ee345670145eea962ffd4370511c3a85d333731cb0d2003200f7166928d1502",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_gaussian_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_gaussian_0/edges_output.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
+    },
+    {
+      "file": "diff_output_input.png",
+      "description": "|head 输出 − 输入|，按 P99 归一",
+      "shape": [
+        256,
+        256,
+        3
+      ],
+      "bytes": 2311,
+      "sha256": "7cfc530fea2dd8136c4dac3e69898c4b5fd03e9e6bc54b3194500249479b1a71",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_gaussian_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_gaussian_0/diff_output_input.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
+    },
+    {
+      "file": "diff_head_vs_stored.png",
+      "description": "|head 重算输出 − 已存输出|，按 P99 归一",
+      "shape": [
+        256,
+        256,
+        3
+      ],
+      "bytes": 2311,
+      "sha256": "7cfc530fea2dd8136c4dac3e69898c4b5fd03e9e6bc54b3194500249479b1a71",
+      "batch": "2026-10-17-v2",
+      "caseId": "song_02_wenxuan_gaussian_0",
+      "derivedAt": "2026-10-19T04:27:23.316520+00:00",
+      "headCommit": "7623a52a3299b7c948031dfa1f79f04b8eb66d9e",
+      "sourcePath": "derived/mechanism/song_02_wenxuan_gaussian_0/diff_head_vs_stored.png",
+      "captionNote": "机制步骤图注：来源为本案例 derived/mechanism 目录；指标属 v2.0 已存，图属记录 headCommit 时重算；headCommit 落后 tip 时不得宣称与当前 tip 字节一致（见 MECHANISM_HEAD_NOTE）。"
+    }
+  ]
+}

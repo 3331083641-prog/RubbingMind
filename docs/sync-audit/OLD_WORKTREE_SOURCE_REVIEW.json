@@ -1,0 +1,20 @@
+{
+  "scope": "old dirty museum worktrees; definitions absent from current source, not automatic merge candidates",
+  "differences": [
+    {
+      "worktree": "D:/Codex/worktrees/rubbingmind-museum-release",
+      "path": "main.py",
+      "oldOnlyDefinitions": [
+        "_format_stele_item"
+      ]
+    },
+    {
+      "worktree": "D:/Codex/worktrees/rubbingmind-museum-v3",
+      "path": "main.py",
+      "oldOnlyDefinitions": [
+        "_format_stele_item"
+      ]
+    }
+  ],
+  "decision": "Only absent helper _format_stele_item hardcodes demo image mappings (including restored_demo). Current catalogue and run APIs supersede it; not restored. No other old Python function/class definitions missing from current corresponding modules."
+}

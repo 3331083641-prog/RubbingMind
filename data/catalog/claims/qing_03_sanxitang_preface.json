@@ -1,0 +1,599 @@
+{
+  "schemaVersion": 1,
+  "steleId": "qing_03_sanxitang_preface",
+  "title": "御刻三希堂石渠宝笈法帖·乾隆御序",
+  "curatedBy": "agent/jinshi",
+  "curatedAt": "2026-10-25T13:00:00+08:00",
+  "selectionBasis": "Green 指定第5批；Met 网页 429 风险下以 Collection API objects/36142 实开；author/calligrapher pending_review；刊刻 CE 未核定；2026-10-25",
+  "layers": "作品（work）≠原刻载体（stone）≠拓本（rubbing）≠影像（image）；人物、纪年、地点、书体风格、著录分列",
+  "claims": [
+    {
+      "claimId": "qing_03_sanxitang_preface:work:title",
+      "entity": "work",
+      "property": "title",
+      "value": "御刻三希堂石渠宝笈法帖·乾隆御序（Met 全套品名 Sanxitang / Shiqu Baoji；本件取首册御序）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_03_sanxitang_preface",
+          "field": "title",
+          "value": "御刻三希堂石渠宝笈法帖·乾隆御序"
+        },
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36142",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Model Calligraphies from the “Hall of Three Rarities” (Sanxitang) and the \"Collected Treasures of the Stony Moat” (Shiqu Baoji)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "title: Model Calligraphies from the “Hall of Three Rarities” (Sanxitang) and the \"Collected Treasures of the Stony Moat” (Shiqu Baoji)"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:work:dynasty",
+      "entity": "work",
+      "property": "dynasty",
+      "value": "清代",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_03_sanxitang_preface",
+          "field": "dynasty",
+          "value": "清代"
+        },
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36142",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Model Calligraphies from the “Hall of Three Rarities” (Sanxitang) and the \"Collected Treasures of the Stony Moat” (Shiqu Baoji)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "period: Qing dynasty (1644–1911), Qianlong period (1736–95)"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:work:content",
+      "entity": "work",
+      "property": "content",
+      "value": "清代御刻石版法帖首册乾隆御序；书写年与刻石年分列；非晋唐原碑清拓冒充清碑",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_03_sanxitang_preface",
+          "field": "description",
+          "value": "清代御刻石版法帖，封面选首册乾隆御序，落款乾隆十二年腊月（1747），不是把晋唐原碑清拓归清代；书写年与刻石年分列。"
+        },
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36142",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Model Calligraphies from the “Hall of Three Rarities” (Sanxitang) and the \"Collected Treasures of the Stony Moat” (Shiqu Baoji)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "objectDate: second half of 18th century"
+        },
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36142",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Model Calligraphies from the “Hall of Three Rarities” (Sanxitang) and the \"Collected Treasures of the Stony Moat” (Shiqu Baoji)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "classification: Rubbing"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:stone:currentLocation",
+      "entity": "stone",
+      "property": "currentLocation",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "法帖刻石现藏本批未核官方页"
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:stone:originalSite",
+      "entity": "stone",
+      "property": "originalSite",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录 originalLocation=null；Met 未给原刻地点"
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:stone:transfer",
+      "entity": "stone",
+      "property": "transfer",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批未核迁移史"
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:stone:condition",
+      "entity": "stone",
+      "property": "condition",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "无原石现况官方评测"
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:rubbing:holder",
+      "entity": "rubbing",
+      "property": "holder",
+      "value": "美国大都会艺术博物馆（Metropolitan Museum of Art, New York）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_03_sanxitang_preface",
+          "field": "rubbingCollectionInstitution",
+          "value": "美国大都会艺术博物馆"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_03_sanxitang_preface",
+          "field": "collectionNumber",
+          "value": "1984.496.1–.32（首册御序）"
+        },
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36142",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Model Calligraphies from the “Hall of Three Rarities” (Sanxitang) and the \"Collected Treasures of the Stony Moat” (Shiqu Baoji)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "repository: Metropolitan Museum of Art, New York, NY；accessionNumber: 1984.496.1–.32"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:rubbing:museumTitle",
+      "entity": "rubbing",
+      "property": "museumTitle",
+      "value": "Model Calligraphies from the “Hall of Three Rarities” (Sanxitang) and the \"Collected Treasures of the Stony Moat” (Shiqu Baoji)",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36142",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Model Calligraphies from the “Hall of Three Rarities” (Sanxitang) and the \"Collected Treasures of the Stony Moat” (Shiqu Baoji)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "title: Model Calligraphies from the “Hall of Three Rarities” (Sanxitang) and the \"Collected Treasures of the Stony Moat” (Shiqu Baoji)"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:rubbing:format",
+      "entity": "rubbing",
+      "property": "format",
+      "value": "三十二册装裱拓本之首册御序页（Set of rubbings mounted in thirty-two albums；本件封面取御序）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_03_sanxitang_preface",
+          "field": "artifactType",
+          "value": "法帖刻石拓本（首册御序）"
+        },
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36142",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Model Calligraphies from the “Hall of Three Rarities” (Sanxitang) and the \"Collected Treasures of the Stony Moat” (Shiqu Baoji)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "medium: Set of rubbings mounted in thirty-two albums; ink on paper"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:rubbing:period",
+      "entity": "rubbing",
+      "property": "period",
+      "value": "18世纪后半（馆方 objectDate=second half of 18th century / 1750–1795）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_03_sanxitang_preface",
+          "field": "rubbingPeriod",
+          "value": "18世纪后半（馆方著录）"
+        },
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36142",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Model Calligraphies from the “Hall of Three Rarities” (Sanxitang) and the \"Collected Treasures of the Stony Moat” (Shiqu Baoji)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "objectDate: second half of 18th century；objectBeginDate: 1750；objectEndDate: 1795"
+        }
+      ],
+      "catalogueField": "rubbingPeriod",
+      "catalogueValue": "18世纪后半（馆方著录）",
+      "note": "拓本/刊刻时段依馆方；与御序书写年 1747 分列。"
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:image:sourceSha256",
+      "entity": "image",
+      "property": "sourceSha256",
+      "value": "3d007db7a35d1a74c7562584cf9ad391f39e38fe89ecec969dbe3ceee97ed7dd",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_03_sanxitang_preface",
+          "field": "sourceVerification.sourceSha256",
+          "value": "3d007db7a35d1a74c7562584cf9ad391f39e38fe89ecec969dbe3ceee97ed7dd"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:image:license",
+      "entity": "image",
+      "property": "license",
+      "value": "CC0",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_03_sanxitang_preface",
+          "field": "license",
+          "value": "CC0"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_03_sanxitang_preface",
+          "field": "licenseUrl",
+          "value": "https://www.metmuseum.org/about-the-met/policies-and-documents/open-access"
+        },
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36142",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Model Calligraphies from the “Hall of Three Rarities” (Sanxitang) and the \"Collected Treasures of the Stony Moat” (Shiqu Baoji)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "isPublicDomain: true"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:image:derivation",
+      "entity": "image",
+      "property": "derivation",
+      "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_03_sanxitang_preface",
+          "field": "modifications",
+          "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+        }
+      ]
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:person:author",
+      "entity": "person",
+      "property": "author",
+      "value": "弘历（乾隆帝；目录 pending_review；Met 全套署 Various artists，不否定御序作者栏）",
+      "status": "asserted",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_03_sanxitang_preface",
+          "field": "author",
+          "value": "弘历（乾隆帝）"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_03_sanxitang_preface",
+          "field": "authorVerification",
+          "value": "pending_review"
+        },
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36142",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Model Calligraphies from the “Hall of Three Rarities” (Sanxitang) and the \"Collected Treasures of the Stony Moat” (Shiqu Baoji)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "artistDisplayName: Various artists"
+        }
+      ],
+      "catalogueField": "author",
+      "catalogueValue": "弘历（乾隆帝）",
+      "note": "目录 authorVerification=pending_review；Met 对全套 32 册署 Various artists。保持待人工复核，不升已验证。"
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:person:calligrapher",
+      "entity": "person",
+      "property": "calligrapher",
+      "value": "弘历（乾隆帝；目录 pending_review）",
+      "status": "asserted",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_03_sanxitang_preface",
+          "field": "calligrapher",
+          "value": "弘历（乾隆帝）"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_03_sanxitang_preface",
+          "field": "calligrapherVerification",
+          "value": "pending_review"
+        },
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36142",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Model Calligraphies from the “Hall of Three Rarities” (Sanxitang) and the \"Collected Treasures of the Stony Moat” (Shiqu Baoji)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "period: Qing dynasty (1644–1911), Qianlong period (1736–95)"
+        }
+      ],
+      "catalogueField": "calligrapher",
+      "catalogueValue": "弘历（乾隆帝）",
+      "note": "目录 calligrapherVerification=pending_review。保持待人工复核，不升已验证。"
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:person:titleCalligrapher",
+      "entity": "person",
+      "property": "titleCalligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定",
+      "catalogueField": "titleCalligrapher",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:person:engraver",
+      "entity": "person",
+      "property": "engraver",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录未核定；Met 未列刻工",
+      "catalogueField": "engraver",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:person:steleSubject",
+      "entity": "person",
+      "property": "steleSubject",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "法帖御序，无墓主；目录未核定",
+      "catalogueField": "steleSubject",
+      "catalogueValue": "未核定"
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:date:era",
+      "entity": "date",
+      "property": "era",
+      "value": "清乾隆；御序撰书乾隆十二年腊月（1747）；刊刻时段馆方断为 18 世纪后半",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_03_sanxitang_preface",
+          "field": "originalYear",
+          "value": "清乾隆时期，具体刊刻年未核定（御序撰于1747年）"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_03_sanxitang_preface",
+          "field": "description",
+          "quote": "乾隆十二年腊月（1747）"
+        },
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36142",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Model Calligraphies from the “Hall of Three Rarities” (Sanxitang) and the \"Collected Treasures of the Stony Moat” (Shiqu Baoji)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "objectDate: second half of 18th century"
+        }
+      ],
+      "note": "书写年与刻石年分列；originalYearCE 目录为 null。"
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:date:ce",
+      "entity": "date",
+      "property": "ce",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录 originalYearCE=null；具体刊刻年未核定（御序书写年 1747≠刊刻 CE）",
+      "catalogueField": "originalYearCE",
+      "catalogueValue": null
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:date:yearCrossCheck",
+      "entity": "date",
+      "property": "yearCrossCheck",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "无核定原刻 CE，无法做年干支交叉核验；书写年 1747 仅作 era 有限支持"
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:date:dayCrossCheck",
+      "entity": "date",
+      "property": "dayCrossCheck",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批未核日干支"
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:place:originalSite",
+      "entity": "place",
+      "property": "originalSite",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "目录 originalLocation=null；Met 未给原刻地点"
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:place:currentStone",
+      "entity": "place",
+      "property": "currentStone",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批未核刻石现址"
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:place:rubbingHolder",
+      "entity": "place",
+      "property": "rubbingHolder",
+      "value": "纽约（The Metropolitan Museum of Art）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_03_sanxitang_preface",
+          "field": "rubbingCollectionInstitution",
+          "value": "美国大都会艺术博物馆"
+        },
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36142",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Model Calligraphies from the “Hall of Three Rarities” (Sanxitang) and the \"Collected Treasures of the Stony Moat” (Shiqu Baoji)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "repository: Metropolitan Museum of Art, New York, NY"
+        }
+      ],
+      "region": {
+        "modernRegion": "美国纽约州纽约市",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:script_style:script",
+      "entity": "script_style",
+      "property": "script",
+      "value": "行楷书",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_03_sanxitang_preface",
+          "field": "scriptType",
+          "value": "行楷书"
+        }
+      ],
+      "catalogueField": "scriptType",
+      "catalogueValue": "行楷书",
+      "note": "Met API 本批未返回 script 字段；依目录 scriptType。"
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:script_style:historicalComment",
+      "entity": "script_style",
+      "property": "historicalComment",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本批未核额外书风评述官方来源"
+    },
+    {
+      "claimId": "qing_03_sanxitang_preface:bibliography:catalogueReference",
+      "entity": "bibliography",
+      "property": "catalogueReference",
+      "value": "Met objectID 36142；accession 1984.496.1–.32；Gift of Marie-Hélène and Guy Weill, 1984",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_03_sanxitang_preface",
+          "field": "collectionNumber",
+          "value": "1984.496.1–.32（首册御序）"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "qing_03_sanxitang_preface",
+          "field": "sourceUrl",
+          "value": "https://www.metmuseum.org/art/collection/search/36142"
+        },
+        {
+          "type": "url",
+          "url": "https://www.metmuseum.org/art/collection/search/36142",
+          "publisher": "The Metropolitan Museum of Art",
+          "title": "Model Calligraphies from the “Hall of Three Rarities” (Sanxitang) and the \"Collected Treasures of the Stony Moat” (Shiqu Baoji)",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "accessionNumber: 1984.496.1–.32；creditLine: Gift of Marie-Hélène and Guy Weill, 1984"
+        }
+      ]
+    }
+  ]
+}

@@ -5,8 +5,12 @@ import requests
 from playwright.sync_api import sync_playwright, expect
 
 ROOT=Path(__file__).resolve().parents[1]
-BACKEND_URL=os.environ.get('GRAPH_BACKEND_URL','http://127.0.0.1:8000')
-FRONTEND_URL=os.environ.get('GRAPH_FRONTEND_URL','http://127.0.0.1:5173')
+sys.path.insert(0, str(ROOT))
+BACKEND_URL=os.environ.get('GRAPH_BACKEND_URL','')
+FRONTEND_URL=os.environ.get('GRAPH_FRONTEND_URL','')
+from scripts.browser_target import assert_safe_target
+BACKEND_URL = assert_safe_target(BACKEND_URL, label='GRAPH_BACKEND_URL')
+FRONTEND_URL = assert_safe_target(FRONTEND_URL, label='GRAPH_FRONTEND_URL')
 OUT=Path(os.environ.get('GRAPH_SCREENSHOT_DIR', str(ROOT/'screenshots/remediation-2026-10-15/graph')))
 OUT.mkdir(parents=True,exist_ok=True)
 if hasattr(sys.stdout,'reconfigure'): sys.stdout.reconfigure(encoding='utf-8')

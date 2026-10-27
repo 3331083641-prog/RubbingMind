@@ -9,7 +9,9 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
 
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/'screenshots/technical-v2'
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+OUT=Path(os.environ.get('RUBBINGMIND_TECHNICAL_SCREENSHOT_DIR', str(ROOT/'screenshots/technical-v2')))
 BATCH='controlled-rubbings-v2-text-2026-10-17'
 
 
@@ -82,18 +84,19 @@ def run(url,ci=False):
         expect(page.get_by_text('本次候选已人工驳回；操作已保存。',exact=True)).to_be_visible()
         capture(page,'04-actual-glyph-analysis.png')
         result['checks'].append('official input adaptive processing, real crop, visual analysis and durable rejection')
-        nav(page,'时空图谱中心');page.locator('header select').first.select_option('tang-duobao')
+        nav(page,'时空图谱中心');page.locator('header select').first.select_option('tang_01_duobao')
         panel=page.get_by_role('region',name='史料智能检索');expect(panel).to_be_visible()
-        panel.get_by_label('史料问题').fill('《多宝塔碑》的撰文者与书丹者是谁？')
+        title=page.request.get(url.rstrip('/')+'/api/steles/tang_01_duobao').json()['title']
+        panel.get_by_label('史料问题').fill(f'《{title}》的撰文者与书丹者是谁？')
         with page.expect_response(lambda r:r.url.endswith('/api/research/query')) as response:panel.get_by_role('button',name='检索史料').click()
         assert response.value.ok;research=response.value.json();assert research['evidence'] and research['relations']
         expect(page.get_by_test_id('research-answer')).to_contain_text('岑勋')
         expect(page.get_by_test_id('research-answer')).to_contain_text('颜真卿')
         (OUT/'actual-research-query.json').write_text(json.dumps(research,ensure_ascii=False,indent=2),'utf8')
         if not ci:
-            map_el=page.get_by_test_id('historical-map');expect(map_el).to_have_attribute('data-ready','true',timeout=30000)
             locate=panel.get_by_role('button',name='在现有GIS中定位').first
             expect(locate).to_be_visible();locate.click()
+            map_el=page.get_by_test_id('historical-map');expect(map_el).to_have_attribute('data-ready','true',timeout=30000)
             expect(page.get_by_role('tab',name='地理关联',exact=True)).to_have_attribute('aria-selected','true')
         capture(page,'05-evidence-graphrag.png')
         page.locator('header select').first.select_option('wei-jianyi')
@@ -110,32 +113,49 @@ def run(url,ci=False):
         result['checks'].append('real evidence retrieval, sourced expansion, unverified identity refusal and museum research')
         page.locator('header select').first.select_option('tang_01_duobao');nav(page,'算法评测报告')
         page.get_by_label('选择报告运行记录').select_option(run['runId'])
-        expect(page.get_by_text('运行 ID：'+run['runId'],exact=False)).to_be_visible()
+        expect(page.get_by_test_id('run-outcome')).to_be_visible()
+        expect(page.get_by_text(run['runId'],exact=True).first).to_be_visible()
         with page.expect_download() as download:page.get_by_role('button',name='导出 JSON',exact=True).click()
         download.value.save_as(OUT/'actual-run-report.json')
         report=json.loads((OUT/'actual-run-report.json').read_text('utf8'))
         assert report['runId']==run['runId'] and report['stele']['id']=='tang_01_duobao' and report['adaptiveDiagnostics']
         assert any(i['inferenceId']==inference['inferenceId'] and i['status']=='human_rejected' for i in report['inferenceRecords'])
         page.pdf(path=str(OUT/'actual-run-report.pdf'),format='A4',print_background=True)
-        heldout=page.get_by_role('region',name='v2.0与v2.1留出对比')
-        expect(heldout).to_contain_text('受控退化实验')
-        expect(heldout).to_contain_text('负提升')
-        heldout.get_by_role('button',name='遮挡').click()
-        expect(heldout).to_contain_text('adaptive_v21')
-        experiment=page.get_by_role('region',name='算法实验与消融分析')
-        experiment.get_by_label('实验批次').select_option(BATCH)
-        expect(experiment.get_by_label('实验批次')).to_have_value(BATCH)
-        experiment.get_by_label('实验样本',exact=True).select_option('han_04_shichen')
-        experiment.get_by_label('退化类型').select_option('gaussian')
-        experiment.get_by_label('处理方法').select_option('adaptive_joint')
-        expect(experiment.get_by_test_id('experiment-table').locator('tbody tr')).to_have_count(1)
+        page.get_by_role('tab',name='全局评测',exact=True).click()
+        page.get_by_role('tab',name='总览与对照',exact=True).click()
+        page.get_by_label('实验批次').select_option('heldout-v20-v21-2026-10-18')
+        retest=page.get_by_test_id('retest-comparison')
+        expect(retest).to_contain_text('不是独立验证')
+        expect(retest).to_contain_text('负提升')
+        retest.get_by_role('button',name='遮挡',exact=True).click()
+        retest_data=page.request.get(url.rstrip('/')+'/api/experiments/heldout-v20-v21-2026-10-18').json()
+        retest_method_n=len({r['method'] for r in retest_data['rows'] if r['degradation']=='occlusion'})
+        expect(retest.get_by_test_id('retest-table').locator('tbody tr')).to_have_count(retest_method_n)
+        page.get_by_label('实验批次').select_option(BATCH)
+        expect(page.get_by_label('实验批次')).to_have_value(BATCH)
+        page.get_by_label('实验样本',exact=True).select_option('han_04_shichen')
+        page.get_by_test_id('report-context-bar').get_by_role('button',name='高斯噪声',exact=True).click()
+        page.get_by_label('处理方法',exact=True).select_option('adaptive_joint')
+        experiment=page.get_by_test_id('experiment-explorer')
         api=page.request.get(url.rstrip('/')+'/api/experiments/'+BATCH).json()
         values=[r for r in api['rows'] if r['sampleId']=='han_04_shichen' and r['degradation']=='gaussian' and r['method']=='adaptive_joint' and r['split']=='test']
         expected=f"{sum(r['psnr'] for r in values)/len(values):.3f}"
-        expect(experiment.get_by_test_id('experiment-table').locator('tbody tr td').nth(3)).to_have_text(expected)
-        for img in experiment.locator('img').all():
+        method_row=experiment.get_by_test_id('experiment-table').locator('tbody tr').filter(has=page.get_by_role('cell',name='自适应联合 v2.0',exact=True))
+        expect(method_row.locator('td').nth(5)).to_have_text(expected)
+        for img in page.get_by_test_id('experiment-triptych').locator('img').all():
             img.scroll_into_view_if_needed();img.evaluate('(i)=>i.decode()');assert img.evaluate('(i)=>i.naturalWidth')==256
         capture(page,'08-experiment-explorer.png')
+        page.get_by_role('tab',name='失败案例与不确定性',exact=True).click()
+        expect(page.get_by_test_id('failure-cases')).to_contain_text('负提升')
+        capture(page,'08b-failure-retention.png')
+        page.get_by_role('tab',name='消融与机制',exact=True).click()
+        mechanism=page.get_by_test_id('mechanism-panel')
+        expect(mechanism).to_contain_text('headCommit')
+        expect(mechanism.locator('img').first).to_be_visible()
+        for img in mechanism.locator('img').all():
+            img.evaluate('(i)=>i.decode()');assert img.evaluate('(i)=>i.naturalWidth')>0
+        capture(page,'08c-mechanism-provenance.png')
+        page.get_by_role('tab',name='总览与对照',exact=True).click()
         result['checks'].append('selected real run report JSON/PDF, source-linked experiment images and API/UI numeric equality')
         for width,height in ([(1920,1080),(1440,900),(1366,768)] if not ci else [(1440,900)]):
             page.set_viewport_size({'width':width,'height':height})
@@ -150,8 +170,9 @@ def run(url,ci=False):
             mobile=browser.new_context(viewport={'width':390,'height':844},is_mobile=True,has_touch=True)
             phone=mobile.new_page();phone.on('pageerror',lambda e:result['pageErrors'].append(str(e)))
             phone.goto(url);nav(phone,'时空图谱中心')
+            phone.locator('header select').first.select_option('tang_01_duobao')
             expect(phone.get_by_role('region',name='史料智能检索')).to_be_visible()
-            phone.get_by_label('史料问题').fill('多宝塔碑的作者是谁？');phone.get_by_role('button',name='检索史料').tap()
+            phone.get_by_label('史料问题').fill(f'《{title}》的撰文者是谁？');phone.get_by_role('button',name='检索史料').tap()
             expect(phone.get_by_test_id('research-answer')).to_contain_text('岑勋')
             capture(phone,'12-mobile-touch-retrieval.png')
             result['mobileOverflow']=phone.evaluate('document.documentElement.scrollWidth > innerWidth+2')
@@ -167,5 +188,10 @@ def run(url,ci=False):
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('--url',default=os.getenv('RUBBINGMIND_FRONTEND_URL','http://127.0.0.1:5180'));parser.add_argument('--ci',action='store_true');args=parser.parse_args()
-    print(json.dumps(run(args.url,args.ci),ensure_ascii=False,indent=2))
+    from scripts.browser_target import assert_safe_target
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--url', default=os.getenv('RUBBINGMIND_FRONTEND_URL') or '')
+    parser.add_argument('--ci', action='store_true')
+    args=parser.parse_args()
+    url = assert_safe_target(args.url, label='--url / RUBBINGMIND_FRONTEND_URL')
+    print(json.dumps(run(url, args.ci), ensure_ascii=False, indent=2))

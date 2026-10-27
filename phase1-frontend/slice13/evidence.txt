@@ -1,0 +1,9 @@
+slice13 evidence (2026-10-25 Asia/Shanghai)
+
+ALIGN HEAD: 6f25bfc897f5b3c1c444e52b0e384bda84c11d83 (rebase onto feature after eval@6f25bfc; replaced tip 21a3dc7 / prior base 19255db)
+AB-8 on tip: App.tsx health-samples-banner + api HealthResponse/getHealth (12f8883 / 7e080c5; still on ancestry of 6f25bfc)
+algoMode on tip: reportData + ArtifactRunReport + PrintLayout + ReportsPage export (via 5a7b20c)
+
+Scan result: no additional report-page code tip.
+RF-8 still open (user confirm). No App/HomePage/api contract edits.
+build: not re-run (no apps/web change this round; docs-only rebase).

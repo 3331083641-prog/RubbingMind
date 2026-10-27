@@ -1,36 +1,80 @@
 # 墨韵智考 RubbingMind
 
-金石碑拓数字典藏、图像处理与史料辅助检索的本地 Web 项目。系统包含 React/TypeScript 前端、FastAPI 后端、OpenCV 图像处理、四件核心演示样本、28 件第三轮审核馆藏、三维展陈和历史 GIS。
+金石碑拓数字典藏、图像处理、史料辅助检索与算法实验报告的本地 Web 项目。前端使用 React / TypeScript，后端使用 FastAPI / OpenCV；正式馆藏、核心演示样本、用户上传和受控实验分别管理。
 
-## 真实馆藏与授权
+## 五个核心页面
 
-第三轮审核的 28 件真实影像已经入库，东汉、北魏、唐、宋、元、明、清各 4 件。标准数据位于 [data/catalog/steles28.json](data/catalog/steles28.json)；每件的封面、阅读图、档案图分开保存，名称、原刻年代、拓本年代、馆藏机构及编号按审核记录对应。旧 5 件记录独立归档，不作为新文物身份。四件核心算法样本与 28 件馆藏使用独立 ID。查看 [馆藏影像来源与许可](docs/museum-image-sources.md) 和 [入库说明](docs/museum-v3-integration.md)。各图像许可按逐件记录标示；文物本身与数字图像授权需分别判断。
+| 页面 | 实际功能 |
+|---|---|
+| 首页门户 | 原有循环视频、Blender 制作的 PBR 碑刻模型、视角与扫描交互、功能入口和核心样本选择 |
+| 贞石典藏馆 | 七朝代各 4 件，共 28 件正式馆藏；真实封面 / 阅读图 / 档案图、搜索筛选、来源许可、复核状态和三维展陈 |
+| 智考工作台 | PNG / JPEG / WebP 上传、频域 / 空域 / 自适应处理、真实运行历史、残字选区与图形分析、候选的采纳 / 驳回 / 撤销、结果导出 |
+| 时空图谱中心 | Three.js + MapLibre + 真实 DEM，国界 / 省界独立图层、地形贴地标记、史料关系、纪年换算和有来源的全文检索 |
+| 算法评测报告 | 批次总览和本件运行报告，实际实验筛选、PSNR / SSIM / 边缘 F1、方法图表、同步图像对照、失败与负提升、机制证据、JSON / PDF 导出 |
 
-## 现有功能与实验边界
+以下截图来自 2026-10-26 的本地实际运行。完整的 1920×1080、1440×900、1366×768 证据和核验记录位于 [screenshots/sync-verification](screenshots/sync-verification/)。
 
-- 工作台默认使用输入图像驱动的自适应处理：分析频谱、残差与字口风险，选择陷波、孤立噪点处理、NLM或保留原图，并记录保真门控原因。固定高斯/Butterworth、形态学、CLAHE流程保留为对照。每次处理保存独立运行ID、参数、输入/输出哈希、工作副本缩放和随机种子。
-- 上传 PNG/JPEG 后，服务端验证并保存原件、生成唯一记录；上传属于用户私有数据，不进入 28 件权威馆藏。上传失败会显示错误，不生成假记录。
-- 残字选区可查看前景、噪点、连通区域和真实二值骨架；可将人工确认的参考字形加入本地轮廓距离/投影检索库。可选视觉模型由用户自行配置；未配置或不可用时明确显示有限的模板/上下文建议或无候选。采纳、驳回、撤销均保存；没有独立人工标注集，不报告古碑识字准确率。
-- 报告按当前文物及所选运行 ID 展示实际处理、出处和推演状态，支持 JSON 与浏览器打印 PDF。没有运行时显示“尚未执行”；没有配对真值时 PSNR、SSIM 为“未评测”。
-- 图谱的“史料智能检索”使用本地SQLite FTS5/BM25、实体识别和有来源的一跳关系扩展，28件馆藏与四核心均可查询；答案为证据摘录，不调用模型补写未知历史。原石/原刻载体、拓本和藏所分开建档。已有核验地点可联动原GIS，不生成无据路线。地图公开使用与审图事项见 [历史图谱审计](docs/graph-history-audit.md)，尚未取得本应用正式审图许可。
+### 首页门户
 
-## 三维真实地貌（时空图谱中心）
+![首页与原有视频、三维碑刻](screenshots/sync-verification/1920x1080/01-home.png)
 
-地图默认以三维形态打开：**真实 DEM + Three.js 网格 + MapLibre 投影**，而不是给二维底图叠加山体阴影。
+### 贞石典藏馆
 
-- 高程来自 AWS Open Data Terrain Tiles（Mapzen terrarium，无需密钥），仓库内置 z0–z6（334 块、26.8 MB）；全国概览 z5 ≈ 4.4 km、区域 z6 ≈ 2.2 km。更高层级用 `python scripts/fetch_terrain_dem.py --zoom 7 9` 按需下载，不入普通 Git。
-- 地形由 `BufferGeometry` 索引网格构建，顶点携带真实高程、梯度、凹度与边缘属性；法线在片元着色器中由梯度求得，垂直夸张只改一个 uniform，**不修改高程数据**。
-- 通过 MapLibre `CustomLayerInterface` 与地图共用相机与投影；省界、国界、水系逐点采样同一 DEM 后贴地绘制，地点标记按地形高度投影。**国界由 34 个省级面拓扑并集求出**（不是把省界整体加粗），以「暗色衬底 + 金色光晕 + 亮金主线」三层描边；**省界另取省际共享边界去重后的独立数据**（相邻省份只画一次、不含国界与海岸线），暖古铜金细线并随缩放加粗，始终弱于国界。两层在图层面板中可独立开关，省名与碑刻标记做屏幕空间避让。
-- 二维/三维同一引擎：三维为立体起伏，二维为同一 DEM 的平面晕渲；无 WebGL 时回退到既有 MapLibre 栅格样式。
-- 实测：全国画幅占比 69.9%–70.5%，交互 152–162 FPS（1920×1080，RTX 4060 Laptop），全国网格 620,964 顶点。详细参数与前后对照见 [V2.2 视觉精修](docs/terrain3d/V22_VISUAL_REFINEMENT.md)。
+![28 件正式馆藏](screenshots/sync-verification/1920x1080/02-museum.png)
 
-实现、数据与限制见 [实施报告](docs/terrain3d/IMPLEMENTATION_REPORT.md)、[数据来源与合规](docs/terrain3d/DATA_SOURCES.md)、[引擎架构](docs/terrain3d/ARCHITECTURE.md)。数据只覆盖真实获取的部分：Copernicus DEM、USGS/NASA 原生产品与自然资源部标准图幅本次**未取得**，已在数据文档中列明；本应用仍未单独审图。
+### 智考工作台
 
-受控退化实验位于 [experiments/](experiments/)。第二阶段有中心采样、正文区域两批，共28件、280个退化输入、9种方法、2520次输出，各批按文物ID分开发/独立测试。正文批次独立测试均值：输入24.705 dB/0.704 SSIM；固定联合18.829/0.485；自适应26.798/0.762；单独陷波27.252/0.767。自适应并非所有指标或个例最佳；首批中心采样落到纸边的失败结果完整保留。报告页可筛选真实批次并查看图表、前后图和导出。旧实验使用退化标签选joint陷波的问题已记录；新实验与生产决策不接收标签或参考图。
+![实际处理工作台](screenshots/sync-verification/1920x1080/03-workbench.png)
+
+### 时空图谱中心
+
+![V2.2 真实三维地貌与史料图谱](screenshots/sync-verification/1920x1080/04-graph.png)
+
+### 算法评测报告
+
+![最新报告总览](screenshots/sync-verification/1920x1080/05-reports.png)
+
+[真实图像对照](screenshots/sync-verification/reports/02-real-image-comparison.png) · [多方法图表](screenshots/sync-verification/reports/03-method-chart.png) · [失败案例](screenshots/sync-verification/reports/04-failure-cases.png) · [机制图与历史提交来源](screenshots/sync-verification/reports/05-mechanism.png)
+
+## 馆藏、史料与图像来源
+
+正式目录为 [data/catalog/steles28.json](data/catalog/steles28.json)，东汉、北魏、唐、宋、元、明、清各 4 件。28 件作品使用 84 张独立的封面、阅读与档案影像，保留馆藏机构、典藏号、原刻年代、拓本年代、来源 URL、逐件许可与署名。来源包括台北故宫博物院、美国大都会艺术博物馆和普林斯顿大学艺术博物馆。许可按现有记录为 23 件 CC BY 4.0、2 件 CC0、3 件 Public Domain；数字图像许可与文物本身的年代或权属分开判断。
+
+逐件来源和许可见 [馆藏影像说明](docs/museum-image-sources.md)，入库过程见 [第三轮馆藏集成](docs/museum-v3-integration.md)。正式影像保持原哈希；原始下载归档、重复高清成品和本机私人图片不整体上传。
+
+[data/catalog/claims](data/catalog/claims/) 保存逐件主张、四级证据、引用和未解决冲突。原刻载体、拓本、藏所、作者 / 书丹者 / 刻工 / 碑主分别记录；争议不按来源排序自动选边，待人工复核的内容不会升级为核定事实。四件核心样本使用独立身份，合成测试文本和未确认文物身份有明确提示，不能当作真实释文或评测真值。用户上传也不自动进入 28 件正式目录。
+
+史料检索使用本地 SQLite FTS5 / BM25、实体识别和有来源的一跳关系扩展。答案来自现有证据摘录；资料不足、实体不明确或来源有冲突时保留拒答 / 不确定性，不调用语言模型补写未知历史。
+
+## 实际算法与评测范围
+
+工作台默认使用输入图像驱动的自适应处理：分析频谱、噪点、残差和字口风险，选择陷波、孤立噪点处理、NLM 或保留原图，并记录保真门控与原因。固定高斯 / Butterworth、形态学、NLM、CLAHE 及联合流程保留作对照。无合格频率峰时的陷波分支直接返回像素相同的副本，避免无效 FFT 往返造成截断改动。
+
+每次处理记录独立运行 ID、参数、输入 / 输出 SHA、工作副本尺寸、随机种子和时间。原图返回、实际改动、无法判定分别展示；输出与输入相同不算实际修复提升。真实历史拓本没有配对真值时，PSNR / SSIM 显示未评测。
+
+受控实验数据位于 [experiments](experiments/)。两个主要批次使用不同采样协议，合计 28 件作品、280 个退化输入、9 种方法、2520 条输出记录。报告直接读取登记结果、图像和来源哈希，展示方法比较、按文物分组的统计、同步参考 / 输入 / 输出、差分、失败记录和负提升。局限与不利结果一并保留，不跨采样协议把均值差称为算法迭代提升。
+
+本轮审计重算 2520 条保存记录的 PSNR / SSIM / 边缘 F1，与保存值一致；按固定哈希规则为每件作品、每种方法选取一条，252 次历史源码快照重放的输出像素均一致。详见 [实验核验记录](docs/sync-audit/EXPERIMENT_EVIDENCE.json)。这项核验不重现机器耗时，也不证明无参考古碑修复质量或识字准确率。
+
+需要保留的研究边界：
+
+- `heldout-v20-v21-2026-10-18` 是保留的历史 ID；实际页面标为同批复测，不能称为独立留出验证。该批没有保存图像，只能展示数值。
+- 旧 2026-10-15 joint 使用生成器退化标签选陷波，存在先验泄漏，仅保留为历史记录；当前生产决策不接收退化标签或参考图。
+- 机制 PNG 和重放链绑定历史提交 `7623a52`，不宣称已经按当前交付 HEAD 全量重算。
+- 部分历史 CI 派生文件的来源哈希已过期，服务端明确拒绝。前端临时 bootstrap 会标注来源、种子与限制，不伪称后端已核验统计。
+- 完整 ROI 局部对照闭环仍有已知待办 A24。已有人工操作记录不等于独立标注集；古碑残字 Top-1 / Top-3 为未评测。
+
+## 三维地图架构
+
+V2.2 使用真实 DEM、Three.js `BufferGeometry` 与 MapLibre 共用相机和投影。高程来自 AWS Open Data Terrain Tiles / Mapzen Terrarium，仓库内保留 z0–z6 概览瓦片；更高层级按需获取，不进入普通 Git。
+
+国界由 34 个省级面拓扑并集生成，省际共享边界独立去重。国界、省界和水系采样同一 DEM 贴地绘制；标记按地形投影，地名做屏幕空间避让，边界可独立开关。垂直夸张只改变显示，不改高程或经纬度。二维 / 三维共享数据；无 WebGL 时按既有路径回退。
+
+当前底图表达现代行政边界；古址地望按各条证据保留精度，不把区域性地点画成精确墓址。上游数据声明不等于本应用已取得独立审图许可，本应用仍未单独审图。技术和来源见 [引擎架构](docs/terrain3d/ARCHITECTURE.md)、[数据来源](docs/terrain3d/DATA_SOURCES.md)、[V2.2 说明](docs/terrain3d/V22_VISUAL_REFINEMENT.md) 和 [史料图谱审查](docs/graph-history-audit.md)。性能依设备、画幅和浏览器而变。
 
 ## 安装与运行
 
-建议 Python 3.10–3.12、Node.js 18+。在仓库根目录执行：
+建议 Python 3.10–3.12、Node.js 20+。CI 使用 Python 3.11 和 Node.js 20。Windows PowerShell 5.1 / 7 均可使用启动脚本。
 
 ```powershell
 python -m venv .venv
@@ -44,34 +88,61 @@ cd ../..
 .\start.ps1
 ```
 
-`start.ps1` 使用脚本所在目录，必要时重建前端，启动 FastAPI 并记录本项目 PID；`stop.ps1` 仅停止它启动的进程。也可分别运行 `python -m uvicorn main:app --host 127.0.0.1 --port 8000` 与在 `apps/web` 运行 `npm run dev`。先检查 `/health`，再检查 `/generate`，然后打开 Vite 页面或构建后的服务页面。API 文档在 `/docs`。自检运行 `.\check.ps1`。
+`init_db.py` 初始化本地 SQLite，并按正式目录迁移馆藏镜像；迁移会备份原资料，保留用户记录。`start.ps1` 使用脚本所在目录、按需构建前端并记录本项目 PID。查看它输出的实际端口，执行 `.\check.ps1` 自检和 `.\stop.ps1` 停止它启动的服务。旧 `/static/index.html` 书签跳转当前前端入口。
 
-可选视觉模型通过环境变量 `RUBBINGMIND_VISION_API_KEY`、`RUBBINGMIND_VISION_BASE_URL` 和 `RUBBINGMIND_VISION_MODEL` 配置；请勿提交密钥。调用外部模型可能产生费用。
+也可分开启动开发服务，按后端 health → generate → 前端的顺序检查：
 
-## 验证
+```powershell
+# 终端一，仓库根目录
+python -m uvicorn main:app --host 127.0.0.1 --port 8000
+
+# 终端二
+Invoke-RestMethod http://127.0.0.1:8000/health
+Invoke-RestMethod http://127.0.0.1:8000/generate
+cd apps/web
+$env:RUBBINGMIND_API_TARGET='http://127.0.0.1:8000'
+npm run dev
+```
+
+前端代理目标必须与当前后端一致；独立 worktree 或测试实例应显式设置 `RUBBINGMIND_API_TARGET`。本地 API 文档为 `/docs`。
+
+## 私有数据与可选模型
+
+可用环境变量 `RUBBINGMIND_DB_PATH`、`RUBBINGMIND_RUNTIME_DIR`、`RUBBINGMIND_UPLOAD_DIR`、`RUBBINGMIND_RESULTS_DIR` 将数据库、用户图像、审核记录和处理结果独立存放；权威馆藏与实验数据不随这些变量改变。对应目录、`.env`、密钥、node_modules、虚拟环境和缓存不提交。
+
+残字推演能生成实际选区的前景、噪点、连通区域和骨架，并检索用户人工确认的本地参考字形。可选视觉模型通过 `RUBBINGMIND_VISION_API_KEY`、`RUBBINGMIND_VISION_BASE_URL`、`RUBBINGMIND_VISION_MODEL` 在后端配置。只有配置兼容的视觉服务后才可调用；调用可能收费，外部服务的古碑识字效果不包含在本次验收中。未配置或不可用时如实显示有限的模板 / 上下文建议或无候选。
+
+默认服务绑定 loopback。远程模式 `RUBBINGMIND_DEPLOYMENT=remote` 对私有数据和写接口要求 `RUBBINGMIND_ADMIN_TOKEN` 管理员 Bearer 认证，未配置则拒绝；远程模式不公开 OpenAPI 页面。该模式仍是单管理员工具，不提供多租户隔离、完整账号体系或公网配额管理。
+
+## 验证与复现
 
 ```powershell
 python -m pytest tests -q
 python scripts/validate_museum_v3.py
 python scripts/validate_history_gis.py
-python experiments/run_ablation.py
-# 扩展批次（已有目录不覆盖，使用新输出名）
-python experiments/run_v2.py --output data/runtime/my-v2-experiment
-python experiments/run_v2.py --config experiments/config-v2-text.json --output data/runtime/my-v2-text-experiment
-python experiments/evaluate_glyphs.py
+python scripts/security_scan.py
+python scripts/verify_experiment_evidence.py
+# 另外按每件作品 / 每种方法固定取一条历史代码重放；使用你选定的临时目录
+python scripts/verify_experiment_evidence.py --replay --temp-root D:\Codex\temp
 cd apps/web
+npm ci
 npm run build
+npm run test:url
+npm audit
 ```
 
-三维地貌的浏览器验收（需后端 8000 与 Vite 5173 同时运行）：
+浏览器专项需要已经运行的独立测试后端 / 前端。使用显式测试端口（例如 8740 / 5740），先把四个私有状态环境变量指向测试目录，避免写入个人运行数据；浏览器脚本会拒绝部分用户默认端口。
 
 ```powershell
-python scripts/test_terrain3d_browser.py   # 截图写入 screenshots/terrain3d-final/
-python scripts/test_graph_browser.py       # 原有图谱回归
+$env:GRAPH_BACKEND_URL='http://127.0.0.1:8740'
+$env:GRAPH_FRONTEND_URL='http://127.0.0.1:5740'
+$env:RUBBINGMIND_FRONTEND_URL='http://127.0.0.1:5740'
+python scripts/test_terrain3d_v22_browser.py
+python scripts/ci_browser_smoke.py
+python scripts/test_technical_v2_browser.py --ci --url http://127.0.0.1:5740
+python scripts/verify_sync_delivery.py --backend http://127.0.0.1:8740 --url http://127.0.0.1:5740
 ```
 
-浏览器验收步骤和实际结果见 [整改报告](docs/audit/2026-10-15-remediation-report.md)。自动化通过不等于文物学术结论已获专家认证。地图、未标注残字和无真值历史拓本仍有明确的验证边界。
+本机严格视频播放检查可设置 `RUBBINGMIND_BROWSER_CHANNEL=msedge`。开放源码 Chromium 未必有 H.264 解码器；CI 的媒体专项同时检查海报回退，不把回退误报为真实播放。
 
-第二阶段代码、评测与复现说明见 [技术实装记录](docs/audit/technical-implementation-v2.md) 和 [技术验收报告](docs/audit/technical-implementation-v2-report.md)。真实模型接入须用户自行配置，当前验收不包含未配置外部服务的识字效果。所有84张正式馆藏影像保持原始校验值。
-
-本地默认绑定127.0.0.1。远程模式 `RUBBINGMIND_DEPLOYMENT=remote` 对私有数据及写接口要求管理员Bearer凭据（`RUBBINGMIND_ADMIN_TOKEN`），未配置则拒绝。它是管理员单用户模式，不提供多租户隔离；公网多用户服务仍需独立身份、配额、超时与文件归属系统，勿直接开放本机服务。
+本轮审计、差异和取舍见 [docs/sync-audit](docs/sync-audit/)。2026-10-25 的 [product-upgrade 文档](docs/product-upgrade/) 作为开发与审查历史保留，尚未关闭的学术 / 产品待办没有被同步操作自动标为完成。

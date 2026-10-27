@@ -1,0 +1,822 @@
+{
+  "schemaVersion": 1,
+  "steleId": "yuan_03_shengzhu",
+  "title": "圣主本命长生之碑",
+  "curatedBy": "RM-金石史料",
+  "curatedAt": "2026-10-25（Asia/Shanghai）",
+  "selectionBasis": "Green 指定优先；目录撰文/书丹 verified；馆方释文含王思廉撰、赵孟頫书并篆题与延祐四年十一月纪年；NPM 开放资料页 2026-10-25 实开核对",
+  "layers": "作品（work）≠原刻载体（stone）≠拓本（rubbing）≠影像（image）；人物、纪年、地点、书体风格、著录分列",
+  "claims": [
+    {
+      "claimId": "yuan_03_shengzhu:work:title",
+      "entity": "work",
+      "property": "title",
+      "value": "圣主本命长生之碑（碑额作“聖主本命長生祝延碑”；碑文作“勅賜大龍興寺祝延聖主本命長生之碑”；馆方品名“元趙孟頫書聖主本命長生之碑并碑額墨拓本”）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "title",
+          "value": "圣主本命长生之碑"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "transcription",
+          "quote": "（碑額）聖主本命長生祝延碑"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "transcription",
+          "quote": "勅賜大龍興寺祝延聖主本命長生之碑"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34561&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書聖主本命長生之碑并碑額墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "2026-10-25 打开：品名“元趙孟頫書聖主本命長生之碑并碑額墨拓本”"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_03_shengzhu:work:dynasty",
+      "entity": "work",
+      "property": "dynasty",
+      "value": "元",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "dynasty",
+          "value": "元代"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34561&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書聖主本命長生之碑并碑額墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名冠“元”"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_03_shengzhu:work:content",
+      "entity": "work",
+      "property": "content",
+      "value": "大龙兴寺住持等为祝延圣主本命，造经、捐俸、立石；王思廉撰，赵孟頫书并篆题",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "transcription",
+          "quote": "勅賜大龍興寺祝延聖主本命長生之碑"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "transcription",
+          "quote": "王思廉撰"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "transcription",
+          "quote": "趙孟頫書並□□（篆題）"
+        }
+      ],
+      "note": "据释文摘句概括，未经人工通读全文"
+    },
+    {
+      "claimId": "yuan_03_shengzhu:stone:currentLocation",
+      "entity": "stone",
+      "property": "currentLocation",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "physicalCollectionInstitution",
+          "value": null
+        }
+      ],
+      "missingReason": "目录 physicalCollectionInstitution 为空；本轮未打开原石现藏地的权威来源",
+      "catalogueField": "physicalCollectionInstitution"
+    },
+    {
+      "claimId": "yuan_03_shengzhu:stone:originalSite",
+      "entity": "stone",
+      "property": "originalSite",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "originalLocation",
+          "value": null
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "transcription",
+          "quote": "勅賜大龍興寺祝延聖主本命長生之碑"
+        }
+      ],
+      "missingReason": "目录 originalLocation 为空；碑文记大龙兴寺，但未写明寺院所在州县，不能据此推定原立地点"
+    },
+    {
+      "claimId": "yuan_03_shengzhu:stone:transfer",
+      "entity": "stone",
+      "property": "transfer",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本轮未查到原石迁徙的可靠来源"
+    },
+    {
+      "claimId": "yuan_03_shengzhu:stone:condition",
+      "entity": "stone",
+      "property": "condition",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "无原石影像；目录 stoneWeathering=无原石影像，不评定"
+    },
+    {
+      "claimId": "yuan_03_shengzhu:rubbing:holder",
+      "entity": "rubbing",
+      "property": "holder",
+      "value": "台北故宫博物院（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "collectionNumber",
+          "value": "贈拓000410"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34561&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書聖主本命長生之碑并碑額墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "文物統一編號 贈拓000410N000000000"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_03_shengzhu:rubbing:museumTitle",
+      "entity": "rubbing",
+      "property": "museumTitle",
+      "value": "元趙孟頫書聖主本命長生之碑并碑額墨拓本",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34561&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書聖主本命長生之碑并碑額墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "品名栏"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "attribution",
+          "value": "圣主本命长生之碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_03_shengzhu:rubbing:format",
+      "entity": "rubbing",
+      "property": "format",
+      "value": "一件；本幅约 104.5×66 公分；纸本",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34561&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書聖主本命長生之碑并碑額墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "典藏尺寸：本幅 104.5x66；质地：纸；数量：一件"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_03_shengzhu:rubbing:period",
+      "entity": "rubbing",
+      "property": "period",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "rubbingPeriod",
+          "value": "未核定；不据拓印年改变朝代"
+        }
+      ],
+      "missingReason": "目录 rubbingPeriod 未核定；不据拓印年改变朝代"
+    },
+    {
+      "claimId": "yuan_03_shengzhu:image:sourceSha256",
+      "entity": "image",
+      "property": "sourceSha256",
+      "value": "d818483a2f71930f41fe27018022499217dd25f5566e24144ad93509c09b5ed5",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "sourceVerification.sourceSha256",
+          "value": "d818483a2f71930f41fe27018022499217dd25f5566e24144ad93509c09b5ed5"
+        }
+      ],
+      "note": "对应审核包源图 SHA；派生 archive/readable/cover 见 ASSET_FREEZE，本轮未改影像"
+    },
+    {
+      "claimId": "yuan_03_shengzhu:image:license",
+      "entity": "image",
+      "property": "license",
+      "value": "CC BY 4.0",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "license",
+          "value": "CC BY 4.0"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34561&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書聖主本命長生之碑并碑額墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "授权条款 CC BY 4.0"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_03_shengzhu:image:derivation",
+      "entity": "image",
+      "property": "derivation",
+      "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "modifications",
+          "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_03_shengzhu:person:author",
+      "entity": "person",
+      "property": "author",
+      "value": "王思廉（翰林学士承旨资善大夫致仕）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "author",
+          "value": "王思廉"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "authorVerification",
+          "value": "verified"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "transcription",
+          "quote": "翰林學士承旨資善大夫致仕王思廉撰"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34561&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書聖主本命長生之碑并碑額墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "释文同；注意：馆方“作者”栏仅列趙孟頫，与释文撰/书分工不同，见 bibliography 异文"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_03_shengzhu:person:calligrapher",
+      "entity": "person",
+      "property": "calligrapher",
+      "value": "赵孟頫（趙孟頫）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "calligrapher",
+          "value": "赵孟頫"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "calligrapherVerification",
+          "value": "verified"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "transcription",
+          "quote": "趙孟頫書並□□（篆題）"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34561&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書聖主本命長生之碑并碑額墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "作者栏／释文"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_03_shengzhu:person:titleCalligrapher",
+      "entity": "person",
+      "property": "titleCalligrapher",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "titleCalligrapher",
+          "value": "未核定"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "titleCalligrapherVerification",
+          "value": "pending_review"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "transcription",
+          "quote": "趙孟頫書並□□（篆題）"
+        }
+      ],
+      "missingReason": "释文“書並□□（篆題）”两字残泐；目录标 pending_review／未核定，不升为已验证。赵孟頫兼篆题仅作有限线索，不作定论",
+      "catalogueField": "titleCalligrapher"
+    },
+    {
+      "claimId": "yuan_03_shengzhu:person:engraver",
+      "entity": "person",
+      "property": "engraver",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "engraver",
+          "value": "未核定"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "engraverVerification",
+          "value": "unknown"
+        }
+      ],
+      "missingReason": "目录未核定；释文未见刻工署名"
+    },
+    {
+      "claimId": "yuan_03_shengzhu:person:steleSubject",
+      "entity": "person",
+      "property": "steleSubject",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "steleSubject",
+          "value": "未核定"
+        }
+      ],
+      "missingReason": "祝延圣主本命，非墓碑碑主；目录未核定，不作人物碑主断言"
+    },
+    {
+      "claimId": "yuan_03_shengzhu:date:era",
+      "entity": "date",
+      "property": "era",
+      "value": "延祐四年十一月吉日",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "sourceVerification.dateBasis",
+          "value": "延祐四年十一月，馆方释文"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "transcription",
+          "quote": "延祐四年十一月吉日"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34561&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書聖主本命長生之碑并碑額墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "释文末纪年"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_03_shengzhu:date:ce",
+      "entity": "date",
+      "property": "ce",
+      "value": 1317,
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "originalYearCE",
+          "value": 1317
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "originalYear",
+          "value": "1317年"
+        }
+      ],
+      "note": "延祐四年通作 1317；本轮未再开历表逐日核对“十一月吉日”"
+    },
+    {
+      "claimId": "yuan_03_shengzhu:date:yearCrossCheck",
+      "entity": "date",
+      "property": "yearCrossCheck",
+      "value": "一致：延祐四年→1317",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "originalYearCE",
+          "value": 1317
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "transcription",
+          "quote": "延祐四年十一月吉日"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_03_shengzhu:date:dayCrossCheck",
+      "entity": "date",
+      "property": "dayCrossCheck",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "仅“十一月吉日”，无干支日；本轮未做日级历表核对"
+    },
+    {
+      "claimId": "yuan_03_shengzhu:date:month",
+      "entity": "date",
+      "property": "month",
+      "value": "十一月",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "transcription",
+          "quote": "延祐四年十一月吉日"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_03_shengzhu:place:originalSite",
+      "entity": "place",
+      "property": "originalSite",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "transcription",
+          "quote": "大龍興寺"
+        }
+      ],
+      "missingReason": "区域级亦缺：大龙兴寺未系州县；不输出坐标"
+    },
+    {
+      "claimId": "yuan_03_shengzhu:place:currentStone",
+      "entity": "place",
+      "property": "currentStone",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "原石现藏未核定"
+    },
+    {
+      "claimId": "yuan_03_shengzhu:place:rubbingHolder",
+      "entity": "place",
+      "property": "rubbingHolder",
+      "value": "台北（國立故宮博物院）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34561&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書聖主本命長生之碑并碑額墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "元趙孟頫書聖主本命長生之碑并碑額墨拓本"
+        }
+      ],
+      "region": {
+        "modernRegion": "台北市",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "yuan_03_shengzhu:script_style:script",
+      "entity": "script_style",
+      "property": "script",
+      "value": "楷书（碑文）；碑额篆书",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "scriptType",
+          "value": "楷书"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "transcription",
+          "quote": "（篆書。）"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "transcription",
+          "quote": "（楷書。）"
+        },
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34561&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書聖主本命長生之碑并碑額墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "书体栏：楷书；释文注明碑额篆书"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_03_shengzhu:script_style:styleNote",
+      "entity": "script_style",
+      "property": "styleNote",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本轮未做书法风格人工评述"
+    },
+    {
+      "claimId": "yuan_03_shengzhu:script_style:historicalComment",
+      "entity": "script_style",
+      "property": "historicalComment",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本轮未引用外部书论"
+    },
+    {
+      "claimId": "yuan_03_shengzhu:script_style:colophonComment",
+      "entity": "script_style",
+      "property": "colophonComment",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [],
+      "missingReason": "本轮未见可用题跋摘录"
+    },
+    {
+      "claimId": "yuan_03_shengzhu:bibliography:catalogueReference",
+      "entity": "bibliography",
+      "property": "catalogueReference",
+      "value": "國立故宮博物院开放资料 id=34561；贈拓000410",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34561&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書聖主本命長生之碑并碑額墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "元趙孟頫書聖主本命長生之碑并碑額墨拓本"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "collectionNumber",
+          "value": "贈拓000410"
+        }
+      ]
+    },
+    {
+      "claimId": "yuan_03_shengzhu:bibliography:authorFieldConflict",
+      "entity": "bibliography",
+      "property": "authorFieldConflict",
+      "value": "馆方“作者”栏仅列趙孟頫；释文区分王思廉撰、趙孟頫书并篆题",
+      "status": "conflict",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34561&dep=P&mode=full",
+          "publisher": "國立故宮博物院",
+          "title": "元趙孟頫書聖主本命長生之碑并碑額墨拓本",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-25",
+          "quote": "作者：趙孟頫"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "transcription",
+          "quote": "王思廉撰"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "yuan_03_shengzhu",
+          "field": "transcription",
+          "quote": "趙孟頫書並□□（篆題）"
+        }
+      ],
+      "alternatives": [
+        {
+          "value": "赵孟頫（馆方作者栏）",
+          "evidenceLevel": "有限支持",
+          "sources": [
+            {
+              "type": "url",
+              "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=34561&dep=P&mode=full",
+              "publisher": "國立故宮博物院",
+              "title": "元趙孟頫書聖主本命長生之碑并碑額墨拓本",
+              "sourceKind": "official_museum",
+              "accessedAt": "2026-10-25",
+              "quote": "作者：趙孟頫"
+            }
+          ],
+          "note": "馆方作者栏未区分撰/书"
+        },
+        {
+          "value": "王思廉撰 / 赵孟頫书（释文）",
+          "evidenceLevel": "已验证",
+          "sources": [
+            {
+              "type": "file",
+              "path": "data/catalog/steles28.json",
+              "id": "yuan_03_shengzhu",
+              "field": "transcription",
+              "quote": "王思廉撰"
+            },
+            {
+              "type": "file",
+              "path": "data/catalog/steles28.json",
+              "id": "yuan_03_shengzhu",
+              "field": "transcription",
+              "quote": "趙孟頫書"
+            }
+          ],
+          "note": "释文区分撰书"
+        }
+      ],
+      "note": "目录已按释文拆分 author/calligrapher；界面应并列，不合并为单一作者"
+    }
+  ]
+}

@@ -1,0 +1,963 @@
+{
+  "schemaVersion": 1,
+  "steleId": "tang_04_xuanmita",
+  "title": "玄秘塔碑",
+  "curatedBy": "RM-金石史料",
+  "curatedAt": "2026-10-19（Asia/Shanghai）",
+  "selectionBasis": "目录撰文/书丹/篆额/刻工 4 项均为 verified；馆方释文 1620 字含撰书刻署名与纪年；西安碑林有两个官方条目，且它们之间、它们与台北故宫品名之间都有可列出的差异",
+  "layers": "作品（work）≠原刻载体（stone）≠拓本（rubbing）≠影像（image）；人物、纪年、地点、书体风格、著录分列",
+  "claims": [
+    {
+      "claimId": "tang_04_xuanmita:work:title",
+      "entity": "work",
+      "property": "title",
+      "value": "玄秘塔碑（馆方品名作“故左街僧錄大達法師玄秘塔碑銘”）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "title",
+          "value": "玄秘塔碑"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_04_xuanmita.json",
+          "field": "officialExtractedText",
+          "quote": "故左街僧錄大達法師玄秘塔碑銘"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=2998&c=View&lang=en&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "玄秘塔碑（藏品介绍条目）",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "《玄秘塔碑》"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_04_xuanmita:work:dynasty",
+      "entity": "work",
+      "property": "dynasty",
+      "value": "唐",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "dynasty",
+          "value": "唐代"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=148&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "玄秘塔碑（国宝名碑条目）",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "唐会昌元年（841）"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_04_xuanmita:work:content",
+      "entity": "work",
+      "property": "content",
+      "value": "为安国寺上座大达法师端甫所立，记其生平及弟子建玄秘灵骨塔事",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "transcription",
+          "quote": "玄秘塔者。大法師端甫靈骨之所歸也"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=148&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "玄秘塔碑（国宝名碑条目）",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "此碑记述长安安国寺上座大达法师端甫"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_04_xuanmita:stone:currentLocation",
+      "entity": "stone",
+      "property": "currentLocation",
+      "value": "西安碑林博物馆（陕西省西安市）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=2998&c=View&lang=en&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "玄秘塔碑（藏品介绍条目）",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "现陈列在西安碑林第二展室东侧"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=148&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "玄秘塔碑（国宝名碑条目）",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "其中西安碑林藏64岁书《玄秘塔碑》（841）"
+        }
+      ],
+      "catalogueField": "physicalCollectionInstitution",
+      "catalogueValue": null,
+      "region": {
+        "modernRegion": "陕西省西安市",
+        "precision": "region"
+      },
+      "note": "目录为空（未核定），不升为已验证；馆方写有陈列室位置，本 claim 只到机构"
+    },
+    {
+      "claimId": "tang_04_xuanmita:stone:originalSite",
+      "entity": "stone",
+      "property": "originalSite",
+      "value": "唐长安城安乐坊安国寺",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=2998&c=View&lang=en&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "玄秘塔碑（藏品介绍条目）",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "该碑原立于唐长安城内安乐坊安国寺内"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=148&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "玄秘塔碑（国宝名碑条目）",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "遗址在今西安市新城区电厂路龙华村北侧"
+        }
+      ],
+      "region": {
+        "historicalName": "唐长安城安乐坊安国寺",
+        "modernRegion": "陕西省西安市新城区（馆方所记遗址位置）",
+        "precision": "region"
+      },
+      "note": "原址无已核实坐标，不给点位"
+    },
+    {
+      "claimId": "tang_04_xuanmita:stone:transfer",
+      "entity": "stone",
+      "property": "transfer",
+      "value": null,
+      "status": "conflict",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=2998&c=View&lang=en&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "玄秘塔碑（藏品介绍条目）",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "宋元祐年间移入碑林"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=148&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "玄秘塔碑（国宝名碑条目）",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "也是1103年西安碑林建立之初就移入碑林的名碑"
+        }
+      ],
+      "alternatives": [
+        {
+          "value": "宋元祐年间移入碑林",
+          "evidenceLevel": "有限支持",
+          "sources": [
+            {
+              "type": "url",
+              "url": "https://www.beilin-museum.com/index.php?a=index&aid=2998&c=View&lang=en&m=home",
+              "publisher": "西安碑林博物馆",
+              "title": "玄秘塔碑（藏品介绍条目）",
+              "sourceKind": "official_museum",
+              "accessedAt": "2026-10-19",
+              "quote": "宋元祐年间移入碑林"
+            }
+          ]
+        },
+        {
+          "value": "1103 年西安碑林建立之初就移入碑林",
+          "evidenceLevel": "有限支持",
+          "sources": [
+            {
+              "type": "url",
+              "url": "https://www.beilin-museum.com/index.php?a=index&aid=148&c=View&m=home",
+              "publisher": "西安碑林博物馆",
+              "title": "玄秘塔碑（国宝名碑条目）",
+              "sourceKind": "official_museum",
+              "accessedAt": "2026-10-19",
+              "quote": "也是1103年西安碑林建立之初就移入碑林的名碑"
+            }
+          ]
+        }
+      ],
+      "note": "同一馆方网站的两个条目说法不同（元祐为 1086–1094 年，1103 为崇宁二年），原样并列"
+    },
+    {
+      "claimId": "tang_04_xuanmita:stone:dimensions",
+      "entity": "stone",
+      "property": "dimensions",
+      "value": "高 386 厘米，宽 120 厘米；28 行，满行 54 字",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=2998&c=View&lang=en&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "玄秘塔碑（藏品介绍条目）",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "高386厘米，宽120厘米，28行，满行54字"
+        }
+      ],
+      "note": "单一馆方来源"
+    },
+    {
+      "claimId": "tang_04_xuanmita:rubbing:holder",
+      "entity": "rubbing",
+      "property": "holder",
+      "value": "台北故宫博物院，贈拓000309",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "collectionNumber",
+          "value": "贈拓000309"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_04_xuanmita.json",
+          "field": "officialExtractedText",
+          "quote": "贈拓000309"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_04_xuanmita:rubbing:museumTitle",
+      "entity": "rubbing",
+      "property": "museumTitle",
+      "value": "唐柳公權小楷書故左街僧錄大達法師玄秘塔碑銘墨拓本冊",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_04_xuanmita.json",
+          "field": "officialExtractedText",
+          "quote": "唐柳公權小楷書故左街僧錄大達法師玄秘塔碑銘墨拓本冊"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_04_xuanmita:rubbing:format",
+      "entity": "rubbing",
+      "property": "format",
+      "value": "一冊：八開（本幅八開十六幅）；本幅 20.6×10.2 厘米；紙本",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_04_xuanmita.json",
+          "field": "officialExtractedText",
+          "quote": "一冊：八開（本幅八開十六幅）"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_04_xuanmita.json",
+          "field": "officialExtractedText",
+          "quote": "本幅20.6×10.2"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_04_xuanmita:rubbing:sourceStoneIdentity",
+      "entity": "rubbing",
+      "property": "sourceStone",
+      "value": "是否拓自西安碑林原石：未核实",
+      "status": "asserted",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_04_xuanmita.json",
+          "field": "officialExtractedText",
+          "quote": "唐柳公權小楷書"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_04_xuanmita.json",
+          "field": "officialExtractedText",
+          "quote": "舊拓柳公權書小楷玄祕塔"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=2998&c=View&lang=en&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "玄秘塔碑（藏品介绍条目）",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "高386厘米，宽120厘米，28行，满行54字"
+        }
+      ],
+      "note": "馆方品名和封签都作“小楷”，而碑林原石是 386 厘米高的大字碑。本拓可能是缩刻本、翻刻本，也可能只是剪裱的叫法，本轮无法判断；作品≠原石≠拓本，不把这件拓本直接挂到碑林原石下"
+    },
+    {
+      "claimId": "tang_04_xuanmita:rubbing:colophon",
+      "entity": "rubbing",
+      "property": "colophon",
+      "value": "钱泳嘉庆二十四年（1819）题跋",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_04_xuanmita.json",
+          "field": "officialExtractedText",
+          "quote": "嘉慶二十四年（西元一八一九年）十二月二十四日。錢泳記"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_04_xuanmita:rubbing:period",
+      "entity": "rubbing",
+      "property": "period",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "rubbingPeriod",
+          "value": "未核定；不据拓印年改变朝代"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_04_xuanmita.json",
+          "field": "officialExtractedText",
+          "quote": "舊拓柳公權書小楷玄祕塔"
+        }
+      ],
+      "missingReason": "目录未核定；封签只写“舊拓”，没有具体年代",
+      "catalogueField": "rubbingPeriod"
+    },
+    {
+      "claimId": "tang_04_xuanmita:image:sourceSha256",
+      "entity": "image",
+      "property": "sourceSha256",
+      "value": "d0ea8c9212bd7e49ba0b48f1b77adc621470946ade1dbcebb489f4012dc92569",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "sourceVerification.sourceSha256",
+          "value": "d0ea8c9212bd7e49ba0b48f1b77adc621470946ade1dbcebb489f4012dc92569"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_04_xuanmita.json",
+          "field": "reviewedMetadata.source_sha256",
+          "quote": "d0ea8c9212bd7e49ba0b48f1b77adc621470946ade1dbcebb489f4012dc92569"
+        }
+      ],
+      "note": "目录与证据文件的原图 SHA-256 一致；84 张部署影像另由 ASSET_FREEZE.json 冻结核对"
+    },
+    {
+      "claimId": "tang_04_xuanmita:image:license",
+      "entity": "image",
+      "property": "license",
+      "value": "CC BY 4.0",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "license",
+          "value": "CC BY 4.0"
+        },
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "attribution",
+          "value": "玄秘塔碑。國立故宮博物院，台北，CC BY 4.0 @ www.npm.gov.tw"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_04_xuanmita:image:derivation",
+      "entity": "image",
+      "property": "derivation",
+      "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "modifications",
+          "value": "第三轮进行了展示裁切、等比例缩放、灰度和保守对比度／锐化调整；本轮原样部署，无生成式修改。"
+        }
+      ],
+      "note": "影像是拓本数字影像的展示派生，不是原石照片，也不是修复结果"
+    },
+    {
+      "claimId": "tang_04_xuanmita:person:author",
+      "entity": "person",
+      "property": "author",
+      "value": "裴休",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "author",
+          "value": "裴休"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "transcription",
+          "quote": "裴休撰"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=148&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "玄秘塔碑（国宝名碑条目）",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "裴休撰 柳公权书"
+        }
+      ],
+      "catalogueField": "author"
+    },
+    {
+      "claimId": "tang_04_xuanmita:person:calligrapher",
+      "entity": "person",
+      "property": "calligrapher",
+      "value": "柳公权",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "calligrapher",
+          "value": "柳公权"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "transcription",
+          "quote": "柳公權書并篆額"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=148&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "玄秘塔碑（国宝名碑条目）",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "裴休撰 柳公权书"
+        }
+      ],
+      "catalogueField": "calligrapher"
+    },
+    {
+      "claimId": "tang_04_xuanmita:person:titleCalligrapher",
+      "entity": "person",
+      "property": "titleCalligrapher",
+      "value": "柳公权",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "titleCalligrapher",
+          "value": "柳公权"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "transcription",
+          "quote": "柳公權書并篆額"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=2998&c=View&lang=en&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "玄秘塔碑（藏品介绍条目）",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "柳公权书并篆额"
+        }
+      ],
+      "catalogueField": "titleCalligrapher"
+    },
+    {
+      "claimId": "tang_04_xuanmita:person:engraver",
+      "entity": "person",
+      "property": "engraver",
+      "value": "邵建和、邵建初（碑文作“刻玉冊官邵建和并弟建初鎸”）",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "engraver",
+          "value": "邵建和、邵建初"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "transcription",
+          "quote": "刻玉冊官邵建和并弟建初鎸"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=2998&c=View&lang=en&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "玄秘塔碑（藏品介绍条目）",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "刻玉册官邵建和并弟建初镌"
+        }
+      ],
+      "catalogueField": "engraver"
+    },
+    {
+      "claimId": "tang_04_xuanmita:person:steleSubject",
+      "entity": "person",
+      "property": "steleSubject",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "steleSubject",
+          "value": "未核定"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=2998&c=View&lang=en&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "玄秘塔碑（藏品介绍条目）",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "此碑是为唐代安国寺上座大达法师立的纪念碑"
+        }
+      ],
+      "missingReason": "目录 steleSubject 未核定。馆方称此碑是为大达法师端甫立的纪念碑，但目录未核定，不在 claim 层补成碑主；检索对碑主问题一律回答“不支持”",
+      "catalogueField": "steleSubject"
+    },
+    {
+      "claimId": "tang_04_xuanmita:date:era",
+      "entity": "date",
+      "property": "era",
+      "value": "會昌元年十二月廿八日建",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "transcription",
+          "quote": "會昌元年（西元八四一年）十二月廿八日建"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_04_xuanmita:date:ce",
+      "entity": "date",
+      "property": "ce",
+      "value": 841,
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "originalYearCE",
+          "value": 841
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "transcription",
+          "quote": "會昌元年（西元八四一年）"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=148&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "玄秘塔碑（国宝名碑条目）",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "唐会昌元年（841）"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_04_xuanmita:date:yearCrossCheck",
+      "entity": "date",
+      "property": "yearCrossCheck",
+      "value": "部分互证：会昌元年＝841（馆方注、碑林、目录一致）；碑文不写年干支，推算 841 年为辛酉，无从对照",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "transcription",
+          "quote": "會昌元年（西元八四一年）"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=148&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "玄秘塔碑（国宝名碑条目）",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "唐会昌元年（841）"
+        }
+      ],
+      "derivation": {
+        "era": "会昌元年",
+        "ce": 841,
+        "computedGanzhi": "辛酉",
+        "inscriptionGanzhi": null,
+        "method": "(ce-4) mod 60，甲子=0",
+        "result": "partial"
+      }
+    },
+    {
+      "claimId": "tang_04_xuanmita:date:gregorianDay",
+      "entity": "date",
+      "property": "gregorianDay",
+      "value": "未换算",
+      "status": "asserted",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "transcription",
+          "quote": "十二月廿八日建"
+        }
+      ],
+      "note": "农历年末日期换成公历后是否仍在 841 年，需要历表确认；本轮没有历表来源，不给公历月日，“841”只表示纪年年份"
+    },
+    {
+      "claimId": "tang_04_xuanmita:date:subjectDeath",
+      "entity": "date",
+      "property": "relatedEvent",
+      "value": "大达法师开成元年（836）六月一日圆寂",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "transcription",
+          "quote": "以開成元年六月一日"
+        },
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=148&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "玄秘塔碑（国宝名碑条目）",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "唐开成元年（836）六月一日"
+        }
+      ]
+    },
+    {
+      "claimId": "tang_04_xuanmita:place:originalSite",
+      "entity": "place",
+      "property": "originalSite",
+      "value": "安国寺（唐长安城安乐坊）",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=2998&c=View&lang=en&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "玄秘塔碑（藏品介绍条目）",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "唐长安城内安乐坊安国寺内"
+        }
+      ],
+      "region": {
+        "historicalName": "唐长安城安乐坊",
+        "modernRegion": "陕西省西安市",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "tang_04_xuanmita:place:currentStone",
+      "entity": "place",
+      "property": "currentStone",
+      "value": "西安碑林博物馆",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=2998&c=View&lang=en&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "玄秘塔碑（藏品介绍条目）",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "现陈列在西安碑林第二展室东侧"
+        }
+      ],
+      "region": {
+        "modernRegion": "陕西省西安市",
+        "precision": "region"
+      },
+      "catalogueField": "physicalCollectionInstitution",
+      "catalogueValue": null
+    },
+    {
+      "claimId": "tang_04_xuanmita:place:rubbing",
+      "entity": "place",
+      "property": "rubbingHolder",
+      "value": "台北故宫博物院",
+      "status": "asserted",
+      "evidenceLevel": "已验证",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "rubbingCollectionInstitution",
+          "value": "台北故宫博物院"
+        }
+      ],
+      "region": {
+        "modernRegion": "台北市",
+        "precision": "region"
+      }
+    },
+    {
+      "claimId": "tang_04_xuanmita:style:script",
+      "entity": "script_style",
+      "property": "script",
+      "value": null,
+      "status": "conflict",
+      "evidenceLevel": "待人工复核",
+      "sources": [
+        {
+          "type": "catalogue",
+          "path": "data/catalog/steles28.json",
+          "id": "tang_04_xuanmita",
+          "field": "scriptType",
+          "value": "楷书"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_04_xuanmita.json",
+          "field": "officialExtractedText",
+          "quote": "楷書"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_04_xuanmita.json",
+          "field": "officialExtractedText",
+          "quote": "唐柳公權小楷書"
+        },
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_04_xuanmita.json",
+          "field": "officialExtractedText",
+          "quote": "柳公權書小楷玄祕塔"
+        }
+      ],
+      "alternatives": [
+        {
+          "value": "楷书",
+          "evidenceLevel": "已验证",
+          "sources": [
+            {
+              "type": "catalogue",
+              "path": "data/catalog/steles28.json",
+              "id": "tang_04_xuanmita",
+              "field": "scriptType",
+              "value": "楷书"
+            },
+            {
+              "type": "file",
+              "path": "data/catalog/evidence/tang_04_xuanmita.json",
+              "field": "officialExtractedText",
+              "quote": "楷書"
+            }
+          ]
+        },
+        {
+          "value": "小楷书（台北故宫品名、封签）",
+          "evidenceLevel": "已验证",
+          "sources": [
+            {
+              "type": "file",
+              "path": "data/catalog/evidence/tang_04_xuanmita.json",
+              "field": "officialExtractedText",
+              "quote": "唐柳公權小楷書"
+            },
+            {
+              "type": "file",
+              "path": "data/catalog/evidence/tang_04_xuanmita.json",
+              "field": "officialExtractedText",
+              "quote": "柳公權書小楷玄祕塔"
+            }
+          ]
+        }
+      ],
+      "note": "“楷书”和“小楷”并不矛盾，但“小楷”关系到这件拓本是否拓自原石（见 rubbing:sourceStone），因此并列保留"
+    },
+    {
+      "claimId": "tang_04_xuanmita:style:museumNote",
+      "entity": "script_style",
+      "property": "styleNote",
+      "value": "“字迹清瘦，结构严谨，气势雄迈，骨鲠气刚，神韵耿介”",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=2998&c=View&lang=en&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "玄秘塔碑（藏品介绍条目）",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "字迹清瘦，结构严谨，气势雄迈，骨鲠气刚，神韵耿介"
+        }
+      ],
+      "note": "馆方评述，对象是原石"
+    },
+    {
+      "claimId": "tang_04_xuanmita:style:historicalComment",
+      "entity": "script_style",
+      "property": "historicalComment",
+      "value": "康有为《广艺舟双楫》称柳书“清劲峻拔”",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "url",
+          "url": "https://www.beilin-museum.com/index.php?a=index&aid=148&c=View&m=home",
+          "publisher": "西安碑林博物馆",
+          "title": "玄秘塔碑（国宝名碑条目）",
+          "sourceKind": "official_museum",
+          "accessedAt": "2026-10-19",
+          "quote": "康有为在他的《广艺舟双楫》中称赞柳书“清劲峻拔”"
+        }
+      ],
+      "note": "馆方转引，评的是柳书整体"
+    },
+    {
+      "claimId": "tang_04_xuanmita:style:colophon",
+      "entity": "script_style",
+      "property": "colophonComment",
+      "value": "钱泳：“柳公此書所謂快劍長□（戟）。斬金截鐵者。當為一生傑作”",
+      "status": "asserted",
+      "evidenceLevel": "有限支持",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_04_xuanmita.json",
+          "field": "officialExtractedText",
+          "quote": "柳公此書所謂快劍長□（戟）。斬金截鐵者。當為一生傑作"
+        }
+      ],
+      "note": "题跋者观点，对象是这件拓本"
+    },
+    {
+      "claimId": "tang_04_xuanmita:bibliography:npm",
+      "entity": "bibliography",
+      "property": "catalogueReference",
+      "value": null,
+      "status": "missing",
+      "evidenceLevel": "未评测",
+      "sources": [
+        {
+          "type": "file",
+          "path": "data/catalog/evidence/tang_04_xuanmita.json",
+          "field": "officialExtractedText",
+          "quote": "唐柳公權小楷書故左街僧錄大達法師玄秘塔碑銘墨拓本冊"
+        }
+      ],
+      "missingReason": "台北故宫资料表没有“參考資料”栏；本轮也未打开其他著录来源"
+    }
+  ]
+}

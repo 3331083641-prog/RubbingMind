@@ -1,0 +1,189 @@
+# DRAFT ONLY — not under .github/workflows/ (RT-010).
+# Promote into .github/workflows/ only after Green approval.
+# Green scope 2026-10-25 18:01 / 18:40 / 19:06 Asia/Shanghai (RM-架构后端):
+#   extend this draft only; DO NOT change .github/workflows/ci.yml.
+# Promote checklist (Green must approve before moving under .github/workflows/):
+#   1) draft-feature-gate green on a feature/** PR
+#   2) draft-catalogue-gis green (hard)
+#   3) draft-eval-contracts green
+#   4) decide whether browser-extended-draft stays continue-on-error
+#   5) never promote by copying into ci.yml without a dedicated Green order
+name: RubbingMind CI (feature draft)
+
+on:
+  push:
+    branches: [ "feature/**", "agent/**" ]
+  pull_request:
+    branches: [ "feature/**", "main" ]
+  workflow_dispatch:
+
+# Least privilege for a future promote; draft is never auto-triggered from this path.
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-feature-draft-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # --- RT-010 / Green 18:01: promote-first package (draft only) ---
+  draft-feature-gate:
+    name: Draft feature gate (pytest + museum_v3 + web build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+
+      - name: Install Python deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Security scan + init DB
+        run: |
+          python scripts/security_scan.py
+          python scripts/init_db.py
+
+      - name: pytest
+        run: pytest tests/ -v
+
+      - name: validate_museum_v3
+        run: python scripts/validate_museum_v3.py
+
+      - name: npm ci (apps/web)
+        working-directory: apps/web
+        run: npm ci
+
+      - name: npm run build
+        working-directory: apps/web
+        run: npm run build
+
+  # --- Green 18:40 extension: catalogue / contracts / repo checks (draft) ---
+  draft-catalogue-gis:
+    name: Draft catalogue GIS (hard gate candidate)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+      - run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: validate_history_gis (no continue-on-error)
+        run: python scripts/validate_history_gis.py
+
+  draft-eval-contracts:
+    name: Draft eval derived contracts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+      - run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: ES derived contract tests
+        run: pytest tests/test_es_derived_contracts.py -v
+
+  draft-repository-validation:
+    name: Draft repository & assets validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify key artifacts
+        run: |
+          test -f data/museum_database.json
+          test -f .env.example
+          test -f .gitignore
+          test -f docs/product-upgrade/ci-feature.draft.yml
+          test -f scripts/validate_museum_v3.py
+          test -f scripts/validate_history_gis.py
+          test -f apps/web/package.json
+
+  backend-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+      - run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - run: python scripts/security_scan.py
+      - run: python scripts/init_db.py
+      - run: pytest tests/ -v
+      - run: python scripts/validate_museum_v3.py
+      # Soft probe kept for parity with older draft; hard gate is draft-catalogue-gis.
+      - name: Validate history GIS catalogue (soft)
+        run: python scripts/validate_history_gis.py
+        continue-on-error: true
+
+  frontend-build:
+    runs-on: ubuntu-latest
+    env:
+      # DRAFT_NPM_CACHE_NOTE: tip uses package-lock.json; main ci.yml still points at package.json.
+      # On promote, pick one cache-dependency-path and keep lockfile committed.
+      DRAFT_NPM_CACHE_NOTE: package-lock.json
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+      - working-directory: apps/web
+        run: npm ci
+      - working-directory: apps/web
+        run: npm audit --audit-level=high
+      - working-directory: apps/web
+        run: npm run build
+
+  browser-extended-draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: |
+          pip install -r requirements-browser.txt
+          python -m playwright install --with-deps chromium
+          cd apps/web && npm ci && npm run build
+      - name: Start vite preview (loopback)
+        working-directory: apps/web
+        run: |
+          npx vite preview --host 127.0.0.1 --port 4173 &
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          echo "preview did not become ready" >&2
+          exit 1
+      - name: technical_v2 (ci mode — RT-001 still open for mobile)
+        run: python scripts/test_technical_v2_browser.py --ci --url http://127.0.0.1:4173
+        continue-on-error: true
+      - name: graph browser (proposed)
+        run: python scripts/test_graph_browser.py --ci
+        continue-on-error: true
+      - name: terrain3d browser (proposed)
+        run: python scripts/test_terrain3d_v22_browser.py --ci
+        continue-on-error: true

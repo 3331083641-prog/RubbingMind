@@ -1,0 +1,10 @@
+algorithmOutputMode gap (slice9, 2026-10-25 Asia/Shanghai)
+
+align/merge tip: be5e43d (feature@b60d556 into report-frontend)
+branch: agent/report-frontend
+api.ts path: apps/web/src/services/api.ts
+field algorithmOutputMode present: False (grep after merge be5e43d)
+field outputMode present: True (run-level only)
+MERGE_NOTE_algorithmOutputMode.md: algorithm-layer field vs run-level outputMode
+Action: skip UI wire this round; do not fabricate field. Hand to Green/arch for contract.
+No change to api.ts / App.tsx / urlState.ts.

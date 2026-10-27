@@ -1,0 +1,100 @@
+{
+  "checks": [
+    {
+      "name": "include-demo-checkbox-present",
+      "pass": true,
+      "detail": "tang-duobao"
+    },
+    {
+      "name": "includeDemo-default-OFF",
+      "pass": true,
+      "detail": "checked=False"
+    },
+    {
+      "name": "warning-hidden-when-OFF",
+      "pass": true,
+      "detail": "count=0"
+    },
+    {
+      "name": "OFF-request-includeDemo-false",
+      "pass": true,
+      "detail": "False"
+    },
+    {
+      "name": "warning-visible-when-ON",
+      "pass": true,
+      "detail": "count=1"
+    },
+    {
+      "name": "ON-request-includeDemo-true",
+      "pass": true,
+      "detail": "True"
+    },
+    {
+      "name": "ON-result-banner",
+      "pass": true,
+      "detail": "count=1"
+    },
+    {
+      "name": "E-07-default-not-heldout",
+      "pass": true,
+      "detail": "controlled-rubbings-v2-text-2026-10-17"
+    },
+    {
+      "name": "E-07-default-is-v2-text-or-non-retest",
+      "pass": true,
+      "detail": "controlled-rubbings-v2-text-2026-10-17"
+    },
+    {
+      "name": "failures-panel",
+      "pass": true,
+      "detail": "count=1"
+    },
+    {
+      "name": "diagnosis-ok-or-honest-empty",
+      "pass": true,
+      "detail": "ok=1 missing=0"
+    },
+    {
+      "name": "diagnosis-has-version",
+      "pass": true,
+      "detail": "baseline-delta-v1"
+    },
+    {
+      "name": "retest-title-not-heldout-primary",
+      "pass": true,
+      "detail": "has 同批复测"
+    },
+    {
+      "name": "headings-no-bare-heldout",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "cross-batch-C1-visible",
+      "pass": true,
+      "detail": "found"
+    },
+    {
+      "name": "cross-batch-C2-visible",
+      "pass": true,
+      "detail": "found"
+    },
+    {
+      "name": "cross-batch-C3-visible",
+      "pass": true,
+      "detail": "found"
+    },
+    {
+      "name": "cross-batch-C4-visible",
+      "pass": true,
+      "detail": "found"
+    },
+    {
+      "name": "RF8-frame-present",
+      "pass": true,
+      "detail": "count=4"
+    }
+  ],
+  "ok": true
+}

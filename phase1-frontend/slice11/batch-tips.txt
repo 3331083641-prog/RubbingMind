@@ -1,0 +1,10 @@
+﻿slice11 batch tips (ASCII)
+feature base: ed9f1a0b20978d5500453bdbbaa43505a6f9297d
+FF: 49002cc -> ed9f1a0 (merge report into feature already done by Green)
+this round: docs-only tip (inventory + gaps); NO feat code
+prior stable tips still on feature via ed9f1a0: 21cb82b feat liftClaims ... through 49002cc
+gate suggestion: no new code tip; if docs tip lands, optional docs-only gate or skip until RF-8/arch unblock
+RF-8: open (not self-closed)
+algorithmOutputMode: skipped (no api.ts field @ed9f1a0)
+blocked: RF-8 user + algorithmOutputMode arch
+no push

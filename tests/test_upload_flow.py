@@ -20,6 +20,7 @@ def isolated(tmp_path, monkeypatch):
     monkeypatch.setattr(database, 'DB_PATH', str(tmp_path / 'rubbingmind.sqlite'))
     monkeypatch.setattr(upload_storage, 'UPLOAD_DIR', tmp_path / 'uploads')
     monkeypatch.setattr(museum_processing, 'BASE', tmp_path)
+    monkeypatch.setattr(museum_processing, 'RESULTS_DIR', None)  # hermetic even when RUBBINGMIND_RESULTS_DIR is set
     return tmp_path, TestClient(app)
 
 
@@ -30,7 +31,7 @@ def image_bytes(format='PNG', size=(64, 64)):
     return output.getvalue()
 
 
-@pytest.mark.parametrize('format,mime', [('PNG','image/png'), ('JPEG','image/jpeg')])
+@pytest.mark.parametrize('format,mime', [('PNG','image/png'), ('JPEG','image/jpeg'), ('WEBP','image/webp')])
 def test_upload_persists_reload_and_processes_real_image(isolated, format, mime):
     tmp_path, client = isolated
     payload = image_bytes(format)

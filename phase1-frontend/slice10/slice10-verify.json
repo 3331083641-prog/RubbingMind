@@ -1,0 +1,62 @@
+{
+  "ok": true,
+  "shots": [
+    {
+      "path": "D:\\RubbingMind\\screenshots\\product-upgrade\\phase1-frontend\\slice10\\p1-9_reports_firstscreen_1366x768.png",
+      "size": 498572,
+      "viewport": "1366x768"
+    },
+    {
+      "path": "D:\\RubbingMind\\screenshots\\product-upgrade\\phase1-frontend\\slice10\\p1-9_reports_firstscreen_390x844.png",
+      "size": 116073,
+      "viewport": "390x844"
+    },
+    {
+      "path": "D:\\RubbingMind\\screenshots\\product-upgrade\\phase1-frontend\\slice10\\rf8_home_core_cards_1920x1080.png",
+      "size": 2020748,
+      "viewport": "home-1920"
+    }
+  ],
+  "checks": [
+    {
+      "name": "shot-1366x768-has-conclusion-text",
+      "pass": true,
+      "detail": "len=12979 has=True"
+    },
+    {
+      "name": "shot-1366x768-has-visual-nodes",
+      "pass": true,
+      "detail": "count=23"
+    },
+    {
+      "name": "shot-1366x768-exists",
+      "pass": true,
+      "detail": "size=498572"
+    },
+    {
+      "name": "shot-390x844-has-conclusion-text",
+      "pass": true,
+      "detail": "len=12334 has=True"
+    },
+    {
+      "name": "shot-390x844-has-visual-nodes",
+      "pass": true,
+      "detail": "count=23"
+    },
+    {
+      "name": "shot-390x844-exists",
+      "pass": true,
+      "detail": "size=116073"
+    },
+    {
+      "name": "rf8-home-object-contain-present",
+      "pass": true,
+      "detail": "contain=4 cover=0 imgs=4"
+    },
+    {
+      "name": "shot-home-1920-exists",
+      "pass": true,
+      "detail": "size=2020748"
+    }
+  ]
+}

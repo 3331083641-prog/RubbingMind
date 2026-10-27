@@ -1,0 +1,883 @@
+{
+  "schemaVersion": 1,
+  "generator": "scripts/build_comparison_groups.py",
+  "dimensionsFile": "data/catalog/comparison_dimensions.json",
+  "dimensionsSha256": "066e2bf4df0e3f4182b26decc60dcba26ab69ce8285f7a10829c8a7b3df79877",
+  "catalogueFile": "data/catalog/steles28.json",
+  "catalogueSha256": "0bc28fe95fad15d8df42c89ec5f897d8f9f63fb97b3c71c3b16d48acd63ab1b2",
+  "objectLevelNote": "作品 ≠ 原石 ≠ 拓本。各维度都写明比较的是哪一层",
+  "dimensions": [
+    {
+      "id": "calligrapher",
+      "label": "同书家",
+      "objectLevel": "作品（书丹者）",
+      "field": "calligrapher",
+      "basis": "只用目录中 calligrapherVerification=verified 的书家；unknown、pending_review、disputed 不参与分组",
+      "groups": [
+        {
+          "value": "赵孟頫",
+          "size": 3,
+          "comparable": true,
+          "members": [
+            {
+              "id": "yuan_01_yufu",
+              "title": "大元敕藏御服之碑",
+              "dynasty": "元代",
+              "originalYearCE": 1315
+            },
+            {
+              "id": "yuan_03_shengzhu",
+              "title": "圣主本命长生之碑",
+              "dynasty": "元代",
+              "originalYearCE": 1317
+            },
+            {
+              "id": "yuan_02_sundeyu",
+              "title": "元重阳宫孙德彧道行碑",
+              "dynasty": "元代",
+              "originalYearCE": 1335
+            }
+          ]
+        },
+        {
+          "value": "颜真卿",
+          "size": 2,
+          "comparable": true,
+          "members": [
+            {
+              "id": "tang_01_duobao",
+              "title": "多宝塔感应碑",
+              "dynasty": "唐代",
+              "originalYearCE": 752
+            },
+            {
+              "id": "tang_03_yanjiamiao",
+              "title": "颜氏家庙碑",
+              "dynasty": "唐代",
+              "originalYearCE": 780
+            }
+          ]
+        },
+        {
+          "value": "文徵明",
+          "size": 1,
+          "comparable": false,
+          "members": [
+            {
+              "id": "ming_02_luxianzhi",
+              "title": "文徵明书陆献之墓志铭",
+              "dynasty": "明代",
+              "originalYearCE": null
+            }
+          ]
+        },
+        {
+          "value": "李时雍",
+          "size": 1,
+          "comparable": false,
+          "members": [
+            {
+              "id": "song_03_daguan",
+              "title": "大观圣作碑",
+              "dynasty": "宋代",
+              "originalYearCE": 1108
+            }
+          ]
+        },
+        {
+          "value": "柳公权",
+          "size": 1,
+          "comparable": false,
+          "members": [
+            {
+              "id": "tang_04_xuanmita",
+              "title": "玄秘塔碑",
+              "dynasty": "唐代",
+              "originalYearCE": 841
+            }
+          ]
+        },
+        {
+          "value": "欧阳询",
+          "size": 1,
+          "comparable": false,
+          "members": [
+            {
+              "id": "tang_02_jiucheng",
+              "title": "九成宫醴泉铭",
+              "dynasty": "唐代",
+              "originalYearCE": 632
+            }
+          ]
+        },
+        {
+          "value": "释梦英",
+          "size": 1,
+          "comparable": false,
+          "members": [
+            {
+              "id": "song_04_mengying",
+              "title": "释梦英十八体书碑",
+              "dynasty": "宋代",
+              "originalYearCE": 967
+            }
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "id": "han_01_caoquan",
+          "title": "曹全碑",
+          "reason": "calligrapher 为空或未核定"
+        },
+        {
+          "id": "han_02_yiying",
+          "title": "乙瑛碑",
+          "reason": "calligrapher 为空或未核定"
+        },
+        {
+          "id": "han_03_liqi",
+          "title": "礼器碑",
+          "reason": "calligrapher 为空或未核定"
+        },
+        {
+          "id": "han_04_shichen",
+          "title": "史晨碑",
+          "reason": "calligrapher 为空或未核定"
+        },
+        {
+          "id": "wei_01_zhangmenglong",
+          "title": "张猛龙碑",
+          "reason": "calligrapher 为空或未核定"
+        },
+        {
+          "id": "wei_02_wugaoli",
+          "title": "吴高黎墓志",
+          "reason": "calligrapher 为空或未核定"
+        },
+        {
+          "id": "wei_03_kouyan",
+          "title": "寇演墓志",
+          "reason": "calligrapher 为空或未核定"
+        },
+        {
+          "id": "wei_04_wangsong",
+          "title": "建义元年王诵墓志",
+          "reason": "calligrapher 为空或未核定"
+        },
+        {
+          "id": "song_01_yuanyou",
+          "title": "元祐党籍碑",
+          "reason": "calligrapher 为空或未核定"
+        },
+        {
+          "id": "song_02_wenxuan",
+          "title": "宋太宗御制至圣文宣王赞碑",
+          "reason": "calligrapher 为空或未核定"
+        },
+        {
+          "id": "yuan_04_jingyuanchang",
+          "title": "赵孟頫书敬元长墓碣铭",
+          "reason": "calligrapherVerification=pending_review，未达 verified"
+        },
+        {
+          "id": "ming_01_xianfu",
+          "title": "明弘治八年西安府学题名碑",
+          "reason": "calligrapher 为空或未核定"
+        },
+        {
+          "id": "ming_03_wugou",
+          "title": "无垢子何君墓志铭",
+          "reason": "calligrapher 为空或未核定"
+        },
+        {
+          "id": "ming_04_tongdian",
+          "title": "大峨山永明华藏寺新建铜殿记碑",
+          "reason": "calligrapher 为空或未核定"
+        },
+        {
+          "id": "qing_01_qianlong_heart_sutra",
+          "title": "乾隆御书般若波罗蜜多心经",
+          "reason": "calligrapherVerification=pending_review，未达 verified"
+        },
+        {
+          "id": "qing_02_wushi_reerection",
+          "title": "重立武氏祠石记",
+          "reason": "calligrapherVerification=pending_review，未达 verified"
+        },
+        {
+          "id": "qing_03_sanxitang_preface",
+          "title": "御刻三希堂石渠宝笈法帖·乾隆御序",
+          "reason": "calligrapherVerification=pending_review，未达 verified"
+        },
+        {
+          "id": "qing_04_ayuwang_reliquary",
+          "title": "阿育王寺舍利塔碑",
+          "reason": "calligrapher 为空或未核定"
+        }
+      ],
+      "coverage": {
+        "grouped": 10,
+        "excluded": 18,
+        "total": 28
+      }
+    },
+    {
+      "id": "dynasty",
+      "label": "同朝代",
+      "objectLevel": "作品（刻立或书写年代，不按拓印年代）",
+      "field": "dynasty",
+      "basis": "目录字段，用户已批准用于项目（C-06A）；没有单独的核定标记",
+      "groups": [
+        {
+          "value": "东汉",
+          "size": 4,
+          "comparable": true,
+          "members": [
+            {
+              "id": "han_02_yiying",
+              "title": "乙瑛碑",
+              "dynasty": "东汉",
+              "originalYearCE": 153
+            },
+            {
+              "id": "han_03_liqi",
+              "title": "礼器碑",
+              "dynasty": "东汉",
+              "originalYearCE": 156
+            },
+            {
+              "id": "han_04_shichen",
+              "title": "史晨碑",
+              "dynasty": "东汉",
+              "originalYearCE": 169
+            },
+            {
+              "id": "han_01_caoquan",
+              "title": "曹全碑",
+              "dynasty": "东汉",
+              "originalYearCE": 185
+            }
+          ]
+        },
+        {
+          "value": "元代",
+          "size": 4,
+          "comparable": true,
+          "members": [
+            {
+              "id": "yuan_01_yufu",
+              "title": "大元敕藏御服之碑",
+              "dynasty": "元代",
+              "originalYearCE": 1315
+            },
+            {
+              "id": "yuan_03_shengzhu",
+              "title": "圣主本命长生之碑",
+              "dynasty": "元代",
+              "originalYearCE": 1317
+            },
+            {
+              "id": "yuan_02_sundeyu",
+              "title": "元重阳宫孙德彧道行碑",
+              "dynasty": "元代",
+              "originalYearCE": 1335
+            },
+            {
+              "id": "yuan_04_jingyuanchang",
+              "title": "赵孟頫书敬元长墓碣铭",
+              "dynasty": "元代",
+              "originalYearCE": null
+            }
+          ]
+        },
+        {
+          "value": "北魏",
+          "size": 4,
+          "comparable": true,
+          "members": [
+            {
+              "id": "wei_03_kouyan",
+              "title": "寇演墓志",
+              "dynasty": "北魏",
+              "originalYearCE": 519
+            },
+            {
+              "id": "wei_01_zhangmenglong",
+              "title": "张猛龙碑",
+              "dynasty": "北魏",
+              "originalYearCE": 522
+            },
+            {
+              "id": "wei_02_wugaoli",
+              "title": "吴高黎墓志",
+              "dynasty": "北魏",
+              "originalYearCE": 526
+            },
+            {
+              "id": "wei_04_wangsong",
+              "title": "建义元年王诵墓志",
+              "dynasty": "北魏",
+              "originalYearCE": 528
+            }
+          ]
+        },
+        {
+          "value": "唐代",
+          "size": 4,
+          "comparable": true,
+          "members": [
+            {
+              "id": "tang_02_jiucheng",
+              "title": "九成宫醴泉铭",
+              "dynasty": "唐代",
+              "originalYearCE": 632
+            },
+            {
+              "id": "tang_01_duobao",
+              "title": "多宝塔感应碑",
+              "dynasty": "唐代",
+              "originalYearCE": 752
+            },
+            {
+              "id": "tang_03_yanjiamiao",
+              "title": "颜氏家庙碑",
+              "dynasty": "唐代",
+              "originalYearCE": 780
+            },
+            {
+              "id": "tang_04_xuanmita",
+              "title": "玄秘塔碑",
+              "dynasty": "唐代",
+              "originalYearCE": 841
+            }
+          ]
+        },
+        {
+          "value": "宋代",
+          "size": 4,
+          "comparable": true,
+          "members": [
+            {
+              "id": "song_04_mengying",
+              "title": "释梦英十八体书碑",
+              "dynasty": "宋代",
+              "originalYearCE": 967
+            },
+            {
+              "id": "song_03_daguan",
+              "title": "大观圣作碑",
+              "dynasty": "宋代",
+              "originalYearCE": 1108
+            },
+            {
+              "id": "song_01_yuanyou",
+              "title": "元祐党籍碑",
+              "dynasty": "宋代",
+              "originalYearCE": null
+            },
+            {
+              "id": "song_02_wenxuan",
+              "title": "宋太宗御制至圣文宣王赞碑",
+              "dynasty": "宋代",
+              "originalYearCE": null
+            }
+          ]
+        },
+        {
+          "value": "明代",
+          "size": 4,
+          "comparable": true,
+          "members": [
+            {
+              "id": "ming_01_xianfu",
+              "title": "明弘治八年西安府学题名碑",
+              "dynasty": "明代",
+              "originalYearCE": 1495
+            },
+            {
+              "id": "ming_04_tongdian",
+              "title": "大峨山永明华藏寺新建铜殿记碑",
+              "dynasty": "明代",
+              "originalYearCE": 1603
+            },
+            {
+              "id": "ming_02_luxianzhi",
+              "title": "文徵明书陆献之墓志铭",
+              "dynasty": "明代",
+              "originalYearCE": null
+            },
+            {
+              "id": "ming_03_wugou",
+              "title": "无垢子何君墓志铭",
+              "dynasty": "明代",
+              "originalYearCE": null
+            }
+          ]
+        },
+        {
+          "value": "清代",
+          "size": 4,
+          "comparable": true,
+          "members": [
+            {
+              "id": "qing_01_qianlong_heart_sutra",
+              "title": "乾隆御书般若波罗蜜多心经",
+              "dynasty": "清代",
+              "originalYearCE": 1744
+            },
+            {
+              "id": "qing_02_wushi_reerection",
+              "title": "重立武氏祠石记",
+              "dynasty": "清代",
+              "originalYearCE": 1787
+            },
+            {
+              "id": "qing_04_ayuwang_reliquary",
+              "title": "阿育王寺舍利塔碑",
+              "dynasty": "清代",
+              "originalYearCE": 1884
+            },
+            {
+              "id": "qing_03_sanxitang_preface",
+              "title": "御刻三希堂石渠宝笈法帖·乾隆御序",
+              "dynasty": "清代",
+              "originalYearCE": null
+            }
+          ]
+        }
+      ],
+      "excluded": [],
+      "coverage": {
+        "grouped": 28,
+        "excluded": 0,
+        "total": 28
+      }
+    },
+    {
+      "id": "scriptType",
+      "label": "同书体",
+      "objectLevel": "作品（正文书体）",
+      "field": "scriptType",
+      "basis": "目录字段，用户已批准用于项目（C-06A）；没有单独的核定标记",
+      "groups": [
+        {
+          "value": "楷书",
+          "size": 18,
+          "comparable": true,
+          "members": [
+            {
+              "id": "wei_03_kouyan",
+              "title": "寇演墓志",
+              "dynasty": "北魏",
+              "originalYearCE": 519
+            },
+            {
+              "id": "wei_01_zhangmenglong",
+              "title": "张猛龙碑",
+              "dynasty": "北魏",
+              "originalYearCE": 522
+            },
+            {
+              "id": "wei_02_wugaoli",
+              "title": "吴高黎墓志",
+              "dynasty": "北魏",
+              "originalYearCE": 526
+            },
+            {
+              "id": "wei_04_wangsong",
+              "title": "建义元年王诵墓志",
+              "dynasty": "北魏",
+              "originalYearCE": 528
+            },
+            {
+              "id": "tang_02_jiucheng",
+              "title": "九成宫醴泉铭",
+              "dynasty": "唐代",
+              "originalYearCE": 632
+            },
+            {
+              "id": "tang_01_duobao",
+              "title": "多宝塔感应碑",
+              "dynasty": "唐代",
+              "originalYearCE": 752
+            },
+            {
+              "id": "tang_03_yanjiamiao",
+              "title": "颜氏家庙碑",
+              "dynasty": "唐代",
+              "originalYearCE": 780
+            },
+            {
+              "id": "tang_04_xuanmita",
+              "title": "玄秘塔碑",
+              "dynasty": "唐代",
+              "originalYearCE": 841
+            },
+            {
+              "id": "song_03_daguan",
+              "title": "大观圣作碑",
+              "dynasty": "宋代",
+              "originalYearCE": 1108
+            },
+            {
+              "id": "yuan_03_shengzhu",
+              "title": "圣主本命长生之碑",
+              "dynasty": "元代",
+              "originalYearCE": 1317
+            },
+            {
+              "id": "yuan_02_sundeyu",
+              "title": "元重阳宫孙德彧道行碑",
+              "dynasty": "元代",
+              "originalYearCE": 1335
+            },
+            {
+              "id": "ming_01_xianfu",
+              "title": "明弘治八年西安府学题名碑",
+              "dynasty": "明代",
+              "originalYearCE": 1495
+            },
+            {
+              "id": "qing_01_qianlong_heart_sutra",
+              "title": "乾隆御书般若波罗蜜多心经",
+              "dynasty": "清代",
+              "originalYearCE": 1744
+            },
+            {
+              "id": "qing_02_wushi_reerection",
+              "title": "重立武氏祠石记",
+              "dynasty": "清代",
+              "originalYearCE": 1787
+            },
+            {
+              "id": "qing_04_ayuwang_reliquary",
+              "title": "阿育王寺舍利塔碑",
+              "dynasty": "清代",
+              "originalYearCE": 1884,
+              "rawValue": "楷书（图文碑）"
+            },
+            {
+              "id": "ming_03_wugou",
+              "title": "无垢子何君墓志铭",
+              "dynasty": "明代",
+              "originalYearCE": null,
+              "rawValue": "篆额、楷书正文"
+            },
+            {
+              "id": "song_01_yuanyou",
+              "title": "元祐党籍碑",
+              "dynasty": "宋代",
+              "originalYearCE": null
+            },
+            {
+              "id": "yuan_04_jingyuanchang",
+              "title": "赵孟頫书敬元长墓碣铭",
+              "dynasty": "元代",
+              "originalYearCE": null,
+              "rawValue": "楷书（赵孟頫墓碣铭）"
+            }
+          ]
+        },
+        {
+          "value": "隶书",
+          "size": 4,
+          "comparable": true,
+          "members": [
+            {
+              "id": "han_02_yiying",
+              "title": "乙瑛碑",
+              "dynasty": "东汉",
+              "originalYearCE": 153
+            },
+            {
+              "id": "han_03_liqi",
+              "title": "礼器碑",
+              "dynasty": "东汉",
+              "originalYearCE": 156
+            },
+            {
+              "id": "han_04_shichen",
+              "title": "史晨碑",
+              "dynasty": "东汉",
+              "originalYearCE": 169
+            },
+            {
+              "id": "han_01_caoquan",
+              "title": "曹全碑",
+              "dynasty": "东汉",
+              "originalYearCE": 185
+            }
+          ]
+        },
+        {
+          "value": "行楷书",
+          "size": 3,
+          "comparable": true,
+          "members": [
+            {
+              "id": "yuan_01_yufu",
+              "title": "大元敕藏御服之碑",
+              "dynasty": "元代",
+              "originalYearCE": 1315
+            },
+            {
+              "id": "qing_03_sanxitang_preface",
+              "title": "御刻三希堂石渠宝笈法帖·乾隆御序",
+              "dynasty": "清代",
+              "originalYearCE": null
+            },
+            {
+              "id": "song_02_wenxuan",
+              "title": "宋太宗御制至圣文宣王赞碑",
+              "dynasty": "宋代",
+              "originalYearCE": null
+            }
+          ]
+        },
+        {
+          "value": "行书",
+          "size": 2,
+          "comparable": true,
+          "members": [
+            {
+              "id": "ming_04_tongdian",
+              "title": "大峨山永明华藏寺新建铜殿记碑",
+              "dynasty": "明代",
+              "originalYearCE": 1603
+            },
+            {
+              "id": "ming_02_luxianzhi",
+              "title": "文徵明书陆献之墓志铭",
+              "dynasty": "明代",
+              "originalYearCE": null
+            }
+          ]
+        },
+        {
+          "value": "篆书",
+          "size": 1,
+          "comparable": false,
+          "members": [
+            {
+              "id": "song_04_mengying",
+              "title": "释梦英十八体书碑",
+              "dynasty": "宋代",
+              "originalYearCE": 967
+            }
+          ]
+        }
+      ],
+      "excluded": [],
+      "coverage": {
+        "grouped": 28,
+        "excluded": 0,
+        "total": 28
+      }
+    },
+    {
+      "id": "rubbingCollectionInstitution",
+      "label": "同收藏机构（拓本）",
+      "objectLevel": "拓本（不是原石的现藏地）",
+      "field": "rubbingCollectionInstitution",
+      "basis": "目录字段，来自馆方开放数据页（sourceUrl），用户已批准（C-06A）；原石藏地另见 claims，不在此分组",
+      "groups": [
+        {
+          "value": "台北故宫博物院",
+          "size": 23,
+          "comparable": true,
+          "members": [
+            {
+              "id": "han_02_yiying",
+              "title": "乙瑛碑",
+              "dynasty": "东汉",
+              "originalYearCE": 153
+            },
+            {
+              "id": "han_03_liqi",
+              "title": "礼器碑",
+              "dynasty": "东汉",
+              "originalYearCE": 156
+            },
+            {
+              "id": "han_01_caoquan",
+              "title": "曹全碑",
+              "dynasty": "东汉",
+              "originalYearCE": 185
+            },
+            {
+              "id": "wei_03_kouyan",
+              "title": "寇演墓志",
+              "dynasty": "北魏",
+              "originalYearCE": 519
+            },
+            {
+              "id": "wei_01_zhangmenglong",
+              "title": "张猛龙碑",
+              "dynasty": "北魏",
+              "originalYearCE": 522
+            },
+            {
+              "id": "wei_02_wugaoli",
+              "title": "吴高黎墓志",
+              "dynasty": "北魏",
+              "originalYearCE": 526
+            },
+            {
+              "id": "wei_04_wangsong",
+              "title": "建义元年王诵墓志",
+              "dynasty": "北魏",
+              "originalYearCE": 528
+            },
+            {
+              "id": "tang_02_jiucheng",
+              "title": "九成宫醴泉铭",
+              "dynasty": "唐代",
+              "originalYearCE": 632
+            },
+            {
+              "id": "tang_01_duobao",
+              "title": "多宝塔感应碑",
+              "dynasty": "唐代",
+              "originalYearCE": 752
+            },
+            {
+              "id": "tang_03_yanjiamiao",
+              "title": "颜氏家庙碑",
+              "dynasty": "唐代",
+              "originalYearCE": 780
+            },
+            {
+              "id": "tang_04_xuanmita",
+              "title": "玄秘塔碑",
+              "dynasty": "唐代",
+              "originalYearCE": 841
+            },
+            {
+              "id": "song_04_mengying",
+              "title": "释梦英十八体书碑",
+              "dynasty": "宋代",
+              "originalYearCE": 967
+            },
+            {
+              "id": "song_03_daguan",
+              "title": "大观圣作碑",
+              "dynasty": "宋代",
+              "originalYearCE": 1108
+            },
+            {
+              "id": "yuan_01_yufu",
+              "title": "大元敕藏御服之碑",
+              "dynasty": "元代",
+              "originalYearCE": 1315
+            },
+            {
+              "id": "yuan_03_shengzhu",
+              "title": "圣主本命长生之碑",
+              "dynasty": "元代",
+              "originalYearCE": 1317
+            },
+            {
+              "id": "yuan_02_sundeyu",
+              "title": "元重阳宫孙德彧道行碑",
+              "dynasty": "元代",
+              "originalYearCE": 1335
+            },
+            {
+              "id": "ming_01_xianfu",
+              "title": "明弘治八年西安府学题名碑",
+              "dynasty": "明代",
+              "originalYearCE": 1495
+            },
+            {
+              "id": "ming_04_tongdian",
+              "title": "大峨山永明华藏寺新建铜殿记碑",
+              "dynasty": "明代",
+              "originalYearCE": 1603
+            },
+            {
+              "id": "ming_02_luxianzhi",
+              "title": "文徵明书陆献之墓志铭",
+              "dynasty": "明代",
+              "originalYearCE": null
+            },
+            {
+              "id": "ming_03_wugou",
+              "title": "无垢子何君墓志铭",
+              "dynasty": "明代",
+              "originalYearCE": null
+            },
+            {
+              "id": "song_01_yuanyou",
+              "title": "元祐党籍碑",
+              "dynasty": "宋代",
+              "originalYearCE": null
+            },
+            {
+              "id": "song_02_wenxuan",
+              "title": "宋太宗御制至圣文宣王赞碑",
+              "dynasty": "宋代",
+              "originalYearCE": null
+            },
+            {
+              "id": "yuan_04_jingyuanchang",
+              "title": "赵孟頫书敬元长墓碣铭",
+              "dynasty": "元代",
+              "originalYearCE": null
+            }
+          ]
+        },
+        {
+          "value": "普林斯顿大学艺术博物馆",
+          "size": 3,
+          "comparable": true,
+          "members": [
+            {
+              "id": "qing_01_qianlong_heart_sutra",
+              "title": "乾隆御书般若波罗蜜多心经",
+              "dynasty": "清代",
+              "originalYearCE": 1744
+            },
+            {
+              "id": "qing_02_wushi_reerection",
+              "title": "重立武氏祠石记",
+              "dynasty": "清代",
+              "originalYearCE": 1787
+            },
+            {
+              "id": "qing_04_ayuwang_reliquary",
+              "title": "阿育王寺舍利塔碑",
+              "dynasty": "清代",
+              "originalYearCE": 1884
+            }
+          ]
+        },
+        {
+          "value": "美国大都会艺术博物馆",
+          "size": 2,
+          "comparable": true,
+          "members": [
+            {
+              "id": "han_04_shichen",
+              "title": "史晨碑",
+              "dynasty": "东汉",
+              "originalYearCE": 169
+            },
+            {
+              "id": "qing_03_sanxitang_preface",
+              "title": "御刻三希堂石渠宝笈法帖·乾隆御序",
+              "dynasty": "清代",
+              "originalYearCE": null
+            }
+          ]
+        }
+      ],
+      "excluded": [],
+      "coverage": {
+        "grouped": 28,
+        "excluded": 0,
+        "total": 28
+      }
+    }
+  ]
+}

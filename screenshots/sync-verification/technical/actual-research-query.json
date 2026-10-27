@@ -1,0 +1,310 @@
+{
+  "query": "《多宝塔感应碑》的撰文者与书丹者是谁？",
+  "scopeSteleId": "tang_01_duobao",
+  "scopeResolution": {
+    "requestedId": "tang_01_duobao",
+    "kind": "rubbing",
+    "newId": "rm:rubbing:tang_01_duobao",
+    "historyKey": "tang-duobao",
+    "evidenceId": "tang_01_duobao",
+    "depictsSameWorkAs": null
+  },
+  "status": "evidence_found",
+  "judgment": "supported",
+  "claim": {
+    "judgment": "supported",
+    "basis": "catalogue_field_match",
+    "facet": "撰文者、书丹者",
+    "proposed": null,
+    "recorded": {
+      "撰文者": "岑勋",
+      "书丹者": "颜真卿"
+    },
+    "steleId": "tang_01_duobao",
+    "sourceId": "catalog:tang_01_duobao",
+    "forceRefusal": false,
+    "answer": "判断：supported。著录撰文者：岑勋；书丹者：颜真卿。依据 catalog:tang_01_duobao。"
+  },
+  "answer": "判断：supported。著录撰文者：岑勋；书丹者：颜真卿。依据 catalog:tang_01_duobao。\n以下为现有资料原文/著录摘录，未调用语言模型：\n[1] 多宝塔感应碑。原刻朝代：唐代；原刻年代：752年；拓本年代：未核定；不据拓印年改变朝代；文物类型：碑刻拓本；撰文：岑勋；书丹：颜真卿；篆额：徐浩；刻工：史华；碑主或墓主：未核定；拓本现藏机构：台北故宫博物院；拓本馆藏编号：贈拓000365；原石现藏机构：未核定；原碑所在地：未核定。\n[2] 七五二年）。歲次壬辰。四月乙丑朔廿二\n日戊戍建。檢校塔使正議大夫行內侍趙思偘。判官內府丞車沖。撿挍\n僧義方。河南史華刻。\n[3] 大唐西京千福寺多寳佛塔感應碑文。南陽岑勛撰。朝議郎判尚書武部員\n外郎琅邪顏真卿書。朝散大夫撿校尚書都官郎中東海徐浩題額。粵妙法\n蓮華。諸佛之祕藏也。多寳佛塔。證經之踴現也。發眀資乎十力。弘建在\n於四依。有禪師。法号楚金。姓程。廣平人也。祖父並信著釋門。慶歸法\n胤。母高氏。久而無姙。夜夢諸佛。覺而有娠。是生龍象之徵。無取熊羆\n之兆。誕弥厥月。炳然殊相。岐嶷絕於葷茹。髫齔不為童遊。道樹萌牙。\n聳豫章之楨幹。禪池畎澮。涵巨海之波濤。年甫七歲。居然猒俗。自誓出\n家。禮藏探經。法華在手。宿命潛悟。如識金環。摠持不遺。若注瓶水。\n九歲落髮。住西京龍興寺。從僧籙也。進具之年。昇座講法。頓收珎藏。\n異窮子之疾走。直詣寳山。\n無化城而可息。尔後因靜夜持誦。至多寳塔品。身心泊然。如入禪定。忽\n見寳塔。宛在目前。釋迦分身。遍滿空界。行勤聖現。業淨感深。悲生悟\n中。淚下如雨。遂布衣一食。不出戶庭。期滿六年。誓建兹塔。既而許王\n瓘。及居士趙崇信女普意善來稽首。咸捨珎財。禪師以為。輯莊嚴之因。\n資爽塏之地。利見千福。默議於心。時千福有懷忍禪師。忽於中夜見有一\n水。發源龍興。流注千福。清澄泛灧。中有方舟。又見寳塔自\n[4] 空而下。久\n之乃滅。即今建塔處也。寺內淨人。名法相。先於其地。復見燈光。遠望\n則朙。近尋即滅。竊以水流開於法性。舟泛表於慈航。塔現兆於有成。燈\n眀示於無盡。非至德精感。其孰能與於此。及禪師建言。雜然歡愜。負畚\n荷插。于櫜于囊。\n\n登登憑憑。是板是築。灑以香水。隱以金鎚。我能竭誠。工乃用壯。禪師\n每夜。於築階所。懇志誦經。勵精行道。眾聞天樂。咸嗅異香。喜歎之\n音。聖凡相半。至天寳元載。創構材木。肇安相輪。禪師理會佛心。感通\n帝夢。七月十三日。內侍趙思偘。求諸寳坊。驗以所夢。入寺見塔。禮\n問禪師。聖夢有孚。法名惟肖。其日賜錢五十萬。絹千匹。助建俢也。則\n知精一之行。雖先天而不違。純如之心。當後佛之授記。㫺漢明永平之\n日。大化初流。我皇天寳之年。寳塔斯建。同符千古。昭有烈光。於時道\n俗景附。檀施山積。庀徒度財。功百其倍矣。至二載。中使楊順景宣\n旨。令禪師於花萼樓下。迎多寳塔額。遂摠僧事。備法儀。宸睠俯臨。額\n書下降。又賜絹百疋。聖札飛毫。\n動雲龍之氣象。天文挂塔。駐日月之光輝。至四載。塔事將就。表請慶\n齋。歸功帝力。時僧道四部。會逾萬人。（眾）（錯裝）。有五色雲。團輔\n塔頂。盡瞻覩。莫不崩悅",
+  "answerMode": "extractive_evidence_only",
+  "algorithmVersion": "fts5-evidence-graph-v2.7",
+  "indexFingerprint": "9e7575d7c08c696d7047394a9e76cf5aa389f5d0a435011d39397a4962229205",
+  "evidence": [
+    {
+      "sourceId": "catalog:tang_01_duobao",
+      "steleId": "tang_01_duobao",
+      "title": "多宝塔感应碑 · 馆藏著录",
+      "text": "多宝塔感应碑。原刻朝代：唐代；原刻年代：752年；拓本年代：未核定；不据拓印年改变朝代；文物类型：碑刻拓本；撰文：岑勋；书丹：颜真卿；篆额：徐浩；刻工：史华；碑主或墓主：未核定；拓本现藏机构：台北故宫博物院；拓本馆藏编号：贈拓000365；原石现藏机构：未核定；原碑所在地：未核定。",
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+      "institution": "台北故宫博物院",
+      "evidenceLevel": "catalogue_record",
+      "originalPosition": "data/catalog/steles28.json#tang_01_duobao",
+      "license": "CC BY 4.0",
+      "origin": "reviewed_local_record",
+      "textSha256": "c7224cac500579f986167433261822e5b20a09fc743971f7c91e2082ed054213",
+      "retrievalScore": 100.59579925543137,
+      "bm25Score": 31.595799255431373,
+      "entityMatched": true,
+      "relevance": "entity_matched"
+    },
+    {
+      "sourceId": "catalog:tang_01_duobao:transcript:2500",
+      "steleId": "tang_01_duobao",
+      "title": "多宝塔感应碑 · 馆方释文摘录",
+      "text": "七五二年）。歲次壬辰。四月乙丑朔廿二\n日戊戍建。檢校塔使正議大夫行內侍趙思偘。判官內府丞車沖。撿挍\n僧義方。河南史華刻。",
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+      "institution": "台北故宫博物院",
+      "evidenceLevel": "archival_transcription",
+      "originalPosition": "data/catalog/evidence/tang_01_duobao.json#transcription:2500",
+      "license": "CC BY 4.0",
+      "origin": "reviewed_local_record",
+      "textSha256": "92a77ccd0ea9754ae9647e399c4168001958b3fdf8310463e57ab51bdda43d3b",
+      "retrievalScore": 25.36904564974738,
+      "bm25Score": 22.36904564974738,
+      "entityMatched": true,
+      "relevance": "entity_matched"
+    },
+    {
+      "sourceId": "catalog:tang_01_duobao:transcript:0",
+      "steleId": "tang_01_duobao",
+      "title": "多宝塔感应碑 · 馆方释文摘录",
+      "text": "大唐西京千福寺多寳佛塔感應碑文。南陽岑勛撰。朝議郎判尚書武部員\n外郎琅邪顏真卿書。朝散大夫撿校尚書都官郎中東海徐浩題額。粵妙法\n蓮華。諸佛之祕藏也。多寳佛塔。證經之踴現也。發眀資乎十力。弘建在\n於四依。有禪師。法号楚金。姓程。廣平人也。祖父並信著釋門。慶歸法\n胤。母高氏。久而無姙。夜夢諸佛。覺而有娠。是生龍象之徵。無取熊羆\n之兆。誕弥厥月。炳然殊相。岐嶷絕於葷茹。髫齔不為童遊。道樹萌牙。\n聳豫章之楨幹。禪池畎澮。涵巨海之波濤。年甫七歲。居然猒俗。自誓出\n家。禮藏探經。法華在手。宿命潛悟。如識金環。摠持不遺。若注瓶水。\n九歲落髮。住西京龍興寺。從僧籙也。進具之年。昇座講法。頓收珎藏。\n異窮子之疾走。直詣寳山。\n無化城而可息。尔後因靜夜持誦。至多寳塔品。身心泊然。如入禪定。忽\n見寳塔。宛在目前。釋迦分身。遍滿空界。行勤聖現。業淨感深。悲生悟\n中。淚下如雨。遂布衣一食。不出戶庭。期滿六年。誓建兹塔。既而許王\n瓘。及居士趙崇信女普意善來稽首。咸捨珎財。禪師以為。輯莊嚴之因。\n資爽塏之地。利見千福。默議於心。時千福有懷忍禪師。忽於中夜見有一\n水。發源龍興。流注千福。清澄泛灧。中有方舟。又見寳塔自",
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+      "institution": "台北故宫博物院",
+      "evidenceLevel": "archival_transcription",
+      "originalPosition": "data/catalog/evidence/tang_01_duobao.json#transcription:0",
+      "license": "CC BY 4.0",
+      "origin": "reviewed_local_record",
+      "textSha256": "9f1d533e3c54fad8cdd292e369b72745f4ecced96e2e303848daf22822918d27",
+      "retrievalScore": 17.20119300274714,
+      "bm25Score": 14.201193002747141,
+      "entityMatched": true,
+      "relevance": "entity_matched"
+    },
+    {
+      "sourceId": "catalog:tang_01_duobao:transcript:500",
+      "steleId": "tang_01_duobao",
+      "title": "多宝塔感应碑 · 馆方释文摘录",
+      "text": "空而下。久\n之乃滅。即今建塔處也。寺內淨人。名法相。先於其地。復見燈光。遠望\n則朙。近尋即滅。竊以水流開於法性。舟泛表於慈航。塔現兆於有成。燈\n眀示於無盡。非至德精感。其孰能與於此。及禪師建言。雜然歡愜。負畚\n荷插。于櫜于囊。\n\n登登憑憑。是板是築。灑以香水。隱以金鎚。我能竭誠。工乃用壯。禪師\n每夜。於築階所。懇志誦經。勵精行道。眾聞天樂。咸嗅異香。喜歎之\n音。聖凡相半。至天寳元載。創構材木。肇安相輪。禪師理會佛心。感通\n帝夢。七月十三日。內侍趙思偘。求諸寳坊。驗以所夢。入寺見塔。禮\n問禪師。聖夢有孚。法名惟肖。其日賜錢五十萬。絹千匹。助建俢也。則\n知精一之行。雖先天而不違。純如之心。當後佛之授記。㫺漢明永平之\n日。大化初流。我皇天寳之年。寳塔斯建。同符千古。昭有烈光。於時道\n俗景附。檀施山積。庀徒度財。功百其倍矣。至二載。中使楊順景宣\n旨。令禪師於花萼樓下。迎多寳塔額。遂摠僧事。備法儀。宸睠俯臨。額\n書下降。又賜絹百疋。聖札飛毫。\n動雲龍之氣象。天文挂塔。駐日月之光輝。至四載。塔事將就。表請慶\n齋。歸功帝力。時僧道四部。會逾萬人。（眾）（錯裝）。有五色雲。團輔\n塔頂。盡瞻覩。莫不崩悅",
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+      "institution": "台北故宫博物院",
+      "evidenceLevel": "archival_transcription",
+      "originalPosition": "data/catalog/evidence/tang_01_duobao.json#transcription:500",
+      "license": "CC BY 4.0",
+      "origin": "reviewed_local_record",
+      "textSha256": "2bd8e3aea901032541d3b416ee1555cd4394190f95a37f1b58fc92c93d71b532",
+      "retrievalScore": 16.296929431090568,
+      "bm25Score": 13.296929431090568,
+      "entityMatched": true,
+      "relevance": "entity_matched"
+    },
+    {
+      "sourceId": "catalog:tang_01_duobao:transcript:1000",
+      "steleId": "tang_01_duobao",
+      "title": "多宝塔感应碑 · 馆方释文摘录",
+      "text": "。大哉觀佛之光利。用賔于法王。禪師謂同學\n曰。鵬運滄溟。非雲羅之可頓。心遊寂滅。豈愛䋄之能加。精進法門。菩\n薩以自強不息。本期同行。復遂宿心。鑿井見泥。去水不遠。鑽木未熱。\n得火何階。凡我七僧。聿懷一志。晝夜塔下。誦持法華。香煙不斷。經聲\n逓續。炯以為常。沒身不替。自三載每春秋二時。集同行大德四十九人。\n行法華三昧。尋奉恩旨。許為恆式。前後道場。所感舍利。凡三千七十\n粒。至六載。欲葬舍利。預嚴道場。又降一百八粒。畫普賢變。於筆鋒\n上。聯得一十九粒。\n莫不圓體自動。浮光瑩然。禪師無我觀身。了空求法。先刾血寫法華經一\n部。菩薩戒一卷。觀普賢行經一卷。乃取舍利三千粒。盛以石。兼造自\n身石影。跪而戴之。同置塔下。表至敬也。使夫舟遷夜壑。無變度門。劫\n筭墨塵。永垂貞範。又奉為主上及蒼生。寫妙法蓮華經一千部。金字三十\n六部。用鎮寳塔。又寫一千部。散施受持。靈應既多。具如本傳。其載內侍吳懷實。賜金銅香鑪。高一丈五尺。奉表陳謝。手詔批云。師弘濟之\n願。感達人天。莊嚴之心。義成因果。則法施財施。信所宜先也。主上握\n至道之靈符。受如來之法印。非禪師大慧超悟。無以感於宸衷。非主上至\n聖文眀。無以鑒於誠願。倬",
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+      "institution": "台北故宫博物院",
+      "evidenceLevel": "archival_transcription",
+      "originalPosition": "data/catalog/evidence/tang_01_duobao.json#transcription:1000",
+      "license": "CC BY 4.0",
+      "origin": "reviewed_local_record",
+      "textSha256": "a5de796162c02c9471d174780ef94f12ae07840821943a2a4120772a1a77b8b8",
+      "retrievalScore": 15.894923710890307,
+      "bm25Score": 12.894923710890307,
+      "entityMatched": true,
+      "relevance": "entity_matched"
+    },
+    {
+      "sourceId": "catalog:tang_01_duobao:transcript:2000",
+      "steleId": "tang_01_duobao",
+      "title": "多宝塔感应碑 · 馆方释文摘录",
+      "text": "覩相未\n言。而降伏之心。已過半矣。同行禪師。抱玉飛錫。襲衡台之祕躅。傳止\n觀之精義。或名高帝選或行密眾師。共弘開示之宗。盡契圓常之理。門人\n苾。如巖靈悟淨真真空法濟等。以定慧為文質。以戒忍為剛柔。含朴玉\n之光輝。等旃檀之圍繞。夫發行者因。因圓則福廣。起因者相。相遣則慧\n深。求無為於有為。\n\n通解脫於文字。舉事徵理。含毫強名。偈曰。佛有妙法。比象蓮華。圓頓\n深入。真淨無瑕。慧通法界。福利恆沙。直至寳所。俱乘大車。其一。於\n戲上士。發行正勤。緬想寳塔。思弘勝因。圓階已就。層覆初陳。乃昭帝\n夢。福應天人。其二。輪奐斯崇。為淨域。真僧草創。（章）（錯裝）。飾。\n中座眈眈。飛簷翼翼。荐臻靈感。歸我帝力。其三。（聖主增）（錯裝）。\n念彼後學。心滯迷封。昏衢未曉。中道難逢。常驚夜杌。還懼真龍。不有\n禪伯。誰朙大宗。其四。大海吞流。崇山納壤。教門稱頓。慈力能廣。功\n起聚沙。德成合掌。開佛知見。法為無上。其五。情塵雖雜。性海無漏。\n定養聖胎。染生迷鷇。斷常起縛。空色同謬。薝蔔現前。餘香何嗅。其\n六。彤彤法宇。\n繄我四依。事該理暢。玉粹金輝。慧鏡無垢。慈燈照微。空王可託。本願\n同歸。其七。天寳十一載（西元",
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+      "institution": "台北故宫博物院",
+      "evidenceLevel": "archival_transcription",
+      "originalPosition": "data/catalog/evidence/tang_01_duobao.json#transcription:2000",
+      "license": "CC BY 4.0",
+      "origin": "reviewed_local_record",
+      "textSha256": "d37ecc909ebaf3df7e366aaf948ecb1ea02f3d425128f70a2462ede99945b60d",
+      "retrievalScore": 15.769518232633022,
+      "bm25Score": 12.769518232633022,
+      "entityMatched": true,
+      "relevance": "entity_matched"
+    },
+    {
+      "sourceId": "catalog:tang_01_duobao:transcript:1500",
+      "steleId": "tang_01_duobao",
+      "title": "多宝塔感应碑 · 馆方释文摘录",
+      "text": "彼寳塔。為章梵宮。經始之功。真僧是葺。克\n成之業。聖主斯崇尔。\n其為狀也。則岳聳蓮披。雲垂盖偃。下欻崛以踴地。上亭盈而媚空。中晻\n晻其靜深。旁赫赫以弘敞。礝磩承陛。琅玕綷檻。玉瑱居楹。銀黃拂戶。\n重簷疊於畫栱。反宇環其璧璫。坤靈贔屭以負砌。天祇儼雅而翊戶。或復\n肩㧝摯（鳥）（闕字）。肘擐脩虵。冠盤巨龍。帽抱猛獸。勃如戰色。有奭\n其容。窮繪事之筆精。選朝英之偈贊。若乃開扄鐍。窺奧祕。二尊分座。\n疑對鷲山。千帙發題。若觀龍藏。金碧炅晃。環珮葳蕤。至於列三乘分八\n部。聖徒翕習。佛事森羅。方寸千名。盈尺萬象。大身現小。廣座能卑。\n須弥之容。欻入芥子。寳盖之狀。頓覆三千。昔衡岳思大禪師。以法華三\n昧。傳悟天台智者。尔來寂寥。罕契真要。法不可以久廢。生我禪師。克\n嗣其業。繼朙二祖。\n相望百年。夫其法華之教也。開玄關於一念。照圓鏡於十方。指陰界為妙\n門。駈塵勞為法侶。聚沙能成佛道。合掌已入聖流。三乘教門。摠而歸\n一。八萬法藏。我為最雄。譬猶滿月麗天。螢光列宿。山王映海。蟻垤羣\n峯。嗟乎三界之沉寐久矣。佛以法華為木鐸。惟我禪師。超然深悟。其皃\n也。岳瀆之秀。氷雪之姿。果脣貝齒蓮目月面。望之厲。即之溫。",
+      "url": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full",
+      "institution": "台北故宫博物院",
+      "evidenceLevel": "archival_transcription",
+      "originalPosition": "data/catalog/evidence/tang_01_duobao.json#transcription:1500",
+      "license": "CC BY 4.0",
+      "origin": "reviewed_local_record",
+      "textSha256": "e1f1c69f5dbc404630a4532f14021b2c8421abef24bfb10459e353df8e49c824",
+      "retrievalScore": 15.436690180575164,
+      "bm25Score": 12.436690180575164,
+      "entityMatched": true,
+      "relevance": "entity_matched"
+    }
+  ],
+  "entities": [
+    {
+      "id": "tang_01_duobao",
+      "name": "多宝塔感应碑",
+      "category": "work",
+      "steleId": "tang_01_duobao",
+      "sourceIds": [
+        "catalog:tang_01_duobao"
+      ]
+    },
+    {
+      "id": "tang_01_duobao:stone",
+      "name": "多宝塔感应碑原石",
+      "category": "stone",
+      "steleId": "tang_01_duobao",
+      "sourceIds": [
+        "catalog:tang_01_duobao"
+      ]
+    },
+    {
+      "id": "tang_01_duobao:rubbing",
+      "name": "贈拓000365拓本",
+      "category": "rubbing",
+      "steleId": "tang_01_duobao",
+      "sourceIds": [
+        "catalog:tang_01_duobao"
+      ]
+    },
+    {
+      "id": "tang_01_duobao:year",
+      "name": "752年",
+      "category": "date",
+      "steleId": "tang_01_duobao",
+      "sourceIds": [
+        "catalog:tang_01_duobao"
+      ]
+    },
+    {
+      "id": "tang_01_duobao:author",
+      "name": "岑勋",
+      "category": "person",
+      "steleId": "tang_01_duobao",
+      "sourceIds": [
+        "catalog:tang_01_duobao"
+      ]
+    },
+    {
+      "id": "tang_01_duobao:calligrapher",
+      "name": "颜真卿",
+      "category": "person",
+      "steleId": "tang_01_duobao",
+      "sourceIds": [
+        "catalog:tang_01_duobao"
+      ]
+    },
+    {
+      "id": "tang_01_duobao:titleCalligrapher",
+      "name": "徐浩",
+      "category": "person",
+      "steleId": "tang_01_duobao",
+      "sourceIds": [
+        "catalog:tang_01_duobao"
+      ]
+    },
+    {
+      "id": "tang_01_duobao:engraver",
+      "name": "史华",
+      "category": "person",
+      "steleId": "tang_01_duobao",
+      "sourceIds": [
+        "catalog:tang_01_duobao"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "source": "tang_01_duobao",
+      "target": "tang_01_duobao:stone",
+      "relation": "原刻",
+      "sourceIds": [
+        "catalog:tang_01_duobao"
+      ],
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full"
+    },
+    {
+      "source": "tang_01_duobao",
+      "target": "tang_01_duobao:rubbing",
+      "relation": "拓本见证",
+      "sourceIds": [
+        "catalog:tang_01_duobao"
+      ],
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full"
+    },
+    {
+      "source": "tang_01_duobao",
+      "target": "tang_01_duobao:year",
+      "relation": "原刻纪年",
+      "sourceIds": [
+        "catalog:tang_01_duobao"
+      ],
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full"
+    },
+    {
+      "source": "tang_01_duobao",
+      "target": "tang_01_duobao:author",
+      "relation": "撰文",
+      "sourceIds": [
+        "catalog:tang_01_duobao"
+      ],
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full"
+    },
+    {
+      "source": "tang_01_duobao",
+      "target": "tang_01_duobao:calligrapher",
+      "relation": "书丹",
+      "sourceIds": [
+        "catalog:tang_01_duobao"
+      ],
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full"
+    },
+    {
+      "source": "tang_01_duobao",
+      "target": "tang_01_duobao:titleCalligrapher",
+      "relation": "篆额",
+      "sourceIds": [
+        "catalog:tang_01_duobao"
+      ],
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full"
+    },
+    {
+      "source": "tang_01_duobao",
+      "target": "tang_01_duobao:engraver",
+      "relation": "刻工",
+      "sourceIds": [
+        "catalog:tang_01_duobao"
+      ],
+      "sourceUrl": "https://digitalarchive.npm.gov.tw/opendata/Pub/Detail?id=33063&dep=P&mode=full"
+    }
+  ],
+  "places": [],
+  "contentWarnings": [],
+  "generation": null,
+  "relevanceFilter": {
+    "weakBm25Threshold": 10.0,
+    "droppedBelowThreshold": 0,
+    "weakLabel": "弱相关，仅供参考",
+    "rule": "未匹配实体/图谱/范围且 BM25 低于阈值的条目不返回；仅关键词命中且达到阈值的条目标“弱相关，仅供参考”"
+  },
+  "demoScope": {
+    "included": false,
+    "optIn": null,
+    "syntheticSamples": [
+      "wei-jianyi"
+    ],
+    "note": "合成测试样本默认不参加检索；需 include_demo=true、演示样本 ID（如 rm:demo:wei-jianyi）作为范围，或在问题中写 rm:demo: ID"
+  },
+  "limitations": "BM25与实体一跳扩展；命题只对照已著录字段，未核定则拒答。摘记可能不完整，来源可追溯不表示链接实时可用。"
+}

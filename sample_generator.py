@@ -8,6 +8,7 @@
 """
 
 import os
+from pathlib import Path
 import sys
 import shutil
 import logging
@@ -20,6 +21,9 @@ logging.basicConfig(level=logging.INFO, format="[%(asctime)s] %(levelname)s: %(m
 logger = logging.getLogger("SampleGenerator")
 
 # 基础路径定义
+# Label shown wherever sample_4 text is displayed or retrieved (see data/catalog/core_samples.json).
+SYNTHETIC_TEXT_LABEL = "合成测试文本（sample_generator 生成，非真实释文）"
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SAMPLES_DIR = os.path.join(BASE_DIR, "static", "samples")
 
@@ -88,6 +92,8 @@ REMOTE_SAMPLE_URLS = {
     "sample_4.png": {
         "url": "http://www.yac8.com/upFiles/infoImg/201607/2016071560987609.jpg",
         "title": "北魏·建义元年重度风化墓志（河阴之变重度石花）",
+        # The lines below are generator-authored test text, not an authentic inscription.
+        "text_provenance": SYNTHETIC_TEXT_LABEL,
         "font_preference": ["simkai.ttf", "simsun.ttc", "simhei.ttf"],
         "lines": [
             "夫人諱某昌黎人也春秋五十有一以建義元年九",
@@ -249,69 +255,66 @@ def synthesize_rubbing_image(sample_key, target_path, width=800, height=1000):
     return False
 
 
-def ensure_samples():
-    """
-    检查并保证 static/samples 目录下 sample_1.png 到 sample_4.png 100% 存在且有效。
-    优先级顺序：
-    1. 现有文件有效性检测
-    2. 用户附件已上传原图拷贝
-    3. 网络官方原图抓取
-    4. 本地 PIL/OpenCV 高保真合成兜底
-    """
-    os.makedirs(SAMPLES_DIR, exist_ok=True)
-    results = {}
+# RT-002: tracked core-demo sample digests (static/samples/sample_N.png). Mismatch => warn, never auto-replace.
+EXPECTED_SAMPLE_SHA256 = {
+    "sample_1.png": "b94d9fba4cc3facd0d4931af6930d3501094e45b107594d13278afcbab46212e",
+    "sample_2.png": "c1fb0d8371ba5bd8b0f9ca5652db3fbbe3ca2f6194f382b541e1b0daafaa2209",
+    "sample_3.png": "5338923c45a37d004c94ecae7b58a44af79d0c99afa5934ba404b1bb3744fafc",
+    "sample_4.png": "dcf8f04aa86c1ff38c26cd3a9a33944a0a047c681d73bb268341cd264a429412",
+}
+MIN_SAMPLE_BYTES = 5120
 
+
+def check_samples():
+    """RT-002: inspect static/samples only. Never download, synthesize, copy, or write.
+
+    Returns dict with keys present (path map), missing (list), sha_mismatch (list of
+    {key, expected, actual}), and ok (bool).
+    """
+    import hashlib
+
+    present = {}
+    missing = []
+    sha_mismatch = []
     for i in range(1, 5):
         key = f"sample_{i}.png"
         target_path = os.path.join(SAMPLES_DIR, key)
-
-        # 检查是否已存在且文件大于 5KB
-        if os.path.exists(target_path) and os.path.getsize(target_path) > 5120:
-            logger.info(f"样本已存在且有效: {key}")
-            results[key] = target_path
+        if not (os.path.exists(target_path) and os.path.getsize(target_path) > MIN_SAMPLE_BYTES):
+            logger.error("RT-002: core sample missing or too small: %s", key)
+            missing.append(key)
             continue
-
-        # 策略 1: 优先检查并拷贝本地用户已上传原图
-        copied_from_user = False
-        candidates = USER_UPLOADED_CANDIDATES.get(key, [])
-        for cand_path in candidates:
-            if os.path.exists(cand_path) and os.path.getsize(cand_path) > 5120:
-                try:
-                    shutil.copy2(cand_path, target_path)
-                    logger.info(f"已成功从用户真迹备份加载样本: {key} <- {os.path.basename(cand_path)}")
-                    results[key] = target_path
-                    copied_from_user = True
-                    break
-                except Exception as e:
-                    logger.warning(f"拷贝用户真迹失败: {e}")
-
-        if copied_from_user:
-            continue
-
-        # 策略 2: 尝试网络下载
-        net_info = REMOTE_SAMPLE_URLS.get(key)
-        download_success = False
-        if net_info and "url" in net_info:
-            download_success = download_remote_image(net_info["url"], target_path)
-
-        if download_success and os.path.exists(target_path) and os.path.getsize(target_path) > 5120:
-            results[key] = target_path
-            continue
-
-        # 策略 3: 本地高逼真 PIL/OpenCV 碑拓合成双保险
-        logger.warning(f"网络与外部资源不可用，启动本地高仿真碑拓合成引擎: {key}")
-        synth_success = synthesize_rubbing_image(key, target_path)
-        if synth_success and os.path.exists(target_path):
-            results[key] = target_path
+        digest = hashlib.sha256(Path(target_path).read_bytes()).hexdigest()
+        expected = EXPECTED_SAMPLE_SHA256.get(key)
+        if expected and digest != expected:
+            logger.error(
+                "RT-002: sample SHA-256 mismatch for %s (expected %s, got %s); refusing to replace",
+                key, expected, digest,
+            )
+            sha_mismatch.append({"key": key, "expected": expected, "actual": digest})
         else:
-            logger.error(f"样本初始化严重异常: {key}")
+            logger.info("样本已存在且校验通过: %s", key)
+        present[key] = target_path
+    return {
+        "present": present,
+        "missing": missing,
+        "sha_mismatch": sha_mismatch,
+        "ok": not missing and not sha_mismatch,
+    }
 
-    return results
+
+def ensure_samples():
+    """RT-002: side-effect-free sample check (name kept for lifespan call sites).
+
+    Does NOT download from REMOTE_SAMPLE_URLS, synthesize, or write sample_N.png.
+    Returns the present path map only (legacy shape). Prefer check_samples() for full report.
+    """
+    return check_samples()["present"]
 
 
 if __name__ == "__main__":
-    print("=== 正在检查并自动准备 4 张碑刻拓片样本 ===")
-    res = ensure_samples()
-    print("准备结果:")
-    for k, v in res.items():
-        print(f"  {k} -> {v} (大小: {os.path.getsize(v):,} 字节)")
+    print("=== RT-002: checking core samples (no download / no synth) ===")
+    report = check_samples()
+    print("present:", sorted(report["present"]))
+    print("missing:", report["missing"])
+    print("sha_mismatch:", report["sha_mismatch"])
+    raise SystemExit(0 if report["ok"] else 1)

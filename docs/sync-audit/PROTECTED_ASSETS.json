@@ -1,0 +1,3177 @@
+{
+  "baseline": "f0c5886a9d4c8b47d64640e1f7eaeac44be3c388",
+  "verifiedBinaryAssets": 528,
+  "museumImages": 84,
+  "mismatches": [],
+  "protectedSourceChanges": [],
+  "assets": [
+    {
+      "path": "apps/web/public/assets/gis/relief/0/0/0.png",
+      "bytes": 75377,
+      "sha256": "ce345dd24270e45b5d42454eb8e79f8c42ffe45bebbee873c92c1ed2b8c85705",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/1/0/0.png",
+      "bytes": 70881,
+      "sha256": "662780f9facc8d13db8f6ec9eac58769cb204ed498edd8348b647b4cf03cf589",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/1/0/1.png",
+      "bytes": 54621,
+      "sha256": "ad0678d755ef76587ca3ed044880a5a312e7cdccc6c58e623d7f6d9e7f75d150",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/1/1/0.png",
+      "bytes": 86303,
+      "sha256": "aaddcc9eb59be261934bcf5bd1bd1b4d1c37f8e87d37bc2d1b4367ea04a39735",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/1/1/1.png",
+      "bytes": 70303,
+      "sha256": "5b4eb8ac8dd1106d9e4a42c94491555c1392b9a12f56d8d8310b7ab97fa223bb",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/2/0/0.png",
+      "bytes": 38239,
+      "sha256": "39462dc051a16d4832b5f4ca4b862bcf6c8120abe36e0687118eb25b0d3ddbf0",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/2/0/1.png",
+      "bytes": 73776,
+      "sha256": "cdc5700898ecf2a78ad0bfb78da34cb7a563fe1752506fc7b06284fbaefd5eff",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/2/0/2.png",
+      "bytes": 18725,
+      "sha256": "1cace6cea4482f31c5945ad0b90af8b91dadfd2c7ebc9e653e56b8e66061341c",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/2/0/3.png",
+      "bytes": 62001,
+      "sha256": "2c1499c95c1403b1e9ba6cb45cbef4cd4a8b4574a16dad108464e840fea9146f",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/2/1/0.png",
+      "bytes": 69302,
+      "sha256": "56f3897cec0bd4ff26ae8faff5bafe360ccb8a9185cf352f810a579afd450aff",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/2/1/1.png",
+      "bytes": 66159,
+      "sha256": "0ec85b0a2bf0506d80719fac57bf7e0c6351e02e3e8223353c268b99c8f27745",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/2/1/2.png",
+      "bytes": 48835,
+      "sha256": "34bdb3d22af0f90021a74b2fb7d3baf31d68b670c1e7fc41c3756af05676b6b2",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/2/1/3.png",
+      "bytes": 69776,
+      "sha256": "cb71f2da45aae971d72f05e13519b0eecbec193df4a8e6c99cc31a3ef39fb504",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/2/2/0.png",
+      "bytes": 37129,
+      "sha256": "5ef3a90edfb5b466900c2045a00213f6740d6b3ba977da99efaf30a86904cc41",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/2/2/1.png",
+      "bytes": 121033,
+      "sha256": "24d38c4ea509b253f2a8c7698afdb0441b25997b0a8c66daf737a8e8114ae11b",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/2/2/2.png",
+      "bytes": 38265,
+      "sha256": "b16ea667cbf59224d37e58a1e6fcfb09eda6c5b2438070043f2009eae9291ceb",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/2/2/3.png",
+      "bytes": 77335,
+      "sha256": "fe1090c621d8c10303c667292c91e6209f0b7a02cfc48333bd05ada12b75efbc",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/2/3/0.png",
+      "bytes": 49667,
+      "sha256": "6f7f95f6c67b9d3e417ccd8d5421a1c3c6ffe20f59abcf38bbdff56d77755e95",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/2/3/1.png",
+      "bytes": 98909,
+      "sha256": "bb9329fd52fa64bff5638baa8a6f1142306317f9870a050d22adfc021524f263",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/2/3/2.png",
+      "bytes": 45754,
+      "sha256": "248acbb84717605c44720484bc3cf30596f23ce74eee2f97ed008fb93e8b2a9c",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/2/3/3.png",
+      "bytes": 86155,
+      "sha256": "0e4a68002a1410ddba676b124eadf86ef679e4a403f921da26498a5b6d019d2d",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/0/0.png",
+      "bytes": 5657,
+      "sha256": "8e60875260daddab7ae92060c92dc101d6b75b7f66e7ca355bf1b10edb431e9b",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/0/1.png",
+      "bytes": 36233,
+      "sha256": "636ae4c6a3863e31687bf12aa02d5cb3d0d686d8795c4994c548e920f2e062e4",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/0/2.png",
+      "bytes": 60371,
+      "sha256": "54c1b5d0a3f1fc3ee48331a3fa30bf6f99ccb88f10abcb227ff8f1849f2a291b",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/0/3.png",
+      "bytes": 21896,
+      "sha256": "f7d62269b564310cb545aa2fe67f440e33ca38aa5ec28365b5dd5017562c1513",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/0/4.png",
+      "bytes": 25625,
+      "sha256": "94eefa1ce4a740e5d02eb80ebe9980b7470cfa89717a7c8908c3507a9a992900",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/0/5.png",
+      "bytes": 18000,
+      "sha256": "97d82f160ec42291dd7fb95e9be69d953a2c641926d5beb623f3e2fa1f9c461e",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/0/6.png",
+      "bytes": 28109,
+      "sha256": "b2ae01c481d2418356e46c8ea557527de1ab5e7bdfb83d82310087e0adf410e7",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/0/7.png",
+      "bytes": 55764,
+      "sha256": "6bc3d7c4bf2d40a783dacd56f2dfeee0d8103193373cdbdcb2260e19382526be",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/1/0.png",
+      "bytes": 11079,
+      "sha256": "41777b09d31fa99816910ea642e85c16b9ff570fbca3d97bdb58a1771873c521",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/1/1.png",
+      "bytes": 72590,
+      "sha256": "fd0552e240aa143bc7e57e86a65388c17a517da6e7960ed75ecf600b6028a711",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/1/2.png",
+      "bytes": 128185,
+      "sha256": "973e767b3820b9486194e4c212e8f71983a5b106d56a70d9767c32eb1f23013e",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/1/3.png",
+      "bytes": 59963,
+      "sha256": "01febec48ae93a661ecb8813b87c6a668ccd454af7a9afc159af0654a2a976e3",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/1/4.png",
+      "bytes": 15752,
+      "sha256": "dc637a0380a4dd9cd16e25277536261cd8e1855133fc248b77f5d09f3c827a23",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/1/5.png",
+      "bytes": 14630,
+      "sha256": "809d1da0683cb2e91c895821c4abf2b10571c7a12a15e8c4dfeffcea65ccca89",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/1/6.png",
+      "bytes": 52501,
+      "sha256": "bf52ba69041d9a076fcf3ca5b2bc56bf2e17a296ed83c69cd6362d9c09b47525",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/1/7.png",
+      "bytes": 71735,
+      "sha256": "1b88f9e71b8639be0c76762e3d054337ae830966f687487df9a52a2eb65f17f5",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/2/0.png",
+      "bytes": 53563,
+      "sha256": "0725e6d4fb889e4166ebf31efd001935a80b0681242e403d8038d73785fde61c",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/2/1.png",
+      "bytes": 73851,
+      "sha256": "ea5a5fc85443f7ea0b381fc9763af58a593eaffda201b5debd38d0648dd70e7b",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/2/2.png",
+      "bytes": 82886,
+      "sha256": "e9cf4753c30b1caa44c893022fe439fe651c9d5aa0b45e52b564f4be03da2ad6",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/2/3.png",
+      "bytes": 61946,
+      "sha256": "d2918b51a5c93a53a456c3d7f4d41c993ac43eb56a981d011b5bef92b4fe77b0",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/2/4.png",
+      "bytes": 90283,
+      "sha256": "a06a4a50c90ffd516417cde9ee85bc89dd46251283d7703a5e377042dd5e83f0",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/2/5.png",
+      "bytes": 36539,
+      "sha256": "0e81d1b7f82b570bf0a6c4da4b9abbb53e9b033c373252b85f43b155beab658f",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/2/6.png",
+      "bytes": 57074,
+      "sha256": "cd1714ae6e3c648bd5ace5333bb51f2be6e84318de85c58d0b2599da066020a1",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/2/7.png",
+      "bytes": 69855,
+      "sha256": "c08411ebf8c0ecbe6e87b9476b852aa6bd357edb38d0d4857470e6462d68c579",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/3/0.png",
+      "bytes": 49566,
+      "sha256": "6026347e7c5ce757190acf933f4aa183d59827a3b0710fb838df1fa2e31cb3bf",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/3/1.png",
+      "bytes": 59440,
+      "sha256": "54d0ca1e83d1aede7cf6a778e0166fda0b35cdb5f3e29c94ade0f169561b933c",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/3/2.png",
+      "bytes": 38005,
+      "sha256": "ebfd82b3dcdb53947b30d79a71950c319567147f5e6eaa9a49e0b97f365f4318",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/3/3.png",
+      "bytes": 53413,
+      "sha256": "687d455b3c0e64d6cab730bb27e058fc6c04782d066f08608a41784c3d3c3436",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/3/4.png",
+      "bytes": 33276,
+      "sha256": "f92d160b975af8cffc133e9fbf6c92887e8243d348a1012e81d5d8e42c5a6da8",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/3/5.png",
+      "bytes": 19459,
+      "sha256": "f8e0dfaa53df5729f5e6fab5b80f0d0169b423f3ae6c1787aa72b8b928f003b2",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/3/6.png",
+      "bytes": 40136,
+      "sha256": "eacb599cb742939813a18f4fdf324a0b87e52e4449a8a088e0d9eae3a17cc8f1",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/3/7.png",
+      "bytes": 65825,
+      "sha256": "a1f51b4d378d218d4f380addc04373c82786a4d917d9e42fba1d7c6aa2516564",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/4/0.png",
+      "bytes": 14020,
+      "sha256": "ae0dbe3a1686bed5b4ba973b98ddf00655cee1a2b2a3c744f7d812ba61f910ee",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/4/1.png",
+      "bytes": 36321,
+      "sha256": "72951b4dfcbf1513bef51002eacacbe7197e571980071f1a614afa588c546b14",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/4/2.png",
+      "bytes": 115071,
+      "sha256": "fb17ac2d681dcbd44231903f5a5bfff27494b744619585ad03bd10f5e66c9f1c",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/4/3.png",
+      "bytes": 117307,
+      "sha256": "6d6e94e46c77e171176d7b3a9aa13a58465e453e6613cd0edbcc6b1be0446fa0",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/4/4.png",
+      "bytes": 72305,
+      "sha256": "237f0bc7d3f65c8ed040006a70d5437ad32906c17f2b67de247ba081693cd6ac",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/4/5.png",
+      "bytes": 19924,
+      "sha256": "e141de7a2f4a9a8628911b4994fcd0adc1e3ab5ed9a70b3b667753103ab80a57",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/4/6.png",
+      "bytes": 60318,
+      "sha256": "af0c10e1d7afbe0a5bc7d4d649fcf635e7c80197dbd448140014ee7499caec4b",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/4/7.png",
+      "bytes": 65530,
+      "sha256": "99674c6b24fd3d1eb562ae8ec503dbf3f6cf119d6bcd727f1009d1525676a358",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/5/0.png",
+      "bytes": 13817,
+      "sha256": "7953bdf2c541c310150d933462226522b1aabe230bc06d9cdc569565e83f23f8",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/5/1.png",
+      "bytes": 55678,
+      "sha256": "efb51bdc57d7a77bbc7aac572c16df8ebd0f98db756238c120130e29fe22f6f7",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/5/2.png",
+      "bytes": 120011,
+      "sha256": "f6aa53a947aa706ce75c68f5b01d400828342f145518b39866b461a54fdf46d6",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/5/3.png",
+      "bytes": 95157,
+      "sha256": "39a42a1c6c0e0877e549fc90ec432e5af86f6d57280d6988b9384a27a76db932",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/5/4.png",
+      "bytes": 27949,
+      "sha256": "6d56365d32c7df0e1adc3a49c505ce2daf185a0c04070b7e71b31c6035503d1c",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/5/5.png",
+      "bytes": 17384,
+      "sha256": "e2a5882f76a3574f75565d23a51e766d095b771b35230c4543dd3d81198d5555",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/5/6.png",
+      "bytes": 71976,
+      "sha256": "4f0d0e0a5e9466e5773302fb2bad4cc2749939172742c65640557d5ab35ec05d",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/5/7.png",
+      "bytes": 64727,
+      "sha256": "3c447b6e15f917c722e85cfcfbf909034e4968985d691dad0d3b30f995383e26",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/6/0.png",
+      "bytes": 11944,
+      "sha256": "771f948d4752c9d5c7f893cb8d624f8ab1a069f9b1f3a3163af08d18eaa68f08",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/6/1.png",
+      "bytes": 92847,
+      "sha256": "7719c86b3a5b3c9d22763e815ee8dc8c2bf130e02633d031c2fce30deca0bf00",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/6/2.png",
+      "bytes": 142313,
+      "sha256": "eed6b6ffaee5386a4f328142b4b3b3bf9285b2570cadeb8c33efa5fd68ea04bc",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/6/3.png",
+      "bytes": 103682,
+      "sha256": "02bb19134415a6df7ad9f5db71248e8c63bb1e91042187355114dc1ae3ea27a1",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/6/4.png",
+      "bytes": 62625,
+      "sha256": "018dcd06563070c137b585dea0a793b875abca266b7656f6ca3d64b631c38b29",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/6/5.png",
+      "bytes": 15089,
+      "sha256": "adedc817b526729deae0704e52d1852a6caa52ee73ce4fe92045c9357b22ce35",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/6/6.png",
+      "bytes": 70805,
+      "sha256": "799b3b4bd4d833690280993a0ed5e1aa779e46b4066ea5bdc147d5677592cef3",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/6/7.png",
+      "bytes": 59834,
+      "sha256": "6de31a13298b77d0888c7ff43d84b54daa3a9fe8d7cfb20a00215a4b02cbb710",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/7/0.png",
+      "bytes": 5419,
+      "sha256": "2b5edc255c08f2eba81e2ce8448d80ecf9762b3a60ca1b6697802c9ab441dcd9",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/7/1.png",
+      "bytes": 52021,
+      "sha256": "1fe2aeabda4d03d44603239f4f7a54b252eb56436d52d2919abed33cddd45ff7",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/7/2.png",
+      "bytes": 81801,
+      "sha256": "551a6e0ed4234b3db2e4f73aa2063d23036eec65d6e2ee5b0e55bca1d8878676",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/7/3.png",
+      "bytes": 30561,
+      "sha256": "866443148688432678669d335de724a30cc1cd2cc89fe484d5bb64c01286eb64",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/7/4.png",
+      "bytes": 62599,
+      "sha256": "658be63db06bb18fa7e8c9afef8cb2cc38caef74d01e75caea16340c48c20a79",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/7/5.png",
+      "bytes": 23231,
+      "sha256": "63065556dd57443416d5b59caaafafd32b78bee198befd2a085189405a6bb753",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/7/6.png",
+      "bytes": 71013,
+      "sha256": "a46caaee34b483efd58fe1174c3a237a4ad655bdb94e43aab76d218ad10701d7",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/relief/3/7/7.png",
+      "bytes": 78367,
+      "sha256": "f33d66d8b9ea17c10f8efd449c77a115300901df657f251fed13e50b63bafb33",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/rubbings/caoquan-rubbing.jpg",
+      "bytes": 1650474,
+      "sha256": "5611e652a6e908113bf7076977973f2719cb57107f86900c34a5919f3d2bfbb1",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/rubbings/duobao-leaf.jpg",
+      "bytes": 1766452,
+      "sha256": "390d6bdc9e4fb51d7c3459cd8eab7d0662bd2cf4aaa24da520b0f1aae644e3f1",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/0/0/0.png",
+      "bytes": 106274,
+      "sha256": "0ac97eb7a98aa4e225cad6495523ea1f9851695df0f414e05ad981f652e8c042",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/1/0/0.png",
+      "bytes": 100773,
+      "sha256": "4dc6acd89555ef0dbd711d632e55edbbd31589fea21c2039bbdd3b4ad98dd316",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/1/0/1.png",
+      "bytes": 94598,
+      "sha256": "709d4dc611353c47432a607ec42433c6eb6e3779298e464021a31eaebbc5a254",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/1/1/0.png",
+      "bytes": 97258,
+      "sha256": "120b705b9e33e829c49475e2238471efdc5cc00f08fb2b3f7057b7868ef0e619",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/1/1/1.png",
+      "bytes": 93363,
+      "sha256": "1bbbf0045ef8633042b7a251a35fd51a40ba7bef00acf834087fb8b56928e231",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/2/0/0.png",
+      "bytes": 80494,
+      "sha256": "fd30cc25bfc59c9dc466685032bcb250b438f23f45a017991eee6e729788c99f",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/2/0/1.png",
+      "bytes": 99785,
+      "sha256": "a1ebf41b05a8057630cfcc50af6b37ca885a3c95b8af4cbc86b0ffe16cd2d894",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/2/0/2.png",
+      "bytes": 96878,
+      "sha256": "d7cf7d5ca9c1f755e8695f7d337a32908f60142535df96b35f54ef5cca268a98",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/2/0/3.png",
+      "bytes": 75416,
+      "sha256": "65160606ef2a352988d7b4e05841d32f8286ccbb0ee76ee3b38b59b4cf9d230c",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/2/1/0.png",
+      "bytes": 92043,
+      "sha256": "940569f27283af21dd5d7e8674dba389af524404cbdf7f42e2cf2d2886b08521",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/2/1/1.png",
+      "bytes": 100190,
+      "sha256": "44311e0b7a7375c4ee081052b845193a75a267e86719b9ebc28437420fbd6738",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/2/1/2.png",
+      "bytes": 99433,
+      "sha256": "fd1fc16d94109d4c359cf272d61204b6dcc5a968add049d18d7f73c209e6882f",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/2/1/3.png",
+      "bytes": 77515,
+      "sha256": "8e53a42a4137d05caa2760de8858f07700e2d5127c8998e37100a9e55fa75427",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/2/2/0.png",
+      "bytes": 76730,
+      "sha256": "e243c4658f5a8f631c0b140650904d7d7b552f4165f906dd40c27a15e0c7e455",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/2/2/1.png",
+      "bytes": 96963,
+      "sha256": "1fb09e3db4228dcd3e07752c30bdca870245a63c4941d136dc815fabe7957224",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/2/2/2.png",
+      "bytes": 100328,
+      "sha256": "e3c9502292cefde2e5c1ac27c3ac3d296af567f39d23100bfe467e004e41362e",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/2/2/3.png",
+      "bytes": 67621,
+      "sha256": "90ee84660becef9101fbc76cf41b6a37088bea478bdc6e502f3c0fbf617c3e7a",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/2/3/0.png",
+      "bytes": 75158,
+      "sha256": "c51d910af72c105230ac38ab57bae42e16e5497f5b6bb889f07965a782a2ac78",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/2/3/1.png",
+      "bytes": 107585,
+      "sha256": "254aba02738c986c577996cfb3a5169723c76f6749e46418bec3a38b24800658",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/2/3/2.png",
+      "bytes": 101066,
+      "sha256": "4bcbe10c0202e2c3ed4e63deb904e87482b4d52e8a76432368ad4cc796989f84",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/2/3/3.png",
+      "bytes": 70104,
+      "sha256": "134a98c45a73e33138483f99422578a9f6016ab9209c6e3a26f7a62f3533e1d6",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/0/0.png",
+      "bytes": 64031,
+      "sha256": "d19385010b7336c1f56fa2c47f4ed1d59b3913566c665d20d849cd93c98c8791",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/0/1.png",
+      "bytes": 68854,
+      "sha256": "68d6b75ba3b55456e180ff70cc0738ae04632aa0be90db71f299aeba15f59169",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/0/2.png",
+      "bytes": 92235,
+      "sha256": "0c3d24dbf8eea8441c7775a923a6399068e56f1aa5299388fca30ac97074260b",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/0/3.png",
+      "bytes": 99046,
+      "sha256": "bbbee468a4c7603a0805602e8fb8396411a86fc8f069cae573917a2ba68828c6",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/0/4.png",
+      "bytes": 103467,
+      "sha256": "8b0190999931588aab805bbf6d079a4648690bf115e23c100a765fa6054a94bd",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/0/5.png",
+      "bytes": 97616,
+      "sha256": "0115e7f78c44ee7ab3f5f7fb91ef9417bcc39b0258f20d5d68a236f2d4a9820b",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/0/6.png",
+      "bytes": 79336,
+      "sha256": "cab37d1eeccdfc4a8cde5cff8fad836b841fd446246f3b7609b750fb63ebfb22",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/0/7.png",
+      "bytes": 41218,
+      "sha256": "fd3a716403019b222e918d522d5768b4c58a85fb936f6a7595baee5894200b5c",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/1/0.png",
+      "bytes": 64637,
+      "sha256": "6f64defba28b7b9118f2d04ff7867b2fcb244e9d1f684711cbad7efe413aa854",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/1/1.png",
+      "bytes": 79332,
+      "sha256": "2a63c449dbee5f4e7abee2fdddde354b9e49928f7a88d8ab05ad08565eab5c55",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/1/2.png",
+      "bytes": 93931,
+      "sha256": "dd42611f206b7a9f79a64d0edfa93db3e14b99811229aab932e002e55382383e",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/1/3.png",
+      "bytes": 98066,
+      "sha256": "40ef9b008e33fb6572e3d3a18d40b97645c6c55563a04d4866228d00b6e2e32c",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/1/4.png",
+      "bytes": 95918,
+      "sha256": "172fc3701fd37ad252535b698856073ee7a3b122accb7b31f57becdc48ccb193",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/1/5.png",
+      "bytes": 90434,
+      "sha256": "ff780249611063b7bfde28a7fe70daa50bfc4b3e65b0013eaadd2ba112c120bc",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/1/6.png",
+      "bytes": 79268,
+      "sha256": "958e3ce19c8b619ae56411692c4eb6afa70c7faffa5f95ffbbfcd89400cc74b8",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/1/7.png",
+      "bytes": 51477,
+      "sha256": "864a92032a542052a6ec00c7f0dbd981aa4cf7b58ae2685d47b21d9688a3796e",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/2/0.png",
+      "bytes": 79544,
+      "sha256": "c880ba145043a95db5f0235b7ae6225bdfbed60fed372b426f5b05e74a74fa36",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/2/1.png",
+      "bytes": 84711,
+      "sha256": "98606c4e2d1839c2f58edca113aa2aae16c8a10a24e65ce4c0cc4123eaf073a8",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/2/2.png",
+      "bytes": 86496,
+      "sha256": "d9c51e870e383d21065af32d6f0d9d3633383019ee61b23e97d8b33054852cd1",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/2/3.png",
+      "bytes": 99295,
+      "sha256": "881eb2e4e7d5dbeb34f95709390ea757e7e8c114871625ae5dd0f15424c2acc6",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/2/4.png",
+      "bytes": 95790,
+      "sha256": "cab7740d6e4ba3245a9cdda75470a44d0292c8d6a83cd4e571e77c6f0b911d9f",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/2/5.png",
+      "bytes": 95274,
+      "sha256": "ce999da36069d3faa9b701d0d0be338ee4d3aa198e088047a5973e6aebee3151",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/2/6.png",
+      "bytes": 75636,
+      "sha256": "c505e0c7e254eba98210a313bd034137fe205dfe2f9e4db25dbb352f872d3514",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/2/7.png",
+      "bytes": 55554,
+      "sha256": "b7a834a37da608d29b0ef5ca8df7493cad492f9cc11b50ffd5d9d3201fb33992",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/3/0.png",
+      "bytes": 80472,
+      "sha256": "644bc98df090818a0f8b0b14439821336695d6a9b3d1bf8e1291698bb9057196",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/3/1.png",
+      "bytes": 79765,
+      "sha256": "7d51e018cae2a7ace0009b0aa25fa517af0f42e2322a5ca14766e4e1979502af",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/3/2.png",
+      "bytes": 94995,
+      "sha256": "1824ee34d3a2666daf223edac43368f9e72905bb77da0111dddaff3f09874526",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/3/3.png",
+      "bytes": 98166,
+      "sha256": "46dadbec98d5e1113f6c2eae7eca774786d55e0d485c770a4c4ae8c11209ee76",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/3/4.png",
+      "bytes": 100044,
+      "sha256": "a5ea03cb13778a1d339b671bd593c0b533b1558e8d25b19804cdf6a1508e2a3a",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/3/5.png",
+      "bytes": 94991,
+      "sha256": "1bec800674390197b38f3a4e392816101df2a90c5e276dbd7c45debbd4979160",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/3/6.png",
+      "bytes": 74164,
+      "sha256": "3369b23af25a48157af10cd236b84a24dd7000f85d1871fba7b25d1b5e841d5f",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/3/7.png",
+      "bytes": 51713,
+      "sha256": "2d13e75d09a13f1ecd19fcf1242e3d56f0a83ec2ba7212cf8a9ddb420ed0a6fb",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/4/0.png",
+      "bytes": 68398,
+      "sha256": "caa9932501fc9912549b6532714089a0f6acba4b8e265d78ac655f966f40f65a",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/4/1.png",
+      "bytes": 74624,
+      "sha256": "a91b7fb4cfe567aa65386051ea3d6ea18400c2a539c7a32cdcd051d770c43911",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/4/2.png",
+      "bytes": 86071,
+      "sha256": "004cde04381da31fbc50d036ab3e82ef57acf0dc4d9b0e11f7fb2e13962e8570",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/4/3.png",
+      "bytes": 95564,
+      "sha256": "6f0ee0cb93d8cd7c4347c5b8556a06f2e0b89b5d2a2bd71e5b73a239cf3ea851",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/4/4.png",
+      "bytes": 98128,
+      "sha256": "cb9c89411f8a063fe4bbd530a4df71714b4c84af133eb34d805614d0171beda0",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/4/5.png",
+      "bytes": 97198,
+      "sha256": "be6011b7685f152203919bc1fb4962f9e3b975617bade77e25e06047ed1cd2d5",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/4/6.png",
+      "bytes": 68612,
+      "sha256": "f759a72c4f8e9dcc3508bf4ae1d66caac65ca2a40f3791334fd36a289358b7e5",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/4/7.png",
+      "bytes": 42732,
+      "sha256": "e2604947c0f1389ce8d8b6f566140ddcf96502ef8add328b5bbfc8fbeb0b7f05",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/5/0.png",
+      "bytes": 56555,
+      "sha256": "644b484e3fbda5494cc3df93fbea4f9ee89135cb90a280a3f4c1c5eb913705f7",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/5/1.png",
+      "bytes": 60743,
+      "sha256": "6f3db10794c2f2d8021d0ef1fd49481c656544cb4a9521f5a522e7d3a11513e4",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/5/2.png",
+      "bytes": 80965,
+      "sha256": "2d6df41f1f94f14c89e00a2cf9f1681d76f89ae4fcc2023782d43407a9e54a9e",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/5/3.png",
+      "bytes": 99122,
+      "sha256": "056711ab37d0eac95cdd0d158119b24cf0b9f7473b8a86a7c6d7d5374cabccf4",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/5/4.png",
+      "bytes": 102949,
+      "sha256": "8ea350840eeb9f1c784126064ee55849cb51bd6ffa2296336098d1d3044c637f",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/5/5.png",
+      "bytes": 93188,
+      "sha256": "991df926537635dc457f00d63e8998111f0f707fee74ca2d50e2c43b14c939ff",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/5/6.png",
+      "bytes": 69506,
+      "sha256": "55a61ac5f35fc1e2ab509b6c501820db09de04886a8756390b8013bcc5ac97a2",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/5/7.png",
+      "bytes": 37959,
+      "sha256": "3f7d3ad396aa7fb5f750a1e788ed49fc0f18894291913fd7fe98a87fddd9a067",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/6/0.png",
+      "bytes": 61473,
+      "sha256": "9b8ea4372edb983c3bd318edd3e673db7181a9ddd9365d3a509c80791ed79adc",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/6/1.png",
+      "bytes": 76413,
+      "sha256": "9f73258f3bc0693fe2b05a4051c06dbce130bb8007d437504d4e16c591878c35",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/6/2.png",
+      "bytes": 99467,
+      "sha256": "1fd160d70e3d02d30cd913d6a9464fa60a55841ec654046fedfea0703d5cb60c",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/6/3.png",
+      "bytes": 104004,
+      "sha256": "0e585adea664444c673bd81db5d21cd3ed15eedc3c16885aa16b4419ed37c14a",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/6/4.png",
+      "bytes": 99952,
+      "sha256": "790753a61c08d45ed315925fb2d35e48b134bc3e5b564185784d7407a09a4b57",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/6/5.png",
+      "bytes": 89256,
+      "sha256": "6265ea9433dafb4dad9d3c720f0bc7f7cfeaeb2da58142f916bc051221a1af8b",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/6/6.png",
+      "bytes": 54545,
+      "sha256": "2f6a3e2aad5bf905a1ca8f7dd48c1b014b8755fb0cee8f414c9e1bad613c5c41",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/6/7.png",
+      "bytes": 33552,
+      "sha256": "ab5d8813457456d7b96b658928e4a723b85914383bda5ea121d553baf8504386",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/7/0.png",
+      "bytes": 62115,
+      "sha256": "1f80bb0e7008c9553a234b52f27105df64917d82ceab9861b840a0361c8b4621",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/7/1.png",
+      "bytes": 53390,
+      "sha256": "fa4ad391495829e1ee4707c6b3916938fb2ce2dd27d752563d5f1146c05d5670",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/7/2.png",
+      "bytes": 100921,
+      "sha256": "39638103df7397cc29b362189a5a077e4537dde4e2af41b04d1ab83a70761484",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/7/3.png",
+      "bytes": 105488,
+      "sha256": "9be49eef9135835fdf0041d44bdef8644f0996b15f56f7d25e06d486c2735433",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/7/4.png",
+      "bytes": 102591,
+      "sha256": "565128083e13ea0eab4252a9b0d6c7b51d69c19c068962f00c06039ee13c4bb5",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/7/5.png",
+      "bytes": 98244,
+      "sha256": "afe4f3b7689e9467577a81a4b359cc10728f6cb6cb626e3bf750984bb480d905",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/7/6.png",
+      "bytes": 75982,
+      "sha256": "9778fd0c7ec4d66294b9041e62fa469b15f19c2158cfb5a91dd73edac34fe7bf",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/3/7/7.png",
+      "bytes": 60322,
+      "sha256": "37c6f70d4e56bcda62ceff6851612ae3449ab7258398e1795057433587773980",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/4/10/4.png",
+      "bytes": 70034,
+      "sha256": "52fa7e4e98c803a4d660f0efe81fa1bbd5f3c25a9fefded3a8fe4bbe4b6fa7f8",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/4/10/5.png",
+      "bytes": 68356,
+      "sha256": "820e75125287ca758b332c3fd9981d484c3169efb6eb9a9cc13c502906f4dd11",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/4/10/6.png",
+      "bytes": 91307,
+      "sha256": "32e420ee51a17f752167e8fe7bc1a862fc882358fcb97c5b196e533e34b30cb7",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/4/10/7.png",
+      "bytes": 93351,
+      "sha256": "d22d80eb11d1f86fb40185e186d15423ed9c74b3b8cf141ed32c4b3e93c58b96",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/4/10/8.png",
+      "bytes": 103577,
+      "sha256": "ce16b0755221662a7e66ac624a4a677f299bb4765b05b3886cf8ad3818615d54",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/4/11/4.png",
+      "bytes": 56650,
+      "sha256": "6b9f70ef220b1e240677e91d9988b9e008266cbc623e34283bf91acb4b7dd1d5",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/4/11/5.png",
+      "bytes": 86382,
+      "sha256": "075b49c0542c87a0cec39d3f92af3b07981f88d89f44a7cb00df3818147de7b5",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/4/11/6.png",
+      "bytes": 93266,
+      "sha256": "48693b9929a44948d352ba5581baabb549be34299e591a39aa2efcbc29513236",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/4/11/7.png",
+      "bytes": 89687,
+      "sha256": "cbeea6e227be980cc999553781534aa5f05ce9e47b2f24aa0bbbe3504d428eb4",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/4/11/8.png",
+      "bytes": 101222,
+      "sha256": "e7c2ca649dc52c3172c17df746105aa5e9e29ab20fa3388a11658b2da6db3854",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/4/12/4.png",
+      "bytes": 87785,
+      "sha256": "a94f215ae6819eae9a39d0fd354c6487bbb9ff4f801b7547f0d977fef8ed45e4",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/4/12/5.png",
+      "bytes": 98644,
+      "sha256": "8c75af8b3da9f9d7c361dc70f81d0bb22445f64420f1a470073c5dee3f6390da",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/4/12/6.png",
+      "bytes": 105566,
+      "sha256": "b197ed6a219fff8ec01e1a2a1c52f2a6548ce54936b1cbcc1005faffa2b9dbe3",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/4/12/7.png",
+      "bytes": 88553,
+      "sha256": "d31db9a1e3ba45f2861f8c093dad4efcdd681e673806be346b8dc4fab544b736",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/4/12/8.png",
+      "bytes": 97704,
+      "sha256": "4045ced5f74e3ff2907fdcd1b91faa1272dd1cbadf3186a41d5abee86d97657f",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/4/13/4.png",
+      "bytes": 87633,
+      "sha256": "8f0a39695ad87522a5c6834999d9204f8cd7832f73465c6c690fab17c73da89a",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/4/13/5.png",
+      "bytes": 92455,
+      "sha256": "cff2fcc64706c0a9d085234cb5da36b8ea11b6f3da87ef7d4b4d5e2d859d103b",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/4/13/6.png",
+      "bytes": 88754,
+      "sha256": "9864e9c55db3a7b0ec8ec7040c807d0655363aad74c7a9a10fd0a3881db65e83",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/4/13/7.png",
+      "bytes": 106520,
+      "sha256": "6dd0a34011b3dcf9f27e91a0c024f5c44ed43c316dcccdf12c9dcfad79788bf8",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/4/13/8.png",
+      "bytes": 94864,
+      "sha256": "c6937078e7540cb7482c332576874996d6578e5607b67f2b3a4be5b504362052",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/4/14/4.png",
+      "bytes": 92155,
+      "sha256": "594f0ede127f1f590788d2840f2ebaeac856d811f44cf9c97832343f2cdcc192",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/4/14/5.png",
+      "bytes": 92609,
+      "sha256": "98baa1b96d377d442bf0f4e5ac0e317f44dd3b676bdc0c31d9e3406d662b0f87",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/4/14/6.png",
+      "bytes": 98435,
+      "sha256": "4de703670abdf0ab655012ec56f1508ccfc013c10625f3529a97aab75f87fd1f",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/4/14/7.png",
+      "bytes": 105238,
+      "sha256": "05b94eea349202647ad1d10fec458430552a96beb08dca2c440334c6a715b6bf",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/4/14/8.png",
+      "bytes": 92352,
+      "sha256": "ebc1bfb7e871ff4f5dc52e737666fe04b3d660142667b2e2e743c58073c92c03",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/21/10.png",
+      "bytes": 59699,
+      "sha256": "17a3f9efed83ab6d69e44722d8c44c23bef686ca039f142be986a73618f2e996",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/21/11.png",
+      "bytes": 48071,
+      "sha256": "7bba5df7f79529139ae19547ef1b0dac3a65f9a287e380f5ca4df27fd8093ab3",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/21/12.png",
+      "bytes": 76881,
+      "sha256": "564cc7875cab0f8d27f4573d0c135c1302a2384d6d2ef22bea75c4cd14fcf758",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/21/13.png",
+      "bytes": 89253,
+      "sha256": "f92015155e4c0dd68d2437db5697d10e03157845257a060623b70d900cf560ea",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/21/14.png",
+      "bytes": 75966,
+      "sha256": "d7c7debb8a7843d3d7afdba41c7c12cb47705c842971fd2b93701152fa46c3f4",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/21/15.png",
+      "bytes": 99455,
+      "sha256": "431836bd7eb266758d6c37654b2fc9e6ef1710d4bd33d1c14727d193956bcaa2",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/21/16.png",
+      "bytes": 98757,
+      "sha256": "1e423bd3adf1da600bb9833ac101b220339bbd9ae4567ad1dc7e4c48913d868c",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/21/8.png",
+      "bytes": 60771,
+      "sha256": "1204c1f822e1bac6e66bc27020f6583245302abe99fa6b33664bff2def048ed5",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/21/9.png",
+      "bytes": 57108,
+      "sha256": "7b8f33e455e58003cea2adffec3cd59c9e257d45ae6e675a3c5dc7aaf6763469",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/22/10.png",
+      "bytes": 50587,
+      "sha256": "689cede02793042751e66efa4b3cee7266bde3681f85eb8f79f4c9c223b72a71",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/22/11.png",
+      "bytes": 70446,
+      "sha256": "01c11d23fd57f4176b961f95dde7ba4566f6fd7074219e3cf107c863e9600bf3",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/22/12.png",
+      "bytes": 102253,
+      "sha256": "79eb6759025688cd1a086ae4df24ea8ad91cf87760b368c92016c8f265183fa7",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/22/13.png",
+      "bytes": 60131,
+      "sha256": "85f5857dd976df9e06d0f705b70a2b32038d0f606b58fd9c84feabdbe3bec1f7",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/22/14.png",
+      "bytes": 81611,
+      "sha256": "95b760c759e924fc4a2ea0dbfd723d4e2291cc6d7a87fb53dea8efed8ef196a3",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/22/15.png",
+      "bytes": 94099,
+      "sha256": "c4e2ace36e80576ba792855a26179f1192505eeb5bf9309044e7a90c11c98777",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/22/16.png",
+      "bytes": 98558,
+      "sha256": "4af2aeb601ce6a745fbf3220fb20c67298a4c5f1202c8a9dcba75eb6cd1306da",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/22/8.png",
+      "bytes": 37701,
+      "sha256": "d98ae86222a1c6ad1a5bb79da7b848fabae457431e04030f17f637004aad8771",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/22/9.png",
+      "bytes": 37311,
+      "sha256": "39d93caa8111960aab55685a4ca80ae198cabea316422712f553f9c68b63481a",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/23/10.png",
+      "bytes": 78765,
+      "sha256": "eb54f7311d4cc835bb684183ccae48a4d80263e130a1d6d8d2ea91615fc5004c",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/23/11.png",
+      "bytes": 86564,
+      "sha256": "650ca9a720c5112660f5743b02fc37e8eae309d31f2b92478546cac3de1eb4db",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/23/12.png",
+      "bytes": 79145,
+      "sha256": "8cd49ad609fc5c9f1cc5781892295211340d479f9647f40df6c7448bc6d92b7a",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/23/13.png",
+      "bytes": 80976,
+      "sha256": "dd88bab198424b05b7f360b374168732cc72242b301ecc0f2df9224292104d0d",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/23/14.png",
+      "bytes": 73240,
+      "sha256": "d68465027092449957c99aca8f0857116333c0716350a50ed7b81b6c6b284748",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/23/15.png",
+      "bytes": 74998,
+      "sha256": "ff88cf4202ffb071a7c458bf36cb66572c80fa75d939f4e7d04e972d1680f75a",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/23/16.png",
+      "bytes": 89519,
+      "sha256": "8531257c36613b1379001dc08a6b0de1a58635b6dac53f5fe9576fc7a320e520",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/23/8.png",
+      "bytes": 50206,
+      "sha256": "4b897bd1975d79d55b47fb3c230a5245b8dff1de60dff9f8155d0cef8a00fbf9",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/23/9.png",
+      "bytes": 42965,
+      "sha256": "9169b5cfe1a867621ae0c4fa1853f390e70edd8cfa42fb45f8bc652f78ba6bff",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/24/10.png",
+      "bytes": 92261,
+      "sha256": "acced1f33b5623452c4a354eec61a7890f590222630278b06632d5a274c3c2cd",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/24/11.png",
+      "bytes": 88603,
+      "sha256": "5fa44681e16dd71e48943741b3af0f40bbaa7b0b68662f1b5e97d27f966739f7",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/24/12.png",
+      "bytes": 91912,
+      "sha256": "a2b70b2fea7e6ef7b88370afd40a85e65fdc26d700253e59f6feaca6f9a29e4d",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/24/13.png",
+      "bytes": 101442,
+      "sha256": "767f8d3e14dbc59df3d6a9a5c9badaf0a982d2bb65c74b0fe36bff99a988d0f8",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/24/14.png",
+      "bytes": 83747,
+      "sha256": "6d7fb3271827ab7ce82b85c7913d946ff44c6d3cc4cdcad5628caa4e2e436348",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/24/15.png",
+      "bytes": 88646,
+      "sha256": "9275b656fd0bb3103a695a4ac900732313dfefb32e96fcac0873e2880636254d",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/24/16.png",
+      "bytes": 92141,
+      "sha256": "ea0612b9b23816b8a1c16411433e53b1308a490b08c8f5f130c15a6bbd735afa",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/24/8.png",
+      "bytes": 80202,
+      "sha256": "5a4e2c32795aa428bb0c0b955235377027574cce9e35b097eca63ea1788db71c",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/24/9.png",
+      "bytes": 71607,
+      "sha256": "4a7e105f630a4ba1fbc088d7d073e99353d5a2242b967e3a7eda123e5094d234",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/25/10.png",
+      "bytes": 89374,
+      "sha256": "5595a67a091f8e13b78ea4e64df644e5b34b434b3e7023e3e51dba39ddbab5c6",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/25/11.png",
+      "bytes": 78264,
+      "sha256": "829d7b9eb6b782c1a517ea844e8d128073ce62dc06fb4c6269ffcff3d06f8f89",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/25/12.png",
+      "bytes": 89316,
+      "sha256": "afd031b3bda92f9c8bfd02b5602088e12b32e49ff48d1d65c38c443a289457ae",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/25/13.png",
+      "bytes": 97989,
+      "sha256": "290a933304a283bbf649af4559afb7994e651a5f2d88e8a8b28482a20e7e836d",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/25/14.png",
+      "bytes": 82896,
+      "sha256": "3d246f3704137b6c10368523a9d70b7c957696ac811959f779736186e630026f",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/25/15.png",
+      "bytes": 63016,
+      "sha256": "aa677cf77eee7741b9c474af444077ad6c9a079c195f51cc9c1eb3f77acd5a32",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/25/16.png",
+      "bytes": 77047,
+      "sha256": "b1d7912d591493fb0d4ca99adec203cbabb990938371b1f49bf4f13d128b6613",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/25/8.png",
+      "bytes": 69859,
+      "sha256": "c3886fc6802691610b09813b35635f970845ac835eb5a2897fbda3ad50851498",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/25/9.png",
+      "bytes": 71578,
+      "sha256": "190e3fe97487f414932e610eed667c3012c481885ee5ea86d3d4bf613c0b31f5",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/26/10.png",
+      "bytes": 85458,
+      "sha256": "f67ea6531c86b0ab5fa0f8a1a3dafeb130f27a6e16097e9a464c3c06aa40566c",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/26/11.png",
+      "bytes": 74175,
+      "sha256": "36e9d55522362d9a8899259a0b360ba1f496ffed5b222662f5e11834858f7626",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/26/12.png",
+      "bytes": 58153,
+      "sha256": "dcc3f4e46759bdc92b109bac132ea10e2d8f20602769ff73026c427fadc75c92",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/26/13.png",
+      "bytes": 82149,
+      "sha256": "bd230044282ddce7a0a8ffd4405cfee1f7dfbf4656a579486e9f95384214f488",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/26/14.png",
+      "bytes": 96065,
+      "sha256": "4c1ee6bbefb9b3aa6f386f9edd5bb0f5d949b38c69352b4a2c65a363c7bc1c12",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/26/15.png",
+      "bytes": 97356,
+      "sha256": "3d54443fd8d09615572b70babe51d34ed4306d6c9544845532f7ee0b00773d2b",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/26/16.png",
+      "bytes": 91329,
+      "sha256": "7410d16919ca7680d527aac3da9dc12ffbb7b571aa97539e2c4361054e889aa2",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/26/8.png",
+      "bytes": 56122,
+      "sha256": "e3e3792103e018a3a47800a47b791eb61e31acde7aa5152889f919418a3e2cf1",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/26/9.png",
+      "bytes": 85449,
+      "sha256": "95d39a54e8ab03ab9fd9d226cab66c9f2892cf6a74e85e80b8ea564428335e8f",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/27/10.png",
+      "bytes": 82643,
+      "sha256": "5a658ba1008025af48c68210dd31d54e17b1637272ff54b13bcf80fd27454c68",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/27/11.png",
+      "bytes": 77701,
+      "sha256": "15985fdff675a76a38f86ee0c6fca994f411f31e4d1a4d03198beecffeb5eb80",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/27/12.png",
+      "bytes": 83443,
+      "sha256": "909687d8daaea4772a4fe2aa9509b9fcbd766320a7f04d6dfa26b796c953b119",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/27/13.png",
+      "bytes": 92133,
+      "sha256": "d3b4d04d3370b540df9bf4b5a9d53745131415790b87063f290d033698bbfa4a",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/27/14.png",
+      "bytes": 99265,
+      "sha256": "2949f9eb4f12f7bc59bb39a12eb95bb2b79d56dde1864054f88aceaca8025d3e",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/27/15.png",
+      "bytes": 102972,
+      "sha256": "f7bd81a00e56d203dae22d6a755329ccbc078c4a4233621ba7e8def3c73cd20c",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/27/16.png",
+      "bytes": 96985,
+      "sha256": "d60593f16697688bf342ca7edb69cf74e37b4f97a684b8397f2021e415c3c118",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/27/8.png",
+      "bytes": 72770,
+      "sha256": "5d0ad8b12cd883f620c07a3c5b6f1a848779175725a8ec825a7c048a55a471d0",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/27/9.png",
+      "bytes": 80196,
+      "sha256": "89864d997bb5f26eb9e55d36079bd7adf11eca41b8aba3a94b80b9f9edd1507b",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/28/10.png",
+      "bytes": 75907,
+      "sha256": "234113ed2517f927fde8975a15adc9b2c82fadedda61ae2b72bbd88d9a256708",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/28/11.png",
+      "bytes": 86256,
+      "sha256": "13a07f7763dbed9cc33b664b44c6d3fb3c245ef155e492555bd1eafe4dece632",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/28/12.png",
+      "bytes": 93555,
+      "sha256": "db628c8e39261081327f7e304e2a6948e64a28dcb225172f04ae2081460878b6",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/28/13.png",
+      "bytes": 99898,
+      "sha256": "cb9f7ccf66dcfd4c39faca0dbef60bd87920dc4e59ede967a32e04b77af4e571",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/28/14.png",
+      "bytes": 102654,
+      "sha256": "33a7b94f13b7ebeef7dda9e3058106b8b92055ebf5fc2306af6be60879fc7923",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/28/15.png",
+      "bytes": 99822,
+      "sha256": "ef8444d5e6f368a710e05c1824b8ed3e14f99867011098f3cab5b96cc8007f28",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/28/16.png",
+      "bytes": 75865,
+      "sha256": "98cd868ffd7d8f55c6ed59d0546361dc1f9f5f7e17f68cd00bdb16a4d6ac8c20",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/28/8.png",
+      "bytes": 90386,
+      "sha256": "458b1452cbab157ed879414ecb7ad1b6c08796954f9b640d047c5d30c2f5616d",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/28/9.png",
+      "bytes": 79255,
+      "sha256": "beee16ad5edbff7a9cece3858883e04b59285df2166a454986bf7eaf462f0297",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/29/10.png",
+      "bytes": 74839,
+      "sha256": "1f9d5669da8f27979ce5c91a194b54891f48d402dcd107caed8f86b6f6d040fc",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/29/11.png",
+      "bytes": 92339,
+      "sha256": "baab0e57a7492954c83388d59a0632416f05b80e02837399cc9488d9091ffc0b",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/29/12.png",
+      "bytes": 80728,
+      "sha256": "45bdf5f28ef1f2ad9c887683f5886808c47376feab7b67e688c17b79a8a8b4a0",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/29/13.png",
+      "bytes": 89493,
+      "sha256": "bd4f1f5c5e82e371a1f5c36e8b5dd7332458c2663ddf2218003500a061207237",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/29/14.png",
+      "bytes": 95949,
+      "sha256": "3d293e1194a507272ca8367551d4d08859a18330410a5a3647368a5d8290fb74",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/29/15.png",
+      "bytes": 94970,
+      "sha256": "2571f5c972e60ad36c6b4b63b635948ce6bda0b0b363730f7cb23f240618fd9c",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/29/16.png",
+      "bytes": 101695,
+      "sha256": "fd07f82a9c24ccb72a93a9795e4f37b2eb7b0106e63c49d3e47497e807a63de4",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/29/8.png",
+      "bytes": 84377,
+      "sha256": "2e6561a587786531156cf9c4022870ea59dddd971c7e237ce42d36f7e33f637c",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/5/29/9.png",
+      "bytes": 67585,
+      "sha256": "8e62f93b3e303a3e0803a1cfbdcdc0c543b26ded3781ee6feae70afebe56cfe4",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/44/19.png",
+      "bytes": 31574,
+      "sha256": "c43631ba3d3bcf719f814c02995cae75cdead2254f23359b627eb40721ba9e10",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/44/20.png",
+      "bytes": 38639,
+      "sha256": "19b2482ce23c4cd9a85c0b425c050c2e6927b00ad0fbdfa323d39fc60eecc2f8",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/44/21.png",
+      "bytes": 49127,
+      "sha256": "cdc4f1288b458b39c4f8d27e6327f6732495a6c93475e8548ece37cd1fa53c57",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/44/22.png",
+      "bytes": 52715,
+      "sha256": "48f6a95d491097372481a0fa7c5d2121b8e4a79b59af50f2914a144ab8f02640",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/44/23.png",
+      "bytes": 68415,
+      "sha256": "4e35fc910942671c16cf4aed7c7871fa2b0fe0f83ab22a3e166e4cd5e2cb8ea2",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/44/24.png",
+      "bytes": 97106,
+      "sha256": "5fd62dbad0697ba7cfb6b286fc22099ec83ec7f124591c60dae6cd9a727fdd7f",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/44/25.png",
+      "bytes": 96636,
+      "sha256": "abac43f8c038ac2ea5a29592a39663724e528085413d85c68905399992b605db",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/44/26.png",
+      "bytes": 53934,
+      "sha256": "671c76fc39fd13a676f7a91af4a8b13378299bc45ca4e16d4ee7608ff5363896",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/44/27.png",
+      "bytes": 47147,
+      "sha256": "556c744e7e45b7e9b0b9c0d45d68015583fb9246683c9e773dbb4bd18932c497",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/44/28.png",
+      "bytes": 63809,
+      "sha256": "ead11d24c32da5f47bfb26b74fbba573dc04e05592234ee693c062b6f53f7c19",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/44/29.png",
+      "bytes": 77233,
+      "sha256": "68c68ef6b8bee3ad036af2331d657c52fda7a3e3095b5215360a474ef50a04be",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/45/19.png",
+      "bytes": 33763,
+      "sha256": "6f68d2a0c9551b6efc160ae0fa76f45103715a372d3c994140478a8a66922377",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/45/20.png",
+      "bytes": 30268,
+      "sha256": "f3f37dc5d68ac4b1fc7ee537128e2422558667b476c388a03165f5682ede331b",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/45/21.png",
+      "bytes": 56539,
+      "sha256": "54ff7e7a0facf1947414226858d1c5f05ba04e2ec04e611137ff060be6d8055e",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/45/22.png",
+      "bytes": 49195,
+      "sha256": "51f898c5672b271afcbdf411143c3ddf1265ae6cd39d32f609d081bb9e58a821",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/45/23.png",
+      "bytes": 80728,
+      "sha256": "4e11d632cf6012b500fc9042f005162a032b093cfb381ff7da1acb3dba3e68e8",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/45/24.png",
+      "bytes": 90821,
+      "sha256": "2a3cae72a213819ff9df3662cf133d8733d0e20ff683f5a70b7087e3645cf9cc",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/45/25.png",
+      "bytes": 105023,
+      "sha256": "1659c18295be7f68bc3a8f9d89aeffc427cd192f7858e24204f8ddb610a7c5f4",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/45/26.png",
+      "bytes": 49792,
+      "sha256": "f1716c11bca8702ea33d0c6fc3f27006cc20200e42e7a23ae990efdad39bc200",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/45/27.png",
+      "bytes": 62231,
+      "sha256": "70cc0c3d1d9fff28d8170a8829a2228820df8754e677ab6a54a04172cde88c43",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/45/28.png",
+      "bytes": 70919,
+      "sha256": "bb33e53fa8d739c28ad546e53d95cd0f2d0113b611e59e7a926f566b0517410f",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/45/29.png",
+      "bytes": 73541,
+      "sha256": "7f223ef4bab9e9c58a18562f5a449163a8fcb38ac00005207e73e5e0f19618f2",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/46/19.png",
+      "bytes": 33512,
+      "sha256": "3bf027e605ca048b1f0f65ed6931890f0802850ea18e0515d18834acca219340",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/46/20.png",
+      "bytes": 44336,
+      "sha256": "92de06e8c0733757957baa41997f73ff326a4d03d72ed0eed212fcad9a175b72",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/46/21.png",
+      "bytes": 70030,
+      "sha256": "4128b1db6cff4a675880c0ddf93150772344527d235e6ec393d6559c7859dba2",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/46/22.png",
+      "bytes": 71701,
+      "sha256": "e745f94097b275c60d0b891058f3417fd3c71b1e49fe124b9368f98ea2c5a497",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/46/23.png",
+      "bytes": 87434,
+      "sha256": "8f3a48402f4527ef083a0637fb61a70ac244ed006c1066e15901e97b99a4bf13",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/46/24.png",
+      "bytes": 45138,
+      "sha256": "8a744754e62da85e04534022ec08638cdbaca3d73bb9ea0d4a691cc4ce34740f",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/46/25.png",
+      "bytes": 96462,
+      "sha256": "d145177e9ef5df3d7cec4b64173014266bd7ac4a9fb9d7b00d945ecedc76c36d",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/46/26.png",
+      "bytes": 88416,
+      "sha256": "20ed9ba77e2fb31d2ef48d0f3f5789592ead8b2193e276fab57987ce52ab8fb2",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/46/27.png",
+      "bytes": 60057,
+      "sha256": "f3b03c8ccd07230c65c4c0fd20b26b6957622f8a916fa13a4124cdc2ac04ccee",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/46/28.png",
+      "bytes": 74331,
+      "sha256": "7cacc3636142e2c0a0d258acbf29a5f2056320eac44be49367b2a8d08b849203",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/46/29.png",
+      "bytes": 66592,
+      "sha256": "1c3ec3d4003349653a9d8ba1447802f39427ffaac0cdb35c3b01e2b45102d992",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/47/19.png",
+      "bytes": 44477,
+      "sha256": "5b51b2a4a5acfdacd35d92151fc1799bea8e710aab562ca5113f9f65f2fbcdea",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/47/20.png",
+      "bytes": 78287,
+      "sha256": "4af979dbef217b00f361ea29b95cf8dc2f559eec3456f06fd8b3374f246c049f",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/47/21.png",
+      "bytes": 96971,
+      "sha256": "94fea980c785944b6b9f5a1aeaee8903c7e93843bc87bc56dec2533a3193dcb2",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/47/22.png",
+      "bytes": 76460,
+      "sha256": "216b88c23898888cf9376f2b003c7bdf3df1f57c097550a6ee307dec903ea456",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/47/23.png",
+      "bytes": 77041,
+      "sha256": "b00ce4e786a0e46455d04663fac1e31c69ff80268ab7c45ad8bc2365bc4ca653",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/47/24.png",
+      "bytes": 65582,
+      "sha256": "f97676fd026cbc8d926390c97930ff67234b6bffb595dd01d90529a1f529e20d",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/47/25.png",
+      "bytes": 85111,
+      "sha256": "e302c052e7184e9973009f7f6112dd380348c3d5e985727653b0fdc54aca11aa",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/47/26.png",
+      "bytes": 100606,
+      "sha256": "ab22ac8c3cf684ff9e1582ffb613c976762b386171603cd6755eb35bde096aec",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/47/27.png",
+      "bytes": 50893,
+      "sha256": "606cc9b068c612377cfa80e1f6e4810c08d9992ce5ba5a29e0a1cc78abf92ac9",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/47/28.png",
+      "bytes": 63943,
+      "sha256": "ad62d072bda616d25d298de1daa2efdbf9e891b6777ce8a3ab37f9b1ce519b0d",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/47/29.png",
+      "bytes": 40107,
+      "sha256": "c1b6ed83c2d80439b5a715b06bb47eacdfc79f4f29e6d5f56c8ffff7d8485a42",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/48/19.png",
+      "bytes": 62454,
+      "sha256": "337dbbd0f4851dbd396eadf69a0c8f776b7c7ac52957ddf84755fb2c45c44e96",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/48/20.png",
+      "bytes": 86046,
+      "sha256": "aa680c6f95a2882d2c44c092254e57e3b26ebef4790f46442f6e56a5b4ebeb55",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/48/21.png",
+      "bytes": 88007,
+      "sha256": "dcb10e370211f03a8bf92210bc8217c9462d4e0c1f6c9f92acc201b4a331a48f",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/48/22.png",
+      "bytes": 86540,
+      "sha256": "1fcb7cb738f56206499ef82a31e411ef9fa60b52460eee79d2ad8c3cdc83dec3",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/48/23.png",
+      "bytes": 75460,
+      "sha256": "4fd46a5da1d91515b16123f9038a870aafece57d09c339f6333573905ca8c5dc",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/48/24.png",
+      "bytes": 74192,
+      "sha256": "2aafd3a6909cbe95cc067bf286001c3f640bbbd188a4888f7aa78d6d198756d4",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/48/25.png",
+      "bytes": 89505,
+      "sha256": "1767a534d13d9647a725491ea02c7f989c645b3107ee9332963b167c030d1fca",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/48/26.png",
+      "bytes": 103458,
+      "sha256": "9006fa9525e3543102d338da0644bcf4546f997cc02470fc7ea097bd706cf3bd",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/48/27.png",
+      "bytes": 78669,
+      "sha256": "56aeb2773380d1c52c4c5ab9e0b9ff867af7cffcb40ae60eef05176f69c92c1a",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/48/28.png",
+      "bytes": 70315,
+      "sha256": "086cdf064d7b1ebad9c841c01a62c0b551296cfd6238a4b6c10853c7384147ab",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/48/29.png",
+      "bytes": 72020,
+      "sha256": "3df47cfa2f0074f5427e185c256027a8359b45f191ef880a7f3aec5ee7de3ed4",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/49/19.png",
+      "bytes": 68341,
+      "sha256": "25e102fe420f8b5f872ae4c94aaa1f483716523c2e15107f510c7fe4bc3beba1",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/49/20.png",
+      "bytes": 88011,
+      "sha256": "20f11528cf3c50e65360b622856078e9053c462d1f340bc777e04290501b6b8d",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/49/21.png",
+      "bytes": 93096,
+      "sha256": "2cadf43b962cce2ff86b141f854d5be09dd3ba2dbefe5ccf4612df232ab88a8d",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/49/22.png",
+      "bytes": 90008,
+      "sha256": "049451cec7e85b26d65e8670bb2f9cdabac4651fb9bfb168e75555b0e04118d7",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/49/23.png",
+      "bytes": 69329,
+      "sha256": "219e9440205306ed5ee5f9b166e4f9225d0596fc04cde8255238f817764f5cb9",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/49/24.png",
+      "bytes": 83833,
+      "sha256": "b90338707ffb37f0f91fbef027fde2ef0760177cccbb2c3dac100903bb12d1cd",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/49/25.png",
+      "bytes": 94934,
+      "sha256": "b0dbc49fb46222f969a371accea9ee0267b5bc31aaa057b7ed953bb6ff882d04",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/49/26.png",
+      "bytes": 107171,
+      "sha256": "999ccbbcf671dcf9af389fa6ae09c9287073d24366f11bc0478334bc7f06fd04",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/49/27.png",
+      "bytes": 99578,
+      "sha256": "f0d3de81dae844c0431c0a2ba3cbdc7e514f58b26f2e5e7b4d894a47abc27f60",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/49/28.png",
+      "bytes": 90781,
+      "sha256": "3b36b00e8af003776e08974e234b38f9efe92f7b3be5722b592457eb071a1386",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/49/29.png",
+      "bytes": 65666,
+      "sha256": "10a0d6bfd0bf55663fe752a27c2417864240979370548b4135f7b1ec800275a6",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/50/19.png",
+      "bytes": 73177,
+      "sha256": "2d91b85a59accbdff99625e47a73d61add39d33239666b29caaf19d0950345fa",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/50/20.png",
+      "bytes": 79930,
+      "sha256": "b91554dcbc2fc8c1c0bc72f8c6df31dae934d4d270b87ad89486819df2ed3d61",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/50/21.png",
+      "bytes": 88486,
+      "sha256": "1ca73658c0ab379ea42e7a95b5392587b28dd67291fd07d84b39de55a55f2211",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/50/22.png",
+      "bytes": 78785,
+      "sha256": "4395c8fa65e6a62c75c6970a63aff2c0add31a01dee29edd6f9a54ec1a6d1ddb",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/50/23.png",
+      "bytes": 65402,
+      "sha256": "ea9aed04f12412fadcef919f8cf0ddb3c48b18b787e5ba8111d7b945f496d91f",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/50/24.png",
+      "bytes": 71804,
+      "sha256": "da736096b3157bcba82259919f58196aa741d3e27b9f9ea85cb9216204c14798",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/50/25.png",
+      "bytes": 97308,
+      "sha256": "b5ed862ec4a1f77241ebd6c15b329be353db4e12d4e3a05eaf7f598f4db3ae99",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/50/26.png",
+      "bytes": 96708,
+      "sha256": "2a4a52380f278339389de84b5d2bea3db79813d8b458c05c6dc33d09128d4ed2",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/50/27.png",
+      "bytes": 98656,
+      "sha256": "f02f13ca3f43da3a5987fa2c80f38bfd4130d97556cb54f53f273f4a91f01c88",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/50/28.png",
+      "bytes": 86621,
+      "sha256": "bf30d605fde7e9ddaa777af9ffef2acb92c0341ff924c122cdffdabf46caf1e7",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/50/29.png",
+      "bytes": 64882,
+      "sha256": "b703a2c4f5f25d9450220689320163a072ed45cf8c10b49493741b229b1909ed",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/51/19.png",
+      "bytes": 85121,
+      "sha256": "660f5b322b93fae4043ab59d9c75d14d67ffbaa7fd96c77eb93801ca1e36bde7",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/51/20.png",
+      "bytes": 82175,
+      "sha256": "7db579f12a675fb767f34124c8d8601c642ae0f198f61388667d1e5f5b113647",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/51/21.png",
+      "bytes": 88317,
+      "sha256": "27beeff68743d08e74cb6fcee465cc984dff581fff9249d7d4a633456a71297b",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/51/22.png",
+      "bytes": 72766,
+      "sha256": "8b2f9b061f201d3ed3580ece2be3d16eff9af9dd6e0fefd30c7dc11aa7479a5c",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/51/23.png",
+      "bytes": 62888,
+      "sha256": "79ef6e322309c7dc1906f75e8a9e71c8824678ca7dfca9959fa009c88ebaec86",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/51/24.png",
+      "bytes": 75235,
+      "sha256": "0fe2addc73347e97e8f9274d1b0dc6e2561a7eec4f401bbbf9cdf433910bf1fd",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/51/25.png",
+      "bytes": 91177,
+      "sha256": "432a98c7541e7b34f197768ce36a1ad1d9b7dcde7e7aa51bed120ae154c00523",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/51/26.png",
+      "bytes": 94315,
+      "sha256": "9e91b6c7c5594fe8d7fa328d7d70eb98d104530fd954735a499b8885e7c0172f",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/51/27.png",
+      "bytes": 90519,
+      "sha256": "183bb18b94b05dc0ca5a9e083925b016a7bd11828ecd88baf578fb3781054f23",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/51/28.png",
+      "bytes": 59186,
+      "sha256": "9c48fd1ed438d3cd1eb4fa271ec3578adc62a2e759096bbcc469c63ffbb06117",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/51/29.png",
+      "bytes": 86584,
+      "sha256": "abf3657d42550ac1702f78d6852a956caec025802394dfbaf507f28af2f83a56",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/52/19.png",
+      "bytes": 95702,
+      "sha256": "8dde27a12fda21f5fdc553f7e6dbf6a4621634239858bcc886d165b2b157aef4",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/52/20.png",
+      "bytes": 86122,
+      "sha256": "d18505f20dea1cabc2cc23a1ad63a087369ca313dc73ee7e83f590c747474bc0",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/52/21.png",
+      "bytes": 75766,
+      "sha256": "965e980bcd5926890a8aab822544f2bd17cf7dd7b06c420147390df817dd8155",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/52/22.png",
+      "bytes": 60799,
+      "sha256": "ee2e0969c08267a1d26787d3441b1ce8aef76d4597c06a3c0f72234602010ee5",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/52/23.png",
+      "bytes": 72996,
+      "sha256": "e29679dc4435c3f6a7e17912595262c4564786bc353ee0be5eaa834154a730e7",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/52/24.png",
+      "bytes": 65939,
+      "sha256": "51799399bda0877934159a1cbc8037796415047892843b01a1be41785816e2f9",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/52/25.png",
+      "bytes": 51253,
+      "sha256": "3d435e1cb3c9ddd54b553d6ab44bde06ae416ef5ac4c72b3863b202591078cd2",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/52/26.png",
+      "bytes": 77654,
+      "sha256": "0c7dbc54cb94ce0467140c43bab2b5e72d92e83732bacb8825f388dddba4cd45",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/52/27.png",
+      "bytes": 84503,
+      "sha256": "243ca657a77dcc441c32481ef801548e785f08d2e75e5d4780727dcc989c5a2d",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/52/28.png",
+      "bytes": 73700,
+      "sha256": "57d8e30517b832d6c408556031ebf23a53866b259598d023b057502ccbf8dd99",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/52/29.png",
+      "bytes": 87902,
+      "sha256": "098dad86a4ed451f490df0bed6f66cb1eca42e8acc647ba5b08834958dc7415e",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/53/19.png",
+      "bytes": 88266,
+      "sha256": "2f1d2cb1b74d6aa131411c4541b04f7c813cb3edb8b0e970692b598927880d15",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/53/20.png",
+      "bytes": 84537,
+      "sha256": "fff17d052b2c18cd4ffda35e1289d7d7a8445f2abf4b5c2b19e36d0f5eb759c5",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/53/21.png",
+      "bytes": 80960,
+      "sha256": "21e11d28422bd20b9129514437c912608b49836c14634cf38c879a66a3820322",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/53/22.png",
+      "bytes": 72339,
+      "sha256": "44fa750109b2725f1bf52936dba5f1da7faaa41e7405cfff54b9dadf805aacfe",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/53/23.png",
+      "bytes": 64917,
+      "sha256": "9e8ad7782931f391c62498672e4d08352aa730d8351e73a74e1355d9e50a80ce",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/53/24.png",
+      "bytes": 49211,
+      "sha256": "1e1c3b602b11368609b6f3563079e6b4831d4abdb25fb2ab31daa16a0885dcc9",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/53/25.png",
+      "bytes": 35800,
+      "sha256": "735519ddf88b64e18062c6dc90c4fbc875b7e9f42b757768d67042010b9faae9",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/53/26.png",
+      "bytes": 64336,
+      "sha256": "6be73894e7e0d1ac8fe2e5ae1f2d92b057e933fc2c624b77f308e52161d96cac",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/53/27.png",
+      "bytes": 76229,
+      "sha256": "77b59a0d5b64d0c717cc3318a97f0a1c826788686c29c4f56df6ef5d39bf82fa",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/53/28.png",
+      "bytes": 91719,
+      "sha256": "05cfe54b78b8551d3a61fa3b6578b0c12827b4447e2bdb97f1e7b9f5faf97176",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/53/29.png",
+      "bytes": 88144,
+      "sha256": "b053e62d313b7c9b58c784da41df438ba6bdcef9aad878216eb773a685aa9bfe",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/54/19.png",
+      "bytes": 88142,
+      "sha256": "e9f4fbd92ca7f73a056ed85288291dd2967b5fe86f78de0a9b73ab30348394e1",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/54/20.png",
+      "bytes": 74607,
+      "sha256": "3948d862ea7940579e7257396aaec782f676c1b527eeac9f4711f553f39c7873",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/54/21.png",
+      "bytes": 68186,
+      "sha256": "fd42ef1d6be57fbcf4aabf2a4bcf12f58632febca703c51477027227d885dfef",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/54/22.png",
+      "bytes": 60433,
+      "sha256": "a91477d1944dfc417b41c99ac8efda5fe3bf183cfc1faf52c60685ed6749e731",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/54/23.png",
+      "bytes": 80415,
+      "sha256": "a2756235d93ab7daae367c3ad99067b1a686b8bafb52144cd9bc3351b8caed1c",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/54/24.png",
+      "bytes": 80550,
+      "sha256": "04ff2c9e11ff6c42a35729fae73d24c7af01a434083871be873717f98d429307",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/54/25.png",
+      "bytes": 55556,
+      "sha256": "e35a0d950f1105384e1ae88a2f070eb3f4c80e4ba4c090ff26d8a981564e639b",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/54/26.png",
+      "bytes": 53128,
+      "sha256": "9cef53f9413738f662504ffe3a4889b3370f3c3a2e483e41fcd31624e16c108b",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/54/27.png",
+      "bytes": 91253,
+      "sha256": "738c834a22bba33263d1f8d2a96a559478ce1f7dfa3dfea68ba48a5dfc28bff4",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/54/28.png",
+      "bytes": 91554,
+      "sha256": "76e2142e9b677157b31189ca8179bd856deaca1573c18d83c8d4aaad409ba50b",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/54/29.png",
+      "bytes": 90430,
+      "sha256": "8e239f89b956e6e1a0c719a2071993fd1ad23939951bf423fa7a8c9dd276c68a",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/55/19.png",
+      "bytes": 90023,
+      "sha256": "0751846d4ec6832846cdf04d1d31ac7d55f3dc81cf51cfa1f86f343348b835fb",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/55/20.png",
+      "bytes": 88134,
+      "sha256": "18320b1926a5156a1a1894033f62f2fedd4f549744837f85f19a68ade710ee86",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/55/21.png",
+      "bytes": 83898,
+      "sha256": "e7c889b1130c7bf61bfeba0c9982021d60a63f85839888dd8b2dd067faba3676",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/55/22.png",
+      "bytes": 64305,
+      "sha256": "0ff4d3416fcb9eb8b0812475c51cdf32733828f8b311ade0327153cd8bdbfa9f",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/55/23.png",
+      "bytes": 82819,
+      "sha256": "6685c56b709d8927b605a604aeffffb037473f4ca20523037b52f68d92e7482a",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/55/24.png",
+      "bytes": 83679,
+      "sha256": "3615b4ca36b46199629ce6394c3c79e05fb78ec9579abd04d3fc50b25c136d30",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/55/25.png",
+      "bytes": 77855,
+      "sha256": "f67bc8c577c30929b5d8da9f88ba6e567e7ac3149dbfd8be15955bfcf725bce7",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/55/26.png",
+      "bytes": 89566,
+      "sha256": "cc9781155c3ea03c5d5b2a8732631fce4679cd1df66fa28cc01a53e2dc21e359",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/55/27.png",
+      "bytes": 92992,
+      "sha256": "2de9cb9c275501ca44d76f4a59d0336cab563a9b78227c88a22434afe76ce00e",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/55/28.png",
+      "bytes": 83427,
+      "sha256": "157013e91aad5eaf6ed6b4387c892b7b3740b9cd5b27676de1d884376aad5655",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/55/29.png",
+      "bytes": 92241,
+      "sha256": "d925cef920776aa1d62577a6539f32ba940013c398dcb1dd3055b33c5a39d841",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/56/19.png",
+      "bytes": 77809,
+      "sha256": "265de166a6d5289d3ac0fae4dab7ac7141586d27a967730d728d806181b9cf64",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/56/20.png",
+      "bytes": 66918,
+      "sha256": "189295baa3660bd966374fd6298dc962727078c587dbecc81bc5f4679767dfa1",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/56/21.png",
+      "bytes": 81312,
+      "sha256": "26dd4878847757165b329863c0599744500bbf1f3eee72a9c7b431a5587555ab",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/56/22.png",
+      "bytes": 83931,
+      "sha256": "0bd9507a4acfc04b03ddd826e440e798f8fba2a370f9897cd56489540d102b13",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/56/23.png",
+      "bytes": 75219,
+      "sha256": "7296ee4075e6041be218feb8d6f8b9e0f6c8c911ffbd041dafb4b0533b9776ac",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/56/24.png",
+      "bytes": 85923,
+      "sha256": "d2f1c3c2dff23366a5a9bcf3d413ef4082a53688fd9b6e0fca20366ef06da337",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/56/25.png",
+      "bytes": 89363,
+      "sha256": "3c95672284dbb97bae8a46ced3d729c2d41273ab4e67d78c0d23808484267d85",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/56/26.png",
+      "bytes": 89917,
+      "sha256": "c25b9b9137e46a38b5111e472c37e861dfd239461406db7734f69209e00695df",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/56/27.png",
+      "bytes": 94049,
+      "sha256": "2a149516c517f554e2bdb93cbea22a1beddc60391f98247b41dd4c168bab922f",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/56/28.png",
+      "bytes": 94127,
+      "sha256": "7e0ff97506843bd8367efdc4fc875f8df30cd157030f5f8e9f739cb2e0cb1743",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/terrain/6/56/29.png",
+      "bytes": 96306,
+      "sha256": "713b097bed76c10d3560595aaf240bfdd4876b1d117806193797ac7f1f4e680a",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/gis/timeline-shanshui-concept.png",
+      "bytes": 2155671,
+      "sha256": "be395efad92afca29d022ed9f699aa0f448ce3a5e7d06b75792ad638e79e6ecc",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/home/home-ambient-loop.mp4",
+      "bytes": 4106204,
+      "sha256": "5f4d7eff0a060a013f0fb5a785b009e36a2a6610cc8e61c37eba834b77f711ec",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/home/home-ambient-poster.webp",
+      "bytes": 99014,
+      "sha256": "424b28e4db5b0d647780b0d3622c0b6c19d4cf437864cecbac090d8d98024492",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/model3d/body_diffuse.png",
+      "bytes": 1875378,
+      "sha256": "8447d99c07ae2a44c2eab2011d19e214075485509edb2694990ebf2682f0ad7b",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/model3d/body_normal.png",
+      "bytes": 2509320,
+      "sha256": "8796a83b58af5096e343f6d44e4c52fef151ef67b712127083f2a72ceb1b71ef",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/model3d/body_roughness.png",
+      "bytes": 316250,
+      "sha256": "1f6ca49a4cedeaa1d9d9db37c7994c073edf457f27cf3cc573d5e1f9c545b60e",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/model3d/crown_diffuse.png",
+      "bytes": 855332,
+      "sha256": "695304965751537be3bc94c1d65a683cde90373c8d2b04b5ec20f99bce798b01",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/model3d/crown_normal.png",
+      "bytes": 1170746,
+      "sha256": "c66ce57e5238b215e85c59c85b73a212877ba0319dc71c19208bd7ee1ed175ad",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/model3d/crown_roughness.png",
+      "bytes": 141261,
+      "sha256": "6024a328553f1c803287dc37567bdc75b4678c2acf12c16cad91f8f8b43a04fd",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/model3d/final/stele-final.glb",
+      "bytes": 25601688,
+      "sha256": "c39a5f7dac50b9e6a04bf607f1a8ce40b1be9dc4d76d49662bdd84fca4a78772",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/model3d/final/stone_ao.png",
+      "bytes": 2141884,
+      "sha256": "40672bb9164e48c6a44f3f4878bcfc0d63620e835836889fb35829b9af8196c4",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/model3d/final/stone_basecolor.jpg",
+      "bytes": 5003171,
+      "sha256": "c7e79fc6e943910471a802de3dae6a69d5de36f9f99e35a70761ea935d7051c7",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/model3d/final/stone_normal.png",
+      "bytes": 5921832,
+      "sha256": "19ddca6d8ba649f80343b1fcbf87348d282bc4b4ba00b623835a19cc45cc6eb4",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/model3d/final/stone_orm.png",
+      "bytes": 2124422,
+      "sha256": "fc5038184f2642b83cd808e83a567794c25ed5822986626cb610a251d0350880",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/model3d/pedestal_diffuse.png",
+      "bytes": 923199,
+      "sha256": "13757b2c6b5e2c9eccb444706f210ed663190c23ece8a2cc8e43da66ed25f015",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/model3d/pedestal_normal.png",
+      "bytes": 1249118,
+      "sha256": "e15d003d85b601fd58c44c2e55ed7fc3cdd26460ef7023598acee56e5a7673da",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/model3d/pedestal_roughness.png",
+      "bytes": 143306,
+      "sha256": "a40a960eb90a79c57c84453746c524e37c77abd688a43f47cea62c3c170fd0e2",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/model3d/stone_seamless_diffuse.png",
+      "bytes": 206975,
+      "sha256": "e201c9377ce5ef9efa152d4a3ff43b25118e24022fb3f05643509df242303e02",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/model3d/stone_seamless_normal.png",
+      "bytes": 538625,
+      "sha256": "77cd30de5589b5795848b6e1218525fa860890e0490a43aca09f95dd60326df0",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/model3d/stone_seamless_roughness.png",
+      "bytes": 62231,
+      "sha256": "adc4b0396238357786f4f94ee54c79a47b2022189b222b2fa5597a31dd3360ca",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/model3d/stone_side_diffuse.png",
+      "bytes": 131463,
+      "sha256": "e30e7df5a5ca1308e0ec5c0670dbc4fbd4e008ba8c5a8a2e5be00c5bb7bc7f5a",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/model3d/stone_side_normal.png",
+      "bytes": 308171,
+      "sha256": "83a83d377922c87a6732e5188ceb9d0cc070ac93c935566e549b209d08d820a2",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/model3d/stone_side_roughness.png",
+      "bytes": 36872,
+      "sha256": "9fd6d1565d96ef68b72a35a5281b1c095b5038924a54f858d78dd95601f20e4c",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/han_01_caoquan_archive.jpg",
+      "bytes": 1208326,
+      "sha256": "8cc91f116d1de99a32bd55e7512ae02707cf91c87b6f59ef00d7c4d471b38a8d",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/han_01_caoquan_cover.jpg",
+      "bytes": 545639,
+      "sha256": "b441ecf8abad25d76b61365f490a175235b520af4465d3b280f2d28b43343a19",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/han_01_caoquan_readable.jpg",
+      "bytes": 1780032,
+      "sha256": "e585c3231ba491e2b8ce0494da52fb8e375e7525673344acc2650d73b8c0dbd2",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/han_02_yiying_archive.jpg",
+      "bytes": 2160037,
+      "sha256": "95f3357e4c9b0a04eff52ad1c93a615b1542b929b968ec647fc171801b139014",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/han_02_yiying_cover.jpg",
+      "bytes": 799812,
+      "sha256": "402e644868a67675e0037853b1ec594a73b758745cdf9fbc33bcb1ad2012dc3f",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/han_02_yiying_readable.jpg",
+      "bytes": 3138005,
+      "sha256": "5aec3d3a705eda460c90da28c5bb0d63f24b386b4421fa02607e4964d6a527c7",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/han_03_liqi_archive.jpg",
+      "bytes": 2270705,
+      "sha256": "7b5f373e3b3ce452c43140a2ca950ce755dfd1f5b3379232f769eb6ae0d168da",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/han_03_liqi_cover.jpg",
+      "bytes": 903961,
+      "sha256": "dbb371ce66eca05b01f5d096b4a76bfc806beb78a8fdc55a21faf1fad96d2ffa",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/han_03_liqi_readable.jpg",
+      "bytes": 3516197,
+      "sha256": "bf5787e578fc2203c2955e13ee3c83ed5b325f2e5d32ca6779777e2d65666bfe",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/han_04_shichen_archive.jpg",
+      "bytes": 3519109,
+      "sha256": "082a8bfcf47f4d3e90555f262afadda436a80887943de1b5f3130d23f61f522d",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/han_04_shichen_cover.jpg",
+      "bytes": 620533,
+      "sha256": "bbd956f4543d5f4331dd15b999f6245da5006616df551f9e1f8bfa52b6b29cad",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/han_04_shichen_readable.jpg",
+      "bytes": 3825281,
+      "sha256": "952e2e42fd9886d57ef0b832384b9281047b27b8886044e420a510a8060ddf2f",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/ming_01_xianfu_archive.jpg",
+      "bytes": 1630883,
+      "sha256": "217d36e301a81f0b1fd869db86a45fa79dbb9fd8bb795c7e901068838f450017",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/ming_01_xianfu_cover.jpg",
+      "bytes": 760212,
+      "sha256": "eff7525128ccaf49dfb517c344da12a0504846058ad7c525563cc9bf99fd347d",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/ming_01_xianfu_readable.jpg",
+      "bytes": 2699556,
+      "sha256": "70d472b2c7f61830f52c41683fbd99f43c093947ca519622e8951dc2be214d2c",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/ming_02_luxianzhi_archive.jpg",
+      "bytes": 1061782,
+      "sha256": "316f3e564460127a1255850cda82bb2bee7e3c72b4b5d1f8790f99c9fe175799",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/ming_02_luxianzhi_cover.jpg",
+      "bytes": 447521,
+      "sha256": "169c105086e8f4417b345a50d63f1d893afe2e255ac0ca9779829c04b0f315a3",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/ming_02_luxianzhi_readable.jpg",
+      "bytes": 1154357,
+      "sha256": "ccdb8b6adbb28f69ee074cb21d088c60cfe89770169873fd2d2f978a8d408b53",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/ming_03_wugou_archive.jpg",
+      "bytes": 1720719,
+      "sha256": "641a4eb90426d8a1f86e8fb265c50f13e95409976d5d4fbcbc8cef22d862fd6f",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/ming_03_wugou_cover.jpg",
+      "bytes": 602064,
+      "sha256": "fc23453582abe8fba843ff3aea2f51a4bac398e1bef7a43ffafa93725bd1c2a1",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/ming_03_wugou_readable.jpg",
+      "bytes": 2294258,
+      "sha256": "f9dde51133ab9938b86aef5ce52b63a3b26b5ab8cbd313dd82b817418eaceaf9",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/ming_04_tongdian_archive.jpg",
+      "bytes": 1444032,
+      "sha256": "73d02b4d540c17899c258080b5f3489d92b00e8edd04d77288574cc589b933c5",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/ming_04_tongdian_cover.jpg",
+      "bytes": 653259,
+      "sha256": "1a2c34a09236016e89414744f327787e52c537569bdacda7ec33877eb5191462",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/ming_04_tongdian_readable.jpg",
+      "bytes": 2528648,
+      "sha256": "a7c277dcfab319521377fa3a9277827ab3d2ffe1799a07a9f60d99e870693b7c",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/qing_01_qianlong_heart_sutra_archive.jpg",
+      "bytes": 557081,
+      "sha256": "504851fefe45202105241d4590793e32df14ee552d9c4e42a6bcb846b6259dec",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/qing_01_qianlong_heart_sutra_cover.jpg",
+      "bytes": 783131,
+      "sha256": "6d9c3beef4fc1fc8435672767ad5e257d60f7ec407c6c7d9676646eb82b47a79",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/qing_01_qianlong_heart_sutra_readable.jpg",
+      "bytes": 1166803,
+      "sha256": "72cc05f5ad38039f298ff2c0c05f4fb9def0d55912bd3a111f5f35f739f734b9",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/qing_02_wushi_reerection_archive.jpg",
+      "bytes": 2031649,
+      "sha256": "948ac3c851bcb84bdb6dafa4856db3c79f0ea4342a31527bcbbf5972295e3ded",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/qing_02_wushi_reerection_cover.jpg",
+      "bytes": 1009779,
+      "sha256": "14c67c9a42c1dc35f37a74c10d720917cb8d2f10b810b353f51ce02c1d31a5a3",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/qing_02_wushi_reerection_readable.jpg",
+      "bytes": 4465055,
+      "sha256": "551b3c7a4a8c83f989a1d44b3c9c941b34f6c4eeb55c677c2940a29a7fb246e6",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/qing_03_sanxitang_preface_archive.jpg",
+      "bytes": 2606905,
+      "sha256": "3d007db7a35d1a74c7562584cf9ad391f39e38fe89ecec969dbe3ceee97ed7dd",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/qing_03_sanxitang_preface_cover.jpg",
+      "bytes": 559324,
+      "sha256": "d32eaa9fdd265f64be7dc64d547a72771352fcd9584c5dc304ebb7c899314a56",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/qing_03_sanxitang_preface_readable.jpg",
+      "bytes": 3134223,
+      "sha256": "5d59ef8ebd9407c17bf14f53222aa7539bf6e917a9c07d3531723f61706f1ac3",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/qing_04_ayuwang_reliquary_archive.jpg",
+      "bytes": 611666,
+      "sha256": "336b48bb4babbd1c6c10b193df45791f6ff349bc68cd846af268a75f82a565ed",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/qing_04_ayuwang_reliquary_cover.jpg",
+      "bytes": 972362,
+      "sha256": "ad742b2565c05a3c6533c991f55a4e4e08d179435aa95dfcb51d77577a96a4d7",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/qing_04_ayuwang_reliquary_readable.jpg",
+      "bytes": 1280005,
+      "sha256": "87cca76e152c4c9b4125e24859c30664f4606711f6aaac4f95eb088d58eb03ad",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/song_01_yuanyou_archive.jpg",
+      "bytes": 2527963,
+      "sha256": "d5f83e8d84bfa59ee8c5958fdd1fffced857d45be49709ef3a9a73931684893b",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/song_01_yuanyou_cover.jpg",
+      "bytes": 1149716,
+      "sha256": "23aeab3b0c6f26e8b2fa3449e017bdc240c7161df8394485c6688abad428683c",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/song_01_yuanyou_readable.jpg",
+      "bytes": 4067348,
+      "sha256": "20e25ab7b522971efd135fbc0a73387d5899ed4f044afbef2b90aa5cc0ec2975",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/song_02_wenxuan_archive.jpg",
+      "bytes": 1793456,
+      "sha256": "15803083f5d0c32a77dedd8f88bce233c5943df1c64de9c34afd338e1783362c",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/song_02_wenxuan_cover.jpg",
+      "bytes": 547311,
+      "sha256": "43d7e31f2b014899f1e2fc06084a7433c7c22e8d4d7525e1d38540b487493af6",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/song_02_wenxuan_readable.jpg",
+      "bytes": 2448875,
+      "sha256": "3564d46727fa2f9157d77a43df4a4b988de875eb2166a5d5ab98bd540af9d2da",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/song_03_daguan_archive.jpg",
+      "bytes": 2123246,
+      "sha256": "c84b847543c96af9b40643c1b48a0f3d78b3a4cd0dc4706b7c7e8b5da6cac9d7",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/song_03_daguan_cover.jpg",
+      "bytes": 691255,
+      "sha256": "e550430440d9c52f21ab56dd4de239a884b50409761aac787575fdc3fe1767d3",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/song_03_daguan_readable.jpg",
+      "bytes": 3118139,
+      "sha256": "2630a62ec73a363fdeaddb0f35afa0c693df879c9beddca581f523f964955a45",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/song_04_mengying_archive.jpg",
+      "bytes": 4392780,
+      "sha256": "fe0bbfb58960f5bf8d6c5e2becc1d4e99847b7258053e118385d9422228ea8fd",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/song_04_mengying_cover.jpg",
+      "bytes": 1057288,
+      "sha256": "0fa2e4ec1ef48fe71bcbd65c0e4a88df510ef3a283fd9ff70f98e4428317c562",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/song_04_mengying_readable.jpg",
+      "bytes": 5200355,
+      "sha256": "2fa87d2293ef3b99ce74392408466264f32e7bdf057d04b3b82c69e806aac424",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/tang_01_duobao_archive.jpg",
+      "bytes": 1223759,
+      "sha256": "989671354f3e716d030aedd20179766a989f15b640b2b44397bf030ae5da98f0",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/tang_01_duobao_cover.jpg",
+      "bytes": 541470,
+      "sha256": "9ec2c2847a0be8e222830fa11aab50083abef2c2c78fa74676640e177a44c036",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/tang_01_duobao_readable.jpg",
+      "bytes": 1472426,
+      "sha256": "e59f12e90d4804a08e9db63523725223478986c9148b4a62c6012db0610971c2",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/tang_02_jiucheng_archive.jpg",
+      "bytes": 1077173,
+      "sha256": "4ad64079d75975babcf67e84eb7f77d0ee4193337f62efbf1e0d900e8be01705",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/tang_02_jiucheng_cover.jpg",
+      "bytes": 517917,
+      "sha256": "de15d1e00ede79e7a8925131994018b5fd69ebc3888c2921ef1f087793aff019",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/tang_02_jiucheng_readable.jpg",
+      "bytes": 1030969,
+      "sha256": "4317318d2de973e92fcbc3c933c6862a22e3a197552a54d87ee8a6de21de04e3",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/tang_03_yanjiamiao_archive.jpg",
+      "bytes": 1063169,
+      "sha256": "9930703f92852b4b825fba3c3aeb2bb0c1aab2ae54c5455c2f95a50a92a37486",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/tang_03_yanjiamiao_cover.jpg",
+      "bytes": 550873,
+      "sha256": "9b714e179949d016440b7e0666873ecb69b50866b89bd6222f956cea85153e82",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/tang_03_yanjiamiao_readable.jpg",
+      "bytes": 1390831,
+      "sha256": "5603575174433ce8d9bbe5e8bde8c8baa27e7f73228497b8952cc330b7e385d8",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/tang_04_xuanmita_archive.jpg",
+      "bytes": 1604802,
+      "sha256": "65a3af290040f11c40eb9fa734f502e559f760d25f8e20232d6722b050d75666",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/tang_04_xuanmita_cover.jpg",
+      "bytes": 698702,
+      "sha256": "446dbe140a02c712cdbbafaf2ad38f9e878ffcb4ff2c3678fb79960ff75faa57",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/tang_04_xuanmita_readable.jpg",
+      "bytes": 2110341,
+      "sha256": "221d42a2a7fb20b2e9985f4555d764fca3f869fae63c87b0532383fc49424644",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/wei_01_zhangmenglong_archive.jpg",
+      "bytes": 2075254,
+      "sha256": "d737b734ae97ba3314c13a973bcc9d5e411875a98596135c0d39f04d966d61a7",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/wei_01_zhangmenglong_cover.jpg",
+      "bytes": 871811,
+      "sha256": "748b0f816887dfb069f4883b60e9998d0f9a71cad89a6d1f6becd21acde771a1",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/wei_01_zhangmenglong_readable.jpg",
+      "bytes": 3291734,
+      "sha256": "2e884fdf44d1e9b3b1e57dfc325e6202fcef0ae42fc8f9f02a5311a8c0fefa79",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/wei_02_wugaoli_archive.jpg",
+      "bytes": 1177137,
+      "sha256": "06a31b7c673b08a748c3f48a98d19ca85bdaaad90a458b75d3882f0f00cec9d2",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/wei_02_wugaoli_cover.jpg",
+      "bytes": 949807,
+      "sha256": "5e9058d374150808fb9b7b351ea39b0396de966dde92f253f8c410566ad21481",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/wei_02_wugaoli_readable.jpg",
+      "bytes": 1083263,
+      "sha256": "12a8bfe268ddc8ba308e250922afa861cef6eda6ac748174d1a99724f63dd6f6",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/wei_03_kouyan_archive.jpg",
+      "bytes": 2276777,
+      "sha256": "6da605988e6baef47baad6fecbf15ff08187693f103a57f7e8c2b73b7a822fdd",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/wei_03_kouyan_cover.jpg",
+      "bytes": 944935,
+      "sha256": "dcdfa6b0b68b2ca2dc7d912dd65e22eabbc04c41615cb1afc882ec9b28ea0e90",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/wei_03_kouyan_readable.jpg",
+      "bytes": 3656911,
+      "sha256": "9c26464baff318f32e90c4242c96c3f570d778e887e278a118f43875cf069210",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/wei_04_wangsong_archive.jpg",
+      "bytes": 1701128,
+      "sha256": "358f2dd054de4be97af1cfeed923897d3bed4ccfccb48a1e78b2676a1570ac12",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/wei_04_wangsong_cover.jpg",
+      "bytes": 922851,
+      "sha256": "0ba604dba920062a422e926bb1e2744cc227a10888a30d49e32193a947806d9d",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/wei_04_wangsong_readable.jpg",
+      "bytes": 2459108,
+      "sha256": "8d6406fb19dbfdd306eb5aeac8fd8d1858d2988fb69580641ed439d1c85503f2",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/yuan_01_yufu_archive.jpg",
+      "bytes": 1455175,
+      "sha256": "1f4654d528ae5add18de271effc6154de5f89a424f4a3d312b6480692659b595",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/yuan_01_yufu_cover.jpg",
+      "bytes": 688462,
+      "sha256": "ede7c0809ab17c5716d1081663e6c04e8a2d48a5cb5cf0652bc8d6526c48be6b",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/yuan_01_yufu_readable.jpg",
+      "bytes": 1833566,
+      "sha256": "1b1beea0dd67cf7186b5f58314d64a0090e60cf174631b44175625510e6077b0",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/yuan_02_sundeyu_archive.jpg",
+      "bytes": 2459563,
+      "sha256": "f03f52d3ddc31231473efc1c267fe43260c3ca1a8e8e031eb3fc45562b755b31",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/yuan_02_sundeyu_cover.jpg",
+      "bytes": 706469,
+      "sha256": "bedbe212f28bb47a99c3cdb62c9a8ff9b0f610a6c0cd8976acb83176899478a0",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/yuan_02_sundeyu_readable.jpg",
+      "bytes": 3786032,
+      "sha256": "3ada3ac0a7ae548f16841c40b8541b9697a0f2751ec11847aa11f45c9adcf8c9",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/yuan_03_shengzhu_archive.jpg",
+      "bytes": 2262768,
+      "sha256": "c59d95488c1d641b8a5d438d1dc04e3920aed3061265f372203385adec303c98",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/yuan_03_shengzhu_cover.jpg",
+      "bytes": 710543,
+      "sha256": "30bf1fc731dfb3151c8a74ff75fe869d21f05e5b3aa477f2cd307fc806be745b",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/yuan_03_shengzhu_readable.jpg",
+      "bytes": 3406507,
+      "sha256": "7062c2d1b5bcdb2574c422da4c07a2042f78812666065447d15f8befaaad9e62",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/yuan_04_jingyuanchang_archive.jpg",
+      "bytes": 2403852,
+      "sha256": "bc98a3330757bceab3c05a270e8d6759eb2c4e36a206adf23e3b0691c6ee8ca9",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/yuan_04_jingyuanchang_cover.jpg",
+      "bytes": 891350,
+      "sha256": "afcac05d9fb1d2e3c29a21f8607514b82641e6e76ed3f57701ffdcd9f2046ebb",
+      "matchesRemoteBaselineBlob": true
+    },
+    {
+      "path": "apps/web/public/assets/stele/museum-rubbings/yuan_04_jingyuanchang_readable.jpg",
+      "bytes": 3763588,
+      "sha256": "fcd557011d464cdf2224f2dadebc8f1e6d6f8cc8fbfffd3f917584023a5b0fa2",
+      "matchesRemoteBaselineBlob": true
+    }
+  ]
+}

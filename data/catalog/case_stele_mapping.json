@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "status": "partial-unreviewed",
+  "note": "Phase2 R6: caseId(domain=experiment/core-sample) <-> steleId(domain=museum). Without human_reviewed mapping, UI/report must not claim the same artifact.",
+  "entries": [
+    {
+      "caseId": "tang-duobao",
+      "steleId": "tang_01_duobao",
+      "relationship": "same_work",
+      "reviewStatus": "unreviewed",
+      "note": "同一碑刻题名；不同图像及实验身份，不证明为同一馆藏拓本。",
+      "source": "data/catalog/core_sample_links.json"
+    },
+    {
+      "caseId": "han-caoquan",
+      "steleId": "han_01_caoquan",
+      "relationship": "same_work",
+      "reviewStatus": "unreviewed",
+      "note": "同一碑刻题名；不同图像及实验身份，不证明为同一馆藏拓本。",
+      "source": "data/catalog/core_sample_links.json"
+    },
+    {
+      "caseId": "wei-yuanhuai",
+      "steleId": null,
+      "relationship": "demo_only",
+      "reviewStatus": "unreviewed",
+      "note": "未核实与28件中某一具体馆藏一致，不建立强制关联。",
+      "source": "data/catalog/core_sample_links.json"
+    },
+    {
+      "caseId": "wei-jianyi",
+      "steleId": null,
+      "relationship": "demo_only",
+      "reviewStatus": "unreviewed",
+      "note": "未核实与28件中某一具体馆藏一致，不建立强制关联。",
+      "source": "data/catalog/core_sample_links.json"
+    }
+  ]
+}
