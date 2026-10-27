@@ -15,6 +15,9 @@ def run(url,out,video=False,exercise_run=False):
     with sync_playwright() as p:
         browser=p.chromium.launch(channel=os.getenv('RUBBINGMIND_BROWSER_CHANNEL'),headless=True,args=['--enable-unsafe-swiftshader'])
         context=browser.new_context(viewport={'width':1440,'height':900},accept_downloads=True,**({'record_video_dir':str(out/'video'),'record_video_size':{'width':1440,'height':900}} if video else {}))
+        # Exercise full motion independently of the runner's CPU count. The
+        # low-concurrency policy is checked in its own context below.
+        context.add_init_script("Object.defineProperty(navigator,'hardwareConcurrency',{get:()=>8})")
         page=context.new_page();page.on('pageerror',lambda e:errors.append(str(e)))
         page.on('request',lambda r:requests.append(r.url));expect.set_options(timeout=30000)
         def goto(**patch):
@@ -136,7 +139,13 @@ def run(url,out,video=False,exercise_run=False):
             goto(view='artifact',runId=real['runId'],steleId='qing_02_wushi_reerection');expect(page.get_by_role('alert').filter(has_text='不在').first).to_be_visible()
             assert download('wrong-owner-report.json')['runId'] is None
             checks.append('real run report, return to workbench and wrong-owner run rejection without data substitution')
-        reduced=browser.new_context(viewport={'width':1366,'height':768},reduced_motion='reduce');rp=reduced.new_page();rp.goto(url+'/?tab=reports',wait_until='domcontentloaded');expect(rp.locator('[data-motion=reduced]')).to_be_visible()
+        low=browser.new_context(viewport={'width':1366,'height':768},reduced_motion='no-preference');low.add_init_script("Object.defineProperty(navigator,'hardwareConcurrency',{get:()=>2})")
+        lp=low.new_page();lp.goto(url+'/?tab=reports',wait_until='domcontentloaded');expect(lp.locator('[data-motion=reduced]')).to_be_visible()
+        lp.evaluate("()=>{document.startViewTransition=undefined;window.__studioFallback=0;const original=Element.prototype.animate;Element.prototype.animate=function(...args){if(this.hasAttribute('inert'))window.__studioFallback++;return original.apply(this,args)}}")
+        lp.get_by_test_id('studio-module-images').click();expect(lp.get_by_test_id('report-main-stage')).to_have_attribute('data-panel','images')
+        assert lp.evaluate('window.__studioFallback')==0
+        low.close();checks.append('low-concurrency devices switch panels without forcing FLIP animation')
+        reduced=browser.new_context(viewport={'width':1366,'height':768},reduced_motion='reduce');reduced.add_init_script("Object.defineProperty(navigator,'hardwareConcurrency',{get:()=>8})");rp=reduced.new_page();rp.goto(url+'/?tab=reports',wait_until='domcontentloaded');expect(rp.locator('[data-motion=reduced]')).to_be_visible()
         rp.wait_for_timeout(100);assert rp.locator('.report-page').evaluate("e=>!e.getAnimations({subtree:true}).some(a=>a.playState==='running')")
         reduced.close();checks.append('reduced motion shows final values without CSS entrance animations')
         offline=browser.new_context();offline.route('**/api/**',lambda route:route.abort());op=offline.new_page();op.goto(url+'/?tab=reports',wait_until='domcontentloaded');expect(op.get_by_role('alert').filter(has_text='实验数据读取失败')).to_be_visible();expect(op.get_by_role('button',name='重新载入')).to_be_visible();offline.close();checks.append('backend unavailable and unknown experiment states are explicit')

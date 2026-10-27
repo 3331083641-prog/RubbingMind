@@ -33,3 +33,7 @@ Taste 实际调用 `draw.mjs --app`、`lint.mjs --app` 和 `inspect.mjs --app`�
 A24 仍为候选 / 人工采纳字形的导出标签 schema 未完成；局部 ROI 从实际局部处理到持久化和跨页报告的完整闭环也是独立待办。后者需要新的后端处理契约、记录持久化与评测，超出本次视觉和必要兼容修复范围；现有 ROI 预览与推演不冒称局部修复。保留预期失败，未伪造真值或关闭待办。
 
 审查与技能记录见 DESIGN_AUDIT.md / VISUAL_DIRECTION.md，默认文字取舍见 CONTENT_REDUCTION.md，交互约定见 INTERACTION_SPEC.md。GitHub CI 和最终提交以合并 PR 的检查记录为准。
+
+## CI 复核
+
+PR #12 首次 CI 的后端、前端与资源校验通过，浏览器专项在 FLIP 动画断言失败。测试原先依赖执行机器的并发数，低并发环境按设计关闭动画，却仍被要求执行 FLIP。修正测试环境后，分别验证 8 核正常动效、2 核无动画切换及高并发下主动减少动效；本地完整浏览器专项重跑通过，没有改动应用的降级策略。复核使用 verification-before-completion、systematic-debugging 和 gh-fix-ci 技能；日志保存至同一 D 盘审查日志目录的 ci-fix-browser.log。
