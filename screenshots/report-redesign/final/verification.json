@@ -1,0 +1,16 @@
+{
+  "checks": [
+    "API/DER independently recomputed artifact-weighted primary mean and all outcome counts match UI/JSON",
+    "focus resize and ESC preserve filters and restore chart geometry",
+    "all evidence windows expand into main stage without reloading batch data; real slider and mechanism steps",
+    "FLIP fallback animates the selected window without the View Transition API",
+    "metric URL reload, degradation filtering and genuine unprocessed example retained",
+    "full stable PDF with additional evidence tables and JSON export",
+    "real run report, return to workbench and wrong-owner run rejection without data substitution",
+    "reduced motion shows final values without CSS entrance animations",
+    "backend unavailable and unknown experiment states are explicit"
+  ],
+  "pageErrors": [],
+  "privateDataUsed": false,
+  "status": "passed"
+}

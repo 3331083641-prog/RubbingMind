@@ -14,11 +14,13 @@ import { triptychPanes, REFERENCE_NOTE } from './GlobalEvaluation';
 import { formatTime, num, shortSha, signed } from './format';
 import type { SteleItem } from '../../types/stele';
 import './reportPrint.css';
+import { studioEvidence, OUTCOME_LABELS } from './data/studioData';
+import { METRICS, MetricKey } from './data/labels';
 
-interface Props { model: GlobalModel | null; stele: SteleItem; runId: string; report: Loadable<RunReport> | null; glyph: Loadable<GlyphEvaluation>; exportedAt: string; view: string }
+interface Props { model: GlobalModel | null; stele: SteleItem; runId: string; report: Loadable<RunReport> | null; glyph: Loadable<GlyphEvaluation>; exportedAt: string; view: string; metric?: string }
 const PRINT_W = 700;
 
-export const ReportPrintLayout: React.FC<Props> = ({ model, stele, runId, report, glyph, exportedAt, view }) => {
+export const ReportPrintLayout: React.FC<Props> = ({ model, stele, runId, report, glyph, exportedAt, view, metric = 'psnr' }) => {
   const host = useRef<HTMLDivElement>(null);
   const [chartUrl, setChartUrl] = useState('');
   const height = model ? Math.min(560, model.panels.length * (44 + model.methods.length * 11)) : 0;
@@ -33,9 +35,11 @@ export const ReportPrintLayout: React.FC<Props> = ({ model, stele, runId, report
   const run = report?.state === 'ok' && report.data.run?.runId === runId ? report.data.run : null;
   const outcome = run ? runOutcome(run) : null;
   const algoMode = run ? runAlgorithmOutputModeView(run) : null;
+  const metricDef = METRICS.find(m => m.key === metric) || METRICS[0];
+  const visual = model ? studioEvidence(model, metricDef.key as MetricKey) : null;
   let fig = 0;
   return <>
-    <div ref={host} aria-hidden style={{ position: 'fixed', left: -20000, top: 0, width: PRINT_W, height }} className="print:hidden" />
+    <div aria-hidden style={{ position: 'fixed', left: -20000, top: 0 }} className="print:hidden"><div ref={host} style={{ width: PRINT_W, height }} /></div>
     <section className="report-print" data-testid="report-print-layout">
       <h1>墨韵智考·算法评测报告</h1>
       <p className="rp-meta">导出于 {exportedAt.replace('T', ' ').replace('+08:00', '')}（UTC+8）· 当前分层：{view === 'artifact' ? '本件处理报告' : '全局评测'} · 文物 <code>{stele.id}</code>《{stele.title}》{runId ? <> · 运行 <code>{runId}</code></> : ' · 未选择运行'}</p>
@@ -85,6 +89,11 @@ export const ReportPrintLayout: React.FC<Props> = ({ model, stele, runId, report
         <li>图像变清晰不等于恢复原刻文字；候选字只是建议，不是碑文释读结论。</li>
       </ul>
       {model && <p className="rp-meta">数据导出：<code>/api/experiments/{model.batch.id}/export/results.csv</code>、<code>summary.csv</code>；结果目录 <code>experiments/results/{model.batch.registry.directory}</code>；代码提交 <code>{String(model.detail.environment?.gitSha || model.detail.candidateCommit || '未记录')}</code>。</p>}
+      {visual && model && <div data-testid="print-studio-evidence"><h2>附表：当前指标的退化分析与状态分布</h2><p className="rp-meta">热图：{metricDef.title} {metricDef.unit}；状态分布：{METRICS.find(m => m.key === visual.outcomeMetric)?.title}。同批、同筛选、文物等权；没有记录保留空值。配对正差不是成功认证；E-05 单列于未知。耗时与质量使用同一配对记录，仅为历史环境结果。</p>
+        <table><thead><tr><th>退化</th>{model.methods.map(m => <th key={m}>{methodLabel(m)}</th>)}</tr></thead><tbody>{model.degradations.map(d => <tr key={d}><th>{degradationLabel(d)}</th>{model.methods.map(m => <td key={m}>{visual.heatmap.find(x => x.method === m && x.degradation === d)?.value?.toFixed(metricDef.digits) ?? '—'}</td>)}</tr>)}</tbody></table>
+        <table><thead><tr><th>方法</th>{OUTCOME_LABELS.map(s => <th key={s}>{s}</th>)}</tr></thead><tbody>{visual.distribution.map(d => <tr key={d.method}><th>{methodLabel(d.method)}</th>{d.counts.map((n, i) => <td key={i}>{n}</td>)}</tr>)}</tbody></table>
+        {visual.timing.length > 0 && <table><thead><tr><th>方法</th><th>历史耗时 / ms</th><th>配对质量差</th></tr></thead><tbody>{visual.timing.map(d => <tr key={d.method}><th>{methodLabel(d.method)}</th><td>{d.milliseconds?.toFixed(1)}</td><td>{d.quality?.toFixed(3)}</td></tr>)}</tbody></table>}
+      </div>}
       <p className="rp-footer">墨韵智考 · 本报告由当前页面选择生成；数值与页面、JSON 导出同源（同一前端适配层）。</p>
     </section>
   </>;

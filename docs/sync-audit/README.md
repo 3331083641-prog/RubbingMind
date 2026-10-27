@@ -1,5 +1,7 @@
 # 2026-10-26 本地 / GitHub 同步审计
 
+**2026-10-27 更正：** 历史报告把 A24 与完整 ROI 处理闭环混为一谈。A24 测试的准确缺口是候选 / 人工采纳字形的导出标签 schema；实际 ROI 局部处理的跨页闭环是另一个待办。两项均未在本次视觉重构中关闭，详见 [报告页审查](../report-redesign/DESIGN_AUDIT.md)。
+
 - [LOCAL_REMOTE_DIFF.md](LOCAL_REMOTE_DIFF.md)：实际 fetch 后的远程基线、本地分支与主要功能差异。
 - [CHANGE_INVENTORY.md](CHANGE_INVENTORY.md)：逐文件来源、状态、功能、测试与同步取舍。
 - [WORKTREE_REVIEW.md](WORKTREE_REVIEW.md)：全部分支与 14 个登记工作树（含正式目录）。

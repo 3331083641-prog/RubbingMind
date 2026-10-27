@@ -16,11 +16,15 @@ import { BatchInfo, CiLookup, evaluationSummaryText, GlyphEvaluation, mergeDer, 
 import type { BatchDetail, DerFile, Derived, Diagnosis, Loadable, CiFile } from '../components/reports/data/types';
 import { useGlobalModel } from '../components/reports/data/globalModel';
 import { nowShanghaiIso } from '../components/reports/format';
+import { ReportStudio } from '../components/reports/ReportStudio';
+import { studioEvidence } from '../components/reports/data/studioData';
+import { METRICS, MetricKey } from '../components/reports/data/labels';
 
 interface Props {
   stele: SteleItem;
   onNavigate: (tab: string) => void;
   runId?: string | null;
+  invalidRunId?: string | null;
   onRunChange?: (runId: string | null) => void;
   experimentId?: string | null;
   batch?: string | null;
@@ -31,7 +35,7 @@ interface Props {
 const loading = { state: 'loading' } as const;
 type Keyed<T> = { id: string; value: Loadable<T> };
 
-export const ReportsPage: React.FC<Props> = ({ stele, onNavigate, runId: sharedRunId, onRunChange, experimentId: sharedExperimentId, batch: sharedBatch, onExperimentChange, experimentStatus }) => {
+export const ReportsPage: React.FC<Props> = ({ stele, onNavigate, runId: sharedRunId, invalidRunId, onRunChange, experimentId: sharedExperimentId, batch: sharedBatch, onExperimentChange, experimentStatus }) => {
   useEffect(() => { document.body.classList.add('printing-report'); return () => document.body.classList.remove('printing-report'); }, []);
   const [filters, setFilters] = useReportFilters();
   const [batches, setBatches] = useState<Loadable<BatchInfo[]>>(loading);
@@ -45,6 +49,7 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate, runId: sharedR
   const [report, setReport] = useState<Loadable<RunReport> | null>(null);
   const [glyph, setGlyph] = useState<Loadable<GlyphEvaluation>>(loading);
   const [exportedAt, setExportedAt] = useState(nowShanghaiIso());
+  const [exportError, setExportError] = useState('');
   const [initialView] = useState<'global' | 'artifact'>(() => { const f = readFilters(); return f.view === 'artifact' || f.view === 'global' ? f.view : sharedRunId ? 'artifact' : 'global'; });
 
   useEffect(() => {
@@ -81,7 +86,7 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate, runId: sharedR
     ReportApi.runs(stele.id).then(r => { if (live) setRuns(r.state === 'ok' ? { state: 'ok', data: sortRuns(r.data) } : r); });
     return () => { live = false; };
   }, [stele.id]);
-  const requestedRunId = sharedRunId || '';
+  const requestedRunId = sharedRunId || invalidRunId || '';
   const defaultRule = useRef(new Map<string, RunSelection>());
   const runBelongs = runs.state === 'ok' && (!requestedRunId || runs.data.some(x => x.run.runId === requestedRunId));
   useEffect(() => {
@@ -100,6 +105,7 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate, runId: sharedR
     return () => { live = false; };
   }, [runs.state, runBelongs, stele.id, stele.title, requestedRunId]);
   const runId = selection.state === 'ok' ? selection.data.runId : '';
+  const reportNow: Loadable<RunReport> | null = report?.state === 'ok' && report.data.run && (report.data.run.runId !== runId || report.data.run.steleId !== stele.id) ? loading : report;
   // 把后端选定的默认运行交回 App，使 URL 可深链（App 用 replaceState 写 runId）
   useEffect(() => { if (runId && runId !== sharedRunId) onRunChange?.(runId); }, [runId, sharedRunId, onRunChange]);
 
@@ -112,7 +118,7 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate, runId: sharedR
   }, [stele.id, runId, view]);
 
   useEffect(() => { if (filters.view !== view) setFilters({ view }); }, [filters.view, view, setFilters]);
-  const panel: 'overview' | 'failures' | 'mechanism' = filters.panel === 'failures' ? 'failures' : filters.panel === 'mechanism' ? 'mechanism' : 'overview';
+  const panel = filters.panel || 'overview';
 
   const detailNow = detail && detail.id === experimentId ? detail.value : loading;
   const derNow = der && der.id === experimentId ? der.value : loading;
@@ -127,7 +133,7 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate, runId: sharedR
 
   const exportJson = () => {
     const at = nowShanghaiIso(); setExportedAt(at);
-    const run = report?.state === 'ok' ? report.data.run : null;
+    const run = reportNow?.state === 'ok' ? reportNow.data.run : null;
     const evaluationStatus = run?.evaluationStatus || (runs.state === 'error' || runs.state === 'missing' ? 'unavailable' : runs.state === 'ok' && runs.data.length === 0 ? 'not_run' : 'not_loaded');
     const evaluationSummary = run || evaluationStatus === 'not_run' ? evaluationSummaryText(run) : evaluationStatus === 'unavailable' ? '运行数据不可用，无法判断是否执行过处理；未填写评测数值。' : '当前视图未载入本件运行报告，不能据此判断是否执行过处理。';
     const tag = model ? `${model.batch.shortName}` : '未选批次';
@@ -138,18 +144,19 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate, runId: sharedR
       workingImage: run?.workingImage || null, randomSeed: run?.randomSeed ?? null, outputSha256: run?.outputSha256 || null, imageRoles: run?.imageRoles || null,
       changeStatus: run ? { isPassthrough: run.isPassthrough ?? null, changedPixelCount: run.changedPixelCount ?? null, changedPixelRatio: run.changedPixelRatio ?? null, maxAbsDiff: run.maxAbsDiff ?? null, passthroughCriterion: run.passthroughCriterion ?? null, passthroughSource: run.passthroughSource ?? null, comparedImages: run.comparedImages ?? null, grayChangedPixelCount: run.grayChangedPixelCount ?? null, grayChangedPixelRatio: run.grayChangedPixelRatio ?? null, grayCriterion: run.grayCriterion ?? null, grayCriterionRule: run.grayCriterionRule ?? null, graySource: run.graySource ?? null, effectiveParameters: run.effectiveParameters ?? null, effectiveParametersSource: run.effectiveParametersSource ?? null, effectiveParametersUnavailableReason: run.effectiveParametersUnavailableReason ?? null } : null,
       evaluationSummary,
-      reportDataStatus: { runs: runs.state, selection: selection.state, report: report?.state || 'not_requested' },
+      reportDataStatus: { runs: runs.state, selection: selection.state, report: reportNow?.state || 'not_requested' },
       adaptiveDiagnostics: run?.adaptiveDiagnostics || null, algorithmLayer: run ? { algorithmOutputMode: run.adaptiveDiagnostics?.algorithmOutputMode ?? null, selectedOutput: run.adaptiveDiagnostics?.selectedOutput ?? null, note: 'ADR R2-12 algorithm-layer only; do not confuse with run-level outputMode / isPassthrough' } : null, algorithmParameters: run?.algorithmParameters || null,
       startedAt: run?.startedAt || null, finishedAt: run?.finishedAt || null, processingTimeMs: run?.processing_time_ms ?? null, outputImages: run?.outputImages || null,
       evaluationStatus, evaluationMetrics: run?.evaluationMetrics || null, diagnosticMetrics: run?.diagnosticMetrics || null,
-      inferenceRecords: report?.state === 'ok' ? report.data.inferenceRecords || [] : [], sourceRecords: report?.state === 'ok' ? report.data.sourceRecords || [] : [],
+      inferenceRecords: reportNow?.state === 'ok' ? reportNow.data.inferenceRecords || [] : [], sourceRecords: reportNow?.state === 'ok' ? reportNow.data.sourceRecords || [] : [],
       experiment: model ? {
         experimentId: model.batch.id, name: model.batch.shortName, directory: model.batch.registry.directory, kind: model.batch.kind,
-        filters: { split: model.split, degradation: model.degradation, method: model.method, sample: model.sample || null, caseId: model.caseRow ? caseIdOf(model.caseRow) : null, caseSelection: model.caseKind },
+        filters: { split: model.split, degradation: model.degradation, method: model.method, sample: model.sample || null, caseId: model.caseRow ? caseIdOf(model.caseRow) : null, caseSelection: model.caseKind, panel, metric: filters.metric || 'psnr' },
         appliedStatusSource: model.der.source || '前端兜底（SHA-256 比较）', ciSource: model.ci?.source || '前端临时口径',
         conclusion: model.primary ? { method: model.method, primaryScope: model.primary.primaryScope, scopes: model.primary.scopes, n: model.primary.n, processedN: model.primary.processedN, passthroughN: model.primary.passthroughN, undeterminedN: model.primary.undeterminedN, grade: model.primaryGrade.grade, gradeReasons: model.primaryGrade.reasons } : null,
         deltaByMethod: model.panels.filter(p => p.metric.delta).map(p => ({ metric: p.metric.key, items: p.items.map(i => ({ method: i.method, primaryScope: i.primaryScope, all: strip(i.scopes.all), processed: strip(i.scopes.processed), passthrough: strip(i.scopes.passthrough), n: i.n, processedN: i.processedN, passthroughN: i.passthroughN, undeterminedN: i.undeterminedN, negativeProcessedN: i.negativeProcessedN })) })),
         representativeRule: model.representative.rule, limitations: model.batch.registry.limitations || [], notes: model.notes,
+        visualizations: studioEvidence(model, METRICS.some(m => m.key === filters.metric) ? filters.metric as MetricKey : 'psnr'),
         liftClaims: {
           summary: model.ci?.file.liftClaimSummary || null,
           rule: model.ci?.file.liftClaimRule || null,
@@ -176,32 +183,34 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate, runId: sharedR
       glyphEvaluation: glyph.state === 'ok' ? glyph.data : null,
       note: 'Values and change criteria follow this JSON; print layout may differ slightly after manual pagination. Includes failureRetention (aligned with on-screen failure gallery) and liftClaims (ES-3, aligned with on-screen lift-claim badges).',
     };
-    const href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
-    const link = document.createElement('a'); link.href = href; link.download = `${data.reportId}-${tag}.json`.replace(/[\\/:*?"<>|\s]+/g, '_'); link.click();
-    setTimeout(() => URL.revokeObjectURL(href), 1000);
+    try {
+      setExportError('');
+      const href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
+      const link = document.createElement('a'); link.href = href; link.download = `${data.reportId}-${tag}.json`.replace(/[\\/:*?"<>|\s]+/g, '_'); link.click();
+      setTimeout(() => URL.revokeObjectURL(href), 1000);
+    } catch { setExportError('JSON 下载未能启动，请检查浏览器下载权限后重试。'); }
   };
-  const print = () => { setExportedAt(nowShanghaiIso()); setTimeout(() => window.print(), 50); };
+  const print = () => { setExportError(''); setExportedAt(nowShanghaiIso()); setTimeout(() => { try { window.print(); } catch { setExportError('打印窗口未能打开，请检查浏览器权限后重试；实验数据未改变。'); } }, 50); };
 
   const batchState = batches.state !== 'ok' ? batches : resolution?.state === 'unknown' ? null : resolution?.state === 'no-default' ? null : detailNow;
-  return <div className="min-h-screen bg-[#0A0D12] text-slate-100 px-3 lg:px-6 py-3 space-y-3">
+  return <div className="report-page">
     <div className="report-screen space-y-3">
       <ReportContextBar stele={stele} view={view} panel={panel} runs={runs} runId={runId} selection={selection} batches={batches} experimentId={experimentId} model={model}
         setFilters={setFilters} onSelectRun={selectRun} onSelectBatch={selectBatch} onExportJson={exportJson} onPrint={print} onNavigate={onNavigate} />
+      {exportError && <p role="alert" className="studio-export-error">{exportError}</p>}
       {view === 'global' ? <section aria-label="全局评测" className="space-y-3">
-        <p className="text-[11px] text-slate-400">全局评测：受控退化实验的批次级结果，与当前文物《{stele.title}》无关。</p>
+        <p className="sr-only">全局评测 · 当前批次的受控实验，与《{stele.title}》本件运行分别管理。</p>
         {experimentStatus === 'unknown' ? <div role="alert" data-testid="app-unknown-experiment" className="rounded-xl border border-cinnabar/50 bg-[#140f0e] p-5 text-sm text-slate-200">链接中的 experimentId 无效或未登记；不会回落到其他批次。请从上方「实验批次」重新选择。</div>
           : experimentStatus === 'unavailable' ? <div role="alert" data-testid="app-unavailable-experiment" className="rounded-xl border border-cinnabar/50 bg-[#140f0e] p-5 text-sm text-slate-200">实验批次列表暂时不可用，无法解析 URL 中的实验参数。</div>
           : experimentStatus === 'resolving' ? <p role="status" className="text-gold">正在解析实验批次…</p>
           : resolution?.state === 'unknown' ? <div role="alert" data-testid="unknown-experiment" className="rounded-xl border border-cinnabar/50 bg-[#140f0e] p-5 text-sm text-slate-200">没有登记 {resolution.param === 'experimentId' ? '实验 ID' : '批次别名'} <code>{resolution.requested}</code> 的实验批次。不会改用其他批次；请在上方“实验批次”中选择。</div>
           : resolution?.state === 'no-default' ? <div role="status" className="rounded-xl border border-slate-600 p-5 text-sm text-slate-300">后端没有标记默认报告批次（defaultForReport），请在上方“实验批次”中选择。</div>
-          : batchState && batchState.state !== 'ok' ? (batchState.state === 'loading' ? <p role="status" className="text-gold">正在读取实验批次…</p> : <p role="alert" className="text-cinnabar-light">实验数据读取失败：{batchState.message}</p>)
+          : batchState && batchState.state !== 'ok' ? (batchState.state === 'loading' ? <section className="studio-stage studio-loading" role="status"><h2>正在读取实验批次…</h2><div /><div /><div /></section> : <p role="alert" className="text-cinnabar-light">实验数据读取失败：{batchState.message}。<button onClick={() => window.location.reload()}>重新载入</button></p>)
           : !model ? <p role="status" className="text-gold">正在读取派生状态…</p>
-          : panel === 'failures' ? <FailureCasesPanel model={model} diagnosis={diagnosisNow} setFilters={setFilters} />
-          : panel === 'mechanism' ? <MechanismPanel model={model} filters={filters} setFilters={setFilters} />
-          : <GlobalEvaluation model={model} batches={batches.state === 'ok' ? batches.data : []} glyph={glyph} filters={filters} setFilters={setFilters} onSelectBatch={selectBatch} />}
-      </section> : <ArtifactRunReport stele={stele} runs={runs} runId={runId} selection={selection} report={report} glyph={glyph} batchDetail={detailNow.state === 'ok' ? detailNow.data : null} batchName={batchInfo?.title || ''} onNavigate={onNavigate} />}
+          : <ReportStudio model={model} batches={batches.state === 'ok' ? batches.data : []} glyph={glyph} diagnosis={diagnosisNow} filters={filters} setFilters={setFilters} onSelectBatch={selectBatch} onRunReport={() => setFilters({ view: 'artifact' })} />}
+      </section> : <ArtifactRunReport stele={stele} runs={runs} runId={runId} selection={selection} report={reportNow} glyph={glyph} batchDetail={detailNow.state === 'ok' ? detailNow.data : null} batchName={batchInfo?.title || ''} onNavigate={onNavigate} />}
     </div>
-    <ReportPrintLayout model={model} stele={stele} runId={runId} report={report} glyph={glyph} exportedAt={exportedAt} view={view} />
+    <ReportPrintLayout model={model} stele={stele} runId={runId} report={reportNow} glyph={glyph} exportedAt={exportedAt} view={view} metric={filters.metric || 'psnr'} />
   </div>;
 };
 

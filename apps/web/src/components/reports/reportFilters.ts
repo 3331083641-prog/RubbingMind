@@ -6,7 +6,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { URL_STATE_KEYS } from '../../state/urlState';
 
-export const FILTER_KEYS = ['view', 'panel', 'split', 'deg', 'method', 'sample', 'case', 'cmp'] as const;
+export const FILTER_KEYS = ['view', 'panel', 'split', 'deg', 'method', 'sample', 'case', 'cmp', 'metric'] as const;
 export type FilterKey = typeof FILTER_KEYS[number];
 export type ReportFilters = Partial<Record<FilterKey, string>>;
 const EVENT = 'rm-report-filters';

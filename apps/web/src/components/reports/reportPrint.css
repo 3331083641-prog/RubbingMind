@@ -1,5 +1,6 @@
 /* 报告页专用 A4 纵版打印布局（ReportPrintLayout）。屏幕上不显示。 */
 .report-print { display: none; }
+.report-print td:not(:first-child) { text-align:right; }
 @media print {
   @page { size: A4 portrait; margin: 12mm 12mm 14mm; }
   html:has(body.printing-report), body.printing-report, body.printing-report #root, body.printing-report #root > div { background: #fff !important; }
@@ -21,7 +22,11 @@
   .report-print .rp-card { border: 0.4pt solid #999; padding: 2mm 3mm; margin: 2mm 0; break-inside: avoid; }
   .report-print .rp-grade { border: 0.4pt solid #555; padding: 0 1.5mm; font-size: 8.5pt; margin-left: 2mm; }
   .report-print .rp-warn { color: #9e2813; }
-  .report-print code { font-family: "Consolas", "Courier New", monospace; font-size: 8.5pt; }
+  .printing-report .report-print code { font-family: "Consolas", "Courier New", monospace; font-size: 8.5pt; }
+  .report-print table { width:100%; margin:4mm 0; font-size:8pt; border-collapse:collapse; }
+  .report-print th { font-weight:500; text-align:left; }
+  .report-print td { text-align:right; font-variant-numeric:tabular-nums; }
+  .report-print td,.report-print th { border-bottom:.3pt solid #ccc; padding:1mm; }
   .report-print ul { margin: 1mm 0 1mm 5mm; padding: 0; }
   .report-print .rp-footer { margin-top: 6mm; font-size: 8.5pt; color: #444; border-top: 0.4pt solid #8a7a5c; padding-top: 1.5mm; }
 }
