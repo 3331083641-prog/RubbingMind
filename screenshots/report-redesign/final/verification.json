@@ -7,6 +7,7 @@
     "metric URL reload, degradation filtering and genuine unprocessed example retained",
     "full stable PDF with additional evidence tables and JSON export",
     "real run report, return to workbench and wrong-owner run rejection without data substitution",
+    "low-concurrency devices switch panels without forcing FLIP animation",
     "reduced motion shows final values without CSS entrance animations",
     "backend unavailable and unknown experiment states are explicit"
   ],
