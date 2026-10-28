@@ -8,7 +8,6 @@ export const Footer: React.FC = () => {
         <div className="flex items-center space-x-2">
           <span className="w-2 h-2 rounded-full bg-gold" />
           <span className="font-serif text-slate-300 font-medium">墨韵智考</span>
-          <span>— 全球校园人工智能算法精英大赛（智能文化赛道）参评作品</span>
         </div>
 
         {/* Center Tech Stack */}

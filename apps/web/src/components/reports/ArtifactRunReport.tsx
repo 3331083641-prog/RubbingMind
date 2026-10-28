@@ -126,7 +126,7 @@ export const ArtifactRunReport: React.FC<Props> = ({
       {/* 异常与载入状态提示 */}
       {runs.state === 'error' && (
         <div role="alert" className="p-4 rounded-lg bg-[#c83c23]/15 border border-[#c83c23]/40 text-[#f5a898] text-sm mb-4">
-          后端服务不可用，无法读取运行记录（{runs.message}）。这不等于“本件尚未执行”。
+          后端不可用，无法读取运行记录（{runs.message}）。这不等于“尚未执行”。
         </div>
       )}
       {runs.state === 'missing' && (
@@ -136,7 +136,7 @@ export const ArtifactRunReport: React.FC<Props> = ({
       )}
       {runs.state === 'ok' && runs.data.length === 0 && (
         <div className="p-6 rounded-lg bg-slate-900/60 border border-slate-800 text-center my-6 space-y-3">
-          <p className="text-base text-slate-300">《{stele.title}》尚未执行图像修复处理。</p>
+          <p className="text-base text-slate-300">本件尚未执行处理（《{stele.title}》）。</p>
           <p className="text-xs text-slate-500">本件尚无真实算法输出，亦无配对真值评测。可前往工作台执行频空域联合去噪。</p>
           <button
             className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-[#dfc187] text-[#0f1613] font-medium text-sm hover:bg-[#ecd39f] transition-colors"
@@ -159,7 +159,7 @@ export const ArtifactRunReport: React.FC<Props> = ({
       {runs.state === 'ok' && runs.data.length > 0 && !runId && selection.state === 'ok' && (
         <div className="p-4 rounded-lg bg-[#c8a86b]/10 border border-[#c8a86b]/30 text-[#dfc187] text-sm mb-4">
           {runs.data.every(x => x.legacy)
-            ? '本件仅有历史旧版未验证（legacy）运行，不作为默认推荐；请在上方“本件运行”下拉框中选择查看。'
+            ? '本件尚未执行处理（仅有历史旧版未验证 legacy 运行，不作默认显示；请在上方“本件运行”中手动选择查看）。'
             : '请在上方工具栏“本件运行”中选择一条运行记录。'}
         </div>
       )}
@@ -223,9 +223,14 @@ export const ArtifactRunReport: React.FC<Props> = ({
                   </span>
                 )}
               </h4>
-              <span className="text-xs text-slate-400">
-                算法版本：<code className="text-[#dfc187]">{run.algorithmVersion}</code>
-              </span>
+              <div className="flex flex-wrap items-center gap-3 text-xs text-slate-400">
+                <span>
+                  运行 ID：<code className="text-[#dfc187] font-mono select-all">{run.runId}</code>
+                </span>
+                <span>
+                  算法版本：<code className="text-[#dfc187]">{run.algorithmVersion}</code>
+                </span>
+              </div>
             </div>
 
             <p className="text-sm text-[#e6ece7] leading-relaxed mb-2">
@@ -385,6 +390,12 @@ export const ArtifactRunReport: React.FC<Props> = ({
             <section className="artifact-section-card">
               <h4>运行元数据与无参考诊断</h4>
               <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs mb-3">
+                <div className="col-span-2">
+                  <dt className="inline text-[#8c9d90]">运行 ID：</dt>
+                  <dd className="inline font-mono text-slate-200">
+                    <code>{run.runId}</code>
+                  </dd>
+                </div>
                 <div>
                   <dt className="text-[#8c9d90]">耗时：</dt>
                   <dd className="font-mono text-sm font-semibold text-[#f0ede6]">

@@ -134,7 +134,7 @@ export const ReportsPage: React.FC<Props> = ({ stele, onNavigate, runId: sharedR
   const exportJson = () => {
     const at = nowShanghaiIso(); setExportedAt(at);
     const run = reportNow?.state === 'ok' ? reportNow.data.run : null;
-    const evaluationStatus = run?.evaluationStatus || (runs.state === 'error' || runs.state === 'missing' ? 'unavailable' : runs.state === 'ok' && runs.data.length === 0 ? 'not_run' : 'not_loaded');
+    const evaluationStatus = run?.evaluationStatus || (runs.state === 'error' || runs.state === 'missing' ? 'unavailable' : runs.state === 'ok' && (runs.data.length === 0 || runs.data.every(x => x.legacy)) ? 'not_run' : 'not_loaded');
     const evaluationSummary = run || evaluationStatus === 'not_run' ? evaluationSummaryText(run) : evaluationStatus === 'unavailable' ? '运行数据不可用，无法判断是否执行过处理；未填写评测数值。' : '当前视图未载入本件运行报告，不能据此判断是否执行过处理。';
     const tag = model ? `${model.batch.shortName}` : '未选批次';
     const data = {

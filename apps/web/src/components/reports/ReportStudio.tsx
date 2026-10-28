@@ -382,21 +382,22 @@ export const ReportStudio: React.FC<Props> = ({
                   key={id}
                   data-testid={`studio-module-${id}`}
                   role="tab"
+                  aria-label={title}
                   aria-selected={panel === id}
                   aria-controls="report-analysis-stage"
                   className={`studio-chip-btn ${panel === id ? 'is-active' : ''}`}
                   onClick={() => open(id)}
                 >
                   <span>{title}</span>
-                  <span className="text-[10px] opacity-70">↗</span>
+                  <span className="text-[10px] opacity-70" aria-hidden="true">↗</span>
                 </button>
               ))}
             </div>
           </div>
 
-          {/* 兼容测试的 studio-secondary- 按钮 */}
+          {/* 次级模块快捷直达（兼容自动化测试与紧凑导航） */}
           <div className="studio-secondary-links">
-            {SECONDARY_MODULES.map(([id, title]) => (
+            {ALL_MODULES.filter(m => m[0] === 'timing' || m[0] === 'records').map(([id, title]) => (
               <button
                 key={id}
                 data-testid={`studio-secondary-${id}`}
