@@ -70,7 +70,7 @@ async def lifespan(app: FastAPI):
 _REMOTE_DEPLOYMENT = os.getenv('RUBBINGMIND_DEPLOYMENT', 'local') != 'local'
 app = FastAPI(
     title="墨韵智考——金石碑拓微痕修复及史料考据系统",
-    description="全球校园人工智能算法精英大赛（智能文化赛道）全栈 Web 科研演示平台",
+    description="金石碑拓微痕修复与史料考据系统全栈 Web 科研平台",
     version="2.0.0",
     lifespan=lifespan,
     # RT-005: hide OpenAPI surface in remote/demo exposure mode

@@ -38,8 +38,8 @@ export const HomePage: React.FC<HomePageProps> = ({ steles, onSelectStele, onNav
           {/* Left Text / Info (Col 7) */}
           <div className="home-hero-copy lg:col-span-7 flex flex-col space-y-6">
             <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gold/10 border border-gold/30 text-gold-light text-xs font-serif w-fit">
-              <span className="w-1.5 h-1.5 rounded-full bg-cinnabar animate-pulse" />
-              <span>全球校园人工智能算法精英大赛 · 智能文化赛道</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#2eb88a] animate-pulse" />
+              <span>金石碑拓微痕修复与图像智能考据系统</span>
             </div>
 
             <div className="space-y-3">

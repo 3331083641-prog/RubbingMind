@@ -9,7 +9,7 @@ import { degradationLabel, methodLabel, type MetricDef } from './data/labels';
 import { useQuietMotion } from './studioMotion';
 echarts.use([HeatmapChart, ScatterChart, BarChart, GridComponent, TooltipComponent, VisualMapComponent, MarkLineComponent, CanvasRenderer]);
 type Evidence = ReturnType<typeof studioEvidence>;
-const colors = ['#79b6a8', '#cb7869', '#aaa89f', '#768b92', '#555d60', '#ad655a'];
+const colors = ['#2eb88a', '#c83c23', '#c8a86b', '#5b7682', '#434d4c', '#a83220'];
 
 export const StudioCharts: React.FC<{ kind: 'heatmap' | 'distribution' | 'timing'; model: GlobalModel; evidence: Evidence; metric: MetricDef; onSelect: (method: string, degradation?: string) => void }> = ({ kind, model, evidence, metric, onSelect }) => {
   const ref = useRef<HTMLDivElement>(null); const quiet = useQuietMotion(); const callback = useRef(onSelect); callback.current = onSelect;
@@ -26,7 +26,7 @@ export const StudioCharts: React.FC<{ kind: 'heatmap' | 'distribution' | 'timing
     const methods = model.methods; const labels = methods.map(methodLabel);
     const common = { backgroundColor: 'transparent', animation: !quiet, animationDuration: 640, animationDurationUpdate: quiet ? 0 : 320,
       textStyle: { fontFamily: 'system-ui,sans-serif', color: '#b7bcb7' },
-      tooltip: { confine: true, backgroundColor: '#202724', borderWidth: 0, textStyle: { color: '#e7e5df', fontSize: 12 } },
+      tooltip: { confine: true, backgroundColor: 'rgba(15, 21, 19, 0.96)', borderColor: '#c8a86b', borderWidth: 1, textStyle: { color: '#f0ede6', fontSize: 12 }, extraCssText: 'box-shadow: 0 4px 16px rgba(0,0,0,0.4); border-radius: 6px;' },
       grid: { left: 126, right: 30, top: 35, bottom: 70 } };
     let option: echarts.EChartsCoreOption;
     if (kind === 'heatmap') {
@@ -34,7 +34,7 @@ export const StudioCharts: React.FC<{ kind: 'heatmap' | 'distribution' | 'timing
       option = { ...common, grid: { left: 92, right: 24, top: 24, bottom: 116 },
         xAxis: { type: 'category', data: labels, axisLabel: { interval: 0, fontSize: 11, color: '#b7c2b8', formatter: (s: string) => s.replace(' ', '\n') }, axisLine: { show: false }, axisTick: { show: false } },
         yAxis: { type: 'category', data: model.degradations.map(degradationLabel), axisLine: { show: false }, axisTick: { show: false }, axisLabel: { fontSize: 12, color: '#b7c2b8' } },
-        visualMap: { min: metric.delta ? -max : 0, max, calculable: false, orient: 'horizontal', left: 'center', bottom: 14, itemWidth: 13, itemHeight: 150, text: [`+${max.toFixed(metric.digits)} ${metric.unit}`, metric.delta ? `−${max.toFixed(metric.digits)}` : '0'], textStyle: { color: '#b7bcb7' }, inRange: { color: metric.delta ? ['#ad665b', '#252d2c', '#80b8aa'] : ['#252d2c', '#80b8aa'] } },
+        visualMap: { min: metric.delta ? -max : 0, max, calculable: false, orient: 'horizontal', left: 'center', bottom: 14, itemWidth: 13, itemHeight: 150, text: [`+${max.toFixed(metric.digits)} ${metric.unit}`, metric.delta ? `−${max.toFixed(metric.digits)}` : '0'], textStyle: { color: '#98a69c' }, inRange: { color: metric.delta ? ['#c83c23', '#1b2320', '#2eb88a'] : ['#1b2320', '#2eb88a'] } },
         series: [{ type: 'heatmap', animationDelay: (i: number) => quiet ? 0 : Math.floor(i / methods.length) * 50, data: evidence.heatmap.map(x => ({ value: [methods.indexOf(x.method), model.degradations.indexOf(x.degradation), x.value], method: x.method, degradation: x.degradation, artifacts: x.artifacts, records: x.rows })),
           label: { show: true, color: '#f1f0e9', fontSize: 12, formatter: (p: unknown) => { const v = (p as { value: [number, number, number | null] }).value[2]; return v == null ? '—' : `${v > 0 && metric.delta ? '+' : ''}${v.toFixed(metric.digits)}`; } },
           itemStyle: { borderWidth: 4, borderColor: '#141919' }, tooltip: { formatter: (p: unknown) => { const d = (p as { data: { method: string; degradation: string; value: [number, number, number | null]; artifacts: number; records: number } }).data; return `${methodLabel(d.method)} · ${degradationLabel(d.degradation)}<br/>${metric.title} ${d.value[2]?.toFixed(metric.digits) ?? '无数据'} ${metric.unit}<br/>文物 ${d.artifacts} · 记录 ${d.records}<br/>点击筛选本方法与退化类型`; } } }] };

@@ -31,7 +31,7 @@ interface Props {
 }
 
 const C = {
-  screen: { text: '#cbd2c8', sub: '#a4b1a6', axis: '#3b4840', pos: '#79ad9d', neg: '#c47c6d', sel: '#c0ad7d', point: 'rgba(207,190,142,0.85)', ci: '#dde4d9', zero: '#aaa88e', bg: 'transparent', neutral: '#708078' },
+  screen: { text: '#f0ede6', sub: '#98a69c', axis: '#2d3a33', pos: '#2eb88a', neg: '#c83c23', sel: '#c8a86b', point: 'rgba(223, 193, 135, 0.9)', ci: '#eef2ec', zero: '#c8a86b', bg: 'transparent', neutral: '#5a6860' },
   print: { text: '#1f2937', sub: '#4b5563', axis: '#9ca3af', pos: '#2f6f62', neg: '#b3321b', sel: '#8a6d12', point: 'rgba(60,60,60,0.75)', ci: '#111827', zero: '#111827', bg: '#ffffff', neutral: '#9ca3af' },
 };
 
@@ -61,7 +61,7 @@ export function buildOption(panels: ChartPanel[], methods: string[], selected: s
   const option: echarts.EChartsCoreOption = {
     backgroundColor: col.bg, animation: theme === 'screen' && motion, animationDuration: 620, animationDurationUpdate: motion ? 320 : 0,
     textStyle: { fontFamily: 'system-ui,sans-serif' },
-    tooltip: { trigger: 'item', confine: true, backgroundColor: 'rgba(10,13,18,0.94)', borderColor: '#D4AF37', textStyle: { color: '#e2e8f0', fontSize: 12 } },
+    tooltip: { trigger: 'item', confine: true, backgroundColor: 'rgba(15, 21, 19, 0.96)', borderColor: '#c8a86b', borderWidth: 1, textStyle: { color: '#f0ede6', fontSize: 12 }, extraCssText: 'box-shadow: 0 4px 16px rgba(0,0,0,0.4); border-radius: 6px;' },
     title: panels.map((p, i) => ({
       text: `${p.metric.title}${p.metric.unit ? `（${p.metric.unit}）` : ''}`, subtext: `${directionText(p.metric.direction)}${p.metric.note ? ` · ${p.metric.note}` : ''}`,
       left: layout === 'row' ? leftOf(i) : leftLabel, top: layout === 'row' ? 0 : `${(100 / N) * i}%`,
@@ -71,7 +71,7 @@ export function buildOption(panels: ChartPanel[], methods: string[], selected: s
     xAxis: panels.map((p, i) => { const e = extent(p.items); return {
       type: 'value', gridIndex: i, scale: false, min: e.min, max: e.max, interval: e.step,
       axisLabel: { color: col.sub, fontSize: 11, formatter: (v: number) => Math.abs(v) >= 100 ? v.toFixed(0) : Math.abs(v) >= 1 ? v.toFixed(1) : v.toFixed(2) },
-      splitLine: { lineStyle: { color: col.axis, opacity: 0.35 } }, axisLine: { show: false },
+      splitLine: { lineStyle: { color: 'rgba(255,255,255,0.06)', type: 'dashed' } }, axisLine: { show: false },
     }; }),
     yAxis: panels.map((_, i) => ({
       type: 'category', gridIndex: i, data: methods, inverse: true,
