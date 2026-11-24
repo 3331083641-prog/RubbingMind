@@ -139,18 +139,14 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
         />
 
         <div className="relative z-10 space-y-2 max-w-2xl">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gold/15 border border-gold/40 text-gold-light text-xs font-serif">
-            <BookOpen className="w-3.5 h-3.5 text-gold" />
-            <span>墨韵智考 · 七朝代真实馆藏碑拓数字化工程</span>
-          </div>
-          <h1 className="text-3xl font-serif font-bold text-white tracking-wide flex items-center gap-3">
+          <h1 className="text-3xl font-serif font-bold text-white tracking-wide flex flex-wrap items-center gap-3">
             <span>墨韵智考数字典藏馆</span>
-            <span className="text-xs px-2.5 py-0.5 rounded-full bg-cinnabar/20 border border-cinnabar/40 text-cinnabar-light font-mono font-normal">
-              已入库 {steles.length} 件真实馆藏
+            <span className="text-xs px-2.5 py-0.5 rounded-full bg-cinnabar/25 border border-cinnabar/45 text-cinnabar-light rm-mono-metric font-normal">
+              {steles.length} 通授权馆藏
             </span>
           </h1>
-          <p className="text-xs md:text-sm text-slate-300 leading-relaxed font-sans">
-            汇聚七朝代 {steles.length} 件已审核馆藏影像。依据台北故宫博物院、美国大都会艺术博物馆及普林斯顿大学艺术博物馆著录，保留来源、许可与处理记录。
+          <p className="text-xs md:text-sm text-slate-300 font-sans">
+            跨东汉至清七朝代 · 台北故宫、大都会、普林斯顿公开著录
           </p>
         </div>
 
@@ -328,64 +324,51 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
                   </div>
                 </div>
 
-                {/* Card Meta Content */}
-                <div className="p-4 flex-1 flex flex-col justify-between space-y-3.5">
+                {/* Card Meta Content (Minimalist Museum Plaque + Collapsible Archival Record) */}
+                <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
                   <div className="space-y-2">
-                    {/* Stele Title & Collection Number */}
-                    <div className="flex items-start justify-between gap-1.5">
-                      <h3 className="font-serif font-bold text-base text-slate-100 group-hover:text-gold transition-colors leading-snug">
+                    <div className="flex items-start justify-between gap-2">
+                      <h3 className="font-serif font-bold text-base text-[var(--rm-ink-primary)] group-hover:text-[var(--rm-gold)] transition-colors leading-snug">
                         {stele.title}
                       </h3>
                       {stele.collectionNumber && (
-                        <span className="text-[10px] font-mono text-slate-500 border border-slate-800 px-1.5 py-0.5 rounded whitespace-nowrap">
+                        <span className="text-[10px] rm-mono-metric text-[var(--rm-ink-muted)] border border-[var(--rm-border)] px-1.5 py-0.5 rounded whitespace-nowrap">
                           {stele.collectionNumber}
                         </span>
                       )}
                     </div>
 
-                    {/* Metadata Items */}
-                    <div className="space-y-1 text-xs text-slate-400 font-sans">
-                      <p className="flex items-center gap-1.5">
-                        <span className="text-gold/80 font-serif">撰文:</span>
-                        <span className="text-slate-300 truncate">{roleText(stele.inscriptionAuthor, stele.authorVerification)}</span>
-                      </p>
-                      <p className="flex items-center gap-1.5">
-                        <span className="text-gold/80 font-serif">书丹:</span>
-                        <span className="text-slate-300 truncate">{roleText(stele.calligrapher, stele.calligrapherVerification)}</span>
-                      </p>
-                      <p className="flex items-center gap-1.5">
-                        <Calendar className="w-3.5 h-3.5 text-slate-500" />
-                        <span className="leading-relaxed">原刻：{stele.year}</span>
-                      </p>
-                      <p className="flex items-center gap-1.5">
-                        <MapPin className="w-3.5 h-3.5 text-slate-500" />
-                        <span className="line-clamp-1">{stele.collectionInstitution || stele.museum}</span>
-                      </p>
+                    <div className="flex items-center gap-2 text-xs text-[var(--rm-ink-secondary)] font-sans">
+                      <Calendar className="w-3.5 h-3.5 text-[var(--rm-ink-muted)] shrink-0" />
+                      <span className="truncate">{stele.year}</span>
+                      <span className="text-[var(--rm-ink-muted)]">·</span>
+                      <MapPin className="w-3.5 h-3.5 text-[var(--rm-ink-muted)] shrink-0" />
+                      <span className="truncate">{stele.collectionInstitution || stele.museum}</span>
                     </div>
 
-                    <p className="text-xs text-slate-400">拓本：{stele.rubbingPeriod}</p><p className="text-xs text-slate-400">类型：{stele.artifactType}</p>
-                    <p className="text-xs text-slate-400">篆额：{roleText(stele.titleCalligrapher, stele.titleCalligrapherVerification)} · 刻工：{roleText(stele.engraver, stele.engraverVerification)} · 碑主/墓主：{roleText(stele.steleSubject, stele.steleSubjectVerification)}</p>
                     {/* C-06/C: ReviewStatusBadges 博物馆卡片挂载点（目录批准 + 证据复核 + contentFlags）；合并时勿删 */}
                     <ReviewStatusBadges steleId={stele.id} compact />
-                    <p className="text-xs text-slate-400">影像初筛：{stele.imageConditionReviewStatus || '自动初筛，待人工复核'}</p>
-                    <p className="text-xs text-slate-400">原石风化：{stele.physicalStoneWeathering || stele.stoneWeathering || '无可靠原石证据，不评定'}</p>
-                    {stele.assessmentRunId && <p className="text-[10px] text-slate-500 font-mono truncate">处理 {stele.assessmentRunId} · {stele.assessmentScope === 'partial_center_roi' ? '中心局部' : '全幅'}</p>}
-                    {/* Academic Summary */}
-                    <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed pt-0.5 font-sans">
-                      {stele.summary}
-                    </p>
 
-                    {/* License / Attribution */}
-                    <div className="text-[10px] text-slate-500 font-mono truncate pt-1 border-t border-slate-800/60">
-                      许可: {stele.license || 'CC BY 4.0 / 馆藏著录公开'}
-                    </div>
+                    <details className="text-[11px] text-[var(--rm-ink-muted)] pt-1 border-t border-[var(--rm-border)]">
+                      <summary className="cursor-pointer font-serif text-[var(--rm-ink-secondary)] hover:text-[var(--rm-gold)] select-none">
+                        著录与授权详情
+                      </summary>
+                      <div className="mt-2 space-y-1 font-sans leading-relaxed">
+                        <p>撰文：{roleText(stele.inscriptionAuthor, stele.authorVerification)} · 书丹：{roleText(stele.calligrapher, stele.calligrapherVerification)}</p>
+                        <p>篆额：{roleText(stele.titleCalligrapher, stele.titleCalligrapherVerification)} · 刻工：{roleText(stele.engraver, stele.engraverVerification)} · 碑主：{roleText(stele.steleSubject, stele.steleSubjectVerification)}</p>
+                        <p>拓本：{stele.rubbingPeriod} · 类型：{stele.artifactType}</p>
+                        <p>影像初筛：{stele.imageConditionReviewStatus || '自动初筛，待人工复核'}</p>
+                        <p>原石风化：{stele.physicalStoneWeathering || stele.stoneWeathering || '无可靠原石证据，不评定'}</p>
+                        {stele.assessmentRunId && <p className="rm-mono-metric text-[10px] truncate">处理 {stele.assessmentRunId}</p>}
+                        <p className="rm-mono-metric text-[10px] truncate">许可：{stele.license || 'CC BY 4.0'}</p>
+                      </div>
+                    </details>
                   </div>
 
-                  <div className="flex flex-wrap gap-2 text-xs text-gold">
-                    <button onClick={() => setViewingAssessment(stele.id)}>查看本件评估</button>
-                    <button onClick={() => setViewingArchive({stele,mode:'readable'})}>查看高清拓本</button>
-                    <button onClick={() => setViewingArchive({stele,mode:'archive'})}>查看完整档案</button>
-                    <a href={stele.sourceUrl} target="_blank" rel="noreferrer">查看馆藏来源</a>
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-serif text-[var(--rm-gold)]">
+                    <button onClick={() => setViewingAssessment(stele.id)} className="hover:underline">查看本件评估</button>
+                    <button onClick={() => setViewingArchive({stele,mode:'readable'})} className="hover:underline">高清拓本</button>
+                    <button onClick={() => setViewingArchive({stele,mode:'archive'})} className="hover:underline">完整档案</button>
                   </div>
                   {/* Action Buttons */}
                   <div className="pt-2.5 border-t border-slate-800/80 flex items-center justify-between gap-1.5">

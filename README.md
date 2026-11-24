@@ -43,19 +43,27 @@ D:\Codex\blender-5.2.2\blender-5.2.2-windows-x64\blender.exe --background --pyth
 | 时空图谱中心 | Three.js + MapLibre + 真实 DEM，国界 / 省界独立图层、地形贴地标记、史料关系、纪年换算和有来源的全文检索 |
 | 算法评测报告 | 批次总览和本件运行报告，实际实验筛选、PSNR / SSIM / 边缘 F1、方法图表、同步图像对照、失败与负提升、机制证据、JSON / PDF 导出 |
 
-前四页截图来自 2026-10-26 的本地实际运行；报告页截图来自 2026-10-27 的视觉重构验收。完整的 1920×1080、1440×900、1366×768 证据和核验记录位于 [screenshots/sync-verification](screenshots/sync-verification/)。
+以下全部 1920×1080 实拍截图均来自最新一次极简留白重构后的本地全栈运行验收（完整截图集位于 [screenshots/sync-verification/1920x1080](screenshots/sync-verification/1920x1080/)）。
 
-### 首页门户
+### 首页门户 · 玄石暗馆（Obsidian Stele）
 
-![首页与原有视频、三维碑刻](screenshots/sync-verification/1920x1080/01-home.png)
+![首页门户与 Blender 5.2.2 三维碑刻](screenshots/sync-verification/1920x1080/01-home.png)
 
-### 贞石典藏馆
+### 素宣书斋（Xuan Paper）与考古侧光掠影（Raking Light）
+
+![素宣主题与三维斜光鉴刻](screenshots/sync-verification/1920x1080/01b-home-xuan-raking.png)
+
+### 贞石典藏馆（28 件授权馆藏）
 
 ![28 件正式馆藏](screenshots/sync-verification/1920x1080/02-museum.png)
 
-### 智考工作台
+### 智考工作台 · 观碑与复原
 
 ![实际处理工作台](screenshots/sync-verification/1920x1080/03-workbench.png)
+
+### 人文释读 · AI 金石学伴与文化留痕工坊
+
+![双栏释读与文化留痕高清藏品工坊](screenshots/sync-verification/1920x1080/03b-workbench-keepsake.png)
 
 ### 时空图谱中心
 

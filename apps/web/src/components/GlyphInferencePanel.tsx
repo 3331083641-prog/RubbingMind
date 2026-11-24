@@ -79,10 +79,12 @@ export const GlyphInferencePanel: React.FC<{
     finally { setBusy(false); }
   };
   const latest = records[0];
-  return <section className="glass-panel rounded-2xl border border-gold/30 p-5 space-y-3" aria-label="实际残字推演">
-    <h3 className="font-serif text-gold-light font-bold">实际残字推演</h3>
-    <p className="text-xs text-slate-400">框选前先选定原图或某次修复结果。坐标按该图像的实际像素保存，并核对文物、运行和图像 SHA。有效字迹不足时拒识。预置释文不代表自动检测。</p>
-    <button onClick={() => { setOpen(true); setBox(null); setMessage(''); }} className="text-xs text-gold border border-gold/40 rounded px-3 py-2">框选残字区域</button>
+  return <section className="glass-panel rounded-2xl border border-[var(--rm-border)] p-4 space-y-2.5" aria-label="实际残字推演">
+    <div className="flex items-center justify-between gap-2">
+      <h3 className="font-serif text-[var(--rm-gold-light)] font-bold text-sm">实际残字推演</h3>
+      <button onClick={() => { setOpen(true); setBox(null); setMessage(''); }} className="text-xs text-[var(--rm-gold)] border border-[var(--rm-border-strong)] hover:border-[var(--rm-gold)] rounded-lg px-3 py-1.5 font-serif transition-colors">框选残字区域</button>
+    </div>
+    <p className="text-[11px] text-[var(--rm-ink-muted)]">手动框选原图或修复结果中的残字，人工核验后采纳。</p>
     {message && <p role="status" className="text-xs text-celadon-light">{message}</p>}
     {latest ? <div className="space-y-2 text-xs text-slate-300">
       <p>最近记录 {latest.inferenceId.slice(0,8)} · {latest.source==='vision_model'?'视觉模型输出（待人工核验）':latest.source==='context_rule'?'仅上下文规则':latest.source==='local_shape_retrieval'?'本地人工参考字形检索（待核验）':'无可靠候选'} · {latest.status}</p>

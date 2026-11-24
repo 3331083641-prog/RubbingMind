@@ -420,14 +420,9 @@ export const CulturalKeepsakeStudio: React.FC<CulturalKeepsakeStudioProps> = ({
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--rm-border)] pb-3">
         <div className="flex items-center gap-2.5">
           <SealStamp text="留痕" variant="baiwen" size="xs" />
-          <div>
-            <h3 className="font-serif font-bold text-sm text-[var(--rm-gold-light)] tracking-wide">
-              文化留痕 · 当代碑帖藏品与海报工坊
-            </h3>
-            <p className="text-[11px] text-[var(--rm-ink-muted)] font-sans">
-              摘选碑文名句、定制题跋与朱印，实时渲染并导出高清 PNG 藏品图
-            </p>
-          </div>
+          <h3 className="font-serif font-bold text-sm text-[var(--rm-gold-light)] tracking-wide">
+            文化留痕工坊
+          </h3>
         </div>
         <span className="text-[10px] rm-mono-metric px-2 py-0.5 rounded bg-[var(--rm-cinnabar-soft)] text-[var(--rm-cinnabar-bright)] border border-[var(--rm-cinnabar)]/30">
           {TEMPLATE_SPECS[template].width} × {TEMPLATE_SPECS[template].height} PNG
@@ -576,9 +571,6 @@ export const CulturalKeepsakeStudio: React.FC<CulturalKeepsakeStudioProps> = ({
             data-testid="keepsake-canvas"
             className="max-h-[360px] w-auto max-w-full rounded-lg shadow-2xl border border-[var(--rm-border-strong)]"
           />
-          <span className="text-[10px] text-[var(--rm-ink-muted)] font-serif mt-2">
-            实时高分辨率预览 · 导出即得无水印原图
-          </span>
         </div>
       </div>
     </section>

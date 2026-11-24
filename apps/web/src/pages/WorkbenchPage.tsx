@@ -334,11 +334,9 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({
   return (
     <div className="min-h-[calc(100vh-68px)] bg-[var(--rm-bg-canvas)] text-[var(--rm-ink-primary)] p-4 lg:p-6 flex flex-col space-y-5 transition-colors duration-300">
       {/* Top Status & Curatorial Four-Stage Navigation Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 px-1">
-        <p className="text-xs text-[var(--rm-ink-muted)]" role="status">
-          {stele.isDemo
-            ? '核心实验样本：预置释文仅作演示；实际推演须提交图像选区。'
-            : '真实馆藏：释文依据馆方资料，残字检测与配对评测需独立进行。'}
+      <div className="flex flex-wrap items-center justify-between gap-2 px-1">
+        <p className="text-[11px] text-[var(--rm-ink-muted)] font-serif" role="status">
+          {stele.isDemo ? '核心样本 · 演示释文' : '真实馆藏 · 馆方著录'}
         </p>
 
         {/* Four-fold Workshop Anchor Pills (观碑 · 复原 · 释读 · 留痕) */}
@@ -454,73 +452,66 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({
         </div>
       </div>
 
-      {/* Real Processing History Strip (Preserves exact heading & controls for CI) */}
-      <section className="glass-panel p-4 rounded-xl border border-[var(--rm-border)] text-xs space-y-2" aria-label="处理历史">
-        <h3 className="text-[var(--rm-gold-light)] font-serif font-bold">真实处理历史</h3>
-        {runs.length ? (
-          <>
-            <label>
-              选择运行记录
-              <select
-                aria-label="选择运行记录"
-                value={selectedRunId}
-                onChange={(e) => {
-                  const run = runs.find((item) => item.runId === e.target.value);
-                  if (run) restoreRun(run);
-                  else setSelectedRunId('');
-                }}
-                className="ml-2 bg-[var(--rm-bg-elevated)] text-[var(--rm-ink-primary)] border border-[var(--rm-border-strong)] rounded p-1"
-              >
-                <option value="">选择已保存运行</option>
-                {runs.map((run) => (
-                  <option key={run.runId} value={run.runId}>
-                    {run.runId} · {run.algorithmParameters?.filter_type || '旧版参数'}
-                  </option>
-                ))}
-              </select>
-            </label>
-            {selectedRunId && (
-              <button
-                type="button"
-                onClick={() => {
-                  writeFilters({ view: 'artifact' });
-                  onNavigate('reports');
-                }}
-                className="ml-3 text-[var(--rm-gold)] underline"
-              >
-                在评测报告中查看此运行
-              </button>
-            )}
-            {selectedRunId &&
-              (() => {
-                const run = runs.find((item) => item.runId === selectedRunId);
-                return run ? (
-                  <div className="space-y-1 text-[var(--rm-ink-secondary)]">
-                    <p>
-                      运行 ID：{run.runId} · 算法：{run.algorithmVersion} · 耗时：{run.processing_time_ms} ms
-                    </p>
-                    <p>
-                      保存参数：D₀ {run.algorithmParameters?.d0}；阶数 {run.algorithmParameters?.filter_order}；NLM{' '}
-                      {run.algorithmParameters?.h_nlm}；CLAHE {run.algorithmParameters?.clahe_clip}。当前滑块：{d0} /{' '}
-                      {filterOrder} / {hNlm} / {claheClip}。
-                    </p>
-                    <p>
-                      配对评测：{run.evaluationStatus === 'paired_reference' ? '已有实验记录' : '未评测'}；输入 SHA-256：
-                      <span className="rm-mono-metric">{run.inputImageSha256}</span>
-                    </p>
-                    <div className="flex gap-4 text-[var(--rm-gold)]">
-                      <a href={run.outputImages?.restored || run.restored_image} download>
-                        保存处理结果
-                      </a>
-                      <button onClick={removeRun}>删除此记录</button>
-                    </div>
-                  </div>
-                ) : null;
-              })()}
-          </>
-        ) : (
-          <p className="text-[var(--rm-ink-muted)]">尚未执行处理。</p>
-        )}
+      {/* Real Processing History Compact Strip (Exact heading & controls preserved for CI) */}
+      <section className="glass-panel px-4 py-2.5 rounded-xl border border-[var(--rm-border)] text-xs flex flex-wrap items-center justify-between gap-3" aria-label="处理历史">
+        <div className="flex flex-wrap items-center gap-3">
+          <h3 className="text-[var(--rm-gold-light)] font-serif font-bold shrink-0">真实处理历史</h3>
+          {runs.length ? (
+            <>
+              <label className="inline-flex items-center gap-2 text-[var(--rm-ink-secondary)]">
+                <span className="sr-only">选择运行记录</span>
+                <select
+                  aria-label="选择运行记录"
+                  value={selectedRunId}
+                  onChange={(e) => {
+                    const run = runs.find((item) => item.runId === e.target.value);
+                    if (run) restoreRun(run);
+                    else setSelectedRunId('');
+                  }}
+                  className="bg-[var(--rm-bg-elevated)] text-[var(--rm-ink-primary)] border border-[var(--rm-border-strong)] rounded-lg px-2 py-1"
+                >
+                  <option value="">选择运行记录 ({runs.length})</option>
+                  {runs.map((run) => (
+                    <option key={run.runId} value={run.runId}>
+                      {run.runId} · {run.algorithmParameters?.filter_type || '旧版'}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              {selectedRunId && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    writeFilters({ view: 'artifact' });
+                    onNavigate('reports');
+                  }}
+                  className="text-[var(--rm-gold)] hover:underline font-serif"
+                >
+                  评测报告 ↗
+                </button>
+              )}
+            </>
+          ) : (
+            <span className="text-[var(--rm-ink-muted)]">暂无记录</span>
+          )}
+        </div>
+
+        {selectedRunId &&
+          (() => {
+            const run = runs.find((item) => item.runId === selectedRunId);
+            return run ? (
+              <div className="flex flex-wrap items-center gap-3 text-[11px] text-[var(--rm-ink-muted)]">
+                <span className="rm-mono-metric">{run.processing_time_ms} ms</span>
+                <span className="rm-mono-metric hidden xl:inline">SHA {run.inputImageSha256?.slice(0, 12)}</span>
+                <a href={run.outputImages?.restored || run.restored_image} download className="text-[var(--rm-gold)] hover:underline">
+                  下载
+                </a>
+                <button onClick={removeRun} className="text-[var(--rm-cinnabar-bright)] hover:underline">
+                  删除
+                </button>
+              </div>
+            ) : null;
+          })()}
       </section>
 
       {/* Main 2-Column Core Layout */}
@@ -1000,15 +991,9 @@ export const WorkbenchPage: React.FC<WorkbenchPageProps> = ({
               </label>
             </div>
 
-            {filterType === 'adaptive' && (
-              <p className="text-xs text-[var(--rm-ink-muted)]">
-                自适应模式按输入频谱和残差选择陷波、孤立噪点处理或 NLM，也可保留原图。D₀ 控制陷波宽度，NLM 控制相对强度；CLAHE 和形态学核径仅用于固定对照模式。没有缺字补全能力。
-              </p>
-            )}
-
             <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
-              <span className="text-[11px] text-[var(--rm-ink-muted)]">
-                调整参数后点击执行，系统将按「拂尘去噪 → 寻脉识字 → 推演残笔 → 考据释义」链路运行
+              <span className="text-[11px] text-[var(--rm-ink-muted)] font-serif">
+                {filterType === 'adaptive' ? '自适应门控：按频谱与残差择优或直通原图' : '固定对照滤波模式'}
               </span>
               <button
                 onClick={handleRunAlgorithm}

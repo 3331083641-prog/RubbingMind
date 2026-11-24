@@ -177,14 +177,9 @@ export const ScholarlyCompanionPanel: React.FC<ScholarlyCompanionPanelProps> = (
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--rm-border)] pb-3">
         <div className="flex items-center gap-2.5">
           <SealStamp text="释读" variant="zhuwen" size="xs" />
-          <div>
-            <h3 className="font-serif font-bold text-sm text-[var(--rm-gold-light)] tracking-wide">
-              人文深度释读 · AI 金石学伴
-            </h3>
-            <p className="text-[11px] text-[var(--rm-ink-muted)] font-sans">
-              {insight.tagline}
-            </p>
-          </div>
+          <h3 className="font-serif font-bold text-sm text-[var(--rm-gold-light)] tracking-wide">
+            人文释读 · AI 金石学伴
+          </h3>
         </div>
 
         <div className="flex items-center gap-1 p-1 rounded-xl bg-[var(--rm-bg-subtle)] border border-[var(--rm-border)] text-xs font-serif">
@@ -215,97 +210,85 @@ export const ScholarlyCompanionPanel: React.FC<ScholarlyCompanionPanelProps> = (
         </div>
       </div>
 
-      {/* Sub-tab 1: Bilingual Classical-Vernacular Comparison + Calligraphy Micro-Appreciation */}
+      {/* Sub-tab 1: Focused Single-Passage Bilingual Reader + Compact Brushwork Note */}
       {subTab === 'reading' && (
-        <div className="space-y-4">
-          {/* Bilingual Passages */}
-          <div className="space-y-2.5">
-            {insight.passages.map((p) => {
-              const selected = p.id === activePassageId;
-              return (
-                <div
+        <div className="space-y-3.5">
+          {insight.passages.length > 1 && (
+            <div className="flex items-center gap-1.5 text-[11px] font-serif">
+              {insight.passages.map((p, idx) => (
+                <button
                   key={p.id}
+                  type="button"
                   onClick={() => setActivePassageId(p.id)}
-                  className={`rounded-xl p-3.5 border cursor-pointer transition-all ${
-                    selected
-                      ? 'border-[var(--rm-gold)] bg-[var(--rm-gold-soft)]'
-                      : 'border-[var(--rm-border)] bg-[var(--rm-bg-subtle)] hover:border-[var(--rm-border-strong)]'
+                  className={`px-2.5 py-1 rounded-lg border transition-colors ${
+                    p.id === activePassageId
+                      ? 'bg-[var(--rm-gold)] text-[#14110f] border-[var(--rm-gold)] font-bold'
+                      : 'border-[var(--rm-border)] text-[var(--rm-ink-secondary)] hover:border-[var(--rm-gold)]'
                   }`}
                 >
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <div className="space-y-1.5 md:border-r md:border-[var(--rm-border)] md:pr-3">
-                      <span className="text-[10px] rm-mono-metric text-[var(--rm-gold)] uppercase tracking-wider">
-                        原碑文 · Classical
-                      </span>
-                      <p className="font-serif text-sm leading-relaxed text-[var(--rm-ink-primary)]">
-                        {p.classical}
-                      </p>
-                    </div>
-                    <div className="space-y-1.5">
-                      <span className="text-[10px] rm-mono-metric text-[var(--rm-celadon-light)] uppercase tracking-wider">
-                        白话译注 · Vernacular
-                      </span>
-                      <p className="font-sans text-xs leading-relaxed text-[var(--rm-ink-secondary)]">
-                        {p.vernacular}
-                      </p>
-                    </div>
-                  </div>
+                  句段 {['壹', '贰', '叁', '肆'][idx] || idx + 1}
+                </button>
+              ))}
+            </div>
+          )}
 
-                  {/* Interactive Highlight Characters & Send to Keepsake */}
-                  <div className="mt-2.5 pt-2 border-t border-[var(--rm-rule-hairline)] flex flex-wrap items-center justify-between gap-2 text-[11px]">
-                    <div className="flex flex-wrap items-center gap-1.5">
-                      <span className="text-[var(--rm-ink-muted)] font-serif">联动单字:</span>
-                      {p.highlightChars.map((ch) => (
-                        <button
-                          key={ch}
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            onHighlightChar?.(ch);
-                          }}
-                          className="w-6 h-6 rounded border border-[var(--rm-border-strong)] bg-[var(--rm-bg-elevated)] hover:border-[var(--rm-cinnabar)] hover:text-[var(--rm-cinnabar-bright)] font-serif text-xs flex items-center justify-center transition-colors"
-                          title={`在上方竖排碑卷中高亮「${ch}」字`}
-                        >
-                          {ch}
-                        </button>
-                      ))}
-                    </div>
-                    {onSendQuoteToKeepsake && (
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onSendQuoteToKeepsake(p.classical.replace(/[。，、；：]/g, ' ').trim().slice(0, 14));
-                        }}
-                        className="text-[11px] font-serif text-[var(--rm-cinnabar-bright)] hover:underline inline-flex items-center gap-1"
-                      >
-                        <Feather className="w-3 h-3" />
-                        <span>摘入留痕工坊</span>
-                      </button>
-                    )}
+          {(() => {
+            const p = insight.passages.find((item) => item.id === activePassageId) || insight.passages[0];
+            if (!p) return null;
+            return (
+              <div className="rounded-xl p-3.5 border border-[var(--rm-border-strong)] bg-[var(--rm-bg-subtle)] space-y-2.5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div className="space-y-1 md:border-r md:border-[var(--rm-border)] md:pr-3">
+                    <span className="text-[10px] rm-mono-metric text-[var(--rm-gold)] uppercase">原碑文</span>
+                    <p className="font-serif text-sm leading-relaxed text-[var(--rm-ink-primary)]">{p.classical}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <span className="text-[10px] rm-mono-metric text-[var(--rm-celadon-light)] uppercase">白话译注</span>
+                    <p className="font-sans text-xs leading-relaxed text-[var(--rm-ink-secondary)]">{p.vernacular}</p>
                   </div>
                 </div>
-              );
-            })}
-          </div>
+
+                <div className="pt-2 border-t border-[var(--rm-rule-hairline)] flex flex-wrap items-center justify-between gap-2 text-[11px]">
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    {p.highlightChars.map((ch) => (
+                      <button
+                        key={ch}
+                        type="button"
+                        onClick={() => onHighlightChar?.(ch)}
+                        className="w-6 h-6 rounded border border-[var(--rm-border-strong)] bg-[var(--rm-bg-elevated)] hover:border-[var(--rm-cinnabar)] hover:text-[var(--rm-cinnabar-bright)] font-serif text-xs flex items-center justify-center transition-colors"
+                        title={`定位「${ch}」字`}
+                      >
+                        {ch}
+                      </button>
+                    ))}
+                  </div>
+                  {onSendQuoteToKeepsake && (
+                    <button
+                      type="button"
+                      onClick={() => onSendQuoteToKeepsake(p.classical.replace(/[。，、；：]/g, ' ').trim().slice(0, 14))}
+                      className="text-[11px] font-serif text-[var(--rm-cinnabar-bright)] hover:underline inline-flex items-center gap-1"
+                    >
+                      <Feather className="w-3 h-3" />
+                      <span>摘入留痕</span>
+                    </button>
+                  )}
+                </div>
+              </div>
+            );
+          })()}
 
           {/* Calligraphy Brushwork & Glyph Evolution Micro-Appreciation */}
           {matchedGlyphNote && (
-            <div className="p-4 rounded-xl border border-[var(--rm-border)] bg-[var(--rm-bg-subtle)] space-y-2.5">
+            <div className="p-3.5 rounded-xl border border-[var(--rm-border)] bg-[var(--rm-bg-subtle)] space-y-2">
               <div className="flex items-start gap-3">
-                <div className="w-12 h-12 shrink-0 rounded-lg bg-[var(--rm-cinnabar-soft)] border border-[var(--rm-cinnabar)]/40 flex items-center justify-center font-serif text-2xl font-black text-[var(--rm-cinnabar-bright)]">
+                <div className="w-11 h-11 shrink-0 rounded-lg bg-[var(--rm-cinnabar-soft)] border border-[var(--rm-cinnabar)]/40 flex items-center justify-center font-serif text-xl font-black text-[var(--rm-cinnabar-bright)]">
                   {matchedGlyphNote.char}
                 </div>
                 <div className="space-y-1 flex-1 min-w-0">
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="font-serif font-bold text-xs text-[var(--rm-gold-light)]">
-                        书体笔法与字形演变微赏
-                      </span>
-                      <span className="text-[10px] rm-mono-metric px-1.5 py-0.5 rounded bg-[var(--rm-gold-soft)] text-[var(--rm-gold)]">
-                        {insight.calligraphySchool}
-                      </span>
-                    </div>
+                    <span className="font-serif font-bold text-xs text-[var(--rm-gold-light)]">
+                      笔法与字形微赏
+                    </span>
                     {insight.glyphNotes.length > 1 && (
                       <div className="flex items-center gap-1">
                         {insight.glyphNotes.map((g) => (
@@ -329,33 +312,21 @@ export const ScholarlyCompanionPanel: React.FC<ScholarlyCompanionPanelProps> = (
                     )}
                   </div>
                   <p className="text-xs text-[var(--rm-ink-secondary)] leading-relaxed font-sans">
-                    <strong className="text-[var(--rm-ink-primary)] font-serif">字形流变：</strong>
-                    {matchedGlyphNote.scriptEvolution}
-                  </p>
-                  <p className="text-xs text-[var(--rm-ink-secondary)] leading-relaxed font-sans">
-                    <strong className="text-[var(--rm-ink-primary)] font-serif">笔法刀意：</strong>
                     {matchedGlyphNote.brushwork}
                   </p>
                 </div>
               </div>
-              <p className="text-[11px] text-[var(--rm-ink-muted)] font-sans pt-2 border-t border-[var(--rm-rule-hairline)]">
-                <strong className="font-serif text-[var(--rm-ink-secondary)]">历史语境脉络：</strong>
-                {insight.historicalContext}
-              </p>
             </div>
           )}
         </div>
       )}
 
-      {/* Sub-tab 2: AI 金石学伴 (Evidence-First + Clear AI Deduction Boundary) */}
+      {/* Sub-tab 2: AI 金石学伴 */}
       {subTab === 'companion' && (
-        <div className="space-y-3.5">
-          {/* Academic Rigor Banner */}
-          <div className="px-3 py-2 rounded-lg bg-[var(--rm-celadon-soft)] border border-[var(--rm-celadon)]/35 flex items-center gap-2 text-[11px] text-[var(--rm-ink-secondary)]">
-            <ShieldCheck className="w-4 h-4 text-[var(--rm-celadon-light)] shrink-0" />
-            <span>
-              严格分层呈现：先查<strong className="text-[var(--rm-ink-primary)]">「馆藏史料考据」</strong>（SQLite FTS5 有据摘录），再附<strong className="text-[var(--rm-ink-primary)]">「AI 导览解读」</strong>，绝不混淆史实与推演。
-            </span>
+        <div className="space-y-3">
+          <div className="px-3 py-1.5 rounded-lg bg-[var(--rm-celadon-soft)] border border-[var(--rm-celadon)]/35 flex items-center gap-2 text-[11px] text-[var(--rm-ink-secondary)]">
+            <ShieldCheck className="w-3.5 h-3.5 text-[var(--rm-celadon-light)] shrink-0" />
+            <span>史料考据与 AI 导览分层展示，不混淆史实与推演。</span>
           </div>
 
           {/* Preset Deep Cultural Question Chips */}

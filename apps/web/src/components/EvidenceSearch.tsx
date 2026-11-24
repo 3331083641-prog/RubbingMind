@@ -21,7 +21,7 @@ export const EvidenceSearch:React.FC<{steleId:string;onLocate?:(id:string)=>void
   const names=Object.fromEntries([...(graph?.nodes||[]),...(result?.entities||[])].map(n=>[n.id,n.name]));
   return <section aria-label="史料智能检索" className="glass-panel p-4 md:p-6 rounded-xl border border-gold/20 my-4 text-slate-200">
     <h2 className="text-lg font-serif text-gold">史料智能检索</h2>
-    <p className="text-xs text-slate-400 mb-3">本地全文检索与有来源的关系扩展。离线无需模型；只展示著录与证据摘录，资料不足时拒绝补写结论。</p>
+    <p className="text-xs text-slate-400 mb-3">本地有据全文检索与关系扩展，资料不足时拒绝补写。</p>
     <div className="grid lg:grid-cols-3 gap-4">
       <form onSubmit={e=>{e.preventDefault();search();}} className="space-y-3">
         <textarea aria-label="史料问题" value={question} onChange={e=>setQuestion(e.target.value)} maxLength={500} placeholder="如：多宝塔碑的撰文者与书丹者是谁？" className="w-full bg-slate-950 border border-slate-700 p-3 rounded min-h-24"/>

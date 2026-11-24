@@ -69,20 +69,13 @@ export const Header: React.FC<HeaderProps> = ({
               {catalogueStatus === 'fallback' ? (
                 <span
                   data-testid="demo-seal-badge"
-                  title="后端服务未连接，已自动启用内置高质量典藏演示数据"
+                  title="后端未连接，已启用本地典藏演示态"
                   className="text-[10px] font-serif px-1.5 py-0.5 rounded-[3px] bg-[var(--rm-cinnabar-soft)] text-[var(--rm-cinnabar-bright)] border border-[var(--rm-cinnabar)]/45 whitespace-nowrap"
                 >
-                  典藏演示态
+                  演示态
                 </span>
-              ) : (
-                <span className="hidden sm:inline text-[10px] rm-mono-metric px-1.5 py-0.5 rounded-[3px] bg-[var(--rm-gold-soft)] text-[var(--rm-gold)] border border-[var(--rm-border-strong)]">
-                  金石数字馆
-                </span>
-              )}
+              ) : null}
             </div>
-            <span className="hidden 2xl:inline text-[10px] text-[var(--rm-ink-muted)] font-sans tracking-wide">
-              石刻微痕重构 · 三维侧光鉴刻 · 数字人文考据
-            </span>
           </div>
         </div>
 
