@@ -4,18 +4,19 @@
 
 @layer base {
   :root {
-    --bg-dark: #0A0D12;
-    --gold: #D4AF37;
-    --cinnabar: #C83C23;
-    --celadon: #3E8E7E;
-    --paper: #F3EBDC;
+    --bg-dark: #0A0C10;
+    --gold: #C9A66B;
+    --cinnabar: #C33927;
+    --celadon: #4A8C82;
+    --paper: #F4EEE2;
   }
 
   body {
-    background-color: #0A0D12;
-    color: #E2E8F0;
-    font-family: 'Noto Serif SC', 'Source Han Serif SC', serif;
+    background-color: var(--rm-bg-canvas);
+    color: var(--rm-ink-primary);
+    font-family: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', serif;
     overflow-x: hidden;
+    transition: background-color 320ms var(--rm-ease-scroll), color 320ms var(--rm-ease-scroll);
   }
 
   /* Custom Scrollbar */
@@ -24,15 +25,15 @@
     height: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #0A0D12;
+    background: var(--rm-bg-canvas);
   }
   ::-webkit-scrollbar-thumb {
-    background: #2A323D;
+    background: rgba(138, 128, 114, 0.36);
     border-radius: 3px;
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    border: 1px solid var(--rm-border);
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #D4AF37;
+    background: var(--rm-gold);
   }
 }
 
@@ -100,23 +101,24 @@
   animation: ringPing 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
-/* Glassmorphism Card Utilities */
+/* Museum Surface Panel Utilities */
 .glass-panel {
-  background: rgba(21, 28, 32, 0.82);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(212, 175, 55, 0.18);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  background: var(--rm-bg-surface);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--rm-border);
+  box-shadow: var(--rm-shadow-card);
+  transition: border-color 280ms var(--rm-ease-scroll), box-shadow 280ms var(--rm-ease-scroll);
 }
 
 .glass-panel:hover {
-  border-color: rgba(212, 175, 55, 0.35);
+  border-color: var(--rm-border-strong);
 }
 
 .glass-panel-active {
-  background: rgba(25, 33, 40, 0.92);
-  border-color: #D4AF37;
-  box-shadow: 0 0 25px rgba(212, 175, 55, 0.22);
+  background: var(--rm-bg-surface-strong);
+  border-color: var(--rm-gold);
+  box-shadow: 0 0 24px var(--rm-gold-soft);
 }
 
 /* Home hero ambient video (see HomeAmbientBackground.tsx).

@@ -1,10 +1,23 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { CORE_SAMPLES } from '../data/catalogSelection';
 import { SteleItem } from '../types/stele';
 import { SteleViewer } from '../components/stele3d/SteleViewer';
 import { SteleFullscreenViewer } from '../components/stele3d/SteleFullscreenViewer';
 import { HomeAmbientBackground } from '../components/HomeAmbientBackground';
-import { ArrowRight, Layers, Network, ShieldCheck, Compass, Sparkles, BookOpen, Award, BarChart3, ScanLine } from 'lucide-react';
+import { RubbingRevealCanvas } from '../components/RubbingRevealCanvas';
+import { SealStamp } from '../components/SealStamp';
+import { useExperience } from '../context/ExperienceContext';
+import {
+  ArrowRight,
+  Layers,
+  Network,
+  Sparkles,
+  BookOpen,
+  ScrollText,
+  Eye,
+  Stamp,
+  SunMedium,
+} from 'lucide-react';
 
 interface HomePageProps {
   steles: SteleItem[];
@@ -12,84 +25,160 @@ interface HomePageProps {
   onNavigate: (tab: string) => void;
 }
 
+const CURATORIAL_MOVEMENTS = [
+  {
+    num: '壹',
+    en: 'OBSERVE',
+    title: '观碑 · 考古侧光掠影',
+    desc: '基于 Blender 5.2.2 程序化雕刻的风化青石碑体，拖动斜射光束角度与冷月/暖烛色温，让千年阴刻刀锋在暗馆中苏醒。',
+    icon: Eye,
+    accent: 'text-[var(--rm-gold)]',
+  },
+  {
+    num: '贰',
+    en: 'RESTORE',
+    title: '复原 · 频空域微痕重构',
+    desc: '二维傅里叶自动陷波、Fast NLM 保边去噪与保真门控协同工作，支持卷轴分屏、朱拓模拟与骨架提取，拒绝无真值造假。',
+    icon: Layers,
+    accent: 'text-[var(--rm-cinnabar-bright)]',
+  },
+  {
+    num: '叁',
+    en: 'INTERPRET',
+    title: '释读 · 有据史料与学伴',
+    desc: '原碑文与白话译注双栏联动，结合 SQLite FTS5 有据文献检索与三维 DEM 时空舆图，严格划清史实著录与 AI 推演边界。',
+    icon: Sparkles,
+    accent: 'text-[var(--rm-celadon-light)]',
+  },
+  {
+    num: '肆',
+    en: 'PRESERVE',
+    title: '留痕 · 当代碑帖美育卡',
+    desc: '将喜爱的碑文名句与单字排版为数字藏品卡、竖排宣纸书签或当代极简海报，落印导出一键珍藏，完成文化传播闭环。',
+    icon: Stamp,
+    accent: 'text-[var(--rm-gold)]',
+  },
+];
+
 export const HomePage: React.FC<HomePageProps> = ({ steles, onSelectStele, onNavigate }) => {
-  const currentStele = CORE_SAMPLES[0];
-  const verifiedSteles = steles.filter(item => item.source_kind === 'verified_review_v3');
-  const dynastyCount = new Set(verifiedSteles.map(item => item.dynasty_value)).size;
+  const heroSectionRef = useRef<HTMLElement | null>(null);
+  const { setManifestoOpen } = useExperience();
+  const [heroSampleIndex, setHeroSampleIndex] = useState(0);
+  const currentStele = CORE_SAMPLES[heroSampleIndex] || CORE_SAMPLES[0];
+  const verifiedSteles = steles.filter((item) => item.source_kind === 'verified_review_v3');
+  const dynastyCount = new Set(verifiedSteles.map((item) => item.dynasty_value)).size;
   const [isFullscreen3D, setIsFullscreen3D] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#0A0D12] text-slate-100 flex flex-col space-y-12 pb-16">
-      {/* 1. Hero Section */}
-      <section className="home-ambient-hero relative w-full min-h-[calc(100vh-68px)] flex flex-col justify-center pt-8 pb-12 px-4 lg:px-12 overflow-hidden bg-gradient-to-b from-[#0F1419] via-[#0A0D12] to-[#0A0D12] border-b border-gold/15">
-        {/* Ambient looping stone-rubbing video + dark ink overlay (video/poster opacity only; content stays opaque) */}
+    <div className="min-h-screen bg-[var(--rm-bg-canvas)] text-[var(--rm-ink-primary)] flex flex-col space-y-14 pb-20 transition-colors duration-300">
+      {/* 1. Immersive Prologue Hero: "拂尘见字 / 数字传拓" */}
+      <section
+        ref={heroSectionRef}
+        className="home-ambient-hero relative w-full min-h-[calc(100vh-68px)] flex flex-col justify-center pt-8 pb-12 px-4 lg:px-12 overflow-hidden bg-gradient-to-b from-[#0E1218] via-[#0A0C10] to-[#0A0C10] border-b border-[var(--rm-border)]"
+      >
+        {/* Preserved ambient video background (exact geometry & CI test contract kept) */}
         <HomeAmbientBackground />
 
-        {/* Subtle Background Ink Mountains Texture (almost off so it does not mute the video) */}
-        <div 
+        {/* Interactive Ink-Dabber / Raking-Light Calligraphy Reveal Canvas (pointer-events: none) */}
+        <RubbingRevealCanvas hostRef={heroSectionRef} />
+
+        {/* Subtle Background Ink Mountains Texture */}
+        <div
           className="absolute inset-0 opacity-[0.03] pointer-events-none bg-center bg-cover mix-blend-screen"
           style={{ backgroundImage: `url('/assets/stele/backgrounds/bg_home_ink_landscape.png')` }}
         />
-        
-        {/* Ambient Top Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[720px] h-[300px] bg-gradient-to-b from-gold/[0.04] to-transparent blur-3xl pointer-events-none" />
+
+        {/* Vertical Editorial Colophon Rail (Desktop Accent) */}
+        <div
+          aria-hidden="true"
+          className="hidden 2xl:flex flex-col items-center gap-4 absolute right-5 top-1/2 -translate-y-1/2 z-10 pointer-events-none opacity-65"
+        >
+          <span className="h-12 w-px bg-gradient-to-b from-transparent via-[var(--rm-gold)] to-transparent" />
+          <span className="rm-colophon text-[11px] text-[var(--rm-gold)]">
+            拂塵見字 · 貞石長存
+          </span>
+          <SealStamp text="传拓" variant="zhuwen" size="xs" />
+        </div>
 
         <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-          {/* Left Text / Info (Col 7) */}
-          <div className="home-hero-copy lg:col-span-7 flex flex-col space-y-6">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-gold/10 border border-gold/30 text-gold-light text-xs font-serif w-fit">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#2eb88a] animate-pulse" />
-              <span>金石碑拓微痕修复与图像智能考据系统</span>
+          {/* Left Narrative & Actions (Col 7) */}
+          <div className="home-hero-copy lg:col-span-7 flex flex-col space-y-6 rm-animate-unscroll">
+            <div className="flex flex-wrap items-center gap-2.5">
+              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[var(--rm-gold-soft)] border border-[var(--rm-border-strong)] text-[var(--rm-gold-light)] text-xs font-serif w-fit backdrop-blur-md">
+                <span className="w-1.5 h-1.5 rounded-full bg-[var(--rm-cinnabar)] animate-pulse" />
+                <span>拂尘见字 · 移动指针以光墨拂过千年碑面</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setManifestoOpen(true)}
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--rm-bg-surface)] border border-[var(--rm-border)] hover:border-[var(--rm-cinnabar)] text-[11px] font-serif text-[var(--rm-ink-secondary)] hover:text-[var(--rm-cinnabar-bright)] transition-colors"
+              >
+                <ScrollText className="w-3 h-3" />
+                <span>作品立意与技术图谱</span>
+              </button>
             </div>
 
             <div className="space-y-3">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-paper-light via-gold-light to-gold">
-                墨韵智考
-              </h1>
-              <p className="text-lg md:text-xl font-serif text-gold/90 font-medium">
-                基于频空域联合去噪与多模态智能体的金石碑拓微痕修复及史料考据系统
+              <div className="flex items-center gap-4">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-black tracking-[0.08em] text-transparent bg-clip-text bg-gradient-to-r from-[#faf6ee] via-[#e5cb98] to-[#c9a66b]">
+                  墨韵智考
+                </h1>
+                <SealStamp text="金石传拓" variant="baiwen" size="md" className="rm-animate-seal" />
+              </div>
+              <p className="text-lg md:text-xl font-serif text-[var(--rm-gold-light)] font-medium tracking-wide">
+                千年金石 × 当代数字媒体 · 碑拓微痕重构、三维侧光鉴刻与人文考据
               </p>
             </div>
 
             <p className="text-slate-300 font-sans text-sm md:text-base leading-relaxed max-w-2xl text-justify">
-              针对历代传世金石碑拓因自然风化、漫漶残缺、纸墨斑驳及拓工织纹干扰造成的字口微痕丢失难题，
-              系统提供二维傅里叶频域低通与有条件自动陷波、空域非局部均值及对比度增强，
-              并结合可追溯的馆藏资料、时空关系展示与人工确认的残字候选。
-              无真值拓片的处理结果不会被标为已验证的原字复原。
+              面对石刻文物不可逆的风化漫漶与公众阅读门槛，系统融汇
+              <strong className="text-[var(--rm-ink-primary)] font-serif"> Blender 5.2.2 三维金石重建</strong>、
+              <strong className="text-[var(--rm-ink-primary)] font-serif">2D-FFT 频空域自适应微痕复原</strong>、
+              <strong className="text-[var(--rm-ink-primary)] font-serif">真实 DEM 时空舆图</strong>与
+              <strong className="text-[var(--rm-ink-primary)] font-serif">有据史料检索</strong>，
+              以“观碑 · 复原 · 释读 · 留痕”四重策展体验，让沉睡的贞石字口重焕温度。无真值拓片绝不虚报指标。
             </p>
 
-            {/* 4 Stats Cards */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-              <div className="glass-panel p-3.5 rounded-xl border border-gold/20 flex flex-col">
-                <span className="text-[11px] text-slate-400 font-serif">已核验真实馆藏</span>
-                <div className="text-2xl font-serif font-bold text-gold-light mt-1">{verifiedSteles.length} <span className="text-xs font-normal">件</span></div>
-                <span className="text-[10px] text-celadon-light mt-0.5">依据逐件来源清单</span>
+            {/* 4 Museum Metric Plaques */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-1">
+              <div className="rm-book-frame p-3.5 rounded-xl flex flex-col">
+                <span className="text-[11px] text-[var(--rm-ink-muted)] font-serif">真实授权馆藏</span>
+                <div className="text-2xl rm-mono-metric font-bold text-[var(--rm-gold-light)] mt-1">
+                  {verifiedSteles.length} <span className="text-xs font-serif font-normal">通</span>
+                </div>
+                <span className="text-[10px] text-[var(--rm-celadon-light)] mt-0.5">84 幅独立高清影像</span>
               </div>
-              <div className="glass-panel p-3.5 rounded-xl border border-gold/20 flex flex-col">
-                <span className="text-[11px] text-slate-400 font-serif">覆盖历史时期</span>
-                <div className="text-2xl font-serif font-bold text-cinnabar-light mt-1">{dynastyCount} <span className="text-xs font-normal">个</span></div>
-                <span className="text-[10px] text-slate-400 mt-0.5">以原刻年代归类</span>
+              <div className="rm-book-frame p-3.5 rounded-xl flex flex-col">
+                <span className="text-[11px] text-[var(--rm-ink-muted)] font-serif">跨越历史朝代</span>
+                <div className="text-2xl rm-mono-metric font-bold text-[var(--rm-cinnabar-bright)] mt-1">
+                  {dynastyCount} <span className="text-xs font-serif font-normal">朝</span>
+                </div>
+                <span className="text-[10px] text-[var(--rm-ink-muted)] mt-0.5">东汉至清逐件著录</span>
               </div>
-              <div className="glass-panel p-3.5 rounded-xl border border-gold/20 flex flex-col">
-                <span className="text-[11px] text-slate-400 font-serif">核心算法样本</span>
-                <div className="text-2xl font-serif font-bold text-slate-100 mt-1">{CORE_SAMPLES.length} <span className="text-xs font-normal">件</span></div>
-                <span className="text-[10px] text-slate-400 mt-0.5">与正式馆藏独立管理</span>
+              <div className="rm-book-frame p-3.5 rounded-xl flex flex-col">
+                <span className="text-[11px] text-[var(--rm-ink-muted)] font-serif">受控算法实证</span>
+                <div className="text-2xl rm-mono-metric font-bold text-[var(--rm-ink-primary)] mt-1">
+                  2,520 <span className="text-xs font-serif font-normal">组</span>
+                </div>
+                <span className="text-[10px] text-[var(--rm-ink-muted)] mt-0.5">9 种方法可复现对比</span>
               </div>
-              <div className="glass-panel p-3.5 rounded-xl border border-gold/20 flex flex-col">
-                <span className="text-[11px] text-slate-400 font-serif">有来源馆藏</span>
-                <div className="text-2xl font-serif font-bold text-celadon-light mt-1">{verifiedSteles.filter(item => Boolean(item.sourceUrl)).length} <span className="text-xs font-normal">件</span></div>
-                <span className="text-[10px] text-slate-400 mt-0.5">可查看馆藏出处</span>
+              <div className="rm-book-frame p-3.5 rounded-xl flex flex-col">
+                <span className="text-[11px] text-[var(--rm-ink-muted)] font-serif">实时 3D 鉴刻</span>
+                <div className="text-2xl rm-mono-metric font-bold text-[var(--rm-celadon-light)] mt-1">
+                  PBR <span className="text-xs font-serif font-normal">侧光</span>
+                </div>
+                <span className="text-[10px] text-[var(--rm-ink-muted)] mt-0.5">3.8MB 轻量化秒开</span>
               </div>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            {/* Primary Action Buttons (Exact accessible labels preserved for CI) */}
+            <div className="flex flex-wrap items-center gap-3.5 pt-2">
               <button
                 onClick={() => {
                   onSelectStele(currentStele.id);
                   onNavigate('workbench');
                 }}
-                className="px-6 py-3 rounded-xl font-serif font-bold text-sm bg-gradient-to-r from-gold to-gold-dark text-slate-950 shadow-gold-glow hover:brightness-110 active:scale-95 transition-all flex items-center space-x-2"
+                className="px-6 py-3 rounded-xl font-serif font-bold text-sm bg-gradient-to-r from-[#c33927] to-[#9b2517] text-[#faf6ee] shadow-cinnabar-glow hover:brightness-110 active:scale-95 transition-all flex items-center space-x-2 rm-keep-light-ink"
               >
                 <Layers className="w-4 h-4" />
                 <span>进入智考修复工作台</span>
@@ -98,35 +187,61 @@ export const HomePage: React.FC<HomePageProps> = ({ steles, onSelectStele, onNav
 
               <button
                 onClick={() => onNavigate('museum')}
-                className="px-6 py-3 rounded-xl font-serif font-medium text-sm glass-panel text-slate-200 hover:text-gold border border-gold/30 hover:border-gold/60 transition-all flex items-center space-x-2"
+                className="px-6 py-3 rounded-xl font-serif font-semibold text-sm glass-panel text-[var(--rm-ink-primary)] hover:text-[var(--rm-gold-light)] border border-[var(--rm-border-strong)] hover:border-[var(--rm-gold)] transition-all flex items-center space-x-2"
               >
-                <BookOpen className="w-4 h-4 text-gold" />
+                <BookOpen className="w-4 h-4 text-[var(--rm-gold)]" />
                 <span>浏览中华贞石典藏馆</span>
               </button>
 
               <button
                 onClick={() => onNavigate('graph')}
-                className="px-5 py-3 rounded-xl font-serif font-medium text-sm text-slate-300 hover:text-celadon-light transition-colors flex items-center space-x-1.5"
+                className="px-5 py-3 rounded-xl font-serif font-medium text-sm text-[var(--rm-ink-secondary)] hover:text-[var(--rm-celadon-light)] transition-colors flex items-center space-x-1.5"
               >
-                <Network className="w-4 h-4 text-celadon" />
+                <Network className="w-4 h-4 text-[var(--rm-celadon)]" />
                 <span>时空图谱与 GIS 考据</span>
               </button>
             </div>
           </div>
 
-          {/* Right 3D Stele Scene (Col 5) - Museum Grade High Fidelity 3D Showcase */}
-          <div className="lg:col-span-5 relative h-[560px] rounded-2xl overflow-hidden border border-gold/30 glass-panel shadow-2xl flex flex-col">
-            <SteleViewer
-              customRubbingUrl={currentStele?.damaged_image}
-              steleTitle="唐风龙纹石碑 · 三维数字展陈示意"
-              onOpenWorkbench={() => {
-                if (currentStele) onSelectStele(currentStele.id);
-                onNavigate('workbench');
-              }}
-              onToggleFullscreen={() => setIsFullscreen3D(true)}
-              isFullscreen={false}
-              showControls={true}
-            />
+          {/* Right 3D Raking-Light Exhibition Stage (Col 5) */}
+          <div className="lg:col-span-5 flex flex-col space-y-2.5">
+            <div className="relative h-[540px] rounded-2xl overflow-hidden border border-[var(--rm-border-strong)] shadow-[var(--rm-shadow-float)] flex flex-col">
+              <SteleViewer
+                customRubbingUrl={currentStele?.damaged_image || currentStele?.raw_image}
+                steleTitle={`${currentStele.title.replace(/（核心实验样本）/, '')} · 三维侧光鉴刻`}
+                onOpenWorkbench={() => {
+                  if (currentStele) onSelectStele(currentStele.id);
+                  onNavigate('workbench');
+                }}
+                onToggleFullscreen={() => setIsFullscreen3D(true)}
+                isFullscreen={false}
+                showControls={true}
+              />
+            </div>
+
+            {/* Instant 3D Stele Rubbing Switcher Bar */}
+            <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-xl glass-panel border border-[var(--rm-border)] text-[11px]">
+              <span className="font-serif text-[var(--rm-ink-muted)] inline-flex items-center gap-1 shrink-0">
+                <SunMedium className="w-3.5 h-3.5 text-[var(--rm-gold)]" />
+                切换展台碑拓：
+              </span>
+              <div className="flex items-center gap-1 overflow-x-auto no-scrollbar">
+                {CORE_SAMPLES.map((sample, idx) => (
+                  <button
+                    key={sample.id}
+                    type="button"
+                    onClick={() => setHeroSampleIndex(idx)}
+                    className={`px-2 py-1 rounded-md font-serif whitespace-nowrap transition-all ${
+                      idx === heroSampleIndex
+                        ? 'bg-[var(--rm-gold)] text-[#14110f] font-bold'
+                        : 'text-[var(--rm-ink-secondary)] hover:bg-[var(--rm-bg-subtle)]'
+                    }`}
+                  >
+                    {sample.title.split('·')[1]?.split('（')[0] || sample.title.slice(0, 5)}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
@@ -134,8 +249,8 @@ export const HomePage: React.FC<HomePageProps> = ({ steles, onSelectStele, onNav
         <SteleFullscreenViewer
           isOpen={isFullscreen3D}
           onClose={() => setIsFullscreen3D(false)}
-          customRubbingUrl={currentStele?.damaged_image}
-          steleTitle="唐风龙纹石碑 · 全屏沉浸式展陈"
+          customRubbingUrl={currentStele?.damaged_image || currentStele?.raw_image}
+          steleTitle={`${currentStele.title} · 全屏考古侧光展陈`}
           onOpenWorkbench={() => {
             setIsFullscreen3D(false);
             if (currentStele) onSelectStele(currentStele.id);
@@ -144,93 +259,78 @@ export const HomePage: React.FC<HomePageProps> = ({ steles, onSelectStele, onNav
         />
       </section>
 
-      {/* 2. Three-Stage Core Architecture */}
-      <section className="max-w-7xl mx-auto px-4 lg:px-8 w-full">
-        <div className="text-center space-y-2 mb-8">
-          <span className="text-xs font-serif text-gold tracking-widest uppercase">Methodology & Architecture</span>
-          <h2 className="text-2xl md:text-3xl font-serif font-bold text-slate-100">
-            三阶智能微痕修复与考据系统架构
-          </h2>
-          <p className="text-slate-400 text-xs md:text-sm font-sans max-w-xl mx-auto">
-            从数字信号频域去噪，到视觉拓扑骨架推演，再到历史文献网络大模型交叉校验
+      {/* 2. Four-Fold Curatorial Narrative: 观碑 · 复原 · 释读 · 留痕 */}
+      <section className="max-w-7xl mx-auto px-4 lg:px-8 w-full space-y-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div className="space-y-2">
+            <span className="text-[11px] rm-mono-metric text-[var(--rm-gold)] tracking-[0.26em] uppercase">
+              CURATORIAL EXPERIENCE · FOUR MOVEMENTS
+            </span>
+            <h2 className="text-2xl md:text-3xl font-serif font-bold text-[var(--rm-ink-primary)] tracking-wide">
+              起承转合 · 四重沉浸式数字金石策展动线
+            </h2>
+          </div>
+          <p className="text-xs md:text-sm text-[var(--rm-ink-muted)] font-sans max-w-md">
+            告别“上传即等待”的工具逻辑，以观碑、复原、释读、留痕重构文物数字化与公众美育链路。
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Card 1 */}
-          <div className="glass-panel p-6 rounded-2xl border border-gold/20 hover:border-gold/50 transition-all group relative overflow-hidden flex flex-col justify-between">
-            <div className="space-y-4">
-              <div className="w-12 h-12 rounded-xl bg-gold/10 border border-gold/30 flex items-center justify-center text-gold group-hover:scale-110 transition-transform">
-                <Layers className="w-6 h-6" />
-              </div>
-              <div>
-                <span className="text-[11px] font-mono text-gold/80">STAGE 01 · 信号重构</span>
-                <h3 className="text-lg font-serif font-bold text-slate-100 mt-1">频空域联合滤波去噪</h3>
-              </div>
-              <p className="text-xs text-slate-300 leading-relaxed text-justify">
-                采用二维离散傅里叶变换（2D-FFT），提供高斯及 Butterworth 低通；仅在检测到显著对称周期峰时采用自动陷波。随后可使用 Fast NLM 与 CLAHE。效果取决于退化类型。
-              </p>
-            </div>
-            <div className="pt-4 border-t border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
-              <span>受控退化实验可复现</span>
-              <span className="text-gold font-mono font-medium">无真值时未评测</span>
-            </div>
-          </div>
+        <div className="rm-hairline-divider" />
 
-          {/* Card 2 */}
-          <div className="glass-panel p-6 rounded-2xl border border-cinnabar/20 hover:border-cinnabar/50 transition-all group relative overflow-hidden flex flex-col justify-between">
-            <div className="space-y-4">
-              <div className="w-12 h-12 rounded-xl bg-cinnabar/10 border border-cinnabar/30 flex items-center justify-center text-cinnabar group-hover:scale-110 transition-transform">
-                <Sparkles className="w-6 h-6" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {CURATORIAL_MOVEMENTS.map((step) => {
+            const Icon = step.icon;
+            return (
+              <div
+                key={step.num}
+                className="rm-book-frame p-5 rounded-2xl hover:-translate-y-1 flex flex-col justify-between space-y-4 group"
+              >
+                <div className="space-y-3.5">
+                  <div className="flex items-center justify-between">
+                    <span className="w-10 h-10 rounded-xl bg-[var(--rm-bg-subtle)] border border-[var(--rm-border-strong)] flex items-center justify-center group-hover:scale-105 transition-transform">
+                      <Icon className={`w-5 h-5 ${step.accent}`} />
+                    </span>
+                    <span className="font-serif text-2xl font-black text-[var(--rm-border-strong)] group-hover:text-[var(--rm-cinnabar)] transition-colors">
+                      {step.num}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-[10px] rm-mono-metric text-[var(--rm-ink-muted)] tracking-widest">
+                      {step.en}
+                    </span>
+                    <h3 className="text-base font-serif font-bold text-[var(--rm-ink-primary)] mt-0.5">
+                      {step.title}
+                    </h3>
+                  </div>
+                  <p className="text-xs text-[var(--rm-ink-secondary)] leading-relaxed text-justify font-sans">
+                    {step.desc}
+                  </p>
+                </div>
               </div>
-              <div>
-                <span className="text-[11px] font-mono text-cinnabar/80">STAGE 02 · 智能释读</span>
-                <h3 className="text-lg font-serif font-bold text-slate-100 mt-1">残字选区与候选推演</h3>
-              </div>
-              <p className="text-xs text-slate-300 leading-relaxed text-justify">
-                用户可手动框选实际残字、填写邻近上下文并保存裁切图。配置可选视觉模型时提交图像建议；服务不可用时仅显示明确标注的规则候选，采纳须人工确认。
-              </p>
-            </div>
-            <div className="pt-4 border-t border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
-              <span>候选未经概率校准</span>
-              <span className="text-cinnabar-light font-mono font-medium">支持撤销采纳</span>
-            </div>
-          </div>
-
-          {/* Card 3 */}
-          <div className="glass-panel p-6 rounded-2xl border border-celadon/20 hover:border-celadon/50 transition-all group relative overflow-hidden flex flex-col justify-between">
-            <div className="space-y-4">
-              <div className="w-12 h-12 rounded-xl bg-celadon/10 border border-celadon/30 flex items-center justify-center text-celadon group-hover:scale-110 transition-transform">
-                <Network className="w-6 h-6" />
-              </div>
-              <div>
-                <span className="text-[11px] font-mono text-celadon/80">STAGE 03 · 史料互勘</span>
-                <h3 className="text-lg font-serif font-bold text-slate-100 mt-1">GraphRAG 时空谱系与 GIS 舆图</h3>
-              </div>
-              <p className="text-xs text-slate-300 leading-relaxed text-justify">
-                展示已整理的金石人物、藏所与历史地点资料，并提供来源链接和定位精度说明。文献关联图仅辅助检索，推断关系仍需人工核实。
-              </p>
-            </div>
-            <div className="pt-4 border-t border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
-              <span>馆藏与地点分别标注</span>
-              <span className="text-celadon-light font-mono font-medium">来源可查</span>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </section>
 
-      {/* 3. Featured Stele Gallery */}
+      {/* 3. Curated Archive Preview (零门槛秒级体验) */}
       <section className="max-w-7xl mx-auto px-4 lg:px-8 w-full">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-wrap items-end justify-between gap-4 mb-6">
           <div>
-            <h2 className="text-2xl font-serif font-bold text-slate-100">核心测试碑拓标本</h2>
-            <p className="text-xs text-slate-400 mt-1">涵盖汉隶、魏碑、盛唐楷书及极难漫漶断片</p>
+            <span className="text-[11px] rm-mono-metric text-[var(--rm-cinnabar-bright)] tracking-[0.22em] uppercase">
+              CURATED SPECIMENS · ZERO-FRICTION ENTRY
+            </span>
+            <h2 className="text-2xl font-serif font-bold text-[var(--rm-ink-primary)] mt-1">
+              典藏碑林精选 · 跨朝代书体标本
+            </h2>
+            <p className="text-xs text-[var(--rm-ink-muted)] mt-1">
+              无需自备图片，涵盖汉隶、北魏墓志、盛唐颜楷与极端漫漶残片，点击即刻步入四重工坊
+            </p>
           </div>
-          <button 
+          <button
             onClick={() => onNavigate('museum')}
-            className="text-xs text-gold hover:underline flex items-center space-x-1 font-serif"
+            className="text-xs text-[var(--rm-gold)] hover:underline flex items-center space-x-1 font-serif"
           >
-            <span>查看典藏馆全部碑拓 ({verifiedSteles.length})</span>
+            <span>步入典藏馆浏览全部 {verifiedSteles.length} 通真实馆藏</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
@@ -239,61 +339,67 @@ export const HomePage: React.FC<HomePageProps> = ({ steles, onSelectStele, onNav
           {CORE_SAMPLES.map((stele) => (
             <div
               key={stele.id}
-              className="glass-panel rounded-xl overflow-hidden border border-gold/20 hover:border-gold/60 transition-all duration-300 flex flex-col group"
+              className="rm-book-frame rounded-2xl overflow-hidden flex flex-col group hover:-translate-y-1"
             >
-              {/* Stele Image Window */}
-              {/* 拓本完整显示（object-contain，不裁字）；纸色衬底保持原卡片观感 */}
-              <div className="relative h-48 w-full bg-[#eee4d2] overflow-hidden flex items-center justify-center" data-testid="core-sample-image-frame">
+              {/* Stele Image Window (object-contain preserved, never crops glyphs) */}
+              <div
+                className="relative h-48 w-full bg-[#e9dfd0] overflow-hidden flex items-center justify-center"
+                data-testid="core-sample-image-frame"
+              >
                 <img
                   src={stele.raw_image}
                   alt={stele.title}
-                  className="w-full h-full object-contain p-1 group-hover:brightness-110 transition duration-500 filter contrast-125"
+                  className="w-full h-full object-contain p-1.5 group-hover:scale-[1.03] transition duration-500 filter contrast-125"
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = '/assets/stele/rubbings/stele_tang_duobao_damaged.png';
                   }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0D12] via-transparent to-transparent opacity-80" />
-                
-                {/* Dynasty & Weathering Badges */}
-                <div className="absolute top-2 left-2 flex flex-col gap-1">
-                  <span className="px-2 py-0.5 rounded text-[10px] font-serif bg-gold/90 text-slate-950 font-bold">
-                    {stele.dynasty}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0C10]/85 via-transparent to-transparent" />
+
+                {/* Dynasty & Condition Badges */}
+                <div className="absolute top-2.5 left-2.5 flex flex-col gap-1">
+                  <span className="px-2 py-0.5 rounded text-[10px] font-serif bg-[#c9a66b] text-[#14110f] font-bold">
+                    {stele.dynasty.split('·')[0]}
                   </span>
-                  <span className={`px-2 py-0.5 rounded text-[10px] font-serif ${
-                    stele.imageCondition === '严重漫漶' ? 'bg-cinnabar text-white' : 'bg-slate-800/80 text-slate-300'
-                  }`}>
-                    {stele.imageCondition || '待人工复核'}
+                  <span
+                    className={`px-2 py-0.5 rounded text-[10px] font-serif rm-keep-light-ink ${
+                      stele.imageCondition === '严重漫漶'
+                        ? 'bg-[#c33927] text-[#faf6ee]'
+                        : 'bg-[#12161c]/85 text-[#f2ece1]'
+                    }`}
+                  >
+                    {stele.script_type?.split('（')[0] || '金石拓本'}
                   </span>
                 </div>
 
-                <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-[11px] text-slate-300">
-                  <span className="font-mono text-gold-light">PSNR: {stele.metrics?.psnr != null ? `${stele.metrics.psnr} dB` : '未评测'}</span>
-                  <span className="font-mono text-celadon-light">SSIM: {stele.metrics?.ssim ?? '未评测'}</span>
+                <div className="absolute bottom-2 left-2.5 right-2.5 flex items-center justify-between text-[10px] text-[#e5cb98] rm-mono-metric">
+                  <span>PSNR: {stele.metrics?.psnr != null ? `${stele.metrics.psnr} dB` : '未评测'}</span>
+                  <span>SSIM: {stele.metrics?.ssim ?? '未评测'}</span>
                 </div>
               </div>
 
               {/* Stele Content */}
               <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
                 <div>
-                  <h4 className="font-serif font-bold text-base text-slate-100 group-hover:text-gold transition-colors">
+                  <h4 className="font-serif font-bold text-base text-[var(--rm-ink-primary)] group-hover:text-[var(--rm-gold)] transition-colors">
                     {stele.title}
                   </h4>
-                  <p className="text-[11px] text-slate-400 mt-1 line-clamp-1">{stele.author}</p>
-                  <p className="text-xs text-slate-300 mt-2 line-clamp-2 leading-relaxed">
+                  <p className="text-[11px] text-[var(--rm-ink-muted)] mt-1 line-clamp-1">{stele.author}</p>
+                  <p className="text-xs text-[var(--rm-ink-secondary)] mt-2 line-clamp-2 leading-relaxed font-sans">
                     {stele.summary}
                   </p>
                 </div>
 
-                <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between">
+                <div className="pt-2.5 border-t border-[var(--rm-border)] flex items-center justify-between">
                   <button
                     onClick={() => {
                       onSelectStele(stele.id);
                       onNavigate('workbench');
                     }}
-                    className="text-xs font-serif text-gold hover:text-gold-light font-medium flex items-center space-x-1"
+                    className="text-xs font-serif text-[var(--rm-cinnabar-bright)] hover:underline font-semibold flex items-center space-x-1"
                   >
                     <Layers className="w-3.5 h-3.5" />
-                    <span>立即修复</span>
+                    <span>步入工坊</span>
                   </button>
 
                   <button
@@ -301,10 +407,10 @@ export const HomePage: React.FC<HomePageProps> = ({ steles, onSelectStele, onNav
                       onSelectStele(stele.id);
                       onNavigate('graph');
                     }}
-                    className="text-xs font-serif text-slate-400 hover:text-celadon-light flex items-center space-x-1"
+                    className="text-xs font-serif text-[var(--rm-ink-secondary)] hover:text-[var(--rm-celadon-light)] flex items-center space-x-1"
                   >
                     <Network className="w-3.5 h-3.5" />
-                    <span>图谱考据</span>
+                    <span>时空图谱</span>
                   </button>
                 </div>
               </div>

@@ -72,6 +72,8 @@ export const STELE_DIMENSIONS = {
     top: { position: [0, 6.0, 1.4], target: [0, 1.65, 0], fov: 42 },
     bottom: { position: [0, -4.0, 0.001], target: [0, 1.65, 0], fov: 42 },
     back: { position: [0, 1.65, -4.8], target: [0, 1.65, 0], fov: 42 },
-    perspective: { position: [3.6, 2.6, 3.6], target: [0, 1.40, 0], fov: 44 },
+    perspective: { position: [3.2, 2.35, 3.8], target: [0, 1.52, 0], fov: 42 },
+    inscription: { position: [0.18, 1.72, 2.15], target: [0, 1.64, 0.12], fov: 34 },
+    raking: { position: [2.45, 1.78, 2.05], target: [0, 1.62, 0.08], fov: 38 },
   }
 };

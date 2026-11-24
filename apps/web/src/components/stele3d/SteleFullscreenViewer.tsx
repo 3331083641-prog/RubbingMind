@@ -6,6 +6,7 @@ interface SteleFullscreenViewerProps {
   isOpen: boolean;
   onClose: () => void;
   customRubbingUrl?: string;
+  restoredRubbingUrl?: string;
   steleTitle?: string;
   onOpenWorkbench?: () => void;
 }
@@ -14,7 +15,8 @@ export const SteleFullscreenViewer: React.FC<SteleFullscreenViewerProps> = ({
   isOpen,
   onClose,
   customRubbingUrl,
-  steleTitle = '金石碑刻 · 三维数字孪生大屏',
+  restoredRubbingUrl,
+  steleTitle = '金石碑刻 · 三维侧光鉴刻大屏',
   onOpenWorkbench,
 }) => {
   useEffect(() => {
@@ -67,6 +69,7 @@ export const SteleFullscreenViewer: React.FC<SteleFullscreenViewerProps> = ({
       <div className="w-full h-full">
         <SteleViewer
           customRubbingUrl={customRubbingUrl}
+          restoredRubbingUrl={restoredRubbingUrl}
           steleTitle={steleTitle}
           onOpenWorkbench={() => {
             onClose();

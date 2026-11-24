@@ -110,3 +110,18 @@ screenshots/terrain3d-v22/regression/
 /graph-current-ui-2026-10-15.png
 # Generated after the final remote commit/Actions check; includes its exact SHA.
 /docs/sync-audit/FINAL_SYNC_REPORT.md
+
+# Large Blender working source files (>25MB); keep reproducible scripts under tools/blender/
+*.blend
+*.blend1
+
+# Local archival deliverables, competition submission packages & scratch temp folders
+/.full-final-delivery/
+/_fix1_tmp/
+/deliverables/
+/技术报告/
+/技术报告科研图/
+/数字媒体提交材料/
+/墨韵智考_成果包_SHA256.txt
+/墨韵智考_成果包验收报告.md
+/墨韵智考_正式参赛技术报告.pdf

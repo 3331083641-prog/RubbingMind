@@ -117,9 +117,9 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0D12] text-slate-100 px-4 lg:px-12 py-8 space-y-8 select-none" data-testid="museum-page" data-dynasty={selectedDynasty} data-visible-count={filteredSteles.length}>
+    <div className="min-h-screen bg-[var(--rm-bg-canvas)] text-[var(--rm-ink-primary)] px-4 lg:px-12 py-8 space-y-8 select-none transition-colors duration-300" data-testid="museum-page" data-dynasty={selectedDynasty} data-visible-count={filteredSteles.length}>
       {/* 1. Header Banner */}
-      <div className="relative rounded-2xl p-6 lg:p-8 overflow-hidden glass-panel border border-gold/30 bg-gradient-to-r from-[#12181F] via-[#0D1217] to-[#12181F] flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-2xl">
+      <div className="rm-dark-stage relative rounded-2xl p-6 lg:p-8 overflow-hidden border border-[var(--rm-border-strong)] bg-gradient-to-r from-[#12181F] via-[#0D1217] to-[#12181F] flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-2xl">
         <div
           className="absolute inset-0 pointer-events-none bg-cover bg-no-repeat bg-[position:30%_42%] md:bg-[position:center_28%]"
           style={{ backgroundImage: "url('/assets/stele/backgrounds/bg_museum_hall_v2.webp')" }}
@@ -276,10 +276,10 @@ export const MuseumPage: React.FC<MuseumPageProps> = ({
               <div
                 key={stele.id}
                 data-testid="museum-card" data-stele-id={stele.id} data-image-condition={stele.imageCondition || '待人工复核'}
-                className="glass-panel rounded-2xl overflow-hidden border border-gold/20 hover:border-gold/60 transition-all duration-300 flex flex-col group hover:-translate-y-1 shadow-lg bg-[#0E1319]/90"
+                className="rm-book-frame rounded-2xl overflow-hidden hover:border-[var(--rm-gold)] transition-all duration-300 flex flex-col group hover:-translate-y-1 shadow-lg"
               >
                 {/* Image or Pending Placeholder Box */}
-                <div className="relative h-60 w-full bg-[#080B0E] overflow-hidden flex items-center justify-center border-b border-gold/15">
+                <div className="rm-dark-stage relative h-60 w-full bg-[#080B0E] overflow-hidden flex items-center justify-center border-b border-gold/15">
                   {hasGenuineImage ? (
                     <img
                       src={stele.imageAssets?.cover} loading="lazy" decoding="async" data-testid="museum-cover"

@@ -13,8 +13,12 @@ import { graphSelectionItems, resolveCoreId } from './data/graphSelection';
 import { CORE_SAMPLES, resolveSelected } from './data/catalogSelection';
 import { VerifiedMuseumGraph } from './components/VerifiedMuseumGraph';
 import { parseUrlState, resolveExperiment, writeUrlState, UrlState } from './state/urlState';
+import { useExperience } from './context/ExperienceContext';
+import { CuratorialManifestoModal } from './components/CuratorialManifestoModal';
+import { ShowcaseGuideBar } from './components/ShowcaseGuideBar';
 
 export const App: React.FC = () => {
+  const { manifestoOpen, setManifestoOpen } = useExperience();
   // R1-6 / R2-8: initial state may come from the URL; without parameters the defaults are unchanged
   // and the URL is not rewritten until the user changes something.
   const [initialParse] = useState(() => parseUrlState());
@@ -159,8 +163,18 @@ export const App: React.FC = () => {
     setCurrentTab('workbench');
   };
 
+  const verifiedCount = steles.filter(item => item.source_kind === 'verified_review_v3').length;
+
   return (
-    <div className="min-h-screen bg-[#0A0D12] text-slate-100 flex flex-col font-sans selection:bg-gold/30 selection:text-gold-light" data-catalogue-status={catalogueStatus} data-tab={currentTab} data-verified-count={steles.filter(item => item.source_kind === 'verified_review_v3').length}>
+    <div
+      className="rm-app-shell min-h-screen bg-[var(--rm-bg-canvas)] text-[var(--rm-ink-primary)] flex flex-col font-sans selection:bg-gold/30 selection:text-gold-light transition-colors duration-300"
+      data-catalogue-status={catalogueStatus}
+      data-tab={currentTab}
+      data-verified-count={verifiedCount}
+    >
+      {/* Tactile Xuan Paper / Stone Micro-Grain Overlay (non-interactive, pointer-events: none) */}
+      <div className="rm-tactile-grain" aria-hidden="true" />
+
       {/* 68px Sticky App Shell Header */}
       <Header
         currentTab={currentTab}
@@ -168,6 +182,8 @@ export const App: React.FC = () => {
         steles={currentTab === 'graph' ? [...CORE_SAMPLES, ...graphHeaderItems.filter(s => !CORE_SAMPLES.some(c => c.id === s.id))] : [...CORE_SAMPLES, ...steles]}
         selectedSteleId={selectedSteleId}
         onSelectStele={handleSelectStele}
+        isBackendConnected={isBackendConnected}
+        catalogueStatus={catalogueStatus}
       />
 
       {urlNotices.length > 0 && (
@@ -216,6 +232,7 @@ export const App: React.FC = () => {
             stele={currentStele}
             onNavigate={setCurrentTab}
             onRunChange={setActiveRunId}
+            isBackendConnected={isBackendConnected}
           />
         )}
 
@@ -247,6 +264,17 @@ export const App: React.FC = () => {
 
       {/* Footer */}
       <Footer />
+
+      {/* 16:9 Competition Showcase Guide Bar */}
+      <ShowcaseGuideBar currentTab={currentTab} onTabChange={setCurrentTab} />
+
+      {/* Curatorial Manifesto & Architecture Modal */}
+      <CuratorialManifestoModal
+        isOpen={manifestoOpen}
+        onClose={() => setManifestoOpen(false)}
+        verifiedCount={verifiedCount}
+        onNavigate={setCurrentTab}
+      />
 
       {/* Upload Modal Drawer */}
       <UploadModal
