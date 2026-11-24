@@ -14,8 +14,8 @@ const ARCH_PILLARS = [
   {
     code: '01',
     title: '三维侧光鉴刻',
-    subtitle: 'Blender 5.2.2 · WebGL PBR · Raking Light',
-    desc: '程序化构建风化青石与阴刻法线，拖动斜射光角度重现千年刀锋。',
+    subtitle: 'Blender PBR · WebGL · Raking Light',
+    desc: '高精雕刻唐风双龙青石碑，拖动斜射光角度重现千年刀锋。',
     icon: Box,
   },
   {
@@ -114,8 +114,8 @@ export const CuratorialManifestoModal: React.FC<CuratorialManifestoModalProps> =
                 <span className="text-[10px] text-[var(--rm-ink-muted)] font-serif">受控实验</span>
               </div>
               <div className="p-3 rounded-xl border border-[var(--rm-border)] bg-[var(--rm-bg-subtle)]">
-                <div className="text-xl rm-mono-metric font-bold text-[var(--rm-cinnabar-bright)]">3.8MB</div>
-                <span className="text-[10px] text-[var(--rm-ink-muted)] font-serif">PBR 碑刻</span>
+                <div className="text-xl rm-mono-metric font-bold text-[var(--rm-cinnabar-bright)]">PBR</div>
+                <span className="text-[10px] text-[var(--rm-ink-muted)] font-serif">侧光碑刻</span>
               </div>
             </div>
           </div>

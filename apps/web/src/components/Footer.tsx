@@ -24,7 +24,7 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-3 text-[11px] font-mono text-[var(--rm-ink-muted)]">
-          <span>Blender 5.2.2 · Three.js</span>
+          <span>Three.js PBR · WebGL</span>
           <span>·</span>
           <span>2D-FFT · DEM · FTS5</span>
         </div>

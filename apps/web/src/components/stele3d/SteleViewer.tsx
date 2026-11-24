@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { STELE_DIMENSIONS } from '../../config/steleDimensions';
-import { buildSteleModel, SteleModelInstance, HotspotData, SteleModelVariant } from './SteleModelBuilder';
-import { Rotate3d, Maximize2, Scan, SunMedium, Flame, Moon, Sparkles, SlidersHorizontal, Box } from 'lucide-react';
+import { buildSteleModel, SteleModelInstance, HotspotData } from './SteleModelBuilder';
+import { Rotate3d, Maximize2, Scan, SunMedium, Flame, Moon, Sparkles, SlidersHorizontal } from 'lucide-react';
 import { useExperience } from '../../context/ExperienceContext';
 
 type CameraPresetKey = keyof typeof STELE_DIMENSIONS.cameraPresets;
@@ -107,7 +107,6 @@ interface SteleViewerProps {
   isFullscreen?: boolean;
   className?: string;
   showControls?: boolean;
-  defaultVariant?: SteleModelVariant;
   externalRestorationRatio?: number;
   onHotspotClick?: (point: { title: string; desc: string }) => void;
 }
@@ -115,13 +114,12 @@ interface SteleViewerProps {
 export const SteleViewer: React.FC<SteleViewerProps> = ({
   customRubbingUrl,
   restoredRubbingUrl,
-  steleTitle = '玄石鉴刻台 · 三维数字展陈',
+  steleTitle = '唐风龙纹石碑 · 三维数字展陈',
   onOpenWorkbench,
   onToggleFullscreen,
   isFullscreen = false,
   className = '',
   showControls = true,
-  defaultVariant,
   externalRestorationRatio,
   onHotspotClick,
 }) => {
@@ -147,9 +145,6 @@ export const SteleViewer: React.FC<SteleViewerProps> = ({
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
-  const [modelVariant, setModelVariant] = useState<SteleModelVariant>(
-    qaEnabled ? 'classic' : defaultVariant || 'gallery',
-  );
 
   // Interactive states
   const [isAutoRotate, setIsAutoRotate] = useState<boolean>(!prefersReducedMotion);
@@ -337,9 +332,9 @@ export const SteleViewer: React.FC<SteleViewerProps> = ({
     };
     syncRakingLight(rakingRef.current.preset, rakingRef.current.azimuth, rakingRef.current.elevation);
 
-    // Load Stele Model
+    // Load Authored Tang Twin-Dragon Stele Model (stele-final.glb)
     const textureLoader = new THREE.TextureLoader();
-    const steleInstance = buildSteleModel(textureLoader, customRubbingUrl, restoredRubbingUrl, modelVariant);
+    const steleInstance = buildSteleModel(textureLoader, customRubbingUrl, restoredRubbingUrl);
     modelInstanceRef.current = steleInstance;
     scene.add(steleInstance.group);
 
@@ -646,7 +641,7 @@ export const SteleViewer: React.FC<SteleViewerProps> = ({
         });
       }
     };
-  }, [customRubbingUrl, restoredRubbingUrl, isFullscreen, showControls, modelVariant, qaEnabled, syncRakingLight]);
+  }, [customRubbingUrl, restoredRubbingUrl, isFullscreen, showControls, qaEnabled, syncRakingLight]);
 
   const toggleAutoRotate = useCallback(() => {
     setIsAutoRotate((prev) => {
@@ -688,7 +683,6 @@ export const SteleViewer: React.FC<SteleViewerProps> = ({
   return (
     <div
       data-stele-viewer
-      data-model-variant={modelVariant}
       className={`rm-dark-stage relative w-full h-full select-none overflow-hidden ${
         theme === 'xuan' && !qaEnabled ? 'bg-[#e7dfd0]' : 'bg-[#0B0E13]'
       } ${className}`}
@@ -737,22 +731,6 @@ export const SteleViewer: React.FC<SteleViewerProps> = ({
           </div>
 
           <div className="flex items-center gap-1.5 pointer-events-auto shrink-0">
-            {/* Switch between Blender 5.2.2 Exhibition Stele and Classic Tang Dragon Stele */}
-            {!qaEnabled && (
-              <button
-                type="button"
-                onClick={() => setModelVariant((v) => (v === 'gallery' ? 'classic' : 'gallery'))}
-                style={{ backgroundColor: 'rgba(13, 17, 23, 0.92)' }}
-                className="px-2.5 py-1.5 rounded-xl hover:bg-gold/25 text-[11px] font-serif text-[#e5cb98] border border-gold/35 hover:border-gold transition-all backdrop-blur-md shadow-card flex items-center gap-1 whitespace-nowrap"
-                title="切换 Blender 5.2.2 玄石鉴刻台 / 原件唐风双龙碑"
-              >
-                <Box className="w-3.5 h-3.5 text-gold shrink-0" />
-                <span className="hidden sm:inline">
-                  {modelVariant === 'gallery' ? '玄石鉴刻台' : '唐风双龙碑'}
-                </span>
-              </button>
-            )}
-
             {/* Raking Light Studio Toggle */}
             <button
               type="button"
@@ -789,16 +767,6 @@ export const SteleViewer: React.FC<SteleViewerProps> = ({
       {/* Fullscreen Raking Light Trigger */}
       {isFullscreen && (
         <div className="absolute top-20 right-6 z-30 flex items-center gap-2">
-          {!qaEnabled && (
-            <button
-              type="button"
-              onClick={() => setModelVariant((v) => (v === 'gallery' ? 'classic' : 'gallery'))}
-              className="px-3 py-1.5 rounded-xl bg-[#0d1117]/88 border border-gold/35 text-xs font-serif text-[#e5cb98] hover:border-gold backdrop-blur-md flex items-center gap-1.5"
-            >
-              <Box className="w-3.5 h-3.5 text-gold" />
-              <span>{modelVariant === 'gallery' ? '玄石鉴刻台 (3.8MB)' : '唐风双龙碑 (原件)'}</span>
-            </button>
-          )}
           <button
             type="button"
             data-testid="raking-light-toggle"

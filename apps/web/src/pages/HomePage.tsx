@@ -151,7 +151,7 @@ export const HomePage: React.FC<HomePageProps> = ({ steles, onSelectStele, onNav
               <div className="rm-book-frame px-3.5 py-3 rounded-xl flex flex-col">
                 <span className="text-[11px] text-[var(--rm-ink-muted)] font-serif">三维鉴刻</span>
                 <div className="text-2xl rm-mono-metric font-bold text-[var(--rm-celadon-light)] mt-0.5">
-                  3.8 <span className="text-xs font-serif font-normal">MB</span>
+                  PBR <span className="text-xs font-serif font-normal">侧光</span>
                 </div>
               </div>
             </div>

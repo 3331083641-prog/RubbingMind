@@ -1,7 +1,7 @@
 # 墨韵智考 RubbingMind
 
 > **以当代数字媒体，守望千年贞石微痕。**  
-> 面向“石刻文物风化不可逆”与“古碑公众阅读门槛高”双重时代痛点，融汇 **Blender 5.2.2 三维金石重建**、**2D-FFT 频空域自适应微痕复原**、**真实 DEM 三维时空舆图**、**有据史料检索（SQLite FTS5/BM25）** 与 **当代美育留痕工坊** 的全栈数字媒体与数字人文平台。
+> 面向“石刻文物风化不可逆”与“古碑公众阅读门槛高”双重时代痛点，融汇 **高精度 PBR 三维碑刻与考古侧光掠影**、**2D-FFT 频空域自适应微痕复原**、**真实 DEM 三维时空舆图**、**有据史料检索（SQLite FTS5/BM25）** 与 **当代美育留痕工坊** 的全栈数字媒体与数字人文平台。
 
 ---
 
@@ -12,24 +12,15 @@
 - **材质与排印反差**：全局叠加零交互阻挡的 SVG 宣纸/石刻微颗粒质感层；标题与碑文采用中文衬线体（Noto Serif SC），算法参数与置信度采用等宽制表数字，结合竖排题跋与朱/白文篆刻微件，兼容 `prefers-reduced-motion`。
 - **16:9 纯净展演模式 & 作品立意图谱**：顶部一键开启「展演模式」（隐藏非必要调试条，适配 1080P 录屏与展板截图，底部浮动章节导览，按 `Esc` 退出）及「立意图谱」策展白皮书弹窗。
 
-### 2. Blender 5.2.2 + WebGL 真实三维金石质感升维
-- **可复现无头建模流水线**：[tools/blender/build_exhibition_stele.py](tools/blender/build_exhibition_stele.py) 通过本地 Blender 5.2.2 LTS 无头脚本程序化构建闭合流形风化倒角碑身、螭首拱额与黑曜泥金展台，并基于真实碑拓烘焙阴刻法线/粗糙度/AO 贴图，导出仅 **3.82 MB** 的轻量化 [huacan-exhibition-stele.glb](apps/web/public/assets/stele/model3d/gallery/huacan-exhibition-stele.glb)（14,720 顶点 / 29,036 面），同时完整保留既有唐风双龙碑原件 `stele-final.glb` 支持一键切换对比。
+### 2. WebGL 三维唐风双龙碑与考古侧光掠影（Raking Light）
+- **原件级 PBR 三维碑刻**：统一使用闭合流形唐风双龙浮雕青石碑 [stele-final.glb](apps/web/public/assets/stele/model3d/final/stele-final.glb)（源码脚本位于 [design/blender/stele-final/](design/blender/stele-final/)），完整保留原石质感、须弥底座与内凹碑面映射。
 - **考古侧光掠影（Raking Light）与运镜预设**：实时拖动虚拟侧光方位角（`-78° ~ +78°`）与掠射仰角（`8° ~ 64°`），一键切换**考古斜射光 / 冷月光 / 暖烛火 / 展馆柔光**色温，并支持**全景瞻仰 / 铭文细察 / 斜光鉴刻**平滑运镜及六向正交机位。
 
 ### 3. 四重沉浸式策展动线（观碑 · 复原 · 释读 · 留痕）
 - **沉浸序章「拂尘见字 / 数字传拓」**：首页全屏光墨交互画布，移动指针如执墨扑与侧光掠过碑面，古老碑文与朱砂印记缓缓显影；首屏即可切换多通精选碑拓投影至三维展台。
-- **观碑与复原可视化**：工作台提供 **2.6× 光学局部放大镜**、**3D 侧光联动**、**卷轴帘幕分屏滑块**、**诗意四阶处理反馈（拂尘去噪 → 寻脉识字 → 推演残笔 → 考据释义）**及**残损关注区叠层**；若本地后端未启动，自动无缝回退至带「典藏演示态」朱印微标的本地前端演练预览。
+- **观碑与复原可视化**：工作台提供 **2.6× 光学局部放大镜**、**3D 侧光联动**、**卷轴帘幕分屏滑块**、**诗意四阶处理反馈（拂尘去噪 → 寻脉识字 → 推演残笔 → 考据释义）**及**残损关注区叠层**；若本地后端未启动，自动无缝回退至带「演示态」微标的本地前端演练预览。
 - **人文深度释读 & AI 金石学伴**：原碑文 / 白话译注双栏对照、点击单字联动竖排古籍卷轴、书体笔法与字形演变微赏；「AI 金石学伴」优先调用本地 `/api/research/query` 实证检索，并严格分层展示**【馆藏史料考据】**与**【AI 导览推演】**边界。
 - **文化留痕工坊（高清 PNG 导出）**：摘选当前碑刻名句或单字，实时高分辨率排版生成**数字碑帖藏品卡 / 竖排宣纸书签 / 当代极简文化海报**，支持自定义落款题记与朱/白文印章样式，一键导出无水印高清 PNG。
-
-### Blender 5.2.2 3D 资产本地复现命令
-
-```powershell
-# 需本地安装 Blender 5.2.2 LTS（示例路径 D:\Codex\blender-5.2.2\blender-5.2.2-windows-x64\blender.exe）
-D:\Codex\blender-5.2.2\blender-5.2.2-windows-x64\blender.exe --background --python tools/blender/build_exhibition_stele.py
-# 输出：apps/web/public/assets/stele/model3d/gallery/huacan-exhibition-stele.glb (~3.82 MB)
-# 及元数据：apps/web/public/assets/stele/model3d/gallery/exhibition-stele-meta.json
-```
 
 ---
 
@@ -37,7 +28,7 @@ D:\Codex\blender-5.2.2\blender-5.2.2-windows-x64\blender.exe --background --pyth
 
 | 页面 | 实际功能 |
 |---|---|
-| 首页门户 | 「拂尘见字」交互显影序章、原有循环视频、Blender 5.2.2 侧光三维碑刻展台（双模型切换）、四重策展动线与精选碑林样本 |
+| 首页门户 | 「拂尘见字」交互显影序章、原有循环视频、唐风双龙 PBR 三维碑刻与考古侧光掠影、四重策展动线与精选碑林样本 |
 | 贞石典藏馆 | 七朝代各 4 件，共 28 件正式馆藏；真实封面 / 阅读图 / 档案图、搜索筛选、来源许可、复核状态和三维侧光展陈 |
 | 智考工作台 | PNG / JPEG / WebP 上传、频空域自适应处理、局部放大镜与 3D 联动、真实运行历史、残字选区与人工采纳/驳回、双栏译注与 AI 金石学伴、文化留痕高清 PNG 导出 |
 | 时空图谱中心 | Three.js + MapLibre + 真实 DEM，国界 / 省界独立图层、地形贴地标记、史料关系、纪年换算和有来源的全文检索 |
@@ -47,7 +38,7 @@ D:\Codex\blender-5.2.2\blender-5.2.2-windows-x64\blender.exe --background --pyth
 
 ### 首页门户 · 玄石暗馆（Obsidian Stele）
 
-![首页门户与 Blender 5.2.2 三维碑刻](screenshots/sync-verification/1920x1080/01-home.png)
+![首页门户与唐风双龙三维碑刻](screenshots/sync-verification/1920x1080/01-home.png)
 
 ### 素宣书斋（Xuan Paper）与考古侧光掠影（Raking Light）
 

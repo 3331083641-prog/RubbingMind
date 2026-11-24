@@ -2,8 +2,6 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { STELE_DIMENSIONS } from '../../config/steleDimensions';
 
-export type SteleModelVariant = 'gallery' | 'classic';
-
 export interface HotspotData {
   id: string;
   title: string;
@@ -19,7 +17,6 @@ export interface SteleModelInstance {
   textures: THREE.Texture[];
   bounds: THREE.Box3;
   ready: Promise<void>;
-  variant: SteleModelVariant;
   hotspotMeshes: { core: THREE.Mesh; ring: THREE.Mesh; data: HotspotData }[];
   updateScan: (scanY: number, intensity: number) => void;
   setMixRatio: (ratio: number) => void;
@@ -27,24 +24,17 @@ export interface SteleModelInstance {
   interactionState: () => { scanY: number; intensity: number; ratio: number };
 }
 
-const MODEL_PATHS: Record<SteleModelVariant, string> = {
-  gallery: '/assets/stele/model3d/gallery/huacan-exhibition-stele.glb',
-  classic: '/assets/stele/model3d/final/stele-final.glb',
-};
-
 /**
- * Authored GLB stele builder supporting:
- * - `gallery`: Blender 5.2.2 LTS lightweight carved exhibition stele + obsidian/gold plinth (3.8 MB)
- * - `classic`: Original sculpted Tang Twin-Dragon stele (stele-final.glb)
+ * One authored GLB (stele-final.glb) for homepage, fullscreen, museum and workbench 3D views.
+ * Inscription is part of the closed stone skin, never a floating plane.
  */
 export function buildSteleModel(
   textureLoader: THREE.TextureLoader,
   customRubbingUrl?: string,
   restoredRubbingUrl?: string,
-  variant: SteleModelVariant = 'gallery',
 ): SteleModelInstance {
   const group = new THREE.Group();
-  group.name = variant === 'gallery' ? 'SteleExhibitionGallery' : 'SteleFinal';
+  group.name = 'SteleFinal';
   const materials: THREE.Material[] = [];
   const textures: THREE.Texture[] = [];
   const hotspotMeshes: SteleModelInstance['hotspotMeshes'] = [];
@@ -55,7 +45,6 @@ export function buildSteleModel(
     uScanY: { value: 0.5 },
     uLaserIntensity: { value: 0 },
     uMixRatio: { value: 0 },
-    uIsGallery: { value: variant === 'gallery' ? 1.0 : 0.0 },
     uDamagedTex: { value: null as THREE.Texture | null },
     uRestoredTex: { value: null as THREE.Texture | null },
     uPanel: {
@@ -112,20 +101,8 @@ export function buildSteleModel(
     return tex;
   };
 
-  const loadModelWithFallback = async () => {
-    const loader = new GLTFLoader();
-    try {
-      return await loader.loadAsync(MODEL_PATHS[variant]);
-    } catch (err) {
-      if (variant === 'gallery') {
-        return await loader.loadAsync(MODEL_PATHS.classic);
-      }
-      throw err;
-    }
-  };
-
   const ready = Promise.allSettled([
-    loadModelWithFallback(),
+    new GLTFLoader().loadAsync('/assets/stele/model3d/final/stele-final.glb'),
     loadRubbing(damagedUrl),
     loadRubbing(restoredUrl),
   ]).then((results) => {
@@ -151,33 +128,19 @@ export function buildSteleModel(
     gltf.scene.traverse((obj) => {
       if (!(obj instanceof THREE.Mesh)) return;
       obj.castShadow = obj.receiveShadow = true;
-      const isSteleStone =
-        variant === 'classic' ||
-        obj.name.includes('SteleBody') ||
-        obj.name.includes('SteleCrown') ||
-        obj.name.includes('Stone');
-
       (Array.isArray(obj.material) ? obj.material : [obj.material]).forEach(
         (mat: THREE.MeshStandardMaterial) => {
           materials.push(mat);
+          mat.metalness = 0;
           mat.side = THREE.FrontSide;
+          mat.aoMapIntensity = 0.7;
+          mat.normalScale.set(0.65, 0.65);
           Object.values(mat).forEach((value) => {
             if (value instanceof THREE.Texture && !textures.includes(value)) {
               value.anisotropy = 4;
               textures.push(value);
             }
           });
-
-          if (!isSteleStone) {
-            mat.needsUpdate = true;
-            return;
-          }
-
-          mat.metalness = 0;
-          mat.aoMapIntensity = variant === 'gallery' ? 0.85 : 0.7;
-          if (mat.normalMap) {
-            mat.normalScale.set(variant === 'gallery' ? 1.15 : 0.65, variant === 'gallery' ? 1.15 : 0.65);
-          }
 
           mat.onBeforeCompile = (shader) => {
             Object.assign(shader.uniforms, uniforms);
@@ -210,7 +173,6 @@ export function buildSteleModel(
             uniform float uMixRatio;
             uniform float uScanY;
             uniform float uLaserIntensity;
-            uniform float uIsGallery;
             uniform vec4 uPanel;
           `,
               )
@@ -220,21 +182,11 @@ export function buildSteleModel(
             #include <map_fragment>
             vec2 panelUv = vec2(vStelePosition.x / uPanel.x + 0.5, (vStelePosition.y - uPanel.z) / uPanel.y + 0.5);
             float panelMask = step(0.0, panelUv.x) * step(panelUv.x, 1.0) * step(0.0, panelUv.y) * step(panelUv.y, 1.0)
-              * step(0.075, vStelePosition.z) * step(0.55, vSteleNormal.z);
+              * step(0.08, vStelePosition.z) * step(0.65, vSteleNormal.z);
             vec3 damaged = texture2D(uDamagedTex, panelUv).rgb;
             vec3 restored = texture2D(uRestoredTex, panelUv).rgb;
-            vec3 blendedRubbing = mix(damaged, restored, uMixRatio);
-            float trace = dot(blendedRubbing, vec3(0.2126, 0.7152, 0.0722));
-            if (uIsGallery > 0.5) {
-              // Project current rubbing cleanly into carved stone recess while retaining mineral relief
-              float strokeRelief = smoothstep(0.18, 0.85, trace);
-              vec3 stoneInk = mix(diffuseColor.rgb * 0.62, diffuseColor.rgb * 1.42 + vec3(0.10, 0.085, 0.065), strokeRelief);
-              diffuseColor.rgb = mix(diffuseColor.rgb, stoneInk, panelMask * 0.76);
-              diffuseColor.rgb *= 1.0 + panelMask * uMixRatio * (0.14 + strokeRelief * 0.28);
-            } else {
-              // Classic Tang stele behavior preserved for QA audit
-              diffuseColor.rgb *= 1.0 + panelMask * uMixRatio * (0.16 + trace * 0.26);
-            }
+            float trace = dot(mix(damaged, restored, uMixRatio), vec3(0.2126, 0.7152, 0.0722));
+            diffuseColor.rgb *= 1.0 + panelMask * uMixRatio * (0.16 + trace * 0.26);
           `,
               )
               .replace(
@@ -242,12 +194,12 @@ export function buildSteleModel(
                 `
             #include <emissivemap_fragment>
             float scanDistance = abs(panelUv.y - uScanY);
-            float scan = (1.0 - smoothstep(0.0, 0.0045, scanDistance)) + (1.0 - smoothstep(0.0, 0.04, scanDistance)) * 0.16;
-            totalEmissiveRadiance += vec3(0.76, 0.42, 0.12) * scan * uLaserIntensity * panelMask;
+            float scan = (1.0 - smoothstep(0.0, 0.004, scanDistance)) + (1.0 - smoothstep(0.0, 0.035, scanDistance)) * 0.15;
+            totalEmissiveRadiance += vec3(0.66, 0.38, 0.06) * scan * uLaserIntensity * panelMask;
           `,
               );
           };
-          mat.customProgramCacheKey = () => `stele-pbr-scan-repair-${variant}-v3`;
+          mat.customProgramCacheKey = () => 'stele-pbr-scan-repair-v2';
           mat.needsUpdate = true;
         },
       );
@@ -264,7 +216,7 @@ export function buildSteleModel(
     const ids = ['h-gan', 'h-cen', 'h-yong'];
     positions.forEach(([u, v], i) => {
       const p = STELE_DIMENSIONS.panel;
-      const localPos = new THREE.Vector3((u - 0.5) * p.width, p.yPos + (v - 0.5) * p.height, p.zOffset + 0.006);
+      const localPos = new THREE.Vector3((u - 0.5) * p.width, p.yPos + (v - 0.5) * p.height, p.zOffset + 0.004);
       const data: HotspotData = {
         id: ids[i],
         title: `概念铭文 · 残损区域 ${String.fromCharCode(65 + i)}`,
@@ -283,7 +235,7 @@ export function buildSteleModel(
       });
       materials.push(cm, rm);
       const core = new THREE.Mesh(new THREE.CircleGeometry(0.014, 20), cm);
-      const ring = new THREE.Mesh(new THREE.RingGeometry(0.022, 0.029, 32), rm);
+      const ring = new THREE.Mesh(new THREE.RingGeometry(0.022, 0.028, 32), rm);
       core.position.copy(localPos);
       ring.position.copy(localPos);
       ring.position.z += 0.001;
@@ -301,7 +253,6 @@ export function buildSteleModel(
     hotspotMeshes,
     bounds,
     ready,
-    variant,
     interactionState: () => ({
       scanY: uniforms.uScanY.value,
       intensity: uniforms.uLaserIntensity.value,
